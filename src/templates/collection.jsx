@@ -1,5 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
+import { useMemo } from "react"
+import Hero from "../components/sections/hero-collection"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -60,8 +62,32 @@ import React from "react"
 // }
 
 export default function Collection({ data: { wpCollection, allWpProduct }, pageContext }) {
+
+  const products = useMemo(() => {
+    return allWpProduct.nodes.filter(el => el.products.collection.id === wpCollection.id)
+  }, [allWpProduct, wpCollection])
+
+  const itemCategories = useMemo(() => {
+    const categories = []
+
+    products.forEach(el => {
+      el.types.nodes.forEach(node => {
+        if (!categories.includes(node.name)) {
+          categories.push(node)
+        }
+      })
+    })
+
+    return categories
+  }, [products])
+
   return (
     <main>
+      <Hero
+        itemCategories={itemCategories}
+        products={products}
+        data={wpCollection}
+      />
     </main>
   )
 }
@@ -71,6 +97,108 @@ export const query = graphql`
           wpCollection(id: {eq: $id}){
             id
             collections {
+              sidebarCollectionInformation {
+                legs {
+                  featuredImageTitle
+                  featuredImageTextUnderTitle
+                  featuredImage {
+                    altText
+                    localFile{
+                      childImageSharp{
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  dimensions : legsDimensions {
+                    textUnderTitle
+                    title
+                    image {
+                      altText
+                      localFile{
+                        publicURL
+                        childImageSharp{
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                  }
+                }
+                dimensions {
+                  featuredImageTitle
+                  featuredImageTextUnderTitle
+                  featuredImage {
+                    altText
+                    localFile{
+                      childImageSharp{
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  dimensions {
+                    textUnderTitle
+                    title
+                    image {
+                      altText
+                      localFile{
+                        publicURL
+                        childImageSharp{
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                  }
+                }
+                armrest {
+                  featuredImageTitle
+                  featuredImageTextUnderTitle
+                  featuredImage {
+                    altText
+                    localFile{
+                      childImageSharp{
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  dimensions : armrestDimensions {
+                    textUnderTitle
+                    title
+                    image {
+                      altText
+                      localFile{
+                        publicURL
+                        childImageSharp{
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                  }
+                }
+                accessories {
+                  featuredImageTitle
+                  featuredImageTextUnderTitle
+                  featuredImage {
+                    altText
+                    localFile{
+                      childImageSharp{
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  dimensions {
+                    title
+                    textUnderTitle
+                    image {
+                      altText
+                      localFile{
+                        publicURL
+                        childImageSharp{
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                  }
+                }
+              }
               generalCollectionInformation {
                 collectionQuickDescription
                 collectionProductSheet {
@@ -107,6 +235,11 @@ export const query = graphql`
           }
           allWpProduct{
             nodes{
+              types {
+                nodes {
+                  name
+                }
+              }
             products {
                 collection {
                   ... on WpCollection {
@@ -131,7 +264,6 @@ export const query = graphql`
                     comfort
                     fabric
                     cover
-                    fieldGroupName
                     leather
                     legs
                     model
