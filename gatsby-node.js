@@ -9,6 +9,8 @@ exports.createPages = async ({
     actions: { createPage, createRedirect },
 }) => {
 
+    // COLLECTION
+
     const { data: { allWpCollection: { collections } } } = await graphql(`
     query {
         allWpCollection {
@@ -31,7 +33,31 @@ exports.createPages = async ({
         });
     });
 
+    // MATERIAL
 
+    const { data: { allWpMaterials: { materials } } } = await graphql(`
+    query {
+        allWpMaterials {
+            materials : nodes {
+                id
+                slug
+            }
+        }
+    }
+  `);
+
+    materials.forEach(({ id, slug }) => {
+        createPage({
+            path: '/' + slug + '/',
+            component: resolve('src/templates/material.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    });
+
+    // PRODUCTS
 
     const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
     query {

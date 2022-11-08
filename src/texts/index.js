@@ -2,6 +2,22 @@ export const downloadText = {
     'en': 'Download Product Sheet'
 }
 
+export const downloadFabricText = {
+    'en': 'Download Fabric Specification'
+}
+
+export const featuresText = {
+    'en': 'FEATURES'
+}
+
+export const textureText = {
+    'en': 'TEXTURE'
+}
+
+export const careInstructionsText = {
+    'en': 'CARE INSTRUCTIONS'
+}
+
 export const upholsterysText = {
     'en': 'UPSHOLSTERYS'
 }

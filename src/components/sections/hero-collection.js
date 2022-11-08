@@ -12,11 +12,23 @@ import { TwoColumnImageGrid } from "../organism/two-column-image-grid"
 export default function Hero({
     itemCategories,
     products,
-    data: { title, comfort, covers, upholsterys, collections:
-        { generalCollectionInformation:
-            { collectionProductSheet, collectionPagePreviewImage, collectionQuickDescription },
-            sidebarCollectionInformation:
-            { dimensions, armrest, accessories, legs }
+    data: {
+        title,
+        comfort,
+        covers,
+        upholsterys,
+        collections: {
+            generalCollectionInformation: {
+                collectionProductSheet,
+                collectionPagePreviewImage,
+                collectionQuickDescription
+            },
+            sidebarCollectionInformation: {
+                dimensions,
+                armrest,
+                accessories,
+                legs
+            }
         }
     } }) {
 
@@ -75,7 +87,7 @@ const Grid = styled.div`
     padding: 60px 0;
     display: grid;
     grid-template-columns: 1220fr 560fr;
-    grid-gap: 40px;
+    grid-gap: 50px;
 
     .link{
         margin-top: 60px;

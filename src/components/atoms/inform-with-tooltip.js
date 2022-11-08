@@ -1,14 +1,17 @@
 import React from "react"
 import styled from "styled-components"
 
-export const Tooltip = ({ title, data }) => (
+export const Tooltip = ({ title, data, onlyImage }) => (
     <Wrapper>
         <span className="title">{title}</span>
         <Grid>
             {data.nodes.map(el => (
                 <Item>
-                    {/* <img src='' alt='TODO' /> */}
-                    <span>{el.name}</span>
+                    <img src='' alt='TODO' />
+                    {onlyImage
+                        ? null
+                        : <span>{el.name}</span>}
+
                 </Item>
             ))}
         </Grid>
@@ -27,6 +30,7 @@ const Wrapper = styled.div`
 const Grid = styled.div`
     margin-top: 16px;   
     display: flex;
+    flex-wrap: wrap;
     gap: 16px;
 `
 

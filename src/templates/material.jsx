@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
-// import { ProductArchive } from "../components/sections/products-archive"
+import Hero from "../components/sections/hero-materials"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -60,52 +60,71 @@ import React from "react"
 //     )
 // }
 
-export default function Products({ data, pageContext }) {
-    debugger
+export default function Material({ data: {wpMaterials}, pageContext }) {
     return (
         <main>
-            {/* <ProductArchive products={data.allWpProduct.nodes} data={''}/> */}
+            <Hero data={wpMaterials}/>
         </main>
     )
 }
 
 export const query = graphql`
-    query products($id: String!) {
-        wpPage(id: {eq: $id}){
-            id
-        }
-        allWpProduct{
-          nodes{
-            types {
-              nodes {
-                name
+    query material($id: String!) {
+        wpMaterials(id: {eq: $id}) {
+          title
+          features {
+            nodes {
+              name
+            }
+          }
+          textures {
+            nodes {
+              name
+            }
+          }
+          careInstructions {
+            nodes {
+              name
+            }
+          }
+          materials {
+            generalMaterialInformation: generalMaterialInformationCopy {
+              materialQuickDescription
+              textUnderCareInstructionIcons
+              materialProductSheet {
+                altText
+                localFile {
+                  publicURL
+                }
               }
             }
-            products {
-              collection {
-                ... on WpCollection {
-                  slug
-                  title
+            materialColorVariants {
+              colorGroup
+              isMainColor
+              variantName
+              variantColor
+              variantGallery {
+                altText
+                localFile {
+                    publicURL
+                  childImageSharp {
+                    gatsbyImageData
+                  }
                 }
               }
-              isPopular
-              isNewArrival
-              productGallery {
-                popupNames {
-                  fabric
-                  cover
-                  leather
-                  model
+              squarePreviewImage {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
                 }
-                productsImages {
-                  isMainImage
-                  featuredProductImage {
-                    altText
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
-                    }
+              }
+              landscapePreviewImage {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
                   }
                 }
               }

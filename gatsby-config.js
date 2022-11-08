@@ -8,7 +8,18 @@ module.exports = {
     options: {
       "url": "https://sits.kryptonum.co.uk/graphql"
     }
-  }, "gatsby-plugin-image", "gatsby-plugin-sharp", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap", {
+  },
+    "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap",
+  {
+    resolve: "gatsby-plugin-sharp",
+    options: {
+      defaults: {
+        placeholder: `dominantColor`,
+        quality: 100,
+      },
+    }
+  },
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       "name": "images",
