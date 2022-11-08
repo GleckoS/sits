@@ -6,8 +6,8 @@ import { Category } from "../atoms/category"
 import { Container } from "../atoms/container"
 import { DownloadWithArrow } from "../atoms/download-with-arrow"
 import { Tooltip } from "../atoms/inform-with-tooltip"
-import { PopupButton } from "../moleculas/pop-up-other-collection-data"
-import { TwoColumnImageGrid } from "../moleculas/two-column-image-grid"
+import { PopupButton } from "../organism/pop-up-other-collection-data"
+import { TwoColumnImageGrid } from "../organism/two-column-image-grid"
 
 export default function Hero({
     itemCategories,

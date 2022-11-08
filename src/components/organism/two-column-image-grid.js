@@ -1,7 +1,7 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import styled from "styled-components"
-import { Popup } from "../atoms/popup"
+import { Popup } from "../moleculas/popup"
 
 export const TwoColumnImageGrid = ({ collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)

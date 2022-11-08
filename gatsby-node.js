@@ -31,4 +31,30 @@ exports.createPages = async ({
         });
     });
 
+
+
+    const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    productsArchives.forEach(({ id, slug }) => {
+        createPage({
+            path: '/' + slug + '/',
+            component: resolve('src/templates/products.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+
+
 }
