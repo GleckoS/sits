@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
-// import { ProductArchive } from "../components/sections/products-archive"
+import { ProductArchive } from "../components/sections/products-archive"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 

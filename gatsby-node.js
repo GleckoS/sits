@@ -57,6 +57,30 @@ exports.createPages = async ({
         });
     });
 
+    // MATERIALS
+
+    const { data: { allWpPage: { nodes: materialArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Materials" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    materialArchives.forEach(({ id, slug }) => {
+        createPage({
+            path: '/' + slug + '/',
+            component: resolve('src/templates/materials.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
     // PRODUCTS
 
     const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
