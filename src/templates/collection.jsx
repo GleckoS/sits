@@ -67,24 +67,10 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
     return allWpProduct.nodes.filter(el => el.products.collection.id === wpCollection.id)
   }, [allWpProduct, wpCollection])
 
-  const itemCategories = useMemo(() => {
-    const categories = []
-
-    products.forEach(el => {
-      el.types.nodes.forEach(node => {
-        if (!categories.includes(node.name)) {
-          categories.push(node)
-        }
-      })
-    })
-
-    return categories
-  }, [products])
-
   return (
     <main>
       <Hero
-        itemCategories={itemCategories}
+        itemCategories={wpCollection.types.nodes}
         products={products}
         data={wpCollection}
       />
@@ -217,6 +203,11 @@ export const query = graphql`
               }
             }
             title
+            types {
+              nodes {
+                name
+              }
+            }
             comfort {
               nodes {
                 name

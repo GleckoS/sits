@@ -8,7 +8,7 @@ export const ProductList = ({ products }) => (
             return el.products.productGallery?.map(inEl => {
                 return inEl.productsImages?.map(imageEl => {
                     if (imageEl.isMainImage) {
-                        return <ProductCard types={el.types.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
+                        return <ProductCard types={el.products.collection.types.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
                     }
                     return null
                 })
