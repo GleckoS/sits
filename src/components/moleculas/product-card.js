@@ -6,7 +6,7 @@ import { Category } from './../atoms/category'
 
 export const ProductCard = ({ data, types, image }) => (
     <Wrapper>
-        <Link to={'/' + data.slug + '/'}>
+        <Link to={'/collection/' + data.slug + '/'}>
             <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <Flex>
                 <span className="archive-title">{data.title}</span>

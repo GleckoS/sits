@@ -21,7 +21,7 @@ export const MaterialCard = ({ data: { materials: { materialColorVariants: varia
 
     return (
         <Wrapper>
-            <Link to={'/' + slug + '/'}>
+            <Link to={'/material/' + slug + '/'}>
                 <SliderWrapper id='background'>
                     {variants.map((el, index) => (
                         <SliderContent className={index === choosenVariant ? 'active' : ''}>

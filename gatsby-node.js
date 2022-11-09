@@ -24,7 +24,7 @@ exports.createPages = async ({
 
     collections.forEach(({ id, slug }) => {
         createPage({
-            path: '/' + slug + '/',
+            path: '/collection/' + slug + '/',
             component: resolve('src/templates/collection.jsx'),
             context: {
                 id,
@@ -48,7 +48,7 @@ exports.createPages = async ({
 
     materials.forEach(({ id, slug }) => {
         createPage({
-            path: '/' + slug + '/',
+            path: '/material/' + slug + '/',
             component: resolve('src/templates/material.jsx'),
             context: {
                 id,
