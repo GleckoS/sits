@@ -93,7 +93,6 @@ export const query = graphql`
                   }
                 }
               }
-              isPopular
               isNewArrival
               productGallery {
                 popupNames {
