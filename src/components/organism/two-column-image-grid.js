@@ -50,7 +50,9 @@ export const TwoColumnImageGrid = ({ collectionPagePreviewImage, products, title
                 </PopupGrid>
             </Popup>
             <Wrapper >
-                <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
+                <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                    <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
+                </button>
                 <ImagesGrid>
                     {products.map(el => {
                         return el.products.productGallery.map(el => {
@@ -70,18 +72,17 @@ export const TwoColumnImageGrid = ({ collectionPagePreviewImage, products, title
 
 const Wrapper = styled.div`
 
+    button{
+        border: none;
+        background-color: transparent;
+        margin-bottom: clamp(10.13px, ${10.13 / 1024 * 100}vw, 20.71px);
+    }
 `
 
 const ImagesGrid = styled.div`
     margin-top: 40px;
     columns: 2;
     column-gap: clamp(10px, ${10 / 1024 * 100}vw, 20px);
-
-    button{
-        border: none;
-        background-color: transparent;
-        margin-bottom: clamp(10.13px, ${10.13 / 1024 * 100}vw, 20.71px);
-    }
 `
 
 const PopupGrid = styled.div`
