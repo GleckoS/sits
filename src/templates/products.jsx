@@ -1,6 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
-import { ProductArchive } from "../components/sections/products-archive"
+import ProductArchive from './../components/sections/products-archive'
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -64,7 +64,7 @@ export default function Products({ data, pageContext }) {
     debugger
     return (
         <main>
-            {/* <ProductArchive products={data.allWpProduct.nodes} data={''}/> */}
+            <ProductArchive products={data.allWpProduct.nodes} data={''}/>
         </main>
     )
 }
