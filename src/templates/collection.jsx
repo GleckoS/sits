@@ -200,6 +200,16 @@ export const query = graphql`
                     }
                   }
                 }
+                popupNames {
+                  accessories
+                  armrest
+                  comfort
+                  fabric
+                  cover
+                  leather
+                  legs
+                  model
+                }
               }
             }
             title
@@ -211,16 +221,43 @@ export const query = graphql`
             comfort {
               nodes {
                 name
+                taxonomy {
+                  tooltip
+                  image {
+                    altText
+                    localFile {
+                      publicURL
+                    }
+                  }
+                }
               }
             }
             covers {
               nodes {
                 name
+                taxonomy {
+                  tooltip
+                  image {
+                    altText
+                    localFile {
+                      publicURL
+                    }
+                  }
+                }
               }
             }
             upholsterys {
               nodes {
                 name
+                taxonomy {
+                  tooltip
+                  image {
+                    altText
+                    localFile {
+                      publicURL
+                    }
+                  }
+                }
               }
             }
           }

@@ -75,16 +75,43 @@ export const query = graphql`
           features {
             nodes {
               name
+              taxonomy {
+                tooltip
+                image {
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+              }
             }
           }
           textures {
             nodes {
               name
+              taxonomy {
+                tooltip
+                image {
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+              }
             }
           }
           careInstructions {
             nodes {
               name
+              taxonomy {
+                tooltip
+                image {
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+              }
             }
           }
           materials {

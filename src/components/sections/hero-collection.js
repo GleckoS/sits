@@ -21,6 +21,7 @@ export default function Hero({
             generalCollectionInformation: {
                 collectionProductSheet,
                 collectionPagePreviewImage,
+                popupNames,
                 collectionQuickDescription
             },
             sidebarCollectionInformation: {
@@ -31,12 +32,12 @@ export default function Hero({
             }
         }
     } }) {
-
+    debugger
     return (
         <Wrapper>
             <Container>
                 <Grid>
-                    <TwoColumnImageGrid title={title} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
+                    <TwoColumnImageGrid title={title} popupNames={popupNames} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
                     <div>
                         <Flex>
                             <h1 className="archive-title">{title}</h1>
@@ -48,9 +49,11 @@ export default function Hero({
                             ))}
                         </Categories>
                         <Description className="p" dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />
-                        <DownloadWithArrow className='link' file={collectionProductSheet.localFile.publicURL}>
-                            {downloadText['en']}
-                        </DownloadWithArrow>
+                        {collectionProductSheet
+                            ? <DownloadWithArrow className='link' file={collectionProductSheet.localFile.publicURL}>
+                                {downloadText['en']}
+                            </DownloadWithArrow>
+                            : null}
                         <Tooltip title={upholsterysText['en']} data={upholsterys} />
                         <Tooltip title={confortText['en']} data={comfort} />
                         <Tooltip title={coversText['en']} data={covers} />
