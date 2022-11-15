@@ -67,53 +67,52 @@ export default function ProductArchive({ products }) {
         }
         // change to collection filter 
 
-        // if (!cover.includes('All')) {
-        //     arr = arr.filter(el => { // filtrowanie postów o niższym poziomie (pojedyńczych wewnątrz zestawów)
+        if (!cover.includes('All')) {
+            arr = arr.filter(el => { // filtrowanie postów o niższym poziomie (pojedyńczych wewnątrz zestawów)
 
-        //         let isFixedNeeded = cover.includes('Fixed')
-        //         let isRemovableNeeded = cover.includes('Removable')
-        //         let isFabricNeeded = cover.includes('Fabric')
-        //         let isLeatherNeeded = cover.includes('Leather')
+                let isFixedNeeded = cover.includes('Fixed')
+                let isRemovableNeeded = cover.includes('Removable')
+                let isFabricNeeded = cover.includes('Fabric')
+                let isLeatherNeeded = cover.includes('Leather')
 
-        //         let isFixed = false
-        //         let isRemovable = false
-        //         let isFabric = false
-        //         let isLeather = false
+                let isFixed = false
+                let isRemovable = false
+                let isFabric = false
+                let isLeather = false
 
-        //         if (isFixedNeeded || isRemovableNeeded) {
-        //             debugger
-        //             el.products.collection.covers?.nodes?.forEach(inEl => {
-        //                 if (cover.includes('Fixed') && inEl.name === 'Fixed') {
-        //                     isFixed = true
-        //                     return
-        //                 }
-        //                 if (cover.includes('Removable') && inEl.name === 'Removable') {
-        //                     isRemovable = true
-        //                     return
-        //                 }
-        //             })
-        //         }
-        //         if (isFabricNeeded || isLeatherNeeded) {
-        //             el.products.collection.upholsterys?.nodes?.forEach(inEl => {
-        //                 if (cover.includes('Fabric') && (inEl.name === 'Fabric limited choice' || inEl.name === 'Fabric')) {
-        //                     isFabric = true
-        //                     return
-        //                 }
-        //                 if (cover.includes('Leather') && (inEl.name === 'Leather only in fixed cover' || inEl.name === 'Leather')) {
-        //                     isLeather = true
-        //                     return
-        //                 }
-        //             })
-        //         }
+                if (isFixedNeeded || isRemovableNeeded) {
+                    el.products.collection.covers?.nodes?.forEach(inEl => {
+                        if (cover.includes('Fixed') && inEl.name === 'Fixed') {
+                            isFixed = true
+                            return
+                        }
+                        if (cover.includes('Removable') && inEl.name === 'Removable') {
+                            isRemovable = true
+                            return
+                        }
+                    })
+                }
+                if (isFabricNeeded || isLeatherNeeded) {
+                    el.products.collection.upholsterys?.nodes?.forEach(inEl => {
+                        if (cover.includes('Fabric') && (inEl.name === 'Fabric limited choice' || inEl.name === 'Fabric')) {
+                            isFabric = true
+                            return
+                        }
+                        if (cover.includes('Leather') && (inEl.name === 'Leather only in fixed cover' || inEl.name === 'Leather')) {
+                            isLeather = true
+                            return
+                        }
+                    })
+                }
 
-        //         isFixed = isFixedNeeded ? isFixed : true
-        //         isRemovable = isRemovableNeeded ? isRemovable : true
-        //         isFabric = isFabricNeeded ? isFabric : true
-        //         isLeather = isLeatherNeeded ? isLeather : true
+                isFixed = isFixedNeeded ? isFixed : true
+                isRemovable = isRemovableNeeded ? isRemovable : true
+                isFabric = isFabricNeeded ? isFabric : true
+                isLeather = isLeatherNeeded ? isLeather : true
 
-        //         return (isFixed && isRemovable && isFabric && isLeather)
-        //     })
-        // }
+                return (isFixed && isRemovable && isFabric && isLeather)
+            })
+        }
         return arr
     }, [products, sort, type, cover])
 
