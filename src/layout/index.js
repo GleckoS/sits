@@ -1,17 +1,17 @@
 import React from "react"
 import styled from "styled-components"
 import { Global } from "../styles/global-style"
-// import Footer from "./footer"
-// import Header from "./header"
+import Footer from "./footer"
+import Header from "./header"
 
 export default function Layout({ children }) {
 
     return (
         <Wrapper>
             <Global />
-            {/* <Header /> */}
+            <Header />
             {children}
-            {/* <Footer /> */}
+            <Footer />
         </Wrapper>
     )
 }

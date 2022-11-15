@@ -201,6 +201,9 @@ export const query = graphql`
                   }
                 }
                 popupNames {
+                  material
+                  tableTopMaterial
+                  materialOfTheLegs
                   accessories
                   armrest
                   comfort
@@ -287,6 +290,9 @@ export const query = graphql`
                     }
                   }
                   popupNames {
+                    material
+                    tableTopMaterial
+                    materialOfTheLegs
                     accessories
                     armrest
                     comfort

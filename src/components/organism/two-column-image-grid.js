@@ -60,23 +60,3 @@ const PopupGrid = styled.div`
     display: grid;
     grid-gap: 80px;
 `
-
-const Item = styled.div`
-    .image{
-        margin: 0 auto;
-        display: block;
-        width: fit-content;
-        max-height: 722px;
-    }
-`
-
-const Data = styled.div`
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-top: 20px;
-
-    span{
-        font-weight: 300;
-    }
-`

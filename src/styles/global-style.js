@@ -19,6 +19,10 @@ export const Global = createGlobalStyle`
         color: var(--text-color);
     }
 
+    *:focus{
+        outline: none;
+    }
+
     .archive-title {
         font-size: 44px;
         font-style: italic;

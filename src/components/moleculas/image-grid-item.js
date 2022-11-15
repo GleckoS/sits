@@ -8,12 +8,24 @@ export const ImageGridItem = ({ image, popupNames }) => (
         <Data>
             <span>Model: <strong>{popupNames.model}</strong></span>
 
+            {popupNames.material
+                ? <span>Material: <strong>{popupNames.material}</strong></span>
+                : null}
+
+            {popupNames.tableTopMaterial
+                ? <span>Table top material: <strong>{popupNames.tableTopMaterial}</strong></span>
+                : null}
+
             {popupNames.leather
                 ? <span>Leather: <strong>{popupNames.leather}</strong></span>
                 : <span>Fabric: <strong>{popupNames.fabric}</strong></span>}
 
             {popupNames.legs
                 ? <span>Legs: <strong>{popupNames.legs}</strong></span>
+                : null}
+
+            {popupNames.materialOfTheLegs
+                ? <span>Material of the legs: <strong>{popupNames.materialOfTheLegs}</strong></span>
                 : null}
 
             {popupNames.comfort

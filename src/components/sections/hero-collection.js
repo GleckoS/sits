@@ -5,7 +5,7 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from "../atoms/category"
 import { Container } from "../atoms/container"
 import { DownloadWithArrow } from "../atoms/download-with-arrow"
-import { Tooltip } from "../atoms/inform-with-tooltip"
+import { Tooltip } from "../moleculas/inform-with-tooltip"
 import { PopupButton } from "../organism/pop-up-other-collection-data"
 import { TwoColumnImageGrid } from "../organism/two-column-image-grid"
 

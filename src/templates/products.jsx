@@ -61,7 +61,6 @@ import ProductArchive from './../components/sections/products-archive'
 // }
 
 export default function Products({ data, pageContext }) {
-  debugger
   return (
     <main>
       <ProductArchive products={data.allWpProduct.nodes} data={''} />
@@ -86,6 +85,16 @@ export const query = graphql`
                 ... on WpCollection {
                   slug
                   title
+                  covers {
+                    nodes {
+                      name
+                    }
+                  }
+                  upholsterys{
+                    nodes{
+                      name
+                    }
+                  }
                   types {
                     nodes {
                       name
