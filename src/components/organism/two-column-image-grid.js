@@ -11,7 +11,9 @@ export const TwoColumnImageGrid = ({ popupNames, collectionPagePreviewImage, pro
         <>
             <Popup title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
                 <PopupGrid>
-                    <ImageGridItem image={collectionPagePreviewImage} popupNames={popupNames} />
+                    {collectionPagePreviewImage
+                        ? <ImageGridItem image={collectionPagePreviewImage} popupNames={popupNames} />
+                        : null}
                     {products.map(el => {
                         return el.products.productGallery.map(el => {
                             return el.productsImages.map(inEl => (
@@ -22,9 +24,11 @@ export const TwoColumnImageGrid = ({ popupNames, collectionPagePreviewImage, pro
                 </PopupGrid>
             </Popup>
             <Wrapper>
-                <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
-                    <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
-                </button>
+                {collectionPagePreviewImage
+                    ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                        <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
+                    </button>
+                    : null}
                 <ImagesGrid>
                     {products.map(el => {
                         return el.products.productGallery.map(el => {
