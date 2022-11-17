@@ -18,7 +18,11 @@ export const ImageGridItem = ({ image, popupNames }) => (
 
             {popupNames.leather
                 ? <span>Leather: <strong>{popupNames.leather}</strong></span>
-                : <span>Fabric: <strong>{popupNames.fabric}</strong></span>}
+                : null}
+
+            {popupNames.fabric
+                ? <span>Fabric: <strong>{popupNames.fabric}</strong></span>
+                : null}
 
             {popupNames.legs
                 ? <span>Legs: <strong>{popupNames.legs}</strong></span>
@@ -28,11 +32,11 @@ export const ImageGridItem = ({ image, popupNames }) => (
                 ? <span>Material of the legs: <strong>{popupNames.materialOfTheLegs}</strong></span>
                 : null}
 
-            {popupNames.comfort
+            {popupNames.comfort && !popupNames.tableTopMaterial && !popupNames.materialOfTheLegs && !popupNames.material
                 ? <span>Comfort: <strong>{popupNames.comfort}</strong></span>
                 : null}
 
-            {popupNames.cover
+            {popupNames.cover && !popupNames.tableTopMaterial && !popupNames.materialOfTheLegs && !popupNames.material
                 ? <span>Cover: <strong>{popupNames.cover}</strong></span>
                 : null}
 

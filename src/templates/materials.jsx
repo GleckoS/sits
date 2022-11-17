@@ -80,6 +80,12 @@ export const query = graphql`
             materials {
                 materialColorVariants {
                     variantColor
+                    variantColorImage{
+                      altText
+                      localFile{
+                        publicURL
+                      }
+                    }
                     variantName
                     colorGroup
                     isMainColor

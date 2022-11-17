@@ -54,23 +54,31 @@ export default function Hero({
                                 {downloadText['en']}
                             </DownloadWithArrow>
                             : null}
-                        <Tooltip title={upholsterysText['en']} data={upholsterys} />
-                        <Tooltip title={confortText['en']} data={comfort} />
-                        <Tooltip title={coversText['en']} data={covers} />
-                        <Popups>
-                            {dimensions.dimensions
-                                ? <PopupButton data={dimensions} title={dimensionsText['en']} />
-                                : null}
-                            {legs.dimensions
-                                ? <PopupButton data={legs} title={legsText['en']} />
-                                : null}
-                            {armrest.dimensions
-                                ? <PopupButton data={armrest} title={armrestText['en']} />
-                                : null}
-                            {accessories.dimensions
-                                ? <PopupButton data={accessories} title={accessoriesText['en']} />
-                                : null}
-                        </Popups>
+                        {upholsterys.nodes.length
+                            ? <Tooltip title={upholsterysText['en']} data={upholsterys} />
+                            : null}
+                        {comfort.nodes.length
+                            ? <Tooltip title={confortText['en']} data={comfort} />
+                            : null}
+                        {covers.nodes.length
+                            ? <Tooltip title={coversText['en']} data={covers} />
+                            : null}
+                        {dimensions.dimensions || legs.dimensions || armrest.dimensions || accessories.dimensions
+                            ? <Popups>
+                                {dimensions.dimensions
+                                    ? <PopupButton data={dimensions} title={dimensionsText['en']} />
+                                    : null}
+                                {legs.dimensions
+                                    ? <PopupButton data={legs} title={legsText['en']} />
+                                    : null}
+                                {armrest.dimensions
+                                    ? <PopupButton data={armrest} title={armrestText['en']} />
+                                    : null}
+                                {accessories.dimensions
+                                    ? <PopupButton data={accessories} title={accessoriesText['en']} />
+                                    : null}
+                            </Popups>
+                            : null}
                     </div>
                 </Grid>
             </Container>

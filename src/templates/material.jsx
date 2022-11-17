@@ -130,6 +130,12 @@ export const query = graphql`
               isMainColor
               variantName
               variantColor
+              variantColorImage{
+                altText
+                localFile{
+                  publicURL
+                }
+              }
               variantGallery {
                 altText
                 localFile {

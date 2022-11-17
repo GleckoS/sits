@@ -33,7 +33,7 @@ export const MaterialCard = ({ data: { materials: { materialColorVariants: varia
             <span className="title">{title}</span>
             <VariantsPicker>
                 {variants.map((el, index) => (
-                    <VariantCircle onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} color={el.variantColor}>
+                    <VariantCircle onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
                         <svg id="Selected_Color" data-name="Selected Color" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
                             <path id="Path_132" data-name="Path 132" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-8670.342 10076.238) rotate(-90)" fill="none" stroke="#31231e" stroke-width="3" />
                             <g id="Ellipse_199" data-name="Ellipse 199" fill="none" stroke="#31231e" stroke-width="3">
@@ -68,6 +68,7 @@ const VariantsPicker = styled.div`
 
 const VariantCircle = styled.button`
     background-color: ${props => props.color};
+    background-image: url(${props => props.image});
     width: 40px;
     height: 40px;
     border-radius: 50%;
