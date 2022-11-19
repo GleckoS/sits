@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { ProductList } from "../organism/products-list"
 import { Container } from "../atoms/container"
 import { CloseButton } from './../atoms/close-button'
+import { DropDown } from "../organism/dropdown"
 
 export default function ProductArchive({ products }) {
 
@@ -116,11 +117,28 @@ export default function ProductArchive({ products }) {
         return arr
     }, [products, sort, type, cover])
 
+    const sortData = {
+        title: 'Sort by: ' + { sort },
+        name: 'sort',
+        controller: sort,
+        elements: [{
+            name: 'Popular',
+            value: 'Popular'
+        }, {
+            name: 'Alphabetical',
+            value: 'Alphabetical'
+        }, {
+            name: 'New Arrivals',
+            value: 'New Arrivals'
+        },]
+    }
+
     return (
         <Wrapper>
             <Filter>
                 <Container className="container">
-                    <DropDown>
+                    <DropDown data={sortData} />
+                    {/* <DropDown>
                         <div className="control">
                             <span>
                                 Sort by: {sort}
@@ -233,7 +251,7 @@ export default function ProductArchive({ products }) {
                                 <input readOnly onClick={() => { changeCover('Removable') }} checked={cover.includes('Removable')} name='type' type='checkbox' />
                             </label>
                         </div>
-                    </DropDown>
+                    </DropDown> */}
                 </Container>
             </Filter>
             <Container>
@@ -291,49 +309,6 @@ const Filter = styled.div`
     .container{
         display: flex;
         gap: 120px;
-    }
-`
-
-const DropDown = styled.div`
-    width: 267px;
-    padding: 22px;
-    margin: 22px -22px 0 -22px;
-    border: 1px solid transparent;
-
-    .control{
-        background-color: transparent;
-        border: none;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .content{
-        opacity: 0;
-        pointer-events: none;
-        height: 0;
-
-        label{
-            cursor: pointer;
-            margin-top: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-    }
-
-    &:hover{
-        background-color: #fff;
-        border: 1px solid #ccc;
-        .content{
-            opacity: 1;
-        height: auto;
-            pointer-events: all;
-
-            label{
-                margin-top: 20px;
-            }
-        }
     }
 `
 
