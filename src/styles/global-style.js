@@ -17,6 +17,7 @@ export const Global = createGlobalStyle`
         box-sizing: border-box;
         -webkit-tap-highlight-color: transparent;
         color: var(--text-color);
+        font-family: 'Gothic';
     }
 
     *:focus{

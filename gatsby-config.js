@@ -6,7 +6,13 @@ module.exports = {
   plugins: [{
     resolve: 'gatsby-source-wordpress',
     options: {
-      "url": "https://sits.kryptonum.co.uk/graphql"
+      "url": "https://sits.kryptonum.co.uk/graphql",
+      schema: {
+        timeout: 1000000000,
+        circularQueryLimit: 100,
+        perPage: 5,
+        requestConcurrency: 3,
+      },
     }
   },
     "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap",

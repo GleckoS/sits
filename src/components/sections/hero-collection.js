@@ -32,7 +32,7 @@ export default function Hero({
             }
         }
     } }) {
-    debugger
+
     return (
         <Wrapper>
             <Container>

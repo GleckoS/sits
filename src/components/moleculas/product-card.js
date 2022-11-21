@@ -27,6 +27,7 @@ const Wrapper = styled.div`
         margin-top: 10px;
         font-size: 40px;
         line-height: 110%;
+        font-family: 'Ivy';
     }
 `
 

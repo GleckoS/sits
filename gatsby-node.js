@@ -25,7 +25,7 @@ exports.createPages = async ({
     collections.forEach(({ id, slug }) => {
         createPage({
             path: '/collection/' + slug + '/',
-            component: resolve('src/templates/collection.jsx'),
+            component: resolve('src/templates/collection-page.jsx'),
             context: {
                 id,
                 slug,
@@ -49,7 +49,7 @@ exports.createPages = async ({
     materials.forEach(({ id, slug }) => {
         createPage({
             path: '/material/' + slug + '/',
-            component: resolve('src/templates/material.jsx'),
+            component: resolve('src/templates/material-page.jsx'),
             context: {
                 id,
                 slug,
@@ -73,7 +73,7 @@ exports.createPages = async ({
     materialArchives.forEach(({ id, slug }) => {
         createPage({
             path: '/' + slug + '/',
-            component: resolve('src/templates/materials.jsx'),
+            component: resolve('src/templates/materials-archive.jsx'),
             context: {
                 id,
                 slug,
@@ -83,9 +83,44 @@ exports.createPages = async ({
 
     // PRODUCTS
 
-    const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
+    const { data: { allWpType: { nodes: productArchiveTypeNodes }, allWpPage: { nodes: productsArchives } } } = await graphql(`
     query {
         allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+        allWpType(filter: {parentId: {eq: null}}) {
+            nodes {
+              name
+              slug
+            }
+          }
+    }
+  `);
+
+    productsArchives.forEach(({ id, slug }) => {
+        productArchiveTypeNodes.forEach(({ name, slug: typeSlug }) => {
+            createPage({
+                path: '/' + slug + '/' + typeSlug + '/',
+                component: resolve('src/templates/products-archive.jsx'),
+                context: {
+                    id,
+                    slug,
+                    typeSlug,
+                    name
+                },
+            });
+        })
+
+    })
+
+    // Homepage
+
+    const { data: { allWpPage: { nodes: Homepage } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Homepage" } } }) {
             nodes {
                 slug
                 id
@@ -94,17 +129,15 @@ exports.createPages = async ({
     }
   `);
 
-    productsArchives.forEach(({ id, slug }) => {
+  Homepage.forEach(({ id, slug }) => {
         createPage({
-            path: '/' + slug + '/',
-            component: resolve('src/templates/products.jsx'),
+            path: '/',
+            component: resolve('src/templates/homepage.jsx'),
             context: {
                 id,
                 slug,
             },
         });
-    })
-
-
+    }) 
 
 }
