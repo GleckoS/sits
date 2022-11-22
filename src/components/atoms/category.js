@@ -1,10 +1,16 @@
 import styled from "styled-components";
 
 export const Category = styled.div`
-    padding: 6px 16px;
+    padding: 3px 10px;
     background-color: var(--brown);
     color: #fff;
-    font-size: 15px;
+    font-size: clamp(10px, ${12 / 1194 * 100}vw, 15px);
     line-height: 166%;
     border-radius: 1000px;
+
+    @media (max-width: 768px) {
+        padding: 0;
+        background-color: unset;
+        color: #CEAD89;
+    }
 `

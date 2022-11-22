@@ -37,16 +37,7 @@ export const Global = createGlobalStyle`
         line-height: 170%;
         position: relative;
         width: fit-content;
-
-        &::after{
-            content: "";
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 1px;
-            background-color: var(--gray);
-        }
+        text-decoration: underline;
     }
 
     .p{

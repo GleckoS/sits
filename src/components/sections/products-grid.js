@@ -76,7 +76,7 @@ const Wrapper = styled.section`
 `
 
 const Grid = styled.div`
-    margin-top: 80px;
+    margin-top: clamp(40px, ${80 / 1194 * 100}vw, 80px);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 71fr 60fr 60fr 71fr;
@@ -130,6 +130,7 @@ const Grid = styled.div`
 
 const Item = styled.div`
     position: relative;
+    background: #000;
 
     a{
         position: absolute;

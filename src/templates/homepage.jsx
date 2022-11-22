@@ -2,7 +2,9 @@ import { graphql } from "gatsby"
 import React from "react"
 import About from "../components/sections/about"
 import Bestsellers from "../components/sections/bestsellers-carousel"
+import DividerCollection from "../components/sections/divider-collection"
 import Hero from "../components/sections/hero-homepage"
+import NewArrivals from "../components/sections/new-arrivals"
 import ProductGrid from "../components/sections/products-grid"
 
 // export function Head({ data: { wpPage: { seo } } }) {
@@ -66,10 +68,12 @@ import ProductGrid from "../components/sections/products-grid"
 export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
     <main>
-      <Hero data={homepage.hero}/>
-      <Bestsellers data={homepage.bestsellersCarousel}/>
-      <About data={homepage.aboutSection}/>
-      <ProductGrid data={homepage.productsGrid}/>
+      <Hero data={homepage.hero} />
+      <Bestsellers data={homepage.bestsellersCarousel} />
+      <About data={homepage.aboutSection} />
+      <ProductGrid data={homepage.productsGrid} />
+      <DividerCollection data={homepage.dividerSection} />
+      <NewArrivals data={homepage.newArrivals} />
     </main>
   )
 }
@@ -232,6 +236,89 @@ export const query = graphql`
                 localFile {
                   childImageSharp {
                     gatsbyImageData
+                  }
+                }
+              }
+            }
+            dividerSection{
+              sectionTitle
+              text
+              link{
+                url
+                title
+                target
+              }
+              squareImage{
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+              rectangularImageOnTheRight{
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+            }
+            newArrivals{
+              sectionTitle
+              text
+              chosenProducts {
+                products {
+                  ... on WpProduct {
+                    types {
+                      nodes {
+                        name
+                      }
+                    }
+                    products {
+                      collection {
+                        ... on WpCollection {
+                          slug
+                          title
+                          covers {
+                            nodes {
+                              name
+                            }
+                          }
+                          upholsterys{
+                            nodes{
+                              name
+                            }
+                          }
+                          types {
+                            nodes {
+                              name
+                            }
+                          }
+                        }
+                      }
+                      isNewArrival
+                      productGallery {
+                        popupNames {
+                          fabric
+                          cover
+                          leather
+                          model
+                        }
+                        productsImages {
+                          isMainImage
+                          featuredProductImage {
+                            altText
+                            localFile {
+                              childImageSharp {
+                                gatsbyImageData
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
                   }
                 }
               }
