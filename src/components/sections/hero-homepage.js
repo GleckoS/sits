@@ -53,15 +53,6 @@ const Wrapper = styled.section`
         position: relative;
         padding-bottom: 3px;
         text-shadow: 0px 0px 2px #222;
-
-        &::after{
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            height: 1px;
-            background-color: #fff;
-        }
+        text-decoration: underline;
     }
 `

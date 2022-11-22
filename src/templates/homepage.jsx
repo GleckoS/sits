@@ -1,5 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
+import About from "../components/sections/about"
 import Bestsellers from "../components/sections/bestsellers-carousel"
 import Hero from "../components/sections/hero-homepage"
 
@@ -66,6 +67,7 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
     <main>
       <Hero data={homepage.hero}/>
       <Bestsellers data={homepage.bestsellersCarousel}/>
+      <About data={homepage.aboutSection}/>
     </main>
   )
 }
