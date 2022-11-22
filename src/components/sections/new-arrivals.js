@@ -31,7 +31,7 @@ export default function NewArrivals({ data: { sectionTitle, text, chosenProducts
 const Wrapper = styled.section`
     margin-top: 160px;
     background-color: #F9F5F0;
-    padding: clamp(40px, ${80 / 768 * 100}vw, 80px) 0 0 0;
+    padding: clamp(40px, ${80 / 768 * 100}vw, 80px) 0;
 
     .title{
         font-family: 'Ivy';

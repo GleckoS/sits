@@ -6,6 +6,7 @@ import DividerCollection from "../components/sections/divider-collection"
 import Hero from "../components/sections/hero-homepage"
 import NewArrivals from "../components/sections/new-arrivals"
 import ProductGrid from "../components/sections/products-grid"
+import ThreeInformCards from "../components/sections/three-inform-cards"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -74,6 +75,7 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
       <ProductGrid data={homepage.productsGrid} />
       <DividerCollection data={homepage.dividerSection} />
       <NewArrivals data={homepage.newArrivals} />
+      <ThreeInformCards data={homepage.sectionWithThreeInformCards}/>
     </main>
   )
 }
@@ -82,6 +84,25 @@ export const query = graphql`
     query homepage($id: String!) {
         wpPage(id: {eq: $id}){
           homepage {
+            sectionWithThreeInformCards{
+              cards{
+                title
+                text
+                link{
+                  title
+                  url
+                  target
+                }
+                image{
+                  altText
+                  localFile{
+                    childImageSharp{
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
             hero {
               pageTitle
               linkUnderPageTitle {
