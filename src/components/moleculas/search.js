@@ -1,6 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-import { Input } from "../atoms/input"
+import { Input } from "./input"
 
 export const Search = () => {
     return (
@@ -11,5 +11,8 @@ export const Search = () => {
 }
 
 const Wrapper = styled.div`
-
+    input{
+        font-weight: 300;
+        font-size: 20px;
+    }
 `

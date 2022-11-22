@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { CloseButton } from "../../components/atoms/close-button"
 import { Container } from "../../components/atoms/container"
 import { Search } from "../../components/moleculas/search"
+import { LangChanger } from "./lang-changer"
 import { Item } from "./menu-item"
 
 const linksLeft = [
@@ -18,6 +19,7 @@ const linksLeft = [
     { name: 'Inspiration', url: '' },
     { name: 'My Favourites', icon: 'hearth', url: '' }
 ]
+
 const linksRight = [
     { name: 'About Sits', url: '' },
     { name: 'Designers', url: '' },
@@ -26,6 +28,10 @@ const linksRight = [
     { name: 'Where to Buy', url: '' },
     { name: 'Contact', url: '' },
     { name: 'For Retailers', icon: 'out', url: '' },
+]
+
+const languages = [
+
 ]
 
 export default function Header() {
@@ -58,9 +64,12 @@ export default function Header() {
                             <path id="SITS_Logo_black" d="M119.219,41.456c4.665,0,13.951-.748,13.951-10.474,0-8.89-3.829-15.4-14.479-15.4H104.52c-2.685,0-3.477-.66-3.477-1.848,0-1.76,1.188-3.389,4.049-3.389h12.234a1.616,1.616,0,0,0,1.628-1.584V1.584A1.629,1.629,0,0,0,117.415,0H105.092C94.97,0,90.613,5.9,90.613,15.4c0,2.112,0,10.518,13.951,10.518h14.171c3.257,0,4.049,1.848,4.049,3.345,0,1.144-.792,1.848-3.125,1.848H93.782A1.578,1.578,0,0,0,92.2,32.7v7.217A1.578,1.578,0,0,0,93.782,41.5h25.437Zm-44.052,0c-8.23,0-12.41-4.665-12.41-14.215V1.276A1.594,1.594,0,0,1,64.34,0h7.173a1.588,1.588,0,0,1,1.628,1.584v9.242H81.68a1.578,1.578,0,0,1,1.584,1.584v7.217a1.578,1.578,0,0,1-1.584,1.584H73.142v6.381c0,2.9,1.056,3.521,2.024,3.521H86.389A1.588,1.588,0,0,1,88.017,32.7v7.217A1.588,1.588,0,0,1,86.389,41.5H75.166Zm-28.429-1.54A1.578,1.578,0,0,0,48.321,41.5h7.217a1.578,1.578,0,0,0,1.584-1.584V1.584A1.578,1.578,0,0,0,55.539,0H48.321a1.578,1.578,0,0,0-1.584,1.584ZM28.65,41.456c4.665,0,13.951-.748,13.951-10.474,0-8.89-3.829-15.4-14.479-15.4H13.951c-2.685,0-3.477-.66-3.477-1.848,0-1.76,1.188-3.389,4.049-3.389H26.757a1.616,1.616,0,0,0,1.628-1.584V1.584A1.629,1.629,0,0,0,26.845,0H14.523C4.357,0,0,5.9,0,15.4c0,2.112,0,10.518,13.951,10.518H28.121c3.257,0,4.049,1.848,4.049,3.345,0,1.144-.792,1.848-3.125,1.848H3.125A1.578,1.578,0,0,0,1.54,32.7v7.217A1.578,1.578,0,0,0,3.125,41.5H28.65Z" fill="#bababa" />
                         </svg>
                     </Link>
-                    <Button className="control-desctop" onClick={() => { setRightMenuOpened(true); setLeftMenuOpened(false) }}>
-                        COMPANY
-                    </Button>
+                    <div className="right">
+                        <LangChanger />
+                        <Button className="control-desctop" onClick={() => { setRightMenuOpened(true); setLeftMenuOpened(false) }}>
+                            COMPANY
+                        </Button>
+                    </div>
                     <Burger aria-label='burger button' className={isMobileMenuOpened ? 'open control-mobile' : "control-mobile"} onClick={() => { setMobileMenuOpened(!isMobileMenuOpened) }}>
                         <span />
                     </Burger>
@@ -90,6 +99,9 @@ export default function Header() {
                             <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
                         ))}
                     </div>
+                    <div className="wrap">
+                        <LangChanger />
+                    </div>
                 </Container>
             </MobileMenu>
         </>
@@ -107,6 +119,11 @@ const Wrapper = styled.header`
     border-bottom: 1px solid #ddd;
     height: 110px;
 
+    .right{
+        width: fit-content;
+        margin-left: auto;
+    }
+
     .item{
         display: flex;
         gap: 10px;
@@ -119,12 +136,29 @@ const Wrapper = styled.header`
         display: none;
     }
 
-    @media (max-width: 640px) {
+    .container{
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+    }
+
+    @media (max-width: 840px) {
         height: 76px;
+
+        .right{
+            display: none;
+        }
 
         svg{
             height: 30px;
             width: fit-content;
+        }
+
+        .container{
+            display: flex;
+            justify-content: space-between;
         }
 
         .control-desctop{
@@ -133,14 +167,6 @@ const Wrapper = styled.header`
         .control-mobile{
             display: block;
         }
-    }
-
-
-    .container{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        height: 100%;
     }
 `
 
@@ -174,12 +200,11 @@ const MobileMenu = styled.div`
             align-items: center;
             width: fit-content;
             margin-bottom: 16px;
-            &:last-child{
-                margin-bottom: 20px;
-                @supports  (-webkit-touch-callout: none){
-                    max-height: calc(100vh - 196px);
-                    margin-bottom: 120px;
-                }
+            font-size: 24px;
+            font-weight: 300;
+
+            @media (max-width: 840px) {
+                font-size: 20px;
             }
         }
     }
@@ -202,13 +227,15 @@ const LeftMenu = styled.div`
         gap: 10px;
         align-items: center;
         width: fit-content;
+        font-size: 24px;
+        font-weight: 300;
     }
 
     &.active{
         transform: translateX(0);
     }
 
-    @media (max-width: 640px){
+    @media (max-width: 840px){
         display: none;
     }
 `
@@ -241,13 +268,15 @@ const RightMenu = styled.div`
         align-items: center;
         width: fit-content;
         margin-left: auto;
+        font-size: 24px;
+        font-weight: 300;
     }
 
     &.active{
         transform: translateX(0);
     }
 
-    @media (max-width: 640px){
+    @media (max-width: 840px){
         display: none;
     }
 `
@@ -256,12 +285,23 @@ const Flex = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    b{
+        font-size: clamp(18px, ${18 / 1194 * 100}vw, 20px);
+    }
 `
 
 const Button = styled.button`
     border: none;
     background-color: transparent;
     cursor: pointer;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    font-size: clamp(18px, ${18 / 1194 * 100}vw, 20px);
+    font-weight: 300;
 `
 
 const Burger = styled.button`
