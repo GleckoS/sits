@@ -4,24 +4,35 @@ import styled from "styled-components"
 import { CloseButton } from "../../components/atoms/close-button"
 import { Container } from "../../components/atoms/container"
 import { Search } from "../../components/moleculas/search"
+import { Item } from "./menu-item"
 
+const linksLeft = [
+    { name: 'Best Seller', url: '' },
+    { name: 'Sofas', url: '' },
+    { name: 'Armchairs', url: '' },
+    { name: 'Dining Chairs', url: '' },
+    { name: 'Footstools', url: '' },
+    { name: 'Coffee Tables', url: '' },
+    { name: 'Outdoor Furniture', url: '' },
+    { name: 'Covers', url: '' },
+    { name: 'Inspiration', url: '' },
+    { name: 'My Favourites', icon: 'hearth', url: '' }
+]
 const linksRight = [
-    { name: 'Best Seller' },
-    { name: 'Sofas' },
-    { name: 'Armchairs' },
-    { name: 'Dining Chairs' },
-    { name: 'Footstools' },
-    { name: 'Coffee Tables' },
-    { name: 'Outdoor Furniture' },
-    { name: 'Covers' },
-    { name: 'Inspiration' },
-    { name: 'My Favourites' }
+    { name: 'About Sits', url: '' },
+    { name: 'Designers', url: '' },
+    { name: 'Sustainability', url: '' },
+    { name: 'Furniture Care', url: '' },
+    { name: 'Where to Buy', url: '' },
+    { name: 'Contact', url: '' },
+    { name: 'For Retailers', icon: 'out', url: '' },
 ]
 
 export default function Header() {
 
     const [isLeftMenuOpened, setLeftMenuOpened] = useState(false)
-    // const [isRightMenuOpened, setRightMenuOpened] = useState(false)
+    const [isRightMenuOpened, setRightMenuOpened] = useState(false)
+    const [isMobileMenuOpened, setMobileMenuOpened] = useState(false)
 
     return (
         <>
@@ -32,14 +43,14 @@ export default function Header() {
                 </Flex>
                 <MenuContent>
                     <Search />
-                    {linksRight.map(el => (
-                        <Link to='#'>{el.name}</Link>
+                    {linksLeft.map(el => (
+                        <Item el={el} func={(v) => { setLeftMenuOpened(v) }} />
                     ))}
                 </MenuContent>
             </LeftMenu>
             <Wrapper>
                 <Container className="container">
-                    <Button onClick={() => { setLeftMenuOpened(true) }}>
+                    <Button className="control-desctop" onClick={() => { setLeftMenuOpened(true); setRightMenuOpened(false) }}>
                         FURNITURE
                     </Button>
                     <Link to='/'>
@@ -47,14 +58,40 @@ export default function Header() {
                             <path id="SITS_Logo_black" d="M119.219,41.456c4.665,0,13.951-.748,13.951-10.474,0-8.89-3.829-15.4-14.479-15.4H104.52c-2.685,0-3.477-.66-3.477-1.848,0-1.76,1.188-3.389,4.049-3.389h12.234a1.616,1.616,0,0,0,1.628-1.584V1.584A1.629,1.629,0,0,0,117.415,0H105.092C94.97,0,90.613,5.9,90.613,15.4c0,2.112,0,10.518,13.951,10.518h14.171c3.257,0,4.049,1.848,4.049,3.345,0,1.144-.792,1.848-3.125,1.848H93.782A1.578,1.578,0,0,0,92.2,32.7v7.217A1.578,1.578,0,0,0,93.782,41.5h25.437Zm-44.052,0c-8.23,0-12.41-4.665-12.41-14.215V1.276A1.594,1.594,0,0,1,64.34,0h7.173a1.588,1.588,0,0,1,1.628,1.584v9.242H81.68a1.578,1.578,0,0,1,1.584,1.584v7.217a1.578,1.578,0,0,1-1.584,1.584H73.142v6.381c0,2.9,1.056,3.521,2.024,3.521H86.389A1.588,1.588,0,0,1,88.017,32.7v7.217A1.588,1.588,0,0,1,86.389,41.5H75.166Zm-28.429-1.54A1.578,1.578,0,0,0,48.321,41.5h7.217a1.578,1.578,0,0,0,1.584-1.584V1.584A1.578,1.578,0,0,0,55.539,0H48.321a1.578,1.578,0,0,0-1.584,1.584ZM28.65,41.456c4.665,0,13.951-.748,13.951-10.474,0-8.89-3.829-15.4-14.479-15.4H13.951c-2.685,0-3.477-.66-3.477-1.848,0-1.76,1.188-3.389,4.049-3.389H26.757a1.616,1.616,0,0,0,1.628-1.584V1.584A1.629,1.629,0,0,0,26.845,0H14.523C4.357,0,0,5.9,0,15.4c0,2.112,0,10.518,13.951,10.518H28.121c3.257,0,4.049,1.848,4.049,3.345,0,1.144-.792,1.848-3.125,1.848H3.125A1.578,1.578,0,0,0,1.54,32.7v7.217A1.578,1.578,0,0,0,3.125,41.5H28.65Z" fill="#bababa" />
                         </svg>
                     </Link>
-                    <Button>
+                    <Button className="control-desctop" onClick={() => { setRightMenuOpened(true); setLeftMenuOpened(false) }}>
                         COMPANY
                     </Button>
+                    <Burger aria-label='burger button' className={isMobileMenuOpened ? 'open control-mobile' : "control-mobile"} onClick={() => { setMobileMenuOpened(!isMobileMenuOpened) }}>
+                        <span />
+                    </Burger>
                 </Container>
             </Wrapper>
-            {/* <RightMenu>
-
-            </RightMenu> */}
+            <RightMenu className={isRightMenuOpened ? 'active' : ''}>
+                <Flex >
+                    <CloseButton func={setRightMenuOpened} val={false} />
+                    <b>COMPANY</b>
+                </Flex>
+                <MenuContent className="reverse">
+                    {linksRight.map(el => (
+                        <Item el={el} func={(v) => { setRightMenuOpened(v) }} />
+                    ))}
+                </MenuContent>
+            </RightMenu>
+            <MobileMenu className={isMobileMenuOpened ? 'active' : ''}>
+                <Container className="content">
+                    <Search />
+                    <div className="wrap">
+                        {linksLeft.map(el => (
+                            <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
+                        ))}
+                    </div>
+                    <div className="wrap">
+                        {linksRight.map(el => (
+                            <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
+                        ))}
+                    </div>
+                </Container>
+            </MobileMenu>
         </>
     )
 }
@@ -63,17 +100,88 @@ const Wrapper = styled.header`
     position: sticky;
     z-index: 100;
     top: 0;
-    padding: 32px 0;
+    padding: 0;
     left: 0;
     right: 0;
     background-color: #FFF;
     border-bottom: 1px solid #ddd;
     height: 110px;
 
+    .item{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: fit-content;
+        margin-left: auto;
+    }
+
+    .control-mobile{
+        display: none;
+    }
+
+    @media (max-width: 640px) {
+        height: 76px;
+
+        svg{
+            height: 30px;
+            width: fit-content;
+        }
+
+        .control-desctop{
+            display: none;
+        }
+        .control-mobile{
+            display: block;
+        }
+    }
+
+
     .container{
         display: flex;
         justify-content: space-between;
         align-items: center;
+        height: 100%;
+    }
+`
+
+const MobileMenu = styled.div`
+    position: fixed;
+    z-index: 111;
+    left: 0;
+    right: 0;
+    top: 75px;
+    bottom: 0;
+    background-color: #fff;
+    transform: translateX(100%);
+    transition:  transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &.active{
+        transform: translateX(0);
+    }
+
+    .wrap{
+        margin-top: 40px;
+    }
+
+    .content{
+        margin-top: 20px;
+        max-height: calc(100vh - 96px);
+        overflow: auto;
+
+        a{
+            display: flex ;
+            gap: 10px;
+            align-items: center;
+            width: fit-content;
+            margin-bottom: 16px;
+            &:last-child{
+                margin-bottom: 20px;
+                @supports  (-webkit-touch-callout: none){
+                    max-height: calc(100vh - 196px);
+                    margin-bottom: 120px;
+                }
+            }
+        }
     }
 `
 
@@ -89,8 +197,19 @@ const LeftMenu = styled.div`
     transform: translateX(-500px);
     transition:  transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
 
+    .item{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: fit-content;
+    }
+
     &.active{
         transform: translateX(0);
+    }
+
+    @media (max-width: 640px){
+        display: none;
     }
 `
 
@@ -98,18 +217,40 @@ const MenuContent = styled.div`
     margin-top: 60px;
     display: grid;
     grid-gap: 20px;
+
+    &.reverse{
+        text-align: right;
+    }
 `
 
-// const RightMenu = styled.div`
-//     position: fixed;
-//     z-index: 101;
-//     width: 500px;
-//     padding: 42px;
-//     right: 0;
-//     top: 0;
-//     bottom: 0;
-//     background-color: #fff;
-// `
+const RightMenu = styled.div`
+    position: fixed;
+    z-index: 111;
+    width: 500px;
+    padding: 42px;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background-color: #fff;
+    transform: translateX(500px);
+    transition:  transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    .item{
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        width: fit-content;
+        margin-left: auto;
+    }
+
+    &.active{
+        transform: translateX(0);
+    }
+
+    @media (max-width: 640px){
+        display: none;
+    }
+`
 
 const Flex = styled.div`
     display: flex;
@@ -121,4 +262,76 @@ const Button = styled.button`
     border: none;
     background-color: transparent;
     cursor: pointer;
+`
+
+const Burger = styled.button`
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+
+    width: 25px;
+    height: 20px;
+    position: relative;
+
+    &::after{
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 2px;
+        background-color: #000;
+        transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    }
+
+    span{
+        &::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            height: 2px;
+            background-color: #000;
+            transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+
+        &::before{
+            content: "";
+            position: absolute;
+            left: 7px;
+            right: 0;
+            bottom: 0;
+            height: 2px;
+            background-color: #000;
+            transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+    }
+
+    &.open{
+        &::after{
+            right: unset;
+            width: 100%;
+            left: 0;
+            top: 50%;
+            transform-origin: 50% 50%;
+            transform: rotateZ(45deg);
+        }   
+        span{
+            &::after{
+                right: unset;
+                width: 100%;
+                left: 0;
+                transform-origin: 50% 50%;
+                transform: rotateZ(-45deg);
+            }
+
+            &::before{
+                transform: translateX(-100%) ;
+                opacity: 0;
+            }
+        }
+    }
+
 `
