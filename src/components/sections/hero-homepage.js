@@ -23,7 +23,7 @@ const Wrapper = styled.section`
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-        min-height: 600px;
+        min-height: 530px;
     }
     .content{
         position: absolute;
