@@ -3,6 +3,7 @@ import React from "react"
 import About from "../components/sections/about"
 import Bestsellers from "../components/sections/bestsellers-carousel"
 import Hero from "../components/sections/hero-homepage"
+import ProductGrid from "../components/sections/products-grid"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -68,6 +69,7 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
       <Hero data={homepage.hero}/>
       <Bestsellers data={homepage.bestsellersCarousel}/>
       <About data={homepage.aboutSection}/>
+      <ProductGrid data={homepage.productsGrid}/>
     </main>
   )
 }
@@ -140,6 +142,8 @@ export const query = graphql`
               }
             }
             productsGrid {
+              sectionTitle
+              text
               firstLink {
                 url
                 title

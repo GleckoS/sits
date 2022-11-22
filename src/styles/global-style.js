@@ -24,13 +24,8 @@ export const Global = createGlobalStyle`
         outline: none;
     }
 
-    html, body{
-        overflow-x: hidden;
-    }
-
     main{
         max-width: 1920px;
-        overflow-x: hidden;
         margin: 0 auto;
         width: 100%;
     }
