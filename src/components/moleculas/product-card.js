@@ -46,10 +46,13 @@ const Flex = styled.div`
     @media (max-width: 1194px) {
         padding: 0;
     }
-    @media (max-width: 768px) {
-        gap: 0;
+    @media (max-width: 1024px) {
         flex-direction: column;
         align-items: flex-start;
+        gap: 8px;
+    }
+    @media (max-width: 768px) {
+        gap: 0;
     }
 `
 
@@ -57,6 +60,7 @@ const Categories = styled.div`
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
+    margin-bottom: 6px;
 
     @media (max-width: 768px) {
         

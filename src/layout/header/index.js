@@ -31,7 +31,7 @@ const linksRight = [
 ]
 
 const languages = [
-
+    
 ]
 
 export default function Header() {

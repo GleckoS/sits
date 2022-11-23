@@ -21,4 +21,12 @@ const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 50px 20px;
+
+    @media (max-width: 600px) {
+        margin: 0 -12px;
+    }
+
+    @media (max-width: 380px) {
+        grid-template-columns: 1fr;
+    }
 `
