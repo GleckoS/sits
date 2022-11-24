@@ -12,7 +12,7 @@ export default function ThreeInformCards({ data: { cards } }) {
                     {cards.map(el => (
                         <Item>
                             <Link to={el.link.url ? el.link.url : null} target={el.link.target ? el.link.target : null}>
-                                <GatsbyImage image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
+                                <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
                                 <div className="content">
                                     <h3>{el.title}</h3>
                                     {el.text && <p>{el.text}</p>}
@@ -51,9 +51,26 @@ const Grid = styled.div`
 `
 
 const Item = styled.div`
-@media (max-width: 892px){
-    flex: 48.5% 0 0;
-}
+    .image{
+        height: 33vw;
+        max-height: 666px;
+        min-height: 200px;
+    }
+
+    @media (max-width: 892px){
+        flex: 48.5% 0 0;
+        .image{
+            height: 50vw;
+        }
+    }
+
+    @media (max-width: 640px) {
+    
+        .image{
+            height: 80vw;
+        }
+    }
+
     .content{
         padding: 20px 12px 0 12px;
 

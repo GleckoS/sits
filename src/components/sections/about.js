@@ -4,9 +4,9 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 
-export default function About({ data: { sectionTitle, text, linkUnderText, imageOnTheLeftSide } }) {
+export default function About({ color, data: { sectionTitle, text, linkUnderText, imageOnTheLeftSide } }) {
     return (
-        <Wrapper>
+        <Wrapper className={color ? 'alt' : ''}>
             <GatsbyImage image={imageOnTheLeftSide.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeftSide.altText} />
             <Container className="container">
                 <div className="content">
@@ -62,10 +62,16 @@ const Wrapper = styled.section`
         grid-template-columns: 1fr;
         grid-gap: 0;
         margin-right: 0;
-
         .container{
             background-color: #F9F5F0;
         }
+
+&.alt{
+    margin-top: 0;
+    .container{
+        background-color: unset;
+    }
+}
         .content{
             padding: 24px 0;
         }

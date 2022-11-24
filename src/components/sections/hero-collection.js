@@ -19,6 +19,7 @@ export default function Hero({
         upholsterys,
         collections: {
             generalCollectionInformation: {
+                collectionGallery,
                 collectionProductSheet,
                 collectionPagePreviewImage,
                 popupNames,
@@ -37,7 +38,7 @@ export default function Hero({
         <Wrapper>
             <Container>
                 <Grid>
-                    <TwoColumnImageGrid title={title} popupNames={popupNames} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
+                    <TwoColumnImageGrid gallery={collectionGallery} title={title} popupNames={popupNames} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
                     <div>
                         <Flex>
                             <h1 className="archive-title">{title}</h1>

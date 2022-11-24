@@ -4,8 +4,97 @@ import styled from "styled-components"
 import { ImageGridItem } from "../moleculas/image-grid-item"
 import { Popup } from "../moleculas/popup"
 
-export const TwoColumnImageGrid = ({ popupNames, collectionPagePreviewImage, products, title }) => {
+export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
+
+    // const images = useMemo(() => {
+    //     let arr = []
+    //     let sumValue = 0
+    //     let difference = 0
+
+    //     products.forEach(el => el.products.productGallery.forEach(el => el.productsImages.forEach(el => {
+    //         let square = el.featuredProductImage.width > el.featuredProductImage.height
+    //         if (square) {
+    //             arr.push({ state: 1, image: el.featuredProductImage })
+    //             sumValue += 1
+    //         } else {
+    //             arr.push({ state: 2, image: el.featuredProductImage })
+    //             sumValue += 2
+    //         }
+    //     })))
+
+
+    //     let firstColumn = arr.slice(0, Math.ceil(arr.length / 2))
+    //     let firstValue = 0
+    //     firstColumn.forEach(el => firstValue += el.state)
+
+    //     let secondColumn = arr.slice(Math.ceil(arr.length / 2))
+    //     let secondValue = 0
+    //     secondColumn.forEach(el => secondValue += el.state)
+
+    //     const checkDifferenceSecond = () => {
+    //         difference = secondValue - firstValue
+    //         if (difference > 2) {
+    //             secondColumn.every((el, index) => {
+    //                 if (el.state > 1) {
+    //                     secondValue -= el.state
+    //                     firstValue += el.state
+    //                     firstColumn.push(el)
+    //                     secondColumn.splice(index, 1)
+    //                     return false
+    //                 }
+    //                 return true
+    //             })
+    //             checkDifferenceSecond()
+    //         } else if (difference === 2) {
+    //             secondColumn.every((el, index) => {
+    //                 if (el.state > 1) {
+    //                     secondValue -= el.state
+    //                     firstValue += el.state
+    //                     firstColumn.push(el)
+    //                     secondColumn.splice(index, 1)
+    //                     return false
+    //                 }
+    //                 return true
+    //             })
+    //         }
+    //     }
+
+    //     const checkDifferenceFirst = () => {
+    //         difference = firstValue - secondValue
+    //         if (difference > 2) {
+    //             firstColumn.every((el, index) => {
+    //                 if (el.state > 1) {
+    //                     secondValue += el.state
+    //                     firstValue -= el.state
+    //                     secondColumn.push(el)
+    //                     firstColumn.splice(index, 1)
+    //                     return false
+    //                 }
+    //                 return true
+    //             })
+    //             checkDifferenceFirst()
+    //         } else if (difference === 2) {
+    //             firstColumn.every((el, index) => {
+    //                 if (el.state === 1) {
+    //                     secondValue += el.state
+    //                     firstValue -= el.state
+    //                     secondColumn.push(el)
+    //                     firstColumn.splice(index, 1)
+    //                     return false
+    //                 }
+    //                 return true
+    //             })
+    //         }
+    //     }
+    //     if (firstValue > secondValue) {
+    //         checkDifferenceFirst()
+    //     } else if (firstValue < secondValue) {
+    //         checkDifferenceSecond()
+    //     }
+
+    //     return [...firstColumn, ...secondColumn]
+    // })
 
     return (
         <>
@@ -27,18 +116,16 @@ export const TwoColumnImageGrid = ({ popupNames, collectionPagePreviewImage, pro
                 {collectionPagePreviewImage
                     ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
                         <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
+                        <span> In this image <b>+</b> </span>
                     </button>
                     : null}
                 <ImagesGrid>
-                    {products.map(el => {
-                        return el.products.productGallery.map(el => {
-                            return el.productsImages.map(el => (
-                                <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
-                                    <GatsbyImage className="image" image={el.featuredProductImage.localFile.childImageSharp.gatsbyImageData} alt={el.featuredProductImage.altText} />
-                                </button>
-                            ))
-                        })
-                    })}
+                    {gallery?.map(el => (
+                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                            <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                            <span> In this image <b>+</b> </span>
+                        </button>
+                    ))}
                 </ImagesGrid>
             </Wrapper>
         </>
@@ -50,12 +137,57 @@ const Wrapper = styled.div`
     button{
         border: none;
         background-color: transparent;
-        margin-bottom: clamp(10.13px, ${10.13 / 1024 * 100}vw, 20.71px);
+        margin-bottom: clamp(10.13px, ${10.13 / 1024 * 100}vw, 20.58px);
+        position: relative;
+        cursor: pointer;
+
+        span{
+            font-size: 18px;
+            font-weight: 300;
+            position: absolute;
+            display: block;
+            padding: 12px 18px;
+            background-color: #fff;
+            right: 20px;
+            bottom: 20px;
+            opacity: 0;
+            transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+            b{
+                font-size: 24px;
+                font-weight: 900;
+            }
+
+            &::after{
+                content: "";
+                position: absolute;
+                right: -6px;
+                left: 10px;
+                bottom: -6px;
+                height: 1px;
+                background-color: #31231E;
+            }
+
+            &::before{
+                content: "";
+                position: absolute;
+                right: -6px;
+                top: 10px;
+                bottom: -6px;
+                width: 1px;
+                background-color: #31231E;
+            }
+        }
+
+        &:hover{
+            span{
+                opacity: 1;
+            }
+        }
     }
 `
 
 const ImagesGrid = styled.div`
-    margin-top: 40px;
     columns: 2;
     column-gap: clamp(10px, ${10 / 1024 * 100}vw, 20px);
 `

@@ -140,4 +140,28 @@ exports.createPages = async ({
         });
     }) 
 
+    // Best Sellers
+
+    const { data: { allWpPage: { nodes: Bestsellers } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Bestsellers" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Bestsellers.forEach(({ id, slug }) => {
+        createPage({
+            path: '/best-sellers/',
+            component: resolve('src/templates/best-sellers.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
 }

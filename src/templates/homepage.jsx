@@ -69,13 +69,13 @@ import ThreeInformCards from "../components/sections/three-inform-cards"
 export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
     <main>
-      <Hero data={homepage.hero} />
+      <Hero data={homepage.heroH} />
       <Bestsellers data={homepage.bestsellersCarousel} />
       <About data={homepage.aboutSection} />
       <ProductGrid data={homepage.productsGrid} />
       <DividerCollection data={homepage.dividerSection} />
-      <NewArrivals data={homepage.newArrivals} />
-      <ThreeInformCards data={homepage.sectionWithThreeInformCards}/>
+      <NewArrivals data={homepage.newArrivalsH} />
+      <ThreeInformCards data={homepage.sectionWithThreeInformCardsH}/>
     </main>
   )
 }
@@ -84,7 +84,7 @@ export const query = graphql`
     query homepage($id: String!) {
         wpPage(id: {eq: $id}){
           homepage {
-            sectionWithThreeInformCards{
+            sectionWithThreeInformCardsH{
               cards{
                 title
                 text
@@ -103,7 +103,7 @@ export const query = graphql`
                 }
               }
             }
-            hero {
+            heroH {
               pageTitle
               linkUnderPageTitle {
                 url
@@ -286,7 +286,7 @@ export const query = graphql`
                 }
               }
             }
-            newArrivals{
+            newArrivalsH{
               sectionTitle
               text
               chosenProducts {

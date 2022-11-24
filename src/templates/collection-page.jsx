@@ -2,6 +2,10 @@ import { graphql } from "gatsby"
 import React from "react"
 import { useMemo } from "react"
 import Hero from "../components/sections/hero-collection"
+import About from "../components/sections/about"
+import RecomendedCovers from "../components/sections/recomended-covers"
+import Accessories from "../components/sections/accessories"
+import SimilarProducts from "../components/sections/similar-products"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -74,6 +78,11 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
         products={products}
         data={wpCollection}
       />
+      {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
+      {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers title={wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
+      {wpCollection.collections.accessoriesSection.accessories && <Accessories data={wpCollection.collections.accessoriesSection.accessories} />}
+      
+      {/* <SimilarProducts data={wpCollection.collections} /> */}
     </main>
   )
 }
@@ -83,6 +92,77 @@ export const query = graphql`
           wpCollection(id: {eq: $id}){
             id
             collections {
+              similarCollectionsSection {
+                similarCollections {
+                  collection {
+                    ... on WpCollection {
+                      id
+                    }
+                  }
+                }
+              } 
+              accessoriesSection {
+                accessories {
+                  accessoryTitle
+                  accessoryImage {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                }
+              }
+              recommendedCovers {
+                covers {
+                  cover {
+                    ... on WpMaterials {
+                      title
+                      slug
+                      materials {
+                          materialColorVariants {
+                              variantColor
+                              variantColorImage{
+                                altText
+                                localFile{
+                                  publicURL
+                                }
+                              }
+                              variantName
+                              colorGroup
+                              isMainColor
+                              squarePreviewImage {
+                              altText
+                              localFile {
+                                  childImageSharp {
+                                  gatsbyImageData
+                                  }
+                              }
+                              }
+                          }
+                      }
+                    }
+                  }
+                }
+              }
+              twoColumn {
+                sectionTitle
+                text
+                linkUnderText {
+                  target
+                  title
+                  url
+                }
+                imageOnTheLeftSide {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
               sidebarCollectionInformation {
                 legs {
                   featuredImageTitle
@@ -187,6 +267,14 @@ export const query = graphql`
               }
               generalCollectionInformation {
                 collectionQuickDescription
+                collectionGallery {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
                 collectionProductSheet {
                   localFile {
                     publicURL
@@ -282,6 +370,8 @@ export const query = graphql`
                     isMainImage
                     featuredProductImage {
                       altText
+                      width
+                      height
                       localFile {
                         childImageSharp {
                           gatsbyImageData

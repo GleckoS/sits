@@ -15,6 +15,6 @@ export const MaterialList = ({ materials }) => {
 const Wrapper = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
+    grid-gap: 40px 20px;
     margin: 80px 0;
 `

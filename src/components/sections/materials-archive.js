@@ -4,7 +4,6 @@ import { Container } from "../atoms/container"
 import { MaterialList } from "../organism/materials-list"
 
 export default function MaterialsArchive({ materials }) {
-
     return (
         <Wrapper>
             <Container>
