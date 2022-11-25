@@ -3,11 +3,12 @@ import React from "react"
 import styled from "styled-components"
 import { TextBlock } from "../moleculas/best-sellers-grid-text-block"
 
-export const First = ({ data: { slug, title, collections: { collectionBestsellerImageGrid } } }) => (
+export const Second = ({ data: { slug, title, collections: { collectionBestsellerImageGrid } } }) => (
     <Wrapper>
         <TextBlock title={title} slug={slug} description={collectionBestsellerImageGrid.collectionShortBestsellerPageDescription} />
         <GatsbyImage className="s" image={collectionBestsellerImageGrid.smallSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallSquare.altText} />
-        <GatsbyImage className="b desctop" image={collectionBestsellerImageGrid.bigLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.bigLandscape.altText} />
+        <GatsbyImage className="b desctop" image={collectionBestsellerImageGrid.bigSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.bigSquare.altText} />
+        <GatsbyImage className="l desctop" image={collectionBestsellerImageGrid.tinyLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.tinyLandscape.altText} />
         <GatsbyImage className="b tablet" image={collectionBestsellerImageGrid.smallLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallLandscape.altText} />
     </Wrapper>
 )
@@ -19,9 +20,8 @@ const Wrapper = styled.div`
     grid-gap: 20px;
     height: clamp(0px, ${900 / 1920 * 100}vw, 900px);
     grid-template-areas: 
-    't b b b'
-    's b b b';
-
+    'b b s t'
+    'b b l l';
     .mobile, .tablet{
         display: none;
     }
@@ -32,6 +32,10 @@ const Wrapper = styled.div`
 
     .s{
         grid-area: s;
+    }
+
+    .l{
+        grid-area: l;
     }
 
     .b{
@@ -45,11 +49,17 @@ const Wrapper = styled.div`
     }
 
     @media (max-width: 1440px) {
-        height: clamp(0px, ${900 / 1194 * 100}vw, 900px);
+        height: clamp(0px, ${900 / 1194 * 100}vw, 1000px);
         max-height: 1020px;
         grid-template-areas: 
         'b b b b'
         't t s s';
+
+        .l{
+            display: none;
+        }
+        
+        max-height: 1020px;
         grid-template-rows: auto auto;
 
         .desctop{

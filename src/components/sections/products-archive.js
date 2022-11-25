@@ -208,10 +208,10 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             <Filter>
                 <Container className="container">
                     <div className="left">
-                        <DropDown controller={sort} func={setSort} data={sortBy} name={'sort'} controlTitle={'Sort by: ' + sort} />
-                        {name === 'Sofas' && <DropDown controller={type} func={setType} data={sofasTypes} name={'type'} controlTitle={'Type'} />}
-                        <DropDown controller={upholsterys} func={setUpholsterys} data={upholsterysArr} name={'upholsterys'} controlTitle={'Upholsterys'} />
-                        <DropDown controller={cover} func={setCover} data={covesArr} name={'cover'} controlTitle={'Cover Types'} />
+                        <DropDown controller={sort} func={setSort} data={sortBy} controlTitle={'Sort by: ' + sort} />
+                        {name === 'Sofas' && <DropDown controller={type} func={setType} data={sofasTypes} controlTitle={'Type'} />}
+                        <DropDown controller={upholsterys} func={setUpholsterys} data={upholsterysArr} controlTitle={'Upholsterys'} />
+                        <DropDown controller={cover} func={setCover} data={covesArr} controlTitle={'Cover Types'} />
                     </div>
                     <div className="left-alt">
                         <button onClick={() => { setMobileFilterOpened(true) }}>

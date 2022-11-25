@@ -1,7 +1,11 @@
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import { Fifth } from "../organism/best-sellers-grid-fifth"
 import { First } from "../organism/best-sellers-grid-first"
+import { Fourth } from "../organism/best-sellers-grid-fourth"
+import { Second } from "../organism/best-sellers-grid-second"
+import { Third } from "../organism/best-sellers-grid-third"
 
 export default function BestSellersGrid({ data }) {
     return (
@@ -9,18 +13,17 @@ export default function BestSellersGrid({ data }) {
             <Container>
                 <Grid>
                     {data.map(el => {
-                        debugger
                         switch (el.fieldGroupName) {
                             case "Page_Bestsellers_ImageGrids_First":
-                                return <First data={el.collection}/>
+                                return <First data={el.collection} />
                             case "Page_Bestsellers_ImageGrids_Second":
-                                return null
+                                return <Second data={el.collection} />
                             case "Page_Bestsellers_ImageGrids_Third":
-                                return null
+                                return <Third data={el.collection} />
                             case "Page_Bestsellers_ImageGrids_Fourth":
-                                return null
+                                return <Fourth data={el.collection} />
                             case "Page_Bestsellers_ImageGrids_Fifth":
-                                return null
+                                return <Fifth data={el.collection} />
                             default:
                                 return null
                         }
@@ -32,9 +35,10 @@ export default function BestSellersGrid({ data }) {
 }
 
 const Wrapper = styled.section`
-
+    margin-top: 60px;
 `
 
 const Grid = styled.div`
     display: grid;
+    grid-gap: clamp(80px, ${100 / 1194 * 100}vw, 140px);
 `

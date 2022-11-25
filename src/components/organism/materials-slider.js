@@ -2,9 +2,11 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import styled from "styled-components"
 
-export const MaterialsSlider = ({ variants }) => {
-
+export const MaterialsSlider = ({ variant, variants }) => {
     const [choosenVariant, setChoosenVariant] = useState(() => {
+        if (variant) {
+            return variant
+        }
         for (let i = 0; i < variants.length; i++) {
             if (variants[i].isMainColor) {
                 return i

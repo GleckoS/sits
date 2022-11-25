@@ -3,7 +3,7 @@ import React from "react"
 import styled from "styled-components"
 import { TextBlock } from "../moleculas/best-sellers-grid-text-block"
 
-export const First = ({ data: { slug, title, collections: { collectionBestsellerImageGrid } } }) => (
+export const Fourth = ({ data: { slug, title, collections: { collectionBestsellerImageGrid } } }) => (
     <Wrapper>
         <TextBlock title={title} slug={slug} description={collectionBestsellerImageGrid.collectionShortBestsellerPageDescription} />
         <GatsbyImage className="s" image={collectionBestsellerImageGrid.smallSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallSquare.altText} />
@@ -19,8 +19,8 @@ const Wrapper = styled.div`
     grid-gap: 20px;
     height: clamp(0px, ${900 / 1920 * 100}vw, 900px);
     grid-template-areas: 
-    't b b b'
-    's b b b';
+    'b b b t'
+    'b b b s';
 
     .mobile, .tablet{
         display: none;

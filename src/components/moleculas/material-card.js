@@ -1,9 +1,17 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
+import React, { useMemo, useState } from "react"
 import styled from "styled-components"
 
-export const MaterialCard = ({ data: { materials: { materialColorVariants: variants }, title, slug } }) => {
+export const MaterialCard = ({ color, data: { materials: { materialColorVariants }, title, slug } }) => {
+
+    const variants = useMemo(() => {
+        let arr = materialColorVariants
+        if (color && color !== 'All') {
+            arr = arr.filter(el => el.colorGroup === color)
+        }
+        return arr
+    })
 
     const [choosenVariant, setChoosenVariant] = useState(() => {
         for (let i = 0; i < variants.length; i++) {
@@ -21,7 +29,7 @@ export const MaterialCard = ({ data: { materials: { materialColorVariants: varia
 
     return (
         <Wrapper>
-            <Link to={'/material/' + slug + '/'}>
+            <Link to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
                 <SliderWrapper id='background'>
                     {variants.map((el, index) => (
                         <SliderContent className={index === choosenVariant ? 'active' : ''}>

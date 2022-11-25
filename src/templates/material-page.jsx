@@ -60,12 +60,12 @@ import Hero from "../components/sections/hero-materials"
 //     )
 // }
 
-export default function Material({ data: {wpMaterials}, pageContext }) {
-    return (
-        <main>
-            <Hero data={wpMaterials}/>
-        </main>
-    )
+export default function Material({ location, data: { wpMaterials  }, pageContext }) {
+  return (
+    <main>
+      <Hero variant={location?.state?.variant} data={wpMaterials}/>
+    </main>
+  )
 }
 
 export const query = graphql`

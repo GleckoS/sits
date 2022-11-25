@@ -8,6 +8,7 @@ import { Tooltip } from "../moleculas/inform-with-tooltip"
 import { MaterialsSlider } from "../organism/materials-slider"
 
 export default function Hero({
+    variant,
     data: {
         title,
         features,
@@ -27,7 +28,7 @@ export default function Hero({
         <Wrapper>
             <Container>
                 <Grid>
-                    <MaterialsSlider variants={materialColorVariants} />
+                    <MaterialsSlider variant={variant} variants={materialColorVariants} />
                     <div>
                         <Flex>
                             <h1 className="archive-title">{title}</h1>

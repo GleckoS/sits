@@ -109,6 +109,9 @@ export default function Header() {
 }
 
 const Wrapper = styled.header`
+    max-width: 1920px;
+    width: 100%;
+    margin: 0 auto;
     position: sticky;
     z-index: 100;
     top: 0;

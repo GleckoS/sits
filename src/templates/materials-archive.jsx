@@ -60,10 +60,10 @@ import MaterialsArchive from "../components/sections/materials-archive"
 //     )
 // }
 
-export default function Material({ data, pageContext }) {
+export default function Material({ data: { wpPage, allWpMaterials }, pageContext }) {
     return (
         <main>
-            <MaterialsArchive materials={data.allWpMaterials.nodes}/>
+            <MaterialsArchive data={wpPage.materials} materials={allWpMaterials.nodes} />
         </main>
     )
 }
@@ -72,9 +72,33 @@ export const query = graphql`
     query material($id: String!) {
         wpPage(id: {eq: $id}) {
             id
+            materials {
+              heroM {
+                pageTitle
+                text
+                backgroundImage {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
         }
       allWpMaterials{
         nodes{
+          features {
+            nodes {
+              name
+            }
+          }
+          textures {
+            nodes {
+              name
+            }
+          }
             title
             slug
             materials {
