@@ -12,7 +12,6 @@ export default function Hero({ data: { pageTitle, text, backgroundImage } }) {
                     <div className="text">
                         <h1>{pageTitle}</h1>
                         {text && <p>{text}</p>}
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet laoreet neque. Curabitur et efficitur est. Quisque ac nulla ipsum. Aliquam ut erat.</p>
                     </div>
                 </Content>
             </Container>

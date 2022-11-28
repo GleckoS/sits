@@ -6,86 +6,98 @@ import { MaterialList } from "../organism/materials-list"
 import Hero from "../organism/hero-material-archive"
 import { CloseButton } from "../atoms/close-button"
 
-const sortBy = [
-    {
-        name: 'Popular', val: 'Popular'
-    },
-    {
-        name: 'Alphabetical', val: 'Alphabetical'
-    },
-    {
-        name: 'New Arrivals', val: 'New Arrivals'
-    }
-]
+const sortBy = {
+    en: [
+        {
+            name: 'Popular', val: 'Popular'
+        },
+        {
+            name: 'Alphabetical', val: 'Alphabetical'
+        },
+        {
+            name: 'New Arrivals', val: 'New Arrivals'
+        }
+    ]
+}
 
-const colorRange = [
-    {
-        name: 'All Colors', val: 'All'
-    },
-    {
-        name: 'Natural', val: "natural: Natural"
-    },
-    {
-        name: 'Light Grey', val: "lightGrey"
-    },
-    {
-        name: 'Dark Grey', val: 'darkGrey'
-    },
-    {
-        name: 'Blue', val: "blue"
-    },
-    {
-        name: 'Green', val: "green"
-    },
-    {
-        name: 'Brown', val: "brown"
-    },
-    {
-        name: 'Sunset', val: "sunset"
-    }
-]
+const colorRange = {
+    en: [
+        {
+            name: 'All Colors', val: 'All'
+        },
+        {
+            name: 'Natural', val: "natural: Natural"
+        },
+        {
+            name: 'Light Grey', val: "lightGrey"
+        },
+        {
+            name: 'Dark Grey', val: 'darkGrey'
+        },
+        {
+            name: 'Blue', val: "blue"
+        },
+        {
+            name: 'Green', val: "green"
+        },
+        {
+            name: 'Brown', val: "brown"
+        },
+        {
+            name: 'Sunset', val: "sunset"
+        }
+    ]
+}
 
-const texturesArr = [
-    {
-        name: 'All Textures', val: 'All'
-    },
-    {
-        name: 'Plain', val: 'Plain'
-    },
-    {
-        name: 'Chunky Structure', val: 'Structure'
-    },
-    {
-        name: 'Velvet', val: 'Velvet'
-    },
-    {
-        name: 'Leather', val: 'Leather'
-    }
-]
+const texturesArr = {
+    en: [
+        {
+            name: 'All Textures', val: 'All'
+        },
+        {
+            name: 'Plain', val: 'Plain'
+        },
+        {
+            name: 'Chunky Structure', val: 'Structure'
+        },
+        {
+            name: 'Velvet', val: 'Velvet'
+        },
+        {
+            name: 'Leather', val: 'Leather'
+        }
+    ]
+}
 
-const featuresArr = [
-    {
-        name: 'All Features', val: 'All'
-    },
-    {
-        name: 'Washable', val: 'Washable'
-    },
-    {
-        name: 'Eco-Friendly', val: 'Eco-Friendly'
-    },
-    {
-        name: 'Natural', val: 'Natural'
-    },
-    {
-        name: 'Easy to Clean', val: 'Easy to Clean'
-    },
-    {
-        name: 'Pet-Friendly', val: 'Pet-Friendly'
-    },
-    {
-        name: 'Outdoor', val: 'Outdoor'
-    }
-]
+const featuresArr = {
+    en: [
+        {
+            name: 'All Features', val: 'All'
+        },
+        {
+            name: 'Washable', val: 'Washable'
+        },
+        {
+            name: 'Eco-Friendly', val: 'Eco-Friendly'
+        },
+        {
+            name: 'Natural', val: 'Natural'
+        },
+        {
+            name: 'Easy to Clean', val: 'Easy to Clean'
+        },
+        {
+            name: 'Pet-Friendly', val: 'Pet-Friendly'
+        },
+        {
+            name: 'Outdoor', val: 'Outdoor'
+        }
+    ]
+}
+
+const clearAllTitle = {
+    'en': 'Clear all filters'
+}
 
 export default function MaterialsArchive({ data, materials }) {
 
@@ -158,9 +170,9 @@ export default function MaterialsArchive({ data, materials }) {
         <Wrapper>
             <FilterComponent
                 sortBy={sortBy}
-                colorRange={colorRange}
-                texturesArr={texturesArr}
-                featuresArr={featuresArr}
+                colorRange={colorRange['en']}
+                texturesArr={texturesArr['en']}
+                featuresArr={featuresArr['en']}
                 setSort={setSort}
                 setColor={setColor}
                 setTextures={setTextures}
@@ -196,7 +208,7 @@ export default function MaterialsArchive({ data, materials }) {
                     )}
                     {(color !== 'All' || textures !== 'All' || features !== 'All') && (
                         <FilterItem className="close">
-                            Clear all filters
+                            {clearAllTitle['en']}
                             <CloseButton func={clearAll} val={''} />
                         </FilterItem>
                     )}
