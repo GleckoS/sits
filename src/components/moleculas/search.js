@@ -11,8 +11,8 @@ export const Search = ({ type }) => {
     return (
         <Wrapper className={type === 'extended' ? 'extended' : ''}>
             {type === 'extended'
-                ? <InputExt placeholder={searchTitle} />
-                : <Input placeholder={searchTitle} />}
+                ? <InputExt placeholder={searchTitle['en']} />
+                : <Input placeholder={searchTitle['en']} />}
 
         </Wrapper>
     )
