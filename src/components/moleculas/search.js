@@ -3,12 +3,16 @@ import styled from "styled-components"
 import { Input } from "./input"
 import { InputExt } from './input-extended'
 
+const searchTitle = {
+    en: 'Search'
+}
+
 export const Search = ({ type }) => {
     return (
         <Wrapper className={type === 'extended' ? 'extended' : ''}>
             {type === 'extended'
-                ? <InputExt placeholder="Search" />
-                : <Input placeholder="Search" />}
+                ? <InputExt placeholder={searchTitle} />
+                : <Input placeholder={searchTitle} />}
 
         </Wrapper>
     )

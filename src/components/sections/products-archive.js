@@ -3,62 +3,105 @@ import styled from "styled-components"
 import { ProductList } from "../organism/products-list"
 import { Container } from "../atoms/container"
 import { CloseButton } from './../atoms/close-button'
-import { Search } from "../moleculas/search"
-import { DropDown } from "../moleculas/dropdown"
+import { FilterComponent } from "../organism/products-filter"
 
-const sortBy = [
-    {
-        name: 'Popular', val: 'Popular'
-    },
-    {
-        name: 'Alphabetical', val: 'Alphabetical'
-    },
-    {
-        name: 'New Arrivals', val: 'New Arrivals'
-    }
-]
+const sortBy = {
+    en: [
+        {
+            name: 'Popular', val: 'Popular'
+        },
+        {
+            name: 'Alphabetical', val: 'Alphabetical'
+        },
+        {
+            name: 'New Arrivals', val: 'New Arrivals'
+        }
+    ]
+}
 
-const sofasTypes = [
-    {
-        name: 'All Types', val: 'All'
-    },
-    {
-        name: 'Regular Sofas', val: 'Regular Sofas'
-    },
-    {
-        name: 'Sofa Beds', val: 'Sofa Beds'
-    },
-    {
-        name: 'Corner Sofas', val: 'Corner Sofas'
-    },
-    {
-        name: 'Modular Systems', val: 'Modular Systems'
-    }
-]
+const sofasTypes = {
+    en: [
+        {
+            name: 'All Types', val: 'All'
+        },
+        {
+            name: 'Regular Sofas', val: 'Regular Sofas'
+        },
+        {
+            name: 'Sofa Beds', val: 'Sofa Beds'
+        },
+        {
+            name: 'Corner Sofas', val: 'Corner Sofas'
+        },
+        {
+            name: 'Modular Systems', val: 'Modular Systems'
+        }
+    ]
+}
 
-const upholsterysArr = [
-    {
-        name: 'All Upholsterys', val: 'All'
-    },
-    {
-        name: 'Fabric', val: 'Fabric'
-    },
-    {
-        name: 'Leather', val: 'Leather'
-    },
-]
+const upholsterysArr = {
+    en: [
+        {
+            name: 'All Upholsterys', val: 'All'
+        },
+        {
+            name: 'Fabric', val: 'Fabric'
+        },
+        {
+            name: 'Leather', val: 'Leather'
+        },
+    ]
+}
 
-const covesArr = [
-    {
-        name: 'All Covers', val: 'All'
-    },
-    {
-        name: 'Fixed', val: 'Fixed'
-    },
-    {
-        name: 'Removable', val: 'Removable'
-    },
-]
+const covesArr = {
+    en: [
+        {
+            name: 'All Covers', val: 'All'
+        },
+        {
+            name: 'Fixed', val: 'Fixed'
+        },
+        {
+            name: 'Removable', val: 'Removable'
+        },
+    ]
+}
+
+const clearAllTitle = {
+    'en': 'Clear all filters'
+}
+
+const filterTitle = {
+    en: 'Filter'
+}
+
+const sortByTitle = {
+    en: 'Sort by'
+}
+
+const typeTitle = {
+    en: 'Type'
+}
+
+const upholsterysTitle = {
+    en: 'Upholsterys'
+}
+
+const coversTitle = {
+    en: 'Cover Types'
+}
+
+const reset = {
+    en: 'RESET ALL'
+}
+
+const view = {
+    en: 'VIEW'
+}
+
+const sortFilterTitle = {
+    en: 'Sort & Filter'
+}
 
 export default function ProductArchive({ pageContext: { typeSlug, name }, products }) {
 
@@ -137,111 +180,32 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
 
     return (
         <Wrapper>
-            <MobileFilters className={isMobileFilterOpened ? 'active' : ''}>
-                <Flex>
-                    <b>Filter</b>
-                    <CloseButton func={setMobileFilterOpened} val={false} />
-                </Flex>
-                <FilterBlock>
-                    <span>Sort by</span>
-                    <div className="flex">
-                        {sortBy.map(el => (
-                            <button onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
-                                </svg>
-                                {el.name}
-                            </button>
-                        ))}
-                    </div>
-                </FilterBlock>
-                {name === 'Sofas' && (
-                    <FilterBlock>
-                        <span>Type</span>
-                        <div className="flex">
-                            {sofasTypes.map(el => (
-                                <button onClick={() => { setType(el.val) }} className={el.val === type ? 'active' : ''}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                        <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
-                                    </svg>
-                                    {el.name}
-                                </button>
-                            ))}
-                        </div>
-                    </FilterBlock>
-                )}
-                <FilterBlock>
-                    <span>Upholsterys</span>
-                    <div className="flex">
-                        {upholsterysArr.map(el => (
-                            <button onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
-                                </svg>
-                                {el.name}
-                            </button>
-                        ))}
-                    </div>
-                </FilterBlock>
-                <FilterBlock>
-                    <span>Cover Types</span>
-                    <div className="flex">
-                        {covesArr.map(el => (
-                            <button onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
-                                </svg>
-                                {el.name}
-                            </button>
-                        ))}
-                    </div>
-                </FilterBlock>
-                <Flex className="center">
-                    <button className="underlined" onClick={() => { clearAll(); setSort('Popular') }}>
-                        RESET ALL
-                    </button>
-                    <button className="filled" onClick={() => { setMobileFilterOpened(false); window?.scrollTo({ top: 0 }) }}>
-                        VIEW
-                    </button>
-                </Flex>
-            </MobileFilters>
-            <Filter>
-                <Container className="container">
-                    <div className="left">
-                        <DropDown controller={sort} func={setSort} data={sortBy} controlTitle={'Sort by: ' + sort} />
-                        {name === 'Sofas' && <DropDown controller={type} func={setType} data={sofasTypes} controlTitle={'Type'} />}
-                        <DropDown controller={upholsterys} func={setUpholsterys} data={upholsterysArr} controlTitle={'Upholsterys'} />
-                        <DropDown controller={cover} func={setCover} data={covesArr} controlTitle={'Cover Types'} />
-                    </div>
-                    <div className="left-alt">
-                        <button onClick={() => { setMobileFilterOpened(true) }}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14.595" viewBox="0 0 15 14.595">
-                                <g id="Group_520" data-name="Group 520" transform="translate(5432.613 -238.318)">
-                                    <line id="Line_258" data-name="Line 258" y2="14.595" transform="translate(-5430.658 238.318)" fill="none" stroke="#31231e" stroke-width="1" />
-                                    <line id="Line_259" data-name="Line 259" y2="14.595" transform="translate(-5425.122 238.318)" fill="none" stroke="#31231e" stroke-width="1" />
-                                    <line id="Line_260" data-name="Line 260" y2="14.595" transform="translate(-5419.586 238.318)" fill="none" stroke="#31231e" stroke-width="1" />
-                                    <g id="Ellipse_295" data-name="Ellipse 295" transform="translate(-5432.613 243.55)" fill="#fff" stroke="#31231e" stroke-width="1">
-                                        <circle cx="2" cy="2" r="2" stroke="none" />
-                                        <circle cx="2" cy="2" r="1.5" fill="none" />
-                                    </g>
-                                    <g id="Ellipse_296" data-name="Ellipse 296" transform="translate(-5427.113 238.55)" fill="#fff" stroke="#31231e" stroke-width="1">
-                                        <circle cx="2" cy="2" r="2" stroke="none" />
-                                        <circle cx="2" cy="2" r="1.5" fill="none" />
-                                    </g>
-                                    <g id="Ellipse_297" data-name="Ellipse 297" transform="translate(-5421.613 248.55)" fill="#fff" stroke="#31231e" stroke-width="1">
-                                        <circle cx="2" cy="2" r="2" stroke="none" />
-                                        <circle cx="2" cy="2" r="1.5" fill="none" />
-                                    </g>
-                                </g>
-                            </svg>
-                            Sort & Filter
-                        </button>
-                    </div>
-                    <div>
-                        <Search type='extended' />
-                    </div>
-                </Container>
-            </Filter>
+            <FilterComponent
+                filterTitle={filterTitle['en']}
+                sortByTitle={sortByTitle['en']}
+                sortBy={sortBy['en']}
+                name={name}
+                typeTitle={typeTitle['en']}
+                sofasTypes={sofasTypes['en']}
+                upholsterysTitle={upholsterysTitle['en']}
+                upholsterysArr={upholsterysArr['en']}
+                coversTitle={coversTitle['en']}
+                covesArr={covesArr['en']}
+                reset={reset['en']}
+                view={view['en']}
+                sort={sort}
+                type={type}
+                upholsterys={upholsterys}
+                cover={cover}
+                sortFilterTitle={sortFilterTitle['en']}
+                setMobileFilterOpened={setMobileFilterOpened}
+                isMobileFilterOpened={isMobileFilterOpened}
+                setUpholsterys={setUpholsterys}
+                setCover={setCover}
+                setType={setType}
+                setSort={setSort}
+                clearAll={clearAll}
+            />
             <Container className="content-wrap">
                 <ActiveFilters>
                     {cover !== 'All' && (
@@ -264,7 +228,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                     )}
                     {(type !== 'All' || cover !== 'All' || upholsterys !== 'All') && (
                         <FilterItem className="close">
-                            Clear all filters
+                            {clearAllTitle['en']}
                             <CloseButton func={clearAll} val={''} />
                         </FilterItem>
                     )}
@@ -275,102 +239,6 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
     )
 }
 
-const Flex = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    b{
-        font-size: clamp(18px, ${18 / 1194 * 100}vw, 20px);
-    }
-
-    .underlined{
-        background-color: transparent;
-        border: unset;
-        color: #CEAD89;
-        border-bottom: 1px solid #CEAD89;
-        padding: 0 7px 3px 0;
-    }
-
-    .filled{
-        background-color: #CEAD89;
-        border: unset;
-        color: #fff;
-        padding: 12px 60px;
-    }
-
-    &.center{
-            margin-top: 50px;
-        justify-content: start;
-        gap: 50px;
-        @media (max-width: 500px) {
-            justify-content: space-evenly;
-        }
-    }
-`
-
-const FilterBlock = styled.div`
-    margin-top: 30px;
-
-    span{
-        font-size: 24px;
-        font-weight: 300;
-    }
-
-    button{
-        padding: 5px 12px;
-        border-radius: 50px;
-        border: 2px solid #CCCCCC;
-        background-color: transparent;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-
-        svg{
-            display: none;
-        }
-
-        &.active{
-            border-color: #CEAD89;
-            color: #CEAD89;
-
-            svg{
-                display: block;
-            }
-        }
-    }
-
-    .flex{
-        margin-top: 12px;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-`
-
-const MobileFilters = styled.div`
-    position: fixed;
-    z-index: 102;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
-    transform: translateX(100%);
-    transition: transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-    background-color: #fff;
-    padding: 32px 24px;
-    max-height: 100vh;
-    overflow: auto;
-
-    @supports  (-webkit-touch-callout: none){
-        padding-bottom: 120px;
-    }
-
-    &.active{
-        transform: unset;
-    }
-`
-
 const Wrapper = styled.div`
     background-color: var(--light-background);
     padding:  0 0 86px 0;
@@ -378,91 +246,6 @@ const Wrapper = styled.div`
 
     @media (max-width: 640px) {
         
-    }
-`
-
-const Filter = styled.div`
-    position: sticky;
-    z-index: 101;
-    top: 109px;
-    left: 0;
-    right: 0;
-    height: 107px;
-    background-color: #fff;
-    border-bottom: 1px solid #ddd;
-    margin-top: -1px;
-
-    @media (max-width: 1180px){
-        height:64px;
-    }
-
-    @media (max-width: 840px) {
-        top: 75px;
-    }
-    
-
-    .container{
-        display: flex;
-        justify-content: space-between;
-
-        @media (max-width: 1180px){
-            align-items: center;
-            height: 100%;
-        }
-    }
-
-    .left{
-        display: flex;
-        gap: clamp(40px, ${40 / 1194 * 100}vw, 120px);
-
-        @media (max-width: 1180px) {
-            display: none;
-        }
-    }
-
-    .left-alt{
-        display: none;
-        @media (max-width: 1180px) {
-            display: block;
-
-            button{
-                border: none;
-                background-color: transparent;
-                display: flex;
-                gap: 12px;
-                align-items: center;
-                font-size: 18px;
-
-                svg{
-                    margin-top: 2px;
-                    width: 24px;
-                    height: 24px;
-                }
-            }
-        }
-
-        @media (max-width: 600px) {
-            button{
-                font-size: 16px;
-
-                svg{
-                    width: unset;
-                    height: unset;
-                }
-            }
-        }
-    }
-
-   .label{
-        padding: 22px;
-        margin: 22px -22px 0 -22px;
-        cursor: pointer;
-
-        
-        @media (max-width: 1180px) {
-            margin: 0;
-            padding: 0;
-        }
     }
 `
 

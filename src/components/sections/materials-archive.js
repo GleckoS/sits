@@ -99,6 +99,38 @@ const clearAllTitle = {
     'en': 'Clear all filters'
 }
 
+const filterTitle = {
+    en: 'Filter'
+}
+
+const sortByTitle = {
+    en: 'Sort by'
+}
+
+const colorRangeTitle = {
+    en: 'Color Range'
+}
+
+const texturesTitle = {
+    en: 'Textures'
+}
+
+const featuresTitle = {
+    en: 'Features'
+}
+
+const reset = {
+    en: 'RESET ALL'
+}
+
+const view = {
+    en: 'VIEW'
+}
+
+const sortFilterTitle = {
+    en: 'Sort & Filter'
+}
+
 export default function MaterialsArchive({ data, materials }) {
 
     const [sort, setSort] = useState(() => {
@@ -169,7 +201,15 @@ export default function MaterialsArchive({ data, materials }) {
     return (
         <Wrapper>
             <FilterComponent
-                sortBy={sortBy}
+                view={view['en']}
+                reset={reset['en']}
+                featuresTitle={featuresTitle['en']}
+                texturesTitle={texturesTitle['en']}
+                colorRangeTitle={colorRangeTitle['en']}
+                sortByTitle={sortByTitle['en']}
+                filterTitle={filterTitle['en']}
+                sortFilterTitle={sortFilterTitle['en']}
+                sortBy={sortBy['en']}
                 colorRange={colorRange['en']}
                 texturesArr={texturesArr['en']}
                 featuresArr={featuresArr['en']}

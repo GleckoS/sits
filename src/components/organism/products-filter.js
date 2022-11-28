@@ -1,35 +1,38 @@
 import React from "react"
 import styled from "styled-components"
+import { CloseButton } from "../atoms/close-button"
 import { Container } from "../atoms/container"
 import { DropDown } from "../moleculas/dropdown"
 import { Search } from "../moleculas/search"
-import { CloseButton } from './../atoms/close-button'
 
-export const FilterComponent = ({
-    sortBy,
-    colorRange,
-    texturesArr,
-    featuresArr,
-    setSort,
-    setColor,
-    setTextures,
-    setFeatures,
-    setMobileFilterOpened,
-    sort,
-    color,
-    textures,
-    features,
-    isMobileFilterOpened,
-    clearAll,
-    view,
-    reset,
-    featuresTitle,
-    texturesTitle,
-    colorRangeTitle,
-    sortByTitle,
+export const FilterComponent = ({ 
     filterTitle,
-    sortFilterTitle }) => (
+    sortByTitle,
+    sortBy,
+    name,
+    typeTitle,
+    sofasTypes,
+    upholsterysTitle,
+    upholsterysArr,
+    coversTitle,
+    covesArr,
+    reset,
+    view,
+    sort,
+    type,
+    upholsterys,
+    cover,
+    sortFilterTitle,
+    setMobileFilterOpened,
+    isMobileFilterOpened,
+    setUpholsterys,
+    setCover,
+    setType,
+    setSort,
+    clearAll    
+}) => (
     <>
+
         <MobileFilters className={isMobileFilterOpened ? 'active' : ''}>
             <Flex>
                 <b>{filterTitle}</b>
@@ -48,11 +51,26 @@ export const FilterComponent = ({
                     ))}
                 </div>
             </FilterBlock>
+            {name === 'Sofas' && (
+                <FilterBlock>
+                    <span>{typeTitle}</span>
+                    <div className="flex">
+                        {sofasTypes.map(el => (
+                            <button onClick={() => { setType(el.val) }} className={el.val === type ? 'active' : ''}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
+                                </svg>
+                                {el.name}
+                            </button>
+                        ))}
+                    </div>
+                </FilterBlock>
+            )}
             <FilterBlock>
-                <span>{colorRangeTitle}</span>
+                <span>{upholsterysTitle}</span>
                 <div className="flex">
-                    {colorRange.map(el => (
-                        <button onClick={() => { setColor(el.val) }} className={el.val === color ? 'active' : ''}>
+                    {upholsterysArr.map(el => (
+                        <button onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
                                 <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
                             </svg>
@@ -62,23 +80,10 @@ export const FilterComponent = ({
                 </div>
             </FilterBlock>
             <FilterBlock>
-                <span>{texturesTitle}</span>
+                <span>{coversTitle}</span>
                 <div className="flex">
-                    {texturesArr.map(el => (
-                        <button onClick={() => { setTextures(el.val) }} className={el.val === textures ? 'active' : ''}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
-                            </svg>
-                            {el.name}
-                        </button>
-                    ))}
-                </div>
-            </FilterBlock>
-            <FilterBlock>
-                <span>{featuresTitle}</span>
-                <div className="flex">
-                    {featuresArr.map(el => (
-                        <button onClick={() => { setFeatures(el.val) }} className={el.val === features ? 'active' : ''}>
+                    {covesArr.map(el => (
+                        <button onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
                                 <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
                             </svg>
@@ -100,9 +105,9 @@ export const FilterComponent = ({
             <Container className="container">
                 <div className="left">
                     <DropDown controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
-                    <DropDown controller={color} func={setColor} data={colorRange} controlTitle={colorRangeTitle} />
-                    <DropDown controller={textures} func={setTextures} data={texturesArr} controlTitle={texturesTitle} />
-                    <DropDown controller={features} func={setFeatures} data={featuresArr} controlTitle={featuresTitle} />
+                    {name === 'Sofas' && <DropDown controller={type} func={setType} data={sofasTypes} controlTitle={typeTitle} />}
+                    <DropDown controller={upholsterys} func={setUpholsterys} data={upholsterysArr} controlTitle={upholsterysTitle} />
+                    <DropDown controller={cover} func={setCover} data={covesArr} controlTitle={coversTitle} />
                 </div>
                 <div className="left-alt">
                     <button onClick={() => { setMobileFilterOpened(true) }}>
@@ -135,6 +140,40 @@ export const FilterComponent = ({
         </Filter>
     </>
 )
+
+const Flex = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    b{
+        font-size: clamp(18px, ${18 / 1194 * 100}vw, 20px);
+    }
+
+    .underlined{
+        background-color: transparent;
+        border: unset;
+        color: #CEAD89;
+        border-bottom: 1px solid #CEAD89;
+        padding: 0 7px 3px 0;
+    }
+
+    .filled{
+        background-color: #CEAD89;
+        border: unset;
+        color: #fff;
+        padding: 12px 60px;
+    }
+
+    &.center{
+            margin-top: 50px;
+        justify-content: start;
+        gap: 50px;
+        @media (max-width: 500px) {
+            justify-content: space-evenly;
+        }
+    }
+`
 
 const FilterBlock = styled.div`
     margin-top: 30px;
@@ -279,40 +318,6 @@ const Filter = styled.div`
         @media (max-width: 1180px) {
             margin: 0;
             padding: 0;
-        }
-    }
-`
-
-const Flex = styled.div`
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    b{
-        font-size: clamp(18px, ${18 / 1194 * 100}vw, 20px);
-    }
-
-    .underlined{
-        background-color: transparent;
-        border: unset;
-        color: #CEAD89;
-        border-bottom: 1px solid #CEAD89;
-        padding: 0 7px 3px 0;
-    }
-
-    .filled{
-        background-color: #CEAD89;
-        border: unset;
-        color: #fff;
-        padding: 12px 60px;
-    }
-
-    &.center{
-            margin-top: 50px;
-        justify-content: start;
-        gap: 50px;
-        @media (max-width: 500px) {
-            justify-content: space-evenly;
         }
     }
 `
