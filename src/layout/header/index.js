@@ -7,32 +7,44 @@ import { Search } from "../../components/moleculas/search"
 import { LangChanger } from "./lang-changer"
 import { Item } from "./menu-item"
 
-const linksLeft = [
-    { name: 'Best Seller', url: '' },
-    { name: 'Sofas', url: '' },
-    { name: 'Armchairs', url: '' },
-    { name: 'Dining Chairs', url: '' },
-    { name: 'Footstools', url: '' },
-    { name: 'Coffee Tables', url: '' },
-    { name: 'Outdoor Furniture', url: '' },
-    { name: 'Covers', url: '' },
-    { name: 'Inspiration', url: '' },
-    { name: 'My Favourites', icon: 'hearth', url: '' }
-]
+const linksLeft = {
+    en: [
+        { name: 'Best Seller', url: '' },
+        { name: 'Sofas', url: '' },
+        { name: 'Armchairs', url: '' },
+        { name: 'Dining Chairs', url: '' },
+        { name: 'Footstools', url: '' },
+        { name: 'Coffee Tables', url: '' },
+        { name: 'Outdoor Furniture', url: '' },
+        { name: 'Covers', url: '' },
+        { name: 'Inspiration', url: '' },
+        { name: 'My Favourites', icon: 'hearth', url: '' }
+    ]
+}
 
-const linksRight = [
-    { name: 'About Sits', url: '' },
-    { name: 'Designers', url: '' },
-    { name: 'Sustainability', url: '' },
-    { name: 'Furniture Care', url: '' },
-    { name: 'Where to Buy', url: '' },
-    { name: 'Contact', url: '' },
-    { name: 'For Retailers', icon: 'out', url: '' },
-]
+const linksRight = {
+    en: [
+        { name: 'About Sits', url: '' },
+        { name: 'Designers', url: '' },
+        { name: 'Sustainability', url: '' },
+        { name: 'Furniture Care', url: '' },
+        { name: 'Where to Buy', url: '' },
+        { name: 'Contact', url: '' },
+        { name: 'For Retailers', icon: 'out', url: '' },
+    ]
+}
 
 const languages = [
-    
+
 ]
+
+const furnitureTitle = {
+    'en': 'FURNITURE'
+}
+
+const companyTitle = {
+    'en': 'COMPANY'
+}
 
 export default function Header() {
 
@@ -44,12 +56,12 @@ export default function Header() {
         <>
             <LeftMenu className={isLeftMenuOpened ? 'active' : ''}>
                 <Flex>
-                    <b>FURNITURE</b>
+                    <b>{furnitureTitle['en']}</b>
                     <CloseButton func={setLeftMenuOpened} val={false} />
                 </Flex>
                 <MenuContent>
                     <Search />
-                    {linksLeft.map(el => (
+                    {linksLeft['en'].map(el => (
                         <Item el={el} func={(v) => { setLeftMenuOpened(v) }} />
                     ))}
                 </MenuContent>
@@ -57,7 +69,7 @@ export default function Header() {
             <Wrapper>
                 <Container className="container">
                     <Button className="control-desctop" onClick={() => { setLeftMenuOpened(true); setRightMenuOpened(false) }}>
-                        FURNITURE
+                        {furnitureTitle['en']}
                     </Button>
                     <Link to='/'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="133.17" height="41.5" viewBox="0 0 133.17 41.5">
@@ -67,7 +79,7 @@ export default function Header() {
                     <div className="right">
                         <LangChanger />
                         <Button className="control-desctop" onClick={() => { setRightMenuOpened(true); setLeftMenuOpened(false) }}>
-                            COMPANY
+                            {companyTitle['en']}
                         </Button>
                     </div>
                     <Burger aria-label='burger button' className={isMobileMenuOpened ? 'open control-mobile' : "control-mobile"} onClick={() => { setMobileMenuOpened(!isMobileMenuOpened) }}>
@@ -78,10 +90,10 @@ export default function Header() {
             <RightMenu className={isRightMenuOpened ? 'active' : ''}>
                 <Flex >
                     <CloseButton func={setRightMenuOpened} val={false} />
-                    <b>COMPANY</b>
+                    <b>{companyTitle['en']}</b>
                 </Flex>
                 <MenuContent className="reverse">
-                    {linksRight.map(el => (
+                    {linksRight['en'].map(el => (
                         <Item el={el} func={(v) => { setRightMenuOpened(v) }} />
                     ))}
                 </MenuContent>
@@ -90,12 +102,12 @@ export default function Header() {
                 <Container className="content">
                     <Search />
                     <div className="wrap">
-                        {linksLeft.map(el => (
+                        {linksLeft['en'].map(el => (
                             <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
                         ))}
                     </div>
                     <div className="wrap">
-                        {linksRight.map(el => (
+                        {linksRight['en'].map(el => (
                             <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
                         ))}
                     </div>
