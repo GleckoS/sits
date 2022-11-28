@@ -66,6 +66,10 @@ const VariantsPicker = styled.div`
     gap: 16px;
     flex-wrap: wrap;
     padding: 0 6px;
+
+    @media (max-width: 480px) {
+        gap: 8px;
+    }
 `
 
 const VariantCircle = styled.button`

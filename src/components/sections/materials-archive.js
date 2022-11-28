@@ -209,12 +209,11 @@ export default function MaterialsArchive({ data, materials }) {
 
 const Wrapper = styled.div`
     background-color: var(--light-background);
-    padding:  0 0 86px 0;
+    padding:  0 15px 86px 15px;
     position: relative;
-    margin: 0 15px;
 
     @media (max-width: 1800px) {
-        margin: 0;
+        padding:  0 0 86px 0;
     }
 `
 
