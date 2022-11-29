@@ -104,6 +104,12 @@ export const query = graphql`
               }
             }
             heroH {
+              backgroundVideo {
+                altText
+                localFile {
+                  publicURL
+                }
+              }
               pageTitle
               linkUnderPageTitle {
                 url
@@ -113,6 +119,7 @@ export const query = graphql`
               backgroundImage {
                 altText
                 localFile {
+                  publicURL
                   childImageSharp {
                     gatsbyImageData
                   }

@@ -3,10 +3,14 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 
-export default function Hero({ data: { pageTitle, linkUnderPageTitle, backgroundImage } }) {
+export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage } }) {
     return (
         <Wrapper>
-            <GatsbyImage className="background" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+            {/* <GatsbyImage className="background" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} /> */}
+
+            <video className="background" playsInline autoPlay muted loop poster={backgroundImage.localFile.publicURL} >
+                <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
+            </video>
             <div className="content">
                 <h1 className="title">{pageTitle}</h1>
                 {linkUnderPageTitle
@@ -19,7 +23,10 @@ export default function Hero({ data: { pageTitle, linkUnderPageTitle, background
 
 const Wrapper = styled.section`
     position: relative;
+    overflow: hidden;
     .background{
+        max-width: 100%;
+        min-width: 964px;
         position: relative;
         left: 50%;
         transform: translateX(-50%);

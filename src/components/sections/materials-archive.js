@@ -26,7 +26,7 @@ const colorRange = {
             name: 'All Colors', val: 'All'
         },
         {
-            name: 'Natural', val: "natural: Natural"
+            name: 'Natural', val: "natural"
         },
         {
             name: 'Light Grey', val: "lightGrey"
@@ -230,19 +230,19 @@ export default function MaterialsArchive({ data, materials }) {
                 <ActiveFilters>
                     {color !== 'All' && (
                         <FilterItem>
-                            {color}
+                            {color.replace(/([A-Z])/g, ' $1').trim()}
                             <CloseButton func={setColor} val={'All'} />
                         </FilterItem>
                     )}
                     {textures !== 'All' && (
                         <FilterItem>
-                            {textures}
+                            {textures.replace(/([A-Z])/g, ' $1').trim()}
                             <CloseButton func={setTextures} val={'All'} />
                         </FilterItem>
                     )}
                     {features !== 'All' && (
                         <FilterItem>
-                            {features}
+                            {features.replace(/([A-Z])/g, ' $1').trim()}
                             <CloseButton func={setFeatures} val={'All'} />
                         </FilterItem>
                     )}
@@ -285,6 +285,7 @@ const FilterItem = styled.div`
     align-items: center;
     justify-content: center;
     gap: 8px;
+    text-transform: capitalize;
 
     button{
         width: 16px;

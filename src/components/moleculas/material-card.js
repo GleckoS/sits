@@ -1,17 +1,16 @@
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useMemo, useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
 
 export const MaterialCard = ({ color, data: { materials: { materialColorVariants }, title, slug } }) => {
-
     const variants = useMemo(() => {
         let arr = materialColorVariants
         if (color && color !== 'All') {
             arr = arr.filter(el => el.colorGroup === color)
         }
         return arr
-    })
+    }, [color])
 
     const [choosenVariant, setChoosenVariant] = useState(() => {
         for (let i = 0; i < variants.length; i++) {
@@ -21,6 +20,17 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
         }
         return 0
     })
+
+    useEffect(() => {
+        setChoosenVariant(() => {
+            for (let i = 0; i < variants.length; i++) {
+                if (variants[i].isMainColor) {
+                    return i
+                }
+            }
+            return 0
+        })
+    }, [variants])
 
     const onVariantChange = (index) => {
         document.getElementById('background').style.backgroundColor = variants[choosenVariant].squarePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
