@@ -67,8 +67,11 @@ export default function Footer() {
 }
 
 const Wrapper = styled.footer`
+    max-width: 1920px;
+    margin: 0 auto;
     margin-top: 120px;
-
+    width: 100%;
+    
     a{
         color: #31231E;
         font-size: 18px;

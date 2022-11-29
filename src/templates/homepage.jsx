@@ -4,6 +4,7 @@ import About from "../components/sections/about"
 import Bestsellers from "../components/sections/bestsellers-carousel"
 import DividerCollection from "../components/sections/divider-collection"
 import Hero from "../components/sections/hero-homepage"
+import Map from "../components/sections/map"
 import NewArrivals from "../components/sections/new-arrivals"
 import ProductGrid from "../components/sections/products-grid"
 import ThreeInformCards from "../components/sections/three-inform-cards"
@@ -76,6 +77,7 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
       <DividerCollection data={homepage.dividerSection} />
       <NewArrivals data={homepage.newArrivalsH} />
       <ThreeInformCards data={homepage.sectionWithThreeInformCardsH}/>
+      <Map/>
     </main>
   )
 }

@@ -1,5 +1,4 @@
 import { Link } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 
@@ -7,7 +6,6 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
     return (
         <Wrapper>
             {/* <GatsbyImage className="background" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} /> */}
-
             <video className="background" playsInline autoPlay muted loop poster={backgroundImage.localFile.publicURL} >
                 <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
             </video>
