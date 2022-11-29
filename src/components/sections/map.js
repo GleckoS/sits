@@ -7,6 +7,10 @@ import { csvParser } from './../../helpers/csvParser'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
 require('react-leaflet-markercluster/dist/styles.min.css')
 
+const retailersTitle = {
+    en: 'RETAILERS'
+}
+
 export default function Map() {
 
     const { wpPage: { retailers: { csvFile } } } = useStaticQuery(graphql`
@@ -39,9 +43,9 @@ export default function Map() {
             <Container>
                 <Content>
                     <ItemsWrapper>
-
+                        <h3>{retailersTitle['en']}</h3>
                     </ItemsWrapper>
-                    <MapContainer center={[51.505, -0.09]} zoom={3} scrollWheelZoom={false}>
+                    <MapContainer center={[51.505, -0.09]} zoom={4} minZoom={3} scrollWheelZoom={true}>
                         <TileLayer
                             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

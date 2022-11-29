@@ -65,6 +65,12 @@ import SimilarProducts from "../components/sections/similar-products"
 //     )
 // }
 
+export function Head() {
+  return (
+      <meta name='robots' content='index, follow, max-image-preview:large' />
+  )
+}
+
 export default function Collection({ data: { wpCollection, allWpProduct }, pageContext }) {
 
   const products = useMemo(() => {

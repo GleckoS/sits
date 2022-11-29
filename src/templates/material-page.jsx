@@ -60,6 +60,12 @@ import Hero from "../components/sections/hero-materials"
 //     )
 // }
 
+export function Head() {
+  return (
+      <meta name='robots' content='index, follow, max-image-preview:large' />
+  )
+}
+
 export default function Material({ location, data: { wpMaterials  }, pageContext }) {
   return (
     <main>

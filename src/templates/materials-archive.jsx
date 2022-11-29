@@ -60,6 +60,12 @@ import MaterialsArchive from "../components/sections/materials-archive"
 //     )
 // }
 
+export function Head() {
+  return (
+      <meta name='robots' content='index, follow, max-image-preview:large' />
+  )
+}
+
 export default function Material({ data: { wpPage, allWpMaterials }, pageContext }) {
     return (
         <main>

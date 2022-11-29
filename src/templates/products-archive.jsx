@@ -60,6 +60,12 @@ import ProductArchive from '../components/sections/products-archive'
 //     )
 // }
 
+export function Head() {
+  return (
+      <meta name='robots' content='index, follow, max-image-preview:large' />
+  )
+}
+
 export default function Products({ data, pageContext }) {
   return (
     <main>

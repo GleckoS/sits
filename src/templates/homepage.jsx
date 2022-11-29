@@ -67,6 +67,12 @@ import ThreeInformCards from "../components/sections/three-inform-cards"
 //     )
 // }
 
+export function Head() {
+  return (
+      <meta name='robots' content='index, follow, max-image-preview:large' />
+  )
+}
+
 export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
     <main>
