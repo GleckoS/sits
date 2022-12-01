@@ -34,7 +34,7 @@ export default function SimilarProducts({ data }) {
 
 const Wrapper = styled.section`
     padding: 80px 0 0 0;
-    padding-bottom: 160px;
+    padding-bottom: clamp(80px, ${120 / 1194 * 100}vw, 160px);
     margin-bottom: -160px;
     background-color: #F9F5F0;
     h2{

@@ -7,6 +7,7 @@ import RecomendedCovers from "../components/sections/recomended-covers"
 import Accessories from "../components/sections/accessories"
 import SimilarProducts from "../components/sections/similar-products"
 import Map from "../components/sections/map"
+import Video from "../components/sections/video"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -86,6 +87,7 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
         data={wpCollection}
       />
       {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
+      {wpCollection.collections.videoSection?.video && <Video data={wpCollection.collections.videoSection}/>}
       {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers title={wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
       {wpCollection.collections.accessoriesSection.accessories && <Accessories data={wpCollection.collections.accessoriesSection.accessories} />}
       {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
@@ -99,6 +101,20 @@ export const query = graphql`
           wpCollection(id: {eq: $id}){
             id
             collections {
+              videoSection {
+                video{
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+                previewImage{
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+              }
               similarCollectionsSection {
                 similarCollections {
                   product {
