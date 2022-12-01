@@ -104,7 +104,7 @@ const sortFilterTitle = {
 }
 
 export default function ProductArchive({ pageContext: { typeSlug, name }, products }) {
-
+    debugger
     const [sort, setSort] = useState(() => {
         return 'Popular'
     })

@@ -19,7 +19,7 @@ export default function RecomendedCovers({ title, data: { covers } }) {
 }
 
 const Wrapper = styled.section`
-    margin-top: 120px;
+    margin-top: clamp(60px, ${90 / 1194 * 100}vw, 120px);
     padding: 40px 0 0 0;
     background-color: #F9F5F0;
     h2{

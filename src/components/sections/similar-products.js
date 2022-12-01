@@ -13,11 +13,11 @@ export default function SimilarProducts({ data }) {
                 <Grid>
                     {data?.map(el => {
                         let isOnePostRendered = false
-                        return el.collection.products.productGallery?.map(inEl => {
+                        return el.product.products.productGallery?.map(inEl => {
                             return inEl.productsImages?.map(imageEl => {
                                 if (imageEl.isMainImage && !isOnePostRendered) {
                                     isOnePostRendered = true
-                                    return <ProductCard types={el.collection.products.collection.types.nodes} data={el.collection.products.collection} image={imageEl.featuredProductImage} />
+                                    return <Item><ProductCard types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} /></Item>
                                 }
                                 return null
                             })
@@ -47,4 +47,30 @@ const Grid = styled.div`
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 32px;
     margin-top: 20px;
+
+    @media (max-width: 1024px) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+`
+
+const Item = styled.div`
+    @media (max-width: 1024px){
+        width: 47%;
+    }
+
+    @media (max-width: 600px) {
+        width: 45%;
+    }
+
+    @media (max-width: 389px) {
+        width: 100%;
+    }
+
+    h3{
+        font-size: clamp(16px, ${26 / 768 * 100}vw, 28px);
+        font-weight: 300;
+        margin-top: clamp(6px, ${16 / 1194 * 100}vw, 20px);
+    }
 `

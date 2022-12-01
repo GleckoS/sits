@@ -100,7 +100,17 @@ exports.createPages = async ({
     }
   `);
 
+
     productsArchives.forEach(({ id, slug }) => {
+        createPage({
+            path: '/' + slug + '/',
+            component: resolve('src/templates/products-archive.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+
         productArchiveTypeNodes.forEach(({ name, slug: typeSlug }) => {
             createPage({
                 path: '/' + slug + '/' + typeSlug + '/',
@@ -113,7 +123,6 @@ exports.createPages = async ({
                 },
             });
         })
-
     })
 
     // Homepage
@@ -129,7 +138,7 @@ exports.createPages = async ({
     }
   `);
 
-  Homepage.forEach(({ id, slug }) => {
+    Homepage.forEach(({ id, slug }) => {
         createPage({
             path: '/',
             component: resolve('src/templates/homepage.jsx'),
@@ -138,7 +147,7 @@ exports.createPages = async ({
                 slug,
             },
         });
-    }) 
+    })
 
     // Best Sellers
 

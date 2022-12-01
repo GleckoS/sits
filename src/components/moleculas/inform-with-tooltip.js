@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
     .title{
         margin-bottom: 12px;
-        font-size: 28px;
+        font-size: clamp(16px, ${28 / 1194 * 100}vw, 28px);
     }
 `
 
@@ -39,10 +39,15 @@ const Item = styled.div`
     grid-template-columns: auto auto;
     grid-gap: 12px;
     align-items: center;
-    opacity: .7;
 
     img{
         width: 32px;
         height: 32px;
+    }
+
+    span{
+        font-size: clamp(16px, ${20 / 1194 * 100}vw, 20px);
+        font-weight: 300;
+        color: #31231E;
     }
 `

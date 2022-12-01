@@ -43,7 +43,7 @@ const Grid = styled.div`
     @media (max-width: 1024px) {
         display: flex;
         flex-wrap: wrap;
-        justify-content: space-evenly;
+        justify-content: center;
     }
 
     @media (max-width: 389px) {

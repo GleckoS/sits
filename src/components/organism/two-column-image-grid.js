@@ -4,8 +4,19 @@ import styled from "styled-components"
 import { ImageGridItem } from "../moleculas/image-grid-item"
 import { Popup } from "../moleculas/popup"
 
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import Slider from "react-slick"
+
 export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
+
+    var settings = {
+        infinite: true,
+        dots: true,
+        arrows: false,
+        slidesToShow: 1,
+    };
 
     // const images = useMemo(() => {
     //     let arr = []
@@ -128,11 +139,136 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                     ))}
                 </ImagesGrid>
             </Wrapper>
+            <SliderWrapper>
+                <Slider {...settings}>
+                    {collectionPagePreviewImage
+                        ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                            <GatsbyImage className="image" image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                                    <g id="Group_510" data-name="Group 510" transform="translate(-1557.5 -1810.5)">
+                                        <line id="Line_134" data-name="Line 134" y2="14" transform="translate(1564.5 1810.5)" fill="none" stroke="#31231e" stroke-width="1.5" />
+                                        <line id="Line_137" data-name="Line 137" y2="14" transform="translate(1571.5 1817.5) rotate(90)" fill="none" stroke="#31231e" stroke-width="1.5" />
+                                    </g>
+                                </svg>
+                            </span>
+                        </button>
+                        : null}
+                    {gallery?.map(el => (
+                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                            <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                            <span>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
+                                    <g id="Group_510" data-name="Group 510" transform="translate(-1557.5 -1810.5)">
+                                        <line id="Line_134" data-name="Line 134" y2="14" transform="translate(1564.5 1810.5)" fill="none" stroke="#31231e" stroke-width="1.5" />
+                                        <line id="Line_137" data-name="Line 137" y2="14" transform="translate(1571.5 1817.5) rotate(90)" fill="none" stroke="#31231e" stroke-width="1.5" />
+                                    </g>
+                                </svg>
+                            </span>
+                        </button>
+                    ))}
+                </Slider>
+            </SliderWrapper>
         </>
     )
 }
 
+const SliderWrapper = styled.div`
+    width: calc(100% + 90px);
+    margin: 0 -45px 36px -45px;
+    display: none;
+
+    @media (max-width: 1024px) {
+        display: block;
+    }
+
+    @media (max-width: 768px) {
+        width: calc(100% + 48px);
+        margin: 0 -24px 36px -24px;
+    }
+
+    .image{
+        width: 100%;
+        aspect-ratio: 1.51750972763;
+    }
+
+    .slick-dots{
+
+            li{
+                &::before{
+                    content: "";
+                    position: absolute;
+                    left: 2px;
+                    right: 2px;
+                    bottom: 2px;
+                    top: 2px;
+                    border-radius: 50%;
+                    border: 1px solid black;
+                    opacity: 0;
+                    transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+                }
+
+                &.slick-active::before{
+                    opacity: 1;
+                }
+            }
+    }
+
+    button{
+        border: none;
+        background-color: transparent;
+        margin-bottom: clamp(10.13px, ${10.13 / 1024 * 100}vw, 20.58px);
+        position: relative;
+        cursor: pointer;
+
+        span{
+            font-size: 18px;
+            font-weight: 300;
+            position: absolute;
+            width: clamp(27px, ${40 / 768 * 100}vw, 40px);
+            height: clamp(27px, ${40 / 768 * 100}vw, 40px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            right: 20px;
+            bottom: 20px;
+            transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+            b{
+                font-size: 24px;
+                font-weight: 900;
+            }
+
+            &::after{
+                content: "";
+                position: absolute;
+                right: -4px;
+                left: 4px;
+                bottom: -4px;
+                height: 1px;
+                background-color: #31231E;
+            }
+
+            &::before{
+                content: "";
+                position: absolute;
+                right: -4px;
+                top: 4px;
+                bottom: -4px;
+                width: 1px;
+                background-color: #31231E;
+            }
+        }
+    }
+`
+
+
 const Wrapper = styled.div`
+
+@media (max-width: 1024px) {
+    display: none;
+}
 
     button{
         border: none;

@@ -32,7 +32,7 @@ const Link = styled.a`
     }
 
     span{
-        font-size: 20px;
+        font-size: clamp(16px, ${20 / 1194 * 100}vw, 20px);
         line-height: 150%;
         display: block;
         position: relative;
