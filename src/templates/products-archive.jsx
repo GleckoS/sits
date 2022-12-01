@@ -1,6 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
 import ProductArchive from '../components/sections/products-archive'
+import Map from "../components/sections/map"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -62,7 +63,7 @@ import ProductArchive from '../components/sections/products-archive'
 
 export function Head() {
   return (
-      <meta name='robots' content='index, follow, max-image-preview:large' />
+    <meta name='robots' content='index, follow, max-image-preview:large' />
   )
 }
 
@@ -70,6 +71,7 @@ export default function Products({ data, pageContext }) {
   return (
     <main>
       <ProductArchive pageContext={pageContext} products={data.allWpProduct.nodes} data={''} />
+      <Map />
     </main>
   )
 }

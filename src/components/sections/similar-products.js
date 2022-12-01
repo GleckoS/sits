@@ -13,6 +13,9 @@ export default function SimilarProducts({ data }) {
                 <Grid>
                     {data?.map(el => {
                         let isOnePostRendered = false
+                        if (!el.product) {
+                            return null
+                        }
                         return el.product.products.productGallery?.map(inEl => {
                             return inEl.productsImages?.map(imageEl => {
                                 if (imageEl.isMainImage && !isOnePostRendered) {

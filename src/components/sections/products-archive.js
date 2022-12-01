@@ -19,6 +19,32 @@ const sortBy = {
     ]
 }
 
+const allTypes = {
+    en: [
+        {
+            name: 'All Types', val: 'All'
+        },
+        {
+            name: 'Armchairs', val: 'Armchairs'
+        },
+        {
+            name: 'Coffee tables', val: 'Coffee tables'
+        },
+        {
+            name: 'Dining chairs', val: 'Dining chairs'
+        },
+        {
+            name: 'Footstools', val: 'Footstools'
+        },
+        {
+            name: 'Outdoor furnitures', val: 'Outdoor furnitures'
+        },
+        {
+            name: 'Sofas', val: 'Sofas'
+        },
+    ]
+}
+
 const sofasTypes = {
     en: [
         {
@@ -104,7 +130,6 @@ const sortFilterTitle = {
 }
 
 export default function ProductArchive({ pageContext: { typeSlug, name }, products }) {
-    debugger
     const [sort, setSort] = useState(() => {
         return 'Popular'
     })
@@ -127,6 +152,9 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
     }
 
     const defaultPosts = useMemo(() => {
+        if (!name) {
+            return products
+        }
         return products.filter(el => {
             let isAccessed = false
             el.types.nodes.forEach((inEl) => {
@@ -183,6 +211,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                 filterTitle={filterTitle['en']}
                 sortByTitle={sortByTitle['en']}
                 sortBy={sortBy['en']}
+                allTypes={allTypes['en']}
                 name={name}
                 typeTitle={typeTitle['en']}
                 sofasTypes={sofasTypes['en']}

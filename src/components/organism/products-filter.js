@@ -5,10 +5,11 @@ import { Container } from "../atoms/container"
 import { DropDown } from "../moleculas/dropdown"
 import { Search } from "../moleculas/search"
 
-export const FilterComponent = ({ 
+export const FilterComponent = ({
     filterTitle,
     sortByTitle,
     sortBy,
+    allTypes,
     name,
     typeTitle,
     sofasTypes,
@@ -29,7 +30,7 @@ export const FilterComponent = ({
     setCover,
     setType,
     setSort,
-    clearAll    
+    clearAll
 }) => (
     <>
 
@@ -57,6 +58,28 @@ export const FilterComponent = ({
                     <div className="flex">
                         {sofasTypes.map(el => (
                             <button onClick={() => { setType(el.val) }} className={el.val === type ? 'active' : ''}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
+                                </svg>
+                                {el.name}
+                            </button>
+                        ))}
+                    </div>
+                </FilterBlock>
+            )}
+
+            {!name && (
+                <FilterBlock>
+                    <span>{typeTitle}</span>
+                    <div className="flex">
+                        <button onClick={() => { setType('All') }} className={'All' === type ? 'active' : ''}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
+                            </svg>
+                            All Types
+                        </button>
+                        {allTypes.map(el => (
+                            <button onClick={() => { setType(el.name) }} className={el.name === type ? 'active' : ''}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
                                     <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
                                 </svg>
@@ -106,6 +129,7 @@ export const FilterComponent = ({
                 <div className="left">
                     <DropDown controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
                     {name === 'Sofas' && <DropDown controller={type} func={setType} data={sofasTypes} controlTitle={typeTitle} />}
+                    {!name && <DropDown controller={type} func={setType} data={allTypes} controlTitle={typeTitle} />}
                     <DropDown controller={upholsterys} func={setUpholsterys} data={upholsterysArr} controlTitle={upholsterysTitle} />
                     <DropDown controller={cover} func={setCover} data={covesArr} controlTitle={coversTitle} />
                 </div>
