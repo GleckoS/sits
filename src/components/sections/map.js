@@ -136,8 +136,8 @@ export default function Map() {
                     </MapItems>
                     <MapContainer center={[mapCenter.Latitude, mapCenter.Longitude]} zoom={4} minZoom={3} maxZoom={20} scrollWheelZoom={true}>
                         <TileLayer
-                            attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
-                            url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
+                            attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+                            url="'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'"
                         />
                         {/* <FullscreenControl position='topright'/> */}
                         <MarkerClusterGroup showCoverageOnHover={false}>

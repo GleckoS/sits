@@ -125,7 +125,7 @@ const Wrapper = styled.header`
     width: 100%;
     margin: 0 auto;
     position: sticky;
-    z-index: 100;
+    z-index: 108;
     top: 0;
     padding: 0;
     left: 0;
