@@ -11,7 +11,7 @@ export const ProductCard = ({ data, types, image }) => (
             <Flex>
                 <span className="archive-title">{data.title}</span>
                 <Categories>
-                    {types.map(el => (
+                    {types?.map(el => (
                         <Category>
                             {el.name}
                         </Category>

@@ -3,6 +3,8 @@ import React from "react"
 import BestSellersGrid from "../components/sections/best-sellers-grid"
 import NewArrivals from "../components/sections/new-arrivals"
 import ThreeInformCards from "../components/sections/three-inform-cards"
+import Map from "../components/sections/map"
+import Hero from "../components/sections/hero-bestsellers"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -64,19 +66,20 @@ import ThreeInformCards from "../components/sections/three-inform-cards"
 
 export function Head() {
   return (
-      <meta name='robots' content='index, follow, max-image-preview:large' />
+    <meta name='robots' content='index, follow, max-image-preview:large' />
   )
 }
 
 export default function Bestsellers({ data: { wpPage: { bestSellers } }, pageContext }) {
-    return (
-        <main>
-            {/* Hero */}
-            <BestSellersGrid data={bestSellers.imageGrids} />
-            <NewArrivals data={bestSellers.newArrivals} />
-            <ThreeInformCards data={bestSellers.sectionWithThreeInformCards} />
-        </main>
-    )
+  return (
+    <main>
+      <Hero data={bestSellers.hero} />
+      <BestSellersGrid data={bestSellers.imageGrids} />
+      <NewArrivals data={bestSellers.newArrivals} />
+      <ThreeInformCards data={bestSellers.sectionWithThreeInformCards} />
+      <Map />
+    </main>
+  )
 }
 
 export const query = graphql`
@@ -84,6 +87,25 @@ export const query = graphql`
         wpPage(id: {eq: $id}){
             id
             bestSellers {
+              hero {
+                pageTitle
+                text
+                backgroundVideo {
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+                backgroundImage {
+                  altText
+                  localFile {
+                    publicURL
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
                 sectionWithThreeInformCards{
                   cards{
                     title

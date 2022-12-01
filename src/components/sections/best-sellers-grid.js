@@ -35,7 +35,7 @@ export default function BestSellersGrid({ data }) {
 }
 
 const Wrapper = styled.section`
-    margin-top: 60px;
+    margin-top: 80px;
 `
 
 const Grid = styled.div`

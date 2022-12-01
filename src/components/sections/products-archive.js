@@ -177,7 +177,6 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
 
         return arr
     }, [defaultPosts, sort, type, cover, upholsterys])
-
     return (
         <Wrapper>
             <FilterComponent

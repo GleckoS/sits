@@ -6,6 +6,7 @@ import About from "../components/sections/about"
 import RecomendedCovers from "../components/sections/recomended-covers"
 import Accessories from "../components/sections/accessories"
 import SimilarProducts from "../components/sections/similar-products"
+import Map from "../components/sections/map"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -67,14 +68,14 @@ import SimilarProducts from "../components/sections/similar-products"
 
 export function Head() {
   return (
-      <meta name='robots' content='index, follow, max-image-preview:large' />
+    <meta name='robots' content='index, follow, max-image-preview:large' />
   )
 }
 
 export default function Collection({ data: { wpCollection, allWpProduct }, pageContext }) {
 
   const products = useMemo(() => {
-    return allWpProduct.nodes.filter(el => el.products.collection.id === wpCollection.id)
+    return allWpProduct.nodes.filter(el => el.products?.collection?.id === wpCollection.id)
   }, [allWpProduct, wpCollection])
 
   return (
@@ -87,8 +88,8 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
       {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
       {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers title={wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
       {wpCollection.collections.accessoriesSection.accessories && <Accessories data={wpCollection.collections.accessoriesSection.accessories} />}
-      
-      {/* <SimilarProducts data={wpCollection.collections} /> */}
+      {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
+      <Map />
     </main>
   )
 }
@@ -100,9 +101,56 @@ export const query = graphql`
             collections {
               similarCollectionsSection {
                 similarCollections {
-                  collection {
-                    ... on WpCollection {
-                      id
+                  product {
+                    ... on WpProduct {
+                      types {
+                        nodes {
+                          name
+                        }
+                      }
+                      products {
+                        collection {
+                          ... on WpCollection {
+                            slug
+                            title
+                            covers {
+                              nodes {
+                                name
+                              }
+                            }
+                            upholsterys{
+                              nodes{
+                                name
+                              }
+                            }
+                            types {
+                              nodes {
+                                name
+                              }
+                            }
+                          }
+                        }
+                        isNewArrival
+                        productGallery {
+                          popupNames {
+                            fabric
+                            cover
+                            leather
+                            model
+                          }
+                          productsImages {
+                            isMainImage
+                            featuredProductImage {
+                              altText
+                              localFile {
+                                childImageSharp {
+                                  gatsbyImageData
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   }
                 }

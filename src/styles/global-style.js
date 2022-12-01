@@ -18,6 +18,9 @@ export const Global = createGlobalStyle`
         -webkit-tap-highlight-color: transparent;
         color: var(--text-color);
         font-family: 'Gothic';
+        line-height: 1.4em;
+        text-underline-offset: 6px;
+        text-decoration-thickness: 1px !important;
     }
 
     *:focus{
