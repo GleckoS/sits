@@ -137,7 +137,7 @@ export default function Map() {
                     <MapContainer center={[mapCenter.Latitude, mapCenter.Longitude]} zoom={4} minZoom={3} maxZoom={20} scrollWheelZoom={true}>
                         <TileLayer
                             attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
-                            url="'https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}'"
+                            url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
                         />
                         {/* <FullscreenControl position='topright'/> */}
                         <MarkerClusterGroup showCoverageOnHover={false}>
