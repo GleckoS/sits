@@ -173,4 +173,28 @@ exports.createPages = async ({
         });
     })
 
+    // Best Sellers
+
+    const { data: { allWpPage: { nodes: Search } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Search" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Search.forEach(({ id, slug }) => {
+        createPage({
+            path: '/search/',
+            component: resolve('src/templates/search-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
 }

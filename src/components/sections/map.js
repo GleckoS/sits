@@ -221,7 +221,7 @@ const InputWrapper = styled.div`
     border-bottom: 1px solid #707070;
     padding-bottom: 8px;
     height: 43px;
-        grid-area: s;
+    grid-area: s;
 
     input{
         border: none;
@@ -267,6 +267,11 @@ const Wrapper = styled.section`
         background-color: #CEAD8966;
         div{
             background-color: #CEAD89;
+            span{
+                color: #fff;
+                font-weight: 700;
+                letter-spacing: 1px;
+            }
         }
     }
 `

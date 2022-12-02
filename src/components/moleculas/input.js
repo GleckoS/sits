@@ -1,5 +1,5 @@
 import { Link } from "gatsby"
-import React, { useRef, useState } from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 
 export const Input = ({ placeholder }) => {
@@ -7,7 +7,7 @@ export const Input = ({ placeholder }) => {
     return (
         <Wrapper>
             <input onChange={(e) => { setInputValue(e.target.value) }} placeholder={placeholder} />
-            <Link to={'/search/?name=' + inputValue}>
+            <Link to={inputValue ? ('/search/?search=' + inputValue) : '/search/'}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                     <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                         <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">

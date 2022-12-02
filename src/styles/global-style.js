@@ -48,5 +48,19 @@ export const Global = createGlobalStyle`
         line-height: 135%;
         font-weight: 300;
     }
+
+    .button{
+        width: fit-content;
+        padding: 13px 46px;
+        background-color: #CEAD89;
+
+        font-size: 18px;
+        text-transform: uppercase;
+        color: #fff;
+        border: none;
+        margin: 0 auto;
+        display: block;
+        cursor: pointer;
+    }
     
 `
