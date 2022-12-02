@@ -39,11 +39,11 @@ export const ResultMaterialBlock = ({ count, setCount, prefiltredArr, searchValu
                 return null
             })
 
-            setCount(colors.length)
+            setCount(itemsCount)
             return colors
         }
         return []
-    }, [prefiltredArr, searchValue])
+    }, [prefiltredArr, searchValue, setCount])
 
     const [showCount, setShowCount] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -74,6 +74,7 @@ export const ResultMaterialBlock = ({ count, setCount, prefiltredArr, searchValu
                                 renderCount.current += 1
                                 return <Card title={el.title} slug={el.slug} data={inEl} />
                             }
+                            return null
                         })
                     })}
                 </ResultsGrid>

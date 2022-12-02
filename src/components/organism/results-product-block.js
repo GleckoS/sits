@@ -44,7 +44,7 @@ export const ResultProductBlock = ({ count, setCount, prefiltredArr, searchValue
             return arr
         }
         return []
-    }, [prefiltredArr, searchValue])
+    }, [prefiltredArr, searchValue, setCount])
 
     const [showCount, setShowCount] = useState(() => {
         if (typeof window !== 'undefined') {
