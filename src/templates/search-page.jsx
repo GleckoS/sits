@@ -63,7 +63,7 @@ import Search from "../components/sections/search"
 
 export function Head() {
     return (
-        <meta name='robots' content='index, follow, max-image-preview:large' />
+        <meta name="robots" content="noindex"/>
     )
 }
 
@@ -108,7 +108,7 @@ export const query = graphql`
               }
               title
               slug
-              
+
             }
         }
         Sofas : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Sofas"}}}}}) {

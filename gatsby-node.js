@@ -173,7 +173,7 @@ exports.createPages = async ({
         });
     })
 
-    // Best Sellers
+    // Search
 
     const { data: { allWpPage: { nodes: Search } } } = await graphql(`
     query {
@@ -190,6 +190,174 @@ exports.createPages = async ({
         createPage({
             path: '/search/',
             component: resolve('src/templates/search-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // Favourites
+
+    const { data: { allWpPage: { nodes: Favourites } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Favourites" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Favourites.forEach(({ id, slug }) => {
+        createPage({
+            path: '/favourite/',
+            component: resolve('src/templates/favourites-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // Where to buy NOT
+
+    const { data: { allWpPage: { nodes: Where } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Where To Buy" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Where.forEach(({ id, slug }) => {
+        createPage({
+            path: '/where-to-buy/',
+            component: resolve('src/templates/where-to-buy-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // Furniture Care
+
+    const { data: { allWpPage: { nodes: Furniture } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Furniture Care" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Furniture.forEach(({ id, slug }) => {
+        createPage({
+            path: '/furniture-care/',
+            component: resolve('src/templates/furniture-care-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // Catalogue
+
+    const { data: { allWpPage: { nodes: Catalogue } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Catalogue" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Catalogue.forEach(({ id, slug }) => {
+        createPage({
+            path: '/catalogues/',
+            component: resolve('src/templates/catalogues-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // Contact
+
+    const { data: { allWpPage: { nodes: Contact } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Contact" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Contact.forEach(({ id, slug }) => {
+        createPage({
+            path: '/contact/',
+            component: resolve('src/templates/сontact-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // Legal
+
+    const { data: { allWpPage: { nodes: Legal } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Legal" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Legal.forEach(({ id, slug }) => {
+        createPage({
+            path: '/legal/',
+            component: resolve('src/templates/legal-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // Sales representative NOT
+
+    const { data: { allWpPage: { nodes: Sales } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Sales Representative" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+    Sales.forEach(({ id, slug }) => {
+        createPage({
+            path: '/sales-representative/',
+            component: resolve('src/templates/sales-page.jsx'),
             context: {
                 id,
                 slug,

@@ -1,6 +1,5 @@
 import { graphql } from "gatsby"
 import React from "react"
-import MaterialsArchive from "../components/sections/materials-archive"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -61,75 +60,23 @@ import MaterialsArchive from "../components/sections/materials-archive"
 // }
 
 export function Head() {
-  return (
-    <meta name="robots" content="noindex"/>
-  )
+    return (
+        <meta name="robots" content="noindex" />
+    )
 }
 
-export default function Material({ data: { wpPage, allWpMaterials }, pageContext }) {
+export default function WhereToBuyPage({ data, pageContext, location }) {
     return (
         <main>
-            <MaterialsArchive data={wpPage.materials} materials={allWpMaterials.nodes} />
+            <h1>Where to buy</h1>
         </main>
     )
 }
 
 export const query = graphql`
-    query material($id: String!) {
-        wpPage(id: {eq: $id}) {
+    query whereToBuy($id: String!) {
+        wpPage(id: {eq: $id}){
             id
-            materials {
-              heroM {
-                pageTitle
-                text
-                backgroundImage {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-              }
-            }
         }
-      allWpMaterials{
-        nodes{
-          features {
-            nodes {
-              name
-            }
-          }
-          textures {
-            nodes {
-              name
-            }
-          }
-            title
-            slug
-            materials {
-                materialColorVariants {
-                    variantColor
-                    variantColorImage{
-                      altText
-                      localFile{
-                        publicURL
-                      }
-                    }
-                    variantName
-                    colorGroup
-                    isMainColor
-                    squarePreviewImage {
-                    altText
-                    localFile {
-                        childImageSharp {
-                        gatsbyImageData
-                        }
-                    }
-                    }
-                }
-            }
-        }
-      }
     }
 `

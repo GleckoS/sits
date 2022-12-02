@@ -66,7 +66,7 @@ import Hero from "../components/sections/hero-bestsellers"
 
 export function Head() {
   return (
-    <meta name='robots' content='index, follow, max-image-preview:large' />
+    <meta name="robots" content="noindex"/>
   )
 }
 

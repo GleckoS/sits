@@ -63,7 +63,7 @@ import Map from "../components/sections/map"
 
 export function Head() {
   return (
-    <meta name='robots' content='index, follow, max-image-preview:large' />
+    <meta name="robots" content="noindex"/>
   )
 }
 
