@@ -14,7 +14,7 @@ export const Card = ({ image, data: { title, slug } }) => (
 
 const Wrapper = styled.div`
     span{
-        font-size: 28px;
+        font-size: clamp(18px, ${28 / 1194 * 100}vw, 28px);
         font-weight: 300;
         margin-top: 12px;
         display: block;

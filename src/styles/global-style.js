@@ -62,5 +62,18 @@ export const Global = createGlobalStyle`
         display: block;
         cursor: pointer;
     }
+
+    @media (max-width: 768px) {
+        .button{
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 375px) {
+        .button{
+            font-size: 14px;
+        }
+    }
+
     
 `

@@ -47,7 +47,14 @@ export const ResultMaterialBlock = ({ count, setCount, prefiltredArr, searchValu
 
     const [showCount, setShowCount] = useState(() => {
         if (typeof window !== 'undefined') {
-            return window.innerWidth < 841 ? 6 : 8
+            return window.innerWidth < 1194 ? 6 : 8
+        }
+
+        return 8
+    })
+    const [addCount] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 1194 ? 6 : 8
         }
 
         return 8
@@ -71,7 +78,7 @@ export const ResultMaterialBlock = ({ count, setCount, prefiltredArr, searchValu
                     })}
                 </ResultsGrid>
                 {count > showCount && (
-                    <button className="button" onClick={() => { setShowCount(showCount + 8) }}>{loadMore}</button>
+                    <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore}</button>
                 )}
             </Wrapper>
         )
@@ -103,4 +110,17 @@ const ResultsGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 42px 16px;
+
+    @media (max-width: 1194px) {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 26px 12px;
+    }
+
+    @media (max-width: 340px) {
+        grid-template-columns: 1fr;
+    }
 `
