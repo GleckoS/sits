@@ -252,9 +252,6 @@ export const query = graphql`
                       altText
                       localFile{
                         publicURL
-                        childImageSharp{
-                          gatsbyImageData
-                        }
                       }
                     }
                   }
@@ -277,9 +274,6 @@ export const query = graphql`
                       altText
                       localFile{
                         publicURL
-                        childImageSharp{
-                          gatsbyImageData
-                        }
                       }
                     }
                   }
@@ -302,9 +296,6 @@ export const query = graphql`
                       altText
                       localFile{
                         publicURL
-                        childImageSharp{
-                          gatsbyImageData
-                        }
                       }
                     }
                   }

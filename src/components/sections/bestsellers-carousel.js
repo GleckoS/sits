@@ -43,15 +43,15 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                     {carousel.map((el, index) => {
                         if (el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage) {
                             return (
-                                <Link to={'/collection/' + el.selectedCollection.slug + '/'} key={index} className="slide">
+                                <div key={index} className="slide">
                                     <GatsbyImage
                                         image={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.localFile.childImageSharp.gatsbyImageData}
                                         alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
                                     <div className="content">
                                         <h3>{el.selectedCollection.title}</h3>
-                                        <p >EXPLORE</p>
+                                        <Link to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
                                     </div>
-                                </Link>
+                                </div>
                             )
                         }
 
@@ -175,7 +175,7 @@ const Wrapper = styled.section`
                 color: #fff;
             }
 
-            p{
+            a{
                 text-align: right;
                 display: block;
                 color: #fff;

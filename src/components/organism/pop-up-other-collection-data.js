@@ -26,9 +26,9 @@ export const PopupButton = ({ data, title }) => {
                     <PopupGrid>
                         {data.dimensions?.map(el => (
                             <div>
-                                {el.image.localFile.childImageSharp
-                                    ? <GatsbyImage image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
-                                    : <img className="svg" src={el.image.localFile.publicURL} alt={el.image.altText} />}
+                                <div className="image-wrap">
+                                    <img className="svg" src={el.image.localFile.publicURL} alt={el.image.altText} />
+                                </div>
                                 <div dangerouslySetInnerHTML={{ __html: el.title }} />
                                 {el.textUnderTitle
                                     ? <div dangerouslySetInnerHTML={{ __html: el.textUnderTitle }} />
@@ -72,6 +72,10 @@ const PopupGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 32px;
+
+    .image-wrap{
+        position: relative;
+    }
 
     .svg{
         background-color: #fff;

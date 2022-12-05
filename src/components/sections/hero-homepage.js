@@ -48,7 +48,6 @@ const Wrapper = styled.section`
         font-size: clamp(48px, ${71 / 768 * 100}vw, 88px);
         color: #fff;
         font-weight: 300;
-        text-shadow: 0px 0px 2px #222;
         margin-bottom: 30px;
     }
     .link{
@@ -57,7 +56,6 @@ const Wrapper = styled.section`
         text-transform: uppercase;
         position: relative;
         padding-bottom: 3px;
-        text-shadow: 0px 0px 2px #222;
         text-decoration: underline;
     }
 `

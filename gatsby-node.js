@@ -221,7 +221,7 @@ exports.createPages = async ({
         });
     })
 
-    // Where to buy NOT
+    // Where to buy
 
     const { data: { allWpPage: { nodes: Where } } } = await graphql(`
     query {
@@ -341,7 +341,7 @@ exports.createPages = async ({
         });
     })
 
-    // Sales representative NOT
+    // Sales representative
 
     const { data: { allWpPage: { nodes: Sales } } } = await graphql(`
     query {
@@ -358,6 +358,54 @@ exports.createPages = async ({
         createPage({
             path: '/sales-representative/',
             component: resolve('src/templates/sales-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // About
+
+    const { data: { allWpPage: { nodes: About } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "About" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+  About.forEach(({ id, slug }) => {
+        createPage({
+            path: '/about/',
+            component: resolve('src/templates/about-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // Conscious
+
+    const { data: { allWpPage: { nodes: Conscious } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Conscious" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+  Conscious.forEach(({ id, slug }) => {
+        createPage({
+            path: '/conscious/',
+            component: resolve('src/templates/conscious-page.jsx'),
             context: {
                 id,
                 slug,

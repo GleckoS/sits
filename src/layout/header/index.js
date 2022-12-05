@@ -9,28 +9,29 @@ import { Item } from "./menu-item"
 
 const linksLeft = {
     en: [
-        { name: 'Best Seller', url: '' },
-        { name: 'Sofas', url: '' },
-        { name: 'Armchairs', url: '' },
-        { name: 'Dining Chairs', url: '' },
-        { name: 'Footstools', url: '' },
-        { name: 'Coffee Tables', url: '' },
-        { name: 'Outdoor Furniture', url: '' },
-        { name: 'Covers', url: '' },
-        { name: 'Inspiration', url: '' },
-        { name: 'My Favourites', icon: 'hearth', url: '' }
+        { name: 'Best Seller', url: '/best-sellers/' },
+        { name: 'All products', url: '/products/' },
+        { name: 'Sofas', url: '/products/sofas/' },
+        { name: 'Armchairs', url: '/products/armchairs/' },
+        { name: 'Dining Chairs', url: '/products/dining-chairs/' },
+        { name: 'Footstools', url: '/products/footstools/' },
+        { name: 'Coffee Tables', url: '/products/coffee-tables/' },
+        { name: 'Outdoor Furniture', url: '/products/outdoor-furnitures/' },
+        { name: 'Covers', url: '/materials/' },
+        { name: 'My Favourites', icon: 'hearth', url: '/favourite/' }
     ]
 }
 
 const linksRight = {
     en: [
-        { name: 'About Sits', url: '' },
-        { name: 'Designers', url: '' },
-        { name: 'Sustainability', url: '' },
-        { name: 'Furniture Care', url: '' },
-        { name: 'Where to Buy', url: '' },
-        { name: 'Contact', url: '' },
-        { name: 'For Retailers', icon: 'out', url: '' },
+        { name: 'About Sits', url: '/about/' },
+        { name: 'Conscious', url: '/conscious/' },
+        { name: 'Furniture Care', url: '/furniture-care/' },
+        { name: 'Catalogues', url: '/catalogues/' },
+        { name: 'Sales Representative', url: '/sales-representative/' },
+        { name: 'Where to Buy', url: '/where-to-buy/' },
+        { name: 'Contact', url: '/contact/' },
+        { name: 'For Retailers', icon: 'out', url: 'https://sitsconnect.pl/' },
     ]
 }
 

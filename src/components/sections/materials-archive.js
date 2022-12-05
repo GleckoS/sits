@@ -225,7 +225,7 @@ export default function MaterialsArchive({ data, materials }) {
                 isMobileFilterOpened={isMobileFilterOpened}
                 clearAll={clearAll}
             />
-            <Hero data={data.heroM} />
+            {/* <Hero data={data.heroM} /> */}
             <Container>
                 <ActiveFilters>
                     {color !== 'All' && (
