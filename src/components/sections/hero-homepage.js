@@ -41,6 +41,7 @@ const Wrapper = styled.section`
         @media (max-width: 500px) {
             width: 100%;
             padding: 0 20px;
+            top: 40%;
         }
     }
     .title{
@@ -49,6 +50,7 @@ const Wrapper = styled.section`
         color: #fff;
         font-weight: 300;
         margin-bottom: 30px;
+        line-height: 1.2;
     }
     .link{
         font-size: 18px;

@@ -5,46 +5,11 @@ import { Card } from "../moleculas/search-product-card"
 
 const loadMore = 'LOAD MORE'
 
-export const ResultProductBlock = ({ count, setCount, prefiltredArr, searchValue, title }) => {
+export const FavouriteProductBlock = ({ count, setCount, prefiltredArr, searchValue, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
-        if (searchValue) {
-            arr = arr.filter(el => {
-                const filterByTitle = el.products.collection.title.toLowerCase().includes(searchValue.toLowerCase())
-                let filterByName = false
-                let filtredByType = false
-
-                el.products.productGallery?.forEach(el => {
-                    if (el.popupNames.model.toLowerCase().includes(searchValue.toLowerCase())) {
-                        filterByName = true
-                    }
-                })
-
-                el.types.nodes?.forEach(el => {
-                    if (el.name.toLowerCase().includes(searchValue.toLowerCase())) {
-                        filtredByType = true
-                    }
-                })
-
-                return filterByTitle || filterByName || filtredByType
-            })
-
-            let itemsCount = 0
-            arr.forEach(el => {
-                el.products.productGallery.forEach(inEl => {
-                    inEl.productsImages.forEach(imageEl => {
-                        if (imageEl.isMainImage && el.products.collection?.slug) {
-                            itemsCount += 1
-                        }
-                    })
-                })
-            })
-            setCount(itemsCount)
-
-            return arr
-        }
-        return []
+        return arr
     }, [prefiltredArr, searchValue, setCount])
 
     const [showCount, setShowCount] = useState(() => {

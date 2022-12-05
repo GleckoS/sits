@@ -31,16 +31,26 @@ const Wrapper = styled.div`
 
     .title{
         font-family: 'Ivy';
-        font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
+        font-size: clamp(36px, ${36 / 1240 * 100}vw, 40px);
         font-weight: 300;
         text-decoration: underline;
-        margin-bottom: 24px;
+        margin-bottom: clamp(12px, ${12 / 1194 * 100}vw, 24px);
+
+        @media (max-width: 1240px) {
+            font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
+            margin-bottom: 24px;
+        }
     }
 
     .text{
-        font-size: clamp(16px, ${24 / 1194 * 100}vw, 24px);
+        font-size: clamp(16px, ${18 / 1194 * 100}vw, 24px);
         font-weight: 300;
-        margin-bottom: clamp(24px, ${40 / 1194 * 100}vw, 40px);
+        margin-bottom: clamp(24px, ${24 / 1194 * 100}vw, 40px);
+
+        @media (max-width: 1240px) {
+            font-size: clamp(16px, ${24 / 1194 * 100}vw, 24px);
+            margin-bottom: clamp(24px, ${40 / 1194 * 100}vw, 40px);
+        }
     }
 
     .link{

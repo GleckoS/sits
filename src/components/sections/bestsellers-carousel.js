@@ -20,6 +20,15 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                 breakpoint: 768,
                 settings: {
                     centerMode: true,
+                    centerPadding: "32px",
+                    infinite: false,
+                    dots: false,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    centerMode: true,
                     centerPadding: "24px",
                     infinite: false,
                     dots: false,
@@ -125,6 +134,8 @@ const Wrapper = styled.section`
         max-width: 800px;
         margin: 0 auto;
         text-align: center;
+        max-width: 480px;
+        margin: 0 auto;
     }
 
     .slide{
@@ -215,7 +226,7 @@ const Wrapper = styled.section`
                     font-size: 28px;
                 }
 
-                p{
+                a{
                     color: #31231E;
                     font-size: 10px;
                 }

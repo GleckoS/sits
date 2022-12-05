@@ -81,7 +81,7 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
       <About data={homepage.aboutSection} />
       <ProductGrid data={homepage.productsGrid} />
       <DividerCollection data={homepage.dividerSection} />
-      <NewArrivals data={homepage.newArrivalsH} />
+      <NewArrivals mt={true} data={homepage.newArrivalsH} />
       <ThreeInformCards data={homepage.sectionWithThreeInformCardsH}/>
       <Map/>
     </main>

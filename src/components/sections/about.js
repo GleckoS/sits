@@ -49,6 +49,7 @@ const Wrapper = styled.section`
         margin-top: clamp(24px, ${40 / 1194 * 100}vw, 40px);
         font-size: clamp(16px, ${24 / 1194 * 100}vw, 24px);
         font-weight: 300;
+        max-width: 480px;
     }
 
     .link{

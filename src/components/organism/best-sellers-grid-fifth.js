@@ -42,13 +42,22 @@ const Wrapper = styled.div`
         grid-area: b;
         min-height: 343px;
 
-        @media (max-width: 389px) {
+        @media (max-width: 640px) {
+            margin: 0 -24px;
             min-height: 250px;
         }
 
+        @media (max-width: 389px) {
+            min-height: 200px;
+        }
     }
 
     @media (max-width: 1440px) {
+        margin: 0 -21px;
+    }
+
+    @media (max-width: 1240px) {
+        margin: 0;
         height: clamp(0px, ${900 / 1194 * 100}vw, 1000px);
         max-height: 1020px;
         grid-template-areas: 

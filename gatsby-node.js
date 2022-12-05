@@ -380,7 +380,7 @@ exports.createPages = async ({
 
   About.forEach(({ id, slug }) => {
         createPage({
-            path: '/about/',
+            path: '/about-sits/',
             component: resolve('src/templates/about-page.jsx'),
             context: {
                 id,
@@ -406,6 +406,30 @@ exports.createPages = async ({
         createPage({
             path: '/conscious/',
             component: resolve('src/templates/conscious-page.jsx'),
+            context: {
+                id,
+                slug,
+            },
+        });
+    })
+
+    // New Arrivals
+
+    const { data: { allWpPage: { nodes: Arrivals } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "New Arrivals" } } }) {
+            nodes {
+                slug
+                id
+            }
+        }
+    }
+  `);
+
+  Arrivals.forEach(({ id, slug }) => {
+        createPage({
+            path: '/new-arrivals/',
+            component: resolve('src/templates/new-arrivals-page.jsx'),
             context: {
                 id,
                 slug,

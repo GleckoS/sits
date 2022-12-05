@@ -32,6 +32,10 @@ const Wrapper = styled.section`
         @media (max-width: 1194px) {
             margin-top: 0;
         }
+
+        @media (max-width: 768px) {
+            margin: 0 -24px;
+        }
     }
 
     .square{

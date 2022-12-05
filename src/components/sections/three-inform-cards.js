@@ -71,6 +71,12 @@ const Item = styled.div`
         }
     }
 
+    @media (max-width: 375px){
+        .image{
+            margin: 0 -24px;
+        }
+    }
+
     .content{
         padding: 20px 12px 0 12px;
 
@@ -86,6 +92,10 @@ const Item = styled.div`
             position: relative;
             z-index: 2;
             text-align: center;
+        }
+
+        @media (max-width: 375px) {
+            margin: -42px 0 0 0;
         }
 
         h3{

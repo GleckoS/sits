@@ -3,9 +3,9 @@ import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { ProductCard } from "../moleculas/product-card"
 
-export default function NewArrivals({ data: { sectionTitle, text, chosenProducts } }) {
+export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {
     return (
-        <Wrapper>
+        <Wrapper className={mt ? 'nomargin' : ''}>
             <Container>
                 <h2 className="title">{sectionTitle}</h2>
                 {text && <p className="text">{text}</p>}
@@ -29,9 +29,15 @@ export default function NewArrivals({ data: { sectionTitle, text, chosenProducts
 }
 
 const Wrapper = styled.section`
-    margin-top: 160px;
+    margin-top: clamp(80px, ${120 / 1194 * 100}vw, 160px);
     background-color: #F9F5F0;
     padding: clamp(40px, ${80 / 768 * 100}vw, 80px) 0;
+
+    @media (max-width: 768px) {
+        &.nomargin{
+            margin-top: 0;
+        }
+    }
 
     .title{
         font-family: 'Ivy';
@@ -48,6 +54,11 @@ const Wrapper = styled.section`
         max-width: 804px;
         margin: 0 auto;
         margin-top: clamp(24px, ${40 / 1194 * 100}vw, 24px);
+
+
+        @media (max-width: 768px) {
+            max-width: 480px;
+        }
     }
 `
 
@@ -55,10 +66,15 @@ const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: clamp(40px, ${60 / 1194 * 100}vw, 80px) 16px;
-    margin-top: 64px;
+    margin-top: 80px;
+
+    @media (max-width: 768px) {
+        grid-gap: 16px;
+    }
 
     @media (max-width: 640px) {
         grid-template-columns: 1fr;
+        margin-top: 40px;
     }
 
 `

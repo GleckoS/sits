@@ -72,6 +72,10 @@ const Wrapper = styled.section`
         font-weight: 300;
         text-align: center;
         max-width: 816px;
+
+        @media (max-width: 768px) {
+            max-width: 480px;
+        }
     }
 `
 

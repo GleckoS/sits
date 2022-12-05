@@ -1,5 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
+import Content from "../components/sections/favourites-content"
+import Map from "../components/sections/map"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -60,23 +62,243 @@ import React from "react"
 // }
 
 export function Head() {
-    return (
-        <meta name="robots" content="noindex" />
-    )
+  return (
+    <meta name="robots" content="noindex" />
+  )
 }
 
 export default function FavouritesPage({ data, pageContext, location }) {
-    return (
-        <main>
-            <h1>Favourites</h1>
-        </main>
-    )
+  return (
+    <main>
+      <Content data={data} />
+      <Map />
+    </main>
+  )
 }
 
 export const query = graphql`
     query favourites($id: String!) {
         wpPage(id: {eq: $id}){
             id
+        }
+        Materials : allWpMaterials{
+            nodes {
+              materials {
+                materialColorVariants {
+                  colorGroup
+                  variantName
+                  squarePreviewImage {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                }
+              }
+              title
+              slug
+
+            }
+        }
+        Sofas : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Sofas"}}}}}) {
+            nodes {
+                types {
+                  nodes {
+                    name
+                  }
+                }
+                products {
+                  collection {
+                    ... on WpCollection {
+                      slug
+                      title
+                    }
+                  }
+                  productGallery {
+                    popupNames {
+                      model
+                    }
+                    productsImages {
+                      isMainImage
+                      featuredProductImage {
+                        altText
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+          }
+        Armchairs : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Armchairs"}}}}}) {
+            nodes {
+                types {
+                  nodes {
+                    name
+                  }
+                }
+                products {
+                  collection {
+                    ... on WpCollection {
+                      slug
+                      title
+                    }
+                  }
+                  productGallery {
+                    popupNames {
+                      model
+                    }
+                    productsImages {
+                      isMainImage
+                      featuredProductImage {
+                        altText
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        }
+        CoffeeTables : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Coffee tables"}}}}}) {
+            nodes {
+                types {
+                  nodes {
+                    name
+                  }
+                }
+                products {
+                  collection {
+                    ... on WpCollection {
+                      slug
+                      title
+                    }
+                  }
+                  productGallery {
+                    popupNames {
+                      model
+                    }
+                    productsImages {
+                      isMainImage
+                      featuredProductImage {
+                        altText
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        }
+        DiningChairs : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Dining chairs"}}}}}) {
+            nodes {
+                types {
+                  nodes {
+                    name
+                  }
+                }
+                products {
+                  collection {
+                    ... on WpCollection {
+                      slug
+                      title
+                    }
+                  }
+                  productGallery {
+                    popupNames {
+                      model
+                    }
+                    productsImages {
+                      isMainImage
+                      featuredProductImage {
+                        altText
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        }
+        Footstools : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Footstools"}}}}}) {
+            nodes {
+                types {
+                  nodes {
+                    name
+                  }
+                }
+                products {
+                  collection {
+                    ... on WpCollection {
+                      slug
+                      title
+                    }
+                  }
+                  productGallery {
+                    popupNames {
+                      model
+                    }
+                    productsImages {
+                      isMainImage
+                      featuredProductImage {
+                        altText
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
+        }
+        OutdoorFurnitures : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Outdoor furnitures"}}}}}) {
+            nodes {
+                types {
+                  nodes {
+                    name
+                  }
+                }
+                products {
+                  collection {
+                    ... on WpCollection {
+                      slug
+                      title
+                    }
+                  }
+                  productGallery {
+                    popupNames {
+                      model
+                    }
+                    productsImages {
+                      isMainImage
+                      featuredProductImage {
+                        altText
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+            }
         }
     }
 `

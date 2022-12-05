@@ -231,7 +231,7 @@ const InputWrapper = styled.div`
         font-weight: 300;
     }
 
-    @media (max-width: 762px){
+    @media (max-width: 768px){
         margin-top: 16px;
     }
 `
@@ -240,7 +240,7 @@ const Wrapper = styled.section`
     padding: 45px 0;
     background-color: #FBFAF7;
     margin-bottom: -120px;
-    margin-top: 160px;
+    margin-top: clamp(45px, ${120 / 1194 * 100}vw, 160px);
 
     .leaflet-control{
         border: none;
@@ -296,11 +296,11 @@ const Content = styled.div`
             height: 600px;
         }
 
-        @media (max-width: 762px){
+        @media (max-width: 768px){
             margin-top: 36px;
         }
 
-        @media (max-width: 762px){
+        @media (max-width: 768px){
             height: 400px;
         }
 
@@ -309,7 +309,7 @@ const Content = styled.div`
         }
     }
 
-    @media (max-width: 762px) {
+    @media (max-width: 768px) {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto 1fr 1fr;
         grid-template-areas: 
