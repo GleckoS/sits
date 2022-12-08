@@ -42,7 +42,7 @@ export default function Hero({
                     <div className="content">
                         <Flex>
                             <h1>{title}</h1>
-                            <AddToFauvorite />
+                            <AddToFauvorite title={title} />
                         </Flex>
                         <Categories>
                             {itemCategories.map(el => (

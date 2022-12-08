@@ -29,13 +29,17 @@ export default function Footer() {
                         <Center>
                             <div>
                                 {left.map(el => (
-                                    <Link to={el.url}>{el.name}</Link>
+                                    <React.Fragment key={el.name}>
+                                        <Link to={el.url}>{el.name}</Link>
+                                    </React.Fragment>
                                 ))}
                             </div>
                             <div>
 
                                 {right.map(el => (
-                                    <Link to={el.url}>{el.name}</Link>
+                                    <React.Fragment key={el.name}>
+                                        <Link to={el.url}>{el.name}</Link>
+                                    </React.Fragment>
                                 ))}
                             </div>
                         </Center>

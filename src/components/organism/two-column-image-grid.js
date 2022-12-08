@@ -147,8 +147,8 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
                                     <g id="Group_510" data-name="Group 510" transform="translate(-1557.5 -1810.5)">
-                                        <line id="Line_134" data-name="Line 134" y2="14" transform="translate(1564.5 1810.5)" fill="none" stroke="#31231e" stroke-width="1.5" />
-                                        <line id="Line_137" data-name="Line 137" y2="14" transform="translate(1571.5 1817.5) rotate(90)" fill="none" stroke="#31231e" stroke-width="1.5" />
+                                        <line id="Line_134" data-name="Line 134" y2="14" transform="translate(1564.5 1810.5)" fill="none" stroke="#31231e" strokeWidth="1.5" />
+                                        <line id="Line_137" data-name="Line 137" y2="14" transform="translate(1571.5 1817.5) rotate(90)" fill="none" stroke="#31231e" strokeWidth="1.5" />
                                     </g>
                                 </svg>
                             </span>
@@ -160,8 +160,8 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
                                     <g id="Group_510" data-name="Group 510" transform="translate(-1557.5 -1810.5)">
-                                        <line id="Line_134" data-name="Line 134" y2="14" transform="translate(1564.5 1810.5)" fill="none" stroke="#31231e" stroke-width="1.5" />
-                                        <line id="Line_137" data-name="Line 137" y2="14" transform="translate(1571.5 1817.5) rotate(90)" fill="none" stroke="#31231e" stroke-width="1.5" />
+                                        <line id="Line_134" data-name="Line 134" y2="14" transform="translate(1564.5 1810.5)" fill="none" stroke="#31231e" strokeWidth="1.5" />
+                                        <line id="Line_137" data-name="Line 137" y2="14" transform="translate(1571.5 1817.5) rotate(90)" fill="none" stroke="#31231e" strokeWidth="1.5" />
                                     </g>
                                 </svg>
                             </span>

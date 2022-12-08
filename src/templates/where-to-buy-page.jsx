@@ -1,5 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
+import { Title } from "../components/moleculas/title-sub"
+import Map from "../components/sections/map"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -65,10 +67,11 @@ export function Head() {
     )
 }
 
-export default function WhereToBuyPage({ data, pageContext, location }) {
+export default function WhereToBuyPage({ data: { wpPage: { title } }, pageContext, location }) {
     return (
         <main>
-            <h1>Where to buy</h1>
+            <Title title={title} />
+            <Map />
         </main>
     )
 }
@@ -76,7 +79,7 @@ export default function WhereToBuyPage({ data, pageContext, location }) {
 export const query = graphql`
     query whereToBuy($id: String!) {
         wpPage(id: {eq: $id}){
-            id
+            title
         }
     }
 `

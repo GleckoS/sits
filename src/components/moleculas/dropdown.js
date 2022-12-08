@@ -8,7 +8,7 @@ export const DropDown = ({ controller, func, data, controlTitle }) => (
                 {controlTitle}
             </span>
             <svg xmlns="http://www.w3.org/2000/svg" width="17.719" height="10.043" viewBox="0 0 17.719 10.043">
-                <path id="Path_80" data-name="Path 80" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(8699.209 -10051.55) rotate(90)" fill="none" stroke="#31231e" stroke-width="2" />
+                <path id="Path_80" data-name="Path 80" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(8699.209 -10051.55) rotate(90)" fill="none" stroke="#31231e" strokeWidth="2" />
             </svg>
         </div>
         <div className="content">

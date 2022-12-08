@@ -104,7 +104,7 @@ exports.createPages = async ({
     productsArchives.forEach(({ id, slug }) => {
         createPage({
             path: '/' + slug + '/',
-            component: resolve('src/templates/products-archive.jsx'),
+            component: resolve('src/templates/all-products-page.jsx'),
             context: {
                 id,
                 slug,
@@ -378,7 +378,7 @@ exports.createPages = async ({
     }
   `);
 
-  About.forEach(({ id, slug }) => {
+    About.forEach(({ id, slug }) => {
         createPage({
             path: '/about-sits/',
             component: resolve('src/templates/about-page.jsx'),
@@ -402,7 +402,7 @@ exports.createPages = async ({
     }
   `);
 
-  Conscious.forEach(({ id, slug }) => {
+    Conscious.forEach(({ id, slug }) => {
         createPage({
             path: '/conscious/',
             component: resolve('src/templates/conscious-page.jsx'),
@@ -426,7 +426,7 @@ exports.createPages = async ({
     }
   `);
 
-  Arrivals.forEach(({ id, slug }) => {
+    Arrivals.forEach(({ id, slug }) => {
         createPage({
             path: '/new-arrivals/',
             component: resolve('src/templates/new-arrivals-page.jsx'),

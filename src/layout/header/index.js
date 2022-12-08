@@ -10,6 +10,7 @@ import { Item } from "./menu-item"
 const linksLeft = {
     en: [
         { name: 'Best Seller', url: '/best-sellers/' },
+        { name: 'New Arrivals', url: '/new-arrivals/' },
         { name: 'All products', url: '/products/' },
         { name: 'Sofas', url: '/products/sofas/' },
         { name: 'Armchairs', url: '/products/armchairs/' },
@@ -63,7 +64,9 @@ export default function Header() {
                 <MenuContent>
                     <Search />
                     {linksLeft['en'].map(el => (
-                        <Item el={el} func={(v) => { setLeftMenuOpened(v) }} />
+                        <React.Fragment key={el.name}>
+                            <Item el={el} func={(v) => { setLeftMenuOpened(v) }} />
+                        </React.Fragment>
                     ))}
                 </MenuContent>
             </LeftMenu>
@@ -95,7 +98,9 @@ export default function Header() {
                 </Flex>
                 <MenuContent className="reverse">
                     {linksRight['en'].map(el => (
-                        <Item el={el} func={(v) => { setRightMenuOpened(v) }} />
+                        <React.Fragment key={el.name}>
+                            <Item el={el} func={(v) => { setRightMenuOpened(v) }} />
+                        </React.Fragment>
                     ))}
                 </MenuContent>
             </RightMenu>
@@ -104,12 +109,16 @@ export default function Header() {
                     <Search />
                     <div className="wrap">
                         {linksLeft['en'].map(el => (
-                            <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
+                            <React.Fragment key={el.name}>
+                                <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
+                            </React.Fragment>
                         ))}
                     </div>
                     <div className="wrap">
                         {linksRight['en'].map(el => (
-                            <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
+                            <React.Fragment key={el.name}>
+                                <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
+                            </React.Fragment>
                         ))}
                     </div>
                     <div className="wrap">

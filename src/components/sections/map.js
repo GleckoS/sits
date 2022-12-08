@@ -110,19 +110,19 @@ export default function Map() {
                         <input value={filter} onChange={(e) => { changeFilter(e.currentTarget.value) }} placeholder={filterTitle['en']} />
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
+                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
                                     <circle cx="8" cy="8" r="8" stroke="none" />
                                     <circle cx="8" cy="8" r="7" fill="none" />
                                 </g>
-                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
+                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
                             </g>
                         </svg>
                     </InputWrapper>
                     <MapItems>
                         <ItemsContent>
-                            {filtredRetailers?.map(el => {
+                            {filtredRetailers?.map((el, index) => {
                                 return (
-                                    <Item>
+                                    <Item key={index}>
                                         <p className="">{el['Shop name']}</p>
                                         <p className="l">{el.Address}</p>
                                         <p className="l">{el.City}, {el.Country}</p>
@@ -141,8 +141,9 @@ export default function Map() {
                         />
                         {/* <FullscreenControl position='topright'/> */}
                         <MarkerClusterGroup showCoverageOnHover={false}>
-                            {filtredRetailers?.map(el => (
+                            {filtredRetailers?.map((el, index) => (
                                 <Marker
+                                    key={index}
                                     icon={iconPerson}
                                     position={[el.Latitude, el.Longitude]}>
                                     <Popup>

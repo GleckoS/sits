@@ -5,12 +5,19 @@ import { Card } from "../moleculas/search-product-card"
 
 const loadMore = 'LOAD MORE'
 
-export const FavouriteProductBlock = ({ count, setCount, prefiltredArr, searchValue, title }) => {
+export const FavouriteProductBlock = ({ count, setCount, prefiltredArr, filter, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
-        return arr
-    }, [prefiltredArr, searchValue, setCount])
+
+        if (filter) {
+            arr = arr.filter(el => filter.includes(el.products.collection.title))
+            setCount(arr.length)
+            return arr
+        }
+
+        return []
+    }, [prefiltredArr, filter, setCount])
 
     const [showCount, setShowCount] = useState(() => {
         if (typeof window !== 'undefined') {

@@ -19,32 +19,6 @@ const sortBy = {
     ]
 }
 
-const allTypes = {
-    en: [
-        {
-            name: 'All Types', val: 'All'
-        },
-        {
-            name: 'Armchairs', val: 'Armchairs'
-        },
-        {
-            name: 'Coffee tables', val: 'Coffee tables'
-        },
-        {
-            name: 'Dining chairs', val: 'Dining chairs'
-        },
-        {
-            name: 'Footstools', val: 'Footstools'
-        },
-        {
-            name: 'Outdoor furnitures', val: 'Outdoor furnitures'
-        },
-        {
-            name: 'Sofas', val: 'Sofas'
-        },
-    ]
-}
-
 const sofasTypes = {
     en: [
         {
@@ -68,7 +42,7 @@ const sofasTypes = {
 const upholsterysArr = {
     en: [
         {
-            name: 'All Upholsterys', val: 'All'
+            name: 'All upholsteries', val: 'All'
         },
         {
             name: 'Fabric', val: 'Fabric'
@@ -106,15 +80,15 @@ const sortByTitle = {
 }
 
 const typeTitle = {
-    en: 'Type'
+    en: 'Type of sofa'
 }
 
 const upholsterysTitle = {
-    en: 'Upholsterys'
+    en: 'Type of upholstery'
 }
 
 const coversTitle = {
-    en: 'Cover Types'
+    en: 'Type of cover'
 }
 
 const reset = {
@@ -195,7 +169,24 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.products.collection.upholsterys?.nodes?.forEach(inEl => {
-                    if (inEl.name.includes(upholsterys)) {
+                    debugger
+                    if (cover === 'Removable') {
+
+                        if (upholsterys === 'Leather' && inEl.name === 'Leather') {
+                            isAccessed = true
+                        } else if (upholsterys === 'Fabric' && inEl.name.includes(upholsterys)) {
+                            isAccessed = true
+                        }
+
+                    } else if (cover === 'Fixed') {
+
+                        if (upholsterys === 'Leather' && inEl.name === 'Leather only in fixed cover') {
+                            isAccessed = true
+                        } else if (upholsterys === 'Fabric' && inEl.name.includes(upholsterys)) {
+                            isAccessed = true
+                        }
+
+                    } else if (inEl.name.includes(upholsterys)) {
                         isAccessed = true
                     }
                 })
@@ -205,13 +196,15 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
 
         return arr
     }, [defaultPosts, sort, type, cover, upholsterys])
+
+    debugger
+
     return (
         <Wrapper>
             <FilterComponent
                 filterTitle={filterTitle['en']}
                 sortByTitle={sortByTitle['en']}
                 sortBy={sortBy['en']}
-                allTypes={allTypes['en']}
                 name={name}
                 typeTitle={typeTitle['en']}
                 sofasTypes={sofasTypes['en']}

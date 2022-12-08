@@ -9,7 +9,6 @@ export const FilterComponent = ({
     filterTitle,
     sortByTitle,
     sortBy,
-    allTypes,
     name,
     typeTitle,
     sofasTypes,
@@ -67,19 +66,12 @@ export const FilterComponent = ({
                     </div>
                 </FilterBlock>
             )}
-
-            {!name && (
+            {name !== "Coffee tables" && (
                 <FilterBlock>
-                    <span>{typeTitle}</span>
+                    <span>{upholsterysTitle}</span>
                     <div className="flex">
-                        <button onClick={() => { setType('All') }} className={'All' === type ? 'active' : ''}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
-                            </svg>
-                            All Types
-                        </button>
-                        {allTypes.map(el => (
-                            <button onClick={() => { setType(el.name) }} className={el.name === type ? 'active' : ''}>
+                        {upholsterysArr.map(el => (
+                            <button onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
                                     <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
                                 </svg>
@@ -89,32 +81,21 @@ export const FilterComponent = ({
                     </div>
                 </FilterBlock>
             )}
-            <FilterBlock>
-                <span>{upholsterysTitle}</span>
-                <div className="flex">
-                    {upholsterysArr.map(el => (
-                        <button onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
-                            </svg>
-                            {el.name}
-                        </button>
-                    ))}
-                </div>
-            </FilterBlock>
-            <FilterBlock>
-                <span>{coversTitle}</span>
-                <div className="flex">
-                    {covesArr.map(el => (
-                        <button onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
-                            </svg>
-                            {el.name}
-                        </button>
-                    ))}
-                </div>
-            </FilterBlock>
+            {name !== "Coffee tables" && (
+                <FilterBlock>
+                    <span>{coversTitle}</span>
+                    <div className="flex">
+                        {covesArr.map(el => (
+                            <button onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
+                                </svg>
+                                {el.name}
+                            </button>
+                        ))}
+                    </div>
+                </FilterBlock>
+            )}
             <Flex className="center">
                 <button className="underlined" onClick={() => { clearAll(); setSort('Popular') }}>
                     {reset}
@@ -129,9 +110,8 @@ export const FilterComponent = ({
                 <div className="left">
                     <DropDown controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
                     {name === 'Sofas' && <DropDown controller={type} func={setType} data={sofasTypes} controlTitle={typeTitle} />}
-                    {!name && <DropDown controller={type} func={setType} data={allTypes} controlTitle={typeTitle} />}
-                    <DropDown controller={upholsterys} func={setUpholsterys} data={upholsterysArr} controlTitle={upholsterysTitle} />
-                    <DropDown controller={cover} func={setCover} data={covesArr} controlTitle={coversTitle} />
+                    {name !== "Coffee tables" && <DropDown controller={upholsterys} func={setUpholsterys} data={upholsterysArr} controlTitle={upholsterysTitle} />}
+                    {name !== "Coffee tables" && <DropDown controller={cover} func={setCover} data={covesArr} controlTitle={coversTitle} />}
                 </div>
                 <div className="left-alt">
                     <button onClick={() => { setMobileFilterOpened(true) }}>

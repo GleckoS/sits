@@ -12,7 +12,7 @@ export default function About({ color, data: { sectionTitle, text, linkUnderText
                 <div className="content">
                     <h2 className="title">{sectionTitle}</h2>
                     {text && <p className="text">{text}</p>}
-                    <Link className="link" to={linkUnderText.url} target={linkUnderText.target ? linkUnderText.target : null}>{linkUnderText.title}</Link>
+                    {linkUnderText?.url && <Link className="link" to={linkUnderText.url} target={linkUnderText.target ? linkUnderText.target : null}>{linkUnderText.title}</Link>}
                 </div>
             </Container>
         </Wrapper>
@@ -21,7 +21,7 @@ export default function About({ color, data: { sectionTitle, text, linkUnderText
 
 const Wrapper = styled.section`
 
-    margin-top: clamp(60px, ${100 / 1194 * 100}vw, 100px);
+    margin: clamp(60px, ${100 / 1194 * 100}vw, 100px) 0;
     display: grid;
     grid-template-columns: 126fr 47fr;
     gap: clamp(40px, ${40 / 1194 * 100}vw,90px);

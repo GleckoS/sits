@@ -1,5 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
+import CataloguesGrid from "../components/sections/catalogues-grid"
+import Map from "../components/sections/map"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -60,23 +62,42 @@ import React from "react"
 // }
 
 export function Head() {
-    return (
-        <meta name="robots" content="noindex" />
-    )
+  return (
+    <meta name="robots" content="noindex" />
+  )
 }
 
 export default function CataloguesPage({ data, pageContext, location }) {
-    return (
-        <main>
-            <h1>Catalogues</h1>
-        </main>
-    )
+  return (
+    <main>
+      <CataloguesGrid data={data.wpPage} />
+      <Map />
+    </main>
+  )
 }
 
 export const query = graphql`
     query catalogues($id: String!) {
         wpPage(id: {eq: $id}){
-            id
+          title
+            catalogues {
+              catalogues {
+                catalogueTitle
+                catalogueFile {
+                  localFile {
+                    publicURL
+                  }
+                }
+                cataloguePreviewImage {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
         }
     }
 `
