@@ -50,7 +50,7 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
                 materials: getCookie('materials'),
                 colors: getCookie('colors')
             })
-        }, 50)
+        }, 100)
 
         return () => {
             listenCookieChange(null, null, true)

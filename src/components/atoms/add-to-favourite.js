@@ -6,6 +6,9 @@ import { getCookie, setCookie } from "../../helpers/coockie-manager"
 export default function AddToFauvorite({ rerender, type, title }) {
 
     const [isActive, setIsActive] = useState(() => {
+        if (typeof window === 'undefined') {
+            return false
+        }
         let cookie = getCookie(type)
         if (!cookie) {
             setCookie(type, '')
@@ -28,6 +31,9 @@ export default function AddToFauvorite({ rerender, type, title }) {
 
     useEffect(() => {
         setIsActive(() => {
+            if (typeof window === 'undefined') {
+                return false
+            }
             let cookie = getCookie(type)
             if (!cookie) {
                 setCookie(type, '')

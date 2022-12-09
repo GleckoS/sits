@@ -4,7 +4,7 @@ import { Card } from "../moleculas/search-material-card"
 
 const loadMore = 'LOAD MORE'
 
-export const ResultMaterialBlock = ({ count, setCount, prefiltredArr, searchValue, title }) => {
+export const ResultMaterialBlock = ({ rerender, count, setCount, prefiltredArr, searchValue, title }) => {
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
         let colors = []
@@ -72,7 +72,7 @@ export const ResultMaterialBlock = ({ count, setCount, prefiltredArr, searchValu
                         return el.arr.map(inEl => {
                             if (renderCount.current < showCount) {
                                 renderCount.current += 1
-                                return <Card colorId={inEl.colorId} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
+                                return <Card rerender={rerender} colorId={inEl.colorId} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
                             }
                             return null
                         })

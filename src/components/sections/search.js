@@ -1,6 +1,7 @@
 import { Link } from 'gatsby'
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
+import { listenCookieChange } from '../../helpers/coockie-manager'
 import { Container } from '../atoms/container'
 import { ResultMaterialBlock } from '../organism/result-material-block'
 import { ResultProductBlock } from '../organism/results-product-block'
@@ -44,6 +45,17 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
     const [outdoorFurnituresItemCount, setOutdoorFurnituresItemCount] = useState(0)
     const [coversItemCount, coversFurnituresItemCount] = useState(0)
 
+    const [rerender, setRerender] = useState(false)
+    useEffect(() => {
+        listenCookieChange(() => {
+            setRerender(Math.random())
+        }, 100)
+
+        return (() => {
+            listenCookieChange(null, null, true)
+        })
+    }, [])
+
     return (
         <Wrapper>
             <Container>
@@ -72,13 +84,13 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                             <p>{noResultMessage}</p>
                         </NoResults>
                     )}
-                    <ResultProductBlock count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} searchValue={searchValue} />
-                    <ResultProductBlock count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} searchValue={searchValue} />
-                    <ResultProductBlock count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} searchValue={searchValue} />
-                    <ResultProductBlock count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} searchValue={searchValue} />
-                    <ResultProductBlock count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} searchValue={searchValue} />
-                    <ResultProductBlock count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} searchValue={searchValue} />
-                    <ResultMaterialBlock count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue}/>
+                    <ResultProductBlock rerender={rerender} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} searchValue={searchValue} />
+                    <ResultProductBlock rerender={rerender} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} searchValue={searchValue} />
+                    <ResultProductBlock rerender={rerender} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} searchValue={searchValue} />
+                    <ResultProductBlock rerender={rerender} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} searchValue={searchValue} />
+                    <ResultProductBlock rerender={rerender} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} searchValue={searchValue} />
+                    <ResultProductBlock rerender={rerender} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} searchValue={searchValue} />
+                    <ResultMaterialBlock rerender={rerender} count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue}/>
                 </Container>
             </Results>
         </Wrapper>

@@ -205,7 +205,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
     useEffect(() => {
         listenCookieChange(() => {
             setRerender(Math.random())
-        }, 50)
+        }, 100)
 
         return (() => {
             listenCookieChange(null, null, true)
