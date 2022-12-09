@@ -4,10 +4,14 @@ import { Global } from "../styles/global-style"
 import Footer from "./footer"
 import Header from "./header"
 
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+
 export default function Layout({ children }) {
 
     return (
         <Wrapper>
+            <ToastContainer />
             <Global />
             <Header />
             {children}

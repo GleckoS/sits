@@ -6,7 +6,7 @@ import { Container } from "../../components/atoms/container"
 const left = [
     { name: 'ABOUT', url: '/about/' },
     { name: 'CONSCIOUS', url: '/conscious/' },
-    { name: 'LEGAL', url: '/legal//where-to-buy/' }
+    { name: 'LEGAL', url: '/legal/' }
 ]
 
 const right = [

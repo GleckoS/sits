@@ -201,7 +201,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
 
     // cookie refresh for all products
 
-    const [rerender, setRerender] = useState(false)
+    const [rerender, setRerender] = useState(false) // REMOVE
     useEffect(() => {
         listenCookieChange(() => {
             setRerender(Math.random())

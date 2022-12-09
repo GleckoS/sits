@@ -39,6 +39,7 @@ export default function Video({ data: { video, previewImage } }) {
 const Wrapper = styled.section`
     padding-top: 60px;
     position: relative;
+    cursor: pointer;
 
     @media (max-width: 480px) {
         .container{

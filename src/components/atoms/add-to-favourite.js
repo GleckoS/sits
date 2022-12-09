@@ -2,6 +2,15 @@ import React, { useEffect } from "react"
 import { useState } from "react"
 import styled from "styled-components"
 import { getCookie, setCookie } from "../../helpers/coockie-manager"
+import { toast } from 'react-toastify'
+
+const removeMessage = {
+    en: ' removed from fauvorite list'
+}
+
+const addMessage = {
+    en: ' added to fauvorite list'
+}
 
 export default function AddToFauvorite({ rerender, type, title }) {
 
@@ -23,9 +32,11 @@ export default function AddToFauvorite({ rerender, type, title }) {
             cookie = cookie.replace(title + '|', '')
             setCookie(type, cookie)
             setIsActive(false)
+            toast(title + removeMessage['en'])
         } else {
             setCookie(type, cookie + title + '|')
             setIsActive(true)
+            toast(title + addMessage['en'])
         }
     }
 

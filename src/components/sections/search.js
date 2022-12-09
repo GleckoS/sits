@@ -45,7 +45,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
     const [outdoorFurnituresItemCount, setOutdoorFurnituresItemCount] = useState(0)
     const [coversItemCount, coversFurnituresItemCount] = useState(0)
 
-    const [rerender, setRerender] = useState(false)
+    const [rerender, setRerender] = useState(false) // REMOVE
     useEffect(() => {
         listenCookieChange(() => {
             setRerender(Math.random())

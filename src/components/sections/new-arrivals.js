@@ -16,7 +16,7 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                             return inEl.productsImages?.map(imageEl => {
                                 if (imageEl.isMainImage && !isOnePostRendered) {
                                     isOnePostRendered = true
-                                    return <ProductCard types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
+                                    return <ProductCard model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
                                 }
                                 return null
                             })

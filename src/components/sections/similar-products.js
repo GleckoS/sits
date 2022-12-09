@@ -20,7 +20,7 @@ export default function SimilarProducts({ data }) {
                             return inEl.productsImages?.map(imageEl => {
                                 if (imageEl.isMainImage && !isOnePostRendered) {
                                     isOnePostRendered = true
-                                    return <Item><ProductCard types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} /></Item>
+                                    return <Item><ProductCard model={inEl.popupNames.model} types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} /></Item>
                                 }
                                 return null
                             })
