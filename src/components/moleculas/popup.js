@@ -2,14 +2,14 @@ import React from "react"
 import styled from "styled-components"
 
 
-export const Popup = ({ children, title, setPopUpOpened, isPopUpOpened }) => (
+export const Popup = ({ id, children, title, setPopUpOpened, isPopUpOpened }) => (
     <Wrapper className={isPopUpOpened ? 'active' : ''}>
         <Box>
             <Control>
                 <span className="archive-title">{title}</span>
                 <button onClick={() => { setPopUpOpened(false) }} className="close" aria-label='close pop-up'></button>
             </Control>
-            <Content>
+            <Content id={id}>
                 {children}
             </Content>
         </Box>
@@ -25,7 +25,7 @@ const Wrapper = styled.div`
     bottom: 0;
     z-index: 1000;
     background-color: var(--gray);
-    transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1);
     opacity: 0;
     pointer-events: none;
 

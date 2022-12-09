@@ -330,6 +330,7 @@ export const query = graphql`
                 collectionQuickDescription
                 collectionGallery {
                   altText
+                  title
                   localFile {
                     childImageSharp {
                       gatsbyImageData
@@ -343,6 +344,7 @@ export const query = graphql`
                 }
                 collectionPagePreviewImage {
                   altText
+                  title
                   localFile {
                     childImageSharp {
                       gatsbyImageData
@@ -431,8 +433,7 @@ export const query = graphql`
                     isMainImage
                     featuredProductImage {
                       altText
-                      width
-                      height
+                      title
                       localFile {
                         childImageSharp {
                           gatsbyImageData

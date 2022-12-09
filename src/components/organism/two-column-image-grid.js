@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
 import { ImageGridItem } from "../moleculas/image-grid-item"
 import { Popup } from "../moleculas/popup"
@@ -107,32 +107,58 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
     //     return [...firstColumn, ...secondColumn]
     // })
 
+    const [popUpImages, setPopImages] = useState(() => {
+        let images = []
+
+        if (collectionPagePreviewImage) {
+            images.push({ image: collectionPagePreviewImage, popupNames: popupNames })
+        }
+
+        products.forEach(el => {
+            el.products.productGallery.forEach(el => {
+                el.productsImages.forEach(inInEl => {
+                    images.push({ image: inInEl.featuredProductImage, popupNames: el.popupNames })
+                })
+            })
+        })
+
+        return images
+    })
+
+    useEffect(() => {
+        if (isPopUpOpened) {
+            let arr = []
+            popUpImages.forEach(el => {
+                if (el.image.title === isPopUpOpened) {
+                    arr.unshift(el)
+                    return
+                }
+                arr.push(el)
+            })
+            document.getElementById('popup').scrollTo(0, 0);
+            setPopImages(arr)
+        }
+    }, [isPopUpOpened])
+
     return (
         <>
-            <Popup title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
+            <Popup id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
                 <PopupGrid>
-                    {collectionPagePreviewImage
-                        ? <ImageGridItem image={collectionPagePreviewImage} popupNames={popupNames} />
-                        : null}
-                    {products.map(el => {
-                        return el.products.productGallery.map(el => {
-                            return el.productsImages.map(inEl => (
-                                <ImageGridItem image={inEl.featuredProductImage} popupNames={el.popupNames} />
-                            ))
-                        })
-                    })}
+                    {popUpImages?.map(el => (
+                        <ImageGridItem image={el.image} popupNames={el.popupNames} />
+                    ))}
                 </PopupGrid>
             </Popup>
             <Wrapper>
                 {collectionPagePreviewImage
-                    ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                    ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(collectionPagePreviewImage.title) }}>
                         <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
                         <span> In this image <b>+</b> </span>
                     </button>
                     : null}
                 <ImagesGrid>
                     {gallery?.map(el => (
-                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
                             <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                             <span> In this image <b>+</b> </span>
                         </button>
@@ -142,7 +168,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
             <SliderWrapper>
                 <Slider {...settings}>
                     {collectionPagePreviewImage
-                        ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                        ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(collectionPagePreviewImage.title) }}>
                             <GatsbyImage className="image" image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
@@ -155,7 +181,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                         </button>
                         : null}
                     {gallery?.map(el => (
-                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(true) }}>
+                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
                             <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                             <span>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
