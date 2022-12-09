@@ -1,20 +1,27 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import styled from "styled-components"
+import { getCookie } from "../../helpers/coockie-manager"
 import { ResultsGrid } from "../atoms/result-grid"
-import { Card } from "../moleculas/search-product-card"
+import { Card } from "../moleculas/search-material-card"
 
 const loadMore = 'LOAD MORE'
 
-export const FavouriteCollectionBlock = ({ count, setCount, prefiltredArr, filter, title }) => {
+export const FavouriteColorBlock = ({ count, setCount, prefiltredArr, filter, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
-
+        let filtred = []
         if (filter) {
-            arr = arr.filter(el => filter.includes(el.title))
-            return arr
+            let cookie = getCookie('colors')
+            arr = arr.forEach(el => {
+                el.materials.materialColorVariants.forEach((inEl, index) => {
+                    if (cookie.includes(inEl.variantName)) {
+                        filtred.push({ ...inEl, slug: el.slug, colorId: index })
+                    }
+                })
+            })
+            return filtred
         }
-
         return []
     }, [prefiltredArr, filter])
 
@@ -47,10 +54,7 @@ export const FavouriteCollectionBlock = ({ count, setCount, prefiltredArr, filte
                 <ResultsGrid>
                     {filtredArr.map(el => {
                         renderCount.current += 1
-                        let image = el.collections.generalCollectionInformation?.collectionPagePreviewImage?.localFile
-                            ? el.collections.generalCollectionInformation?.collectionPagePreviewImage
-                            : el.collections.generalCollectionInformation?.collectionGallery[0]
-                        return <Card type={'collections'} image={image} data={el} model={el.title} />
+                        return <Card colorId={el.colorId} type={'colors'} image={el.squarePreviewImage} title={el.variantName} slug={el.slug} model={el.variantName} />
                     })}
                 </ResultsGrid>
                 {count > showCount && (

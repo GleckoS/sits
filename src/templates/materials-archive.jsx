@@ -1,5 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
+import Map from "../components/sections/map"
 import MaterialsArchive from "../components/sections/materials-archive"
 
 // export function Head({ data: { wpPage: { seo } } }) {
@@ -70,6 +71,7 @@ export default function Material({ data: { wpPage, allWpMaterials }, pageContext
     return (
         <main>
             <MaterialsArchive data={wpPage.materials} materials={allWpMaterials.nodes} />
+            <Map/>
         </main>
     )
 }

@@ -23,13 +23,13 @@ export const ResultMaterialBlock = ({ count, setCount, prefiltredArr, searchValu
                     itemsCount += el.materials.materialColorVariants.length
 
                 } else {
-                    el.materials.materialColorVariants.forEach(el => {
+                    el.materials.materialColorVariants.forEach((el, index) => {
                         let filtredByGroup = el.colorGroup.toLowerCase().includes(searchValue.toLowerCase())
                         let filtredByName = el.variantName.toLowerCase().includes(searchValue.toLowerCase())
 
                         if (filtredByName || filtredByGroup) {
                             itemsCount += 1
-                            material.arr.push(el)
+                            material.arr.push({ ...el, colorId: index })
                         }
                     })
                 }
@@ -72,7 +72,7 @@ export const ResultMaterialBlock = ({ count, setCount, prefiltredArr, searchValu
                         return el.arr.map(inEl => {
                             if (renderCount.current < showCount) {
                                 renderCount.current += 1
-                                return <Card title={el.title} slug={el.slug} data={inEl} />
+                                return <Card colorId={inEl.colorId} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
                             }
                             return null
                         })

@@ -32,7 +32,7 @@ export default function Hero({
                     <div>
                         <Flex>
                             <h1 className="archive-title">{title}</h1>
-                            <AddToFauvorite />
+                            <AddToFauvorite type='materials' title={title}/>
                         </Flex>
                         <Description className="p" dangerouslySetInnerHTML={{ __html: materialQuickDescription }} />
                         {materialProductSheet

@@ -263,6 +263,7 @@ const Wrapper = styled.div`
     background-color: var(--light-background);
     padding:  0 15px 86px 15px;
     position: relative;
+    margin-bottom: calc(-1 * clamp(45px, ${120 / 1194 * 100}vw, 160px));
 
     @media (max-width: 1800px) {
         padding:  0 0 86px 0;

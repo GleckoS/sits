@@ -114,6 +114,7 @@ export const query = graphql`
                 materialColorVariants {
                   colorGroup
                   variantName
+                  isMainColor
                   squarePreviewImage {
                     altText
                     localFile {

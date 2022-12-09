@@ -1,20 +1,18 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import styled from "styled-components"
 import { ResultsGrid } from "../atoms/result-grid"
-import { Card } from "../moleculas/search-product-card"
+import { Card } from "../moleculas/search-material-card"
 
 const loadMore = 'LOAD MORE'
 
-export const FavouriteCollectionBlock = ({ count, setCount, prefiltredArr, filter, title }) => {
+export const FavouriteMaterialBlock = ({ count, setCount, prefiltredArr, filter, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
-
         if (filter) {
             arr = arr.filter(el => filter.includes(el.title))
             return arr
         }
-
         return []
     }, [prefiltredArr, filter])
 
@@ -47,10 +45,17 @@ export const FavouriteCollectionBlock = ({ count, setCount, prefiltredArr, filte
                 <ResultsGrid>
                     {filtredArr.map(el => {
                         renderCount.current += 1
-                        let image = el.collections.generalCollectionInformation?.collectionPagePreviewImage?.localFile
-                            ? el.collections.generalCollectionInformation?.collectionPagePreviewImage
-                            : el.collections.generalCollectionInformation?.collectionGallery[0]
-                        return <Card type={'collections'} image={image} data={el} model={el.title} />
+                        let image = el.materials.materialColorVariants[0].squarePreviewImage
+
+                        el.materials.materialColorVariants.every(el => {
+                            if (el.isMainColor) {
+                                image = el.squarePreviewImage
+                                return false
+                            }
+                            return true
+                        })
+
+                        return <Card type={'materials'} image={image} title={el.title} slug={el.slug} model={el.title} />
                     })}
                 </ResultsGrid>
                 {count > showCount && (

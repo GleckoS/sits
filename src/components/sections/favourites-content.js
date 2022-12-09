@@ -5,6 +5,8 @@ import styled from "styled-components"
 import { getCookie, listenCookieChange, setCookie } from "../../helpers/coockie-manager"
 import { Container } from "../atoms/container"
 import { FavouriteCollectionBlock } from "../organism/favourite-collection-block"
+import { FavouriteColorBlock } from "../organism/favourite-color-block"
+import { FavouriteMaterialBlock } from "../organism/favourite-material-block"
 import { FavouriteProductBlock } from "../organism/favourite-product-block"
 
 const noResultTitle = 'You have No Favorites yet'
@@ -19,6 +21,7 @@ const diningChairsTitle = 'Dining Chairs'
 const footstoolsTitle = 'Footstools'
 const outdoorFurnituresTitle = 'Outdoor Furnitures'
 const materialsTitle = 'Covers'
+const colorsTitle = 'Colors of covers'
 
 export default function Content({ data: { Collections, Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures } }) {
 
@@ -26,6 +29,7 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
         collections: getCookie('collections'),
         products: getCookie('products'),
         materials: getCookie('materials'),
+        colors: getCookie('colors')
     })
 
     const [collectionsCount, setCollectionsCount] = useState(0)
@@ -35,7 +39,8 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
     const [diningChairsItemCount, setDiningChairsItemCount] = useState(0)
     const [footstoolsItemCount, setFootstoolsItemCount] = useState(0)
     const [outdoorFurnituresItemCount, setOutdoorFurnituresItemCount] = useState(0)
-    const [coversItemCount, coversFurnituresItemCount] = useState(0)
+    const [coversItemCount, setCoversItemCount] = useState(0)
+    const [colorsItemCount, setColorsItemCount] = useState(0)
 
     useEffect(() => {
         listenCookieChange(() => {
@@ -43,6 +48,7 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
                 collections: getCookie('collections'),
                 products: getCookie('products'),
                 materials: getCookie('materials'),
+                colors: getCookie('colors')
             })
         }, 50)
 
@@ -58,7 +64,7 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
             </Container>
             <Results>
                 <Container>
-                    {(!favourites.products && !favourites.materials) && (
+                    {(collectionsCount + sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount + colorsItemCount === 0) && (
                         <NoResults>
                             <svg xmlns="http://www.w3.org/2000/svg" width="101.944" height="94.563" viewBox="0 0 101.944 94.563">
                                 <path id="Path_676" data-name="Path 676" d="M48.722,89.283l-4.994-4.507A432.65,432.65,0,0,1,11.937,53.107Q0,39.586,0,25.7A24.883,24.883,0,0,1,7.369,7.369,24.734,24.734,0,0,1,25.579,0a27.7,27.7,0,0,1,12.3,2.984,28.913,28.913,0,0,1,10.841,9.805A35.33,35.33,0,0,1,59.806,2.984,25.73,25.73,0,0,1,71.865,0a24.734,24.734,0,0,1,18.21,7.369A24.883,24.883,0,0,1,97.444,25.7q0,13.886-11.937,27.406A432.648,432.648,0,0,1,53.716,84.776Zm0-9.623" transform="translate(2.25 2.25)" fill="none" stroke="#bababa" strokeWidth="4.5" strokeDasharray="14 4" opacity="0.38" />
@@ -74,6 +80,8 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
                     <FavouriteProductBlock count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} filter={favourites.products} />
                     <FavouriteProductBlock count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} filter={favourites.products} />
                     <FavouriteProductBlock count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} filter={favourites.products} />
+                    <FavouriteMaterialBlock count={coversItemCount} setCount={setCoversItemCount} title={materialsTitle} prefiltredArr={Materials} filter={favourites.materials} />
+                    <FavouriteColorBlock count={colorsItemCount} setCount={setColorsItemCount} title={colorsTitle} prefiltredArr={Materials} filter={favourites.colors} />
                 </Container>
             </Results>
         </Wrapper>

@@ -2,6 +2,7 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
+import AddToFauvorite from "../atoms/add-to-favourite"
 
 export const MaterialCard = ({ color, data: { materials: { materialColorVariants }, title, slug } }) => {
     const variants = useMemo(() => {
@@ -36,22 +37,24 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
         document.getElementById('background').style.backgroundColor = variants[choosenVariant].squarePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
         setChoosenVariant(index)
     }
-
     return (
         <Wrapper>
-            <Link to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
-                <SliderWrapper id='background'>
-                    {variants.map((el, index) => (
-                        <SliderContent className={index === choosenVariant ? 'active' : ''}>
-                            <GatsbyImage className="image" image={el.squarePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.squarePreviewImage.altText} />
-                        </SliderContent>
-                    ))}
-                </SliderWrapper>
-            </Link>
+            <div className="wrap">
+                <AddToFauvorite type={'colors'} title={variants[choosenVariant].variantName} />
+                <Link to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
+                    <SliderWrapper id='background'>
+                        {variants.map((el, index) => (
+                            <SliderContent key={el.variantName} className={index === choosenVariant ? 'active' : ''}>
+                                <GatsbyImage className="image" image={el.squarePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.squarePreviewImage.altText} />
+                            </SliderContent>
+                        ))}
+                    </SliderWrapper>
+                </Link>
+            </div>
             <span className="title">{title}</span>
             <VariantsPicker>
                 {variants.map((el, index) => (
-                    <VariantCircle onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
+                    <VariantCircle key={el.variantColor} onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
                     </VariantCircle>
                 ))}
             </VariantsPicker>
@@ -68,6 +71,17 @@ const Wrapper = styled.div`
         display: block;
         font-size: clamp(16px, ${26 / 1194 * 100}vw, 32px);
         font-weight: 300;
+    }
+    
+    .hearth {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        z-index: 2;
+    }
+
+    .wrap{
+        position: relative;
     }
 `
 
