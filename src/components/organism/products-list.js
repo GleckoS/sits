@@ -2,13 +2,13 @@ import React from "react"
 import styled from "styled-components"
 import { ProductCard } from "../moleculas/product-card"
 
-export const ProductList = ({ products }) => (
+export const ProductList = ({ rerender, products }) => (
     <Wrapper>
         {products?.map(el => {
             return el.products.productGallery?.map(inEl => {
                 return inEl.productsImages?.map(imageEl => {
                     if (imageEl.isMainImage && el.products.collection?.slug) {
-                        return <ProductCard types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
+                        return <ProductCard rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
                     }
                     return null
                 })

@@ -2,15 +2,14 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
-import { getCookie } from "../../helpers/coockie-manager"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const Card = ({ image, data: { title, slug } }) => {
+export const Card = ({ type='products', model, image, data: { title, slug } }) => {
 
     return (
         <Wrapper>
             <Link to={'/collection/' + slug + '/'}>
-                <AddToFauvorite title={title}/>
+                <AddToFauvorite type={type} title={model} />
                 <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                 <span>{title}</span>
             </Link>
@@ -27,6 +26,7 @@ const Wrapper = styled.div`
         top: 15px;
         z-index: 2;
     }
+    
     span{
         font-size: clamp(18px, ${28 / 1194 * 100}vw, 28px);
         font-weight: 300;

@@ -2,10 +2,12 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from './../atoms/category'
 
-export const ProductCard = ({ data, types, image }) => (
+export const ProductCard = ({ rerender = false, model, data, types, image }) => (
     <Wrapper>
+        <AddToFauvorite rerender={rerender} type={'products'} title={model} />
         <Link to={'/collection/' + data.slug + '/'}>
             <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <Flex>
@@ -23,6 +25,15 @@ export const ProductCard = ({ data, types, image }) => (
 )
 
 const Wrapper = styled.div`
+    position: relative;
+
+    button{
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        z-index: 2;
+    }
+
     .archive-title{
         margin-top: 10px;
         font-size: clamp(23px, ${40 / 1194 * 100}vw, 40px);

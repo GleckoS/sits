@@ -75,7 +75,7 @@ export const ResultProductBlock = ({ count, setCount, prefiltredArr, searchValue
                             return inEl.productsImages?.map(imageEl => {
                                 if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
                                     renderCount.current += 1
-                                    return <Card image={imageEl.featuredProductImage} data={el.products.collection} />
+                                    return <Card image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
                                 }
                                 return null
                             })

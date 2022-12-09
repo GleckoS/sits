@@ -23,7 +23,7 @@ const Wrapper = styled.div`
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: 100;
+    z-index: 1000;
     background-color: var(--gray);
     transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
     opacity: 0;

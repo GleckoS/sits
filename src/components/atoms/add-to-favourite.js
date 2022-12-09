@@ -1,28 +1,40 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { useState } from "react"
 import styled from "styled-components"
 import { getCookie, setCookie } from "../../helpers/coockie-manager"
 
-export default function AddToFauvorite({ title }) {
+export default function AddToFauvorite({ rerender, type, title }) {
 
     const [isActive, setIsActive] = useState(() => {
-        let cookie = getCookie('products')
+        let cookie = getCookie(type)
+        if (!cookie) {
+            setCookie(type, '')
+        }
         return cookie.includes(title)
     })
 
     const clickHandler = (e) => {
         e.preventDefault()
-        let cookie = getCookie('products')
-
-        if (isActive) {
+        let cookie = getCookie(type)
+        if (cookie.includes(title)) {
             cookie = cookie.replace(title + '|', '')
-            setCookie('products', cookie)
+            setCookie(type, cookie)
             setIsActive(false)
         } else {
-            setCookie('products', cookie + title + '|')
+            setCookie(type, cookie + title + '|')
             setIsActive(true)
         }
     }
+
+    useEffect(() => {
+        setIsActive(() => {
+            let cookie = getCookie(type)
+            if (!cookie) {
+                setCookie(type, '')
+            }
+            return cookie.includes(title)
+        })
+    }, [rerender, type, title])
 
     return (
         <Button onClick={(e) => { clickHandler(e) }} className={isActive ? 'active hearth' : 'hearth'}>

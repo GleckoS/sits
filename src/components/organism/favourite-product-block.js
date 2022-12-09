@@ -1,5 +1,6 @@
-import React, { useMemo, useRef, useState } from "react"
+import React, { useEffect, useMemo, useRef, useState } from "react"
 import styled from "styled-components"
+import { getCookie } from "../../helpers/coockie-manager"
 import { ResultsGrid } from "../atoms/result-grid"
 import { Card } from "../moleculas/search-product-card"
 
@@ -11,13 +12,27 @@ export const FavouriteProductBlock = ({ count, setCount, prefiltredArr, filter, 
         let arr = prefiltredArr.nodes
 
         if (filter) {
-            arr = arr.filter(el => filter.includes(el.products.collection.title))
-            setCount(arr.length)
+            arr = arr.filter(el => {
+                let isAccessed = false
+
+                el.products.productGallery.every(inEl => {
+                    if (filter.includes(inEl.popupNames.model)) {
+                        isAccessed = true
+                    }
+                    return !isAccessed
+                })
+
+                return isAccessed
+            })
             return arr
         }
 
         return []
-    }, [prefiltredArr, filter, setCount])
+    }, [prefiltredArr, filter])
+
+    useEffect(() => {
+        setCount(filtredArr.length)
+    }, [filtredArr])
 
     const [showCount, setShowCount] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -43,11 +58,14 @@ export const FavouriteProductBlock = ({ count, setCount, prefiltredArr, filter, 
                 <h2>{title}</h2>
                 <ResultsGrid>
                     {filtredArr?.map(el => {
-                        return el.products.productGallery?.map(inEl => {
+                        return el.products.productGallery?.map((inEl, index) => {
                             return inEl.productsImages?.map(imageEl => {
                                 if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
-                                    renderCount.current += 1
-                                    return <Card image={imageEl.featuredProductImage} data={el.products.collection} />
+                                    let cookie = getCookie('products')
+                                    if (cookie.includes(inEl.popupNames.model)) {
+                                        renderCount.current += 1
+                                        return <React.Fragment key={inEl.popupNames.model + index}><Card image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} /></React.Fragment>
+                                    }
                                 }
                                 return null
                             })

@@ -4,6 +4,8 @@ import { ProductList } from "../organism/products-list"
 import { Container } from "../atoms/container"
 import { CloseButton } from './../atoms/close-button'
 import { FilterComponent } from "../organism/products-filter"
+import { useEffect } from "react"
+import { listenCookieChange } from "../../helpers/coockie-manager"
 
 const sortBy = {
     en: [
@@ -197,7 +199,18 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
         return arr
     }, [defaultPosts, sort, type, cover, upholsterys])
 
-    debugger
+    // cookie refresh for all products
+
+    const [rerender, setRerender] = useState(false)
+    useEffect(() => {
+        listenCookieChange(() => {
+            setRerender(Math.random())
+        }, 50)
+
+        return (() => {
+            listenCookieChange(null, null, true)
+        })
+    }, [])
 
     return (
         <Wrapper>
@@ -254,7 +267,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                         </FilterItem>
                     )}
                 </ActiveFilters>
-                <ProductList products={filtredProducts} />
+                <ProductList rerender={rerender} products={filtredProducts} />
             </Container>
         </Wrapper>
     )

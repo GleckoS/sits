@@ -81,6 +81,33 @@ export const query = graphql`
         wpPage(id: {eq: $id}){
             id
         }
+        Collections: allWpCollection {
+          nodes {
+            id
+            title
+            slug
+            collections {
+              generalCollectionInformation {
+                collectionPagePreviewImage {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                collectionGallery {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
         Materials : allWpMaterials{
             nodes {
               materials {

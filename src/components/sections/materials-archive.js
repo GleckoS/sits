@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { FilterComponent } from "../organism/materials-filter"
 import { MaterialList } from "../organism/materials-list"
-import Hero from "../organism/hero-material-archive"
+// import Hero from "../organism/hero-material-archive"
 import { CloseButton } from "../atoms/close-button"
 
 const sortBy = {
