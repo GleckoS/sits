@@ -3,7 +3,9 @@ import styled from "styled-components"
 import { ResultsGrid } from "../atoms/result-grid"
 import { Card } from "../moleculas/search-material-card"
 
-const loadMore = 'LOAD MORE'
+const loadMore = {
+    en: 'LOAD MORE'
+}
 
 export const FavouriteMaterialBlock = ({ count, setCount, prefiltredArr, filter, title }) => {
 
@@ -59,7 +61,7 @@ export const FavouriteMaterialBlock = ({ count, setCount, prefiltredArr, filter,
                     })}
                 </ResultsGrid>
                 {count > showCount && (
-                    <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore}</button>
+                    <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore['en']}</button>
                 )}
             </Wrapper>
         )

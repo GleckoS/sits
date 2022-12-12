@@ -5,6 +5,8 @@ import { FilterComponent } from "../organism/materials-filter"
 import { MaterialList } from "../organism/materials-list"
 // import Hero from "../organism/hero-material-archive"
 import { CloseButton } from "../atoms/close-button"
+import { useRef } from "react"
+import { useEffect } from "react"
 
 const sortBy = {
     en: [
@@ -65,6 +67,9 @@ const texturesArr = {
         },
         {
             name: 'Leather', val: 'Leather'
+        },
+        {
+            name: 'Chenille', val: 'Chenille'
         }
     ]
 }
@@ -197,6 +202,24 @@ export default function MaterialsArchive({ data, materials }) {
         return arr
     }, [materials, sort, color, textures, features])
 
+    const [showCount, setShowCount] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 1024 ? 6 : 8
+        }
+
+        return 8
+    })
+
+    useEffect(() => {
+        setShowCount(() => {
+            if (typeof window !== 'undefined') {
+                window.scrollTo(0, 0);
+                return window.innerWidth < 1024 ? 6 : 8
+            }
+
+            return 8
+        })
+    }, [filtredProducts])
 
     return (
         <Wrapper>
@@ -253,7 +276,7 @@ export default function MaterialsArchive({ data, materials }) {
                         </FilterItem>
                     )}
                 </ActiveFilters>
-                <MaterialList color={color} materials={filtredProducts} />
+                <MaterialList showCount={showCount} setShowCount={setShowCount} color={color} materials={filtredProducts} />
             </Container>
         </Wrapper>
     )
@@ -267,6 +290,11 @@ const Wrapper = styled.div`
 
     @media (max-width: 1800px) {
         padding:  0 0 86px 0;
+    }
+
+    .button{
+        margin: 0 auto;
+        margin-top: 40px;
     }
 `
 

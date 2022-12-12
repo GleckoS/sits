@@ -22,6 +22,8 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
         return 0
     })
 
+    const [newVariant, setNewVariant] = useState(choosenVariant)
+
     useEffect(() => {
         setChoosenVariant(() => {
             for (let i = 0; i < variants.length; i++) {
@@ -35,7 +37,13 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
 
     const onVariantChange = (index) => {
         document.getElementById('background').style.backgroundColor = variants[choosenVariant].squarePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
-        setChoosenVariant(index)
+        
+        setNewVariant(index)
+        setTimeout(() => {
+            setNewVariant(choosenVariant)
+            setChoosenVariant(index)
+        }, 50)
+        
     }
     return (
         <Wrapper>
@@ -43,11 +51,16 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
                 <AddToFauvorite type={'colors'} title={variants[choosenVariant].variantName} />
                 <Link to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
                     <SliderWrapper id='background'>
-                        {variants.map((el, index) => (
-                            <SliderContent key={el.variantName} className={index === choosenVariant ? 'active' : ''}>
-                                <GatsbyImage className="image" image={el.squarePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.squarePreviewImage.altText} />
-                            </SliderContent>
-                        ))}
+                        {variants.map((el, index) => {
+                            if (index === choosenVariant || index === newVariant) {
+                                return (
+                                    <SliderContent key={el.variantName} className={index === choosenVariant ? 'active' : ''}>
+                                        <GatsbyImage className="image" image={el.squarePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.squarePreviewImage.altText} />
+                                    </SliderContent>
+                                )
+                            }
+                            return null
+                        })}
                     </SliderWrapper>
                 </Link>
             </div>

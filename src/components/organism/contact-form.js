@@ -95,8 +95,8 @@ const submit = {
     en: 'Send your message'
 }
 
-export const Form = ({ data }) => {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+export const Form = () => {
+    const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
     return (
         <Wrapper className="form">

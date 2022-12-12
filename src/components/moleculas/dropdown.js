@@ -13,7 +13,7 @@ export const DropDown = ({ controller, func, data, controlTitle }) => (
         </div>
         <div className="content">
             {data.map(el => (
-                <button onClick={() => { func(el.val) }} className={controller === el.val ? 'active item' : 'item'} >
+                <button key={el.name} onClick={() => { func(el.val) }} className={controller === el.val ? 'active item' : 'item'} >
                     <span>
                         {el.name}
                     </span>

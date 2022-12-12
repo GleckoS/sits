@@ -1,15 +1,41 @@
 import React from "react"
+import { useState } from "react"
 import styled from "styled-components"
 import { MaterialCard } from "../moleculas/material-card"
 
-export const MaterialList = ({ materials, color }) => {
+const loadMore = {
+    en: 'LOAD MORE'
+}
+
+export const MaterialList = ({ setShowCount, showCount, materials, color }) => {
+
+    const [addCount] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 1024 ? 6 : 8
+        }
+
+        return 8
+    })
+
 
     return (
-        <Wrapper>
-            {materials?.map(el => (
-                <MaterialCard color={color} data={el} />
-            ))}
-        </Wrapper>
+        <>
+            <Wrapper>
+                {materials?.map((el, index) => {
+                    if (index < showCount) {
+                        return (
+                            <React.Fragment key={el.title}>
+                                <MaterialCard color={color} data={el} />
+                            </React.Fragment>
+                        )
+                    }
+                    return null
+                })}
+            </Wrapper>
+            {showCount < materials.length
+                ? <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore['en']}</button>
+                : null}
+        </>
     )
 }
 
