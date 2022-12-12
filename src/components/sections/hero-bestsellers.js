@@ -1,6 +1,11 @@
+import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+
+const title = {
+    en: 'Perhaps inspirational video content?'
+}
 
 export default function Hero({ data: { backgroundVideo, pageTitle, text, backgroundImage } }) {
 
@@ -25,13 +30,14 @@ export default function Hero({ data: { backgroundVideo, pageTitle, text, backgro
 
     return (
         <Wrapper>
-            <Video>
-                <video ref={videoRef} className="background" playsInline muted loop poster={backgroundImage.localFile.publicURL} >
+            <Video onClick={() => { videoState() }}>
+                <GatsbyImage className="background image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+                <video ref={videoRef} className="background video" playsInline muted loop poster={backgroundImage.localFile.publicURL} >
                     <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
                 </video>
                 <div className={isPaused ? 'content visible' : 'content'}>
-                    <span>Perhaps inspirational video content?</span>
-                    <button onClick={() => { videoState() }}>
+                    <span>{title['en']}</span>
+                    <button >
                         <svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164">
                             <g id="Group_133" data-name="Group 133" transform="translate(-863 -616)">
                                 <circle id="Ellipse_94" data-name="Ellipse 94" cx="82" cy="82" r="82" transform="translate(863 616)" fill="#fff" opacity="0.404" />
@@ -53,6 +59,20 @@ export default function Hero({ data: { backgroundVideo, pageTitle, text, backgro
 
 const Video = styled.div`
     position: relative;
+    cursor: pointer;
+
+    .image{
+        display: none;
+    }
+
+    @media (max-width: 768px){
+        .image{
+            display: block;
+        }
+        .video{
+            display: none;
+        }
+    }
 
     .content{
         display: flex;

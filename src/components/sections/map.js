@@ -58,22 +58,10 @@ export default function Map() {
     }
   `)
 
-    const [mapCenter, setMapCenter] = useState(null)
+    const [mapCenter] = useState({ Latitude: 52.5144926020739, Longitude: 13.388333544050788 })
     const [retailers, setRetailers] = useState(null)
     const [filtredRetailers, setFiltredRetailers] = useState(null)
     const [filter, changeFilter] = useState('')
-
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition((position) => {
-                setMapCenter({ Latitude: position.coords.latitude, Longitude: position.coords.longitude })
-            }, () => {
-                setMapCenter({ Latitude: 52.5144926020739, Longitude: 13.388333544050788 })
-            })
-        } else {
-            setMapCenter({ Latitude: 52.5144926020739, Longitude: 13.388333544050788 })
-        }
-    }, [])
 
     useEffect(() => {
         fetch(csvFile.localFile.publicURL)
@@ -96,10 +84,6 @@ export default function Map() {
             ))
         }
     }, [retailers, filter])
-
-    if (!mapCenter) {
-        return null
-    }
 
     return (
         <Wrapper>
@@ -265,9 +249,9 @@ const Wrapper = styled.section`
     } */
 
     .marker-cluster{
-        background-color: #CEAD8966;
+        background-color: var(--color-brown-light);
         div{
-            background-color: #CEAD89;
+            background-color: var(--color-brown);
             span{
                 color: #fff;
                 font-weight: 700;

@@ -5,7 +5,8 @@ export const Global = createGlobalStyle`
         --light-background: #F9F5F0;
         
         --gray: #707070;
-        --brown: #CEAD89;
+        --color-brown: #ae600b;
+        --color-brown-light: #ae600b66;
 
         --text-color: #31231E;
     }
@@ -52,7 +53,7 @@ export const Global = createGlobalStyle`
     .button{
         width: fit-content;
         padding: 13px 46px;
-        background-color: #CEAD89;
+        background-color: var(--color-brown);
 
         font-size: 18px;
         text-transform: uppercase;

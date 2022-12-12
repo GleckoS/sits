@@ -41,7 +41,7 @@ export const FilterComponent = ({
                     {sortBy.map(el => (
                         <button key={el.name} onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" strokeWidth="2" />
+                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
                             </svg>
                             {el.name}
                         </button>
@@ -54,7 +54,7 @@ export const FilterComponent = ({
                     {colorRange.map(el => (
                         <button key={el.name} onClick={() => { setColor(el.val) }} className={el.val === color ? 'active' : ''}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" strokeWidth="2" />
+                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
                             </svg>
                             {el.name}
                         </button>
@@ -67,7 +67,7 @@ export const FilterComponent = ({
                     {texturesArr.map(el => (
                         <button key={el.name} onClick={() => { setTextures(el.val) }} className={el.val === textures ? 'active' : ''}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" strokeWidth="2" />
+                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
                             </svg>
                             {el.name}
                         </button>
@@ -80,7 +80,7 @@ export const FilterComponent = ({
                     {featuresArr.map(el => (
                         <button key={el.name} onClick={() => { setFeatures(el.val) }} className={el.val === features ? 'active' : ''}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" strokeWidth="2" />
+                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
                             </svg>
                             {el.name}
                         </button>
@@ -158,8 +158,8 @@ const FilterBlock = styled.div`
         }
 
         &.active{
-            border-color: #CEAD89;
-            color: #CEAD89;
+            border-color: var(--color-brown);
+            color: var(--color-brown);
 
             svg{
                 display: block;
@@ -295,13 +295,13 @@ const Flex = styled.div`
     .underlined{
         background-color: transparent;
         border: unset;
-        color: #CEAD89;
-        border-bottom: 1px solid #CEAD89;
+        color: var(--color-brown);
+        border-bottom: 1px solid var(--color-brown);
         padding: 0 7px 3px 0;
     }
 
     .filled{
-        background-color: #CEAD89;
+        background-color: var(--color-brown);
         border: unset;
         color: #fff;
         padding: 12px 60px;

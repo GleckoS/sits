@@ -44,7 +44,7 @@ export const FilterComponent = ({
                     {sortBy.map(el => (
                         <button onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
+                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" stroke-width="2" />
                             </svg>
                             {el.name}
                         </button>
@@ -58,7 +58,7 @@ export const FilterComponent = ({
                         {sofasTypes.map(el => (
                             <button onClick={() => { setType(el.val) }} className={el.val === type ? 'active' : ''}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" stroke-width="2" />
                                 </svg>
                                 {el.name}
                             </button>
@@ -73,7 +73,7 @@ export const FilterComponent = ({
                         {upholsterysArr.map(el => (
                             <button onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" stroke-width="2" />
                                 </svg>
                                 {el.name}
                             </button>
@@ -88,7 +88,7 @@ export const FilterComponent = ({
                         {covesArr.map(el => (
                             <button onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="#cead89" stroke-width="2" />
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" stroke-width="2" />
                                 </svg>
                                 {el.name}
                             </button>
@@ -157,13 +157,13 @@ const Flex = styled.div`
     .underlined{
         background-color: transparent;
         border: unset;
-        color: #CEAD89;
-        border-bottom: 1px solid #CEAD89;
+        color: var(--color-brown);
+        border-bottom: 1px solid var(--color-brown);
         padding: 0 7px 3px 0;
     }
 
     .filled{
-        background-color: #CEAD89;
+        background-color: var(--color-brown);
         border: unset;
         color: #fff;
         padding: 12px 60px;
@@ -201,8 +201,8 @@ const FilterBlock = styled.div`
         }
 
         &.active{
-            border-color: #CEAD89;
-            color: #CEAD89;
+            border-color: var(--color-brown);
+            color: var(--color-brown);
 
             svg{
                 display: block;

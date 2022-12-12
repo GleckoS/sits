@@ -139,7 +139,7 @@ const Answer = styled.div`
         transition: color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
 
         &:hover{
-            color: #CEAD89;
+            color: var(--color-brown);
         }
     }
 

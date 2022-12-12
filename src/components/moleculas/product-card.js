@@ -14,7 +14,7 @@ export const ProductCard = ({ rerender = false, model, data, types, image }) => 
                 <span className="archive-title">{data.title}</span>
                 <Categories>
                     {types?.map(el => (
-                        <Category>
+                        <Category key={el.name}>
                             {el.name}
                         </Category>
                     ))}
@@ -87,7 +87,7 @@ const Categories = styled.div`
                 top: 4px;
                 bottom: 2px;
                 width: 1px;
-                background-color: #CEAD89;
+                background-color: var(--color-brown);
             }
 
             &:last-child{

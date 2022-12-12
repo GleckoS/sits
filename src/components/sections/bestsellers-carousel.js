@@ -45,7 +45,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
             <Container className="container">
                 <button aria-label='prev slide' onClick={() => { slickRef.current.slickPrev() }} className="left">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
-                        <path id="Path_5" data-name="Path 5" d="M10077.916,8682.179l-25.641,40.619,25.641,38.826" transform="translate(-10050.49 -8681.378)" fill="none" stroke="#fff" stroke-width="3" />
+                        <path id="Path_5" data-name="Path 5" d="M10077.916,8682.179l-25.641,40.619,25.641,38.826" transform="translate(-10050.49 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
                     </svg>
                 </button>
                 <Slider ref={slickRef} {...settings}>
@@ -69,7 +69,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                 </Slider>
                 <button aria-label='next slide' onClick={() => { slickRef.current.slickNext() }} className="right">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
-                        <path id="Path_4" data-name="Path 4" d="M10052.275,8682.179l25.641,40.619-25.641,38.826" transform="translate(-10051.007 -8681.378)" fill="none" stroke="#fff" stroke-width="3" />
+                        <path id="Path_4" data-name="Path 4" d="M10052.275,8682.179l25.641,40.619-25.641,38.826" transform="translate(-10051.007 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
                     </svg>
                 </button>
             </Container>

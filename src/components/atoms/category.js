@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Category = styled.div`
     padding: 3px 10px;
-    background-color: var(--brown);
+    background-color: var(--color-brown);
     color: #fff;
     font-size: clamp(11px, ${12 / 1194 * 100}vw, 15px);
     line-height: 166%;

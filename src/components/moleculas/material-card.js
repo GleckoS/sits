@@ -37,13 +37,13 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
 
     const onVariantChange = (index) => {
         document.getElementById('background').style.backgroundColor = variants[choosenVariant].squarePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
-        
+
         setNewVariant(index)
         setTimeout(() => {
             setNewVariant(choosenVariant)
             setChoosenVariant(index)
         }, 50)
-        
+
     }
     return (
         <Wrapper>
@@ -67,7 +67,7 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
             <span className="title">{title}</span>
             <VariantsPicker>
                 {variants.map((el, index) => (
-                    <VariantCircle key={el.variantColor} onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
+                    <VariantCircle aria-label={'change color to: ' + el.colorGroup} key={el.variantColor} onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
                     </VariantCircle>
                 ))}
             </VariantsPicker>

@@ -10,7 +10,7 @@ export default function ThreeInformCards({ data: { cards } }) {
             <Container>
                 <Grid>
                     {cards.map(el => (
-                        <Item>
+                        <Item key={el.title}>
                             <Link to={el.link.url ? el.link.url : null} target={el.link.target ? el.link.target : null}>
                                 <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
                                 <div className="content">

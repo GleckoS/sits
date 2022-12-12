@@ -13,10 +13,10 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                     {chosenProducts?.map(el => {
                         let isOnePostRendered = false
                         return el.products.products.productGallery?.map(inEl => {
-                            return inEl.productsImages?.map(imageEl => {
+                            return inEl.productsImages?.map((imageEl, index) => {
                                 if (imageEl.isMainImage && !isOnePostRendered) {
                                     isOnePostRendered = true
-                                    return <ProductCard model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
+                                    return <React.Fragment key={inEl.popupNames.model + index}><ProductCard model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} /></React.Fragment>
                                 }
                                 return null
                             })
