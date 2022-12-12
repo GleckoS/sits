@@ -25,7 +25,7 @@ const linksLeft = {
 
 const linksRight = {
     en: [
-        { name: 'About Sits', url: '/about/' },
+        { name: 'About Sits', url: '/about-sits/' },
         { name: 'Conscious', url: '/conscious/' },
         { name: 'Furniture Care', url: '/furniture-care/' },
         { name: 'Catalogues', url: '/catalogues/' },

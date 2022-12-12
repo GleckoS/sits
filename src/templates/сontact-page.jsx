@@ -1,5 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
+import Content from "../components/sections/contact-content"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -65,10 +66,10 @@ export function Head() {
     )
 }
 
-export default function ContactPage({ data, pageContext, location }) {
+export default function ContactPage({ data: { wpPage }, pageContext, location }) {
     return (
         <main>
-            <h1>Contact</h1>
+            <Content data={wpPage.contact} />
         </main>
     )
 }
@@ -77,6 +78,21 @@ export const query = graphql`
     query contact($id: String!) {
         wpPage(id: {eq: $id}){
             id
+            contact {
+              leftColumnTitle
+              leftColumnContent
+              rightColumnTitle
+              rightColumnContent
+              rightColumnFilesToUpload {
+                file {
+                  altText
+                  title
+                  localFile {
+                    publicURL
+                  }
+                }
+              }
+            }
         }
     }
 `

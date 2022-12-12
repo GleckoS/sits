@@ -2,7 +2,7 @@ import { graphql } from "gatsby"
 import React from "react"
 import { Title } from "../components/moleculas/title-sub"
 import AssemblyInstructions from "../components/sections/assembly-instructions"
-import FAQ from "../components/sections/faq"
+import Faq from "../components/sections/faq"
 import Handbook from "../components/sections/handbook"
 import Map from "../components/sections/map"
 
@@ -75,7 +75,7 @@ export default function FurnitureCarePage({ data: { wpPage: { title, furnitureCa
     return (
         <main>
             <Title title={title} />
-            <FAQ data={furnitureCare.faq} />
+            <Faq data={furnitureCare.faq} />
             <Handbook data={furnitureCare.handbook}/>
             <AssemblyInstructions data={furnitureCare.assemblyInstructions}/> 
             <Map />
