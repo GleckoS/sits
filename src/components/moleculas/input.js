@@ -6,6 +6,7 @@ export const Input = ({ placeholder }) => {
     const [inputValue, setInputValue] = useState('')
     return (
         <Wrapper>
+            <span>{placeholder}</span>
             <input onChange={(e) => { setInputValue(e.target.value) }} placeholder={placeholder} />
             <Link aria-label={'search: ' + inputValue} to={inputValue ? ('/search/?search=' + inputValue) : '/search/'}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
@@ -22,7 +23,10 @@ export const Input = ({ placeholder }) => {
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled.label`
+    span{
+        display: none;
+    }
     border-bottom: 1px solid black;
     display: flex;
     justify-content: space-between;

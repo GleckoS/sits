@@ -144,7 +144,8 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
     }, [name, products])
 
     const filtredProducts = useMemo(() => {
-        let arr = defaultPosts
+        let arr = [...defaultPosts]
+
         if (type !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
@@ -196,6 +197,33 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             })
         }
 
+        if (sort === 'Popular') {
+            let filtrArr = []
+            arr.forEach(el => {
+                if (el.products.collection.collections.generalCollectionInformation.isPopular) {
+                    filtrArr.unshift(el)
+                } else {
+                    filtrArr.push(el)
+                }
+            })
+            arr = filtrArr
+        }
+
+        if (sort === 'New Arrivals') {
+            let filtrArr = []
+            arr.forEach(el => {
+                if (el.products.isNewArrival) {
+                    filtrArr.unshift(el)
+                } else {
+                    filtrArr.push(el)
+                }
+            })
+            arr = filtrArr
+        }
+
+        if (sort === 'Alphabetical') {
+            arr.sort((a, b) => a.products.collection.title.localeCompare(b.products.collection.title))
+        }
         return arr
     }, [defaultPosts, sort, type, cover, upholsterys])
 
@@ -211,6 +239,25 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             listenCookieChange(null, null, true)
         })
     }, [])
+
+    const [showCount, setShowCount] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 1024 ? 6 : 8
+        }
+
+        return 8
+    })
+
+    useEffect(() => {
+        setShowCount(() => {
+            if (typeof window !== 'undefined') {
+                window.scrollTo(0, 0);
+                return window.innerWidth < 1024 ? 6 : 8
+            }
+
+            return 8
+        })
+    }, [filtredProducts])
 
     return (
         <Wrapper>
@@ -267,7 +314,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                         </FilterItem>
                     )}
                 </ActiveFilters>
-                <ProductList rerender={rerender} products={filtredProducts} />
+                <ProductList showCount={showCount} setShowCount={setShowCount} rerender={rerender} products={filtredProducts} />
             </Container>
         </Wrapper>
     )
@@ -278,6 +325,10 @@ const Wrapper = styled.div`
     padding:  0 0 86px 0;
     position: relative;
     margin-bottom: -160px;
+
+    .button{
+        margin-top: 42px;
+    }
 
     @media (max-width: 640px) {
         

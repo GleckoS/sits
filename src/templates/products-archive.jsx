@@ -81,7 +81,7 @@ export const query = graphql`
         wpPage(id: {eq: $id}){
             id
         }
-        allWpProduct{
+        allWpProduct(sort: {date: DESC}){
           nodes{
             types {
               nodes {
@@ -93,6 +93,11 @@ export const query = graphql`
                 ... on WpCollection {
                   slug
                   title
+                  collections {
+                    generalCollectionInformation {
+                      isPopular
+                    }
+                  }
                   covers {
                     nodes {
                       name
