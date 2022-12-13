@@ -177,7 +177,7 @@ const FilterBlock = styled.div`
 
 const MobileFilters = styled.div`
     position: fixed;
-    z-index: 102;
+    z-index: 1002;
     left: 0;
     right: 0;
     top: 0;

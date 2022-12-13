@@ -159,7 +159,7 @@ export default function MaterialsArchive({ data, materials }) {
         setFeatures("All")
     }
     const filtredProducts = useMemo(() => {
-        let arr = materials
+        let arr = [...materials]
         if (color !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
@@ -198,6 +198,31 @@ export default function MaterialsArchive({ data, materials }) {
                 })
                 return isAccessed
             })
+        }
+        if (sort === 'Popular') {
+            let filtrArr = []
+            arr.forEach(el => {
+                if (el.materials.generalMaterialInformationCopy.isPopular) {
+                    filtrArr.unshift(el)
+                } else {
+                    filtrArr.push(el)
+                }
+            })
+            arr = filtrArr
+        }
+        if (sort === 'New Arrivals') {
+            let filtrArr = []
+            arr.forEach(el => {
+                if (el.materials.generalMaterialInformationCopy.isNewArrival) {
+                    filtrArr.unshift(el)
+                } else {
+                    filtrArr.push(el)
+                }
+            })
+            arr = filtrArr
+        }
+        if (sort === 'Alphabetical') {
+            arr.sort((a, b) => a.title.localeCompare(b.title))
         }
         return arr
     }, [materials, sort, color, textures, features])
@@ -284,13 +309,9 @@ export default function MaterialsArchive({ data, materials }) {
 
 const Wrapper = styled.div`
     background-color: var(--light-background);
-    padding:  0 15px 86px 15px;
+    padding:  0 0 86px 0;
     position: relative;
     margin-bottom: calc(-1 * clamp(45px, ${120 / 1194 * 100}vw, 160px));
-
-    @media (max-width: 1800px) {
-        padding:  0 0 86px 0;
-    }
 
     .button{
         margin: 0 auto;

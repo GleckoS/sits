@@ -93,7 +93,7 @@ const Wrapper = styled.section`
         font-family: 'Ivy';
         font-size: 40px;
         font-weight: 300;
-        padding: 100px 0;
+        padding: clamp(20px, ${70 / 1194 * 100}vw, 90px) 0 clamp(40px, ${100 / 1194 * 100}vw, 110px) 0;
     }
 `
 
@@ -101,7 +101,7 @@ const Wrapper = styled.section`
 const Results = styled.div`
     background-color: #F9F5F0;
     padding: 0 0 40px 0;
-    margin-bottom: -160px;
+    margin-bottom: calc(-1 * clamp(45px,10.050251256281408vw,160px));
 
     &.disable{
         padding: 0 0 1px 0;

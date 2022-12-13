@@ -23,28 +23,12 @@ const Link = styled.a`
     width: fit-content;
     align-items: center;
 
-    &:hover{
-        #Path_16{
-        }
-    }
-
-    #Path_16{
-    }
-
     span{
         font-size: clamp(16px, ${20 / 1194 * 100}vw, 20px);
         line-height: 150%;
         display: block;
         position: relative;
         width: fit-content;
-
-        &::after{
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 10px;
-            bottom: 0;
-            border: 1px solid var(--text-color);
-        }
+        text-decoration: underline;
     }
 `

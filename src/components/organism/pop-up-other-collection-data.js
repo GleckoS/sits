@@ -62,7 +62,7 @@ const Wrapper = styled.button`
 `
 
 const PopupFeatured = styled.div`
-    margin-bottom: 80px;
+    margin-bottom: clamp(32px, ${80 / 1194 * 100}vw, 80px);
 `
 
 const PopupContent = styled.div`
@@ -72,6 +72,10 @@ const PopupGrid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 32px;
+
+    @media (max-width: 640px) {
+        grid-template-columns: 1fr;
+    }
 
     .image-wrap{
         position: relative;

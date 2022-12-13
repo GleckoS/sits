@@ -251,8 +251,8 @@ const SliderWrapper = styled.div`
             font-size: 18px;
             font-weight: 300;
             position: absolute;
-            width: clamp(27px, ${40 / 768 * 100}vw, 40px);
-            height: clamp(27px, ${40 / 768 * 100}vw, 40px);
+            width: clamp(26px, ${40 / 768 * 100}vw, 40px);
+            height: clamp(26px, ${40 / 768 * 100}vw, 40px);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -357,4 +357,6 @@ const ImagesGrid = styled.div`
 const PopupGrid = styled.div`
     display: grid;
     grid-gap: 80px;
+
+    
 `

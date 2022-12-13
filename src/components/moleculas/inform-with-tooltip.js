@@ -6,7 +6,7 @@ export const Tooltip = ({ title, data, onlyImage }) => (
         <span className="title">{title}</span>
         <Grid>
             {data.nodes.map(el => (
-                <Item>
+                <Item className={onlyImage ? 'noimage' : ''}>
                     <img src={el.taxonomy.image.localFile.publicURL} alt='TODO' />
                     {onlyImage
                         ? null
@@ -39,6 +39,10 @@ const Item = styled.div`
     grid-template-columns: auto auto;
     grid-gap: 12px;
     align-items: center;
+
+    &.noimage{
+        grid-gap: 0;
+    }
 
     img{
         width: 32px;

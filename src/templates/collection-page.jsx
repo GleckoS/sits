@@ -69,8 +69,16 @@ import Video from "../components/sections/video"
 
 export function Head() {
   return (
-    <meta name="robots" content="noindex"/>
+    <meta name="robots" content="noindex" />
   )
+}
+
+const similarTitle = {
+  en: 'Similar products'
+}
+
+const coversTitle = {
+  en: 'Recommended covers for '
 }
 
 export default function Collection({ data: { wpCollection, allWpProduct }, pageContext }) {
@@ -87,10 +95,10 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
         data={wpCollection}
       />
       {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
-      {wpCollection.collections.videoSection?.video && <Video data={wpCollection.collections.videoSection}/>}
-      {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers title={wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
+      {wpCollection.collections.videoSection?.video && <Video data={wpCollection.collections.videoSection} />}
+      {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers title={coversTitle['en'] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
       {wpCollection.collections.accessoriesSection.accessories && <Accessories data={wpCollection.collections.accessoriesSection.accessories} />}
-      {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
+      {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts title={similarTitle['en']} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
       <Map />
     </main>
   )

@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 
-export default function Video({ data: { video, previewImage } }) {
+export default function Video({ isLast, materials, data: { video, previewImage } }) {
 
     const videoRef = useRef()
     const [isPaused, changeIsPaused] = useState(true)
@@ -18,7 +18,7 @@ export default function Video({ data: { video, previewImage } }) {
     }
 
     return (
-        <Wrapper>
+        <Wrapper isLast={isLast} className={materials ? 'materials' : ''}>
             <Container className="container" onClick={() => { videoState() }}>
                 <video ref={videoRef} className="background" playsInline muted loop poster={previewImage.localFile.publicURL} >
                     <source src={video.localFile.publicURL} type="video/mp4" />
@@ -41,7 +41,21 @@ const Wrapper = styled.section`
     position: relative;
     cursor: pointer;
 
+    .container{
+        position: relative;
+    }
+
+    svg{
+        width: clamp(88px, ${164 / 1194 * 100}vw, 164px);
+        height: clamp(88px, ${164 / 1194 * 100}vw, 164px);
+    }
+
     @media (max-width: 480px) {
+        padding-top: 0;
+        &.materials{
+            padding-top: 0;
+            margin-bottom: ${props => props.isLast ? 'calc(-1 * clamp(45px,10.050251256281408vw,160px))' : '0'};
+        }
         .container{
             padding: 0;
         }

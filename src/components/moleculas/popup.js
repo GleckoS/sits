@@ -33,10 +33,15 @@ const Wrapper = styled.div`
         opacity: 1;
         pointer-events: all;
     }
+
+    span{
+         
+        font-size: clamp(28px, ${40 / 1194 * 100}vw, 44px);
+    }
 `
 
 const Control = styled.div`
-    height: 110px;
+    height: clamp(85px, ${110 / 1194 * 100}vw, 110px);
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -94,10 +99,19 @@ const Box = styled.div`
     padding: 0 50px;
     overflow: hidden;
     height: calc(100vh - 50px);
+
+    @media (max-width: 768px) {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0 24px;
+    }
 `
 
 const Content = styled.div`
     overflow: auto;
+    padding-right: 10px;
+    margin-right: -10px;
     position: relative;
     max-height: calc(100% - 110px);
     padding-bottom: 50px;

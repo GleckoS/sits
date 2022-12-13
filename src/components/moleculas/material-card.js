@@ -45,10 +45,11 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
         }, 50)
 
     }
+
     return (
         <Wrapper>
             <div className="wrap">
-                <AddToFauvorite type={'colors'} title={variants[choosenVariant].variantName} />
+                <AddToFauvorite type={'colors'} title={variants[choosenVariant]?.variantName ? variants[choosenVariant]?.variantName : variants[0].variantName} />
                 <Link to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
                     <SliderWrapper id='background'>
                         {variants.map((el, index) => {

@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Container } from "../../components/atoms/container"
 
 const left = [
-    { name: 'ABOUT', url: '/about/' },
+    { name: 'ABOUT', url: '/about-sits/' },
     { name: 'CONSCIOUS', url: '/conscious/' },
     { name: 'LEGAL', url: '/legal/' }
 ]

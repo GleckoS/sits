@@ -3,12 +3,12 @@ import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { ProductCard } from "../moleculas/product-card"
 
-export default function SimilarProducts({ data }) {
+export default function SimilarProducts({ isLast, materials, title, data }) {
     return (
-        <Wrapper>
+        <Wrapper isLast={isLast} className={materials ? 'materials' : ''}>
             <Container>
                 <h2>
-                    Similar products
+                    {title}
                 </h2>
                 <Grid>
                     {data?.map(el => {
@@ -37,11 +37,18 @@ const Wrapper = styled.section`
     padding-bottom: clamp(80px, ${120 / 1194 * 100}vw, 160px);
     margin-bottom: -160px;
     background-color: #F9F5F0;
+    margin-bottom: calc(-1 * clamp(45px,10.050251256281408vw,160px));
+
     h2{
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-weight: 300;
         font-family: 'Ivy';
         text-decoration: underline;
+    }
+
+    &.materials{
+        margin-bottom: ${props => props.isLast ? 'calc(-1 * clamp(45px,10.050251256281408vw,160px))' : '0'};
+        padding-bottom: clamp(40px, ${100 / 1194 * 100}vw, 100px);
     }
 `
 
@@ -52,24 +59,15 @@ const Grid = styled.div`
     margin-top: 20px;
 
     @media (max-width: 1024px) {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: 1fr 1fr;
+        grid-gap: 12px;
+    }
+    @media (max-width: 389px) {
+        grid-template-columns: 1fr;
     }
 `
 
 const Item = styled.div`
-    @media (max-width: 1024px){
-        width: 47%;
-    }
-
-    @media (max-width: 600px) {
-        width: 45%;
-    }
-
-    @media (max-width: 389px) {
-        width: 100%;
-    }
 
     h3{
         font-size: clamp(16px, ${26 / 768 * 100}vw, 28px);

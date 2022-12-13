@@ -3,11 +3,11 @@ import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { MaterialCard } from "../moleculas/material-card"
 
-export default function RecomendedCovers({ title, data: { covers } }) {
+export default function RecomendedCovers({ background, title, data: { covers } }) {
     return (
-        <Wrapper>
+        <Wrapper className={background}>
             <Container>
-                <h2>{'Recommended covers for '}{title}</h2>
+                <h2>{title}</h2>
                 <Grid>
                     {covers.map(el => (
                         <MaterialCard data={el.cover} />
@@ -22,6 +22,13 @@ const Wrapper = styled.section`
     margin-top: clamp(60px, ${90 / 1194 * 100}vw, 120px);
     padding: 40px 0 0 0;
     background-color: #F9F5F0;
+    
+    &.white{
+        background-color: #fff;
+        padding-top: 60px;
+        margin-top: 0;
+    }
+
     h2{
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-weight: 300;

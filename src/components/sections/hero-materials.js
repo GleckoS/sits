@@ -8,6 +8,7 @@ import { Tooltip } from "../moleculas/inform-with-tooltip"
 import { MaterialsSlider } from "../organism/materials-slider"
 
 export default function Hero({
+    isLast,
     variant,
     data: {
         title,
@@ -25,14 +26,14 @@ export default function Hero({
     }
 }) {
     return (
-        <Wrapper>
+        <Wrapper isLast={isLast}>
             <Container>
                 <Grid>
                     <MaterialsSlider variant={variant} variants={materialColorVariants} />
-                    <div>
+                    <div className="content">
                         <Flex>
                             <h1 className="archive-title">{title}</h1>
-                            <AddToFauvorite type='materials' title={title}/>
+                            <AddToFauvorite type='materials' title={title} />
                         </Flex>
                         <Description className="p" dangerouslySetInnerHTML={{ __html: materialQuickDescription }} />
                         {materialProductSheet
@@ -40,9 +41,9 @@ export default function Hero({
                                 {downloadFabricText['en']}
                             </DownloadWithArrow>
                             : null}
-                        <Tooltip title={featuresText['en']} data={features} />
-                        <Tooltip title={textureText['en']} data={textures} />
-                        <Tooltip onlyImage={true} title={careInstructionsText['en']} data={careInstructions} />
+                        {!!features.nodes.length && <Tooltip title={featuresText['en']} data={features} />}
+                        {!!textures.nodes.length && <Tooltip title={textureText['en']} data={textures} />}
+                        {!!careInstructions.nodes.length && <Tooltip onlyImage={true} title={careInstructionsText['en']} data={careInstructions} />}
                         {textUnderCareInstructionIcons
                             ? <span className="anotation" dangerouslySetInnerHTML={{ __html: textUnderCareInstructionIcons }} />
                             : null}
@@ -57,26 +58,88 @@ const Wrapper = styled.div`
     background-color: var(--light-background);
     overflow: hidden;
     position: relative;
+    margin-bottom: ${props => props.isLast ? 'calc(-1 * clamp(45px,10.050251256281408vw,160px))' : '0'};
+
+    h1{
+        font-size: clamp(34px,3.6850921273031827vw,44px);
+    }
 
     .anotation{
+        font-size: clamp(16px, ${20 / 1194 * 100}vw, 20px);
+        font-weight: 300;
         margin-top: 20px;
         display: block;
+    }
+    .slider{
+        grid-area: slider;
+    }
+    .relative{
+        position: relative;
+        grid-area: gallery;
+
+        @media (max-width: 1024px) {
+            padding-top: 60px;
+        }
     }
 `
 
 const Grid = styled.div`
-    padding: 60px 0;
+    padding: 60px 0 0 0;
     display: grid;
     grid-template-columns: 1220fr 560fr;
-    grid-gap: 50px;
+    grid-template-rows: auto 1fr;
+        grid-template-areas: 
+        'slider content'
+        'gallery content';
+    grid-gap: 0 50px;
+
+    .content{
+        min-width: 390px;
+            grid-area: content;
+    }
 
     .link{
         margin-top: 60px;
         margin-left: auto;
     }
+
+    @media(max-width: 1024px){
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas: 
+        'slider'
+        'content'
+        'gallery';
+        padding: 45px 0 0 0;
+
+        .link{
+            margin-top: 24px;
+            margin-left: unset;
+        }
+    }
+
+    @media (max-width: 768px) {
+        padding: 24px 0 0 0;
+    }
+
+    @media (max-width: 640px) {
+        padding: 0 0 0 0;
+        .content{
+            min-width: unset;
+        }
+    }
 `
 const Description = styled.div`
-    margin-top: 40px;
+    margin-top: clamp(16px,${40 / 1194 * 100}vw,40px);
+
+    p{
+        font-size: clamp(16px,${24 / 1194 * 100}vw,28px);
+
+        @media (max-width: 1024px) {
+            font-size: clamp(16px,${28 / 1194 * 100}vw,28px);
+        }
+    }
 `
 
 const Flex = styled.div`

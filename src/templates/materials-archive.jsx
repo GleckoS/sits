@@ -110,6 +110,10 @@ export const query = graphql`
             title
             slug
             materials {
+              generalMaterialInformationCopy {
+                isPopular
+                isNewArrival
+              }
                 materialColorVariants {
                     variantColor
                     variantColorImage{

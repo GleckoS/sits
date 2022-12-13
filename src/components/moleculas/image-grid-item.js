@@ -6,46 +6,46 @@ export const ImageGridItem = ({ image, popupNames }) => (
     <Item>
         <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
         <Data>
-            <span>Model: <strong>{popupNames.model}</strong></span>
+            <span><span>Model:</span> <strong>{popupNames.model}</strong></span>
 
             {popupNames.material
-                ? <span>Material: <strong>{popupNames.material}</strong></span>
+                ? <span><span>Material:</span> <strong>{popupNames.material}</strong></span>
                 : null}
 
             {popupNames.tableTopMaterial
-                ? <span>Table top material: <strong>{popupNames.tableTopMaterial}</strong></span>
+                ? <span><span>Table top material:</span> <strong>{popupNames.tableTopMaterial}</strong></span>
                 : null}
 
             {popupNames.leather
-                ? <span>Leather: <strong>{popupNames.leather}</strong></span>
+                ? <span><span>Leather:</span> <strong>{popupNames.leather}</strong></span>
                 : null}
 
             {popupNames.fabric
-                ? <span>Fabric: <strong>{popupNames.fabric}</strong></span>
+                ? <span><span>Fabric:</span> <strong>{popupNames.fabric}</strong></span>
                 : null}
 
             {popupNames.legs
-                ? <span>Legs: <strong>{popupNames.legs}</strong></span>
+                ? <span><span>Legs:</span> <strong>{popupNames.legs}</strong></span>
                 : null}
 
             {popupNames.materialOfTheLegs
-                ? <span>Material of the legs: <strong>{popupNames.materialOfTheLegs}</strong></span>
+                ? <span><span>Material of the legs:</span> <strong>{popupNames.materialOfTheLegs}</strong></span>
                 : null}
 
             {popupNames.comfort && !popupNames.tableTopMaterial && !popupNames.materialOfTheLegs && !popupNames.material
-                ? <span>Comfort: <strong>{popupNames.comfort}</strong></span>
+                ? <span><span>Comfort:</span> <strong>{popupNames.comfort}</strong></span>
                 : null}
 
             {popupNames.cover && !popupNames.tableTopMaterial && !popupNames.materialOfTheLegs && !popupNames.material
-                ? <span>Cover: <strong>{popupNames.cover}</strong></span>
+                ? <span><span>Cover:</span> <strong>{popupNames.cover}</strong></span>
                 : null}
 
             {popupNames.armrests
-                ? <span>Armrests: <strong>{popupNames.armrests}</strong></span>
+                ? <span><span>Armrests:</span> <strong>{popupNames.armrests}</strong></span>
                 : null}
 
             {popupNames.accessories
-                ? <span>Accessories: <strong>{popupNames.accessories}</strong></span>
+                ? <span><span>Accessories:</span> <strong>{popupNames.accessories}</strong></span>
                 : null}
 
         </Data>
@@ -67,7 +67,22 @@ const Data = styled.div`
     gap: 16px;
     margin-top: 20px;
 
+    @media (max-width: 768px) {
+        display: grid;
+        grid-gap: 4px;
+
+        span{
+            display: grid;
+            grid-template-columns: clamp(90px, ${90/390*100}vw, 160px) auto;
+            span, strong{
+                font-size: clamp(10px, ${10/390*100}vw, 18px);
+            }
+        }
+    }
+
+
     span{
         font-weight: 300;
+        font-size: 18px;
     }
 `

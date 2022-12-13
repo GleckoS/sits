@@ -15,61 +15,67 @@ export const MaterialsSlider = ({ variant, variants }) => {
         return 0
     })
 
+    const [newVariant, setNewVariant] = useState(choosenVariant)
+
     const onVariantChange = (index) => {
         document.getElementById('background').style.backgroundColor = variants[choosenVariant].landscapePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
-        setChoosenVariant(index)
+
+        setNewVariant(index)
+        setTimeout(() => {
+            setNewVariant(choosenVariant)
+            setChoosenVariant(index)
+        }, 50)
     }
 
     return (
-        <Wrapper>
-            <SliderWrapper id='background'>
-                {variants.map((el, index) => (
-                    <SliderContent className={index === choosenVariant ? 'active' : ''}>
-                        <GatsbyImage className="image" image={el.landscapePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.landscapePreviewImage.altText} />
-                    </SliderContent>
-                ))}
-            </SliderWrapper>
-            <VariantsPicker>
-                {variants.map((el, index) => (
-                    <VariantCircle onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
-                        <svg id="Selected_Color" data-name="Selected Color" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-                            <path id="Path_132" data-name="Path 132" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-8670.342 10076.238) rotate(-90)" fill="none" stroke="#31231e" stroke-width="3" />
-                            <g id="Ellipse_199" data-name="Ellipse 199" fill="none" stroke="#31231e" stroke-width="3">
-                                <circle cx="20" cy="20" r="20" stroke="none" />
-                                <circle cx="20" cy="20" r="18.5" fill="none" />
-                            </g>
-                        </svg>
-                    </VariantCircle>
-                ))}
-            </VariantsPicker>
+        <>
+            <div className="slider">
+                <SliderWrapper id='background'>
+                    {variants.map((el, index) => {
+                        if (index === choosenVariant || index === newVariant) {
+                            return (
+                                <SliderContent key={el.landscapePreviewImage.altText + index} className={index === choosenVariant ? 'active' : ''}>
+                                    <GatsbyImage className="image" image={el.landscapePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.landscapePreviewImage.altText} />
+                                </SliderContent>
+                            )
+                        }
+                    })}
+                </SliderWrapper>
+                <VariantsPicker>
+                    {variants.map((el, index) => (
+                        <VariantCircle key={el.variantColor + index} onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
+                            <svg id="Selected_Color" data-name="Selected Color" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+                                <path id="Path_132" data-name="Path 132" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-8670.342 10076.238) rotate(-90)" fill="none" stroke="#31231e" stroke-width="3" />
+                                <g id="Ellipse_199" data-name="Ellipse 199" fill="none" stroke="#31231e" stroke-width="3">
+                                    <circle cx="20" cy="20" r="20" stroke="none" />
+                                    <circle cx="20" cy="20" r="18.5" fill="none" />
+                                </g>
+                            </svg>
+                        </VariantCircle>
+                    ))}
+                </VariantsPicker>
+            </div>
             <div className="relative">
                 {variants.map((el, index) => (
-                    <VariantGallery className={index === choosenVariant ? 'active' : ''}>
+                    <VariantGallery key={el.variantName + index} className={index === choosenVariant ? 'active' : ''}>
                         <span className="variant-name">{el.variantName}</span>
                         <div className="grid">
-                            {el.variantGallery?.map(el => (
+                            {el.variantGallery?.map((el, inIndex) => (
                                 <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                             ))}
                         </div>
                     </VariantGallery>
                 ))}
             </div>
-        </Wrapper>
+        </>
     )
 }
-
-const Wrapper = styled.div`
-    transition: height .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-
-    .relative{
-        position: relative;
-    }
-`
 
 const VariantsPicker = styled.div`
     margin-top: 32px;
     margin-bottom: 40px;
     display: flex;
+    flex-wrap: wrap;
     gap: 8px;
 
     .item {
@@ -81,6 +87,12 @@ const VariantCircle = styled.button`
     background-image: url(${props => props.image});
     width: 40px;
     height: 40px;
+
+    @media (max-width: 640px){
+        width: 32px;
+        height: 32px;
+    }
+
     border-radius: 50%;
     border: 1px solid #BABABA;
         transition: border .2s cubic-bezier(0.39, 0.575, 0.565, 1);
@@ -123,6 +135,10 @@ const VariantGallery = styled.div`
         font-weight: 300;
         margin-bottom: 40px;
         display: block;
+
+        @media (max-width: 1024px) {
+            display: none;
+        }
     }
 
     .grid{
@@ -138,6 +154,10 @@ const VariantGallery = styled.div`
 const SliderWrapper = styled.div`
     position: relative;
     background-color: #777;
+
+    @media (max-width: 640px) {
+        margin: 0 -24px;
+    }
 `
 
 const SliderContent = styled.div`
