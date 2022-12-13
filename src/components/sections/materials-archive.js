@@ -136,6 +136,13 @@ const sortFilterTitle = {
     en: 'Sort & Filter'
 }
 
+const noResultTitle = {
+    en: 'No results'
+}
+const noResultMessage = {
+    en: `We couldn’t find any matches for your filters.`
+}
+
 export default function MaterialsArchive({ data, materials }) {
 
     const [sort, setSort] = useState(() => {
@@ -158,6 +165,7 @@ export default function MaterialsArchive({ data, materials }) {
         setTextures("All")
         setFeatures("All")
     }
+
     const filtredProducts = useMemo(() => {
         let arr = [...materials]
         if (color !== 'All') {
@@ -277,35 +285,62 @@ export default function MaterialsArchive({ data, materials }) {
             <Container>
                 <ActiveFilters>
                     {color !== 'All' && (
-                        <FilterItem>
+                        <FilterItem onClick={() => { setColor('All') }}>
                             {color.replace(/([A-Z])/g, ' $1').trim()}
-                            <CloseButton func={setColor} val={'All'} />
+                            <CloseButton />
                         </FilterItem>
                     )}
                     {textures !== 'All' && (
-                        <FilterItem>
+                        <FilterItem onClick={() => { setTextures('All') }}>
                             {textures.replace(/([A-Z])/g, ' $1').trim()}
-                            <CloseButton func={setTextures} val={'All'} />
+                            <CloseButton />
                         </FilterItem>
                     )}
                     {features !== 'All' && (
-                        <FilterItem>
+                        <FilterItem onClick={() => { setFeatures('All') }}>
                             {features.replace(/([A-Z])/g, ' $1').trim()}
-                            <CloseButton func={setFeatures} val={'All'} />
+                            <CloseButton />
                         </FilterItem>
                     )}
                     {(color !== 'All' || textures !== 'All' || features !== 'All') && (
-                        <FilterItem className="close">
+                        <FilterItem onClick={() => { clearAll('') }} className="close">
                             {clearAllTitle['en']}
-                            <CloseButton func={clearAll} val={''} />
+                            <CloseButton />
                         </FilterItem>
                     )}
                 </ActiveFilters>
-                <MaterialList showCount={showCount} setShowCount={setShowCount} color={color} materials={filtredProducts} />
+                {filtredProducts.length > 0
+                    ? <MaterialList showCount={showCount} setShowCount={setShowCount} color={color} materials={filtredProducts} />
+                    : <NoResults>
+                        <h2>{noResultTitle['en']}</h2>
+                        <p>{noResultMessage['en']}</p>
+                    </NoResults>
+                }
             </Container>
         </Wrapper>
     )
 }
+
+const NoResults = styled.div`
+    padding: 120px 0 120px 0;
+    text-align: center;
+    max-width: 926px;
+    margin: 0 auto;
+
+    h2{
+        margin-bottom: 42px;
+        font-family: 'Ivy';
+        font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
+        font-weight: 300;
+        text-decoration: underline;
+        
+    }
+
+    p{
+        font-size: clamp(18px, ${24 / 1194 * 100}vw, 24px);
+        font-weight: 300;
+    }
+`
 
 const Wrapper = styled.div`
     background-color: var(--light-background);
@@ -327,7 +362,9 @@ const ActiveFilters = styled.div`
     flex-wrap: wrap;
 `
 
-const FilterItem = styled.div`
+const FilterItem = styled.button`
+    cursor: pointer;
+    border: none;
     padding: 8px 20px;
     border-radius: 22px;
     background-color: #fff;

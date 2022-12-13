@@ -28,6 +28,15 @@ export const Global = createGlobalStyle`
         outline: none;
     }
 
+    .Toastify__toast {
+        background-color: var(--light-background) !important;
+        color: var(--text-color) !important;
+    }
+
+    .Toastify__progress-bar-theme--light{
+        background: var(--color-brown) !important;
+    }
+
     main{
         max-width: 1920px;
         margin: 0 auto;

@@ -9,7 +9,7 @@ import { ResultProductBlock } from '../organism/results-product-block'
 const pageTitle = 'Looking for something specific?'
 const placeholder = 'Search'
 const noResultTitle = 'No results'
-const noResultMessage = `We couldn’t find any matches for ”Sofabedbkghsfblng”.
+const noResultMessage = `We couldn’t find any matches for ”<search>”.
 Double check your search for any typos or spelling errors - or try a different search term.`
 
 const sofasTitle = 'Sofas'
@@ -81,7 +81,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                     {(sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0 && searchValue) && (
                         <NoResults>
                             <h2>{noResultTitle}</h2>
-                            <p>{noResultMessage}</p>
+                            <p>{noResultMessage.replace('<search>', searchValue)}</p>
                         </NoResults>
                     )}
                     <ResultProductBlock rerender={rerender} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} searchValue={searchValue} />

@@ -105,6 +105,13 @@ const sortFilterTitle = {
     en: 'Sort & Filter'
 }
 
+const noResultTitle = {
+    en: 'No results'
+}
+const noResultMessage = {
+    en: `We couldn’t find any matches for your filters.`
+}
+
 export default function ProductArchive({ pageContext: { typeSlug, name }, products }) {
     const [sort, setSort] = useState(() => {
         return 'Popular'
@@ -290,35 +297,63 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             <Container className="content-wrap">
                 <ActiveFilters>
                     {cover !== 'All' && (
-                        <FilterItem>
+                        <FilterItem onClick={() => { setCover('All') }}>
                             {cover}
-                            <CloseButton func={setCover} val={cover} />
+                            <CloseButton />
                         </FilterItem>
                     )}
                     {type !== 'All' && (
-                        <FilterItem>
+                        <FilterItem onClick={() => { setType('All') }}>
                             {type}
-                            <CloseButton func={setType} val={'All'} />
+                            <CloseButton />
                         </FilterItem>
                     )}
                     {upholsterys !== 'All' && (
-                        <FilterItem>
+                        <FilterItem onClick={() => { setUpholsterys('All') }}>
                             {upholsterys}
-                            <CloseButton func={setUpholsterys} val={'All'} />
+                            <CloseButton />
                         </FilterItem>
                     )}
                     {(type !== 'All' || cover !== 'All' || upholsterys !== 'All') && (
-                        <FilterItem className="close">
+                        <FilterItem onClick={() => { clearAll('') }} className="close">
                             {clearAllTitle['en']}
-                            <CloseButton func={clearAll} val={''} />
+                            <CloseButton />
                         </FilterItem>
                     )}
                 </ActiveFilters>
-                <ProductList showCount={showCount} setShowCount={setShowCount} rerender={rerender} products={filtredProducts} />
+                {filtredProducts.length > 0
+                    ? <ProductList showCount={showCount} setShowCount={setShowCount} rerender={rerender} products={filtredProducts} />
+                    : (
+                        <NoResults>
+                            <h2>{noResultTitle['en']}</h2>
+                            <p>{noResultMessage['en']}</p>
+                        </NoResults>
+                    )}
             </Container>
         </Wrapper>
     )
 }
+
+const NoResults = styled.div`
+    padding: 120px 0 120px 0;
+    text-align: center;
+    max-width: 926px;
+    margin: 0 auto;
+
+    h2{
+        margin-bottom: 42px;
+        font-family: 'Ivy';
+        font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
+        font-weight: 300;
+        text-decoration: underline;
+        
+    }
+
+    p{
+        font-size: clamp(18px, ${24 / 1194 * 100}vw, 24px);
+        font-weight: 300;
+    }
+`
 
 const Wrapper = styled.div`
     background-color: var(--light-background);
@@ -343,7 +378,9 @@ const ActiveFilters = styled.div`
     flex-wrap: wrap;
 `
 
-const FilterItem = styled.div`
+const FilterItem = styled.button`
+    cursor: pointer;
+    border: none;
     padding: 8px 20px;
     border-radius: 22px;
     background-color: #fff;
@@ -352,7 +389,7 @@ const FilterItem = styled.div`
     justify-content: center;
     gap: 8px;
 
-    button{
+    div{
         width: 16px;
         height: 16px;
         svg{
