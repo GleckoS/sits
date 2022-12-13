@@ -4,7 +4,7 @@ import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 
-export default function ProductGrid({ data: {
+export default function ProductGrid({ title, data: {
     sectionTitle, text,
     firstLink, firstImage,
     secondLink, secondImage,
@@ -16,7 +16,9 @@ export default function ProductGrid({ data: {
     return (
         <Wrapper>
             <Container>
-                <h2 className="title">{sectionTitle}</h2>
+                {title
+                    ? <h1 className="title">{title}</h1>
+                    : <h2 className="title">{sectionTitle}</h2>}
                 {text && <p className="text">{text}</p>}
             </Container>
             <Grid>

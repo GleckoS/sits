@@ -1,5 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
+import Map from "../components/sections/map"
+import Content from "../components/sections/sales-representative"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -65,10 +67,11 @@ export function Head() {
     )
 }
 
-export default function SalesRepresentativePage({ data, pageContext, location }) {
+export default function SalesRepresentativePage({ data: { wpPage }, pageContext, location }) {
     return (
         <main>
-            <h1>Sales representative</h1>
+            <Content data={wpPage} />
+            <Map/>
         </main>
     )
 }
@@ -77,6 +80,16 @@ export const query = graphql`
     query salesRepresentative($id: String!) {
         wpPage(id: {eq: $id}){
             id
+            title
+            salesRepresentative {
+                textUnderPageTitle
+                csvFileSales {
+                  id
+                  localFile {
+                    publicURL
+                  }
+                }
+            }
         }
     }
 `

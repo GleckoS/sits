@@ -59,7 +59,7 @@ export default function Header() {
             <LeftMenu className={isLeftMenuOpened ? 'active' : ''}>
                 <Flex>
                     <b>{furnitureTitle['en']}</b>
-                    <CloseButton func={setLeftMenuOpened} val={false} />
+                    <CloseButton as='button' func={setLeftMenuOpened} val={false} />
                 </Flex>
                 <MenuContent>
                     <Search />
@@ -93,7 +93,7 @@ export default function Header() {
             </Wrapper>
             <RightMenu className={isRightMenuOpened ? 'active' : ''}>
                 <Flex >
-                    <CloseButton func={setRightMenuOpened} val={false} />
+                    <CloseButton as='button' func={setRightMenuOpened} val={false} />
                     <b>{companyTitle['en']}</b>
                 </Flex>
                 <MenuContent className="reverse">
@@ -240,6 +240,7 @@ display: none;
 `
 
 const LeftMenu = styled.div`
+    overflow: auto;
     position: fixed;
     z-index: 111;
     width: 500px;
@@ -280,6 +281,7 @@ const MenuContent = styled.div`
 `
 
 const RightMenu = styled.div`
+    overflow: auto;
     position: fixed;
     z-index: 111;
     width: 500px;
