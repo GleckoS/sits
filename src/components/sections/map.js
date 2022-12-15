@@ -271,7 +271,7 @@ const Content = styled.div`
     'i m';
     grid-gap: 0 16px;
     .leaflet-container{
-        height: 887px;
+        height: 100vh;
         position: relative;
         z-index: 0;
         max-width: 1370px;

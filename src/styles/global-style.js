@@ -9,6 +9,71 @@ export const Global = createGlobalStyle`
         --color-brown-light: #ae600b66;
 
         --text-color: #31231E;
+
+        /* --text-title-desctop: clamp(34px, ${44 / 1194 * 100}vw, 44px);
+        --text-sub-desctop: clamp(28px, , 40px);
+        --text-big-desctop: clamp(16px, ${20 / 1194 * 100}vw, 28px);
+        --text-normal-desctop: clamp(34px, ${44 / 1194 * 100}vw, 18px);
+        --text-small-desctop: ; */
+
+    }
+
+    .yellow-button{
+        height: clamp(48px, ${89 / 1194 * 100}vw, 89px);
+        background-color: #EDC53D;
+        position: relative;
+        font-size: clamp(16px, ${28 / 1194 * 100}vw, 28px);
+        color: #ffffff;
+        width: 100%;
+        text-align: center;
+        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: clamp(350px, ${450 / 1194 * 100}vw, 450px);
+        margin: 0 auto;
+        margin-top: 45px;
+        cursor: pointer;
+        transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1), background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+        &:hover{
+            transform: translate(6px, 6px);
+            background-color: #EDC53Db0;
+
+            &::after{
+                right: 0;
+                left: 0;
+                bottom: 0;
+            }
+
+            &::before{
+                right: 0;
+                top: 0;
+                bottom: 0;
+            }
+        }
+
+        &::after{
+            content: "";
+            position: absolute;
+            right: -6px;
+            left: 6px;
+            bottom: -6px;
+            height: 1px;
+            background-color: #31231E;
+            transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+
+        &::before{
+            content: "";
+            position: absolute;
+            right: -6px;
+            top: 6px;
+            bottom: -6px;
+            width: 1px;
+            background-color: #31231E;
+            transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
     }
 
     * {

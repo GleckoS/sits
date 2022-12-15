@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
     .title{
         margin-bottom: 12px;
-        font-size: clamp(16px, ${28 / 1194 * 100}vw, 28px);
+        font-size: clamp(20px, ${28 / 1920 * 100}vw, 28px);
     }
 `
 

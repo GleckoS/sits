@@ -1,3 +1,4 @@
+import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { accessoriesText, armrestText, confortText, coversText, dimensionsText, downloadText, legsText, upholsterysText } from "../../texts"
@@ -80,6 +81,7 @@ export default function Hero({
                                     : null}
                             </Popups>
                             : null}
+                        <Link className="yellow-button" to='/where-to-buy/'>Find retailers</Link>
                     </div>
                 </Grid>
             </Container>
@@ -94,16 +96,17 @@ const Wrapper = styled.div`
 const Description = styled.div`
     margin-top: clamp(16px, ${40 / 1194 * 100}vw, 40px);
     p{
-        font-size: clamp(16px, ${28 / 1194 * 100}vw, 28px);
+        font-size: clamp(20px, ${28 / 1920 * 100}vw, 28px);
         font-weight: 300;
     }
+    max-width: 640px;
 `
 
 const Grid = styled.div`
     padding: 60px 0;
     display: grid;
     grid-template-columns: 1220fr 560fr;
-    grid-gap: 50px;
+    grid-gap: clamp(16px, ${50 / 1920 * 100}vw, 50px);
 
     @media(max-width: 1024px){
         display: block;
@@ -111,12 +114,12 @@ const Grid = styled.div`
     }
 
     .link{
-        margin-top: 60px;
+        margin-top: clamp(40px, ${60 / 1920 * 100}vw, 60px);
         margin-left: auto;
     }
 
     .content{
-        min-width: 390px;
+        min-width: clamp(340px, ${350 / 1194 * 100}vw, 390px);
 
         @media (max-width: 768px){
             min-width: unset;

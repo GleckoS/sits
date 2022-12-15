@@ -1,5 +1,6 @@
 import { graphql } from "gatsby"
 import React from "react"
+import Content from "../components/sections/legal-content"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -65,10 +66,10 @@ export function Head() {
     )
 }
 
-export default function LegalPage({ data, pageContext, location }) {
+export default function LegalPage({ data: { wpPage: { legal } }, pageContext, location }) {
     return (
         <main>
-            <h1>Legal</h1>
+            <Content data={legal} />
         </main>
     )
 }
@@ -77,6 +78,9 @@ export const query = graphql`
     query legal($id: String!) {
         wpPage(id: {eq: $id}){
             id
+            legal {
+              text
+            }
         }
     }
 `

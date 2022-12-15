@@ -140,8 +140,16 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
         }
     }, [isPopUpOpened])
 
+    const [mouseMoved, setMouseMoved] = useState(false)
+
+    const handleClick = () => {
+        if (!mouseMoved) {
+            setPopUpOpened(collectionPagePreviewImage.title)
+        }
+    }
+
     return (
-        <>
+        <Box>
             <Popup id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
                 <PopupGrid>
                     {popUpImages?.map(el => (
@@ -153,14 +161,14 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                 {collectionPagePreviewImage
                     ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(collectionPagePreviewImage.title) }}>
                         <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
-                        <span> In this image <b>+</b> </span>
+                        <span className="in"> In this image <b>+</b> </span>
                     </button>
                     : null}
                 <ImagesGrid>
                     {gallery?.map(el => (
                         <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
                             <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
-                            <span> In this image <b>+</b> </span>
+                            <span className="in"> In this image <b>+</b> </span>
                         </button>
                     ))}
                 </ImagesGrid>
@@ -168,9 +176,14 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
             <SliderWrapper>
                 <Slider {...settings}>
                     {collectionPagePreviewImage
-                        ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(collectionPagePreviewImage.title) }}>
+                        ? <button
+                            aria-label='open pop-up with images'
+                            onMouseMove={() => setMouseMoved(true)}
+                            onMouseDown={() => setMouseMoved(false)}
+                            onMouseUp={() => handleClick()}
+                        >
                             <GatsbyImage className="image" image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
-                            <span>
+                            <span className="in">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
                                     <g id="Group_510" data-name="Group 510" transform="translate(-1557.5 -1810.5)">
                                         <line id="Line_134" data-name="Line 134" y2="14" transform="translate(1564.5 1810.5)" fill="none" stroke="#31231e" strokeWidth="1.5" />
@@ -181,9 +194,14 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                         </button>
                         : null}
                     {gallery?.map(el => (
-                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
+                        <button
+                            aria-label='open pop-up with images'
+                            onMouseMove={() => setMouseMoved(true)}
+                            onMouseDown={() => setMouseMoved(false)}
+                            onMouseUp={() => handleClick()}
+                        >
                             <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
-                            <span>
+                            <span className="in">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
                                     <g id="Group_510" data-name="Group 510" transform="translate(-1557.5 -1810.5)">
                                         <line id="Line_134" data-name="Line 134" y2="14" transform="translate(1564.5 1810.5)" fill="none" stroke="#31231e" strokeWidth="1.5" />
@@ -195,14 +213,21 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                     ))}
                 </Slider>
             </SliderWrapper>
-        </>
+        </Box>
     )
 }
+
+const Box = styled.div`
+    .in{
+        background-color: #F9F5F0;
+    }
+`
 
 const SliderWrapper = styled.div`
     width: calc(100% + 90px);
     margin: 0 -45px 36px -45px;
     display: none;
+    transform: translateY(-2px);
 
     @media (max-width: 1024px) {
         display: block;
@@ -292,9 +317,13 @@ const SliderWrapper = styled.div`
 
 const Wrapper = styled.div`
 
-@media (max-width: 1024px) {
-    display: none;
-}
+    b{
+        font-weight: 300 !important;
+    }
+
+    @media (max-width: 1024px) {
+        display: none;
+    }
 
     button{
         border: none;
@@ -303,17 +332,39 @@ const Wrapper = styled.div`
         position: relative;
         cursor: pointer;
 
+        &:active{
+            span{
+                transform: translate(6px, 6px);
+
+                &::after{
+                    right: 0;
+                    left: 0;
+                    bottom: 0;
+                }
+
+                &::before{
+                    right: 0;
+                    top: 0;
+                    bottom: 0;
+                }
+            }
+        }
+
         span{
             font-size: 18px;
             font-weight: 300;
             position: absolute;
             display: block;
-            padding: 12px 18px;
+            padding: 8px 18px 12px 18px;
             background-color: #fff;
             right: 20px;
             bottom: 20px;
             opacity: 0;
-            transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+            transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+            &:hover{
+                background-color: #fff;
+            }
 
             b{
                 font-size: 24px;
@@ -324,24 +375,26 @@ const Wrapper = styled.div`
                 content: "";
                 position: absolute;
                 right: -6px;
-                left: 10px;
+                left: 6px;
                 bottom: -6px;
                 height: 1px;
                 background-color: #31231E;
+                transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
             }
 
             &::before{
                 content: "";
                 position: absolute;
                 right: -6px;
-                top: 10px;
+                top: 6px;
                 bottom: -6px;
                 width: 1px;
                 background-color: #31231E;
+                transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
             }
         }
 
-        &:hover{
+        &:hover, &:focus{
             span{
                 opacity: 1;
             }

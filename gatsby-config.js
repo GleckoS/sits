@@ -38,5 +38,17 @@ module.exports = {
     options: {
       linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
     }
+  },
+  {
+    resolve: 'gatsby-plugin-manifest',
+    options: {
+      icon: 'static/sits.ico',
+      name: `Sits`,
+      short_name: `sits`,
+      start_url: `/`,
+      background_color: `#F9F5F0`,
+      theme_color: `#ae600b`,
+      display: `standalone`
+    }
   }]
 };

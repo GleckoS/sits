@@ -57,8 +57,21 @@ const Wrapper = styled.button`
     align-items: center;
     border: none;
     background-color: transparent;
-    padding: 16px 0;
+    padding: 0 6px;
+    height: clamp(45px, ${56 / 1194 * 100}vw, 66px);
     border-bottom: 1px solid var(--text-color);
+    transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    cursor: pointer;
+
+    &:hover{
+        background-color: #EDC53D40;
+        padding-left: 24px;
+    }
+
+    span{
+        font-size: clamp(20px, ${28 / 1920 * 100}vw, 28px);
+        font-weight: 300;
+    }
 `
 
 const PopupFeatured = styled.div`

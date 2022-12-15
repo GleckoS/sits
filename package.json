@@ -19,6 +19,7 @@
     "csvtojson": "^2.0.10",
     "gatsby": "^5.2.0",
     "gatsby-plugin-image": "^3.2.0",
+    "gatsby-plugin-manifest": "^5.3.1",
     "gatsby-plugin-react-leaflet": "^4.0.3",
     "gatsby-plugin-sharp": "^5.2.0",
     "gatsby-plugin-sitemap": "^6.2.0",

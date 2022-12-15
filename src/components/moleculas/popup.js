@@ -46,6 +46,11 @@ const Control = styled.div`
     justify-content: space-between;
     align-items: center;
 
+    @media (max-width: 840px) {
+        height: 76px;
+    }
+
+
     .close{
         position: relative;
         width: 30px;
@@ -53,6 +58,7 @@ const Control = styled.div`
         border: none;
         background: transparent;
         cursor: pointer;
+        margin-right: -3px;
 
         &::after{
             content: '';
