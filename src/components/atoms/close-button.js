@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 export const CloseButton = ({ as, func, val }) => (
-    <Button as={as} onClick={() => {
+    <Button aria-label='close button' as={as} onClick={() => {
         if (as) {
             func(val)
         }
