@@ -1,5 +1,8 @@
+import axios from "axios"
 import React from "react"
+import { useState } from "react"
 import { useForm } from "react-hook-form"
+import { toast } from "react-toastify"
 import styled from "styled-components"
 import { Label } from "../moleculas/label"
 
@@ -95,9 +98,42 @@ const submit = {
     en: 'Send your message'
 }
 
+const thans = {
+    en: 'Thanks for your message!'
+}
+
+const reply = {
+    en: 'We’ll get back to you as soon as possible.'
+}
+
 export const Form = () => {
-    const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const { register, handleSubmit, reset, formState: { errors } } = useForm()
+    const [isSended, setIsSended] = useState(false)
+
+    const onSubmit = data => {
+        setIsSended(true)
+
+        let url = 'https://sits.kryptonum.co.uk/wp-json/contact-form-7/v1/contact-forms/34241/feedback'
+
+        let body = new FormData()
+
+        body.append('email', data.email)
+        body.append("message", data.message)
+        body.append('fullname', data.name)
+        body.append('country', data.country)
+        body.append('subject', data.subject)
+
+        axios.post(url, body)
+            .then((res) => {
+                if (res.status === 200) {
+                    setIsSended(true)
+                    reset()
+                } else {
+                    toast('There was some problem with contact form, try later')
+                }
+            })
+    }
+
     return (
         <Wrapper className="form">
             <h1>{title['en']}</h1>
@@ -108,14 +144,76 @@ export const Form = () => {
                 <Label register={register} errors={errors} name='subject' obj={subject} />
                 <Label register={register} errors={errors} name='message' obj={message} rows='6' />
                 <Submit>{submit['en']}</Submit>
+                <Success className={isSended ? 'sended' : ""}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="71.15" height="71.174" viewBox="0 0 71.15 71.174">
+                        <g id="checkmark.circle" opacity="0.2">
+                            <rect id="Rectangle_621" data-name="Rectangle 621" width="71.149" height="71.174" opacity="0" />
+                            <path id="Path_673" data-name="Path 673" d="M35.569,71.139a35.784,35.784,0,0,0,35.58-35.569A35.789,35.789,0,0,0,35.545,0,35.76,35.76,0,0,0,0,35.569,35.8,35.8,0,0,0,35.569,71.139Zm0-4.6A30.975,30.975,0,1,1,66.55,35.569,30.881,30.881,0,0,1,35.569,66.539Z" fill="rgba(0,0,0,0.85)" />
+                            <path id="Path_674" data-name="Path 674" d="M17.742,37.577a2.589,2.589,0,0,0,2.2-1.26L37.162,9.4a3.907,3.907,0,0,0,.631-1.72,2.152,2.152,0,0,0-2.237-2.042A2.467,2.467,0,0,0,33.648,6.86L17.633,32.228,9.448,22.151a2.291,2.291,0,0,0-2.02-1.078,2.126,2.126,0,0,0-2.115,2.153,2.9,2.9,0,0,0,.651,1.726l9.478,11.365A2.731,2.731,0,0,0,17.742,37.577Z" transform="translate(13.982 14.838)" fill="rgba(0,0,0,0.85)" />
+                        </g>
+                    </svg>
+                    <span className="title">{thans['en']}</span>
+                    <span className="text">{reply['en']}</span>
+                </Success>
             </form>
         </Wrapper>
     )
 }
 
+const Success = styled.div`
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: -5px;
+    right: 0;
+
+    @media (max-width: 640px) {
+        left: -24px;
+        right: -24px;
+    }
+
+    background-color: #F9F5F0;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateX(20px);
+    transition: all .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &.sended{
+        opacity: 1;
+        pointer-events: all;
+        transform: unset;
+    }
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+
+    svg{
+        margin: 0 auto;
+    }
+
+    .title{
+        margin-top: 32px;
+        margin-bottom: 20px;
+
+        font-size: clamp(28px, ${40 / 1194 * 100}vw, 40px);
+        font-family: 'Ivy';
+        font-weight: 300;
+        padding: 0 24px;
+    }
+
+    .text{
+        font-size: clamp(18px, ${24 / 1194 * 100}vw, 24px);
+        font-weight: 300;
+        padding: 0 24px;
+    }
+`
+
 const Wrapper = styled.div`
     
     form{
+        position: relative;
         display: grid;
         grid-gap: 20px;
 
