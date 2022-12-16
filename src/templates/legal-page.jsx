@@ -79,7 +79,10 @@ export const query = graphql`
         wpPage(id: {eq: $id}){
             id
             legal {
-              text
+              sections{
+                sectionTitle
+                sectionContent
+              }
             }
         }
     }
