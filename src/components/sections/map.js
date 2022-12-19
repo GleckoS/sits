@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
+import { MapContainer, TileLayer, Marker } from 'react-leaflet'
 import { graphql, useStaticQuery } from "gatsby"
 import { Container } from "../atoms/container"
 import { csvParser } from './../../helpers/csvParser'
@@ -23,7 +23,7 @@ const phoneTitle = {
 }
 
 const buttonTitle = {
-    en: 'DIRECTIONS'
+    en: 'WEBSITE'
 }
 let iconPerson
 
@@ -85,6 +85,25 @@ export default function Map() {
         }
     }, [retailers, filter])
 
+    const [activeDot, setActiveDot] = useState(null)
+    const map = useRef()
+
+    useEffect(() => {
+        if (activeDot >= 0) {
+            map.current.setView([filtredRetailers[activeDot].Latitude, filtredRetailers[activeDot].Longitude], 14)
+        }
+    }, [activeDot])
+
+    const markerClick = (index) => {
+        setActiveDot(index)
+        const offset = document.getElementById('map-item-' + index).offsetTop
+        document.getElementById('map-content').scrollTo(0, offset)
+    }
+
+    const itemClick = (index) => {
+        setActiveDot(index)
+    }
+
     return (
         <Wrapper>
             <Container>
@@ -103,14 +122,13 @@ export default function Map() {
                         </svg>
                     </InputWrapper>
                     <MapItems>
-                        <ItemsContent>
+                        <ItemsContent id='map-content'>
                             {filtredRetailers?.map((el, index) => {
                                 return (
-                                    <Item key={index}>
+                                    <Item id={'map-item-' + index} onClick={() => { itemClick(index) }} className={activeDot === index ? 'active' : ''} key={index}>
                                         <p className="">{el['Shop name']}</p>
                                         <p className="l">{el.Address}</p>
                                         <p className="l">{el.City}, {el.Country}</p>
-                                        <p className="l phone">{phoneTitle['en']}</p>
                                         <p className="l">{el.Phone}</p>
                                         {el.Website && <a className="link" rel='noopener noreferrer' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
                                     </Item>
@@ -118,7 +136,7 @@ export default function Map() {
                             })}
                         </ItemsContent>
                     </MapItems>
-                    <MapContainer center={[mapCenter.Latitude, mapCenter.Longitude]} zoom={4} minZoom={3} maxZoom={16} scrollWheelZoom={true}>
+                    <MapContainer whenCreated={mapInstance => { map.current = mapInstance }} center={[mapCenter.Latitude, mapCenter.Longitude]} zoom={4} minZoom={3} maxZoom={16} scrollWheelZoom={false}>
                         <TileLayer
                             attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
                             url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
@@ -129,10 +147,11 @@ export default function Map() {
                                 <Marker
                                     key={index}
                                     icon={iconPerson}
-                                    position={[el.Latitude, el.Longitude]}>
-                                    <Popup>
-                                        {el['Shop name']} <br /> {el.Phone}.
-                                    </Popup>
+                                    position={[el.Latitude, el.Longitude]}
+                                    eventHandlers={{
+                                        click: () => { markerClick(index) },
+                                    }}
+                                >
                                 </Marker>
                             ))}
                         </MarkerClusterGroup>
@@ -144,7 +163,6 @@ export default function Map() {
 }
 
 const MapItems = styled.div`
-    margin-top: 36px;
     position: relative;
     width: 100%;
     height: calc(100% - 36px);
@@ -161,10 +179,23 @@ const ItemsContent = styled.div`
     padding-right: 16px;
 `
 
-const Item = styled.div`
+const Item = styled.button`
+    border: none;
+    background-color: transparent;
+    display: block;
+    text-align: left;
+    width: 100%;
+
     padding-bottom: 36px;
-    margin-bottom: 36px;
+    padding-top: 36px;
     border-bottom: 1px solid #707070;
+
+    transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1), padding .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &.active{
+        background-color: #F9F5F0;
+        padding-left: 20px;
+    }
 
     p,a{
         font-size: 16px;
@@ -186,6 +217,7 @@ const Item = styled.div`
             font-size: 14px;
             display: block;
             margin-top: 16px;
+            width: fit-content;
             @media (max-width: 1024px){
                 margin-top: 8px;
             }
@@ -271,7 +303,7 @@ const Content = styled.div`
     'i m';
     grid-gap: 0 16px;
     .leaflet-container{
-        height: 100vh;
+        height: calc(100vh - 96px);
         position: relative;
         z-index: 0;
         max-width: 1370px;
