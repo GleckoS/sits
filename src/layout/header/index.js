@@ -1,5 +1,5 @@
 import { Link } from "gatsby"
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { CloseButton } from "../../components/atoms/close-button"
 import { Container } from "../../components/atoms/container"
@@ -54,8 +54,26 @@ export default function Header() {
     const [isRightMenuOpened, setRightMenuOpened] = useState(false)
     const [isMobileMenuOpened, setMobileMenuOpened] = useState(false)
 
+    useEffect(() => {
+        document.onkeydown = function (evt) {
+            evt = evt || window.event;
+            var isEscape = false;
+            if ("key" in evt) {
+                isEscape = (evt.key === "Escape" || evt.key === "Esc");
+            } else {
+                isEscape = (evt.keyCode === 27);
+            }
+            if (isEscape) {
+                setLeftMenuOpened(false)
+                setRightMenuOpened(false)
+            }
+        };
+
+    }, [])
+
     return (
         <>
+            <Overlay onClick={() => { setLeftMenuOpened(false); setRightMenuOpened(false) }} className={isLeftMenuOpened || isRightMenuOpened ? 'visible' : ''} />
             <LeftMenu className={isLeftMenuOpened ? 'active' : ''}>
                 <Flex>
                     <b>{furnitureTitle['en']}</b>
@@ -130,6 +148,24 @@ export default function Header() {
     )
 }
 
+const Overlay = styled.div`
+    background-color: rgba(49, 35, 30, 0.35);
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 110;
+    opacity: 0;
+    pointer-events: none;
+    transition:  opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+    &.visible{
+        opacity: 1;
+        pointer-events: all;
+    }
+`
+
 const Wrapper = styled.header`
     max-width: 1920px;
     width: 100%;
@@ -140,9 +176,11 @@ const Wrapper = styled.header`
     padding: 0;
     left: 0;
     right: 0;
-    background-color: #FFF;
     border-bottom: 1px solid #ddd;
-    height: 110px;
+    height: 95px;
+
+    background-color: hsla(0, 0%, 100%, 0.85);
+    backdrop-filter: blur(10px);
 
     .right{
         width: fit-content;
@@ -196,10 +234,10 @@ const Wrapper = styled.header`
 `
 
 const MobileMenu = styled.div`
-display: none;
-@media (max-width: 840px) {
-    display: block;
-}
+    display: none;
+    @media (max-width: 840px) {
+        display: block;
+    }
     position: fixed;
     z-index: 111;
     left: 0;
@@ -229,12 +267,8 @@ display: none;
             align-items: center;
             width: fit-content;
             margin-bottom: 16px;
-            font-size: 24px;
+            font-size: 16px;
             font-weight: 300;
-
-            @media (max-width: 840px) {
-                font-size: 20px;
-            }
         }
     }
 `
@@ -257,8 +291,12 @@ const LeftMenu = styled.div`
         gap: 10px;
         align-items: center;
         width: fit-content;
-        font-size: 24px;
+        font-size: 16px;
         font-weight: 300;
+
+        &:nth-child(2){
+            margin-top: 16px;
+        }
     }
 
     &.active{
@@ -273,7 +311,7 @@ const LeftMenu = styled.div`
 const MenuContent = styled.div`
     margin-top: 60px;
     display: grid;
-    grid-gap: 20px;
+    grid-gap: 16px;
 
     &.reverse{
         text-align: right;
@@ -299,7 +337,7 @@ const RightMenu = styled.div`
         align-items: center;
         width: fit-content;
         margin-left: auto;
-        font-size: 24px;
+        font-size: 16px;
         font-weight: 300;
     }
 
@@ -318,7 +356,8 @@ const Flex = styled.div`
     align-items: center;
 
     b{
-        font-size: clamp(18px, ${18 / 1194 * 100}vw, 20px);
+    font-size: 16px;
+    letter-spacing: 1px;
     }
 `
 
@@ -331,7 +370,8 @@ const Button = styled.button`
     align-items: center;
     gap: 8px;
 
-    font-size: clamp(18px, ${18 / 1194 * 100}vw, 20px);
+    font-size: 16px;
+    letter-spacing: 1px;
     font-weight: 300;
 `
 

@@ -137,6 +137,17 @@ const Grid = styled.div`
 const Item = styled.div`
     position: relative;
     background: #000;
+    overflow: hidden;
+
+    &:hover{
+        a{
+            transform: scale(1.2);
+            background-color: #00000030;
+        }
+        img{
+            transform: scale(1.1);
+        }
+    }
 
     a{
         position: absolute;
@@ -149,18 +160,17 @@ const Item = styled.div`
         align-items: center;
         z-index: 2;
         font-size: clamp(24px, ${44 / 1194 * 100}vw, 44px);
-        font-weight: 900;
+        font-weight: 700;
         text-transform: uppercase;
         color: #fff;
-        transition: background-color .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-
-        &:hover{
-            background-color: #00000040;
-        }
+        transition: background-color .4s cubic-bezier(0.39, 0.575, 0.565, 1), transform .4s cubic-bezier(0.39, 0.575, 0.565, 1);
     }
 
     .gatsby-image-wrapper{
         height: 100%;
+        img{
+            transition: transform .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
     }
 
     @media (max-width: 640px){

@@ -41,6 +41,7 @@ const Wrapper = styled.label`
     input{
         border: none;
         width: 100%;
-        padding-bottom: 8px;
+        font-size: 14px;
+        padding-bottom: 10px;
     }
 `

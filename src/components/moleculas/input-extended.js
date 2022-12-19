@@ -42,6 +42,7 @@ const Wrapper = styled.label`
         width: 23px;
         border-bottom: 1px solid black;
         transition: width .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+        font-size: 14px;
 
         &:focus{
             width: 150px;

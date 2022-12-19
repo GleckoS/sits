@@ -78,7 +78,8 @@ const Wrapper = styled.footer`
     
     a{
         color: #31231E;
-        font-size: 18px;
+        letter-spacing: 1px;
+        font-size: 14px;
         font-weight: 300;
     }
 `
@@ -101,7 +102,7 @@ const Center = styled.div`
 
     div{
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 12px;
 
         &:last-child{
             text-align: right;
@@ -128,6 +129,10 @@ const Menu = styled.div`
     
     .logo{
         margin-bottom: 20px;
+        svg{
+        max-height: 42px;
+        width: fit-content;
+        }
     }
 
     @media (max-width: 640px){

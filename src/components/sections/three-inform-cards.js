@@ -100,14 +100,15 @@ const Item = styled.div`
 
         h3{
             font-family: 'Ivy';
-            font-size: clamp(26px, ${30 / 1194 * 100}vw, 44px);
+            font-size: clamp(26px, ${30 / 1194 * 100}vw, 36px);
             font-weight: 300;
             text-decoration: underline;
         }
 
         p{
             margin-top: 24px;
-            font-size: clamp(16px, ${20 / 1194 * 100}vw, 28px);
+            font-size: clamp(16px, ${20 / 1194 * 100}vw, 24px);
+            line-height: 1.6;
             font-weight: 300;
         }
 

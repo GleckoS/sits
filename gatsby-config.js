@@ -47,7 +47,7 @@ module.exports = {
       short_name: `sits`,
       start_url: `/`,
       background_color: `#F9F5F0`,
-      theme_color: `#ae600b`,
+      theme_color: `#996D3E`,
       display: `standalone`
     }
   }]

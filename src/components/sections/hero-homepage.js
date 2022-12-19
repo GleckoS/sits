@@ -73,7 +73,8 @@ const Wrapper = styled.section`
     }
     .title{
         font-family: 'Ivy';
-        font-size: clamp(48px, ${71 / 768 * 100}vw, 88px);
+        font-size: clamp(48px, ${54 / 768 * 100}vw, 64px);
+        letter-spacing: 2px;
         color: #fff;
         font-weight: 300;
         margin-bottom: 30px;

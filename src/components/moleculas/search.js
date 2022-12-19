@@ -21,7 +21,7 @@ export const Search = ({ type }) => {
 const Wrapper = styled.div`
     input{
         font-weight: 300;
-        font-size: 20px;
+        font-size: 16px;
     }
 
     &.extended{

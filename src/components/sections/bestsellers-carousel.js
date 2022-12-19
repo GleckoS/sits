@@ -103,6 +103,8 @@ const Wrapper = styled.section`
         margin-top: 20px;
         text-transform: uppercase;
         text-decoration: underline;
+        position: relative;
+        z-index: 40;
     }
 
     .slick-dots{
@@ -134,7 +136,6 @@ const Wrapper = styled.section`
         max-width: 800px;
         margin: 0 auto;
         text-align: center;
-        max-width: 480px;
         margin: 0 auto;
     }
 
@@ -157,6 +158,7 @@ const Wrapper = styled.section`
             background-color: transparent;
             border: none;
             z-index: 2;
+            cursor: pointer;
         }
 
         .right{
@@ -167,6 +169,7 @@ const Wrapper = styled.section`
             background-color: transparent;
             border: none;
             z-index: 2;
+            cursor: pointer;
         }
 
         .slide{
@@ -181,9 +184,11 @@ const Wrapper = styled.section`
 
             h3{
                 font-family: 'Ivy';
-                font-size: 62px;
+                font-size: 42px;
                 font-weight: 300;
                 color: #fff;
+                letter-spacing: 2px;
+
             }
 
             a{
