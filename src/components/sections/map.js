@@ -89,7 +89,7 @@ export default function Map() {
     const map = useRef()
 
     useEffect(() => {
-        if (activeDot >= 0) {
+        if (activeDot !== null) {
             map.current.setView([filtredRetailers[activeDot].Latitude, filtredRetailers[activeDot].Longitude], 14)
         }
     }, [activeDot])
