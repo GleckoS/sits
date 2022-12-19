@@ -355,7 +355,6 @@ const Wrapper = styled.div`
 `
 
 const ActiveFilters = styled.div`
-    min-height: 44px;
     margin: 20px 0;
     display: flex;
     gap: 16px;

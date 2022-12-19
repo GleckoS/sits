@@ -84,8 +84,8 @@ const Button = styled.button`
     }
 
     svg{
-        width: 32px;
-        height: 30px;
+        width: 28px;
+        height: 26px;
 
         @media (max-width: 1194px) {
             width: 23px;
@@ -93,8 +93,8 @@ const Button = styled.button`
         }
 
         @media (max-width: 640px) {
-            width: 18px;
-            height: 16px;
+            width: 21px;
+            height: 19px;
         }
     }
 `

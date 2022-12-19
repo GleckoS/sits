@@ -26,7 +26,7 @@ const Wrapper = styled.div`
 
     &.extended{
         label{
-            font-size: clamp(20px, ${20 / 1194 * 100}vw, 24px);
+            font-size: clamp(16px, ${16 / 1194 * 100}vw, 20px);
             font-weight: 300;
         }
         input{

@@ -25,9 +25,9 @@ export const DropDown = ({ controller, func, data, controlTitle }) => (
 )
 
 const Wrapper = styled.div`
-    width: 287px;
+    width: 240px;
     padding: 22px;
-    margin: 22px -22px 0 -22px;
+    margin: 12px -22px 0 -22px;
     border: 1px solid transparent;
 
     svg{
@@ -48,7 +48,7 @@ const Wrapper = styled.div`
         justify-content: space-between;
         align-items: center;
         font-weight: 300;
-        font-size: clamp(20px, ${20 / 1194 * 100}vw, 24px);
+        font-size: 18px;
     }
 
     .content{

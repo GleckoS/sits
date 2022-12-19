@@ -30,7 +30,6 @@ export const Global = createGlobalStyle`
         display: flex;
         align-items: center;
         justify-content: center;
-        max-width: clamp(350px, ${450 / 1194 * 100}vw, 450px);
         margin: 0 auto;
         margin-top: 45px;
         cursor: pointer;
@@ -73,6 +72,12 @@ export const Global = createGlobalStyle`
             width: 1px;
             background-color: #31231E;
             transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .yellow-button{
+            max-width: clamp(350px, ${450 / 1194 * 100}vw, 450px);
         }
     }
 

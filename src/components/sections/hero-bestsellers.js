@@ -72,6 +72,9 @@ const Video = styled.div`
         .video{
             display: none;
         }
+        .content{
+            display: none !important;
+        }
     }
 
     .content{
@@ -82,6 +85,7 @@ const Video = styled.div`
         position: absolute;
         z-index: 1;
         width: fit-content;
+        padding: 100px;
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);

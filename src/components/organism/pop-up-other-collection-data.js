@@ -69,7 +69,7 @@ const Wrapper = styled.button`
     }
 
     span{
-        font-size: clamp(20px, ${28 / 1920 * 100}vw, 28px);
+        font-size: clamp(20px, ${21 / 1920 * 100}vw, 21px);
         font-weight: 300;
     }
 `

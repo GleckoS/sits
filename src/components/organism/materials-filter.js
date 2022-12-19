@@ -201,10 +201,10 @@ const MobileFilters = styled.div`
 const Filter = styled.div`
     position: sticky;
     z-index: 101;
-    top: 109px;
+    top: 95px;
     left: 0;
     right: 0;
-    height: 107px;
+    height: 100px;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     margin-top: -1px;

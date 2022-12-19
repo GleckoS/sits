@@ -8,7 +8,7 @@ import { Category } from './../atoms/category'
 export const ProductCard = ({ rerender = false, model, data, types, image }) => (
     <Wrapper>
         <AddToFauvorite rerender={rerender} type={'products'} title={model} />
-        <Link to={'/collection/' + data.slug + '/'}>
+        <Link className="link" to={'/collection/' + data.slug + '/'}>
             <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <Flex>
                 <span className="archive-title">{data.title}</span>
@@ -42,6 +42,17 @@ const Wrapper = styled.div`
 
         @media (max-width: 768px) {
             text-decoration: none;
+        }
+    }
+
+    .link{
+        img{
+            transition: transform .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+        &:hover{
+            img{
+                transform: scale(1.1);
+            }
         }
     }
 `

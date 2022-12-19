@@ -178,9 +178,7 @@ const Wrapper = styled.header`
     right: 0;
     border-bottom: 1px solid #ddd;
     height: 95px;
-
-    background-color: hsla(0, 0%, 100%, 0.85);
-    backdrop-filter: blur(10px);
+    background-color: #fff;
 
     .right{
         width: fit-content;

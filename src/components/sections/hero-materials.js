@@ -61,13 +61,17 @@ const Wrapper = styled.div`
     margin-bottom: ${props => props.isLast ? 'calc(-1 * clamp(45px,10.050251256281408vw,160px))' : '0'};
 
     h1{
-        font-size: clamp(34px,3.6850921273031827vw,44px);
+        font-size: clamp(34px,${36 / 1194 * 100}vw, 36px);
+        font-family: 'Ivy';
+        line-height: normal;
+        letter-spacing: 0.2px;
     }
 
     .anotation{
         font-size: clamp(16px, ${20 / 1194 * 100}vw, 20px);
         font-weight: 300;
         margin-top: 20px;
+        max-width: 640px;
         display: block;
     }
     .slider{
@@ -95,7 +99,9 @@ const Grid = styled.div`
 
     .content{
         min-width: 390px;
-            grid-area: content;
+        grid-area: content;
+        height: fit-content;
+        margin-bottom: 45px;
     }
 
     .link{
@@ -131,15 +137,13 @@ const Grid = styled.div`
     }
 `
 const Description = styled.div`
-    margin-top: clamp(16px,${40 / 1194 * 100}vw,40px);
+    margin-top: clamp(16px,${24 / 1194 * 100}vw,40px);
 
     p{
-        font-size: clamp(16px,${24 / 1194 * 100}vw,28px);
-
-        @media (max-width: 1024px) {
-            font-size: clamp(16px,${28 / 1194 * 100}vw,28px);
-        }
+        font-size: clamp(16px,${20 / 1194 * 100}vw,20px);
+        line-height: 1.6;
     }
+    max-width: 640px;
 `
 
 const Flex = styled.div`

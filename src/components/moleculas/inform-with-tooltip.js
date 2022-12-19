@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 
     .title{
         margin-bottom: 12px;
-        font-size: clamp(20px, ${28 / 1920 * 100}vw, 28px);
+        font-size: clamp(20px, ${23 / 1920 * 100}vw, 23px);
     }
 `
 
@@ -50,7 +50,7 @@ const Item = styled.div`
     }
 
     span{
-        font-size: clamp(16px, ${20 / 1194 * 100}vw, 20px);
+        font-size: clamp(16px, ${16 / 1194 * 100}vw, 16px);
         font-weight: 300;
         color: #31231E;
     }

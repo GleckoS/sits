@@ -36,7 +36,7 @@ export const FilterComponent = ({
         <MobileFilters className={isMobileFilterOpened ? 'active' : ''}>
             <Flex>
                 <b>{filterTitle}</b>
-                <CloseButton func={setMobileFilterOpened} val={false} />
+                <CloseButton as='button' func={setMobileFilterOpened} val={false} />
             </Flex>
             <FilterBlock>
                 <span>{sortByTitle}</span>
@@ -183,7 +183,7 @@ const FilterBlock = styled.div`
     margin-top: 30px;
 
     span{
-        font-size: 24px;
+        font-size: 18px;
         font-weight: 300;
     }
 
@@ -220,7 +220,7 @@ const FilterBlock = styled.div`
 
 const MobileFilters = styled.div`
     position: fixed;
-    z-index: 102;
+    z-index: 112;
     left: 0;
     right: 0;
     top: 0;
@@ -244,13 +244,13 @@ const MobileFilters = styled.div`
 const Filter = styled.div`
     position: sticky;
     z-index: 101;
-    top: 109px;
+    top: 95px;
     left: 0;
     right: 0;
-    height: 107px;
-    background-color: #fff;
+    height: 100px;
     border-bottom: 1px solid #ddd;
     margin-top: -1px;
+    background-color: #fff;
 
     @media (max-width: 1180px){
         height:64px;
@@ -315,7 +315,7 @@ const Filter = styled.div`
 
    .label{
         padding: 22px;
-        margin: 22px -22px 0 -22px;
+        margin: 12px -22px 0 -22px;
         cursor: pointer;
 
         

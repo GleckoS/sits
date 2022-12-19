@@ -24,7 +24,7 @@ const Link = styled.a`
     align-items: center;
 
     span{
-        font-size: clamp(16px, ${20 / 1194 * 100}vw, 20px);
+        font-size: clamp(16px, ${18 / 1194 * 100}vw, 18px);
         line-height: 150%;
         display: block;
         position: relative;

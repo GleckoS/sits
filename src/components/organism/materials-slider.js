@@ -73,12 +73,13 @@ export const MaterialsSlider = ({ variant, variants }) => {
 
 const VariantsPicker = styled.div`
     margin-top: 32px;
-    margin-bottom: 40px;
+    margin-bottom: clamp(20px, ${40 / 1194 * 100}vw, 40px);
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
 
     .item {
+        
     }
 `
 

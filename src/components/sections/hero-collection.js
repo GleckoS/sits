@@ -94,16 +94,16 @@ const Wrapper = styled.div`
 `
 
 const Description = styled.div`
-    margin-top: clamp(16px, ${40 / 1194 * 100}vw, 40px);
+    margin-top: clamp(16px,${24 / 1194 * 100}vw,40px);
     p{
-        font-size: clamp(20px, ${28 / 1920 * 100}vw, 28px);
-        font-weight: 300;
+        font-size: clamp(16px,${20 / 1194 * 100}vw,20px);
+        line-height: 1.6;
     }
     max-width: 640px;
 `
 
 const Grid = styled.div`
-    padding: 60px 0;
+    padding: 45px 0 60px 0;
     display: grid;
     grid-template-columns: 1220fr 560fr;
     grid-gap: clamp(16px, ${50 / 1920 * 100}vw, 50px);
@@ -133,7 +133,7 @@ const Flex = styled.div`
 
     h1{
         font-family: 'Ivy';
-        font-size: clamp(34px, ${44 / 1194 * 100}vw, 44px);
+        font-size: clamp(34px, ${36 / 1194 * 100}vw, 36px);
         font-style: italic;
         font-weight: 300;
         position: relative;
