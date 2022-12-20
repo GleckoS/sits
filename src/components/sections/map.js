@@ -130,7 +130,7 @@ export default function Map() {
                                         <p className="l">{el.Address}</p>
                                         <p className="l">{el.City}, {el.Country}</p>
                                         <p className="l">{el.Phone}</p>
-                                        {el.Website && <a className="link" rel='noopener noreferrer' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
+                                        {(el.Website && el.Website !== ' ') && <a className="link" rel='noopener noreferrer' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
                                     </Item>
                                 )
                             })}

@@ -58,7 +58,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                                         alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
                                     <div className="content">
                                         <h3>{el.selectedCollection.title}</h3>
-                                        <Link to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
+                                        <Link tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
                                     </div>
                                 </div>
                             )
@@ -106,6 +106,16 @@ const Wrapper = styled.section`
         position: relative;
         z-index: 40;
     }
+
+
+    
+    .slick-slide{
+        pointer-events: none;
+        &.slick-active{
+            pointer-events: all;
+        }
+    }
+
 
     .slick-dots{
         bottom: -40px !important;
