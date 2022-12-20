@@ -1,5 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
+import Map from "../components/sections/map"
+import Content from "../components/sections/new-arrivals-content"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -65,10 +67,11 @@ export function Head() {
     )
 }
 
-export default function NewArrivalsPage({ data, pageContext, location }) {
+export default function NewArrivalsPage({ data: { wpPage, allWpProduct }, pageContext, location }) {
     return (
         <main>
-            <h1>New Arrivals</h1>
+            <Content data={allWpProduct.nodes} />
+            <Map/>
         </main>
     )
 }
@@ -77,6 +80,63 @@ export const query = graphql`
     query newArrivals($id: String!) {
         wpPage(id: {eq: $id}){
             id
+        }
+        allWpProduct(sort: {date: DESC}, filter: {products: {isNewArrival: {eq: true}}}) {
+            nodes{
+              types {
+                nodes {
+                  name
+                }
+              }
+              products {
+                collection {
+                  ... on WpCollection {
+                    slug
+                    title
+                    collections {
+                      generalCollectionInformation {
+                        isPopular
+                      }
+                    }
+                    covers {
+                      nodes {
+                        name
+                      }
+                    }
+                    upholsterys{
+                      nodes{
+                        name
+                      }
+                    }
+                    types {
+                      nodes {
+                        name
+                      }
+                    }
+                  }
+                }
+                isNewArrival
+                productGallery {
+                  popupNames {
+                    fabric
+                    cover
+                    leather
+                    model
+                  }
+                  productsImages {
+                    isMainImage
+                    featuredProductImage {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
         }
     }
 `

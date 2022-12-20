@@ -10,7 +10,6 @@ const loadMore = {
 
 export const ProductList = ({ setShowCount, showCount, rerender, products }) => {
 
-
     const [addCount] = useState(() => {
         if (typeof window !== 'undefined') {
             return window.innerWidth < 1024 ? 6 : 8
@@ -50,6 +49,7 @@ const Wrapper = styled.div`
 
     @media (max-width: 600px) {
         margin: 0 -12px;
+        grid-gap: 24px 12px;
     }
 
     @media (max-width: 380px) {
