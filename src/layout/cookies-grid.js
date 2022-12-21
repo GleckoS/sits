@@ -13,12 +13,12 @@ const loadMoreTitle = {
     en: 'LOAD MORE '
 }
 
-export const Grid = ({ el: data }) => {
+export const Grid = ({ active, el: data }) => {
 
     const [showAll, setShowAll] = useState(false)
 
     return (
-        <div>
+        <div className={active ? 'active item-wrapper' : 'item-wrapper'}>
             <p className="grid-name">{data.innerPartName}</p>
             <div className="grid">
                 {data.innerPartCookies.map((el, index) => {

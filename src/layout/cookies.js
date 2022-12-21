@@ -44,6 +44,7 @@ export default function Cookies() {
                   partDescription
                   innerParts {
                     innerPartName
+                    cookieDescriptionUrl
                     innerPartCookies {
                       cookieName
                       cookieDescription
@@ -59,13 +60,22 @@ export default function Cookies() {
   `)
 
     const [activeTab, setActiveTab] = useState(0)
+    const [tabs, setTabs] = useState(() => {
+        let parts = []
+        detailsTab.cookies.forEach(el => {
+            parts.push({
+                name: el.partName,
+                isAccepted: true
+            })
+        })
+        return parts
+    })
 
-    const deny = () => {
+    const changeTabs = (index) => {
+        const arr = [...tabs]
+        arr[index].isAccepted = !arr[index].isAccepted
 
-    }
-
-    const apply = () => {
-
+        setTabs(arr)
     }
 
     useEffect(() => {
@@ -75,6 +85,12 @@ export default function Cookies() {
             scrollLock.disable('cookie')
         }
     }, [])
+
+    const [isActive, setIsActive] = useState(true)
+
+    if (!isActive) {
+        return null
+    }
 
     return (
         <>
@@ -97,7 +113,7 @@ export default function Cookies() {
                             <div className="content" dangerouslySetInnerHTML={{ __html: consentTab.tabContent }} />
                         </Tab>
                         <Tab className={activeTab === 1 ? 'active' : ''}>
-                            {detailsTab.cookies.map(el => {
+                            {detailsTab.cookies.map((el, index) => {
                                 let count = 0
                                 el.innerParts?.forEach(inEl => {
                                     count += inEl.innerPartCookies.length
@@ -106,14 +122,14 @@ export default function Cookies() {
                                 return (
                                     <div className="parts">
                                         <div className="name">
-                                            <button className="radio" ><span /></button>
+                                            <button className={tabs[index].isAccepted ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
                                             {el.partName} {count > 0 && `(${count})`}
                                         </div>
                                         <p className="description">
                                             {el.partDescription}
                                         </p>
                                         {el.innerParts?.map(el => (
-                                            <Grid el={el} />
+                                            <Grid active={tabs[index].isAccepted} el={el} />
                                         ))}
                                     </div>
                                 )
@@ -124,7 +140,7 @@ export default function Cookies() {
                         </Tab>
                     </TabWrapper>
                     <Buttons>
-                        <button onClick={() => { deny() }}>
+                        <button onClick={() => { setIsActive(false) }}>
                             {denyButton['en']}
                         </button>
                         {activeTab === 1 ? (
@@ -132,11 +148,11 @@ export default function Cookies() {
                                 {allowChosenButton['en']}
                             </button>
                         ) : (
-                            <button>
+                            <button onClick={() => { setIsActive(false) }}>
                                 {setButton['en']}
                             </button>
                         )}
-                        <button onClick={() => { apply() }} className="allow">
+                        <button onClick={() => { setIsActive(false) }} className="allow">
                             {allowButton['en']}
                         </button>
                     </Buttons>
@@ -188,10 +204,22 @@ const Wrapper = styled.aside`
         font-size: 16px;
         line-height: 20px;
         letter-spacing: 0.003em;
-        color: #31231E;
 
         @media (max-width: 440px){
             font-size: 14px;
+        }
+    }
+
+    .item-wrapper{
+        *{
+            color: #BBBBBB !important;
+            transition: color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+
+        &.active{
+            *{
+                color: #31231E !important;
+            }
         }
     }
 `
@@ -410,19 +438,30 @@ const Tab = styled.div`
         width: 45px;
         height: 24px;
         border-radius: 42px;
-        background-color: #926F45;
+        background-color: #F8F5F0;
         border: none;
         position: relative;
         cursor: pointer;
+        transition: background-color .2s cubic-bezier(0.47, 0, 0.745, 0.715);
 
         span{
             position: absolute;
             top: 4px;
-            right: 4px;
+            left: 4px;
             width: 16px;
             height: 16px;
-            background: #FFFFFF;
+            background-color: #926F45;
             border-radius: 40px;
+            transition: all .2s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+
+
+        &.active{
+            background-color: #926F45;
+            span{
+                left: 25px;
+                background-color: #fff;
+            }
         }
     }
 `
