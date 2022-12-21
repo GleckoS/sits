@@ -120,7 +120,7 @@ export default function Cookies() {
                                 })
 
                                 return (
-                                    <div className="parts">
+                                    <div key={el.partName + index} className="parts">
                                         <div className="name">
                                             <button className={tabs[index].isAccepted ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
                                             {el.partName} {count > 0 && `(${count})`}
@@ -128,8 +128,8 @@ export default function Cookies() {
                                         <p className="description">
                                             {el.partDescription}
                                         </p>
-                                        {el.innerParts?.map(el => (
-                                            <Grid active={tabs[index].isAccepted} el={el} />
+                                        {el.innerParts?.map((el, id) => (
+                                            <React.Fragment key={el.innerPartName + id}><Grid active={tabs[index].isAccepted} el={el} /></React.Fragment>
                                         ))}
                                     </div>
                                 )

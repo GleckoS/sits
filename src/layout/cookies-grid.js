@@ -25,7 +25,7 @@ export const Grid = ({ active, el: data }) => {
                     let isButtonRendered = false
                     if (showAll ? true : index < 3) {
                         return (
-                            <div className={showAll ? "item" : 'item no-show'}>
+                            <div key={el.cookieName + index} className={showAll ? "item" : 'item no-show'}>
                                 <div>
                                     <p className="item-name">{el.cookieName}</p>
                                     <p className="item-description">{el.cookieDescription}</p>
@@ -37,11 +37,10 @@ export const Grid = ({ active, el: data }) => {
                             </div>
                         )
                     } else {
-
                         if (!isButtonRendered) {
                             isButtonRendered = true
                             return (
-                                <button items={data.innerPartCookies.length} className="show-all" onClick={() => { setShowAll(true) }}>
+                                <button key={'button'} items={data.innerPartCookies.length} className="show-all" onClick={() => { setShowAll(true) }}>
                                     {loadMoreTitle['en']}
                                     <span className="desctop"> ({data.innerPartCookies.length - 3})</span>
                                     <span className="tablet"> ({data.innerPartCookies.length - 2})</span>
