@@ -11,8 +11,8 @@ export default function Accessories({ data }) {
                     Accessories for this model
                 </h2>
                 <Grid>
-                    {data.map(el => (
-                        <Item>
+                    {data.map((el, index) => (
+                        <Item key={el.accessoryTitle + index}>
                             <GatsbyImage image={el.accessoryImage.localFile.childImageSharp.gatsbyImageData} alt={el.accessoryImage.altText} />
                             <h3>{el.accessoryTitle}</h3>
                         </Item>
@@ -41,9 +41,7 @@ const Grid = styled.div`
     margin-top: 20px;
 
     @media (max-width: 1024px) {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        grid-template-columns: 1fr 1fr;
     }
 
     @media (max-width: 389px) {
@@ -52,17 +50,6 @@ const Grid = styled.div`
 `
 
 const Item = styled.div`
- @media (max-width: 1024px){
-    width: 47%;
- }
-
- @media (max-width: 600px) {
-    width: 45%;
- }
-
-@media (max-width: 389px) {
-    width: 100%;
-}
 
     h3{
         font-size: clamp(16px, ${26 / 768 * 100}vw, 28px);

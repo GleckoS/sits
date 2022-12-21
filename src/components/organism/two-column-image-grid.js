@@ -152,8 +152,10 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
         <Box>
             <Popup id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
                 <PopupGrid>
-                    {popUpImages?.map(el => (
-                        <ImageGridItem image={el.image} popupNames={el.popupNames} />
+                    {popUpImages?.map((el, index) => (
+                        <React.Fragment key={el.popupNames.model + index}>
+                            <ImageGridItem image={el.image} popupNames={el.popupNames} />
+                        </React.Fragment>
                     ))}
                 </PopupGrid>
             </Popup>
@@ -165,8 +167,8 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                     </button>
                     : null}
                 <ImagesGrid>
-                    {gallery?.map(el => (
-                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
+                    {gallery?.map((el, index) => (
+                        <button key={el.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
                             <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                             <span className="in"> In this image <b>+</b> </span>
                         </button>
@@ -193,8 +195,9 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                             </span>
                         </button>
                         : null}
-                    {gallery?.map(el => (
+                    {gallery?.map((el, index) => (
                         <button
+                            key={el.title + index}
                             aria-label='open pop-up with images'
                             onMouseMove={() => setMouseMoved(true)}
                             onMouseDown={() => setMouseMoved(false)}

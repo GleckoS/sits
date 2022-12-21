@@ -25,10 +25,10 @@ export const ProductList = ({ setShowCount, showCount, rerender, products }) => 
             <Wrapper>
                 {products?.map(el => {
                     return el.products.productGallery?.map(inEl => {
-                        return inEl.productsImages?.map(imageEl => {
+                        return inEl.productsImages?.map((imageEl, index) => {
                             if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
                                 renderCount.current += 1
-                                return <ProductCard rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
+                                return <React.Fragment key={inEl.popupNames.model + index}><ProductCard rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} /></React.Fragment>
                             }
                             return null
                         })

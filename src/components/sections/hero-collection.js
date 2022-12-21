@@ -47,7 +47,7 @@ export default function Hero({
                         </Flex>
                         <Categories>
                             {itemCategories.map(el => (
-                                <Category>{el.name}</Category>
+                                <Category key={el.name}>{el.name}</Category>
                             ))}
                         </Categories>
                         <Description dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />

@@ -5,8 +5,8 @@ import { FilterComponent } from "../organism/materials-filter"
 import { MaterialList } from "../organism/materials-list"
 // import Hero from "../organism/hero-material-archive"
 import { CloseButton } from "../atoms/close-button"
-import { useRef } from "react"
 import { useEffect } from "react"
+import scrollLock from './../../helpers/scroll-lock'
 
 const sortBy = {
     en: [
@@ -253,6 +253,18 @@ export default function MaterialsArchive({ data, materials }) {
             return 8
         })
     }, [filtredProducts])
+
+    useEffect(() => {
+        if (isMobileFilterOpened) {
+            scrollLock.enable('mobile-filter')
+        } else {
+            scrollLock.disable('mobile-filter')
+        }
+
+        return () => {
+            scrollLock.disable('mobile-filter')
+        }
+    }, [isMobileFilterOpened])
 
     return (
         <Wrapper>

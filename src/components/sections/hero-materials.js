@@ -88,7 +88,7 @@ const Wrapper = styled.div`
 `
 
 const Grid = styled.div`
-    padding: 60px 0 0 0;
+    padding: 60px 0 45px 0;
     display: grid;
     grid-template-columns: 1220fr 560fr;
     grid-template-rows: auto 1fr;
@@ -117,7 +117,7 @@ const Grid = styled.div`
         'slider'
         'content'
         'gallery';
-        padding: 45px 0 0 0;
+        padding: 45px 0 45px 0;
 
         .link{
             margin-top: 24px;
@@ -126,11 +126,11 @@ const Grid = styled.div`
     }
 
     @media (max-width: 768px) {
-        padding: 24px 0 0 0;
+        padding: 24px 0 45px 0;
     }
 
     @media (max-width: 640px) {
-        padding: 0 0 0 0;
+        padding: 0 0 45px 0;
         .content{
             min-width: unset;
         }

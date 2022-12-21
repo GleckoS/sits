@@ -9,8 +9,8 @@ export default function RecomendedCovers({ background, title, data: { covers } }
             <Container>
                 <h2>{title}</h2>
                 <Grid>
-                    {covers.map(el => (
-                        <MaterialCard data={el.cover} />
+                    {covers.map((el, index) => (
+                        <React.Fragment key={el.cover.title + index}><MaterialCard data={el.cover} /></React.Fragment>
                     ))}
                 </Grid>
             </Container>

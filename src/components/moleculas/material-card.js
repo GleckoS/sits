@@ -50,7 +50,7 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
         <Wrapper>
             <div className="wrap">
                 <AddToFauvorite type={'colors'} title={variants[choosenVariant]?.variantName ? variants[choosenVariant]?.variantName : variants[0].variantName} />
-                <Link to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
+                <Link aria-label={'material: ' + title} to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
                     <SliderWrapper id='background'>
                         {variants.map((el, index) => {
                             if (index === choosenVariant || index === newVariant) {

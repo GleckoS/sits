@@ -6,7 +6,7 @@ import { Form } from "../organism/contact-form"
 export default function Content({ data: { leftColumnTitle, leftColumnContent, rightColumnTitle, rightColumnContent, rightColumnFilesToUpload } }) {
     return (
         <Wrapper>
-            <Container>
+            <Container className="container">
                 <Grid>
                     <div className="left">
                         <h2>{leftColumnTitle}</h2>
@@ -35,6 +35,10 @@ export default function Content({ data: { leftColumnTitle, leftColumnContent, ri
 
 const Wrapper = styled.section`
     margin-top: clamp(20px, ${70 / 1194 * 100}vw, 90px);
+
+    .container{
+        overflow: hidden;
+    }
 
     .files{
         margin-top: 40px;

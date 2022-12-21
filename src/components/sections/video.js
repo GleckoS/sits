@@ -23,7 +23,7 @@ export default function Video({ isLast, materials, data: { video, previewImage }
                 <video ref={videoRef} className="background" playsInline muted loop poster={previewImage.localFile.publicURL} >
                     <source src={video.localFile.publicURL} type="video/mp4" />
                 </video>
-                <button className={isPaused ? 'content visible' : 'content'} >
+                <button aria-label="play video button" className={isPaused ? 'content visible' : 'content'} >
                     <svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164">
                         <g id="Group_133" data-name="Group 133" transform="translate(-863 -616)">
                             <circle id="Ellipse_94" data-name="Ellipse 94" cx="82" cy="82" r="82" transform="translate(863 616)" fill="#fff" opacity="0.404" />

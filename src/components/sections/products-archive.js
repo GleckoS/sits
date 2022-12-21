@@ -6,6 +6,7 @@ import { CloseButton } from './../atoms/close-button'
 import { FilterComponent } from "../organism/products-filter"
 import { useEffect } from "react"
 import { listenCookieChange } from "../../helpers/coockie-manager"
+import scrollLock from './../../helpers/scroll-lock'
 
 const sortBy = {
     en: [
@@ -266,6 +267,18 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
         })
     }, [filtredProducts])
 
+    useEffect(() => {
+        if (isMobileFilterOpened) {
+            scrollLock.enable('mobile-filter')
+        } else {
+            scrollLock.disable('mobile-filter')
+        }
+
+        return () => {
+            scrollLock.disable('mobile-filter')
+        }
+    }, [isMobileFilterOpened])
+
     return (
         <Wrapper>
             <FilterComponent
@@ -359,7 +372,7 @@ const Wrapper = styled.div`
     background-color: var(--light-background);
     padding:  0 0 86px 0;
     position: relative;
-    margin-bottom: -160px;
+    margin-bottom: calc(-1 * clamp(45px,10.050251256281408vw,160px));
 
     .button{
         margin-top: 42px;

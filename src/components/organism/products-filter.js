@@ -42,9 +42,9 @@ export const FilterComponent = ({
                 <span>{sortByTitle}</span>
                 <div className="flex">
                     {sortBy.map(el => (
-                        <button onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
+                        <button key={el.val} onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" stroke-width="2" />
+                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
                             </svg>
                             {el.name}
                         </button>
@@ -56,9 +56,9 @@ export const FilterComponent = ({
                     <span>{typeTitle}</span>
                     <div className="flex">
                         {sofasTypes.map(el => (
-                            <button onClick={() => { setType(el.val) }} className={el.val === type ? 'active' : ''}>
+                            <button key={el.val} onClick={() => { setType(el.val) }} className={el.val === type ? 'active' : ''}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" stroke-width="2" />
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
                                 </svg>
                                 {el.name}
                             </button>
@@ -71,9 +71,9 @@ export const FilterComponent = ({
                     <span>{upholsterysTitle}</span>
                     <div className="flex">
                         {upholsterysArr.map(el => (
-                            <button onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
+                            <button key={el.val} onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" stroke-width="2" />
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
                                 </svg>
                                 {el.name}
                             </button>
@@ -86,9 +86,9 @@ export const FilterComponent = ({
                     <span>{coversTitle}</span>
                     <div className="flex">
                         {covesArr.map(el => (
-                            <button onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
+                            <button key={el.val} onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" stroke-width="2" />
+                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
                                 </svg>
                                 {el.name}
                             </button>
@@ -117,18 +117,18 @@ export const FilterComponent = ({
                     <button onClick={() => { setMobileFilterOpened(true) }}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14.595" viewBox="0 0 15 14.595">
                             <g id="Group_520" data-name="Group 520" transform="translate(5432.613 -238.318)">
-                                <line id="Line_258" data-name="Line 258" y2="14.595" transform="translate(-5430.658 238.318)" fill="none" stroke="#31231e" stroke-width="1" />
-                                <line id="Line_259" data-name="Line 259" y2="14.595" transform="translate(-5425.122 238.318)" fill="none" stroke="#31231e" stroke-width="1" />
-                                <line id="Line_260" data-name="Line 260" y2="14.595" transform="translate(-5419.586 238.318)" fill="none" stroke="#31231e" stroke-width="1" />
-                                <g id="Ellipse_295" data-name="Ellipse 295" transform="translate(-5432.613 243.55)" fill="#fff" stroke="#31231e" stroke-width="1">
+                                <line id="Line_258" data-name="Line 258" y2="14.595" transform="translate(-5430.658 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
+                                <line id="Line_259" data-name="Line 259" y2="14.595" transform="translate(-5425.122 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
+                                <line id="Line_260" data-name="Line 260" y2="14.595" transform="translate(-5419.586 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
+                                <g id="Ellipse_295" data-name="Ellipse 295" transform="translate(-5432.613 243.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
                                     <circle cx="2" cy="2" r="2" stroke="none" />
                                     <circle cx="2" cy="2" r="1.5" fill="none" />
                                 </g>
-                                <g id="Ellipse_296" data-name="Ellipse 296" transform="translate(-5427.113 238.55)" fill="#fff" stroke="#31231e" stroke-width="1">
+                                <g id="Ellipse_296" data-name="Ellipse 296" transform="translate(-5427.113 238.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
                                     <circle cx="2" cy="2" r="2" stroke="none" />
                                     <circle cx="2" cy="2" r="1.5" fill="none" />
                                 </g>
-                                <g id="Ellipse_297" data-name="Ellipse 297" transform="translate(-5421.613 248.55)" fill="#fff" stroke="#31231e" stroke-width="1">
+                                <g id="Ellipse_297" data-name="Ellipse 297" transform="translate(-5421.613 248.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
                                     <circle cx="2" cy="2" r="2" stroke="none" />
                                     <circle cx="2" cy="2" r="1.5" fill="none" />
                                 </g>

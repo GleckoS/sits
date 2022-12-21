@@ -6,6 +6,7 @@ import { Container } from "../../components/atoms/container"
 import { Search } from "../../components/moleculas/search"
 import { LangChanger } from "./lang-changer"
 import { Item } from "./menu-item"
+import scrollLock from './../../helpers/scroll-lock'
 
 const linksLeft = {
     en: [
@@ -68,8 +69,19 @@ export default function Header() {
                 setRightMenuOpened(false)
             }
         };
-
     }, [])
+
+    useEffect(() => {
+        if (isLeftMenuOpened || isRightMenuOpened || isMobileMenuOpened) {
+            scrollLock.enable('menu')
+        } else {
+            scrollLock.disable('menu')
+        }
+
+        return () => {
+            scrollLock.disable('menu')
+        }
+    }, [isLeftMenuOpened, isRightMenuOpened, isMobileMenuOpened])
 
     return (
         <>

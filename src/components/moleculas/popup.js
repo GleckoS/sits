@@ -1,21 +1,38 @@
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 
+import scrollLock from './../../helpers/scroll-lock'
 
-export const Popup = ({ id, children, title, setPopUpOpened, isPopUpOpened }) => (
-    <Wrapper className={isPopUpOpened ? 'active' : ''}>
-        <Box>
-            <Control>
-                <span className="archive-title">{title}</span>
-                <button onClick={() => { setPopUpOpened(false) }} className="close" aria-label='close pop-up'></button>
-            </Control>
-            <Content id={id}>
-                {children}
-            </Content>
-        </Box>
-        <Background onClick={() => { setPopUpOpened(false) }} />
-    </Wrapper>
-)
+
+export const Popup = ({ id, children, title, setPopUpOpened, isPopUpOpened }) => {
+
+    useEffect(() => {
+        if (isPopUpOpened) {
+            scrollLock.enable('pop-up')
+        } else {
+            scrollLock.disable('pop-up')
+        }
+
+        return () => {
+            scrollLock.disable('pop-up')
+        }
+    }, [isPopUpOpened])
+
+    return (
+        <Wrapper className={isPopUpOpened ? 'active' : ''} >
+            <Box>
+                <Control>
+                    <span className="archive-title">{title}</span>
+                    <button onClick={() => { setPopUpOpened(false) }} className="close" aria-label='close pop-up'></button>
+                </Control>
+                <Content id={id}>
+                    {children}
+                </Content>
+            </Box>
+            <Background onClick={() => { setPopUpOpened(false) }} />
+        </Wrapper >
+    )
+}
 
 const Wrapper = styled.div`
     position: fixed;

@@ -249,7 +249,7 @@ const Wrapper = styled.div`
             }
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 820px) {
             grid-template-columns: 1fr;
             grid-template-areas: unset;
 

@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { Global } from "../styles/global-style"
 import Footer from "./footer"
 import Header from "./header"
+import Cookies from "./cookies"
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -13,6 +14,7 @@ export default function Layout({ children }) {
         <Wrapper>
             <ToastContainer />
             <Global />
+            <Cookies />
             <Header />
             {children}
             <Footer />

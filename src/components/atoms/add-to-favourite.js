@@ -71,6 +71,8 @@ const Button = styled.button`
     cursor: pointer;
     transform: scale(1);
     transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    width: 32px;
+    height: 32px;
 
     &:hover{
         transform: scale(1.1);

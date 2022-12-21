@@ -24,8 +24,8 @@ export const PopupButton = ({ data, title }) => {
                             </PopupFeatured>
                         ) : null}
                     <PopupGrid>
-                        {data.dimensions?.map(el => (
-                            <div>
+                        {data.dimensions?.map((el, index) => (
+                            <div key={el.title + index}>
                                 <div className="image-wrap">
                                     <img className="svg" src={el.image.localFile.publicURL} alt={el.image.altText} />
                                 </div>
@@ -43,7 +43,7 @@ export const PopupButton = ({ data, title }) => {
                     {title}
                 </span>
                 <svg xmlns="http://www.w3.org/2000/svg" width="9.513" height="17.37" viewBox="0 0 9.513 17.37">
-                    <path id="Path_3" data-name="Path 3" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-10051.731 -8681.662)" fill="none" stroke="#31231e" stroke-width="1.5" />
+                    <path id="Path_3" data-name="Path 3" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-10051.731 -8681.662)" fill="none" stroke="#31231e" strokeWidth="1.5" />
                 </svg>
             </Wrapper>
         </>

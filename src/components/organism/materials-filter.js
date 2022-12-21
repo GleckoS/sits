@@ -272,7 +272,7 @@ const Filter = styled.div`
 
    .label{
         padding: 22px;
-        margin: 22px -22px 0 -22px;
+        margin: 12px -22px 0 -22px;
         cursor: pointer;
 
         
