@@ -89,6 +89,7 @@ export default function Cookies() {
     const [isActive, setIsActive] = useState(true)
 
     if (!isActive) {
+        scrollLock.disable('cookie')
         return null
     }
 
