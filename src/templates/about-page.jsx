@@ -1,5 +1,9 @@
 import { graphql } from "gatsby"
 import React from "react"
+import Grid from "../components/sections/about-grid"
+import TwoColumnFlex from "../components/sections/about-two-column-flex"
+import TwoColumnGray from "../components/sections/about-two-column-flex-gray"
+import Hero from "../components/sections/hero-about"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -65,10 +69,13 @@ export function Head() {
     )
 }
 
-export default function AboutPage({ data, pageContext, location }) {
+export default function AboutPage({ data: { wpPage: { aboutUs } }, pageContext, location }) {
     return (
         <main>
-            <h1>About</h1>
+            <Hero data={aboutUs.heroSection} />
+            <Grid data={aboutUs.gridSection}/>
+            <TwoColumnFlex data={aboutUs.twoColumnFlex}/>
+            <TwoColumnGray data={aboutUs.twoColumnFlexWithGrayBackground}/>
         </main>
     )
 }
@@ -76,7 +83,62 @@ export default function AboutPage({ data, pageContext, location }) {
 export const query = graphql`
     query about($id: String!) {
         wpPage(id: {eq: $id}){
-            id
+            aboutUs {
+              heroSection {
+                pageTitle
+                backgroundImage {
+                  altText
+                  localFile{
+                    childImageSharp{
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              gridSection {
+                tekstUnderTitle
+                sectionTitle
+                imageUnderText {
+                  altText
+                  localFile{
+                    childImageSharp{
+                      gatsbyImageData
+                    }
+                  }
+                }
+                imageOnTheRight {
+                  altText
+                  localFile{
+                    childImageSharp{
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              twoColumnFlex {
+                textUnderTitle
+                sectionTitle
+                imageOnTheLeft {
+                  altText
+                  localFile{
+                    childImageSharp{
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              twoColumnFlexWithGrayBackground {
+                textOnTheRight
+                imageOnTheLeft {
+                  altText
+                  localFile{
+                    childImageSharp{
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
         }
     }
 `

@@ -1,5 +1,9 @@
 import { graphql } from "gatsby"
 import React from "react"
+import TwoColumnFlex from "../components/sections/conscious-two-column-flex"
+import Grid from "../components/sections/consious-grid"
+import Hero from "../components/sections/hero-conscious"
+import Map from "../components/sections/map"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 
@@ -65,10 +69,15 @@ export function Head() {
     )
 }
 
-export default function ConsciousPage({ data, pageContext, location }) {
+export default function ConsciousPage({ data: { wpPage: { conscious } }, pageContext, location }) {
     return (
         <main>
-            <h1>Conscious</h1>
+            <Hero data={conscious.heroSectionConscious} />
+            <TwoColumnFlex data={conscious.twoColumnFlexConscious} />
+            <TwoColumnFlex alt={true} data={conscious.twoColumnFlexConsciousSecond} />
+            <Grid data={conscious.gridSectionConsious} />
+            <TwoColumnFlex alt={true} data={conscious.twoColumnFlexConsciousThird} />
+            <Map />
         </main>
     )
 }
@@ -76,7 +85,84 @@ export default function ConsciousPage({ data, pageContext, location }) {
 export const query = graphql`
     query conscious($id: String!) {
         wpPage(id: {eq: $id}){
-            id
+            conscious {
+              heroSectionConscious {
+                pageTitle
+                backgroundVideo {
+                  altText
+                  localFile {
+                    publicURL
+                  }
+                }
+                backgroundImage {
+                  altText
+                  localFile {
+                    publicURL
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              gridSectionConsious{
+                sectionTitle
+                textUnderTitle
+                imageOnTheLeft{
+                    altText
+                    localFile {
+                      publicURL
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                }
+                imageUnderSection{
+                    altText
+                    localFile {
+                      publicURL
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                }
+              }
+              twoColumnFlexConscious {
+                sectionTitle
+                textUnderTitle
+                imageOnTheLeftSide {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              twoColumnFlexConsciousSecond {
+                sectionTitle
+                textUnderTitle
+                imageOnTheLeftSide {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+              twoColumnFlexConsciousThird {
+                sectionTitle
+                textUnderTitle
+                imageOnTheLeftSide {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+              }
+            }
         }
     }
 `
