@@ -208,7 +208,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
         if (sort === 'Popular') {
             let filtrArr = []
             arr.forEach(el => {
-                if (el.products.collection.collections.generalCollectionInformation.isPopular) {
+                if (el.products?.collection?.collections?.generalCollectionInformation?.isPopular) {
                     filtrArr.unshift(el)
                 } else {
                     filtrArr.push(el)
