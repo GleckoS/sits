@@ -65,14 +65,13 @@ export default function Seo({ seo }) {
                         "name": "Sits",
                         "mainEntityOfPage": siteUrl,
                         "url": siteUrl,
-                        // "sameAs": [
-                        //     "https://twitter.com/{name}",
-                        //     "https://facebook.com/{name}",
-                        //     "https://www.linkedin.com/company/{name}",
-                        //     "https://www.github.com/{name}",
-                        //     "https://www.dribbble.com/{name}",
-                        //     "https://www.behance.net/{name}"
-                        // ],
+                        "sameAs": [
+                            "https://www.instagram.com/sits_furniture/",
+                            "https://www.youtube.com/channel/UCrrbGKeNadbEzjNtwEQeazA",
+                            "https://pl.pinterest.com/sitseu/",
+                            "https://twitter.com/sitseu",
+                            "https://www.facebook.com/sitseu/"
+                        ],
                         "email": "sits@sits.eu",
                         "contactPoint": {
                             "@type": "ContactPoint",
