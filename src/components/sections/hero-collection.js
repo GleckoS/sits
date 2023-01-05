@@ -6,6 +6,7 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from "../atoms/category"
 import { Container } from "../atoms/container"
 import { DownloadWithArrow } from "../atoms/download-with-arrow"
+import { TooltipPopup } from "../moleculas/inform-with-tolltip-popup"
 import { Tooltip } from "../moleculas/inform-with-tooltip"
 import { PopupButton } from "../organism/pop-up-other-collection-data"
 import { TwoColumnImageGrid } from "../organism/two-column-image-grid"
@@ -34,7 +35,6 @@ export default function Hero({
             }
         }
     } }) {
-
     return (
         <Wrapper>
             <Container>
@@ -60,7 +60,7 @@ export default function Hero({
                             ? <Tooltip title={upholsterysText['en']} data={upholsterys} />
                             : null}
                         {comfort.nodes.length
-                            ? <Tooltip title={confortText['en']} data={comfort} />
+                            ? <TooltipPopup title={confortText['en']} data={comfort} />
                             : null}
                         {covers.nodes.length
                             ? <Tooltip title={coversText['en']} data={covers} />

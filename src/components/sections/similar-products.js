@@ -20,7 +20,9 @@ export default function SimilarProducts({ isLast, materials, title, data }) {
                             return inEl.productsImages?.map((imageEl, index) => {
                                 if (imageEl.isMainImage && !isOnePostRendered) {
                                     isOnePostRendered = true
-                                    return <Item key={inEl.popupNames.model + index}><ProductCard model={inEl.popupNames.model} types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} /></Item>
+                                    return <Item key={inEl.popupNames.model + index}>
+                                        <ProductCard threeColumn={true} model={inEl.popupNames.model} types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} />
+                                    </Item>
                                 }
                                 return null
                             })

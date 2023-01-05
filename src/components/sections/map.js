@@ -7,6 +7,7 @@ import { csvParser } from './../../helpers/csvParser'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
 import * as L from "leaflet"
 import MapMarker from './../../../static/MapMarker.svg'
+import MapMarkerChosen from './../../../static/MapMarkerChosen.svg'
 // import { FullscreenControl } from "react-leaflet-fullscreen";
 require('react-leaflet-markercluster/dist/styles.min.css')
 
@@ -26,8 +27,22 @@ const buttonTitle = {
     en: 'WEBSITE'
 }
 let iconPerson
+let chosenIcon
 
 if (typeof window !== 'undefined') {
+
+    chosenIcon = new L.Icon({
+        iconUrl: MapMarkerChosen,
+        iconRetinaUrl: MapMarkerChosen,
+        shadowUrl: null,
+        shadowSize: null,
+        shadowAnchor: null,
+        iconSize: [27, 36],
+        iconAnchor: [13.5, 36],
+        popupAnchor: [0, -36],
+        className: ''
+    });
+
     iconPerson = new L.Icon({
         iconUrl: MapMarker,
         iconRetinaUrl: MapMarker,
@@ -106,6 +121,7 @@ export default function Map() {
 
     return (
         <Wrapper>
+            <a className="no-focus" href="#footer" aria-label='skip link to footer' />
             <Container>
                 <Content>
                     <Title>{retailersTitle['en']}</Title>
@@ -129,7 +145,7 @@ export default function Map() {
                                         <p className="">{el['Shop name']}</p>
                                         <p className="l">{el.Address}</p>
                                         <p className="l">{el.City}, {el.Country}</p>
-                                        <p className="l">{el.Phone}</p>
+                                        <a href={'tel:' + el.Phone} className="l">{el.Phone}</a>
                                         {(el.Website && el.Website !== ' ') && <a className="link" rel='noopener noreferrer' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
                                     </Item>
                                 )
@@ -146,7 +162,7 @@ export default function Map() {
                             {filtredRetailers?.map((el, index) => (
                                 <Marker
                                     key={index}
-                                    icon={iconPerson}
+                                    icon={activeDot === index ? chosenIcon : iconPerson}
                                     position={[el.Latitude, el.Longitude]}
                                     eventHandlers={{
                                         click: () => { markerClick(index) },
@@ -226,7 +242,7 @@ const Item = styled.button`
 
     @media (max-width: 1024px){
         padding-bottom: 20px;
-        margin-bottom: 20px;
+        padding-top: 20px;
     }
 `
 
@@ -254,6 +270,7 @@ const InputWrapper = styled.div`
 `
 
 const Wrapper = styled.section`
+    position: relative;
     padding: 45px 0;
     background-color: #FBFAF7;
     margin-bottom: -120px;

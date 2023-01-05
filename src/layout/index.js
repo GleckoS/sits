@@ -16,7 +16,9 @@ export default function Layout({ children }) {
             <Global />
             <Cookies />
             <Header />
-            {children}
+            <div id='main'>
+                {children}
+            </div>
             <Footer />
         </Wrapper>
     )

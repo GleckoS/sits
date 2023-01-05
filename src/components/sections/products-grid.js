@@ -22,32 +22,32 @@ export default function ProductGrid({ title, data: {
                 {text && <p className="text">{text}</p>}
             </Container>
             <Grid>
-                <Item className="first">
-                    <Link to={firstLink.url} target={firstLink.target ? firstLink.target : null}>{firstLink.title}</Link>
+                <Item to={firstLink.url} target={firstLink.target ? firstLink.target : null} className="first">
+                    <p >{firstLink.title}</p>
                     <GatsbyImage image={firstImage.localFile.childImageSharp.gatsbyImageData} alt={firstImage.altText} />
                 </Item>
-                <Item className="second">
-                    <Link to={secondLink.url} target={secondLink.target ? secondLink.target : null}>{secondLink.title}</Link>
+                <Item to={secondLink.url} target={secondLink.target ? secondLink.target : null} className="second">
+                    <p >{secondLink.title}</p>
                     <GatsbyImage image={secondImage.localFile.childImageSharp.gatsbyImageData} alt={secondImage.altText} />
                 </Item>
-                <Item className="third">
-                    <Link to={thirdLink.url} target={thirdLink.target ? thirdLink.target : null}>{thirdLink.title}</Link>
+                <Item to={thirdLink.url} target={thirdLink.target ? thirdLink.target : null} className="third">
+                    <p >{thirdLink.title}</p>
                     <GatsbyImage image={thirdImage.localFile.childImageSharp.gatsbyImageData} alt={thirdImage.altText} />
                 </Item>
-                <Item className="fourth">
-                    <Link to={fourthLink.url} target={fourthLink.target ? fourthLink.target : null}>{fourthLink.title}</Link>
+                <Item to={fourthLink.url} target={fourthLink.target ? fourthLink.target : null} className="fourth">
+                    <p >{fourthLink.title}</p>
                     <GatsbyImage image={fourthImage.localFile.childImageSharp.gatsbyImageData} alt={fourthImage.altText} />
                 </Item>
-                <Item className="sixth">
-                    <Link to={sixthLink.url} target={sixthLink.target ? sixthLink.target : null}>{sixthLink.title}</Link>
+                <Item to={sixthLink.url} target={sixthLink.target ? sixthLink.target : null} className="sixth">
+                    <p >{sixthLink.title}</p>
                     <GatsbyImage image={sixthImage.localFile.childImageSharp.gatsbyImageData} alt={sixthImage.altText} />
                 </Item>
-                <Item className="seventh">
-                    <Link to={seventhLink.url} target={seventhLink.target ? seventhLink.target : null}>{seventhLink.title}</Link>
+                <Item to={seventhLink.url} target={seventhLink.target ? seventhLink.target : null} className="seventh">
+                    <p >{seventhLink.title}</p>
                     <GatsbyImage image={seventhImage.localFile.childImageSharp.gatsbyImageData} alt={seventhImage.altText} />
                 </Item>
-                <Item className="eights">
-                    <Link to={eightsLink.url} target={eightsLink.target ? eightsLink.target : null}>{eightsLink.title}</Link>
+                <Item to={eightsLink.url} target={eightsLink.target ? eightsLink.target : null} className="eights">
+                    <p >{eightsLink.title}</p>
                     <GatsbyImage image={eightsImage.localFile.childImageSharp.gatsbyImageData} alt={eightsImage.altText} />
                 </Item>
             </Grid>
@@ -134,13 +134,14 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled.div`
+const Item = styled(Link)`
     position: relative;
+    display: block;
     background: #000;
     overflow: hidden;
 
     &:hover{
-        a{
+        p{
             transform: scale(1.2);
             background-color: #00000030;
         }
@@ -149,7 +150,7 @@ const Item = styled.div`
         }
     }
 
-    a{
+    p{
         position: absolute;
         left: 0;
         right: 0;

@@ -17,7 +17,7 @@ const right = [
 
 export default function Footer() {
     return (
-        <Wrapper>
+        <Wrapper id='footer'>
             <BottomPart>
                 <Container className="container">
                     <Menu>

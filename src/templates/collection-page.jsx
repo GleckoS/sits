@@ -339,7 +339,14 @@ export const query = graphql`
             comfort {
               nodes {
                 name
+                description
                 taxonomy {
+                  comfortSvg{
+                    altText
+                    localFile{
+                      publicURL
+                    }
+                  }
                   tooltip
                   image {
                     altText

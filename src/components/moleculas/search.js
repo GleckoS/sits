@@ -7,12 +7,12 @@ const searchTitle = {
     en: 'Search'
 }
 
-export const Search = ({ type }) => {
+export const Search = ({ tabIndex=0, type }) => {
     return (
-        <Wrapper className={type === 'extended' ? 'extended' : ''}>
+        <Wrapper  className={type === 'extended' ? 'extended' : ''}>
             {type === 'extended'
-                ? <InputExt placeholder={searchTitle['en']} />
-                : <Input placeholder={searchTitle['en']} />}
+                ? <InputExt tabIndex={tabIndex} placeholder={searchTitle['en']} />
+                : <Input tabIndex={tabIndex} placeholder={searchTitle['en']} />}
 
         </Wrapper>
     )

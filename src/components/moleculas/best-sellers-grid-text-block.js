@@ -6,7 +6,7 @@ export const TextBlock = ({ title, description, slug }) => (
     <Wrapper className="t">
         <h2 className="title">{title}</h2>
         <div className="text" dangerouslySetInnerHTML={{ __html: description }}></div>
-        <Link className="link" to={'/' + slug + '/'}>EXPLORE</Link>
+        <Link className="link" to={'/collection/' + slug + '/'}>EXPLORE</Link>
     </Wrapper>
 )
 

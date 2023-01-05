@@ -85,26 +85,26 @@ export default function Header() {
 
     return (
         <>
-            <Overlay onClick={() => { setLeftMenuOpened(false); setRightMenuOpened(false) }} className={isLeftMenuOpened || isRightMenuOpened ? 'visible' : ''} />
-            <LeftMenu className={isLeftMenuOpened ? 'active' : ''}>
-                <Flex>
-                    <b>{furnitureTitle['en']}</b>
-                    <CloseButton as='button' func={setLeftMenuOpened} val={false} />
-                </Flex>
-                <MenuContent>
-                    <Search />
-                    {linksLeft['en'].map(el => (
-                        <React.Fragment key={el.name}>
-                            <Item el={el} func={(v) => { setLeftMenuOpened(v) }} />
-                        </React.Fragment>
-                    ))}
-                </MenuContent>
-            </LeftMenu>
             <Wrapper>
+                <a className="no-focus" href="#main" aria-label='skip link to main content' />
                 <Container className="container">
                     <Button className="control-desctop" onClick={() => { setLeftMenuOpened(true); setRightMenuOpened(false) }}>
                         {furnitureTitle['en']}
                     </Button>
+                    <LeftMenu className={isLeftMenuOpened ? 'active' : ''}>
+                        <Flex>
+                            <b>{furnitureTitle['en']}</b>
+                            <CloseButton tabIndex={isLeftMenuOpened ? '0' : '-1'} as='button' func={setLeftMenuOpened} val={false} />
+                        </Flex>
+                        <MenuContent>
+                            <Search tabIndex={isLeftMenuOpened ? '0' : '-1'} />
+                            {linksLeft['en'].map((el, index) => (
+                                <React.Fragment key={el.name}>
+                                    <Item onBlur={() =>  index === linksLeft['en'].length - 1 ? setLeftMenuOpened() : null}  tabIndex={isLeftMenuOpened ? '0' : '-1'} el={el} func={(v) => { setLeftMenuOpened(v) }} />
+                                </React.Fragment>
+                            ))}
+                        </MenuContent>
+                    </LeftMenu>
                     <Link aria-label='homepage link' to='/'>
                         <svg xmlns="http://www.w3.org/2000/svg" width="133.17" height="41.5" viewBox="0 0 133.17 41.5">
                             <path id="SITS_Logo_black" d="M119.219,41.456c4.665,0,13.951-.748,13.951-10.474,0-8.89-3.829-15.4-14.479-15.4H104.52c-2.685,0-3.477-.66-3.477-1.848,0-1.76,1.188-3.389,4.049-3.389h12.234a1.616,1.616,0,0,0,1.628-1.584V1.584A1.629,1.629,0,0,0,117.415,0H105.092C94.97,0,90.613,5.9,90.613,15.4c0,2.112,0,10.518,13.951,10.518h14.171c3.257,0,4.049,1.848,4.049,3.345,0,1.144-.792,1.848-3.125,1.848H93.782A1.578,1.578,0,0,0,92.2,32.7v7.217A1.578,1.578,0,0,0,93.782,41.5h25.437Zm-44.052,0c-8.23,0-12.41-4.665-12.41-14.215V1.276A1.594,1.594,0,0,1,64.34,0h7.173a1.588,1.588,0,0,1,1.628,1.584v9.242H81.68a1.578,1.578,0,0,1,1.584,1.584v7.217a1.578,1.578,0,0,1-1.584,1.584H73.142v6.381c0,2.9,1.056,3.521,2.024,3.521H86.389A1.588,1.588,0,0,1,88.017,32.7v7.217A1.588,1.588,0,0,1,86.389,41.5H75.166Zm-28.429-1.54A1.578,1.578,0,0,0,48.321,41.5h7.217a1.578,1.578,0,0,0,1.584-1.584V1.584A1.578,1.578,0,0,0,55.539,0H48.321a1.578,1.578,0,0,0-1.584,1.584ZM28.65,41.456c4.665,0,13.951-.748,13.951-10.474,0-8.89-3.829-15.4-14.479-15.4H13.951c-2.685,0-3.477-.66-3.477-1.848,0-1.76,1.188-3.389,4.049-3.389H26.757a1.616,1.616,0,0,0,1.628-1.584V1.584A1.629,1.629,0,0,0,26.845,0H14.523C4.357,0,0,5.9,0,15.4c0,2.112,0,10.518,13.951,10.518H28.121c3.257,0,4.049,1.848,4.049,3.345,0,1.144-.792,1.848-3.125,1.848H3.125A1.578,1.578,0,0,0,1.54,32.7v7.217A1.578,1.578,0,0,0,3.125,41.5H28.65Z" fill="#bababa" />
@@ -116,46 +116,47 @@ export default function Header() {
                             {companyTitle['en']}
                         </Button>
                     </div>
+                    <RightMenu className={isRightMenuOpened ? 'active' : ''}>
+                        <Flex >
+                            <CloseButton tabIndex={isRightMenuOpened ? '0' : '-1'} as='button' func={setRightMenuOpened} val={false} />
+                            <b>{companyTitle['en']}</b>
+                        </Flex>
+                        <MenuContent className="reverse">
+                            {linksRight['en'].map((el, index) => (
+                                <React.Fragment key={el.name}>
+                                    <Item onBlur={() =>  index === linksRight['en'].length - 1 ? setRightMenuOpened() : null} tabIndex={isRightMenuOpened ? '0' : '-1'} el={el} func={(v) => { setRightMenuOpened(v) }} />
+                                </React.Fragment>
+                            ))}
+                        </MenuContent>
+                    </RightMenu>
                     <Burger aria-label='burger button' className={isMobileMenuOpened ? 'open control-mobile' : "control-mobile"} onClick={() => { setMobileMenuOpened(!isMobileMenuOpened) }}>
                         <span />
                     </Burger>
+                    <MobileMenu className={isMobileMenuOpened ? 'active' : ''}>
+                        <Container className="content">
+                            <Search tabIndex={isMobileMenuOpened ? '0' : '-1'} />
+                            <div className="wrap">
+                                {linksLeft['en'].map(el => (
+                                    <React.Fragment key={el.name}>
+                                        <Item tabIndex={isMobileMenuOpened ? '0' : '-1'} el={el} func={(v) => { setMobileMenuOpened(v) }} />
+                                    </React.Fragment>
+                                ))}
+                            </div>
+                            <div className="wrap">
+                                {linksRight['en'].map(el => (
+                                    <React.Fragment key={el.name}>
+                                        <Item tabIndex={isMobileMenuOpened ? '0' : '-1'} el={el} func={(v) => { setMobileMenuOpened(v) }} />
+                                    </React.Fragment>
+                                ))}
+                            </div>
+                            <div className="wrap">
+                                <LangChanger onblur={() => { setMobileMenuOpened(false) }} tabIndex={isMobileMenuOpened ? '0' : '-1'} />
+                            </div>
+                        </Container>
+                    </MobileMenu>
+                    <Overlay onClick={() => { setLeftMenuOpened(false); setRightMenuOpened(false) }} className={isLeftMenuOpened || isRightMenuOpened ? 'visible' : ''} />
                 </Container>
             </Wrapper>
-            <RightMenu className={isRightMenuOpened ? 'active' : ''}>
-                <Flex >
-                    <CloseButton as='button' func={setRightMenuOpened} val={false} />
-                    <b>{companyTitle['en']}</b>
-                </Flex>
-                <MenuContent className="reverse">
-                    {linksRight['en'].map(el => (
-                        <React.Fragment key={el.name}>
-                            <Item el={el} func={(v) => { setRightMenuOpened(v) }} />
-                        </React.Fragment>
-                    ))}
-                </MenuContent>
-            </RightMenu>
-            <MobileMenu className={isMobileMenuOpened ? 'active' : ''}>
-                <Container className="content">
-                    <Search />
-                    <div className="wrap">
-                        {linksLeft['en'].map(el => (
-                            <React.Fragment key={el.name}>
-                                <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
-                            </React.Fragment>
-                        ))}
-                    </div>
-                    <div className="wrap">
-                        {linksRight['en'].map(el => (
-                            <React.Fragment key={el.name}>
-                                <Item el={el} func={(v) => { setMobileMenuOpened(v) }} />
-                            </React.Fragment>
-                        ))}
-                    </div>
-                    <div className="wrap">
-                        <LangChanger />
-                    </div>
-                </Container>
-            </MobileMenu>
         </>
     )
 }
@@ -375,6 +376,7 @@ const Button = styled.button`
     border: none;
     background-color: transparent;
     cursor: pointer;
+    width: fit-content;
 
     display: inline-flex;
     align-items: center;

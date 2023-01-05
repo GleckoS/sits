@@ -1,8 +1,8 @@
 import { Link } from "gatsby"
 import React from "react"
 
-export const Item = ({el, func}) => (
-    <Link className="item" onClick={() => { func(false) }} to={el.url}>
+export const Item = ({ onBlur, tabIndex = 0, el, func }) => (
+    <Link onBlur={onBlur} tabIndex={tabIndex} className="item" onClick={() => { func(false) }} to={el.url}>
         {el.name}
         {el.icon === 'out' && (
             <svg xmlns="http://www.w3.org/2000/svg" width="19.045" height="19.045" viewBox="0 0 19.045 19.045">

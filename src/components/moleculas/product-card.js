@@ -5,12 +5,12 @@ import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from './../atoms/category'
 
-export const ProductCard = ({ rerender = false, model, data, types, image }) => (
+export const ProductCard = ({ threeColumn, rerender = false, model, data, types, image }) => (
     <Wrapper>
         <AddToFauvorite rerender={rerender} type={'products'} title={model} />
         <Link className="link" to={'/collection/' + data.slug + '/'}>
             <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
-            <Flex>
+            <Flex className={threeColumn ? 'three-column' : ''}>
                 <span className="archive-title">{data.title}</span>
                 <Categories>
                     {types?.map(el => (
@@ -64,6 +64,11 @@ const Flex = styled.div`
     gap: 16px;
     flex-wrap: wrap;
     padding: 0 20px 0 20px;
+
+    &.three-column{
+        flex-direction: column;
+        align-items: flex-start;
+    }
 
     @media (max-width: 1194px) {
         padding: 0;

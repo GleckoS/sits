@@ -93,9 +93,20 @@ export const Global = createGlobalStyle`
         text-underline-offset: 6px;
         text-decoration-thickness: 1px !important;
     }
+    
+    .no-focus {
+        position: absolute;
+        opacity: 0;
+        left: 0;
+        top: 0;
+    }
 
     *:focus{
         outline: none;
+    }
+
+    *:focus-visible{
+        outline: 2px solid var(--color-brown);
     }
 
     .Toastify__toast {

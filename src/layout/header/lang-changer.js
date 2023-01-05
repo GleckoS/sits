@@ -1,8 +1,8 @@
 import React from "react"
 import styled from "styled-components"
 
-export const LangChanger = () => (
-    <Button>
+export const LangChanger = ({ onblur = () => null, tabIndex = 0 }) => (
+    <Button onBlur={onblur} tabIndex={tabIndex}>
         Select your country
         <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19">
             <g id="Group_551" data-name="Group 551" transform="translate(-190 -981)">

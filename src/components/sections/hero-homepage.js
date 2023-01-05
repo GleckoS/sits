@@ -23,6 +23,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
 const Wrapper = styled.section`
     position: relative;
     overflow: hidden;
+    max-height: calc(100vh - 94px);
     .background{
         max-width: 100%;
         min-width: 964px;

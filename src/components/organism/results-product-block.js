@@ -11,9 +11,13 @@ export const ResultProductBlock = ({ rerender, count, setCount, prefiltredArr, s
         let arr = prefiltredArr.nodes
         if (searchValue) {
             arr = arr.filter(el => {
-                const filterByTitle = el.products.collection.title.toLowerCase().includes(searchValue.toLowerCase())
+                let filterByTitle = false
                 let filterByName = false
                 let filtredByType = false
+
+                if (el.products.collection) {
+                    filterByTitle = el.products.collection.title.toLowerCase().includes(searchValue.toLowerCase())
+                } 
 
                 el.products.productGallery?.forEach(el => {
                     if (el.popupNames.model.toLowerCase().includes(searchValue.toLowerCase())) {
