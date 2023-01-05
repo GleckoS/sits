@@ -203,7 +203,6 @@ const Wrapper = styled.header`
         gap: 10px;
         align-items: center;
         width: fit-content;
-        margin-left: auto;
     }
 
     .control-mobile{

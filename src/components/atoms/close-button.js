@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-export const CloseButton = ({tabIndex = 0,  as, func, val }) => (
+export const CloseButton = ({ tabIndex = 0, as, func, val }) => (
     <Button tabIndex={tabIndex} aria-label='close button' as={as} onClick={() => {
         if (as) {
             func(val)

@@ -33,7 +33,7 @@ export const FilterComponent = ({
         <MobileFilters className={isMobileFilterOpened ? 'active' : ''}>
             <Flex>
                 <b>{filterTitle}</b>
-                <CloseButton func={setMobileFilterOpened} val={false} />
+                <CloseButton as='button' func={setMobileFilterOpened} val={false} />
             </Flex>
             <FilterBlock>
                 <span>{sortByTitle}</span>

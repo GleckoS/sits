@@ -95,18 +95,6 @@ const Label = styled.label`
         padding: 0 2px 2px 0;
         margin: 0 6px 0 0;
         transition: width .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-
-        &:focus{
-            width: 150px;
-
-            @media (max-width: 370px) {
-                width: 120px;
-            }
-
-            @media (max-width: 320px) {
-                width: 100px;
-            }
-        }
     }
 
     @media (max-width: 480px) {

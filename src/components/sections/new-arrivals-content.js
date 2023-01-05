@@ -57,6 +57,10 @@ const Wrapper = styled.section`
             padding: clamp(20px, ${75 / 1194 * 100}vw, 110px) 24px clamp(45px, ${75 / 1194 * 100}vw, 110px) 24px;
         }
     }
+
+    .button{
+        margin-top: 30px;
+    }
 `
 
 const List = styled.div`
