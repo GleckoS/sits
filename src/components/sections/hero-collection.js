@@ -81,7 +81,7 @@ export default function Hero({
                                     : null}
                             </Popups>
                             : null}
-                        <Link className="yellow-button" to='/where-to-buy/'>Find retailers</Link>
+                        <Link className="yellow-button" to='/where-to-buy/' target='_blank'>Find retailers</Link>
                     </div>
                 </Grid>
             </Container>

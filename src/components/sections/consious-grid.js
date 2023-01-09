@@ -102,6 +102,9 @@ const Wrapper = styled.section`
             display: grid;
             grid-gap: clamp(16px, ${24 / 1194 * 100}vw, 24px);
             margin-top: clamp(26px, ${40 / 1194 * 100}vw, 40px);
+            a{
+                text-decoration: underline;
+            }
             *{
                 font-size: clamp(16px, ${24 / 1194 * 100}vw, 24px);
                 font-weight: 300;

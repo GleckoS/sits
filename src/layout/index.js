@@ -14,7 +14,7 @@ export default function Layout({ children }) {
         <Wrapper>
             <ToastContainer />
             <Global />
-            <Cookies />
+            {/* <Cookies /> */}
             <Header />
             <div id='main'>
                 {children}

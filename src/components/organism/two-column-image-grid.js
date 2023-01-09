@@ -142,7 +142,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
 
     const [mouseMoved, setMouseMoved] = useState(false)
 
-    const handleClick = () => {
+    const handleClick = (collectionPagePreviewImage) => {
         if (!mouseMoved) {
             setPopUpOpened(collectionPagePreviewImage.title)
         }
@@ -182,7 +182,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                             aria-label='open pop-up with images'
                             onMouseMove={() => setMouseMoved(true)}
                             onMouseDown={() => setMouseMoved(false)}
-                            onMouseUp={() => handleClick()}
+                            onMouseUp={() => handleClick(collectionPagePreviewImage)}
                         >
                             <GatsbyImage className="image" image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
                             <span className="in">
@@ -201,7 +201,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                             aria-label='open pop-up with images'
                             onMouseMove={() => setMouseMoved(true)}
                             onMouseDown={() => setMouseMoved(false)}
-                            onMouseUp={() => handleClick()}
+                            onMouseUp={() => handleClick(el)}
                         >
                             <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                             <span className="in">
@@ -412,7 +412,7 @@ const ImagesGrid = styled.div`
 
 const PopupGrid = styled.div`
     display: grid;
-    grid-gap: 80px;
+    grid-gap: clamp(40px, ${80/768*100}vw, 80px);
 
     
 `

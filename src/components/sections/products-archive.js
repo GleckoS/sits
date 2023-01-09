@@ -165,24 +165,12 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                 return isAccessed
             })
         }
-        if (cover !== 'All') {
-            arr = arr.filter(el => {
-                let isAccessed = false
-                el.products.collection.covers?.nodes?.forEach(inEl => {
-                    if (inEl.name === cover) {
-                        isAccessed = true
-                    }
-                })
-                return isAccessed
-            })
-        }
         if (upholsterys !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.products.collection.upholsterys?.nodes?.forEach(inEl => {
-                    debugger
                     if (cover === 'Removable') {
-
+                        debugger
                         if (upholsterys === 'Leather' && inEl.name === 'Leather') {
                             isAccessed = true
                         } else if (upholsterys === 'Fabric' && inEl.name.includes(upholsterys)) {
@@ -190,14 +178,24 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                         }
 
                     } else if (cover === 'Fixed') {
-
-                        if (upholsterys === 'Leather' && inEl.name === 'Leather only in fixed cover') {
+                        if (upholsterys === 'Leather' && (inEl.name === 'Leather only in fixed cover' || inEl.name === 'Leather')) {
                             isAccessed = true
                         } else if (upholsterys === 'Fabric' && inEl.name.includes(upholsterys)) {
                             isAccessed = true
                         }
 
                     } else if (inEl.name.includes(upholsterys)) {
+                        isAccessed = true
+                    }
+                })
+                return isAccessed
+            })
+        }
+        if (cover !== 'All') {
+            arr = arr.filter(el => {
+                let isAccessed = false
+                el.products.collection.covers?.nodes?.forEach(inEl => {
+                    if (inEl.name === cover) {
                         isAccessed = true
                     }
                 })
@@ -309,12 +307,6 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             />
             <Container className="content-wrap">
                 <ActiveFilters>
-                    {cover !== 'All' && (
-                        <FilterItem onClick={() => { setCover('All') }}>
-                            {cover}
-                            <CloseButton />
-                        </FilterItem>
-                    )}
                     {type !== 'All' && (
                         <FilterItem onClick={() => { setType('All') }}>
                             {type}
@@ -324,6 +316,12 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                     {upholsterys !== 'All' && (
                         <FilterItem onClick={() => { setUpholsterys('All') }}>
                             {upholsterys}
+                            <CloseButton />
+                        </FilterItem>
+                    )}
+                    {cover !== 'All' && (
+                        <FilterItem onClick={() => { setCover('All') }}>
+                            {cover}
                             <CloseButton />
                         </FilterItem>
                     )}

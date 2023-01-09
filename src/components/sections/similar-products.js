@@ -64,7 +64,7 @@ const Grid = styled.div`
         grid-template-columns: 1fr 1fr;
         grid-gap: 12px;
     }
-    @media (max-width: 389px) {
+    @media (max-width: 420px) {
         grid-template-columns: 1fr;
     }
 `

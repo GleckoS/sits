@@ -37,7 +37,7 @@ export const FavouriteProductBlock = ({
 
   useEffect(() => {
     setCount(filtredArr.length)
-  }, [filtredArr])
+  }, [filtredArr, setCount])
 
   const [showCount, setShowCount] = useState(() => {
     if (typeof window !== 'undefined') {

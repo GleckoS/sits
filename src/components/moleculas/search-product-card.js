@@ -11,7 +11,7 @@ export const Card = ({ rerender, type='products', model, image, data: { title, s
             <Link to={'/collection/' + slug + '/'}>
                 <AddToFauvorite rerender={rerender} type={type} title={model} />
                 <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
-                <span>{title}</span>
+                <span>{model}</span>
             </Link>
         </Wrapper>
     )

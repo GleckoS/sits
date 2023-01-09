@@ -69,10 +69,10 @@ export const ResultMaterialBlock = ({ rerender, count, setCount, prefiltredArr, 
                 <h2>{title}</h2>
                 <ResultsGrid>
                     {filtredArr.map(el => {
-                        return el.arr.map(inEl => {
+                        return el.arr.map((inEl, index) => {
                             if (renderCount.current < showCount) {
                                 renderCount.current += 1
-                                return <Card rerender={rerender} colorId={inEl.colorId} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
+                                return <Card variant={index} rerender={rerender} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
                             }
                             return null
                         })

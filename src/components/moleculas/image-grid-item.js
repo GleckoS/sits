@@ -57,7 +57,6 @@ const Item = styled.div`
         margin: 0 auto;
         display: block;
         width: fit-content;
-        max-height: 722px;
     }
 `
 

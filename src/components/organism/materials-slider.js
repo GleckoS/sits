@@ -1,6 +1,7 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import styled from "styled-components"
+import AddToFauvorite from "../atoms/add-to-favourite"
 
 export const MaterialsSlider = ({ variant, variants }) => {
     const [choosenVariant, setChoosenVariant] = useState(() => {
@@ -14,6 +15,8 @@ export const MaterialsSlider = ({ variant, variants }) => {
         }
         return 0
     })
+
+
 
     const [newVariant, setNewVariant] = useState(choosenVariant)
 
@@ -35,6 +38,7 @@ export const MaterialsSlider = ({ variant, variants }) => {
                         if (index === choosenVariant || index === newVariant) {
                             return (
                                 <SliderContent key={el.landscapePreviewImage.altText + index} className={index === choosenVariant ? 'active' : ''}>
+                                    <AddToFauvorite type={'colors'} title={el.variantName} />
                                     <GatsbyImage className="image" image={el.landscapePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.landscapePreviewImage.altText} />
                                 </SliderContent>
                             )
@@ -88,6 +92,7 @@ const VariantCircle = styled.button`
     background-image: url(${props => props.image});
     width: 40px;
     height: 40px;
+    cursor: pointer;
 
     @media (max-width: 640px){
         width: 32px;
@@ -145,6 +150,10 @@ const VariantGallery = styled.div`
     .grid{
         columns: 2;
         column-gap: clamp(10px, ${10 / 1024 * 100}vw, 20px);
+
+        @media (max-width: 640px) {
+            columns: 1;
+        }
     }
 
     .image{
@@ -155,6 +164,25 @@ const VariantGallery = styled.div`
 const SliderWrapper = styled.div`
     position: relative;
     background-color: #777;
+
+    .hearth{
+        opacity: 0;
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 2;
+        transition: opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+        @media (max-width: 1024px) {
+            opacity: 1;
+        }
+    }
+
+    &:hover{
+        .hearth{
+            opacity: 1;
+        }
+    }
 
     @media (max-width: 640px) {
         margin: 0 -24px;
@@ -169,6 +197,7 @@ const SliderContent = styled.div`
     top: 0;
     bottom: 0;
     transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
 
     &.active{
         position: relative;

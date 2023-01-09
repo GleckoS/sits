@@ -58,7 +58,7 @@ const Wrapper = styled.div`
         grid-gap: 32px 12px;
     }
 
-    @media (max-width: 389px) {
+    @media (max-width: 420px) {
         grid-template-columns: 1fr;
     }
 `

@@ -264,7 +264,7 @@ const InputWrapper = styled.div`
         font-weight: 300;
     }
 
-    @media (max-width: 768px){
+    @media (max-width: 864px){
         margin-top: 16px;
     }
 `
@@ -330,12 +330,9 @@ const Content = styled.div`
             height: 600px;
         }
 
-        @media (max-width: 768px){
-            margin-top: 36px;
-        }
-
-        @media (max-width: 768px){
+        @media (max-width: 864px){
             height: 400px;
+            margin-top: 36px;
         }
 
         @media (max-width: 400px) {
@@ -343,7 +340,7 @@ const Content = styled.div`
         }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 864px) {
         grid-template-columns: 1fr;
         grid-template-rows: auto auto 1fr 1fr;
         grid-template-areas: 

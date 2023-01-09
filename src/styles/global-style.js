@@ -109,6 +109,10 @@ export const Global = createGlobalStyle`
         outline: 2px solid var(--color-brown);
     }
 
+    input:focus-visible{
+        outline: none;
+    }
+
     .Toastify__toast {
         background-color: var(--light-background) !important;
         color: var(--text-color) !important;

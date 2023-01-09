@@ -79,6 +79,7 @@ const coversTitle = {
 }
 
 export default function Material({ location, data: { wpMaterials }, pageContext }) {
+
   return (
     <main>
       <Hero isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video && !wpMaterials.materials.popularProductsUsingThisMaterial.productList} variant={location?.state?.variant} data={wpMaterials} />

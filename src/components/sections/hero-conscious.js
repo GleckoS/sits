@@ -25,6 +25,7 @@ export default function Hero({ data: { pageTitle, backgroundImage, backgroundVid
 const Wrapper = styled.section` 
     position: relative;
     overflow: hidden;
+    max-height: calc(100vh - 95px);
     .image{
         width: 100%;
         max-width: 1920px;

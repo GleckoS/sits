@@ -1,3 +1,4 @@
+import { graphql, useStaticQuery } from "gatsby"
 import React from "react"
 import { useState } from "react"
 import { useMemo } from "react"
@@ -14,15 +15,37 @@ const searchPlaceholder = {
 }
 
 
-export default function AssemblyInstructions({ data }) {
+export default function AssemblyInstructions() {
+
+    const { allWpCollection: { nodes } } = useStaticQuery(graphql`
+    query {
+        allWpCollection {
+            nodes {
+            title
+            collections {
+                generalCollectionInformation {
+                assemblyInstructionFiles {
+                    assemblyInstruction {
+                    altText
+                    title
+                    localFile {
+                        publicURL
+                    }
+                    }
+                }
+                }
+            }
+            }
+        }
+    }
+  `)
 
     const arr = useMemo(() => {
         const arr = []
 
-        data.forEach(el => {
-            let collectionLetter = el.asseblyCollectionName[0]
+        nodes.forEach(el => {
+            let collectionLetter = el.title[0]
             let isAlreadyCreated = null
-
             arr.every((inEl, index) => {
                 if (inEl.letter === collectionLetter) {
                     isAlreadyCreated = index
@@ -31,7 +54,11 @@ export default function AssemblyInstructions({ data }) {
                 return true
             })
 
-            if (isAlreadyCreated) {
+            if (!el.collections?.generalCollectionInformation?.assemblyInstructionFiles) {
+                return null
+            }
+
+            if (isAlreadyCreated !== null) {
                 arr[isAlreadyCreated].arr.push(el)
             } else {
                 arr.push({
@@ -40,9 +67,8 @@ export default function AssemblyInstructions({ data }) {
                 })
             }
         })
-
         return arr
-    }, [data])
+    }, [nodes])
 
     const [filtredArr, setFiltredArr] = useState(arr)
 
@@ -62,9 +88,22 @@ export default function AssemblyInstructions({ data }) {
                     arr: []
                 }
 
-                obj.arr = el.arr.filter(inEl => inEl.asseblyCollectionName.toLowerCase().includes(value.toLowerCase()))
+                el.arr.forEach(inEl => {
+                    if (inEl.title.toLowerCase().includes(value.toLowerCase())) {
+                        obj.arr.push(inEl)
+                    } else {
+                        let items = inEl.collections.generalCollectionInformation.assemblyInstructionFiles.filter(file => file.assemblyInstruction.title.toLowerCase().includes(value.toLowerCase()))
+                        if(items.length > 0){
+                            obj.arr.push({
+                                title: inEl.title,
+                                collections: { generalCollectionInformation: { assemblyInstructionFiles: items } }
+                            })
+                        }
+                    }
+                })
+
                 if (obj.arr.length > 0) {
-                    filtred.push(el)
+                    filtred.push(obj)
                 }
                 return null
             })
@@ -98,8 +137,10 @@ export default function AssemblyInstructions({ data }) {
                         <div className="flex">
                             {el.arr.map(el => (
                                 <div>
-                                    <span className="collection">{el.asseblyCollectionName}</span>
-                                    <File file={el.assemblyFile} />
+                                    <span className="collection">{el.title}</span>
+                                    {el.collections?.generalCollectionInformation?.assemblyInstructionFiles?.map(inEl => (
+                                        <File file={inEl.assemblyInstruction} />
+                                    ))}
                                 </div>
                             ))}
                         </div>
@@ -132,18 +173,6 @@ const Label = styled.label`
         padding: 0 2px 2px 0;
         margin: 0 6px 0 0;
         transition: width .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-
-        &:focus{
-            width: 150px;
-
-            @media (max-width: 370px) {
-                width: 120px;
-            }
-
-            @media (max-width: 320px) {
-                width: 100px;
-            }
-        }
     }
 
     @media (max-width: 480px) {
@@ -165,7 +194,7 @@ const Wrapper = styled.section`
 
     .flex{
         display: flex;
-        gap: 16px;
+        gap: 30px 50px;
         flex-wrap: wrap;
     }
 
@@ -187,5 +216,5 @@ const Wrapper = styled.section`
 `
 
 const Block = styled.div`
-
+    margin-top: 40px;
 `

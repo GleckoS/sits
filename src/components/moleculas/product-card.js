@@ -35,7 +35,6 @@ const Wrapper = styled.div`
     }
 
     .archive-title{
-        margin-top: 10px;
         font-size: clamp(23px, ${36 / 1194 * 100}vw, 36px);
         line-height: 110%;
         font-family: 'Ivy';
@@ -63,6 +62,7 @@ const Flex = styled.div`
     align-items: flex-end;
     gap: 16px;
     flex-wrap: wrap;
+    margin-top: 20px;
     padding: 0 20px 0 20px;
 
     &.three-column{

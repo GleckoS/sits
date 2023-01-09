@@ -77,7 +77,7 @@ export default function FurnitureCarePage({ data: { wpPage: { title, furnitureCa
             <Title title={title} />
             <Faq data={furnitureCare.faq} />
             <Handbook data={furnitureCare.handbook}/>
-            <AssemblyInstructions data={furnitureCare.assemblyInstructions}/> 
+            <AssemblyInstructions /> 
             <Map />
         </main>
     )
@@ -103,16 +103,6 @@ export const query = graphql`
                       publicURL
                     }
                   }
-                }
-              }
-              assemblyInstructions {
-                asseblyCollectionName
-                assemblyFile {
-                  altText
-                  localFile {
-                    publicURL
-                  }
-                  title
                 }
               }
             }

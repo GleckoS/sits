@@ -33,7 +33,7 @@ const linksRight = {
         { name: 'Sales Representative', url: '/sales-representative/' },
         { name: 'Where to Buy', url: '/where-to-buy/' },
         { name: 'Contact', url: '/contact/' },
-        { name: 'For Retailers', icon: 'out', url: 'https://sitsconnect.pl/' },
+        // { name: 'For Retailers', icon: 'out', url: 'https://sitsconnect.pl/' },
     ]
 }
 

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { getCookie, setCookie } from '../../helpers/coockie-manager'
 import { toast } from 'react-toastify'
+import { navigate } from 'gatsby'
 
 const removeMessage = {
   en: ' removed from My Favourites'
@@ -35,7 +36,7 @@ export default function AddToFauvorite({ rerender, type, title }) {
     } else {
       setCookie(type, cookie + title + '|')
       setIsActive(true)
-      toast(title + addMessage['en'])
+      toast(title + addMessage['en'], {onClick: () => {navigate('/favourite/')}})
     }
   }
 
@@ -88,13 +89,14 @@ const Button = styled.button`
   background-color: transparent;
   border: none;
   cursor: pointer;
-  transform: scale(1);
-  transition: transform 0.2s cubic-bezier(0.39, 0.575, 0.565, 1);
   width: 32px;
   height: 32px;
+  transform-origin: 50% 50%;
 
   &:hover {
-    transform: scale(1.1);
+    svg{
+      transform: scale(1.1);
+    }
   }
 
   &.active {
@@ -105,6 +107,7 @@ const Button = styled.button`
   }
 
   svg {
+  transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
     width: 28px;
     height: 26px;
 

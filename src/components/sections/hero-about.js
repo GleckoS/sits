@@ -18,6 +18,7 @@ const Wrapper = styled.section`
     position: relative;
     .image{
         min-height: 540px;
+        max-height: calc(100vh - 94px);
     }
     .container{
         position: absolute;

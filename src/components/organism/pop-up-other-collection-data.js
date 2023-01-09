@@ -86,7 +86,7 @@ const PopupGrid = styled.div`
     grid-template-columns: 1fr 1fr;
     grid-gap: 32px;
 
-    @media (max-width: 640px) {
+    @media (max-width: 1024px) {
         grid-template-columns: 1fr;
     }
 

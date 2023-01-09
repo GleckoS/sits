@@ -52,7 +52,7 @@ const Grid = styled.div`
         margin: 40px -12px 0 -12px;
     }
 
-    @media (max-width: 389px) {
+    @media (max-width: 420px) {
         grid-template-columns: 1fr;
         margin: 40px 0 0 0;
     }
