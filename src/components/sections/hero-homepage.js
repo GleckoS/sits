@@ -3,10 +3,11 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 
-export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage } }) {
+export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
+
     return (
         <Wrapper>
-            <GatsbyImage className="background image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+            <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
             <video className="background video" playsInline autoPlay muted loop poster={backgroundImage.localFile.publicURL} >
                 <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
             </video>
@@ -23,7 +24,14 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
 const Wrapper = styled.section`
     position: relative;
     overflow: hidden;
-    max-height: calc(100vh - 94px);
+    max-height: 100vh;
+    top: -95px;
+
+    @media (max-width: 1440px) {
+        max-height: calc(100vh - 95px);
+        top: unset;
+    }
+
     .background{
         max-width: 100%;
         min-width: 964px;
@@ -52,6 +60,9 @@ const Wrapper = styled.section`
         }
         .image{
             display: block;
+        }
+        .background{
+            min-width: unset;
         }
     }
     .content{

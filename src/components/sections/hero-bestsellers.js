@@ -131,6 +131,13 @@ const Video = styled.div`
 const Wrapper = styled.section`
     position: relative;
     overflow: hidden;
+    max-height: 100vh;
+    top: -95px;
+
+    @media (max-width: 1440px) {
+        max-height: calc(100vh - 95px);
+        top: unset;
+    }
     .background{
         max-width: 100%;
         min-width: 700px;

@@ -1,9 +1,36 @@
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { ProductCard } from "../moleculas/product-card"
 
 export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {
+    // const slickRef = useRef(null);
+    // var settings = {
+    //     infinite: true,
+    //     dots: true,
+    //     arrows: false,
+    //     slidesToShow: 1,
+    //     responsive: [
+    //         {
+    //             breakpoint: 768,
+    //             settings: {
+    //                 centerMode: true,
+    //                 centerPadding: "32px",
+    //                 infinite: false,
+    //                 dots: false,
+    //             }
+    //         },
+    //         {
+    //             breakpoint: 480,
+    //             settings: {
+    //                 centerMode: true,
+    //                 centerPadding: "24px",
+    //                 infinite: false,
+    //                 dots: false,
+    //             }
+    //         }
+    //     ]
+    // };
     return (
         <Wrapper className={mt ? 'nomargin' : ''}>
             <Container>

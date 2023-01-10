@@ -70,6 +70,14 @@ export const query = graphql`
               }
             }
             heroH {
+              backgroundImageMobile{
+                altText
+                localFile{
+                  childImageSharp{
+                    gatsbyImageData
+                  }
+                }
+              }
               backgroundVideo {
                 altText
                 localFile {
