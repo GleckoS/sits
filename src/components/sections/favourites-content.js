@@ -1,8 +1,7 @@
 import React from "react"
-import { useEffect } from "react"
 import { useState } from "react"
 import styled from "styled-components"
-import { getCookie, listenCookieChange } from "../../helpers/coockie-manager"
+import { getCookie } from "../../helpers/coockie-manager"
 import { Container } from "../atoms/container"
 import { FavouriteCollectionBlock } from "../organism/favourite-collection-block"
 import { FavouriteColorBlock } from "../organism/favourite-color-block"
@@ -42,20 +41,14 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
     const [coversItemCount, setCoversItemCount] = useState(0)
     const [colorsItemCount, setColorsItemCount] = useState(0)
 
-    useEffect(() => {
-        listenCookieChange(() => {
-            setFavourites({
-                collections: getCookie('collections'),
-                products: getCookie('products'),
-                materials: getCookie('materials'),
-                colors: getCookie('colors')
-            })
-        }, 100)
-
-        return () => {
-            listenCookieChange(null, null, true)
-        }
-    }, [])
+    const changeFavourites = () => {
+        setFavourites({
+            collections: getCookie('collections'),
+            products: getCookie('products'),
+            materials: getCookie('materials'),
+            colors: getCookie('colors')
+        })
+    }
 
     return (
         <Wrapper>
@@ -73,15 +66,15 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
                             <p dangerouslySetInnerHTML={{ __html: noResultMessage }}></p>
                         </NoResults>
                     )}
-                    <FavouriteCollectionBlock count={collectionsCount} setCount={setCollectionsCount} title={collectionsTitle} prefiltredArr={Collections} filter={favourites.collections} />
-                    <FavouriteProductBlock count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} filter={favourites.products} />
-                    <FavouriteProductBlock count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} filter={favourites.products} />
-                    <FavouriteProductBlock count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} filter={favourites.products} />
-                    <FavouriteProductBlock count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} filter={favourites.products} />
-                    <FavouriteProductBlock count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} filter={favourites.products} />
-                    <FavouriteProductBlock count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} filter={favourites.products} />
-                    <FavouriteMaterialBlock count={coversItemCount} setCount={setCoversItemCount} title={materialsTitle} prefiltredArr={Materials} filter={favourites.materials} />
-                    <FavouriteColorBlock count={colorsItemCount} setCount={setColorsItemCount} title={colorsTitle} prefiltredArr={Materials} filter={favourites.colors} />
+                    <FavouriteCollectionBlock setRerender={changeFavourites} count={collectionsCount} setCount={setCollectionsCount} title={collectionsTitle} prefiltredArr={Collections} filter={favourites.collections} />
+                    <FavouriteProductBlock setRerender={changeFavourites} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} filter={favourites.products} />
+                    <FavouriteProductBlock setRerender={changeFavourites} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} filter={favourites.products} />
+                    <FavouriteProductBlock setRerender={changeFavourites} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} filter={favourites.products} />
+                    <FavouriteProductBlock setRerender={changeFavourites} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} filter={favourites.products} />
+                    <FavouriteProductBlock setRerender={changeFavourites} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} filter={favourites.products} />
+                    <FavouriteProductBlock setRerender={changeFavourites} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} filter={favourites.products} />
+                    <FavouriteMaterialBlock setRerender={changeFavourites} count={coversItemCount} setCount={setCoversItemCount} title={materialsTitle} prefiltredArr={Materials} filter={favourites.materials} />
+                    <FavouriteColorBlock setRerender={changeFavourites} count={colorsItemCount} setCount={setColorsItemCount} title={colorsTitle} prefiltredArr={Materials} filter={favourites.colors} />
                 </Container>
             </Results>
         </Wrapper>

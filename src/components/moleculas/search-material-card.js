@@ -4,10 +4,10 @@ import React from "react"
 import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const Card = ({ variant, rerender, type, model, slug, title, image }) => {
+export const Card = ({ setRerender, variant, rerender, type, model, slug, title, image }) => {
     return (
         <Wrapper>
-            <AddToFauvorite rerender={rerender} type={type} title={model} />
+            <AddToFauvorite setRerender={setRerender} rerender={rerender} type={type} title={model} />
             <Link to={'/material/' + slug + '/'} state={{ variant: variant }}>
                 <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                 <span>{title}</span>

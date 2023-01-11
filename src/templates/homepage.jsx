@@ -20,6 +20,28 @@ export function Head({ data: { wpPage: { seo } } }) {
   )
 }
 
+// warn ./src/components/sections/new-arrivals-content.js
+// Attempted import error: 'listenCookieChange' is not exported from '../../helpers/coockie-manager' (imported as 'listenCookieChange').
+// warn ./src/components/sections/new-arrivals-content.js
+// Attempted import error: 'listenCookieChange' is not exported from '../../helpers/coockie-manager' (imported as 'listenCookieChange').
+// warn ./src/components/sections/products-archive.js
+// Attempted import error: 'listenCookieChange' is not exported from '../../helpers/coockie-manager' (imported as 'listenCookieChange').
+// warn ./src/components/sections/products-archive.js
+// Attempted import error: 'listenCookieChange' is not exported from '../../helpers/coockie-manager' (imported as 'listenCookieChange').
+// warn undefined
+
+// onMouseMove={() => setMouseMoved(true)}
+// onMouseDown={() => setMouseMoved(false)}
+// onMouseUp={() => handleClick(collectionPagePreviewImage)}
+
+// const [mouseMoved, setMouseMoved] = useState(false)
+
+// const handleClick = (collectionPagePreviewImage) => {
+//     if (!mouseMoved) {
+//         setPopUpOpened(collectionPagePreviewImage.title)
+//     }
+// }
+
 export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
     <main>

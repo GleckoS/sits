@@ -8,7 +8,6 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import AddToFauvorite from "../atoms/add-to-favourite"
-import { listenCookieChange } from "../../helpers/coockie-manager"
 
 export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
@@ -47,10 +46,11 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                 }
                 arr.push(el)
             })
+            console.log('scroll')
             document.getElementById('popup').scrollTo(0, 0);
             setPopImages(arr)
         }
-    }, [isPopUpOpened, popUpImages])
+    }, [isPopUpOpened])
 
     const [mouseMoved, setMouseMoved] = useState(false)
 
@@ -61,15 +61,6 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
     }
 
     const [rerender, setRerender] = useState(false)
-    useEffect(() => {
-        listenCookieChange(() => {
-            setRerender(Math.random())
-        }, 100)
-
-        return (() => {
-            listenCookieChange(null, null, true)
-        })
-    }, [])
 
     return (
         <Box>
@@ -77,7 +68,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                 <PopupGrid>
                     {popUpImages?.map((el, index) => (
                         <React.Fragment key={el.popupNames.model + index}>
-                            <ImageGridItem rerender={rerender} image={el.image} popupNames={el.popupNames} />
+                            <ImageGridItem setRerender={setRerender} rerender={rerender} image={el.image} popupNames={el.popupNames} />
                         </React.Fragment>
                     ))}
                 </PopupGrid>
@@ -85,7 +76,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
             <Wrapper>
                 {collectionPagePreviewImage
                     ? <div className="image-wrap">
-                        <AddToFauvorite rerender={rerender} type={'product'} title={popUpImages[0].popupNames.model} />
+                        <AddToFauvorite setRerender={setRerender}  rerender={rerender} type={'product'} title={popUpImages[0].popupNames.model} />
                         <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(popUpImages[0].image.title) }}>
                             <GatsbyImage image={popUpImages[0].image.localFile.childImageSharp.gatsbyImageData} alt={popUpImages[0].image.altText} />
                             <span className="in"> In this image <b>+</b> </span>
@@ -95,7 +86,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                 <ImagesGrid>
                     {popUpImages?.map((el, index) => (
                         <div className="image-wrap">
-                            <AddToFauvorite rerender={rerender} type={'product'} title={el.popupNames.model} />
+                            <AddToFauvorite setRerender={setRerender}  rerender={rerender} type={'product'} title={el.popupNames.model} />
                             <button key={el.image.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.image.title) }}>
                                 <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
                                 <span className="in"> In this image <b>+</b> </span>

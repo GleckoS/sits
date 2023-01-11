@@ -3,10 +3,12 @@ import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { FilterComponent } from "../organism/materials-filter"
 import { MaterialList } from "../organism/materials-list"
-// import Hero from "../organism/hero-material-archive"
 import { CloseButton } from "../atoms/close-button"
 import { useEffect } from "react"
 import scrollLock from './../../helpers/scroll-lock'
+import { useQueryParamString } from 'react-use-query-param-string'
+import { partSlugDeTransform, partSlugTransform } from "../../helpers/slug-maker"
+import { Title } from "../../components/moleculas/title-sub"
 
 const sortBy = {
     en: [
@@ -139,24 +141,42 @@ const sortFilterTitle = {
 const noResultTitle = {
     en: 'No results'
 }
+
 const noResultMessage = {
     en: `We couldn’t find any matches for your filters.`
 }
 
-export default function MaterialsArchive({ data, materials }) {
+const searchFilterTitle = {
+    en: 'Search: '
+}
 
-    const [sort, setSort] = useState(() => {
-        return 'Popular'
-    })
-    const [color, setColor] = useState(() => {
-        return 'All'
-    })
-    const [textures, setTextures] = useState(() => {
-        return 'All'
-    })
-    const [features, setFeatures] = useState(() => {
-        return 'All'
-    })
+export default function MaterialsArchive({ location, materials }) {
+    const [sort, setSort] = useQueryParamString('sort', 'Popular')
+    const [color, setColor] = useQueryParamString('color', 'All')
+    const [textures, setTextures] = useQueryParamString('textures', 'All')
+    const [features, setFeatures] = useQueryParamString('features', 'All')
+    const [search, setSearch] = useQueryParamString('search', '')
+    const [inputValue, setInputValue] = useState('')
+
+    useEffect(() => {
+        if (location.search === '') {
+            if (sort === 'Popular') {
+                setSort('Popular')
+            }
+            if (color === 'All') {
+                setColor('All')
+            }
+            if (textures === 'All') {
+                setTextures('All')
+            }
+            if (features === 'All') {
+                setFeatures('All')
+            }
+            if (search !== '') {
+                setSearch('')
+            }
+        }
+    }, [location])
 
     const [isMobileFilterOpened, setMobileFilterOpened] = useState(false)
 
@@ -168,11 +188,20 @@ export default function MaterialsArchive({ data, materials }) {
 
     const filtredProducts = useMemo(() => {
         let arr = [...materials]
-        if (color !== 'All') {
+        let locSort = partSlugDeTransform(sort)
+        let locColor = partSlugDeTransform(color)
+        let locTextures = partSlugDeTransform(textures)
+        let locFeatures = partSlugDeTransform(features)
+
+        if (search !== '') {
+            arr = arr.filter(el => el.slug.includes(search.toLowerCase()))
+        }
+
+        if (locColor !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.materials.materialColorVariants.every(inEl => {
-                    if (inEl.colorGroup === color) {
+                    if (inEl.colorGroup === locColor) {
                         isAccessed = true
                         return false
                     }
@@ -181,11 +210,11 @@ export default function MaterialsArchive({ data, materials }) {
                 return isAccessed
             })
         }
-        if (textures !== 'All') {
+        if (locTextures !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.textures.nodes.every(inEl => {
-                    if (inEl.name === textures) {
+                    if (inEl.name === locTextures) {
                         isAccessed = true
                         return false
                     }
@@ -194,11 +223,12 @@ export default function MaterialsArchive({ data, materials }) {
                 return isAccessed
             })
         }
-        if (features !== 'All') {
+        if (locFeatures !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.features.nodes.every(inEl => {
-                    if (inEl.name === features) {
+
+                    if (inEl.name === locFeatures) {
                         isAccessed = true
                         return false
                     }
@@ -207,7 +237,7 @@ export default function MaterialsArchive({ data, materials }) {
                 return isAccessed
             })
         }
-        if (sort === 'Popular') {
+        if (locSort === 'Popular') {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.materials.generalMaterialInformationCopy.isPopular) {
@@ -218,7 +248,7 @@ export default function MaterialsArchive({ data, materials }) {
             })
             arr = filtrArr
         }
-        if (sort === 'New Arrivals') {
+        if (locSort === 'New Arrivals') {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.materials.generalMaterialInformationCopy.isNewArrival) {
@@ -229,11 +259,11 @@ export default function MaterialsArchive({ data, materials }) {
             })
             arr = filtrArr
         }
-        if (sort === 'Alphabetical') {
+        if (locSort === 'Alphabetical') {
             arr.sort((a, b) => a.title.localeCompare(b.title))
         }
         return arr
-    }, [materials, sort, color, textures, features])
+    }, [materials, sort, color, textures, features, search])
 
     const [showCount, setShowCount] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -281,42 +311,52 @@ export default function MaterialsArchive({ data, materials }) {
                 colorRange={colorRange['en']}
                 texturesArr={texturesArr['en']}
                 featuresArr={featuresArr['en']}
-                setSort={setSort}
-                setColor={setColor}
-                setTextures={setTextures}
-                setFeatures={setFeatures}
+                setSort={(v) => { setSort(partSlugTransform(v)) }}
+                setColor={(v) => { setColor(partSlugTransform(v)) }}
+                setTextures={(v) => { setTextures(partSlugTransform(v)) }}
+                setFeatures={(v) => { setFeatures(partSlugTransform(v)) }}
                 setMobileFilterOpened={setMobileFilterOpened}
-                sort={sort}
-                color={color}
-                textures={textures}
-                features={features}
+                sort={partSlugDeTransform(sort)}
+                color={partSlugDeTransform(color)}
+                textures={partSlugDeTransform(textures)}
+                features={partSlugDeTransform(features)}
                 isMobileFilterOpened={isMobileFilterOpened}
                 clearAll={clearAll}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                setSearch={setSearch}
             />
-            {/* <Hero data={data.heroM} /> */}
+            <Title small={true} title={'Materials'} />
             <Container>
                 <ActiveFilters>
                     {color !== 'All' && (
                         <FilterItem onClick={() => { setColor('All') }}>
-                            {color.replace(/([A-Z])/g, ' $1').trim()}
+                            {/* replace capital letters with space and small letter because of bug in wp */}
+                            {partSlugDeTransform(color.replace(/([A-Z])/g, ' $1').trim())}
                             <CloseButton />
                         </FilterItem>
                     )}
                     {textures !== 'All' && (
                         <FilterItem onClick={() => { setTextures('All') }}>
-                            {textures.replace(/([A-Z])/g, ' $1').trim()}
+                            {partSlugDeTransform(textures)}
                             <CloseButton />
                         </FilterItem>
                     )}
                     {features !== 'All' && (
                         <FilterItem onClick={() => { setFeatures('All') }}>
-                            {features.replace(/([A-Z])/g, ' $1').trim()}
+                            {partSlugDeTransform(features)}
                             <CloseButton />
                         </FilterItem>
                     )}
                     {(color !== 'All' || textures !== 'All' || features !== 'All') && (
                         <FilterItem onClick={() => { clearAll('') }} className="close">
                             {clearAllTitle['en']}
+                            <CloseButton />
+                        </FilterItem>
+                    )}
+                    {search !== '' && (
+                        <FilterItem onClick={() => { setSearch('') }}>
+                            {searchFilterTitle['en']}{search}
                             <CloseButton />
                         </FilterItem>
                     )}

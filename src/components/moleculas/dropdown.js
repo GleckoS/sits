@@ -26,9 +26,10 @@ export const DropDown = ({ controller, func, data, controlTitle }) => (
 
 const Wrapper = styled.div`
     width: 240px;
-    padding: 22px;
+    padding: 10px 22px 0 22px;
     margin: 12px -22px 0 -22px;
     border: 1px solid transparent;
+    height: fit-content;
 
     svg{
         margin-top: 4px;
@@ -102,6 +103,7 @@ const Wrapper = styled.div`
     &:hover{
         background-color: #fff;
         border: 1px solid #ccc;
+        padding-bottom: 10px;
         .content{
             opacity: 1;
         height: auto;

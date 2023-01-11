@@ -13,7 +13,7 @@ const addMessage = {
   en: ' added to My Favourites'
 }
 
-export default function AddToFauvorite({ rerender, type, title }) {
+export default function AddToFauvorite({ setRerender = () => { }, rerender, type, title }) {
   const [isActive, setIsActive] = useState(() => {
     if (typeof window === 'undefined') {
       return false
@@ -28,6 +28,7 @@ export default function AddToFauvorite({ rerender, type, title }) {
   const clickHandler = (e) => {
     e.preventDefault()
     let cookie = getCookie(type)
+    setRerender(Math.random())
     if (cookie?.includes(title)) {
       cookie = cookie.replace(title + '|', '')
       setCookie(type, cookie)
@@ -36,7 +37,7 @@ export default function AddToFauvorite({ rerender, type, title }) {
     } else {
       setCookie(type, cookie + title + '|')
       setIsActive(true)
-      toast(title + addMessage['en'], {onClick: () => {navigate('/favourite/')}})
+      toast(title + addMessage['en'], { onClick: () => { navigate('/favourite/') } })
     }
   }
 

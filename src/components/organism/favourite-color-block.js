@@ -7,6 +7,7 @@ import { Card } from '../moleculas/search-material-card'
 const loadMore = 'LOAD MORE'
 
 export const FavouriteColorBlock = ({
+  setRerender,
   count,
   setCount,
   prefiltredArr,
@@ -61,6 +62,7 @@ export const FavouriteColorBlock = ({
             renderCount.current += 1
             return (
               <Card
+                setRerender={setRerender}
                 colorId={el.colorId}
                 type={'colors'}
                 image={el.squarePreviewImage}

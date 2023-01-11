@@ -63,37 +63,23 @@ import MaterialsArchive from "../components/sections/materials-archive"
 
 export function Head() {
   return (
-    <meta name="robots" content="noindex"/>
+    <meta name="robots" content="noindex" />
   )
 }
 
-export default function Material({ data: { wpPage, allWpMaterials }, pageContext }) {
-    return (
-        <main>
-            <MaterialsArchive data={wpPage.materials} materials={allWpMaterials.nodes} />
-            <Map/>
-        </main>
-    )
+export default function Material({ data: { allWpMaterials }, location }) {
+  return (
+    <main>
+      <MaterialsArchive location={location} materials={allWpMaterials.nodes} />
+      <Map />
+    </main>
+  )
 }
 
 export const query = graphql`
     query material($id: String!) {
         wpPage(id: {eq: $id}) {
             id
-            materials {
-              heroM {
-                pageTitle
-                text
-                backgroundImage {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                  }
-                }
-              }
-            }
         }
       allWpMaterials{
         nodes{

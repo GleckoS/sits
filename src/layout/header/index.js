@@ -30,6 +30,7 @@ const linksRight = {
         { name: 'Conscious', url: '/conscious/' },
         { name: 'Furniture Care', url: '/furniture-care/' },
         { name: 'Catalogues', url: '/catalogues/' },
+        { name: 'Virtual showroom', url: 'https://showroom.sits.eu/' },
         { name: 'Sales Representative', url: '/sales-representative/' },
         { name: 'Where to Buy', url: '/where-to-buy/' },
         { name: 'Contact', url: '/contact/' },
@@ -100,7 +101,7 @@ export default function Header() {
                             <Search tabIndex={isLeftMenuOpened ? '0' : '-1'} />
                             {linksLeft['en'].map((el, index) => (
                                 <React.Fragment key={el.name}>
-                                    <Item onBlur={() =>  index === linksLeft['en'].length - 1 ? setLeftMenuOpened() : null}  tabIndex={isLeftMenuOpened ? '0' : '-1'} el={el} func={(v) => { setLeftMenuOpened(v) }} />
+                                    <Item onBlur={() => index === linksLeft['en'].length - 1 ? setLeftMenuOpened() : null} tabIndex={isLeftMenuOpened ? '0' : '-1'} el={el} func={(v) => { setLeftMenuOpened(v) }} />
                                 </React.Fragment>
                             ))}
                         </MenuContent>
@@ -124,7 +125,7 @@ export default function Header() {
                         <MenuContent className="reverse">
                             {linksRight['en'].map((el, index) => (
                                 <React.Fragment key={el.name}>
-                                    <Item onBlur={() =>  index === linksRight['en'].length - 1 ? setRightMenuOpened() : null} tabIndex={isRightMenuOpened ? '0' : '-1'} el={el} func={(v) => { setRightMenuOpened(v) }} />
+                                    <Item onBlur={() => index === linksRight['en'].length - 1 ? setRightMenuOpened() : null} tabIndex={isRightMenuOpened ? '0' : '-1'} el={el} func={(v) => { setRightMenuOpened(v) }} />
                                 </React.Fragment>
                             ))}
                         </MenuContent>
@@ -203,6 +204,10 @@ const Wrapper = styled.header`
         gap: 10px;
         align-items: center;
         width: fit-content;
+
+        &.active{
+            font-weight: 600;
+        }
     }
 
     .control-mobile{

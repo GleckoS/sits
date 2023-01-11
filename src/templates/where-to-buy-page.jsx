@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
-import { Title } from "../components/moleculas/title-sub"
 import Map from "../components/sections/map"
+import { Title } from "../components/moleculas/title-sub"
 
 // export function Head({ data: { wpPage: { seo } } }) {
 

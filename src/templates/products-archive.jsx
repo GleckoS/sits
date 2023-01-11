@@ -63,14 +63,14 @@ import Map from "../components/sections/map"
 
 export function Head() {
   return (
-    <meta name="robots" content="noindex"/>
+    <meta name="robots" content="noindex" />
   )
 }
 
-export default function Products({ data, pageContext }) {
+export default function Products({ data, pageContext, location }) {
   return (
     <main>
-      <ProductArchive pageContext={pageContext} products={data.allWpProduct.nodes} data={''} />
+      <ProductArchive location={location} pageContext={pageContext} products={data.allWpProduct.nodes} data={''} />
       <Map />
     </main>
   )

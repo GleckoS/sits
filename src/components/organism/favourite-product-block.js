@@ -7,6 +7,7 @@ import { Card } from '../moleculas/search-product-card'
 const loadMore = 'LOAD MORE'
 
 export const FavouriteProductBlock = ({
+  setRerender,
   count,
   setCount,
   prefiltredArr,
@@ -76,6 +77,7 @@ export const FavouriteProductBlock = ({
                     return (
                       <React.Fragment key={inEl.popupNames.model + index}>
                         <Card
+                          setRerender={setRerender}
                           image={imageEl.featuredProductImage}
                           data={el.products.collection}
                           model={inEl.popupNames.model}

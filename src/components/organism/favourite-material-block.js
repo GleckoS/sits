@@ -7,7 +7,7 @@ const loadMore = {
     en: 'LOAD MORE'
 }
 
-export const FavouriteMaterialBlock = ({ count, setCount, prefiltredArr, filter, title }) => {
+export const FavouriteMaterialBlock = ({ setRerender, count, setCount, prefiltredArr, filter, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
@@ -57,7 +57,7 @@ export const FavouriteMaterialBlock = ({ count, setCount, prefiltredArr, filter,
                             return true
                         })
 
-                        return <Card type={'materials'} image={image} title={el.title} slug={el.slug} model={el.title} />
+                        return <Card setRerender={setRerender} type={'materials'} image={image} title={el.title} slug={el.slug} model={el.title} />
                     })}
                 </ResultsGrid>
                 {count > showCount && (

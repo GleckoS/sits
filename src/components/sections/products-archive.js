@@ -5,8 +5,10 @@ import { Container } from "../atoms/container"
 import { CloseButton } from './../atoms/close-button'
 import { FilterComponent } from "../organism/products-filter"
 import { useEffect } from "react"
-import { listenCookieChange } from "../../helpers/coockie-manager"
 import scrollLock from './../../helpers/scroll-lock'
+import { useQueryParamString } from 'react-use-query-param-string'
+import { partSlugDeTransform, partSlugTransform } from "../../helpers/slug-maker"
+import { Title } from "../../components/moleculas/title-sub"
 
 const sortBy = {
     en: [
@@ -109,25 +111,52 @@ const sortFilterTitle = {
 const noResultTitle = {
     en: 'No results'
 }
+
 const noResultMessage = {
     en: `We couldn’t find any matches for your filters.`
 }
 
-export default function ProductArchive({ pageContext: { typeSlug, name }, products }) {
-    const [sort, setSort] = useState(() => {
-        return 'Popular'
-    })
-    const [type, setType] = useState(() => {
-        return 'All'
-    })
-    const [cover, setCover] = useState(() => {
-        return 'All'
-    })
-    const [upholsterys, setUpholsterys] = useState(() => {
-        return 'All'
-    })
+const searchFilterTitle = {
+    en: 'Search: '
+}
+
+
+export default function ProductArchive({ location, pageContext: { name }, products }) {
+    const [sort, setSort] = useQueryParamString('sort', 'Popular')
+    const [type, setType] = useQueryParamString('type', 'All')
+    const [cover, setCover] = useQueryParamString('cover', 'All')
+    const [upholsterys, setUpholsterys] = useQueryParamString('upholsterys', 'All')
+    const [search, setSearch] = useQueryParamString('search', '')
+    const [inputValue, setInputValue] = useState('')
+
+    useEffect(() => {
+        if (location.search === '') {
+            if (sort !== 'Popular') {
+                setSort('Popular')
+            }
+            if (type !== 'All') {
+                setType('All')
+            }
+            if (cover !== 'All') {
+                setCover('All')
+            }
+            if (upholsterys !== 'All') {
+                setUpholsterys('All')
+            }
+            if (search !== '') {
+                setSearch('')
+            }
+        }
+    }, [location])
 
     const [isMobileFilterOpened, setMobileFilterOpened] = useState(false)
+    const [showCount, setShowCount] = useState(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth < 1024 ? 6 : 8
+        }
+
+        return 8
+    })
 
     const clearAll = () => {
         setCover('All')
@@ -153,49 +182,57 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
 
     const filtredProducts = useMemo(() => {
         let arr = [...defaultPosts]
+        let locSort = partSlugDeTransform(sort)
+        let locType = partSlugDeTransform(type)
+        let locUpholsterys = partSlugDeTransform(upholsterys)
+        let locCover = partSlugDeTransform(cover)
 
-        if (type !== 'All') {
+        if (search !== '') {
+            arr = arr.filter(el => el.products.collection.slug.includes(search.toLowerCase()))
+        }
+
+        if (locType !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.types.nodes.forEach(inEl => {
-                    if (inEl.name.toLowerCase() === type.toLowerCase()) {
+                    if (inEl.name.toLowerCase() === locType.toLowerCase()) {
                         isAccessed = true
                     }
                 })
                 return isAccessed
             })
         }
-        if (upholsterys !== 'All') {
+        if (locUpholsterys !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.products.collection.upholsterys?.nodes?.forEach(inEl => {
                     if (cover === 'Removable') {
                         debugger
-                        if (upholsterys === 'Leather' && inEl.name === 'Leather') {
+                        if (locUpholsterys === 'Leather' && inEl.name === 'Leather') {
                             isAccessed = true
-                        } else if (upholsterys === 'Fabric' && inEl.name.includes(upholsterys)) {
+                        } else if (locUpholsterys === 'Fabric' && inEl.name.includes(locUpholsterys)) {
                             isAccessed = true
                         }
 
                     } else if (cover === 'Fixed') {
-                        if (upholsterys === 'Leather' && (inEl.name === 'Leather only in fixed cover' || inEl.name === 'Leather')) {
+                        if (locUpholsterys === 'Leather' && (inEl.name === 'Leather only in fixed cover' || inEl.name === 'Leather')) {
                             isAccessed = true
-                        } else if (upholsterys === 'Fabric' && inEl.name.includes(upholsterys)) {
+                        } else if (locUpholsterys === 'Fabric' && inEl.name.includes(locUpholsterys)) {
                             isAccessed = true
                         }
 
-                    } else if (inEl.name.includes(upholsterys)) {
+                    } else if (inEl.name.includes(locUpholsterys)) {
                         isAccessed = true
                     }
                 })
                 return isAccessed
             })
         }
-        if (cover !== 'All') {
+        if (locCover !== 'All') {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.products.collection.covers?.nodes?.forEach(inEl => {
-                    if (inEl.name === cover) {
+                    if (inEl.name === locCover) {
                         isAccessed = true
                     }
                 })
@@ -203,7 +240,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             })
         }
 
-        if (sort === 'Popular') {
+        if (locSort === 'Popular') {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.products?.collection?.collections?.generalCollectionInformation?.isPopular) {
@@ -215,7 +252,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             arr = filtrArr
         }
 
-        if (sort === 'New Arrivals') {
+        if (locSort === 'New Arrivals') {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.products.isNewArrival) {
@@ -227,32 +264,13 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
             arr = filtrArr
         }
 
-        if (sort === 'Alphabetical') {
+        if (locSort === 'Alphabetical') {
             arr.sort((a, b) => a.products.collection.title.localeCompare(b.products.collection.title))
         }
         return arr
-    }, [defaultPosts, sort, type, cover, upholsterys])
+    }, [defaultPosts, sort, type, cover, upholsterys, search])
 
-    // cookie refresh for all products
-
-    const [rerender, setRerender] = useState(false) // REMOVE
-    useEffect(() => {
-        listenCookieChange(() => {
-            setRerender(Math.random())
-        }, 100)
-
-        return (() => {
-            listenCookieChange(null, null, true)
-        })
-    }, [])
-
-    const [showCount, setShowCount] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return window.innerWidth < 1024 ? 6 : 8
-        }
-
-        return 8
-    })
+    const [rerender, setRerender] = useState(false)
 
     useEffect(() => {
         setShowCount(() => {
@@ -292,36 +310,46 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                 covesArr={covesArr['en']}
                 reset={reset['en']}
                 view={view['en']}
-                sort={sort}
-                type={type}
-                upholsterys={upholsterys}
-                cover={cover}
+                sort={partSlugDeTransform(sort)}
+                type={partSlugDeTransform(type)}
+                upholsterys={partSlugDeTransform(upholsterys)}
+                cover={partSlugDeTransform(cover)}
                 sortFilterTitle={sortFilterTitle['en']}
                 setMobileFilterOpened={setMobileFilterOpened}
                 isMobileFilterOpened={isMobileFilterOpened}
-                setUpholsterys={setUpholsterys}
-                setCover={setCover}
-                setType={setType}
-                setSort={setSort}
+                setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)) }}
+                setCover={(v) => { setCover(partSlugTransform(v)) }}
+                setType={(v) => { setType(partSlugTransform(v)) }}
+                setSort={(v) => { setSort(partSlugTransform(v)) }}
                 clearAll={clearAll}
+                inputValue={inputValue}
+                setInputValue={setInputValue}
+                setSearch={setSearch}
             />
+            <Title small={true} title={name} />
             <Container className="content-wrap">
                 <ActiveFilters>
                     {type !== 'All' && (
                         <FilterItem onClick={() => { setType('All') }}>
-                            {type}
+                            {partSlugDeTransform(type)}
                             <CloseButton />
                         </FilterItem>
                     )}
                     {upholsterys !== 'All' && (
                         <FilterItem onClick={() => { setUpholsterys('All') }}>
-                            {upholsterys}
+                            {partSlugDeTransform(upholsterys)}
                             <CloseButton />
                         </FilterItem>
                     )}
                     {cover !== 'All' && (
                         <FilterItem onClick={() => { setCover('All') }}>
-                            {cover}
+                            {partSlugDeTransform(cover)}
+                            <CloseButton />
+                        </FilterItem>
+                    )}
+                    {search !== '' && (
+                        <FilterItem onClick={() => { setSearch('') }}>
+                            {searchFilterTitle['en']}{search}
                             <CloseButton />
                         </FilterItem>
                     )}
@@ -333,7 +361,7 @@ export default function ProductArchive({ pageContext: { typeSlug, name }, produc
                     )}
                 </ActiveFilters>
                 {filtredProducts.length > 0
-                    ? <ProductList showCount={showCount} setShowCount={setShowCount} rerender={rerender} products={filtredProducts} />
+                    ? <ProductList setRerender={setRerender} showCount={showCount} setShowCount={setShowCount} rerender={rerender} products={filtredProducts} />
                     : (
                         <NoResults>
                             <h2>{noResultTitle['en']}</h2>

@@ -3,9 +3,9 @@ import React from "react"
 import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const ImageGridItem = ({ rerender, image, popupNames }) => (
+export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => (
     <Item>
-        <AddToFauvorite rerender={rerender} type={'product'} title={popupNames.model} />
+        <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'product'} title={popupNames.model} />
         <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
         <Data>
             <span><span>Model:</span> <strong>{popupNames.model}</strong></span>

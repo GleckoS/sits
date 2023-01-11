@@ -8,7 +8,7 @@ const loadMore = {
     en: 'LOAD MORE'
 }
 
-export const ProductList = ({ setShowCount, showCount, rerender, products }) => {
+export const ProductList = ({ setRerender, setShowCount, showCount, rerender, products }) => {
 
     const [addCount] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -28,7 +28,7 @@ export const ProductList = ({ setShowCount, showCount, rerender, products }) => 
                         return inEl.productsImages?.map((imageEl, index) => {
                             if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
                                 renderCount.current += 1
-                                return <React.Fragment key={inEl.popupNames.model + index}><ProductCard rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} /></React.Fragment>
+                                return <React.Fragment key={inEl.popupNames.model + index}><ProductCard setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} /></React.Fragment>
                             }
                             return null
                         })

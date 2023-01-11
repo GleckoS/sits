@@ -5,9 +5,9 @@ import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from './../atoms/category'
 
-export const ProductCard = ({ threeColumn, rerender = false, model, data, types, image }) => (
+export const ProductCard = ({setRerender, threeColumn, rerender = false, model, data, types, image }) => (
     <Wrapper className="product-card">
-        <AddToFauvorite rerender={rerender} type={'products'} title={model} />
+        <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={model} />
         <Link className="link" to={'/collection/' + data.slug + '/'}>
             <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <Flex className={threeColumn ? 'three-column' : ''}>
@@ -62,8 +62,7 @@ const Flex = styled.div`
     align-items: flex-end;
     gap: 16px;
     flex-wrap: wrap;
-    margin-top: 20px;
-    padding: 0 20px 0 20px;
+    padding: 20px 20px 0 20px;
 
     &.three-column{
         flex-direction: column;

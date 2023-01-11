@@ -5,7 +5,7 @@ import { Card } from "../moleculas/search-product-card"
 
 const loadMore = 'LOAD MORE'
 
-export const FavouriteCollectionBlock = ({ count, setCount, prefiltredArr, filter, title }) => {
+export const FavouriteCollectionBlock = ({ setRerender, count, setCount, prefiltredArr, filter, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
@@ -50,7 +50,7 @@ export const FavouriteCollectionBlock = ({ count, setCount, prefiltredArr, filte
                         let image = el.collections.generalCollectionInformation?.collectionPagePreviewImage?.localFile
                             ? el.collections.generalCollectionInformation?.collectionPagePreviewImage
                             : el.collections.generalCollectionInformation?.collectionGallery[0]
-                        return <Card type={'collections'} image={image} data={el} model={el.title} />
+                        return <Card setRerender={setRerender} type={'collections'} image={image} data={el} model={el.title} />
                     })}
                 </ResultsGrid>
                 {count > showCount && (

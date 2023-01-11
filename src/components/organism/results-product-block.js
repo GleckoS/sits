@@ -5,7 +5,7 @@ import { Card } from "../moleculas/search-product-card"
 
 const loadMore = 'LOAD MORE'
 
-export const ResultProductBlock = ({ rerender, count, setCount, prefiltredArr, searchValue, title }) => {
+export const ResultProductBlock = ({ setRerender, rerender, count, setCount, prefiltredArr, searchValue, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
@@ -79,7 +79,7 @@ export const ResultProductBlock = ({ rerender, count, setCount, prefiltredArr, s
                             return inEl.productsImages?.map(imageEl => {
                                 if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
                                     renderCount.current += 1
-                                    return <Card rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
+                                    return <Card setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
                                 }
                                 return null
                             })

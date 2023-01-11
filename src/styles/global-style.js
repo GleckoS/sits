@@ -102,10 +102,14 @@ export const Global = createGlobalStyle`
 
       transition: background-size 0.3s
         cubic-bezier(0.39, 0.575, 0.565, 1);
-      background: left bottom/80% 2px no-repeat currentColor !important;
+
+  background-image: linear-gradient(#222b40, #222b40);
+  background-size: 80% 1px;
+  background-position: left bottom;
+  background-repeat: no-repeat;
 
       &:hover {
-        background-size: 100% 2px;
+        background-size: 100% 1px;
       }
     }
     
