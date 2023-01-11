@@ -1,5 +1,5 @@
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { ImageGridItem } from "../moleculas/image-grid-item"
 import { Popup } from "../moleculas/popup"
@@ -7,6 +7,8 @@ import { Popup } from "../moleculas/popup"
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
+import AddToFauvorite from "../atoms/add-to-favourite"
+import { listenCookieChange } from "../../helpers/coockie-manager"
 
 export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
@@ -17,95 +19,6 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
         arrows: false,
         slidesToShow: 1,
     };
-
-    // const images = useMemo(() => {
-    //     let arr = []
-    //     let sumValue = 0
-    //     let difference = 0
-
-    //     products.forEach(el => el.products.productGallery.forEach(el => el.productsImages.forEach(el => {
-    //         let square = el.featuredProductImage.width > el.featuredProductImage.height
-    //         if (square) {
-    //             arr.push({ state: 1, image: el.featuredProductImage })
-    //             sumValue += 1
-    //         } else {
-    //             arr.push({ state: 2, image: el.featuredProductImage })
-    //             sumValue += 2
-    //         }
-    //     })))
-
-
-    //     let firstColumn = arr.slice(0, Math.ceil(arr.length / 2))
-    //     let firstValue = 0
-    //     firstColumn.forEach(el => firstValue += el.state)
-
-    //     let secondColumn = arr.slice(Math.ceil(arr.length / 2))
-    //     let secondValue = 0
-    //     secondColumn.forEach(el => secondValue += el.state)
-
-    //     const checkDifferenceSecond = () => {
-    //         difference = secondValue - firstValue
-    //         if (difference > 2) {
-    //             secondColumn.every((el, index) => {
-    //                 if (el.state > 1) {
-    //                     secondValue -= el.state
-    //                     firstValue += el.state
-    //                     firstColumn.push(el)
-    //                     secondColumn.splice(index, 1)
-    //                     return false
-    //                 }
-    //                 return true
-    //             })
-    //             checkDifferenceSecond()
-    //         } else if (difference === 2) {
-    //             secondColumn.every((el, index) => {
-    //                 if (el.state > 1) {
-    //                     secondValue -= el.state
-    //                     firstValue += el.state
-    //                     firstColumn.push(el)
-    //                     secondColumn.splice(index, 1)
-    //                     return false
-    //                 }
-    //                 return true
-    //             })
-    //         }
-    //     }
-
-    //     const checkDifferenceFirst = () => {
-    //         difference = firstValue - secondValue
-    //         if (difference > 2) {
-    //             firstColumn.every((el, index) => {
-    //                 if (el.state > 1) {
-    //                     secondValue += el.state
-    //                     firstValue -= el.state
-    //                     secondColumn.push(el)
-    //                     firstColumn.splice(index, 1)
-    //                     return false
-    //                 }
-    //                 return true
-    //             })
-    //             checkDifferenceFirst()
-    //         } else if (difference === 2) {
-    //             firstColumn.every((el, index) => {
-    //                 if (el.state === 1) {
-    //                     secondValue += el.state
-    //                     firstValue -= el.state
-    //                     secondColumn.push(el)
-    //                     firstColumn.splice(index, 1)
-    //                     return false
-    //                 }
-    //                 return true
-    //             })
-    //         }
-    //     }
-    //     if (firstValue > secondValue) {
-    //         checkDifferenceFirst()
-    //     } else if (firstValue < secondValue) {
-    //         checkDifferenceSecond()
-    //     }
-
-    //     return [...firstColumn, ...secondColumn]
-    // })
 
     const [popUpImages, setPopImages] = useState(() => {
         let images = []
@@ -121,7 +34,6 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                 })
             })
         })
-
         return images
     })
 
@@ -138,7 +50,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
             document.getElementById('popup').scrollTo(0, 0);
             setPopImages(arr)
         }
-    }, [isPopUpOpened])
+    }, [isPopUpOpened, popUpImages])
 
     const [mouseMoved, setMouseMoved] = useState(false)
 
@@ -148,30 +60,47 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
         }
     }
 
+    const [rerender, setRerender] = useState(false)
+    useEffect(() => {
+        listenCookieChange(() => {
+            setRerender(Math.random())
+        }, 100)
+
+        return (() => {
+            listenCookieChange(null, null, true)
+        })
+    }, [])
+
     return (
         <Box>
             <Popup id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
                 <PopupGrid>
                     {popUpImages?.map((el, index) => (
                         <React.Fragment key={el.popupNames.model + index}>
-                            <ImageGridItem image={el.image} popupNames={el.popupNames} />
+                            <ImageGridItem rerender={rerender} image={el.image} popupNames={el.popupNames} />
                         </React.Fragment>
                     ))}
                 </PopupGrid>
             </Popup>
             <Wrapper>
                 {collectionPagePreviewImage
-                    ? <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(collectionPagePreviewImage.title) }}>
-                        <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
-                        <span className="in"> In this image <b>+</b> </span>
-                    </button>
-                    : null}
-                <ImagesGrid>
-                    {gallery?.map((el, index) => (
-                        <button key={el.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
-                            <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                    ? <div className="image-wrap">
+                        <AddToFauvorite rerender={rerender} type={'product'} title={popUpImages[0].popupNames.model} />
+                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(popUpImages[0].image.title) }}>
+                            <GatsbyImage image={popUpImages[0].image.localFile.childImageSharp.gatsbyImageData} alt={popUpImages[0].image.altText} />
                             <span className="in"> In this image <b>+</b> </span>
                         </button>
+                    </div>
+                    : null}
+                <ImagesGrid>
+                    {popUpImages?.map((el, index) => (
+                        <div className="image-wrap">
+                            <AddToFauvorite rerender={rerender} type={'product'} title={el.popupNames.model} />
+                            <button key={el.image.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.image.title) }}>
+                                <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
+                                <span className="in"> In this image <b>+</b> </span>
+                            </button>
+                        </div>
                     ))}
                 </ImagesGrid>
             </Wrapper>
@@ -247,25 +176,24 @@ const SliderWrapper = styled.div`
     }
 
     .slick-dots{
-
-            li{
-                &::before{
-                    content: "";
-                    position: absolute;
-                    left: 2px;
-                    right: 2px;
-                    bottom: 2px;
-                    top: 2px;
-                    border-radius: 50%;
-                    border: 1px solid black;
-                    opacity: 0;
-                    transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
-                }
-
-                &.slick-active::before{
-                    opacity: 1;
-                }
+        li{
+            &::before{
+                content: "";
+                position: absolute;
+                left: 2px;
+                right: 2px;
+                bottom: 2px;
+                top: 2px;
+                border-radius: 50%;
+                border: 1px solid black;
+                opacity: 0;
+                transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
             }
+
+            &.slick-active::before{
+                opacity: 1;
+            }
+        }
     }
 
     button{
@@ -319,6 +247,31 @@ const SliderWrapper = styled.div`
 
 
 const Wrapper = styled.div`
+
+    .image-wrap{
+        position: relative;
+    }
+
+    .hearth{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 2;
+        opacity: 0;
+        transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+
+        @media (max-width: 1024px) {
+            opacity: 1;
+        }
+    }
+
+    .image-wrap{
+        &:hover{
+            .hearth{
+                opacity: 1;
+            }
+        }
+    }
 
     b{
         font-weight: 300 !important;
@@ -412,7 +365,5 @@ const ImagesGrid = styled.div`
 
 const PopupGrid = styled.div`
     display: grid;
-    grid-gap: clamp(40px, ${80/768*100}vw, 80px);
-
-    
+    grid-gap: clamp(40px, ${80 / 768 * 100}vw, 80px);
 `

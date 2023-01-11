@@ -93,6 +93,21 @@ export const Global = createGlobalStyle`
         text-underline-offset: 6px;
         text-decoration-thickness: 1px !important;
     }
+
+    .underline{
+      width: fit-content;
+      display: block;
+      position: relative;
+      padding-bottom: 3px;
+
+      transition: background-size 0.3s
+        cubic-bezier(0.39, 0.575, 0.565, 1);
+      background: left bottom/80% 2px no-repeat currentColor !important;
+
+      &:hover {
+        background-size: 100% 2px;
+      }
+    }
     
     .no-focus {
         position: absolute;

@@ -31,6 +31,9 @@ const Wrapper = styled.section`
         max-height: calc(100vh - 95px);
         top: unset;
     }
+    @media (max-width: 840px) {
+        max-height: calc(100vh - 75px);
+    }
 
     .background{
         max-width: 100%;
@@ -63,6 +66,7 @@ const Wrapper = styled.section`
         }
         .background{
             min-width: unset;
+            max-height: calc(100vh - 75px);
         }
     }
     .content{

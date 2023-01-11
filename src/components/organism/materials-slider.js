@@ -16,17 +16,22 @@ export const MaterialsSlider = ({ variant, variants }) => {
         return 0
     })
 
-
-
     const [newVariant, setNewVariant] = useState(choosenVariant)
 
     const onVariantChange = (index) => {
+        let number = index
+        if (index < 0) {
+            number = variants.length - 1
+        }
+        if (index > variants.length - 1) {
+            number = 0
+        }
         document.getElementById('background').style.backgroundColor = variants[choosenVariant].landscapePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
 
-        setNewVariant(index)
+        setNewVariant(number)
         setTimeout(() => {
             setNewVariant(choosenVariant)
-            setChoosenVariant(index)
+            setChoosenVariant(number)
         }, 50)
     }
 
@@ -34,6 +39,11 @@ export const MaterialsSlider = ({ variant, variants }) => {
         <>
             <div className="slider">
                 <SliderWrapper id='background'>
+                    <button aria-label='prev slide' onClick={() => { onVariantChange(choosenVariant - 1) }} className="left slide">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
+                            <path id="Path_5" data-name="Path 5" d="M10077.916,8682.179l-25.641,40.619,25.641,38.826" transform="translate(-10050.49 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
+                        </svg>
+                    </button>
                     {variants.map((el, index) => {
                         if (index === choosenVariant || index === newVariant) {
                             return (
@@ -44,6 +54,11 @@ export const MaterialsSlider = ({ variant, variants }) => {
                             )
                         }
                     })}
+                    <button aria-label='next slide' onClick={() => { onVariantChange(choosenVariant + 1) }} className="right slide">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
+                            <path id="Path_4" data-name="Path 4" d="M10052.275,8682.179l25.641,40.619-25.641,38.826" transform="translate(-10051.007 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
+                        </svg>
+                    </button>
                 </SliderWrapper>
                 <VariantsPicker>
                     {variants.map((el, index) => (
@@ -164,6 +179,35 @@ const VariantGallery = styled.div`
 const SliderWrapper = styled.div`
     position: relative;
     background-color: #777;
+
+    .slide{
+        position: absolute;
+        border: none;
+        background-color: transparent;
+        z-index: 2;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+        svg{
+            width: clamp(18px, ${18 / 1024 * 100}vw, 28px);
+
+            @media (max-width: 1024px) {
+            width: clamp(18px, ${18 / 480 * 100}vw, 28px);
+            }
+
+            @media (max-width: 380px) {
+                width: 14px;
+            }
+
+        }
+        &.left{
+            left: 20px;
+        }
+
+        &.right{
+            right: 20px;
+        }
+    }
 
     .hearth{
         opacity: 0;

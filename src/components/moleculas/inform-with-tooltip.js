@@ -7,7 +7,7 @@ export const Tooltip = ({ title, data, onlyImage }) => (
         <Grid>
             {data.nodes.map((el, index) => (
                 <Item key={el.name + index} className={onlyImage ? 'noimage' : ''}>
-                    <img src={el.taxonomy.image.localFile.publicURL} alt='TODO' />
+                    <img src={el.taxonomy.image.localFile.publicURL} alt={el.taxonomy.altText}/>
                     {onlyImage
                         ? null
                         : <span>{el.name}</span>}

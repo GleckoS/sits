@@ -6,7 +6,7 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from './../atoms/category'
 
 export const ProductCard = ({ threeColumn, rerender = false, model, data, types, image }) => (
-    <Wrapper>
+    <Wrapper className="product-card">
         <AddToFauvorite rerender={rerender} type={'products'} title={model} />
         <Link className="link" to={'/collection/' + data.slug + '/'}>
             <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />

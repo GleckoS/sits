@@ -5,6 +5,7 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 import { Container } from "../atoms/container"
 import { DownloadWithArrow } from "../atoms/download-with-arrow"
 import { Tooltip } from "../moleculas/inform-with-tooltip"
+import { TooltipOnlyImage } from "../moleculas/inform-with-tooltip-only-image"
 import { MaterialsSlider } from "../organism/materials-slider"
 
 export default function Hero({
@@ -43,7 +44,7 @@ export default function Hero({
                             : null}
                         {!!features.nodes.length && <Tooltip title={featuresText['en']} data={features} />}
                         {!!textures.nodes.length && <Tooltip title={textureText['en']} data={textures} />}
-                        {!!careInstructions.nodes.length && <Tooltip onlyImage={true} title={careInstructionsText['en']} data={careInstructions} />}
+                        {!!careInstructions.nodes.length && <TooltipOnlyImage title={careInstructionsText['en']} data={careInstructions} />}
                         {textUnderCareInstructionIcons
                             ? <span className="anotation" dangerouslySetInnerHTML={{ __html: textUnderCareInstructionIcons }} />
                             : null}

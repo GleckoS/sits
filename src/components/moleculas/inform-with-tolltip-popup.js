@@ -8,7 +8,9 @@ export const TooltipPopup = ({ title, data, onlyImage }) => (
             {data.nodes.map((el, index) => (
                 <Item key={el.name + index} className={onlyImage ? 'noimage' : ''}>
                     <Popup className="pop-up">
-                        <img src={el.taxonomy.comfortSvg.localFile.publicURL} alt={el.taxonomy.comfortSvg.altText} />
+                        <div className="image">
+                            <img src={el.taxonomy.comfortSvg.localFile.publicURL} alt={el.taxonomy.comfortSvg.altText} />
+                        </div>
                         <div dangerouslySetInnerHTML={{ __html: el.description }} />
                     </Popup>
 
@@ -24,22 +26,76 @@ export const TooltipPopup = ({ title, data, onlyImage }) => (
 
 const Popup = styled.div`
     position: absolute;
-    padding: 16px;
+    padding: 0 16px;
     background-color: #fff;
     display: flex;
     align-items: center;
     gap: 32px;
     opacity: 0;
     pointer-events: none;
-    top: -10px;
-    left: 50%;
-    transform: translateY(-100%) translateX(-50%);
+    top: -20px;
+    right: 0;
+    transform: translateY(-100%) ;
     width: 500px;
     transition: all .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    z-index: 2;
+    border: 2px solid #C3C3C3;
+
+    @media (max-width: 440px) {
+        gap: 16px;
+    }
+
+
+    &::before{
+        content: "";
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        right: 20px;
+        background: #C3C3C3;
+        transform: translateY(10px) rotate(45deg);
+        width: 24px;
+        height: 24px;
+
+        @media (max-width: 1024px) {
+            left: 20px;
+            right: unset;
+        }
+
+        @media (max-width: 600px) {
+            display: none;
+        }
+
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: #fff;
+        z-index: -1;
+    }
 
     ul{
         display: grid;
         gap: 10px;
+    }
+    .image{
+        position: relative;
+        padding: 32px 16px 32px 0;
+
+        &::after{
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 30px;
+            bottom: 30px;
+            width: 1px;
+            background-color: #C3C3C3;
+        }
     }
 
     img{
@@ -47,8 +103,27 @@ const Popup = styled.div`
     }
 
     div{
+        padding: 16px 0;
         *{
-            font-size: 16px;
+            font-size: 18px;
+        }
+        ol { 
+            counter-reset: item;
+            display: grid;
+            grid-gap: 8px;
+        }
+        ol li { 
+            padding-left: 24px; 
+            position: relative; 
+            display: block; 
+        }
+        ol li:before {
+            content: counter(item) ". ";
+            position: absolute;
+            left: 0;
+            top: 0;
+            counter-increment: item;
+            color: #C3C3C3;
         }
     }
 

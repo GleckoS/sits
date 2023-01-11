@@ -1,9 +1,11 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const ImageGridItem = ({ image, popupNames }) => (
+export const ImageGridItem = ({ rerender, image, popupNames }) => (
     <Item>
+        <AddToFauvorite rerender={rerender} type={'product'} title={popupNames.model} />
         <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
         <Data>
             <span><span>Model:</span> <strong>{popupNames.model}</strong></span>
@@ -53,10 +55,17 @@ export const ImageGridItem = ({ image, popupNames }) => (
 )
 
 const Item = styled.div`
+    position: relative;
     .image{
         margin: 0 auto;
         display: block;
         width: fit-content;
+    }
+    .hearth{
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        z-index: 2;
     }
 `
 
@@ -72,9 +81,9 @@ const Data = styled.div`
 
         span{
             display: grid;
-            grid-template-columns: clamp(90px, ${90/390*100}vw, 160px) auto;
+            grid-template-columns: clamp(90px, ${90 / 390 * 100}vw, 160px) auto;
             span, strong{
-                font-size: clamp(10px, ${10/390*100}vw, 18px);
+                font-size: clamp(10px, ${10 / 390 * 100}vw, 18px);
             }
         }
     }
