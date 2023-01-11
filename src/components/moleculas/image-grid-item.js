@@ -14,8 +14,10 @@ export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
 
     return (
         <Item>
-            <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'product'} title={popupNames.model} />
-            <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+            <div className="image-wrap"> 
+                <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'product'} title={popupNames.model} />
+                <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+            </div>
             <Flex>
                 <Data ref={data}>
                     <span><span>Model:</span> <strong>{popupNames.model}</strong></span>
@@ -60,7 +62,7 @@ export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
                         ? <span><span>Accessories:</span> <strong>{popupNames.accessories}</strong></span>
                         : null}
                 </Data>
-                <button onClick={() => {navigator.clipboard.writeText(data.current.innerText); toast(copySuccessed['en'])}}>
+                <button onClick={() => { navigator.clipboard.writeText(data.current.innerText); toast(copySuccessed['en']) }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24.762" height="30.471" viewBox="0 0 24.762 30.471">
                         <g id="Group_777" data-name="Group 777" transform="translate(-1637 -2205.529)">
                             <g id="Rectangle_98" data-name="Rectangle 98" transform="translate(1637 2210)" fill="none" stroke="#707070" stroke-width="1.5">
@@ -129,6 +131,11 @@ const Item = styled.div`
         right: 10px;
         top: 10px;
         z-index: 2;
+    }
+    .image-wrap{
+        width: fit-content;
+        position: relative;
+        margin: 0 auto;
     }
 `
 
