@@ -6,6 +6,8 @@ import { ProductCard } from "../moleculas/product-card"
 
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
+import { useState } from "react";
+import { navigate } from "gatsby";
 
 export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {
     const slickRef = useRef(null);
@@ -33,6 +35,16 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
             }
         ]
     };
+
+    const [mouseMoved, setMouseMoved] = useState(false)
+
+    const handleClick = (e, url) => {
+        e.preventDefault()
+        if (!mouseMoved) {
+            navigate(url)
+        }
+    }
+
     return (
         <Wrapper className={mt ? 'nomargin' : ''}>
             <Container className="container">
@@ -46,9 +58,11 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                                 return inEl.productsImages?.map((imageEl, index) => {
                                     if (imageEl.isMainImage && !isOnePostRendered) {
                                         isOnePostRendered = true
-                                        return <React.Fragment key={inEl.popupNames.model + index}>
-                                            <ProductCard model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
-                                        </React.Fragment>
+                                        return <div onMouseMove={() => setMouseMoved(true)}
+                                            onMouseDown={() => setMouseMoved(false)}
+                                            key={inEl.popupNames.model + index}>
+                                            <ProductCard onMouseUp={handleClick} model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
+                                        </div>
                                     }
                                     return null
                                 })

@@ -1,14 +1,14 @@
-import { Link } from "gatsby"
+import { Link, navigate } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from './../atoms/category'
 
-export const ProductCard = ({setRerender, threeColumn, rerender = false, model, data, types, image }) => (
+export const ProductCard = ({ onMouseUp = (e, url) => { e.preventDefault(); navigate(url) }, setRerender, threeColumn, rerender = false, model, data, types, image }) => (
     <Wrapper className="product-card">
         <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={model} />
-        <Link className="link" to={'/collection/' + data.slug + '/'}>
+        <Link onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'}>
             <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <Flex className={threeColumn ? 'three-column' : ''}>
                 <span className="archive-title">{data.title}</span>
