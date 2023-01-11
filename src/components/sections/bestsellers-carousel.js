@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useRef, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 
@@ -34,8 +34,14 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                     dots: false,
                 }
             }
-        ]
+        ],
+        beforeChange: () => setAnimationStarted(true),
+        afterChange: (current) => { setItem(current); setAnimationStarted(false) }
     };
+
+    const [item, setItem] = useState(0)
+    const [animationStarted, setAnimationStarted] = useState(false)
+
     return (
         <Wrapper>
             <Container>
@@ -43,6 +49,12 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                 {text && <p className="text">{text}</p>}
             </Container>
             <Container className="container">
+                <div className="content desctop">
+                    <div className={animationStarted ? 'sticky hide' : "sticky"}>
+                        <h3>{carousel[item].selectedCollection.title}</h3>
+                        <Link tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
+                    </div>
+                </div>
                 <button aria-label='prev slide' onClick={() => { slickRef.current.slickPrev() }} className="left">
                     <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
                         <path id="Path_5" data-name="Path 5" d="M10077.916,8682.179l-25.641,40.619,25.641,38.826" transform="translate(-10050.49 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
@@ -56,7 +68,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                                     <GatsbyImage
                                         image={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.localFile.childImageSharp.gatsbyImageData}
                                         alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
-                                    <div className="content">
+                                    <div className="content mobile">
                                         <h3>{el.selectedCollection.title}</h3>
                                         <Link tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
                                     </div>
@@ -167,8 +179,12 @@ const Wrapper = styled.section`
             transform: translateY(-50%);
             background-color: transparent;
             border: none;
-            z-index: 2;
+            z-index: 4;
             cursor: pointer;
+
+            svg{
+                width: clamp(20px, ${20 / 768 * 100}vw, 28px);
+            }
         }
 
         .right{
@@ -178,8 +194,12 @@ const Wrapper = styled.section`
             transform: translateY(-50%);
             background-color: transparent;
             border: none;
-            z-index: 2;
+            z-index: 4;
             cursor: pointer;
+
+            svg{
+                width: clamp(20px, ${20 / 768 * 100}vw, 28px);
+            }
         }
 
         .slide{
@@ -189,12 +209,54 @@ const Wrapper = styled.section`
         .content{
             position: absolute;
             top: 30px;
-            right: 40px;
+            bottom: 30px;
+            right: 85px;
             z-index: 3;
+
+            &.mobile{
+                display: none;
+            }
+
+            &.desctop{
+                pointer-events: none;
+            }
+
+            @media (max-width: 768px) {
+                &.mobile{
+                    display: flex;
+                    gap: 5px;
+                    flex-wrap: wrap;
+                }
+
+                &.desctop{  
+                    display: none;
+                }
+            }
+
+            .sticky{
+
+                &.hide{
+                    opacity: 0;
+                }
+                transition: .2s opacity cubic-bezier(0.39, 0.575, 0.565, 1);
+                position: sticky;
+                top: 120px;
+                z-index: 5;
+                pointer-events: all;
+
+                @media (max-width: 840px) {
+                    top: 100px;
+                }
+            }
 
             h3{
                 font-family: 'Ivy';
-                font-size: 42px;
+                font-size: clamp(32px, ${32 / 768 * 100}vw, 42px);
+
+                @media (max-width: 768px) {
+                    font-size: 42px;
+                }
+
                 font-weight: 300;
                 color: #fff;
                 letter-spacing: 2px;
@@ -205,7 +267,11 @@ const Wrapper = styled.section`
                 text-align: right;
                 display: block;
                 color: #fff;
-                font-size: 18px; 
+                font-size: clamp(14px, ${14 / 768 * 100}vw, 18px); 
+
+                @media (max-width: 768px) {
+                    font-size: 18px;
+                }
                 letter-spacing: 0.55px;
                 text-decoration: underline;
             }
@@ -235,6 +301,7 @@ const Wrapper = styled.section`
                 justify-content: space-between;
                 align-items: center;
                 padding: 12px 20px;
+
 
                 h3{
                     color: #31231E;

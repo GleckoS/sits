@@ -292,7 +292,7 @@ const LeftMenu = styled.div`
     overflow: auto;
     position: fixed;
     z-index: 111;
-    width: 500px;
+    width: 400px;
     padding: 42px;
     left: 0;
     top: 0;
@@ -337,7 +337,7 @@ const RightMenu = styled.div`
     overflow: auto;
     position: fixed;
     z-index: 111;
-    width: 500px;
+    width: 400px;
     padding: 42px;
     right: 0;
     top: 0;
