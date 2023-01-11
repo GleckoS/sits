@@ -70,12 +70,12 @@ const Flex = styled.div`
     }
 
     @media (max-width: 1194px) {
-        padding: 0;
+        padding: 20px 0 0 0;
     }
     @media (max-width: 1024px) {
         flex-direction: column;
         align-items: flex-start;
-        gap: 8px;
+        gap: 12px;
     }
     @media (max-width: 768px) {
         gap: 0;

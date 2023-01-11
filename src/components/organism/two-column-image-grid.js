@@ -75,24 +75,34 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
             </Popup>
             <Wrapper>
                 {collectionPagePreviewImage
-                    ? <div className="image-wrap">
-                        <AddToFauvorite setRerender={setRerender}  rerender={rerender} type={'product'} title={popUpImages[0].popupNames.model} />
-                        <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(popUpImages[0].image.title) }}>
-                            <GatsbyImage image={popUpImages[0].image.localFile.childImageSharp.gatsbyImageData} alt={popUpImages[0].image.altText} />
-                            <span className="in"> In this image <b>+</b> </span>
-                        </button>
-                    </div>
+                    ? <>
+                        {(() => {
+                            let { popupNames } = popUpImages.filter(inEl => inEl.image.title === collectionPagePreviewImage.title)[0]
+                            return (
+                                <div className="image-wrap">
+                                    <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'product'} title={popupNames.model} />
+                                    <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(collectionPagePreviewImage.title) }}>
+                                        <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
+                                        <span className="in"> In this image <b>+</b> </span>
+                                    </button>
+                                </div>
+                            )
+                        })()}
+                    </>
                     : null}
                 <ImagesGrid>
-                    {popUpImages?.map((el, index) => (
-                        <div className="image-wrap">
-                            <AddToFauvorite setRerender={setRerender}  rerender={rerender} type={'product'} title={el.popupNames.model} />
-                            <button key={el.image.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.image.title) }}>
-                                <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
-                                <span className="in"> In this image <b>+</b> </span>
-                            </button>
-                        </div>
-                    ))}
+                    {gallery?.map((el, index) => {
+                        let { popupNames } = popUpImages.filter(inEl => inEl.image.title === el.title)[0]
+                        return (
+                            <div className="image-wrap">
+                                <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'product'} title={popupNames.model} />
+                                <button key={el.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
+                                    <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                                    <span className="in"> In this image <b>+</b> </span>
+                                </button>
+                            </div>
+                        )
+                    })}
                 </ImagesGrid>
             </Wrapper>
             <SliderWrapper>
