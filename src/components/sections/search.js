@@ -1,4 +1,4 @@
-import { Link } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../atoms/container'
@@ -30,7 +30,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
 
     useEffect(() => {
         if (searchValue && typeof window !== 'undefined') {
-            let headerHeight = window.innerWidth < 841 ? 75 : 109
+            let headerHeight = window.innerWidth < 841 ? 75 : 95
             let results = document.getElementById('results')
             window.scrollTo(0, results.offsetTop - headerHeight)
         }
@@ -44,7 +44,13 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
     const [outdoorFurnituresItemCount, setOutdoorFurnituresItemCount] = useState(0)
     const [coversItemCount, coversFurnituresItemCount] = useState(0)
 
-    const [rerender, setRerender] = useState(false) // REMOVE
+    const [rerender, setRerender] = useState(false)
+
+    const enterListener = (e) => {
+        if (e.key === "Enter") {
+            navigate(inputValue ? ('?search=' + inputValue) : '')
+        }
+    }
 
     return (
         <Wrapper>
@@ -52,7 +58,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                 <Content>
                     <h1>{pageTitle}</h1>
                     <Input>
-                        <input value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} placeholder={placeholder} />
+                        <input onKeyDown={enterListener} value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} placeholder={placeholder} />
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                 <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
@@ -80,7 +86,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                     <ResultProductBlock setRerender={setRerender} rerender={rerender} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} searchValue={searchValue} />
                     <ResultProductBlock setRerender={setRerender} rerender={rerender} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} searchValue={searchValue} />
                     <ResultProductBlock setRerender={setRerender} rerender={rerender} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} searchValue={searchValue} />
-                    <ResultMaterialBlock setRerender={setRerender} rerender={rerender} count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue}/>
+                    <ResultMaterialBlock setRerender={setRerender} rerender={rerender} count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue} />
                 </Container>
             </Results>
         </Wrapper>
@@ -111,7 +117,7 @@ const Input = styled.div`
 
 const Content = styled.div`
     max-width: 600px;
-    margin: 240px auto 160px auto;
+    margin: 160px auto 100px auto;
 
     h1{
         font-family: 'Ivy';
@@ -124,7 +130,7 @@ const Content = styled.div`
 const Results = styled.div`
     background-color: #F9F5F0;
     padding: 0 0 60px 0;
-    margin-bottom: -160px;
+    margin-bottom: calc(clamp(45px, 10.050251256281408vw, 160px) * -1 );
 
     &.disable{
         padding: 0 0 1px 0;
@@ -136,7 +142,7 @@ const NoResults = styled.div`
     padding: 120px 0 120px 0;
     text-align: center;
     max-width: 926px;
-    margin: 0 auto;
+    margin: 0 auto ;
 
     h2{
         margin-bottom: 42px;

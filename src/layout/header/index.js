@@ -84,6 +84,12 @@ export default function Header() {
         }
     }, [isLeftMenuOpened, isRightMenuOpened, isMobileMenuOpened])
 
+    const closeAll = () => {
+        setLeftMenuOpened(false)
+        setRightMenuOpened(false)
+        setMobileMenuOpened(false)
+    }
+
     return (
         <>
             <Wrapper>
@@ -98,7 +104,7 @@ export default function Header() {
                             <CloseButton tabIndex={isLeftMenuOpened ? '0' : '-1'} as='button' func={setLeftMenuOpened} val={false} />
                         </Flex>
                         <MenuContent>
-                            <Search tabIndex={isLeftMenuOpened ? '0' : '-1'} />
+                            <Search func={closeAll} tabIndex={isLeftMenuOpened ? '0' : '-1'} />
                             {linksLeft['en'].map((el, index) => (
                                 <React.Fragment key={el.name}>
                                     <Item onBlur={() => index === linksLeft['en'].length - 1 ? setLeftMenuOpened() : null} tabIndex={isLeftMenuOpened ? '0' : '-1'} el={el} func={(v) => { setLeftMenuOpened(v) }} />
@@ -135,7 +141,7 @@ export default function Header() {
                     </Burger>
                     <MobileMenu className={isMobileMenuOpened ? 'active' : ''}>
                         <Container className="content">
-                            <Search tabIndex={isMobileMenuOpened ? '0' : '-1'} />
+                            <Search func={closeAll} tabIndex={isMobileMenuOpened ? '0' : '-1'} />
                             <div className="wrap">
                                 {linksLeft['en'].map(el => (
                                     <React.Fragment key={el.name}>

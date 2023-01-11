@@ -121,7 +121,7 @@ const ResultsGrid = styled.div`
         grid-gap: 26px 12px;
     }
 
-    @media (max-width: 340px) {
+    @media (max-width: 420px) {
         grid-template-columns: 1fr;
     }
 `
