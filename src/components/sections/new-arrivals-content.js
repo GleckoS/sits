@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react"
+import React, { useMemo, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { ProductList } from "../organism/products-list"
@@ -17,16 +17,18 @@ export default function Content({ data }) {
         return 8
     })
 
-    // cookie refresh for all products
+    const [rerender, setRerender] = useState(false)
 
-    const [rerender, setRerender] = useState(false) // REMOVE
+    const products = useMemo(() => {
+        return data.map(el => el.product)
+    }, [data])
 
     return (
         <Wrapper>
             <h1>{title['en']}</h1>
             <Container>
                 <List>
-                    <ProductList setRerender={setRerender} rerender={rerender} showCount={showCount} setShowCount={setShowCount} products={data} />
+                    <ProductList setRerender={setRerender} rerender={rerender} showCount={showCount} setShowCount={setShowCount} products={products} />
                 </List>
             </Container>
         </Wrapper>

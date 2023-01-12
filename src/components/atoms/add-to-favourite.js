@@ -11,7 +11,7 @@ const removeMessage = {
 }
 
 const addMessage = {
-  en: ' added to My Favourites'
+  en: ` added to My Favourites`
 }
 
 export default function AddToFauvorite({ setRerender = () => { }, rerender, type, title }) {

@@ -92,7 +92,17 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                     : null}
                 <ImagesGrid>
                     {gallery?.map((el, index) => {
-                        let { popupNames } = popUpImages.filter(inEl => inEl.image.title === el.title)[0]
+                        let popUp = popUpImages.filter(inEl => inEl.image.title === el.title)
+                        if (popUp.length === 0) {
+                            return (
+                                <div className="image-wrap">
+                                    <button key={el.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(popUpImages[0].title) }}>
+                                        <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                                    </button>
+                                </div>
+                            )
+                        }
+                        let { popUpNames } = popUp[0]
                         return (
                             <div className="image-wrap">
                                 <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'product'} title={popupNames.model} />
