@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { Container } from '../atoms/container'
 import { ResultMaterialBlock } from '../organism/result-material-block'
 import { ResultProductBlock } from '../organism/results-product-block'
+import { myContext } from "./../../hooks/provider"
 
 const pageTitle = 'Looking for something specific?'
 const placeholder = 'Search'
@@ -26,7 +27,6 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
         const search = urlParams.get('search')
         return search ? search : ''
     }, [location])
-    const [inputValue, setInputValue] = useState(searchValue)
 
     useEffect(() => {
         if (searchValue && typeof window !== 'undefined') {
@@ -46,31 +46,37 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
 
     const [rerender, setRerender] = useState(false)
 
-    const enterListener = (e) => {
+    const enterListener = (e, input) => {
         if (e.key === "Enter") {
-            navigate(inputValue ? ('?search=' + inputValue) : '')
+            navigate(input ? ('?search=' + input) : '')
         }
     }
 
     return (
         <Wrapper>
             <Container>
-                <Content>
-                    <h1>{pageTitle}</h1>
-                    <Input>
-                        <input onKeyDown={enterListener} value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} placeholder={placeholder} />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                            <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
-                                    <circle cx="8" cy="8" r="8" stroke="none" />
-                                    <circle cx="8" cy="8" r="7" fill="none" />
-                                </g>
-                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
-                            </g>
-                        </svg>
-                    </Input>
-                    <Link className='button' to={inputValue ? ('?search=' + inputValue) : ''}>{placeholder}</Link>
-                </Content>
+                <myContext.Consumer>
+                    {context => {
+                        return (
+                            <Content>
+                                <h1>{pageTitle}</h1>
+                                <Input>
+                                    <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                                        <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                            <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
+                                                <circle cx="8" cy="8" r="8" stroke="none" />
+                                                <circle cx="8" cy="8" r="7" fill="none" />
+                                            </g>
+                                            <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
+                                        </g>
+                                    </svg>
+                                </Input>
+                                <Link className='button' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>{placeholder}</Link>
+                            </Content>
+                        )
+                    }}
+                </myContext.Consumer>
             </Container>
             <Results className={searchValue ? '' : 'disable'} id='results'>
                 <Container>

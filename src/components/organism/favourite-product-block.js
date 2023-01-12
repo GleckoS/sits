@@ -16,7 +16,6 @@ export const FavouriteProductBlock = ({
 }) => {
   const filtredArr = useMemo(() => {
     let arr = prefiltredArr.nodes
-
     if (filter) {
       arr = arr.filter((el) => {
         let isAccessed = false

@@ -94,6 +94,12 @@ export const Global = createGlobalStyle`
         text-decoration-thickness: 1px !important;
     }
 
+    @media (max-width: 420px) {
+        .slick-dots li{
+            margin: 0 2px !important; 
+        }
+    }
+
     .underline{
       width: fit-content;
       display: block;
@@ -103,10 +109,10 @@ export const Global = createGlobalStyle`
       transition: background-size 0.3s
         cubic-bezier(0.39, 0.575, 0.565, 1);
 
-  background-image: linear-gradient(#222b40, #222b40);
-  background-size: 80% 1px;
-  background-position: left bottom;
-  background-repeat: no-repeat;
+        background-image: linear-gradient(#222b40, #222b40);
+        background-size: 80% 1px;
+        background-position: left bottom;
+        background-repeat: no-repeat;
 
       &:hover {
         background-size: 100% 1px;

@@ -91,6 +91,7 @@ export default function Hero({
 
 const Wrapper = styled.div`
     background-color: var(--light-background);
+    overflow: hidden;
 `
 
 const Description = styled.div`

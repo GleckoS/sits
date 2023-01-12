@@ -8,6 +8,7 @@ import { Second } from "../organism/best-sellers-grid-second"
 import { Third } from "../organism/best-sellers-grid-third"
 
 export default function BestSellersGrid({ data }) {
+    debugger
     return (
         <Wrapper>
             <Container>

@@ -211,8 +211,31 @@ const Wrapper = styled.header`
         align-items: center;
         width: fit-content;
 
+        svg{
+            path{
+                    fill: transparent;
+                transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+            }
+        }
+
+        &:hover{
+            svg{
+
+                path{
+                    fill: #edc53d;
+                    stroke: #edc53d;
+                }
+            }
+        }
+
         &.active{
             font-weight: 600;
+            svg{
+                path{
+                    fill: #edc53d;
+                    stroke: #edc53d;
+                }
+            }
         }
     }
 

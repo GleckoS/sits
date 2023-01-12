@@ -164,6 +164,13 @@ const SliderWrapper = styled.div`
 
     @media (max-width: 1024px) {
         display: block;
+
+        .image{
+            img{
+                margin: 0 auto;
+                max-width: fit-content;
+            }
+        }
     }
 
     @media (max-width: 768px) {

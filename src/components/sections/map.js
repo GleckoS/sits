@@ -181,7 +181,7 @@ export default function Map() {
 const MapItems = styled.div`
     position: relative;
     width: 100%;
-    height: calc(100% - 36px);
+    height: 100%;
     grid-area: i;
 `
 

@@ -11,7 +11,7 @@ const left = [
 
 const right = [
     { name: 'WHERE TO BUY', url: '/where-to-buy/' },
-    { name: 'FOR RETAILERS', url: 'https://sitsconnect.pl/' },
+    { name: 'CONTACT', url: '/contact/' },
     { name: 'SALES REPRESENTATTIVE', url: '/sales-representative/' }
 ]
 

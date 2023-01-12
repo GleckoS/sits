@@ -5,7 +5,8 @@ import { Container } from "../atoms/container"
 import { Title } from "../moleculas/title-sub"
 
 
-export default function CataloguesGrid({ data: { title, catalogues: {catalogues} } }) {
+export default function CataloguesGrid({ data: { title, catalogues: { catalogues } } }) {
+    debugger
     return (
         <Wrapper>
             <Title title={title} />
@@ -14,7 +15,7 @@ export default function CataloguesGrid({ data: { title, catalogues: {catalogues}
                     <Grid>
                         {catalogues.map((el, index) => (
                             <Item key={index}>
-                                <a href={el.catalogueFile} download>
+                                <a href={el.catalogueFile?.localFile?.publicURL ? el.catalogueFile?.localFile?.publicURL : el.catalogueFile?.mediaItemUrl} target='_blank' rel="noreferrer noopener" download>
                                     <GatsbyImage image={el.cataloguePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.cataloguePreviewImage.altText} />
                                     <p>{el.catalogueTitle}</p>
                                 </a>

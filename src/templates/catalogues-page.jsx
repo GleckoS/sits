@@ -87,6 +87,7 @@ export const query = graphql`
                   localFile {
                     publicURL
                   }
+                  mediaItemUrl
                 }
                 cataloguePreviewImage {
                   altText
