@@ -8,7 +8,7 @@ export const Second = ({ data: { slug, title, collections: { collectionBestselle
         <TextBlock title={title} slug={slug} description={collectionBestsellerImageGrid.collectionShortBestsellerPageDescription} />
         <GatsbyImage className="s" image={collectionBestsellerImageGrid.smallSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallSquare.altText} />
         <GatsbyImage className="b desctop" image={collectionBestsellerImageGrid.bigSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.bigSquare.altText} />
-        <GatsbyImage className="l desctop" image={collectionBestsellerImageGrid.tinyLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.tinyLandscape.altText} />
+        <GatsbyImage className="l desctop" image={collectionBestsellerImageGrid.smallLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallLandscape.altText} />
         <GatsbyImage className="b tablet" image={collectionBestsellerImageGrid.smallLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallLandscape.altText} />
     </Wrapper>
 )
