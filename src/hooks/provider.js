@@ -16,16 +16,16 @@ const Provider = ({ children }) => {
             let materials = getCookie('materials')
             let colors = getCookie('colors')
 
-            if (collection.includes("|")) {
+            if (collection?.includes("|")) {
                 itemsCount += getCookie('collections').split("|").length - 1
             }
-            if (products.includes("|")) {
+            if (products?.includes("|")) {
                 itemsCount += getCookie('products').split("|").length - 1
             }
-            if (materials.includes("|")) {
+            if (materials?.includes("|")) {
                 itemsCount += getCookie('materials').split("|").length - 1
             }
-            if (colors.includes("|")) {
+            if (colors?.includes("|")) {
                 itemsCount += getCookie('colors').split("|").length - 1
             }
         }
@@ -41,16 +41,16 @@ const Provider = ({ children }) => {
             let materials = getCookie('materials')
             let colors = getCookie('colors')
 
-            if (collection.includes("|")) {
+            if (collection?.includes("|")) {
                 itemsCount += getCookie('collections').split("|").length - 1
             }
-            if (products.includes("|")) {
+            if (products?.includes("|")) {
                 itemsCount += getCookie('products').split("|").length - 1
             }
-            if (materials.includes("|")) {
+            if (materials?.includes("|")) {
                 itemsCount += getCookie('materials').split("|").length - 1
             }
-            if (colors.includes("|")) {
+            if (colors?.includes("|")) {
                 itemsCount += getCookie('colors').split("|").length - 1
             }
         }
