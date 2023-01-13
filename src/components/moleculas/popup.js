@@ -116,18 +116,32 @@ const Box = styled.div`
     position: relative;
     z-index: 1000;
     background-color: var(--light-background);
-    width: 90%;
-    max-width: 1200px;
-    margin: 25px auto;
+    width: calc(100% - 90px);
+    max-width: 1450px;
+    margin: 45px auto;
     padding: 0 50px;
     overflow: hidden;
-    height: calc(100vh - 50px);
+    height: calc(100vh - 90px);
 
     @media (max-width: 768px) {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0 24px;
+        margin: 25px auto;
+        padding: 0 25px;
+        height: calc(100vh - 50px);
+        width: calc(100% - 50px);
+    }
+
+    @media (max-width: 480px) {
+        margin: 16px auto;
+        padding: 0 16px;
+        height: calc(100vh - 32px);
+        width: calc(100% - 32px);
+    }
+
+    @media (max-width: 350px) {
+        margin: 12px auto;
+        padding: 0 12px;
+        height: calc(100vh - 24px);
+        width: calc(100% - 24px);
     }
 `
 
