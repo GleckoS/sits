@@ -11,10 +11,23 @@ const Provider = ({ children }) => {
 
         let itemsCount = 0
         if (typeof window !== 'undefined') {
-            itemsCount += getCookie('collections').split("|").length - 1
-            itemsCount += getCookie('products').split("|").length - 1
-            itemsCount += getCookie('materials').split("|").length - 1
-            itemsCount += getCookie('colors').split("|").length - 1
+            let collection = getCookie('collections')
+            let products = getCookie('products')
+            let materials = getCookie('materials')
+            let colors = getCookie('colors')
+
+            if (collection.includes("|")) {
+                itemsCount += getCookie('collections').split("|").length - 1
+            }
+            if (products.includes("|")) {
+                itemsCount += getCookie('products').split("|").length - 1
+            }
+            if (materials.includes("|")) {
+                itemsCount += getCookie('materials').split("|").length - 1
+            }
+            if (colors.includes("|")) {
+                itemsCount += getCookie('colors').split("|").length - 1
+            }
         }
 
         return itemsCount
@@ -23,10 +36,23 @@ const Provider = ({ children }) => {
     const recalculateFavouritesCount = () => {
         let itemsCount = 0
         if (typeof window !== 'undefined') {
-            itemsCount += getCookie('collections').split("|").length - 1
-            itemsCount += getCookie('products').split("|").length - 1
-            itemsCount += getCookie('materials').split("|").length - 1
-            itemsCount += getCookie('colors').split("|").length - 1
+            let collection = getCookie('collections')
+            let products = getCookie('products')
+            let materials = getCookie('materials')
+            let colors = getCookie('colors')
+
+            if (collection.includes("|")) {
+                itemsCount += getCookie('collections').split("|").length - 1
+            }
+            if (products.includes("|")) {
+                itemsCount += getCookie('products').split("|").length - 1
+            }
+            if (materials.includes("|")) {
+                itemsCount += getCookie('materials').split("|").length - 1
+            }
+            if (colors.includes("|")) {
+                itemsCount += getCookie('colors').split("|").length - 1
+            }
         }
 
         setFavouritesCount(itemsCount)
