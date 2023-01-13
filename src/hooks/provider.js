@@ -10,7 +10,7 @@ const Provider = ({ children }) => {
     const [favouritesCount, setFavouritesCount] = useState(() => {
 
         let itemsCount = 0
-        if(typeof window !== 'undefined'){
+        if (typeof window !== 'undefined') {
             itemsCount += getCookie('collections').split("|").length - 1
             itemsCount += getCookie('products').split("|").length - 1
             itemsCount += getCookie('materials').split("|").length - 1
@@ -22,11 +22,12 @@ const Provider = ({ children }) => {
 
     const recalculateFavouritesCount = () => {
         let itemsCount = 0
-
-        itemsCount += getCookie('collections').split("|").length - 1
-        itemsCount += getCookie('products').split("|").length - 1
-        itemsCount += getCookie('materials').split("|").length - 1
-        itemsCount += getCookie('colors').split("|").length - 1
+        if (typeof window !== 'undefined') {
+            itemsCount += getCookie('collections').split("|").length - 1
+            itemsCount += getCookie('products').split("|").length - 1
+            itemsCount += getCookie('materials').split("|").length - 1
+            itemsCount += getCookie('colors').split("|").length - 1
+        }
 
         setFavouritesCount(itemsCount)
     }
