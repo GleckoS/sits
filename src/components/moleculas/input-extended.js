@@ -57,6 +57,12 @@ const Wrapper = styled.label`
         }
     }
 
+    &:hover{
+        input{
+            width: 46px;
+        }
+    }
+
     @media (max-width: 480px) {
         span{
             display: none;

@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Global } from "../styles/global-style"
 import Footer from "./footer"
 import Header from "./header"
-import Cookies from "./cookies"
+// import Cookies from "./cookies"
 
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -30,4 +30,13 @@ const Wrapper = styled.div`
     justify-content: space-between;
     height: fit-content;
     min-height: 100vh;
+
+    #main{
+        margin-top: 95px;
+
+        @media (max-width: 840px){
+            margin-top: 76px;
+        }
+
+    }
 `

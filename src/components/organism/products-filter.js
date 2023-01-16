@@ -181,6 +181,12 @@ const Search = styled.label`
         cursor: pointer;
     }
 
+    &:hover{
+        input{
+            width: 46px;
+        }
+    }
+
     input{
         border: none;
         width: 100%;
