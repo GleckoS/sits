@@ -190,7 +190,7 @@ const Wrapper = styled.header`
     max-width: 1920px;
     width: 100%;
     margin: 0 auto;
-    position: sticky;
+    position: fixed;
     z-index: 108;
     top: 0;
     padding: 0;

@@ -145,7 +145,12 @@ export const FilterComponent = ({
                 <div>
                     <Search className="label">
                         <span>{searchTitle['en']}</span>
-                        <input value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
+                        <input onKeyDown={(e) => {
+                            if (e.key === "Enter") {
+                                setSearch(inputValue)
+                                setInputValue('')
+                            }
+                        }} value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
                         <button onClick={() => { setSearch(inputValue); setInputValue('') }} aria-label={'search: ' + inputValue}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                 <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">

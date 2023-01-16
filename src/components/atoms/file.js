@@ -20,9 +20,10 @@ export const File = ({ file }) => {
 const Wrapper = styled.a`
 
     margin-top: 10px;
-
-    display: flex;
-    gap: 16px;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: 20px auto;
+    grid-gap: 16px;
     align-items: center;
 
     span{

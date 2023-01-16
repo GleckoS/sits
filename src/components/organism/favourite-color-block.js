@@ -63,7 +63,7 @@ export const FavouriteColorBlock = ({
             return (
               <Card
                 setRerender={setRerender}
-                colorId={el.colorId}
+                variant={el.colorId}
                 type={'colors'}
                 image={el.squarePreviewImage}
                 title={el.variantName}

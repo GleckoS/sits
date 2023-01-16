@@ -16,10 +16,10 @@ export const PopupButton = ({ data, title }) => {
                             <PopupFeatured>
                                 <GatsbyImage image={data.featuredImage.localFile.childImageSharp.gatsbyImageData} alt={data.featuredImage.altText} />
                                 {data.featuredImageTitle
-                                    ? <div dangerouslySetInnerHTML={{ __html: data.featuredImageTitle }} />
+                                    ? <div className="pop-title" dangerouslySetInnerHTML={{ __html: data.featuredImageTitle }} />
                                     : null}
                                 {data.featuredImageTextUnderTitle
-                                    ? <div dangerouslySetInnerHTML={{ __html: data.featuredImageTextUnderTitle }} />
+                                    ? <div className="pop-text" dangerouslySetInnerHTML={{ __html: data.featuredImageTextUnderTitle }} />
                                     : null}
                             </PopupFeatured>
                         ) : null}
@@ -29,9 +29,9 @@ export const PopupButton = ({ data, title }) => {
                                 <div className="image-wrap">
                                     <img className="svg" src={el.image.localFile.publicURL} alt={el.image.altText} />
                                 </div>
-                                <div dangerouslySetInnerHTML={{ __html: el.title }} />
+                                <div className="pop-title" dangerouslySetInnerHTML={{ __html: el.title }} />
                                 {el.textUnderTitle
-                                    ? <div dangerouslySetInnerHTML={{ __html: el.textUnderTitle }} />
+                                    ? <div className="pop-text" dangerouslySetInnerHTML={{ __html: el.textUnderTitle }} />
                                     : null}
                             </div>
                         ))}
@@ -76,9 +76,31 @@ const Wrapper = styled.button`
 
 const PopupFeatured = styled.div`
     margin-bottom: clamp(32px, ${80 / 1194 * 100}vw, 80px);
+    .gatsby-image-wrapper{
+        width: 100%;
+    }
 `
 
 const PopupContent = styled.div`
+
+    .pop-title{
+        font-size: 22px;
+        font-weight: 300;
+
+        @media (max-width: 480px) {
+            font-size: 18px;
+        }
+
+    }
+
+    .pop-text{
+        font-size: 16px;
+        font-weight: 300;
+
+        @media (max-width: 480px) {
+            font-size: 14px;
+        }
+    }
 `
 
 const PopupGrid = styled.div`

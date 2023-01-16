@@ -17,6 +17,7 @@ export const FavouriteProductBlock = ({
   const filtredArr = useMemo(() => {
     let arr = prefiltredArr.nodes
     if (filter) {
+      
       arr = arr.filter((el) => {
         let isAccessed = false
 
@@ -55,7 +56,6 @@ export const FavouriteProductBlock = ({
   })
 
   const renderCount = useRef(0)
-
   if (filtredArr.length > 0) {
     renderCount.current = 0
     return (

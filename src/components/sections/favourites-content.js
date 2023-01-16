@@ -49,7 +49,6 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
             colors: getCookie('colors')
         })
     }
-
     return (
         <Wrapper>
             <Container>

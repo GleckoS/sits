@@ -67,6 +67,17 @@ export default function AssemblyInstructions() {
                 })
             }
         })
+
+        arr.sort(function (a, b) {
+            if (a.letter < b.letter) {
+              return -1;
+            }
+            if (a.letter > b.letter) {
+              return 1;
+            }
+            return 0;
+          });
+
         return arr
     }, [nodes])
 
@@ -193,9 +204,22 @@ const Wrapper = styled.section`
     }
 
     .flex{
-        display: flex;
-        gap: 30px 50px;
-        flex-wrap: wrap;
+        display: grid;
+        grid-gap: 30px 50px;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+
+        @media (max-width: 1440px) {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media (max-width: 876px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        @media (max-width: 560px) {
+            grid-template-columns: 1fr;
+        }
+
     }
 
     h2{

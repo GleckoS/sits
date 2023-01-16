@@ -26,10 +26,12 @@ const Wrapper = styled.section`
     overflow: hidden;
     max-height: 100vh;
     top: -95px;
+    margin-bottom: -95px;
 
     @media (max-width: 1440px) {
         max-height: calc(100vh - 95px);
         top: unset;
+        margin-bottom: unset;
     }
     @media (max-width: 840px) {
         max-height: calc(100vh - 75px);
@@ -72,15 +74,19 @@ const Wrapper = styled.section`
     .content{
         position: absolute;
         left: 50%;
-        top: 50%;
+        top: calc(50% + 45px);
         transform: translate(-50%, -50%);
         width: 80%;
         text-align: center;
 
+        @media (max-width: 1440px) {
+            top: 50%;
+        }
+
         @media (max-width: 500px) {
             width: 100%;
             padding: 0 20px;
-            top: 40%;
+            top: 45%;
         }
 
         @media (max-width: 389px) {
