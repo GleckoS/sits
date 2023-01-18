@@ -14,6 +14,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
 
     var settings = {
         infinite: true,
+        fade: true,
         dots: true,
         arrows: false,
         slidesToShow: 1,
@@ -46,7 +47,6 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
                 }
                 arr.push(el)
             })
-            console.log('scroll')
             document.getElementById('popup').scrollTo(0, 0);
             setPopImages(arr)
         }
@@ -163,6 +163,15 @@ const Box = styled.div`
     .in{
         background-color: #F9F5F0;
     }
+
+    .slick-slide{
+        transition: all var(--animation) !important;
+        pointer-events: none;
+
+        &.slick-active{
+            pointer-events: all;
+        }
+    }
 `
 
 const SliderWrapper = styled.div`
@@ -204,7 +213,7 @@ const SliderWrapper = styled.div`
                 border-radius: 50%;
                 border: 1px solid black;
                 opacity: 0;
-                transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+                transition: opacity .4s cubic-bezier(0.39, 0.575, 0.565, 1);
             }
 
             &.slick-active::before{
@@ -232,7 +241,7 @@ const SliderWrapper = styled.div`
             background-color: #fff;
             right: 20px;
             bottom: 20px;
-            transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+            transition: opacity .5s ease-out;
 
             b{
                 font-size: 24px;
@@ -275,7 +284,7 @@ const Wrapper = styled.div`
         top: 10px;
         z-index: 2;
         opacity: 0;
-        transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: opacity .5s ease-out;
 
         @media (max-width: 1024px) {
             opacity: 1;
@@ -333,7 +342,7 @@ const Wrapper = styled.div`
             right: 20px;
             bottom: 20px;
             opacity: 0;
-            transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+            transition: all .5s ease-out;
 
             &:hover{
                 background-color: #fff;
@@ -352,7 +361,7 @@ const Wrapper = styled.div`
                 bottom: -6px;
                 height: 1px;
                 background-color: #31231E;
-                transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+                transition: all .5s ease-out;
             }
 
             &::before{
@@ -363,7 +372,7 @@ const Wrapper = styled.div`
                 bottom: -6px;
                 width: 1px;
                 background-color: #31231E;
-                transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+                transition: all .5s ease-out;
             }
         }
 

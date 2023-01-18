@@ -103,8 +103,8 @@ const Button = styled.button`
   transform-origin: 50% 50%;
 
   &:hover {
-    svg{
-      transform: scale(1.1);
+    svg path{
+      stroke: #edc53d;
     }
   }
 
@@ -116,7 +116,9 @@ const Button = styled.button`
   }
 
   svg {
-  transition: transform 0.3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    path{
+      transition: all .3s ease-out;
+    }
     width: 28px;
     height: 26px;
 

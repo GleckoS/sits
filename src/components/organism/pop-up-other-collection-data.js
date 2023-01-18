@@ -60,7 +60,7 @@ const Wrapper = styled.button`
     padding: 0 6px;
     height: clamp(45px, ${56 / 1194 * 100}vw, 66px);
     border-bottom: 1px solid var(--text-color);
-    transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: all .5s ease-out;
     cursor: pointer;
 
     &:hover{

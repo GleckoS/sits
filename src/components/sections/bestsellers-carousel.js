@@ -11,6 +11,7 @@ import { Link } from "gatsby"
 export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, carousel } }) {
     const slickRef = useRef(null);
     var settings = {
+        fade: true,
         infinite: true,
         dots: true,
         arrows: false,
@@ -23,6 +24,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                     centerPadding: "32px",
                     infinite: false,
                     dots: false,
+                    fade: false,
                 }
             },
             {
@@ -122,7 +124,12 @@ const Wrapper = styled.section`
 
     
     .slick-slide{
+        transition: all var(--animation) !important;
         pointer-events: none;
+
+        @media (max-width: 768px) {
+            transition: all .6s ease;
+        }
         &.slick-active{
             pointer-events: all;
         }
@@ -238,7 +245,7 @@ const Wrapper = styled.section`
                 &.hide{
                     opacity: 0;
                 }
-                transition: .2s opacity cubic-bezier(0.39, 0.575, 0.565, 1);
+                transition:  opacity .4s ease;
                 position: sticky;
                 top: 120px;
                 z-index: 5;

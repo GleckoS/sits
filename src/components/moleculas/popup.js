@@ -34,6 +34,49 @@ export const Popup = ({ id, children, title, setPopUpOpened, isPopUpOpened }) =>
     )
 }
 
+const Background = styled.div`
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    z-index: 100;
+`
+
+const Box = styled.div`
+    position: relative;
+    z-index: 1000;
+    background-color: var(--light-background);
+    width: calc(100% - 90px);
+    max-width: 1450px;
+    margin: 45px auto;
+    padding: 0 50px;
+    overflow: hidden;
+    height: calc(100vh - 90px);
+
+    @media (max-width: 768px) {
+        margin: 25px auto;
+        padding: 0 25px;
+        height: calc(100vh - 50px);
+        width: calc(100% - 50px);
+    }
+
+    @media (max-width: 480px) {
+        margin: 16px auto;
+        padding: 0 16px;
+        height: calc(100vh - 32px);
+        width: calc(100% - 32px);
+    }
+
+    @media (max-width: 350px) {
+        margin: 12px auto;
+        padding: 0 12px;
+        height: calc(100vh - 24px);
+        width: calc(100% - 24px);
+    }
+`
+
+
 const Wrapper = styled.div`
     position: fixed;
     left: 0;
@@ -42,7 +85,7 @@ const Wrapper = styled.div`
     bottom: 0;
     z-index: 1000;
     background-color: var(--gray);
-    transition: opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: opacity .7s ease-out;
     opacity: 0;
     pointer-events: none;
 
@@ -52,7 +95,6 @@ const Wrapper = styled.div`
     }
 
     span{
-         
         font-size: clamp(28px, ${40 / 1194 * 100}vw, 44px);
     }
 `
@@ -100,48 +142,6 @@ const Control = styled.div`
             height: 2px;
             background-color: var(--text-color);
         }
-    }
-`
-
-const Background = styled.div`
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    top: 0;
-    z-index: 100;
-`
-
-const Box = styled.div`
-    position: relative;
-    z-index: 1000;
-    background-color: var(--light-background);
-    width: calc(100% - 90px);
-    max-width: 1450px;
-    margin: 45px auto;
-    padding: 0 50px;
-    overflow: hidden;
-    height: calc(100vh - 90px);
-
-    @media (max-width: 768px) {
-        margin: 25px auto;
-        padding: 0 25px;
-        height: calc(100vh - 50px);
-        width: calc(100% - 50px);
-    }
-
-    @media (max-width: 480px) {
-        margin: 16px auto;
-        padding: 0 16px;
-        height: calc(100vh - 32px);
-        width: calc(100% - 32px);
-    }
-
-    @media (max-width: 350px) {
-        margin: 12px auto;
-        padding: 0 12px;
-        height: calc(100vh - 24px);
-        width: calc(100% - 24px);
     }
 `
 

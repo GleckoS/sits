@@ -1,21 +1,35 @@
-import { createGlobalStyle } from "styled-components"
+import { createGlobalStyle, keyframes } from "styled-components"
+
+
+
+const enter = keyframes`
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+`
+const exit = keyframes`
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+`
 
 export const Global = createGlobalStyle`
     :root{
         --light-background: #F9F5F0;
-        
         --gray: #707070;
         --color-brown: #996D3E;
         --color-brown-light: #996D3E66;
-
         --text-color: #31231E;
 
-        /* --text-title-desctop: clamp(34px, ${44 / 1194 * 100}vw, 44px);
-        --text-sub-desctop: clamp(28px, , 40px);
-        --text-big-desctop: clamp(16px, ${20 / 1194 * 100}vw, 28px);
-        --text-normal-desctop: clamp(34px, ${44 / 1194 * 100}vw, 18px);
-        --text-small-desctop: ; */
 
+        --animation: .8s ease-out;
+        --menu-animation: .55s ease-out;
     }
 
     .yellow-button{
@@ -33,7 +47,7 @@ export const Global = createGlobalStyle`
         margin: 0 auto;
         margin-top: 45px;
         cursor: pointer;
-        transition: transform .2s cubic-bezier(0.39, 0.575, 0.565, 1), background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: transform .5s ease-out, background-color .5s ease-out;
 
         &:hover{
             transform: translate(6px, 6px);
@@ -60,7 +74,7 @@ export const Global = createGlobalStyle`
             bottom: -6px;
             height: 1px;
             background-color: #31231E;
-            transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+            transition: all .5s ease-out;
         }
 
         &::before{
@@ -71,7 +85,7 @@ export const Global = createGlobalStyle`
             bottom: -6px;
             width: 1px;
             background-color: #31231E;
-            transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+            transition: all .5s ease-out;
         }
     }
 
@@ -106,8 +120,7 @@ export const Global = createGlobalStyle`
       position: relative;
       padding-bottom: 3px;
 
-      transition: background-size 0.3s
-        cubic-bezier(0.39, 0.575, 0.565, 1);
+      transition: background-size 0.5s ease-out;
 
         background-image: linear-gradient(#222b40, #222b40);
         background-size: 80% 1px;
@@ -145,7 +158,21 @@ export const Global = createGlobalStyle`
 
     .Toastify__progress-bar-theme--light{
         background: var(--color-brown) !important;
+        opacity: 0 !important;
     }
+
+    .Toastify__toast{
+        transition: all .4s ease-out;
+
+        &.enter {
+            animation: ${enter} 0.5s ease-out both;
+        }
+
+        &.exit {
+            animation: ${exit} 0.5s ease-out both;
+        }
+    }
+
 
     main{
         max-width: 1920px;

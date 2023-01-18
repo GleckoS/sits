@@ -41,4 +41,11 @@ const Hearth = styled.div`
         font-weight: 600;
         font-size: 16px;
     }
+
+    @media (max-width: 840px){
+        svg{
+        width: 24px !important; 
+        height: 24px !important;
+        }
+    }
 `

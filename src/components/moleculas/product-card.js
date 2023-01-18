@@ -46,11 +46,11 @@ const Wrapper = styled.div`
 
     .link{
         img{
-            transition: transform .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+            transition: transform var(--animation);
         }
         &:hover{
             img{
-                transform: scale(1.1);
+                transform: scale(1.07);
             }
         }
     }

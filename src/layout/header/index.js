@@ -178,7 +178,7 @@ const Overlay = styled.div`
     z-index: 110;
     opacity: 0;
     pointer-events: none;
-    transition:  opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition:  opacity .5s ease-out;
 
     &.visible{
         opacity: 1;
@@ -213,8 +213,8 @@ const Wrapper = styled.header`
 
         svg{
             path{
-                    fill: transparent;
-                transition: all .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+                fill: transparent;
+                transition: all .5s ease-out;
             }
         }
 
@@ -289,10 +289,15 @@ const MobileMenu = styled.div`
     top: 75px;
     bottom: 0;
     background-color: #fff;
-    transform: translateX(100%);
-    transition:  transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition:  all var(--menu-animation);
+
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(50px);
 
     &.active{
+        pointer-events: all;
+        opacity: 1;
         transform: translateX(0);
     }
 
@@ -328,7 +333,7 @@ const LeftMenu = styled.div`
     bottom: 0;
     background-color: #fff;
     transform: translateX(-500px);
-    transition:  transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: transform var(--menu-animation);
 
     .item{
         display: flex;
@@ -373,7 +378,7 @@ const RightMenu = styled.div`
     bottom: 0;
     background-color: #fff;
     transform: translateX(500px);
-    transition:  transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition:  transform var(--menu-animation);
 
     .item{
         display: flex;

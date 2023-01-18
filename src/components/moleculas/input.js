@@ -58,4 +58,19 @@ const Wrapper = styled.label`
         font-size: 14px;
         padding-bottom: 10px;
     }
+
+    @media (max-width: 840px) {
+        padding-bottom: 6px;
+        input{
+            padding-bottom: 0;
+        }
+        svg{
+            width: 24px;
+            height: 24px;
+        }
+        a{
+            margin-bottom: -2px !important;
+        }
+        max-width: 320px;
+    }
 `

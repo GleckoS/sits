@@ -109,6 +109,8 @@ export const query = graphql`
                     productsImages {
                       isMainImage
                       featuredProductImage {
+                        height
+                        width
                         altText
                         localFile {
                           childImageSharp {
@@ -142,6 +144,8 @@ export const query = graphql`
                     productsImages {
                       isMainImage
                       featuredProductImage {
+                        height
+                        width
                         altText
                         localFile {
                           childImageSharp {
@@ -175,6 +179,8 @@ export const query = graphql`
                     productsImages {
                       isMainImage
                       featuredProductImage {
+                        height
+                        width
                         altText
                         localFile {
                           childImageSharp {
@@ -208,6 +214,8 @@ export const query = graphql`
                     productsImages {
                       isMainImage
                       featuredProductImage {
+                        height
+                        width
                         altText
                         localFile {
                           childImageSharp {
@@ -241,6 +249,8 @@ export const query = graphql`
                     productsImages {
                       isMainImage
                       featuredProductImage {
+                        height
+                        width
                         altText
                         localFile {
                           childImageSharp {
@@ -274,6 +284,8 @@ export const query = graphql`
                     productsImages {
                       isMainImage
                       featuredProductImage {
+                        height
+                        width
                         altText
                         localFile {
                           childImageSharp {

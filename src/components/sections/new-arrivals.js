@@ -19,11 +19,6 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
         initialSlide: 1,
         responsive: [
             {
-                breakpoint: 1240,
-                settings: {
-                }
-            },
-            {
                 breakpoint: 640,
                 settings: {
                     slidesToShow: 1,

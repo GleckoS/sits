@@ -142,11 +142,10 @@ const Item = styled(Link)`
 
     &:hover{
         p{
-            transform: scale(1.2);
-            background-color: #00000030;
+            background-color: rgba(0, 0, 0, 0.4);
         }
         img{
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
     }
 
@@ -164,13 +163,13 @@ const Item = styled(Link)`
         font-weight: 700;
         text-transform: uppercase;
         color: #fff;
-        transition: background-color .4s cubic-bezier(0.39, 0.575, 0.565, 1), transform .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: background-color var(--animation);
     }
 
     .gatsby-image-wrapper{
         height: 100%;
         img{
-            transition: transform .4s cubic-bezier(0.39, 0.575, 0.565, 1);
+            transition: transform var(--animation);
         }
     }
 

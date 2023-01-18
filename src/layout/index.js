@@ -6,13 +6,19 @@ import Header from "./header"
 // import Cookies from "./cookies"
 
 import { ToastContainer } from 'react-toastify'
+import { cssTransition } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+
+const animate = cssTransition({
+    enter: "enter",
+    exit: "exit"
+})
 
 export default function Layout({ children }) {
 
     return (
         <Wrapper>
-            <ToastContainer />
+            <ToastContainer transition={animate} />
             <Global />
             {/* <Cookies /> */}
             <Header />

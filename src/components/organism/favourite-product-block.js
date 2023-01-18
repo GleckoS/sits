@@ -17,7 +17,7 @@ export const FavouriteProductBlock = ({
   const filtredArr = useMemo(() => {
     let arr = prefiltredArr.nodes
     if (filter) {
-      
+
       arr = arr.filter((el) => {
         let isAccessed = false
 
@@ -64,14 +64,30 @@ export const FavouriteProductBlock = ({
         <ResultsGrid>
           {filtredArr?.map((el) => {
             return el.products.productGallery?.map((inEl, index) => {
+              let isRendered = false
+              let isHaveMainImage = false
+              inEl.productsImages.every(image => {
+                if (image.isMainImage) {
+                  isHaveMainImage = true
+                  return false
+                }
+                return true
+              });
+
               return inEl.productsImages?.map((imageEl) => {
                 if (
-                  imageEl.isMainImage &&
-                  el.products.collection?.slug &&
-                  renderCount.current < showCount
+                  (
+                    (imageEl.isMainImage && isHaveMainImage)
+                    ||
+                    (!isHaveMainImage && imageEl.featuredProductImage.width > imageEl.featuredProductImage.height && !isRendered)
+                  )
+                  && el.products.collection?.slug
+                  && renderCount.current < showCount
                 ) {
+
                   let cookie = getCookie('products')
                   if (cookie?.includes(inEl.popupNames.model)) {
+                    isRendered = true
                     renderCount.current += 1
                     return (
                       <React.Fragment key={inEl.popupNames.model + index}>
@@ -84,6 +100,7 @@ export const FavouriteProductBlock = ({
                       </React.Fragment>
                     )
                   }
+
                 }
                 return null
               })

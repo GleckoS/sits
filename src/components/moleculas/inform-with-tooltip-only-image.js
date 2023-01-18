@@ -40,7 +40,7 @@ const Popup = styled.div`
     left: 50%;
     transform: translateY(-100%) translateX(-50%);
     width: 200px;
-    transition: all .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: all .5s ease-out;
     z-index: 2;
     border: 2px solid #C3C3C3;
     text-align: center;
@@ -120,7 +120,7 @@ const Item = styled.div`
         width: 32px;
         height: 32px;
         opacity: .65;
-        transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: opacity .5s ease-out;
     }
 
     &:hover{

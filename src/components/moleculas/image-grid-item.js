@@ -87,7 +87,7 @@ const Flex = styled.div`
     justify-content: space-between;
     gap: 30px;
 
-    @media (max-width: 375px) {
+    @media (max-width: 420px) {
         flex-direction: column;
         gap: 0;
     }
@@ -145,6 +145,11 @@ const Data = styled.div`
     gap: 16px;
     margin-top: 20px;
 
+    span{
+        font-weight: 300;
+        font-size: 18px !important;
+    }
+
     @media (max-width: 768px) {
         display: grid;
         grid-gap: 4px;
@@ -153,14 +158,9 @@ const Data = styled.div`
             display: grid;
             grid-template-columns: clamp(90px, ${90 / 390 * 100}vw, 160px) auto;
             span, strong{
-                font-size: clamp(10px, ${10 / 390 * 100}vw, 18px);
+                font-size: clamp(10px, ${10 / 390 * 100}vw, 18px) !important;
             }
         }
     }
 
-
-    span{
-        font-weight: 300;
-        font-size: 18px;
-    }
 `

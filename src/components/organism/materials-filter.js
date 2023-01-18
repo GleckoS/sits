@@ -249,8 +249,6 @@ const MobileFilters = styled.div`
     right: 0;
     top: 0;
     bottom: 0;
-    transform: translateX(100%);
-    transition: transform .3s cubic-bezier(0.39, 0.575, 0.565, 1);
     background-color: #fff;
     padding: 32px 24px;
     max-height: 100vh;
@@ -259,9 +257,16 @@ const MobileFilters = styled.div`
     @supports  (-webkit-touch-callout: none){
         padding-bottom: 120px;
     }
+    transition:  all var(--menu-animation);
+
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(50px);
 
     &.active{
-        transform: unset;
+        pointer-events: all;
+        opacity: 1;
+        transform: translateX(0);
     }
 `
 
