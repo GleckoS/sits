@@ -114,6 +114,10 @@ export const Global = createGlobalStyle`
         }
     }
 
+    .slick-dots li button:before{
+        transition: opacity .3s ease-out;
+    }
+
     .underline{
         width: fit-content;
         display: block;

@@ -16,7 +16,7 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
         dots: true,
         arrows: false,
         slidesToShow: 2,
-        initialSlide: 1,
+        initialSlide: 0,
         responsive: [
             {
                 breakpoint: 640,

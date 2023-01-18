@@ -191,6 +191,13 @@ const Wrapper = styled.section`
 
             svg{
                 width: clamp(20px, ${20 / 768 * 100}vw, 28px);
+                transition: transform .5s ease-out;
+            }
+
+            &:hover{
+                svg{
+                    transform: translateX(-5px);
+                }
             }
         }
 
@@ -206,6 +213,13 @@ const Wrapper = styled.section`
 
             svg{
                 width: clamp(20px, ${20 / 768 * 100}vw, 28px);
+                transition: transform .5s ease-out;
+            }
+
+            &:hover{
+                svg{
+                    transform: translateX(5px);
+                }
             }
         }
 
