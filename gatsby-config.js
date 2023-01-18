@@ -13,6 +13,13 @@ module.exports = {
         perPage: 5,
         requestConcurrency: 3,
       },
+      type: {
+        MediaItem: {
+          localFile: {
+            maxFileSizeBytes: 52428800, // 50Mb
+          },
+        },
+      },
     }
   },
     "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap",`gatsby-plugin-react-helmet`,
