@@ -12,7 +12,7 @@ export default function About({ color, data: { sectionTitle, text, linkUnderText
                 <div className="content">
                     <h2 className="title">{sectionTitle}</h2>
                     {text && <div className="text" dangerouslySetInnerHTML={{ __html: text }} />}
-                    {linkUnderText?.url && <Link className="link" to={linkUnderText.url} target={linkUnderText.target ? linkUnderText.target : null}>{linkUnderText.title}</Link>}
+                    {linkUnderText?.url && <Link className="link underline" to={linkUnderText.url} target={linkUnderText.target ? linkUnderText.target : null}>{linkUnderText.title}</Link>}
                 </div>
             </Container>
         </Wrapper>

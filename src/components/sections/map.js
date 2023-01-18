@@ -117,6 +117,8 @@ export default function Map() {
 
     const itemClick = (index) => {
         setActiveDot(index)
+        const offset = document.getElementById('map-item-' + index).offsetTop
+        document.getElementById('map-content').scrollTo(0, offset)
     }
 
     return (
@@ -146,7 +148,7 @@ export default function Map() {
                                         <p className="l">{el.Address}</p>
                                         <p className="l">{el.City}, {el.Country}</p>
                                         <a href={'tel:' + el.Phone} className="l">{el.Phone}</a>
-                                        {(el.Website && el.Website !== ' ') && <a className="link" rel='noopener noreferrer' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
+                                        {(el.Website && el.Website !== ' ') && <a className="link" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
                                     </Item>
                                 )
                             })}

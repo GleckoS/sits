@@ -115,21 +115,41 @@ export const Global = createGlobalStyle`
     }
 
     .underline{
-      width: fit-content;
-      display: block;
-      position: relative;
-      padding-bottom: 3px;
+        width: fit-content;
+        display: block;
+        position: relative;
+        padding-bottom: 3px;
+        text-decoration: unset !important;
 
-      transition: background-size 0.5s ease-out;
+        transition: background-size 0.5s ease-out;
 
         background-image: linear-gradient(#222b40, #222b40);
         background-size: 80% 1px;
         background-position: left bottom;
         background-repeat: no-repeat;
 
-      &:hover {
-        background-size: 100% 1px;
-      }
+        &:hover {
+            background-size: 100% 1px;
+        }
+    }
+
+    .styled-link{
+        width: fit-content;
+        display: block;
+        position: relative;
+        padding-bottom: 3px;
+
+        transition: background-size 0.4s ease-out;
+
+        background-image: linear-gradient(#222b40, #222b40);
+        background-size: 0% 1px;
+        background-position: left bottom;
+        background-repeat: no-repeat;
+
+        &:hover {
+            background-size: 100% 1px;
+        }
+
     }
     
     .no-focus {

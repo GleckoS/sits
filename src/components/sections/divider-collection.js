@@ -13,7 +13,7 @@ export default function DividerCollection({ data: { sectionTitle, text, link, sq
                         <div>
                             <h2 className="title">{sectionTitle}</h2>
                             {text && <p className="text">{text}</p>}
-                            {link?.url && <Link className="link" to={link.url} target={link.target ? link.target : null}>{link.title}</Link>}
+                            {link?.url && <Link className="link underline" to={link.url} target={link.target ? link.target : null}>{link.title}</Link>}
                         </div>
                         <GatsbyImage className="square" image={squareImage.localFile.childImageSharp.gatsbyImageData} alt={squareImage.altText} />
                     </div>

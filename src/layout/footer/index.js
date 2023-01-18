@@ -30,15 +30,14 @@ export default function Footer() {
                             <div>
                                 {left.map(el => (
                                     <React.Fragment key={el.name}>
-                                        <Link to={el.url}>{el.name}</Link>
+                                        <Link className="left styled-link" to={el.url}>{el.name}</Link>
                                     </React.Fragment>
                                 ))}
                             </div>
                             <div>
-
                                 {right.map(el => (
                                     <React.Fragment key={el.name}>
-                                        <Link to={el.url}>{el.name}</Link>
+                                        <Link className="right styled-link" to={el.url}>{el.name}</Link>
                                     </React.Fragment>
                                 ))}
                             </div>
@@ -103,10 +102,11 @@ const Center = styled.div`
     div{
         display: grid;
         grid-gap: 12px;
+    }
 
-        &:last-child{
-            text-align: right;
-        }
+    .right{
+        text-align: right;
+        margin-left: auto;
     }
 
     @media (max-width: 640px) {
@@ -133,6 +133,14 @@ const Menu = styled.div`
         max-height: 42px;
         width: fit-content;
         }
+        svg path{
+            transition: fill .4s ease-out;
+        }
+        &:hover{
+            svg path{
+                fill: #EDC53D;
+            }
+        }
     }
 
     @media (max-width: 640px){
@@ -145,4 +153,13 @@ const Flex = styled.div`
     justify-content: flex-end;
     gap: 16px;
     margin-top: 20px;
+
+        svg path{
+            transition: fill .4s ease-out;
+        }
+        a:hover{
+            svg path{
+                fill: #EDC53D;
+            }
+        }
 `

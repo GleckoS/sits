@@ -14,7 +14,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
             <div className="content">
                 <h1 className="title">{pageTitle}</h1>
                 {linkUnderPageTitle
-                    ? <Link className="link" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
+                    ? <Link className="link underline" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
                     : null}
             </div>
         </Wrapper>
@@ -78,6 +78,11 @@ const Wrapper = styled.section`
         transform: translate(-50%, -50%);
         width: 80%;
         text-align: center;
+
+        a{
+            margin: 0 auto;
+            background-image: linear-gradient(#fff, #fff);
+        }
 
         @media (max-width: 1440px) {
             top: 50%;

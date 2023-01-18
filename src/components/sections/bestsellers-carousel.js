@@ -54,7 +54,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                 <div className="content desctop">
                     <div className={animationStarted ? 'sticky hide' : "sticky"}>
                         <h3>{carousel[item].selectedCollection.title}</h3>
-                        <Link tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
+                        <Link className="underline" tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
                     </div>
                 </div>
                 <button aria-label='prev slide' onClick={() => { slickRef.current.slickPrev() }} className="left">
@@ -72,7 +72,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                                         alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
                                     <div className="content mobile">
                                         <h3>{el.selectedCollection.title}</h3>
-                                        <Link tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
+                                        <Link className="underline" tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
                                     </div>
                                 </div>
                             )
@@ -88,7 +88,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                 </button>
             </Container>
             <Container>
-                <Link className="link" to={seeAllLink.url} target={seeAllLink.target ? seeAllLink.target : null}>{seeAllLink.title}</Link>
+                <Link className="link underline" to={seeAllLink.url} target={seeAllLink.target ? seeAllLink.target : null}>{seeAllLink.title}</Link>
             </Container>
         </Wrapper>
     )
@@ -226,6 +226,11 @@ const Wrapper = styled.section`
 
             &.desctop{
                 pointer-events: none;
+
+                a{
+                    margin-left: auto;
+                    background-image: linear-gradient(#fff, #fff);
+                }
             }
 
             @media (max-width: 768px) {

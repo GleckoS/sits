@@ -16,7 +16,7 @@ export default function ThreeInformCards({ data: { cards } }) {
                                 <div className="content">
                                     <h3>{el.title}</h3>
                                     {el.text && <p>{el.text}</p>}
-                                    {el.link.title && <span>{el.link.title}</span>}
+                                    {el.link.title && <span className="underline">{el.link.title}</span>}
                                 </div>
                             </Link>
                         </Item>
@@ -116,8 +116,24 @@ const Item = styled.div`
             margin-top: 20px;
             display: block;
             font-size: clamp(16px, ${18 / 1194 * 100}vw, 18px);
-            text-decoration: underline;
             text-transform: uppercase;
+        }
+    }
+
+    .image{
+        img{
+            transition: transform .5s ease-out;
+        }
+    }
+
+    &:hover{
+        .image{
+            img{
+                transform: scale(1.03);
+            }
+        }
+        span{
+            background-size: 100% 1px;
         }
     }
 `
