@@ -189,6 +189,11 @@ const Center = styled.div`
 
     div {
       text-align: center !important;
+      margin: 0 auto;
+
+      a{
+        margin: 0 auto;
+      }
     }
   }
 `

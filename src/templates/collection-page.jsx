@@ -34,7 +34,7 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
   const products = useMemo(() => {
     return allWpProduct.nodes.filter(el => el.products?.collection?.id === wpCollection.id)
   }, [allWpProduct, wpCollection])
-
+  debugger
   return (
     <main>
       <Hero
@@ -43,7 +43,7 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
         data={wpCollection}
       />
       {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
-      {wpCollection.collections.videoSection?.video && <Video data={wpCollection.collections.videoSection} />}
+      {wpCollection.collections.videoSection?.video && <Video isMarginBottom={!wpCollection.collections.recommendedCovers.covers && !wpCollection.collections.accessoriesSection.accessories} data={wpCollection.collections.videoSection} />}
       {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers title={coversTitle['en'] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
       {wpCollection.collections.accessoriesSection.accessories && <Accessories data={wpCollection.collections.accessoriesSection.accessories} />}
       {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts title={similarTitle['en']} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}

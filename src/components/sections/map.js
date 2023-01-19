@@ -148,7 +148,7 @@ export default function Map() {
                                         <p className="l">{el.Address}</p>
                                         <p className="l">{el.City}, {el.Country}</p>
                                         <a href={'tel:' + el.Phone} className="l">{el.Phone}</a>
-                                        {(el.Website && el.Website !== ' ') && <a className="link" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
+                                        {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
                                     </Item>
                                 )
                             })}
@@ -231,6 +231,7 @@ const Item = styled.button`
         }
 
         &.link{
+            padding-bottom: 1px;
             text-decoration: underline;
             font-size: 14px;
             display: block;

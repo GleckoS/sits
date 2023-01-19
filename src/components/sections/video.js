@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 
-export default function Video({ isLast, materials, data: { video, previewImage } }) {
+export default function Video({ isMarginBottom, isLast, materials, data: { video, previewImage } }) {
 
     const videoRef = useRef()
     const [isPaused, changeIsPaused] = useState(true)
@@ -18,28 +18,33 @@ export default function Video({ isLast, materials, data: { video, previewImage }
     }
 
     return (
-        <Wrapper isLast={isLast} className={materials ? 'materials' : ''}>
-            <Container className="container" onClick={() => { videoState() }}>
-                <video ref={videoRef} className="background" playsInline muted loop poster={previewImage.localFile.publicURL} >
-                    <source src={video.localFile.publicURL} type="video/mp4" />
-                </video>
-                <button aria-label="play video button" className={isPaused ? 'content visible' : 'content'} >
-                    <svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164">
-                        <g id="Group_133" data-name="Group 133" transform="translate(-863 -616)">
-                            <circle id="Ellipse_94" data-name="Ellipse 94" cx="82" cy="82" r="82" transform="translate(863 616)" fill="#fff" opacity="0.404" />
-                            <path id="Polygon_1" data-name="Polygon 1" d="M39.175,7.457a5,5,0,0,1,8.65,0l34.82,60.034A5,5,0,0,1,78.32,75H8.68a5,5,0,0,1-4.325-7.509Z" transform="translate(993 654) rotate(90)" fill="#fff" />
-                        </g>
-                    </svg>
-                </button>
+        <Wrapper data-margin-bottom={isMarginBottom ? 'true' : 'false'} isLast={isLast} className={materials ? 'materials' : ''}>
+            <Container className="container">
+                <div className="wrap" onClick={() => { videoState() }}>
+                    <video ref={videoRef} className="background" playsInline muted loop poster={previewImage.localFile.publicURL} >
+                        <source src={video.localFile.publicURL} type="video/mp4" />
+                    </video>
+                    <button aria-label="play video button" className={isPaused ? 'content visible' : 'content'} >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="164" height="164" viewBox="0 0 164 164">
+                            <g id="Group_133" data-name="Group 133" transform="translate(-863 -616)">
+                                <circle id="Ellipse_94" data-name="Ellipse 94" cx="82" cy="82" r="82" transform="translate(863 616)" fill="#fff" opacity="0.404" />
+                                <path id="Polygon_1" data-name="Polygon 1" d="M39.175,7.457a5,5,0,0,1,8.65,0l34.82,60.034A5,5,0,0,1,78.32,75H8.68a5,5,0,0,1-4.325-7.509Z" transform="translate(993 654) rotate(90)" fill="#fff" />
+                            </g>
+                        </svg>
+                    </button>
+                </div>
             </Container>
-        </Wrapper>
+        </Wrapper >
     )
 }
 
 const Wrapper = styled.section`
     padding-top: 60px;
     position: relative;
-    cursor: pointer;
+
+    &[data-margin-bottom="true"]{
+        margin-bottom: 60px;
+    }
 
     .container{
         position: relative;
@@ -48,6 +53,17 @@ const Wrapper = styled.section`
     svg{
         width: clamp(88px, ${164 / 1194 * 100}vw, 164px);
         height: clamp(88px, ${164 / 1194 * 100}vw, 164px);
+        transition: transform .5s ease-out;
+    }
+
+    .wrap{
+        cursor: pointer;
+    }
+
+    .wrap:hover{
+        svg{
+            transform: scale(1.07);
+        }
     }
 
     @media (max-width: 480px) {
