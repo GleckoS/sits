@@ -156,6 +156,7 @@ export default function MaterialsArchive({ location, materials }) {
     const [textures, setTextures] = useQueryParamString('textures', 'All')
     const [features, setFeatures] = useQueryParamString('features', 'All')
     const [search, setSearch] = useQueryParamString('search', '')
+    const [page, setPage] = useQueryParamString('page', '1')
     const [inputValue, setInputValue] = useState('')
 
     useEffect(() => {
@@ -266,24 +267,13 @@ export default function MaterialsArchive({ location, materials }) {
         return arr
     }, [materials, sort, color, textures, features, search])
 
-    const [showCount, setShowCount] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return window.innerWidth < 1024 ? 6 : 8
-        }
+    // const [showCount, setShowCount] = useState(() => {
+    //     if (typeof window !== 'undefined') {
+    //         return window.innerWidth < 1024 ? 6 : 8
+    //     }
 
-        return 8
-    })
-
-    useEffect(() => {
-        setShowCount(() => {
-            if (typeof window !== 'undefined') {
-                window.scrollTo(0, 0);
-                return window.innerWidth < 1024 ? 6 : 8
-            }
-
-            return 8
-        })
-    }, [filtredProducts])
+    //     return 8
+    // })
 
     useEffect(() => {
         if (isMobileFilterOpened) {
@@ -312,10 +302,10 @@ export default function MaterialsArchive({ location, materials }) {
                 colorRange={colorRange['en']}
                 texturesArr={texturesArr['en']}
                 featuresArr={featuresArr['en']}
-                setSort={(v) => { setSort(partSlugTransform(v)) }}
-                setColor={(v) => { setColor(partSlugTransform(v)) }}
-                setTextures={(v) => { setTextures(partSlugTransform(v)) }}
-                setFeatures={(v) => { setFeatures(partSlugTransform(v)) }}
+                setSort={(v) => { setSort(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                setColor={(v) => { setColor(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                setTextures={(v) => { setTextures(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                setFeatures={(v) => { setFeatures(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
                 setMobileFilterOpened={setMobileFilterOpened}
                 sort={partSlugDeTransform(sort)}
                 color={partSlugDeTransform(color)}
@@ -365,7 +355,7 @@ export default function MaterialsArchive({ location, materials }) {
                     )}
                 </ActiveFilters>
                 {filtredProducts.length > 0
-                    ? <MaterialList showCount={showCount} setShowCount={setShowCount} color={color} materials={filtredProducts} />
+                    ? <MaterialList page={page} setPage={setPage} color={color} materials={filtredProducts} />
                     : <NoResults>
                         <h2>{noResultTitle['en']}</h2>
                         <p>{noResultMessage['en']}</p>

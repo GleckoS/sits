@@ -8,7 +8,7 @@ const loadMore = {
     en: 'LOAD MORE'
 }
 
-export const ProductList = ({ setRerender, setShowCount, showCount, rerender, products }) => {
+export const ProductList = ({ setRerender, setPage, page, rerender, products }) => {
     const renderCount = useRef(0)
     const isAllRendered = useRef(true)
     renderCount.current = 0
@@ -18,11 +18,11 @@ export const ProductList = ({ setRerender, setShowCount, showCount, rerender, pr
                 {products?.map(el => {
                     return el.products.productGallery?.map(inEl => {
                         return inEl.productsImages?.map((imageEl, index) => {
-                            if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
+                            if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < page * 8) {
                                 renderCount.current += 1
                                 isAllRendered.current = true
                                 return <React.Fragment key={inEl.popupNames.model + index}><ProductCard setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} /></React.Fragment>
-                            } else if (isAllRendered && renderCount.current >= showCount) {
+                            } else if (isAllRendered && renderCount.current >= page * 8) {
                                 isAllRendered.current = false
                             }
                             return null
@@ -32,7 +32,7 @@ export const ProductList = ({ setRerender, setShowCount, showCount, rerender, pr
             </Wrapper>
             {isAllRendered.current
                 ? null
-                : <button className="button" onClick={() => { setShowCount(showCount + 8) }}>{loadMore['en']}</button>}
+                : <button className="button" onClick={() => { setPage(+page + 1) }}>{loadMore['en']}</button>}
         </>
     )
 }

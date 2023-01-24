@@ -7,7 +7,7 @@ const loadMore = {
     en: 'LOAD MORE'
 }
 
-export const MaterialList = ({ setShowCount, showCount, materials, color }) => {
+export const MaterialList = ({ setPage, page, materials, color }) => {
 
     const [addCount] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -22,7 +22,7 @@ export const MaterialList = ({ setShowCount, showCount, materials, color }) => {
         <>
             <Wrapper>
                 {materials?.map((el, index) => {
-                    if (index < showCount) {
+                    if (index < page * addCount) {
                         return (
                             <React.Fragment key={el.title}>
                                 <MaterialCard color={color} data={el} />
@@ -32,8 +32,8 @@ export const MaterialList = ({ setShowCount, showCount, materials, color }) => {
                     return null
                 })}
             </Wrapper>
-            {showCount < materials.length
-                ? <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore['en']}</button>
+            {page * addCount < materials.length
+                ? <button className="button" onClick={() => { setPage(+ page + 1) }}>{loadMore['en']}</button>
                 : null}
         </>
     )

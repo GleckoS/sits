@@ -127,6 +127,7 @@ export default function ProductArchive({ location, pageContext: { name }, produc
     const [cover, setCover] = useQueryParamString('cover', 'All')
     const [upholsterys, setUpholsterys] = useQueryParamString('upholsterys', 'All')
     const [search, setSearch] = useQueryParamString('search', '')
+    const [page, setPage] = useQueryParamString('page', '1')
     const [inputValue, setInputValue] = useState('')
 
     useEffect(() => {
@@ -151,12 +152,12 @@ export default function ProductArchive({ location, pageContext: { name }, produc
 
     const [isMobileFilterOpened, setMobileFilterOpened] = useState(false)
     const [openedFilter, setOpenedFilter] = useState(false)
-    const [showCount, setShowCount] = useState(8)
 
     const clearAll = () => {
         setCover('All')
         setType('All')
         setUpholsterys('All')
+        setPage('1')
     }
 
     const defaultPosts = useMemo(() => {
@@ -268,10 +269,6 @@ export default function ProductArchive({ location, pageContext: { name }, produc
     const [rerender, setRerender] = useState(false)
 
     useEffect(() => {
-        setShowCount(8)
-    }, [filtredProducts])
-
-    useEffect(() => {
         if (isMobileFilterOpened) {
             scrollLock.enable('mobile-filter')
         } else {
@@ -305,10 +302,10 @@ export default function ProductArchive({ location, pageContext: { name }, produc
                 sortFilterTitle={sortFilterTitle['en']}
                 setMobileFilterOpened={setMobileFilterOpened}
                 isMobileFilterOpened={isMobileFilterOpened}
-                setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); window.scrollTo(0, 0) }}
-                setCover={(v) => { setCover(partSlugTransform(v)); window.scrollTo(0, 0) }}
-                setType={(v) => { setType(partSlugTransform(v)); window.scrollTo(0, 0) }}
-                setSort={(v) => { setSort(partSlugTransform(v)); window.scrollTo(0, 0) }}
+                setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); window.scrollTo(0, 0); setPage('1') }}
+                setCover={(v) => { setCover(partSlugTransform(v)); window.scrollTo(0, 0); setPage('1') }}
+                setType={(v) => { setType(partSlugTransform(v)); window.scrollTo(0, 0); setPage('1') }}
+                setSort={(v) => { setSort(partSlugTransform(v)); window.scrollTo(0, 0); setPage('1') }}
                 clearAll={clearAll}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
@@ -351,7 +348,7 @@ export default function ProductArchive({ location, pageContext: { name }, produc
                     )}
                 </ActiveFilters>
                 {filtredProducts.length > 0
-                    ? <ProductList setRerender={setRerender} showCount={showCount} setShowCount={setShowCount} rerender={rerender} products={filtredProducts} />
+                    ? <ProductList setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
                     : (
                         <NoResults>
                             <h2>{noResultTitle['en']}</h2>
