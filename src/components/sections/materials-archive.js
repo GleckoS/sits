@@ -179,6 +179,7 @@ export default function MaterialsArchive({ location, materials }) {
     }, [location])
 
     const [isMobileFilterOpened, setMobileFilterOpened] = useState(false)
+    const [openedFilter, setOpenedFilter] = useState(false)
 
     const clearAll = () => {
         setColor("All")
@@ -325,6 +326,8 @@ export default function MaterialsArchive({ location, materials }) {
                 inputValue={inputValue}
                 setInputValue={setInputValue}
                 setSearch={setSearch}
+                openedFilter={openedFilter}
+                setOpenedFilter={setOpenedFilter}
             />
             <Title small={true} title={'Materials'} />
             <Container>
@@ -333,31 +336,31 @@ export default function MaterialsArchive({ location, materials }) {
                         <FilterItem onClick={() => { setColor('All') }}>
                             {/* replace capital letters with space and small letter because of bug in wp */}
                             {partSlugDeTransform(color.replace(/([A-Z])/g, ' $1').trim())}
-                            <CloseButton />
+                            <CloseButton tabIndex={-1} />
                         </FilterItem>
                     )}
                     {textures !== 'All' && (
                         <FilterItem onClick={() => { setTextures('All') }}>
                             {partSlugDeTransform(textures)}
-                            <CloseButton />
+                            <CloseButton tabIndex={-1} />
                         </FilterItem>
                     )}
                     {features !== 'All' && (
                         <FilterItem onClick={() => { setFeatures('All') }}>
                             {partSlugDeTransform(features)}
-                            <CloseButton />
+                            <CloseButton tabIndex={-1} />
                         </FilterItem>
                     )}
                     {(color !== 'All' || textures !== 'All' || features !== 'All') && (
                         <FilterItem onClick={() => { clearAll('') }} className="close">
                             {clearAllTitle['en']}
-                            <CloseButton />
+                            <CloseButton tabIndex={-1} />
                         </FilterItem>
                     )}
                     {search !== '' && (
                         <FilterItem onClick={() => { setSearch('') }}>
                             {searchFilterTitle['en']}{search}
-                            <CloseButton />
+                            <CloseButton tabIndex={-1} />
                         </FilterItem>
                     )}
                 </ActiveFilters>
@@ -424,6 +427,8 @@ const FilterItem = styled.button`
     justify-content: center;
     gap: 8px;
     text-transform: capitalize;
+    position: relative;
+    z-index: 20;
 
     button{
         width: 16px;

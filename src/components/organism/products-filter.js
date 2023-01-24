@@ -35,7 +35,9 @@ export const FilterComponent = ({
     clearAll,
     inputValue,
     setInputValue,
-    setSearch
+    setSearch,
+    setOpenedFilter,
+    openedFilter
 }) => (
     <>
         <MobileFilters className={isMobileFilterOpened ? 'active' : ''}>
@@ -113,10 +115,10 @@ export const FilterComponent = ({
         <Filter>
             <Container className="container">
                 <div className="left">
-                    <DropDown controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
-                    {name === 'Sofas' && <DropDown controller={type} func={setType} data={sofasTypes} controlTitle={typeTitle} />}
-                    {name !== "Coffee tables" && <DropDown controller={upholsterys} func={setUpholsterys} data={upholsterysArr} controlTitle={upholsterysTitle} />}
-                    {name !== "Coffee tables" && <DropDown controller={cover} func={setCover} data={covesArr} controlTitle={coversTitle} />}
+                    <DropDown id='1' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
+                    {name === 'Sofas' && <DropDown id='2' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={type} func={setType} data={sofasTypes} controlTitle={typeTitle} />}
+                    {name !== "Coffee tables" && <DropDown id='3' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={upholsterys} func={setUpholsterys} data={upholsterysArr} controlTitle={upholsterysTitle} />}
+                    {name !== "Coffee tables" && <DropDown id='4' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={cover} func={setCover} data={covesArr} controlTitle={coversTitle} />}
                 </div>
                 <div className="left-alt">
                     <button onClick={() => { setMobileFilterOpened(true) }}>
@@ -174,6 +176,7 @@ const Search = styled.label`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: all;
 
     button{
         border: none;
@@ -336,9 +339,10 @@ const Filter = styled.div`
     @media (max-width: 840px) {
         top: 75px;
     }
-    
 
+    pointer-events: none;
     .container{
+        pointer-events: none;
         display: flex;
         justify-content: space-between;
 

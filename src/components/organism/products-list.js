@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useMemo } from "react"
 import { useState } from "react"
 import { useRef } from "react"
 import styled from "styled-components"
@@ -9,16 +9,8 @@ const loadMore = {
 }
 
 export const ProductList = ({ setRerender, setShowCount, showCount, rerender, products }) => {
-
-    const [addCount] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return window.innerWidth < 1024 ? 6 : 8
-        }
-
-        return 8
-    })
     const renderCount = useRef(0)
-
+    const isAllRendered = useRef(true)
     renderCount.current = 0
     return (
         <>
@@ -28,16 +20,19 @@ export const ProductList = ({ setRerender, setShowCount, showCount, rerender, pr
                         return inEl.productsImages?.map((imageEl, index) => {
                             if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
                                 renderCount.current += 1
+                                isAllRendered.current = true
                                 return <React.Fragment key={inEl.popupNames.model + index}><ProductCard setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} /></React.Fragment>
+                            } else if (isAllRendered && renderCount.current >= showCount) {
+                                isAllRendered.current = false
                             }
                             return null
                         })
                     })
                 })}
             </Wrapper>
-            {showCount < products.length
-                ? <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore['en']}</button>
-                : null}
+            {isAllRendered.current
+                ? null
+                : <button className="button" onClick={() => { setShowCount(showCount + 8) }}>{loadMore['en']}</button>}
         </>
     )
 }

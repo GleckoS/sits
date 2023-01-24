@@ -36,7 +36,9 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
     const handleClick = (e, url) => {
         e.preventDefault()
         if (!mouseMoved) {
-            navigate(url)
+            if (e.button === 0) {
+                navigate(url)
+            }
         }
     }
 

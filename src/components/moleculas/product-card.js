@@ -5,7 +5,21 @@ import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from './../atoms/category'
 
-export const ProductCard = ({ onMouseUp = (e, url) => { e.preventDefault(); navigate(url) }, setRerender, threeColumn, rerender = false, model, data, types, image }) => (
+export const ProductCard = ({
+    onMouseUp = (e, url) => {
+        if (e.button === 0) {
+            e.preventDefault()
+            navigate(url)
+        }
+    },
+    setRerender,
+    threeColumn,
+    rerender = false,
+    model,
+    data,
+    types,
+    image
+}) => (
     <Wrapper className="product-card">
         <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={model} />
         <Link onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'}>

@@ -106,6 +106,7 @@ export const Global = createGlobalStyle`
         line-height: 1.4em;
         text-underline-offset: 6px;
         text-decoration-thickness: 1px !important;
+        outline: none;
     }
 
     @media (max-width: 420px) {

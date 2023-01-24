@@ -34,7 +34,10 @@ export const FilterComponent = ({
     sortFilterTitle,
     inputValue,
     setInputValue,
-    setSearch }) => (
+    setSearch,
+    setOpenedFilter,
+    openedFilter
+}) => (
     <>
         <MobileFilters className={isMobileFilterOpened ? 'active' : ''}>
             <Flex>
@@ -105,10 +108,10 @@ export const FilterComponent = ({
         <Filter>
             <Container className="container">
                 <div className="left">
-                    <DropDown controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
-                    <DropDown controller={color} func={setColor} data={colorRange} controlTitle={colorRangeTitle} />
-                    <DropDown controller={textures} func={setTextures} data={texturesArr} controlTitle={texturesTitle} />
-                    <DropDown controller={features} func={setFeatures} data={featuresArr} controlTitle={featuresTitle} />
+                    <DropDown id='1' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
+                    <DropDown id='2' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={color} func={setColor} data={colorRange} controlTitle={colorRangeTitle} />
+                    <DropDown id='3' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={textures} func={setTextures} data={texturesArr} controlTitle={texturesTitle} />
+                    <DropDown id='4' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={features} func={setFeatures} data={featuresArr} controlTitle={featuresTitle} />
                 </div>
                 <div className="left-alt">
                     <button onClick={() => { setMobileFilterOpened(true) }}>
@@ -166,6 +169,7 @@ const Search = styled.label`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    pointer-events: all;
 
     button{
         border: none;
@@ -289,8 +293,9 @@ const Filter = styled.div`
         top: 75px;
     }
     
-
+    pointer-events: none;
     .container{
+        pointer-events: none;
         display: flex;
         justify-content: space-between;
 

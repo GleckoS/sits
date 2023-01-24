@@ -1,28 +1,34 @@
 import React from "react"
 import styled from "styled-components"
 
-export const DropDown = ({ controller, func, data, controlTitle }) => (
-    <Wrapper>
-        <div className="control">
-            <span>
-                {controlTitle}
-            </span>
-            <svg xmlns="http://www.w3.org/2000/svg" width="17.719" height="10.043" viewBox="0 0 17.719 10.043">
-                <path id="Path_80" data-name="Path 80" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(8699.209 -10051.55) rotate(90)" fill="none" stroke="#31231e" strokeWidth="2" />
-            </svg>
-        </div>
-        <div className="content">
-            {data.map(el => (
-                <button key={el.name} onClick={() => { func(el.val) }} className={controller === el.val ? 'active item' : 'item'} >
-                    <span>
-                        {el.name}
-                    </span>
-                    <span className="dot"/>
-                </button>
-            ))}
-        </div>
-    </Wrapper>
-)
+export const DropDown = ({ id, openedFilter, setOpenedFilter, controller, func, data, controlTitle }) => {
+
+    return (
+        <Wrapper onFocus={() => { setOpenedFilter(id) }} onBlur={() => { setOpenedFilter(false) }} className={openedFilter === id ? 'active' : ''}>
+            <button className="control">
+                <span>
+                    {controlTitle}
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="17.719" height="10.043" viewBox="0 0 17.719 10.043">
+                    <path id="Path_80" data-name="Path 80" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(8699.209 -10051.55) rotate(90)" fill="none" stroke="#31231e" strokeWidth="2" />
+                </svg>
+            </button>
+            <div className="content">
+                {data.map(el => (
+                    <button
+                        key={el.name}
+                        onClick={() => { func(el.val) }}
+                        className={controller === el.val ? 'active item' : 'item'} >
+                        <span>
+                            {el.name}
+                        </span>
+                        <span className="dot" />
+                    </button>
+                ))}
+            </div>
+        </Wrapper>
+    )
+}
 
 const Wrapper = styled.div`
     width: 240px;
@@ -30,6 +36,7 @@ const Wrapper = styled.div`
     margin: 12px -22px 0 -22px;
     border: 1px solid transparent;
     height: fit-content;
+    padding-bottom: 10px;
 
     svg{
         margin-top: 4px;
@@ -46,16 +53,18 @@ const Wrapper = styled.div`
         background-color: transparent;
         border: none;
         display: flex;
+        width: 100%;
         justify-content: space-between;
         align-items: center;
         font-weight: 300;
         font-size: 18px;
+        pointer-events: all;
     }
 
     .content{
         opacity: 0;
         pointer-events: none;
-        height: 0;
+        transition: opacity .4s ease-out;
 
         .item{
             cursor: pointer;
@@ -69,6 +78,10 @@ const Wrapper = styled.div`
             font-size: 18px;
             border: none;
             background-color: transparent;
+
+            &:focus-visible{
+                outline-offset: 8px;
+            }
 
             .dot{
                 width: 10px;
@@ -100,13 +113,13 @@ const Wrapper = styled.div`
         }
     }
 
-    &:hover{
+    transition: background-color .4s ease-out, border .4s ease-out;
+
+    &.active{
         background-color: #fff;
         border: 1px solid #ccc;
-        padding-bottom: 10px;
         .content{
             opacity: 1;
-        height: auto;
             pointer-events: all;
 
             label{

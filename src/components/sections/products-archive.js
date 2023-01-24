@@ -150,13 +150,8 @@ export default function ProductArchive({ location, pageContext: { name }, produc
     }, [location])
 
     const [isMobileFilterOpened, setMobileFilterOpened] = useState(false)
-    const [showCount, setShowCount] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return window.innerWidth < 1024 ? 6 : 8
-        }
-
-        return 8
-    })
+    const [openedFilter, setOpenedFilter] = useState(false)
+    const [showCount, setShowCount] = useState(8)
 
     const clearAll = () => {
         setCover('All')
@@ -273,14 +268,7 @@ export default function ProductArchive({ location, pageContext: { name }, produc
     const [rerender, setRerender] = useState(false)
 
     useEffect(() => {
-        setShowCount(() => {
-            if (typeof window !== 'undefined') {
-                window.scrollTo(0, 0);
-                return window.innerWidth < 1024 ? 6 : 8
-            }
-
-            return 8
-        })
+        setShowCount(8)
     }, [filtredProducts])
 
     useEffect(() => {
@@ -317,14 +305,16 @@ export default function ProductArchive({ location, pageContext: { name }, produc
                 sortFilterTitle={sortFilterTitle['en']}
                 setMobileFilterOpened={setMobileFilterOpened}
                 isMobileFilterOpened={isMobileFilterOpened}
-                setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)) }}
-                setCover={(v) => { setCover(partSlugTransform(v)) }}
-                setType={(v) => { setType(partSlugTransform(v)) }}
-                setSort={(v) => { setSort(partSlugTransform(v)) }}
+                setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); window.scrollTo(0, 0) }}
+                setCover={(v) => { setCover(partSlugTransform(v)); window.scrollTo(0, 0) }}
+                setType={(v) => { setType(partSlugTransform(v)); window.scrollTo(0, 0) }}
+                setSort={(v) => { setSort(partSlugTransform(v)); window.scrollTo(0, 0) }}
                 clearAll={clearAll}
                 inputValue={inputValue}
                 setInputValue={setInputValue}
                 setSearch={setSearch}
+                setOpenedFilter={setOpenedFilter}
+                openedFilter={openedFilter}
             />
             <Title small={true} title={name} />
             <Container className="content-wrap">

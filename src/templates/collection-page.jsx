@@ -34,7 +34,6 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
   const products = useMemo(() => {
     return allWpProduct.nodes.filter(el => el.products?.collection?.id === wpCollection.id)
   }, [allWpProduct, wpCollection])
-  debugger
   return (
     <main>
       <Hero
