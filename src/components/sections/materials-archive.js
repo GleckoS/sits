@@ -6,9 +6,9 @@ import { MaterialList } from "../organism/materials-list"
 import { CloseButton } from "../atoms/close-button"
 import { useEffect } from "react"
 import scrollLock from './../../helpers/scroll-lock'
-import { useQueryParamString } from 'react-use-query-param-string'
 import { partSlugDeTransform, partSlugTransform } from "../../helpers/slug-maker"
 import { Title } from "../../components/moleculas/title-sub"
+import { useQueryParam } from "../../hooks/query-params"
 
 const sortBy = {
     en: [
@@ -151,12 +151,12 @@ const searchFilterTitle = {
 }
 
 export default function MaterialsArchive({ location, materials }) {
-    const [sort, setSort] = useQueryParamString('sort', 'Popular')
-    const [color, setColor] = useQueryParamString('color', 'All')
-    const [textures, setTextures] = useQueryParamString('textures', 'All')
-    const [features, setFeatures] = useQueryParamString('features', 'All')
-    const [search, setSearch] = useQueryParamString('search', '')
-    const [page, setPage] = useQueryParamString('page', '1')
+    const [sort, setSort] = useQueryParam('sort', 'Popular')
+    const [color, setColor] = useQueryParam('color', 'All')
+    const [textures, setTextures] = useQueryParam('textures', 'All')
+    const [features, setFeatures] = useQueryParam('features', 'All')
+    const [search, setSearch] = useQueryParam('search', '')
+    const [page, setPage] = useQueryParam('page', '1')
     const [inputValue, setInputValue] = useState('')
 
     useEffect(() => {

@@ -1,5 +1,4 @@
 import React, { useMemo } from "react"
-import { useState } from "react"
 import { useRef } from "react"
 import styled from "styled-components"
 import { ProductCard } from "../moleculas/product-card"

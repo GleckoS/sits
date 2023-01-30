@@ -6,9 +6,9 @@ import { CloseButton } from './../atoms/close-button'
 import { FilterComponent } from "../organism/products-filter"
 import { useEffect } from "react"
 import scrollLock from './../../helpers/scroll-lock'
-import { useQueryParamString } from 'react-use-query-param-string'
 import { partSlugDeTransform, partSlugTransform } from "../../helpers/slug-maker"
 import { Title } from "../../components/moleculas/title-sub"
+import { useQueryParam } from "../../hooks/query-params"
 
 const sortBy = {
     en: [
@@ -122,12 +122,12 @@ const searchFilterTitle = {
 
 
 export default function ProductArchive({ location, pageContext: { name }, products }) {
-    const [sort, setSort] = useQueryParamString('sort', 'Popular')
-    const [type, setType] = useQueryParamString('type', 'All')
-    const [cover, setCover] = useQueryParamString('cover', 'All')
-    const [upholsterys, setUpholsterys] = useQueryParamString('upholsterys', 'All')
-    const [search, setSearch] = useQueryParamString('search', '')
-    const [page, setPage] = useQueryParamString('page', '1')
+    const [sort, setSort] = useQueryParam('sort', 'Popular')
+    const [type, setType] = useQueryParam('type', 'All')
+    const [cover, setCover] = useQueryParam('cover', 'All')
+    const [upholsterys, setUpholsterys] = useQueryParam('upholstery', 'All')
+    const [search, setSearch] = useQueryParam('search', '')
+    const [page, setPage] = useQueryParam('page', '1')
     const [inputValue, setInputValue] = useState('')
 
     useEffect(() => {
@@ -203,7 +203,6 @@ export default function ProductArchive({ location, pageContext: { name }, produc
                 let isAccessed = false
                 el.products.collection.upholsterys?.nodes?.forEach(inEl => {
                     if (cover === 'Removable') {
-                        debugger
                         if (locUpholsterys === 'Leather' && inEl.name === 'Leather') {
                             isAccessed = true
                         } else if (locUpholsterys === 'Fabric' && inEl.name.includes(locUpholsterys)) {
@@ -302,10 +301,10 @@ export default function ProductArchive({ location, pageContext: { name }, produc
                 sortFilterTitle={sortFilterTitle['en']}
                 setMobileFilterOpened={setMobileFilterOpened}
                 isMobileFilterOpened={isMobileFilterOpened}
-                setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); window.scrollTo(0, 0); setPage('1') }}
-                setCover={(v) => { setCover(partSlugTransform(v)); window.scrollTo(0, 0); setPage('1') }}
-                setType={(v) => { setType(partSlugTransform(v)); window.scrollTo(0, 0); setPage('1') }}
-                setSort={(v) => { setSort(partSlugTransform(v)); window.scrollTo(0, 0); setPage('1') }}
+                setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                setCover={(v) => { setCover(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                setType={(v) => { setType(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                setSort={(v) => { setSort(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
                 clearAll={clearAll}
                 inputValue={inputValue}
                 setInputValue={setInputValue}

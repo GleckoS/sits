@@ -118,6 +118,9 @@ const Wrapper = styled.div`
     &.active{
         background-color: #fff;
         border: 1px solid #ccc;
+        .control{
+            pointer-events: none;
+        }
         .content{
             opacity: 1;
             pointer-events: all;
