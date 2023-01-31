@@ -103,7 +103,6 @@ const Wrapper = styled.section`
         font-family: 'Ivy';
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-weight: 300;
-        text-decoration: underline;
         text-align: center;
     }
 

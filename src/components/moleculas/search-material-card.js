@@ -33,4 +33,16 @@ const Wrapper = styled.div`
     .image{
         width: 100%;
     }
+    .image{
+        img{
+            transition: transform var(--animation);
+        }
+    }
+    &:hover{
+        .image{
+            img{
+                transform: scale(1.07);
+            }
+        }
+    }
 `

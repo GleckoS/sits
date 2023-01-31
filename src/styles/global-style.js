@@ -107,6 +107,7 @@ export const Global = createGlobalStyle`
         text-underline-offset: 6px;
         text-decoration-thickness: 1px !important;
         outline: none;
+        font-variant-numeric: oldstyle-nums;
     }
 
     @media (max-width: 420px) {

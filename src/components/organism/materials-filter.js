@@ -293,7 +293,6 @@ const Filter = styled.div`
         top: 75px;
     }
     
-    pointer-events: none;
     .container{
         pointer-events: none;
         display: flex;

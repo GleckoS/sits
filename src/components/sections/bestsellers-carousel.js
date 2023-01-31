@@ -106,7 +106,6 @@ const Wrapper = styled.section`
         margin: 0 auto clamp(20px, ${20 / 768 * 100}vw, 32px) auto;
         text-align: center;
         width: fit-content;
-        text-decoration: underline;
     }
 
     .link{

@@ -1,11 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from "react"
 import styled from "styled-components"
+import { LoadMore } from "../atoms/load-more"
 import { ResultsGrid } from "../atoms/result-grid"
 import { Card } from "../moleculas/search-material-card"
-
-const loadMore = {
-    en: 'LOAD MORE'
-}
 
 export const FavouriteMaterialBlock = ({ setRerender, count, setCount, prefiltredArr, filter, title }) => {
 
@@ -20,7 +17,7 @@ export const FavouriteMaterialBlock = ({ setRerender, count, setCount, prefiltre
 
     useEffect(() => {
         setCount(filtredArr.length)
-    }, [filtredArr])
+    }, [filtredArr, setCount])
 
     const [showCount, setShowCount] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -43,7 +40,7 @@ export const FavouriteMaterialBlock = ({ setRerender, count, setCount, prefiltre
         renderCount.current = 0
         return (
             <Wrapper>
-                <h2>{title}</h2>
+                <h2>{title} ({filtredArr.length})</h2>
                 <ResultsGrid>
                     {filtredArr.map(el => {
                         renderCount.current += 1
@@ -61,7 +58,7 @@ export const FavouriteMaterialBlock = ({ setRerender, count, setCount, prefiltre
                     })}
                 </ResultsGrid>
                 {count > showCount && (
-                    <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore['en']}</button>
+                    <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }} />
                 )}
             </Wrapper>
         )
@@ -82,7 +79,6 @@ const Wrapper = styled.div`
         font-family: 'Ivy';
         font-size: clamp(26px, ${28 / 1194 * 100}vw, 28px);
         font-weight: 300;
-        text-decoration: underline;
     }
 
     .button{

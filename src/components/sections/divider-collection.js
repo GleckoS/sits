@@ -49,7 +49,6 @@ const Wrapper = styled.section`
         font-weight: 300;
         font-size: clamp(28px, ${40 / 1194 * 100}vw, 40px);
         position: relative;
-        text-decoration: underline;
 
         @media (max-width: 768px){
             text-align: center;

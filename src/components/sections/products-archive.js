@@ -121,7 +121,7 @@ const searchFilterTitle = {
 }
 
 
-export default function ProductArchive({ location, pageContext: { name }, products }) {
+export default function ProductArchive({ location, pageContext: { type: name, title }, products }) {
     const [sort, setSort] = useQueryParam('sort', 'Popular')
     const [type, setType] = useQueryParam('type', 'All')
     const [cover, setCover] = useQueryParam('cover', 'All')
@@ -161,6 +161,8 @@ export default function ProductArchive({ location, pageContext: { name }, produc
     }
 
     const defaultPosts = useMemo(() => {
+        debugger // TODO: Filtracja produktów według typu
+
         if (!name) {
             return products
         }
@@ -312,7 +314,7 @@ export default function ProductArchive({ location, pageContext: { name }, produc
                 setOpenedFilter={setOpenedFilter}
                 openedFilter={openedFilter}
             />
-            <Title small={true} title={name} />
+            <Title small={true} title={title} />
             <Container className="content-wrap">
                 <ActiveFilters>
                     {type !== 'All' && (

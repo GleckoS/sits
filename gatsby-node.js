@@ -1,9 +1,6 @@
 const fs = require('fs')
 const { resolve } = require('path')
 
-const urlSystem = {
-}
-
 exports.createPages = async ({
     graphql,
     actions: { createPage, createRedirect },
@@ -17,18 +14,20 @@ exports.createPages = async ({
             collections : nodes {
                 id
                 slug
+                uri
             }
         }
     }
   `);
 
-    collections.forEach(({ id, slug }) => {
+    collections.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/collection/' + slug + '/',
+            path: uri,
             component: resolve('src/templates/collection-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     });
@@ -41,18 +40,20 @@ exports.createPages = async ({
             materials : nodes {
                 id
                 slug
+                uri
             }
         }
     }
   `);
 
-    materials.forEach(({ id, slug }) => {
+    materials.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/material/' + slug + '/',
+            path: uri,
             component: resolve('src/templates/material-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     });
@@ -65,64 +66,194 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    materialArchives.forEach(({ id, slug }) => {
+    materialArchives.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/' + slug + '/',
+            path: uri,
             component: resolve('src/templates/materials-archive.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
 
     // PRODUCTS
 
-    const { data: { allWpType: { nodes: productArchiveTypeNodes }, allWpPage: { nodes: productsArchives } } } = await graphql(`
+    const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
     query {
         allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
             nodes {
                 slug
                 id
+                uri
             }
         }
-        allWpType(filter: {parentId: {eq: null}}) {
-            nodes {
-              name
-              slug
-            }
-          }
     }
   `);
 
 
-    productsArchives.forEach(({ id, slug }) => {
+    productsArchives.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/' + slug + '/',
+            path: uri,
             component: resolve('src/templates/all-products-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
+    })
 
-        productArchiveTypeNodes.forEach(({ name, slug: typeSlug }) => {
-            createPage({
-                path: '/' + slug + '/' + typeSlug + '/',
-                component: resolve('src/templates/products-archive.jsx'),
-                context: {
-                    id,
-                    slug,
-                    typeSlug,
-                    name
-                },
-            });
-        })
+    // SOFAS
+
+    const { data: { allWpPage: { nodes: sofasArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Sofas" } } }) {
+            nodes {
+                slug
+                id
+                uri
+                title
+            }
+        }
+    }
+  `);
+
+    sofasArchives.forEach(({ id, slug, uri, title }) => {
+        createPage({
+            path: uri,
+            component: resolve('src/templates/products-archive.jsx'),
+            context: {
+                id,
+                slug,
+                uri,
+                title,
+                type: 'sofas'
+            },
+        });
+    })
+
+    // ARMCHAIRS
+
+    const { data: { allWpPage: { nodes: armchairsArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Armchairs" } } }) {
+            nodes {
+                slug
+                id
+                uri
+                title
+            }
+        }
+    }
+  `);
+
+    armchairsArchives.forEach(({ id, slug, uri, title }) => {
+        createPage({
+            path: uri,
+            component: resolve('src/templates/products-archive.jsx'),
+            context: {
+                id,
+                slug,
+                uri,
+                title,
+                type: 'armchairs'
+            },
+        });
+    })
+
+    // COFFEE TABLES
+
+    const { data: { allWpPage: { nodes: tablesArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Coffee Tables" } } }) {
+            nodes {
+                slug
+                id
+                uri
+                title
+            }
+        }
+    }
+  `);
+
+    tablesArchives.forEach(({ id, slug, uri, title }) => {
+        createPage({
+            path: uri,
+            component: resolve('src/templates/products-archive.jsx'),
+            context: {
+                id,
+                slug,
+                uri,
+                title,
+                type: 'coffee tables'
+            },
+        });
+    })
+
+    // Dining chairs
+
+    const { data: { allWpPage: { nodes: chairsArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Dining Chairs" } } }) {
+            nodes {
+                slug
+                id
+                uri
+                title
+            }
+        }
+    }
+  `);
+
+    chairsArchives.forEach(({ id, slug, uri, title }) => {
+        createPage({
+            path: uri,
+            component: resolve('src/templates/products-archive.jsx'),
+            context: {
+                id,
+                slug,
+                uri,
+                title,
+                type: 'dining chairs'
+            },
+        });
+    })
+
+    // Outdoor furnitures
+
+    const { data: { allWpPage: { nodes: outdoorArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Outdoor furnitures" } } }) {
+            nodes {
+                slug
+                id
+                uri
+                title
+            }
+        }
+    }
+  `);
+
+    outdoorArchives.forEach(({ id, slug, uri, title }) => {
+        createPage({
+            path: uri,
+            component: resolve('src/templates/products-archive.jsx'),
+            context: {
+                id,
+                slug,
+                uri,
+                title,
+                type: 'outdoor furniture'
+            },
+        });
     })
 
     // Homepage
@@ -133,18 +264,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Homepage.forEach(({ id, slug }) => {
+    Homepage.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/',
+            path: uri,
             component: resolve('src/templates/homepage.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -157,18 +290,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Bestsellers.forEach(({ id, slug }) => {
+    Bestsellers.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/best-sellers/',
+            path: uri,
             component: resolve('src/templates/best-sellers.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -181,18 +316,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Search.forEach(({ id, slug }) => {
+    Search.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/search/',
+            path: uri,
             component: resolve('src/templates/search-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -205,18 +342,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Favourites.forEach(({ id, slug }) => {
+    Favourites.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/favourite/',
+            path: uri,
             component: resolve('src/templates/favourites-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -229,18 +368,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Where.forEach(({ id, slug }) => {
+    Where.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/where-to-buy/',
+            path: uri,
             component: resolve('src/templates/where-to-buy-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -253,18 +394,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Furniture.forEach(({ id, slug }) => {
+    Furniture.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/furniture-care/',
+            path: uri,
             component: resolve('src/templates/furniture-care-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -277,18 +420,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Catalogue.forEach(({ id, slug }) => {
+    Catalogue.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/catalogues/',
+            path: uri,
             component: resolve('src/templates/catalogues-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -301,18 +446,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Contact.forEach(({ id, slug }) => {
+    Contact.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/contact/',
+            path: uri,
             component: resolve('src/templates/сontact-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -325,18 +472,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Legal.forEach(({ id, slug }) => {
+    Legal.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/legal/',
+            path: uri,
             component: resolve('src/templates/legal-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -349,18 +498,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Sales.forEach(({ id, slug }) => {
+    Sales.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/sales-representative/',
+            path: uri,
             component: resolve('src/templates/sales-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -373,18 +524,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    About.forEach(({ id, slug }) => {
+    About.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/about-sits/',
+            path: uri,
             component: resolve('src/templates/about-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -397,18 +550,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Conscious.forEach(({ id, slug }) => {
+    Conscious.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/conscious/',
+            path: uri,
             component: resolve('src/templates/conscious-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })
@@ -421,18 +576,20 @@ exports.createPages = async ({
             nodes {
                 slug
                 id
+                uri
             }
         }
     }
   `);
 
-    Arrivals.forEach(({ id, slug }) => {
+    Arrivals.forEach(({ id, slug, uri }) => {
         createPage({
-            path: '/new-arrivals/',
+            path: uri,
             component: resolve('src/templates/new-arrivals-page.jsx'),
             context: {
                 id,
                 slug,
+                uri
             },
         });
     })

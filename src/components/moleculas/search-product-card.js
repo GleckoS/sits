@@ -8,9 +8,9 @@ export const Card = ({ setRerender, rerender, type='products', model, image, dat
 
     return (
         <Wrapper>
+        <AddToFauvorite setRerender={setRerender} rerender={rerender} type={type} title={model} />
             <Link to={'/collection/' + slug + '/'}>
-                <AddToFauvorite setRerender={setRerender} rerender={rerender} type={type} title={model} />
-                <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+                <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                 <span>{model}</span>
             </Link>
         </Wrapper>
@@ -32,5 +32,17 @@ const Wrapper = styled.div`
         font-weight: 300;
         margin-top: 12px;
         display: block;
+    }
+    .image{
+        img{
+            transition: transform var(--animation);
+        }
+    }
+    &:hover{
+        .image{
+            img{
+                transform: scale(1.07);
+            }
+        }
     }
 `

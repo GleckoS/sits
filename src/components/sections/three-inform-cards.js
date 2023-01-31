@@ -102,7 +102,6 @@ const Item = styled.div`
             font-family: 'Ivy';
             font-size: clamp(26px, ${30 / 1194 * 100}vw, 36px);
             font-weight: 300;
-            text-decoration: underline;
         }
 
         p{

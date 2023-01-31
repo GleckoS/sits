@@ -1,8 +1,7 @@
 import React, { useMemo, useRef, useState } from "react"
 import styled from "styled-components"
+import { LoadMore } from "../atoms/load-more"
 import { Card } from "../moleculas/search-material-card"
-
-const loadMore = 'LOAD MORE'
 
 export const ResultMaterialBlock = ({ setRerender, rerender, count, setCount, prefiltredArr, searchValue, title }) => {
     const filtredArr = useMemo(() => {
@@ -79,7 +78,7 @@ export const ResultMaterialBlock = ({ setRerender, rerender, count, setCount, pr
                     })}
                 </ResultsGrid>
                 {count > showCount && (
-                    <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore}</button>
+                    <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }}/>
                 )}
             </Wrapper>
         )
@@ -98,7 +97,6 @@ const Wrapper = styled.div`
         font-family: 'Ivy';
         font-size: clamp(26px, ${28 / 1194 * 100}vw, 28px);
         font-weight: 300;
-        text-decoration: underline;
     }
 
     .button{

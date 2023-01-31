@@ -59,6 +59,7 @@ const Wrapper = styled.div`
         font-weight: 300;
         font-size: 18px;
         pointer-events: all;
+        cursor: pointer;
     }
 
     .content{

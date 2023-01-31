@@ -1,6 +1,12 @@
+import { Link } from "gatsby";
 import styled from "styled-components";
 
-export const Category = styled.div`
+export const Category = (props) => {
+    debugger
+}
+
+
+const Wrapper = styled(Link)`
     padding: 3px 10px;
     background-color: var(--color-brown);
     color: #fff;
@@ -13,4 +19,5 @@ export const Category = styled.div`
         background-color: unset;
         color: #9c6325;
     }
+
 `

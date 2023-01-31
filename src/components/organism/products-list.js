@@ -1,11 +1,8 @@
-import React, { useMemo } from "react"
+import React from "react"
 import { useRef } from "react"
 import styled from "styled-components"
+import { LoadMore } from "../atoms/load-more"
 import { ProductCard } from "../moleculas/product-card"
-
-const loadMore = {
-    en: 'LOAD MORE'
-}
 
 export const ProductList = ({ setRerender, setPage, page, rerender, products }) => {
     const renderCount = useRef(0)
@@ -31,7 +28,7 @@ export const ProductList = ({ setRerender, setPage, page, rerender, products }) 
             </Wrapper>
             {isAllRendered.current
                 ? null
-                : <button className="button" onClick={() => { setPage(+page + 1) }}>{loadMore['en']}</button>}
+                : <LoadMore onClick={() => { setPage(+page + 1) }} />}
         </>
     )
 }

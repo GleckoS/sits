@@ -1,9 +1,8 @@
 import React, { useMemo, useRef, useState } from "react"
 import styled from "styled-components"
+import { LoadMore } from "../atoms/load-more"
 import { ResultsGrid } from "../atoms/result-grid"
 import { Card } from "../moleculas/search-product-card"
-
-const loadMore = 'LOAD MORE'
 
 export const ResultProductBlock = ({ setRerender, rerender, count, setCount, prefiltredArr, searchValue, title }) => {
 
@@ -17,7 +16,7 @@ export const ResultProductBlock = ({ setRerender, rerender, count, setCount, pre
 
                 if (el.products.collection) {
                     filterByTitle = el.products.collection.title.toLowerCase().includes(searchValue.toLowerCase())
-                } 
+                }
 
                 el.products.productGallery?.forEach(el => {
                     if (el.popupNames.model.toLowerCase().includes(searchValue.toLowerCase())) {
@@ -87,7 +86,7 @@ export const ResultProductBlock = ({ setRerender, rerender, count, setCount, pre
                     })}
                 </ResultsGrid>
                 {count > showCount && (
-                    <button className="button" onClick={() => { setShowCount(showCount + addCount) }}>{loadMore}</button>
+                    <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }} />
                 )}
             </Wrapper>
         )
@@ -108,7 +107,6 @@ const Wrapper = styled.div`
         font-family: 'Ivy';
         font-size: clamp(26px, ${28 / 1194 * 100}vw, 28px);
         font-weight: 300;
-        text-decoration: underline;
     }
 
     .button{

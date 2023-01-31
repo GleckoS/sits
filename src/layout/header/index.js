@@ -20,7 +20,7 @@ const linksLeft = {
     { name: 'Coffee Tables', url: '/products/coffee-tables/' },
     { name: 'Outdoor Furniture', url: '/products/outdoor-furnitures/' },
     { name: 'Covers', url: '/materials/' },
-    { name: 'My Favourites', icon: 'hearth', url: '/favourite/' }
+    { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
   ]
 }
 
@@ -37,8 +37,6 @@ const linksRight = {
     // { name: 'For Retailers', icon: 'out', url: 'https://sitsconnect.pl/' },
   ]
 }
-
-const languages = []
 
 const furnitureTitle = {
   en: 'FURNITURE'
