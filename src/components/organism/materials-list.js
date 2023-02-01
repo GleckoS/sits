@@ -1,11 +1,8 @@
 import React from "react"
 import { useState } from "react"
 import styled from "styled-components"
+import { LoadMore } from "../atoms/load-more"
 import { MaterialCard } from "../moleculas/material-card"
-
-const loadMore = {
-    en: 'LOAD MORE'
-}
 
 export const MaterialList = ({ setPage, page, materials, color }) => {
 
@@ -16,7 +13,6 @@ export const MaterialList = ({ setPage, page, materials, color }) => {
 
         return 8
     })
-
 
     return (
         <>
@@ -33,7 +29,7 @@ export const MaterialList = ({ setPage, page, materials, color }) => {
                 })}
             </Wrapper>
             {page * addCount < materials.length
-                ? <button className="button" onClick={() => { setPage(+ page + 1) }}>{loadMore['en']}</button>
+                ? <LoadMore count={addCount} onClick={() => { setPage(+ page + 1) }} />
                 : null}
         </>
     )

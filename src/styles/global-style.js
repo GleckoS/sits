@@ -126,6 +126,7 @@ export const Global = createGlobalStyle`
         position: relative;
         padding-bottom: 3px;
         text-decoration: unset !important;
+        text-transform: uppercase;
 
         transition: background-size 0.5s ease-out;
 

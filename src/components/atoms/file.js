@@ -24,7 +24,10 @@ const Wrapper = styled.a`
     display: grid;
     grid-template-columns: 20px auto;
     grid-gap: 16px;
-    align-items: center;
+
+    svg{
+        margin-top: 3px;
+    }
 
     span{
         font-size: 18px;

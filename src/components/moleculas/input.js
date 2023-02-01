@@ -46,6 +46,16 @@ const Wrapper = styled.label`
     justify-content: space-between;
     align-items: center;
 
+    svg{
+        transition: transform .4s ease-out;
+    }
+
+    a:hover{
+        svg{
+            transform: scale(1.15);
+        }
+    }
+
     button{
         border: none;
         background-color: transparent;

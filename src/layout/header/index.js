@@ -65,6 +65,16 @@ export default function Header() {
         setRightMenuOpened(false)
       }
     }
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments) }
+    gtag('consent', 'default', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied',
+      'personalization_storage': 'denied'
+    });
+    gtag("set", "ads_data_redaction", true);
+
   }, [])
 
   useEffect(() => {
@@ -95,7 +105,7 @@ export default function Header() {
         />
         <Container className='container'>
           <Button
-            className='control-desctop styled-link'
+            className='control-desctop underline'
             onClick={() => {
               setLeftMenuOpened(true)
               setRightMenuOpened(false)
@@ -157,7 +167,7 @@ export default function Header() {
           <div className='right'>
             <LangChanger />
             <Button
-              className='control-desctop styled-link'
+              className='control-desctop underline'
               onClick={() => {
                 setRightMenuOpened(true)
                 setLeftMenuOpened(false)

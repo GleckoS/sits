@@ -43,6 +43,10 @@ export const ProductCard = ({
 const Wrapper = styled.div`
     position: relative;
 
+    .underline{
+        text-transform: none;
+    }
+
     .link{
         position: absolute;
         z-index: 1;
@@ -51,7 +55,7 @@ const Wrapper = styled.div`
         bottom: 0;
         top: 0;
         user-select: none;
--webkit-user-drag: none;
+        -webkit-user-drag: none;
     }
 
     button{

@@ -14,6 +14,14 @@ const addMessage = {
   en: ` added to My Favourites`
 }
 
+const Toast = () => {
+  return (
+      <>
+
+      </>
+  )
+}
+
 export default function AddToFauvorite({ setRerender = () => { }, rerender, type, title }) {
   const [isActive, setIsActive] = useState(() => {
     if (typeof window === 'undefined') {

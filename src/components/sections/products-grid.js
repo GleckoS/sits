@@ -159,7 +159,7 @@ const Item = styled(Link)`
         align-items: center;
         z-index: 2;
         font-size: clamp(24px, ${44 / 1194 * 100}vw, 44px);
-        font-weight: 700;
+        font-weight: 300;
         text-transform: uppercase;
         color: #fff;
         transition: background-color var(--animation);

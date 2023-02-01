@@ -34,6 +34,17 @@ const Wrapper = styled.label`
         cursor: pointer;
     }
 
+    svg{
+        transition: transform .4s ease-out;
+    }
+
+    a:hover{
+        svg{
+            transform: scale(1.15);
+        }
+    }
+
+
     input{
         border: none;
         width: 100%;

@@ -22,4 +22,14 @@ const Button = styled.div`
     border: none;
     background: transparent;
     cursor: pointer;
+
+    svg{
+        transition: transform .4s ease-out;
+    }
+
+    &:hover{
+        svg{
+            transform: scale(1.15);
+        }
+    }
 `

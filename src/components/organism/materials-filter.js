@@ -175,6 +175,22 @@ const Search = styled.label`
         border: none;
         background-color: transparent;
         cursor: pointer;
+
+        svg{
+            transition: transform .4s ease-out;
+        }
+
+        :hover{
+            svg{
+                transform: scale(1.15);
+            }
+        }
+    }
+
+    &:hover{
+        input{
+            width: 46px;
+        }
     }
 
     input{

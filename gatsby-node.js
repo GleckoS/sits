@@ -290,7 +290,7 @@ exports.createPages = async ({
 
     const { data: { allWpPage: { nodes: outdoorArchives } } } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Outdoor furnitures" } } }) {
+        allWpPage(filter: { template: { templateName: { eq: "Outdoor Furniture" } } }) {
             nodes {
                 slug
                 id
