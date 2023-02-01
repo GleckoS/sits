@@ -40,7 +40,7 @@ export const Grid = ({ isActive, active, el: data }) => {
                         if (!isButtonRendered) {
                             isButtonRendered = true
                             return (
-                                <button tabIndex={isActive && active ? '1' : '-1'} key={'button'} items={data.innerPartCookies.length} className="show-all" onClick={() => { setShowAll(true) }}>
+                                <button tabIndex={isActive && active ? '0' : '-1'} key={'button'} items={data.innerPartCookies.length} className="show-all" onClick={() => { setShowAll(true) }}>
                                     {loadMoreTitle['en']}
                                     <span className="desctop"> ({data.innerPartCookies.length - 3})</span>
                                     <span className="tablet"> ({data.innerPartCookies.length - 2})</span>

@@ -174,13 +174,13 @@ export default function Cookies() {
             <Wrapper className={isActive ? 'active' : ''}>
                 <Content>
                     <TabsControl>
-                        <button tabIndex={isActive ? '1' : '-1'} className={activeTab === 0 ? 'active' : ''} onClick={() => { setActiveTab(0) }}>
+                        <button tabIndex={isActive ? '0' : '-1'} className={activeTab === 0 ? 'active' : ''} onClick={() => { setActiveTab(0) }}>
                             {consentTabName['en']}
                         </button>
-                        <button tabIndex={isActive ? '1' : '-1'} className={activeTab === 1 ? 'active' : ''} onClick={() => { setActiveTab(1) }}>
+                        <button tabIndex={isActive ? '0' : '-1'} className={activeTab === 1 ? 'active' : ''} onClick={() => { setActiveTab(1) }}>
                             {detailsTabName['en']}
                         </button>
-                        <button tabIndex={isActive ? '1' : '-1'} className={activeTab === 2 ? 'active' : ''} onClick={() => { setActiveTab(2) }}>
+                        <button tabIndex={isActive ? '0' : '-1'} className={activeTab === 2 ? 'active' : ''} onClick={() => { setActiveTab(2) }}>
                             {aboutTabName['en']}
                         </button>
                     </TabsControl>
@@ -198,7 +198,7 @@ export default function Cookies() {
                                 return (
                                     <div key={el.partName + index} className="parts">
                                         <div className="name">
-                                            <button tabIndex={isActive ? '1' : '-1'} className={activeCookie[index].isActive ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
+                                            <button tabIndex={isActive ? '0' : '-1'} className={activeCookie[index].isActive ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
                                             {el.partName} {count > 0 && `(${count})`}
                                         </div>
                                         <p className="description">
@@ -216,19 +216,19 @@ export default function Cookies() {
                         </Tab>
                     </TabWrapper>
                     <Buttons>
-                        <button tabIndex={isActive ? '1' : '-1'} onClick={() => { rejectAll() }}>
+                        <button tabIndex={isActive ? '0' : '-1'} onClick={() => { rejectAll() }}>
                             {denyButton['en']}
                         </button>
                         {activeTab === 1 ? (
-                            <button onClick={() => { acceptPart() }} tabIndex={isActive ? '1' : '-1'}>
+                            <button onClick={() => { acceptPart() }} tabIndex={isActive ? '0' : '-1'}>
                                 {allowChosenButton['en']}
                             </button>
                         ) : (
-                            <button tabIndex={isActive ? '1' : '-1'}>
+                            <button tabIndex={isActive ? '0' : '-1'}>
                                 {setButton['en']}
                             </button>
                         )}
-                        <button tabIndex={isActive ? '1' : '-1'} onClick={() => { acceptAll() }} className="allow">
+                        <button tabIndex={isActive ? '0' : '-1'} onClick={() => { acceptAll() }} className="allow">
                             {allowButton['en']}
                         </button>
                     </Buttons>
