@@ -5,14 +5,6 @@ import { Grid } from "./cookies-grid"
 import scrollLock from './../helpers/scroll-lock'
 import { getCookie, setCookie } from "../helpers/coockie-manager"
 
-function datalayerPush(obj) {
-    // let isAnalytics = getCookie('statistics')
-    if (typeof window !== "undefined" && !!obj) {
-        window.dataLayer = window.dataLayer || []
-        window.dataLayer.push(obj)
-    }
-}
-
 function datalayerArguments() {
     if (typeof window !== "undefined" && !!arguments) {
         window.dataLayer = window.dataLayer || []
@@ -78,22 +70,21 @@ export default function Cookies() {
 
     const [isActive, setIsActive] = useState(false)
     const [activeTab, setActiveTab] = useState(0)
-    const [tabs, setTabs] = useState(() => {
-        let parts = []
+
+    const [activeCookie, setActiveCookie] = useState(() => {
+        const arr = []
         detailsTab.cookies.forEach(el => {
-            parts.push({
-                name: el.partName,
-                isAccepted: true
-            })
+            const isActive = el.workPartName === 'necessary'
+            arr.push({ name: el.workPartName, isActive: isActive })
         })
-        return parts
+        return arr
     })
 
     const changeTabs = (index) => {
-        const arr = [...tabs]
-        arr[index].isAccepted = !arr[index].isAccepted
+        const arr = [...activeCookie]
+        arr[index].isActive = !arr[index].isActive
 
-        setTabs(arr)
+        setActiveCookie(arr)
     }
 
     useEffect(() => {
@@ -128,15 +119,6 @@ export default function Cookies() {
             scrollLock.disable('cookie')
         }
     }, [])
-
-    const [activeCookie] = useState(() => {
-        const arr = []
-        detailsTab.cookies.forEach(el => {
-            const isActive = el.workPartName === 'necessary'
-            arr.push({ name: el.workPartName, isActive: isActive })
-        })
-        return arr
-    })
 
     const acceptAll = () => {
         activeCookie.forEach(el => {
@@ -212,18 +194,18 @@ export default function Cookies() {
                                 el.innerParts?.forEach(inEl => {
                                     count += inEl.innerPartCookies.length
                                 })
-
+                                debugger
                                 return (
                                     <div key={el.partName + index} className="parts">
                                         <div className="name">
-                                            <button tabIndex={isActive ? '1' : '-1'} className={tabs[index].isAccepted ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
+                                            <button tabIndex={isActive ? '1' : '-1'} className={activeCookie[index].isActive ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
                                             {el.partName} {count > 0 && `(${count})`}
                                         </div>
                                         <p className="description">
                                             {el.partDescription}
                                         </p>
                                         {el.innerParts?.map((el, id) => (
-                                            <React.Fragment key={el.innerPartName + id}><Grid isActive={isActive} active={tabs[index].isAccepted} el={el} /></React.Fragment>
+                                            <React.Fragment key={el.innerPartName + id}><Grid isActive={isActive} active={activeCookie[index].isActive} el={el} /></React.Fragment>
                                         ))}
                                     </div>
                                 )
