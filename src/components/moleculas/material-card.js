@@ -96,6 +96,13 @@ const Wrapper = styled.div`
 
     .wrap{
         position: relative;
+
+        
+        &:hover{
+            img{
+                transform: scale(1.05);
+            }
+        }
     }
 `
 
@@ -117,7 +124,8 @@ const VariantCircle = styled.button`
     height: 26px;
     border-radius: 50%;
     border: 1px solid #BABABA;
-    transition: border .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: border .4s ease-out;
+    cursor: pointer;
 
     display: flex;
     align-items: center;
@@ -127,25 +135,35 @@ const VariantCircle = styled.button`
     &::after{
         content: "";
         position: absolute;
-        left: -6px;
-        right: -6px;
-        bottom: -6px;
-        top: -6px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
         border: 1px solid #0B0B0B;
         border-radius: 50%;
         opacity: 0;
-        transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: all .25s ease-out;
+    }
+
+    &:hover{
+        &::after{
+            opacity: 1;
+        }
     }
 
     svg{
         opacity: 0;
-        transition: opacity .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        transition: opacity .4s ease-out;
         mix-blend-mode: color-burn;
     }
 
     &.active{
         &::after{
-            opacity: 1;
+        left: -6px;
+        right: -6px;
+        bottom: -6px;
+        top: -6px;
+        opacity: 1;
         }
     }
 `
@@ -153,6 +171,8 @@ const VariantCircle = styled.button`
 const SliderWrapper = styled.div`
     position: relative;
     background-color: #777;
+
+    
 `
 
 const SliderContent = styled.div`
@@ -162,10 +182,15 @@ const SliderContent = styled.div`
     right: 0;
     top: 0;
     bottom: 0;
-    transition: opacity .3s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: opacity .6s ease-out;
 
     &.active{
         position: relative;
         opacity: 1;
     }
+
+    .image img{
+        transition: transform .6s ease-out;
+    }
+
 `

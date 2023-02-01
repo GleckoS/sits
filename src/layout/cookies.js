@@ -3,6 +3,22 @@ import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Grid } from "./cookies-grid"
 import scrollLock from './../helpers/scroll-lock'
+import { getCookie, setCookie } from "../helpers/coockie-manager"
+
+function datalayerPush(obj) {
+    // let isAnalytics = getCookie('statistics')
+    if (typeof window !== "undefined" && !!obj) {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push(obj)
+    }
+}
+
+function datalayerArguments() {
+    if (typeof window !== "undefined" && !!arguments) {
+        window.dataLayer = window.dataLayer || []
+        window.dataLayer.push(arguments)
+    }
+}
 
 const consentTabName = {
     en: 'Consent'
@@ -41,6 +57,7 @@ export default function Cookies() {
               detailsTab {
                 cookies {
                   partName
+                  workPartName
                   partDescription
                   innerParts {
                     innerPartName
@@ -59,6 +76,7 @@ export default function Cookies() {
     }
   `)
 
+    const [isActive, setIsActive] = useState(false)
     const [activeTab, setActiveTab] = useState(0)
     const [tabs, setTabs] = useState(() => {
         let parts = []
@@ -79,33 +97,108 @@ export default function Cookies() {
     }
 
     useEffect(() => {
-        scrollLock.enable('cookie')
+        if (getCookie('necessary')) {
+            datalayerArguments("consent", "default", {
+                'ad_storage': getCookie('marketing'),
+                'analytics_storage': getCookie('statistics'),
+                'functionality_storage': getCookie('necessary'),
+                'personalization_storage': getCookie('preferences'),
+                'unclassified_storage': getCookie('unclassified'),
+                'wait_for_update': 2500
+            });
+            datalayerArguments("set", "ads_data_redaction", true);
+            setIsActive(false)
+            scrollLock.disable('cookie')
+        } else {
+            datalayerArguments("consent", "default", {
+                'ad_storage': "denied",
+                'analytics_storage': "denied",
+                'functionality_storage': "denied",
+                'personalization_storage': "denied",
+                'security_storage': "granted",
+                'unclassified_storage': "denied",
+                'wait_for_update': 2500
+            });
+            datalayerArguments("set", "ads_data_redaction", true);
+            setIsActive(true)
+            scrollLock.enable('cookie')
+        }
 
         return () => {
             scrollLock.disable('cookie')
         }
     }, [])
 
-    const [isActive, setIsActive] = useState(true)
+    const [activeCookie] = useState(() => {
+        const arr = []
+        detailsTab.cookies.forEach(el => {
+            const isActive = el.workPartName === 'necessary'
+            arr.push({ name: el.workPartName, isActive: isActive })
+        })
+        return arr
+    })
+
+    const acceptAll = () => {
+        activeCookie.forEach(el => {
+            setCookie(el.name, 'granted', 365)
+        })
+        datalayerArguments('consent', 'update', {
+            'ad_storage': 'granted',
+            'analytics_storage': "granted",
+            'functionality_storage': "granted",
+            'personalization_storage': "granted",
+            'unclassified_storage': "granted",
+        });
+
+        setIsActive(false)
+    }
+
+    const acceptPart = () => {
+        activeCookie.forEach(el => {
+            setCookie(el.name, el.isActive ? 'granted' : 'denied', 365)
+        })
+        datalayerArguments('consent', 'update', {
+            'ad_storage': getCookie('marketing'),
+            'analytics_storage': getCookie('statistics'),
+            'functionality_storage': getCookie('necessary'),
+            'personalization_storage': getCookie('preferences'),
+            'unclassified_storage': getCookie('unclassified'),
+        });
+
+        setIsActive(false)
+    }
 
     if (!isActive) {
         scrollLock.disable('cookie')
-        return null
+    }
+
+    const rejectAll = () => {
+        activeCookie.forEach(el => {
+            setCookie(el.name, 'denied', 365)
+        })
+        datalayerArguments('consent', 'update', {
+            'ad_storage': 'denied',
+            'analytics_storage': "denied",
+            'functionality_storage': "denied",
+            'personalization_storage': "denied",
+        });
+
+        setIsActive(false)
     }
 
     return (
         <>
-            <Overlay />
-            <Wrapper>
+            <Overlay className={isActive ? 'active' : ''} />
+            <Wrapper className={isActive ? 'active' : ''}>
                 <Content>
                     <TabsControl>
-                        <button className={activeTab === 0 ? 'active' : ''} onClick={() => { setActiveTab(0) }}>
+                        <button tabIndex={isActive ? '1' : '-1'} className={activeTab === 0 ? 'active' : ''} onClick={() => { setActiveTab(0) }}>
                             {consentTabName['en']}
                         </button>
-                        <button className={activeTab === 1 ? 'active' : ''} onClick={() => { setActiveTab(1) }}>
+                        <button tabIndex={isActive ? '1' : '-1'} className={activeTab === 1 ? 'active' : ''} onClick={() => { setActiveTab(1) }}>
                             {detailsTabName['en']}
                         </button>
-                        <button className={activeTab === 2 ? 'active' : ''} onClick={() => { setActiveTab(2) }}>
+                        <button tabIndex={isActive ? '1' : '-1'} className={activeTab === 2 ? 'active' : ''} onClick={() => { setActiveTab(2) }}>
                             {aboutTabName['en']}
                         </button>
                     </TabsControl>
@@ -123,14 +216,14 @@ export default function Cookies() {
                                 return (
                                     <div key={el.partName + index} className="parts">
                                         <div className="name">
-                                            <button className={tabs[index].isAccepted ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
+                                            <button tabIndex={isActive ? '1' : '-1'} className={tabs[index].isAccepted ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
                                             {el.partName} {count > 0 && `(${count})`}
                                         </div>
                                         <p className="description">
                                             {el.partDescription}
                                         </p>
                                         {el.innerParts?.map((el, id) => (
-                                            <React.Fragment key={el.innerPartName + id}><Grid active={tabs[index].isAccepted} el={el} /></React.Fragment>
+                                            <React.Fragment key={el.innerPartName + id}><Grid isActive={isActive} active={tabs[index].isAccepted} el={el} /></React.Fragment>
                                         ))}
                                     </div>
                                 )
@@ -141,19 +234,19 @@ export default function Cookies() {
                         </Tab>
                     </TabWrapper>
                     <Buttons>
-                        <button onClick={() => { setIsActive(false) }}>
+                        <button tabIndex={isActive ? '1' : '-1'} onClick={() => { rejectAll() }}>
                             {denyButton['en']}
                         </button>
                         {activeTab === 1 ? (
-                            <button>
+                            <button onClick={() => { acceptPart() }} tabIndex={isActive ? '1' : '-1'}>
                                 {allowChosenButton['en']}
                             </button>
                         ) : (
-                            <button onClick={() => { setIsActive(false) }}>
+                            <button tabIndex={isActive ? '1' : '-1'}>
                                 {setButton['en']}
                             </button>
                         )}
-                        <button onClick={() => { setIsActive(false) }} className="allow">
+                        <button tabIndex={isActive ? '1' : '-1'} onClick={() => { acceptAll() }} className="allow">
                             {allowButton['en']}
                         </button>
                     </Buttons>
@@ -183,6 +276,14 @@ const Overlay = styled.div`
     background: #888888;
     mix-blend-mode: multiply;
     z-index: 10000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s ease-out;
+
+    &.active{
+        opacity: 1;
+        pointer-events: all;
+    }
 `
 
 const Wrapper = styled.aside`
@@ -195,6 +296,15 @@ const Wrapper = styled.aside`
     max-width: 800px;
     width: 100%;
     max-height: calc(100vh - 200px);
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .6s ease-out;
+
+    &.active{
+        opacity: 1;
+        pointer-events: all;
+    }
 
     @media (max-height: 639px) {
         max-height: 100vh;

@@ -13,7 +13,7 @@ const loadMoreTitle = {
     en: 'LOAD MORE '
 }
 
-export const Grid = ({ active, el: data }) => {
+export const Grid = ({ isActive, active, el: data }) => {
 
     const [showAll, setShowAll] = useState(false)
 
@@ -40,7 +40,7 @@ export const Grid = ({ active, el: data }) => {
                         if (!isButtonRendered) {
                             isButtonRendered = true
                             return (
-                                <button key={'button'} items={data.innerPartCookies.length} className="show-all" onClick={() => { setShowAll(true) }}>
+                                <button tabIndex={isActive && active ? '1' : '-1'} key={'button'} items={data.innerPartCookies.length} className="show-all" onClick={() => { setShowAll(true) }}>
                                     {loadMoreTitle['en']}
                                     <span className="desctop"> ({data.innerPartCookies.length - 3})</span>
                                     <span className="tablet"> ({data.innerPartCookies.length - 2})</span>

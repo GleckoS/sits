@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Global } from "../styles/global-style"
 import Footer from "./footer"
 import Header from "./header"
-// import Cookies from "./cookies"
+import Cookies from "./cookies"
 
 import { ToastContainer } from 'react-toastify'
 import { cssTransition } from 'react-toastify';
@@ -20,7 +20,7 @@ export default function Layout({ children }) {
         <Wrapper>
             <ToastContainer transition={animate} />
             <Global />
-            {/* <Cookies /> */}
+            <Cookies />
             <Header />
             <div id='main'>
                 {children}
