@@ -213,7 +213,6 @@ export const Global = createGlobalStyle`
         line-height: 170%;
         position: relative;
         width: fit-content;
-        text-decoration: underline;
     }
 
     .p{

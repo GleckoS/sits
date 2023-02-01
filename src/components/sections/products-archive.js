@@ -129,6 +129,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
     const [search, setSearch] = useQueryParam('search', '')
     const [page, setPage] = useQueryParam('page', '1')
     const [inputValue, setInputValue] = useState('')
+    const [defaultPosts] = useState(products)
 
     useEffect(() => {
         if (location.search === '') {
@@ -159,24 +160,6 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
         setUpholsterys('All')
         setPage('1')
     }
-
-    const defaultPosts = useMemo(() => {
-        debugger // TODO: Filtracja produktów według typu
-
-        if (!name) {
-            return products
-        }
-        return products.filter(el => {
-            let isAccessed = false
-            el.types.nodes.forEach((inEl) => {
-                if (inEl.name === name) {
-                    isAccessed = true
-                }
-                return
-            })
-            return isAccessed
-        })
-    }, [name, products])
 
     const filtredProducts = useMemo(() => {
         let arr = [...defaultPosts]
@@ -372,8 +355,6 @@ const NoResults = styled.div`
         font-family: 'Ivy';
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-weight: 300;
-        text-decoration: underline;
-        
     }
 
     p{

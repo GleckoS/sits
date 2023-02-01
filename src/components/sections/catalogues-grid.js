@@ -17,7 +17,7 @@ export default function CataloguesGrid({ data: { title, catalogues: { catalogues
                             <Item key={index}>
                                 <a href={el.catalogueFile?.localFile?.publicURL ? el.catalogueFile?.localFile?.publicURL : el.catalogueFile?.mediaItemUrl} target='_blank' rel="noreferrer noopener" download>
                                     <GatsbyImage image={el.cataloguePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.cataloguePreviewImage.altText} />
-                                    <p>{el.catalogueTitle}</p>
+                                    <p className="underline">{el.catalogueTitle}</p>
                                 </a>
                             </Item>
                         ))}
@@ -58,6 +58,11 @@ const Item = styled.div`
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-family: 'Ivy';
         font-weight: 300;
-        text-decoration: underline;
+    }
+
+    &:hover{
+        .underline{
+            background-size: 100% 1px;
+        }
     }
 `

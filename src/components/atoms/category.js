@@ -1,8 +1,15 @@
-import { Link } from "gatsby";
-import styled from "styled-components";
+import React from "react"
+import { Link } from "gatsby"
+import styled from "styled-components"
 
 export const Category = (props) => {
     debugger
+
+    return (
+        <Wrapper>
+
+        </Wrapper>
+    )
 }
 
 
@@ -19,5 +26,4 @@ const Wrapper = styled(Link)`
         background-color: unset;
         color: #9c6325;
     }
-
 `

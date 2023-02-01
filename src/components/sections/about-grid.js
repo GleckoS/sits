@@ -88,7 +88,6 @@ const Content = styled.div`
         h2{
             font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
             font-family: 'Ivy';
-            text-decoration: underline;
             font-weight: 300;
         }
         div{

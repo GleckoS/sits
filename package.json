@@ -19,6 +19,7 @@
     "babel-plugin-styled-components": "^2.0.7",
     "csvtojson": "^2.0.10",
     "gatsby": "^5.2.0",
+    "gatsby-plugin-google-tagmanager": "^5.5.0",
     "gatsby-plugin-image": "^3.2.0",
     "gatsby-plugin-manifest": "^5.3.1",
     "gatsby-plugin-react-helmet": "^6.3.0",

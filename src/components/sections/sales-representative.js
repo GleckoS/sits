@@ -62,9 +62,9 @@ export default function Content({ data: { title, salesRepresentative: { textUnde
                         <Item key={el.Name + index}>
                             <span className="country">{el.Country}</span>
                             <span className="name">{el.Name}</span>
-                            {el['Phone 1'] && <a href={'tel:' + el['Phone 1']}>{el['Phone 1']}</a>}
-                            {el['Phone 2'] && <a href={'tel:' + el['Phone 2']}>{el['Phone 2']}</a>}
-                            {el['E-mail'] && <a href={'mailto:' + el['E-mail']}>{el['E-mail']}</a>}
+                            {el['Phone 1'] && <a className="underline" href={'tel:' + el['Phone 1']}>{el['Phone 1']}</a>}
+                            {el['Phone 2'] && <a className="underline"  href={'tel:' + el['Phone 2']}>{el['Phone 2']}</a>}
+                            {el['E-mail'] && <a className="underline"  href={'mailto:' + el['E-mail']}>{el['E-mail']}</a>}
                         </Item>
                     ))}
                 </Grid>
@@ -158,7 +158,6 @@ const Item = styled.div`
     a{
         font-size: clamp(14px, ${18 / 1194 * 100}vw, 18px);
         display: block;
-        text-decoration: underline;
         margin-bottom: 6px;
         text-underline-offset: 2px;
         width: fit-content;

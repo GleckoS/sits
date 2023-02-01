@@ -20,7 +20,6 @@ const Wrapper = styled.div`
 
     &.small{
         h1{
-            text-decoration: underline;
             margin: 30px 0;
         }
     }

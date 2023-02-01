@@ -32,7 +32,6 @@ const Content = styled.div`
         font-size: clamp(26px, ${28 / 1194 * 100}vw, 28px);
         font-family: 'Ivy';
         font-weight: 300;
-        text-decoration: underline;
         margin-bottom: clamp(24px, ${32 / 1194 * 100}vw, 32px);
 
         @media (max-width: 375px) {

@@ -25,7 +25,7 @@ export const ProductCard = ({
         <Link onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'}>
             <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             <Flex className={threeColumn ? 'three-column' : ''}>
-                <span className="archive-title">{data.title}</span>
+                <span className="archive-title underline">{data.title}</span>
                 <Categories>
                     {types?.map(el => (
                         <Category key={el.name}>
@@ -65,6 +65,10 @@ const Wrapper = styled.div`
         &:hover{
             img{
                 transform: scale(1.07);
+            }
+
+            .underline{
+                background-size: 100% 1px;
             }
         }
     }

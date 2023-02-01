@@ -24,7 +24,7 @@ export default function Products({ data, pageContext, location }) {
 }
 
 export const query = graphql`
-    query products($id: String!) {
+    query products($id: String!, $productType: String!) {
         wpPage(id: {eq: $id}){
             id
             seo {
@@ -39,7 +39,7 @@ export const query = graphql`
               }
             }
         }
-        allWpProduct(sort: {date: DESC}){
+        allWpProduct(sort: {date: DESC}, filter: {types: {nodes: {elemMatch: {name: {eq: $productType}}}}}){
           nodes{
             types {
               nodes {

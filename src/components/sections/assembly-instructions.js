@@ -226,7 +226,6 @@ const Wrapper = styled.section`
         font-size: 28px;
         font-family: 'Ivy';
         font-weight: 300;
-        text-decoration: underline;
         margin-bottom: 32px;
     }
 
