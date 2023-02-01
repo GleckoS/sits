@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react"
+import React, { useCallback, useMemo, useState } from "react"
 import styled from "styled-components"
 import { ProductList } from "../organism/products-list"
 import { Container } from "../atoms/container"
@@ -131,25 +131,28 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
     const [inputValue, setInputValue] = useState('')
     const [defaultPosts] = useState(products)
 
-    useEffect(() => {
-        if (location.search === '') {
-            if (sort !== 'Popular') {
-                setSort('Popular')
-            }
-            if (type !== 'All') {
-                setType('All')
-            }
-            if (cover !== 'All') {
-                setCover('All')
-            }
-            if (upholsterys !== 'All') {
-                setUpholsterys('All')
-            }
-            if (search !== '') {
-                setSearch('')
+    // useEffect(() => {
+    // if (location.search) {
+    //     let params = new URLSearchParams(location.search)
+    //     if (params.has('type')) {
+    //         setType(params.get('type'))
+    //     }
+    // }
+    // }, [location])
+    debugger
+
+    const changeType = useCallback((e, url) => {
+        if (typeof window !== 'undefined' && name === 'sofas') {
+            const [ , paramString ] = url.split( '?' );
+            let params = new URLSearchParams(paramString)
+            if (params.has('type')) {
+                e.preventDefault()
+                setPage('1')
+                window.scrollTo(0, 0)
+                setType(params.get('type'))
             }
         }
-    }, [location])
+    }, [location, setType])
 
     const [isMobileFilterOpened, setMobileFilterOpened] = useState(false)
     const [openedFilter, setOpenedFilter] = useState(false)
@@ -221,15 +224,26 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
         }
 
         if (locSort === 'Popular') {
-            let filtrArr = []
+            let filtrArr = {
+                popular: [],
+                unPopular: []
+            }
             arr.forEach(el => {
                 if (el.products?.collection?.collections?.generalCollectionInformation?.isPopular) {
-                    filtrArr.unshift(el)
+                    filtrArr.popular.push(el)
                 } else {
-                    filtrArr.push(el)
+                    filtrArr.unPopular.push(el)
                 }
             })
-            arr = filtrArr
+
+            filtrArr.popular.sort((a, b) => {
+                return b.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex - a.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex
+            })
+            filtrArr.unPopular.sort((a, b) => {
+                return b.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex - a.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex
+            })
+
+            arr = [...filtrArr.popular, ...filtrArr.unPopular]
         }
 
         if (locSort === 'New Arrivals') {
@@ -332,7 +346,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                     )}
                 </ActiveFilters>
                 {filtredProducts.length > 0
-                    ? <ProductList setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
+                    ? <ProductList changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
                     : (
                         <NoResults>
                             <h2>{noResultTitle['en']}</h2>

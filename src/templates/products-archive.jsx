@@ -44,6 +44,11 @@ export const query = graphql`
             types {
               nodes {
                 name
+                collectionTypes {
+                  typeArchive {
+                    url
+                  }
+                }
               }
             }
             products {
@@ -54,6 +59,7 @@ export const query = graphql`
                   collections {
                     generalCollectionInformation {
                       isPopular
+                      popularImportanceIndex
                     }
                   }
                   covers {
@@ -69,6 +75,11 @@ export const query = graphql`
                   types {
                     nodes {
                       name
+                      collectionTypes {
+                        typeArchive {
+                          url
+                        }
+                      }
                     }
                   }
                 }

@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { LoadMore } from "../atoms/load-more"
 import { ProductCard } from "../moleculas/product-card"
 
-export const ProductList = ({ setRerender, setPage, page, rerender, products }) => {
+export const ProductList = ({ changeType, setRerender, setPage, page, rerender, products }) => {
     const renderCount = useRef(0)
     const isAllRendered = useRef(true)
     renderCount.current = 0
@@ -17,7 +17,9 @@ export const ProductList = ({ setRerender, setPage, page, rerender, products }) 
                             if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < page * 8) {
                                 renderCount.current += 1
                                 isAllRendered.current = true
-                                return <React.Fragment key={inEl.popupNames.model + index}><ProductCard setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} /></React.Fragment>
+                                return <React.Fragment key={inEl.popupNames.model + index}>
+                                    <ProductCard categoryClick={changeType} setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
+                                </React.Fragment>
                             } else if (isAllRendered && renderCount.current >= page * 8) {
                                 isAllRendered.current = false
                             }

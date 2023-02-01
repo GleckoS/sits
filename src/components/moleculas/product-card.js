@@ -18,28 +18,41 @@ export const ProductCard = ({
     model,
     data,
     types,
-    image
+    image,
+    categoryClick = () => { }
 }) => (
     <Wrapper className="product-card">
         <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={model} />
-        <Link onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'}>
-            <GatsbyImage image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
-            <Flex className={threeColumn ? 'three-column' : ''}>
-                <span className="archive-title underline">{data.title}</span>
-                <Categories>
-                    {types?.map(el => (
-                        <Category key={el.name}>
+        <Link onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'} />
+        <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+        <Flex className={threeColumn ? 'three-column' : ''}>
+            <span className="archive-title underline">{data.title}</span>
+            <Categories>
+                {types?.map(el => (
+                    <React.Fragment key={el.name}>
+                        <Category onClick={(e) => {categoryClick(e, el.collectionTypes.typeArchive.url)}} to={el.collectionTypes.typeArchive.url}>
                             {el.name}
                         </Category>
-                    ))}
-                </Categories>
-            </Flex>
-        </Link>
+                    </React.Fragment>
+                ))}
+            </Categories>
+        </Flex>
     </Wrapper>
 )
 
 const Wrapper = styled.div`
     position: relative;
+
+    .link{
+        position: absolute;
+        z-index: 1;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        user-select: none;
+-webkit-user-drag: none;
+    }
 
     button{
         position: absolute;
@@ -58,18 +71,18 @@ const Wrapper = styled.div`
         }
     }
 
-    .link{
+    .image{
         img{
             transition: transform var(--animation);
         }
-        &:hover{
-            img{
-                transform: scale(1.07);
-            }
+    }
+    &:hover{
+        img{
+            transform: scale(1.07);
+        }
 
-            .underline{
-                background-size: 100% 1px;
-            }
+        .underline{
+            background-size: 100% 1px;
         }
     }
 `
@@ -107,7 +120,6 @@ const Categories = styled.div`
     margin-bottom: 6px;
 
     @media (max-width: 768px) {
-        
         gap: 0;
         div{
             padding-right: 8px;

@@ -47,7 +47,9 @@ export default function Hero({
                         </Flex>
                         <Categories>
                             {itemCategories.map(el => (
-                                <Category key={el.name}>{el.name}</Category>
+                                <React.Fragment key={el.name}>
+                                    <Category to={el.collectionTypes.typeArchive.url}>{el.name}</Category>
+                                </React.Fragment>
                             ))}
                         </Categories>
                         <Description dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />

@@ -45,6 +45,11 @@ export const query = graphql`
                     types {
                       nodes {
                         name
+                        collectionTypes {
+                          typeArchive {
+                            url
+                          }
+                        }
                       }
                     }
                     products {
@@ -65,6 +70,11 @@ export const query = graphql`
                           types {
                             nodes {
                               name
+                              collectionTypes {
+                                typeArchive {
+                                  url
+                                }
+                              }
                             }
                           }
                         }
