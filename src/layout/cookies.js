@@ -35,7 +35,7 @@ const allowButton = {
     en: 'Allow all'
 }
 
-export default function Cookies() {
+export default function Cookies({ isActive, setIsActive }) {
     const { wpPage: { cookies: { consentTab, aboutCookiesTab, detailsTab } } } = useStaticQuery(graphql`
     query {
         wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
@@ -68,7 +68,6 @@ export default function Cookies() {
     }
   `)
 
-    const [isActive, setIsActive] = useState(false)
     const [activeTab, setActiveTab] = useState(0)
 
     const [activeCookie, setActiveCookie] = useState(() => {

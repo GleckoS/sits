@@ -15,7 +15,11 @@ const right = [
   { name: 'SALES REPRESENTATTIVE', url: '/sales-representative/' }
 ]
 
-export default function Footer() {
+const manageCookies = {
+  en: 'MANAGE COOKIES'
+}
+
+export default function Footer({ setIsCookiesActive }) {
   return (
     <Wrapper id='footer'>
       <BottomPart>
@@ -43,6 +47,9 @@ export default function Footer() {
                     </Link>
                   </React.Fragment>
                 ))}
+                <button className='left styled-link' onClick={() => { setIsCookiesActive(true) }}>
+                  {manageCookies['en']}
+                </button>
               </div>
               <div>
                 {right.map((el) => (
@@ -148,11 +155,12 @@ const Wrapper = styled.footer`
   margin-top: 120px;
   width: 100%;
 
-  a {
+  a, button {
     color: #31231e;
     letter-spacing: 1px;
     font-size: 14px;
     font-weight: 300;
+    cursor: pointer;
   }
 `
 
@@ -177,6 +185,11 @@ const Center = styled.div`
     grid-gap: 12px;
   }
 
+  button{
+    border: none;
+    background-color: transparent;
+  }
+
   .right {
     text-align: right;
     margin-left: auto;
@@ -191,7 +204,7 @@ const Center = styled.div`
       text-align: center !important;
       margin: 0 auto;
 
-      a{
+      a, button{
         margin: 0 auto;
       }
     }

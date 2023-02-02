@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Global } from "../styles/global-style"
 import Footer from "./footer"
@@ -16,16 +16,17 @@ const animate = cssTransition({
 
 export default function Layout({ children }) {
 
+    const [isCookiesActive, setIsCookiesActive] = useState(false)
     return (
         <Wrapper>
             <ToastContainer transition={animate} />
             <Global />
-            <Cookies />
+            <Cookies isActive={isCookiesActive} setIsActive={setIsCookiesActive} />
             <Header />
             <div id='main'>
                 {children}
             </div>
-            <Footer />
+            <Footer setIsCookiesActive={setIsCookiesActive}/>
         </Wrapper>
     )
 }
