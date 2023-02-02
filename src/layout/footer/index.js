@@ -12,7 +12,7 @@ const left = [
 const right = [
   { name: 'WHERE TO BUY', url: '/where-to-buy/' },
   { name: 'CONTACT', url: '/contact/' },
-  { name: 'SALES REPRESENTATTIVE', url: '/sales-representative/' }
+  { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' }
 ]
 
 const manageCookies = {
