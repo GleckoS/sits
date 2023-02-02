@@ -194,7 +194,6 @@ export default function Cookies() {
                                 el.innerParts?.forEach(inEl => {
                                     count += inEl.innerPartCookies.length
                                 })
-                                debugger
                                 return (
                                     <div key={el.partName + index} className="parts">
                                         <div className="name">

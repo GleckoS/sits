@@ -65,7 +65,6 @@ export default function Header() {
         setRightMenuOpened(false)
       }
     }
-
   }, [])
 
   useEffect(() => {

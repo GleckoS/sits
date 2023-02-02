@@ -3,7 +3,7 @@ import React from "react"
 import styled from "styled-components"
 import { myContext } from "../../hooks/provider"
 
-export const Item = ({ onBlur, tabIndex = 0, el, func }) => (
+export const Item = ({ onBlur = () => { }, tabIndex = 0, el, func = () => { } }) => (
     <Link activeClassName='active' onBlur={onBlur} tabIndex={tabIndex} className="item" onClick={() => { func(false) }} to={el.url}>
         <span className="styled-link">{el.name}</span>
         {el.icon === 'out' && (
@@ -17,16 +17,14 @@ export const Item = ({ onBlur, tabIndex = 0, el, func }) => (
         )}
         {el.icon === 'hearth' && (
             <myContext.Consumer>
-                {context => {
-                    return (
-                        <Hearth>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24.829" height="23.135" viewBox="0 0 24.829 23.135">
-                                <path id="Path_154" data-name="Path 154" d="M11.665,21.375l-1.2-1.079a103.581,103.581,0,0,1-7.611-7.582A9.927,9.927,0,0,1,0,6.153,5.957,5.957,0,0,1,1.764,1.764,5.922,5.922,0,0,1,6.124,0,6.632,6.632,0,0,1,9.069.714a6.922,6.922,0,0,1,2.6,2.347A8.458,8.458,0,0,1,14.318.714,6.16,6.16,0,0,1,17.205,0a5.922,5.922,0,0,1,4.36,1.764,5.957,5.957,0,0,1,1.764,4.389,9.927,9.927,0,0,1-2.858,6.561A103.581,103.581,0,0,1,12.86,20.3Zm0-2.3" transform="translate(0.75 0.75)" fill="none" stroke="#bababa" strokeWidth="1.5" />
-                            </svg>
-                            <span>({context.favouritesCount})</span>
-                        </Hearth>
-                    )
-                }}
+                {({ favouritesCount }) => (
+                    <Hearth>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24.829" height="23.135" viewBox="0 0 24.829 23.135">
+                            <path id="Path_154" data-name="Path 154" d="M11.665,21.375l-1.2-1.079a103.581,103.581,0,0,1-7.611-7.582A9.927,9.927,0,0,1,0,6.153,5.957,5.957,0,0,1,1.764,1.764,5.922,5.922,0,0,1,6.124,0,6.632,6.632,0,0,1,9.069.714a6.922,6.922,0,0,1,2.6,2.347A8.458,8.458,0,0,1,14.318.714,6.16,6.16,0,0,1,17.205,0a5.922,5.922,0,0,1,4.36,1.764,5.957,5.957,0,0,1,1.764,4.389,9.927,9.927,0,0,1-2.858,6.561A103.581,103.581,0,0,1,12.86,20.3Zm0-2.3" transform="translate(0.75 0.75)" fill="none" stroke="#bababa" strokeWidth="1.5" />
+                        </svg>
+                        <span>({favouritesCount})</span>
+                    </Hearth>
+                )}
             </myContext.Consumer>
         )}
     </Link>
