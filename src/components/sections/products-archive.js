@@ -133,7 +133,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
 
     const changeType = useCallback((e, url) => {
         if (typeof window !== 'undefined' && name === 'sofas') {
-            const [ , paramString ] = url.split( '?' );
+            const [, paramString] = url.split('?');
             let params = new URLSearchParams(paramString)
             if (params.has('type')) {
                 e.preventDefault()
@@ -214,26 +214,13 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
         }
 
         if (locSort === 'Popular') {
-            let filtrArr = {
-                popular: [],
-                unPopular: []
-            }
-            arr.forEach(el => {
-                if (el.products?.collection?.collections?.generalCollectionInformation?.isPopular) {
-                    filtrArr.popular.push(el)
-                } else {
-                    filtrArr.unPopular.push(el)
-                }
+            let filtrArr = [...arr]
+
+            filtrArr.sort((a, b) => {
+                return a.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex - b.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex
             })
 
-            filtrArr.popular.sort((a, b) => {
-                return b.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex - a.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex
-            })
-            filtrArr.unPopular.sort((a, b) => {
-                return b.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex - a.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex
-            })
-
-            arr = [...filtrArr.popular, ...filtrArr.unPopular]
+            arr = filtrArr
         }
 
         if (locSort === 'New Arrivals') {
