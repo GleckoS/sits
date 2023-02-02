@@ -2,6 +2,7 @@ import { graphql } from "gatsby"
 import React from "react"
 import { Helmet } from "react-helmet"
 import Content from "../components/sections/legal-content"
+import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
 
 export function Head({ data: { wpPage: { seo } } }) {
@@ -15,9 +16,9 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function LegalPage({ data: { wpPage: { legal } }, pageContext, location }) {
     return (
-        <main>
+        <Wrapper>
             <Content data={legal} />
-        </main>
+        </Wrapper>
     )
 }
 

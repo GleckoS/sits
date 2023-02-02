@@ -4,6 +4,7 @@ import ProductArchive from '../components/sections/products-archive'
 import Map from "../components/sections/map"
 import { Helmet } from "react-helmet"
 import Seo from "../layout/seo"
+import Wrapper from "../components/sections/page-wrapper"
 
 export function Head({ data: { wpPage: { seo } } }) {
   return (
@@ -16,10 +17,10 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function Products({ data, pageContext, location }) {
   return (
-    <main>
+    <Wrapper>
       <ProductArchive location={location} pageContext={pageContext} products={data.allWpProduct.nodes} data={''} />
       <Map />
-    </main>
+    </Wrapper>
   )
 }
 

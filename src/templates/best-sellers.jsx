@@ -7,6 +7,7 @@ import Map from "../components/sections/map"
 import Hero from "../components/sections/hero-bestsellers"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
+import Wrapper from "../components/sections/page-wrapper"
 
 export function Head({ data: { wpPage: { seo } } }) {
   return (
@@ -19,13 +20,13 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function Bestsellers({ data: { wpPage: { bestSellers } }, pageContext }) {
   return (
-    <main>
+    <Wrapper>
       <Hero data={bestSellers.hero} />
       <BestSellersGrid data={bestSellers.imageGrids} />
       <NewArrivals data={bestSellers.newArrivals} />
       <ThreeInformCards data={bestSellers.sectionWithThreeInformCards} />
       <Map />
-    </main>
+    </Wrapper>
   )
 }
 

@@ -3,6 +3,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import ProductGrid from "../components/sections/products-grid"
 import Seo from "../layout/seo"
+import Wrapper from "../components/sections/page-wrapper"
 
 export function Head({ data: { wpPage: { seo } } }) {
   return (
@@ -14,11 +15,11 @@ export function Head({ data: { wpPage: { seo } } }) {
 }
 
 export default function AllProducts({ data: { wpPage, homepage }, pageContext, location }) {
-    return (
-        <main>
-            <ProductGrid title={'Discover our collections'} data={homepage.homepage.productsGrid} />
-        </main>
-    )
+  return (
+    <Wrapper>
+      <ProductGrid title={'Discover our collections'} data={homepage.homepage.productsGrid} />
+    </Wrapper>
+  )
 }
 
 export const query = graphql`

@@ -222,7 +222,7 @@ export default function Cookies({ isActive, setIsActive }) {
                                 {allowChosenButton['en']}
                             </button>
                         ) : (
-                            <button tabIndex={isActive ? '0' : '-1'}>
+                            <button onClick={() => { setActiveTab(1) }} tabIndex={isActive ? '0' : '-1'}>
                                 {setButton['en']}
                             </button>
                         )}

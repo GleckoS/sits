@@ -3,6 +3,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import CataloguesGrid from "../components/sections/catalogues-grid"
 import Map from "../components/sections/map"
+import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
 
 export function Head({ data: { wpPage: { seo } } }) {
@@ -16,10 +17,10 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function CataloguesPage({ data, pageContext, location }) {
   return (
-    <main>
+    <Wrapper>
       <CataloguesGrid data={data.wpPage} />
       <Map />
-    </main>
+    </Wrapper>
   )
 }
 

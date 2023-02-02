@@ -5,6 +5,7 @@ import TwoColumnFlex from "../components/sections/conscious-two-column-flex"
 import Grid from "../components/sections/consious-grid"
 import Hero from "../components/sections/hero-conscious"
 import Map from "../components/sections/map"
+import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
 
 export function Head({ data: { wpPage: { seo } } }) {
@@ -17,14 +18,14 @@ export function Head({ data: { wpPage: { seo } } }) {
 }
 export default function ConsciousPage({ data: { wpPage: { conscious } }, pageContext, location }) {
     return (
-        <main>
+        <Wrapper>
             <Hero data={conscious.heroSectionConscious} />
             <TwoColumnFlex data={conscious.twoColumnFlexConscious} />
             <TwoColumnFlex alt={true} data={conscious.twoColumnFlexConsciousSecond} />
             <Grid data={conscious.gridSectionConsious} />
             <TwoColumnFlex alt={true} data={conscious.twoColumnFlexConsciousThird} />
             <Map />
-        </main>
+        </Wrapper>
     )
 }
 

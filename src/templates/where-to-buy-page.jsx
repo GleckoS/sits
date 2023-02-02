@@ -4,6 +4,7 @@ import Map from "../components/sections/map"
 import { Title } from "../components/moleculas/title-sub"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
+import Wrapper from "../components/sections/page-wrapper"
 
 export function Head({ data: { wpPage: { seo } } }) {
   return (
@@ -16,10 +17,10 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function WhereToBuyPage({ data: { wpPage: { title } }, pageContext, location }) {
     return (
-        <main>
+        <Wrapper>
             <Title title={title} />
             <Map />
-        </main>
+        </Wrapper>
     )
 }
 

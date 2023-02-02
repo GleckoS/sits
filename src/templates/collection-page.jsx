@@ -10,6 +10,7 @@ import Map from "../components/sections/map"
 import Video from "../components/sections/video"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
+import Wrapper from "../components/sections/page-wrapper"
 
 
 export function Head({ data: { wpCollection: { seo } } }) {
@@ -35,7 +36,7 @@ export default function Collection({ data: { wpCollection, allWpProduct } }) {
     return allWpProduct.nodes.filter(el => el.products?.collection?.id === wpCollection.id)
   }, [allWpProduct, wpCollection])
   return (
-    <main>
+    <Wrapper>
       <Hero
         itemCategories={wpCollection.types.nodes}
         products={products}
@@ -47,7 +48,7 @@ export default function Collection({ data: { wpCollection, allWpProduct } }) {
       {wpCollection.collections.accessoriesSection.accessories && <Accessories data={wpCollection.collections.accessoriesSection.accessories} />}
       {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts title={similarTitle['en']} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
       <Map />
-    </main>
+    </Wrapper>
   )
 }
 

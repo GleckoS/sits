@@ -2,6 +2,7 @@ import { graphql } from "gatsby"
 import React from "react"
 import { Helmet } from "react-helmet"
 import Map from "../components/sections/map"
+import Wrapper from "../components/sections/page-wrapper"
 import Search from "../components/sections/search"
 import Seo from "../layout/seo"
 
@@ -16,7 +17,7 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function SearchPage({ data: { Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures, wpPage }, pageContext, location }) {
     return (
-        <main>
+        <Wrapper>
             <Search
                 location={location}
                 Sofas={Sofas}
@@ -28,7 +29,7 @@ export default function SearchPage({ data: { Materials, Sofas, Armchairs, Coffee
                 Materials={Materials}
             />
             <Map />
-        </main>
+        </Wrapper>
     )
 }
 

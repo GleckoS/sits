@@ -10,6 +10,9 @@ import NewArrivals from "../components/sections/new-arrivals"
 import ProductGrid from "../components/sections/products-grid"
 import ThreeInformCards from "../components/sections/three-inform-cards"
 import Seo from "../layout/seo"
+import { motion } from "framer-motion"
+import Wrapper from "../components/sections/page-wrapper"
+
 
 export function Head({ data: { wpPage: { seo } } }) {
   return (
@@ -22,7 +25,7 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
-    <main>
+    <Wrapper>
       <Hero data={homepage.heroH} />
       <Bestsellers data={homepage.bestsellersCarousel} />
       <About data={homepage.aboutSection} />
@@ -31,7 +34,7 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
       <NewArrivals mt={true} data={homepage.newArrivalsH} />
       <ThreeInformCards data={homepage.sectionWithThreeInformCardsH} />
       <Map />
-    </main>
+    </Wrapper>
   )
 }
 

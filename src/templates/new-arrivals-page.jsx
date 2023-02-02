@@ -3,6 +3,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Map from "../components/sections/map"
 import Content from "../components/sections/new-arrivals-content"
+import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
 
 export function Head({ data: { wpPage: { seo } } }) {
@@ -16,10 +17,10 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function NewArrivalsPage({ data: { wpPage, allWpProduct }, pageContext, location }) {
     return (
-        <main>
+        <Wrapper>
             <Content data={wpPage.newArrivals.products} />
             <Map/>
-        </main>
+        </Wrapper>
     )
 }
 

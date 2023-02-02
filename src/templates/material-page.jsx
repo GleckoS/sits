@@ -3,6 +3,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Hero from "../components/sections/hero-materials"
 import Map from "../components/sections/map"
+import Wrapper from "../components/sections/page-wrapper"
 import RecomendedCovers from "../components/sections/recomended-covers"
 import SimilarProducts from "../components/sections/similar-products"
 import Video from "../components/sections/video"
@@ -28,7 +29,7 @@ const coversTitle = {
 export default function Material({ location, data: { wpMaterials }, pageContext }) {
 
   return (
-    <main>
+    <Wrapper>
       <Hero isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video && !wpMaterials.materials.popularProductsUsingThisMaterial.productList} variant={location?.state?.variant} data={wpMaterials} />
       {wpMaterials.materials.popularProductsUsingThisMaterial.productList
         && <SimilarProducts isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video} materials={true} title={wpMaterials.title + similarTitle['en']} data={wpMaterials.materials.popularProductsUsingThisMaterial.productList} />}
@@ -40,7 +41,7 @@ export default function Material({ location, data: { wpMaterials }, pageContext 
         && <RecomendedCovers background='white' title={coversTitle['en']} data={wpMaterials.materials.similarCovers} />}
 
       <Map />
-    </main>
+    </Wrapper>
   )
 }
 

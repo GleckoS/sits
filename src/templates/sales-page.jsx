@@ -2,6 +2,7 @@ import { graphql } from "gatsby"
 import React from "react"
 import { Helmet } from "react-helmet"
 import Map from "../components/sections/map"
+import Wrapper from "../components/sections/page-wrapper"
 import Content from "../components/sections/sales-representative"
 import Seo from "../layout/seo"
 
@@ -16,10 +17,10 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function SalesRepresentativePage({ data: { wpPage }, pageContext, location }) {
     return (
-        <main>
+        <Wrapper>
             <Content data={wpPage} />
             <Map/>
-        </main>
+        </Wrapper>
     )
 }
 

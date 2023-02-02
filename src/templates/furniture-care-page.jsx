@@ -6,6 +6,7 @@ import AssemblyInstructions from "../components/sections/assembly-instructions"
 import Faq from "../components/sections/faq"
 import Handbook from "../components/sections/handbook"
 import Map from "../components/sections/map"
+import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
 
 export function Head({ data: { wpPage: { seo } } }) {
@@ -19,13 +20,13 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function FurnitureCarePage({ data: { wpPage: { title, furnitureCare } }, pageContext, location }) {
     return (
-        <main>
+        <Wrapper>
             <Title title={title} />
             <Faq data={furnitureCare.faq} />
             <Handbook data={furnitureCare.handbook}/>
             <AssemblyInstructions /> 
             <Map />
-        </main>
+        </Wrapper>
     )
 }
 

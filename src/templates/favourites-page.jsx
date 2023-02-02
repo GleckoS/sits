@@ -3,6 +3,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Content from "../components/sections/favourites-content"
 import Map from "../components/sections/map"
+import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
 
 export function Head({ data: { wpPage: { seo } } }) {
@@ -16,10 +17,10 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function FavouritesPage({ data, pageContext, location }) {
   return (
-    <main>
+    <Wrapper>
       <Content data={data} />
       <Map />
-    </main>
+    </Wrapper>
   )
 }
 

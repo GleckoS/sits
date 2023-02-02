@@ -5,6 +5,7 @@ import Grid from "../components/sections/about-grid"
 import TwoColumnFlex from "../components/sections/about-two-column-flex"
 import TwoColumnGray from "../components/sections/about-two-column-flex-gray"
 import Hero from "../components/sections/hero-about"
+import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
 
 export function Head({ data: { wpPage: { seo } } }) {
@@ -18,12 +19,12 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function AboutPage({ data: { wpPage: { aboutUs } }, pageContext, location }) {
     return (
-        <main>
+        <Wrapper>
             <Hero data={aboutUs.heroSection} />
             <Grid data={aboutUs.gridSection}/>
             <TwoColumnFlex data={aboutUs.twoColumnFlex}/>
             <TwoColumnGray data={aboutUs.twoColumnFlexWithGrayBackground}/>
-        </main>
+        </Wrapper>
     )
 }
 

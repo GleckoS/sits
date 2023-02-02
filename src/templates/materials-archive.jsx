@@ -3,6 +3,7 @@ import React from "react"
 import { Helmet } from "react-helmet"
 import Map from "../components/sections/map"
 import MaterialsArchive from "../components/sections/materials-archive"
+import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
 
 export function Head({ data: { wpPage: { seo } } }) {
@@ -16,10 +17,10 @@ export function Head({ data: { wpPage: { seo } } }) {
 
 export default function Material({ data: { allWpMaterials }, location }) {
   return (
-    <main>
+    <Wrapper>
       <MaterialsArchive location={location} materials={allWpMaterials.nodes} />
       <Map />
-    </main>
+    </Wrapper>
   )
 }
 
