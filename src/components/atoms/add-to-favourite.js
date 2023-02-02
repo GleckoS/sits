@@ -3,24 +3,42 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { getCookie, setCookie } from '../../helpers/coockie-manager'
 import { toast } from 'react-toastify'
-import { navigate } from 'gatsby'
+import { Link, navigate } from 'gatsby'
 import { myContext } from '../../hooks/provider'
 
 const removeMessage = {
-  en: ' removed from My Favourites'
+  en: ' removed from '
 }
 
 const addMessage = {
-  en: ` added to My Favourites`
+  en: ` added to `
 }
 
-const Toast = () => {
+const Toast = ({ toastProps }) => {
   return (
-      <>
-
-      </>
+    <ToastWrapper to='/favourites/'>
+      {toastProps.type === 'add'
+        ? toastProps.title + addMessage['en']
+        : toastProps.title + removeMessage['en']
+      }
+      <span className='underline'>MY{'\u00A0'}FAVOURITES</span>
+    </ToastWrapper>
   )
 }
+
+const ToastWrapper = styled(Link)`
+  display: block;
+  .underline{
+    display: inline;
+    font-size: 14px;
+  }
+
+  &:hover{
+    .underline{
+      background-size: 100% 1px;
+    }
+  }
+`
 
 export default function AddToFauvorite({ setRerender = () => { }, rerender, type, title }) {
   const [isActive, setIsActive] = useState(() => {
@@ -41,11 +59,11 @@ export default function AddToFauvorite({ setRerender = () => { }, rerender, type
       cookie = cookie.replace(title + '|', '')
       setCookie(type, cookie)
       setIsActive(false)
-      toast(title + removeMessage['en'])
+      toast(<Toast />, { type: 'remove', title: title })
     } else {
       setCookie(type, cookie + title + '|')
       setIsActive(true)
-      toast(title + addMessage['en'], { onClick: () => { navigate('/favourite/') } })
+      toast(<Toast />, { type: 'add', title: title })
     }
     setRerender(Math.random())
     recalculate()

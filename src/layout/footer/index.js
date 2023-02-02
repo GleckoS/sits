@@ -116,7 +116,7 @@ export default function Footer({ setIsCookiesActive }) {
               </a>
               <a
                 aria-label='youtube'
-                href='https://www.youtube.com/@sits4093'
+                href='https://www.youtube.com/@sits_furniture'
                 target='_blank'
                 rel='noreferrer noopener me'>
                 <svg

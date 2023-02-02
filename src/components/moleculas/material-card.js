@@ -4,7 +4,7 @@ import React, { useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const MaterialCard = ({ color, data: { materials: { materialColorVariants }, title, slug } }) => {
+export const MaterialCard = ({ variant = '', color, data: { materials: { materialColorVariants }, title, slug } }) => {
     const variants = useMemo(() => {
         let arr = materialColorVariants
         if (color && color !== 'All') {
@@ -15,8 +15,13 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
 
     const [choosenVariant, setChoosenVariant] = useState(() => {
         for (let i = 0; i < variants.length; i++) {
-            if (variants[i].isMainColor) {
-                return i
+            if (variant) {
+                if (variants[i].variantName === variant)
+                    return i
+            }
+            else {
+                if (variants[i].isMainColor)
+                    return i
             }
         }
         return 0
@@ -24,11 +29,16 @@ export const MaterialCard = ({ color, data: { materials: { materialColorVariants
 
     const [newVariant, setNewVariant] = useState(choosenVariant)
 
-    useEffect(() => {
+    useEffect(() => { 
         setChoosenVariant(() => {
             for (let i = 0; i < variants.length; i++) {
-                if (variants[i].isMainColor) {
-                    return i
+                if (variant) {
+                    if (variants[i].variantName === variant)
+                        return i
+                }
+                else {
+                    if (variants[i].isMainColor)
+                        return i
                 }
             }
             return 0

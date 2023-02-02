@@ -29,7 +29,7 @@ const coversTitle = {
   en: 'Recommended covers for '
 }
 
-export default function Collection({ data: { wpCollection, allWpProduct }, pageContext }) {
+export default function Collection({ data: { wpCollection, allWpProduct } }) {
 
   const products = useMemo(() => {
     return allWpProduct.nodes.filter(el => el.products?.collection?.id === wpCollection.id)
@@ -162,6 +162,7 @@ export const query = graphql`
               }
               recommendedCovers {
                 covers {
+                  colorVariantName
                   cover {
                     ... on WpMaterials {
                       title
@@ -180,11 +181,11 @@ export const query = graphql`
                               isMainColor
                               squarePreviewImage {
                               altText
-                              localFile {
-                                  childImageSharp {
-                                  gatsbyImageData
-                                  }
-                              }
+                                localFile {
+                                    childImageSharp {
+                                    gatsbyImageData
+                                    }
+                                }
                               }
                           }
                       }

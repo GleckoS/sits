@@ -131,16 +131,6 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
     const [inputValue, setInputValue] = useState('')
     const [defaultPosts] = useState(products)
 
-    // useEffect(() => {
-    // if (location.search) {
-    //     let params = new URLSearchParams(location.search)
-    //     if (params.has('type')) {
-    //         setType(params.get('type'))
-    //     }
-    // }
-    // }, [location])
-    debugger
-
     const changeType = useCallback((e, url) => {
         if (typeof window !== 'undefined' && name === 'sofas') {
             const [ , paramString ] = url.split( '?' );
