@@ -20,7 +20,14 @@ export const ResultProductBlock = ({ setRerender, rerender, count, setCount, pre
 
                 el.products.productGallery?.forEach(el => {
                     if (el.popupNames.model.toLowerCase().includes(searchValue.toLowerCase())) {
-                        filterByName = true
+                        el.productsImages.every(inEl => {
+                            if (inEl.isMainImage) {
+                                filterByName = true
+                                return false
+                            }
+                            return true
+                        })
+
                     }
                 })
 
