@@ -9,13 +9,7 @@ const title = {
 
 export default function Content({ data }) {
 
-    const [showCount, setShowCount] = useState(() => {
-        if (typeof window !== 'undefined') {
-            return window.innerWidth < 1024 ? 6 : 8
-        }
-
-        return 8
-    })
+    const [page, setPage] = useState(1)
 
     const [rerender, setRerender] = useState(false)
 
@@ -28,7 +22,7 @@ export default function Content({ data }) {
             <h1>{title['en']}</h1>
             <Container>
                 <List>
-                    <ProductList setRerender={setRerender} rerender={rerender} showCount={showCount} setShowCount={setShowCount} products={products} />
+                    <ProductList setRerender={setRerender} rerender={rerender} page={page} setPage={setPage} products={products} />
                 </List>
             </Container>
         </Wrapper>
