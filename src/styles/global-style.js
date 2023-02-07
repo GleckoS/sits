@@ -23,8 +23,8 @@ export const Global = createGlobalStyle`
     :root{
         --light-background: #F9F5F0;
         --gray: #707070;
-        --color-brown: #996D3E;
-        --color-brown-light: #996D3E66;
+        --color-brown: #886B4B;
+        --color-brown-light: #886B4B66;
         --text-color: #31231E;
 
 
@@ -34,58 +34,32 @@ export const Global = createGlobalStyle`
 
     .yellow-button{
         height: clamp(48px, ${89 / 1194 * 100}vw, 89px);
-        background-color: #EDC53D;
+        background-color: transparent;
         position: relative;
+        font-weight: 300;
         font-size: clamp(16px, ${28 / 1194 * 100}vw, 28px);
-        color: #ffffff;
         width: 100%;
         text-align: center;
-        display: block;
         display: flex;
         align-items: center;
         justify-content: center;
         margin: 0 auto;
         margin-top: 45px;
         cursor: pointer;
-        transition: transform .5s ease-out, background-color .5s ease-out;
+        transition: background-color .4s ease-out, border .4s ease-out;
+        border: 1px solid #31231E;
 
         &:hover{
-            transform: translate(6px, 6px);
-            background-color: #EDC53Db0;
-
-            &::after{
-                right: 0;
-                left: 0;
-                bottom: 0;
-            }
-
-            &::before{
-                right: 0;
-                top: 0;
-                bottom: 0;
-            }
+            background-color: #F4F4F4;
         }
 
-        &::after{
-            content: "";
-            position: absolute;
-            right: -6px;
-            left: 6px;
-            bottom: -6px;
-            height: 1px;
-            background-color: #31231E;
-            transition: all .5s ease-out;
+        &:active{
+            background-color: #E3E3E3;
         }
 
-        &::before{
-            content: "";
-            position: absolute;
-            right: -6px;
-            top: 6px;
-            bottom: -6px;
-            width: 1px;
-            background-color: #31231E;
-            transition: all .5s ease-out;
+        &:focus-visible{
+            outline-offset: 2px;
+            background-color: #F4F4F4;
         }
     }
 

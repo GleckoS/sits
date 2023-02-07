@@ -9,6 +9,14 @@ export const PopupButton = ({ data, title }) => {
 
     return (
         <>
+            <Wrapper onClick={() => { setPopUpOpened(true) }}>
+                <span>
+                    {title}
+                </span>
+                <svg xmlns="http://www.w3.org/2000/svg" width="9.513" height="17.37" viewBox="0 0 9.513 17.37">
+                    <path id="Path_3" data-name="Path 3" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-10051.731 -8681.662)" fill="none" stroke="#31231e" strokeWidth="1.5" />
+                </svg>
+            </Wrapper>
             <Popup title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
                 <PopupContent>
                     {data.featuredImage
@@ -38,14 +46,6 @@ export const PopupButton = ({ data, title }) => {
                     </PopupGrid>
                 </PopupContent>
             </Popup>
-            <Wrapper onClick={() => { setPopUpOpened(true) }}>
-                <span>
-                    {title}
-                </span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="9.513" height="17.37" viewBox="0 0 9.513 17.37">
-                    <path id="Path_3" data-name="Path 3" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-10051.731 -8681.662)" fill="none" stroke="#31231e" strokeWidth="1.5" />
-                </svg>
-            </Wrapper>
         </>
     )
 }
@@ -60,7 +60,7 @@ const Wrapper = styled.button`
     padding: 0 6px;
     height: clamp(45px, ${56 / 1194 * 100}vw, 66px);
     border-bottom: 1px solid var(--text-color);
-    transition: all .5s ease-out;
+    transition: background-color .5s ease-out, padding .5s ease-out;
     cursor: pointer;
 
     &:hover{

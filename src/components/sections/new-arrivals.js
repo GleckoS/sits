@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React, { useEffect, useRef } from "react"
 import Slider from "react-slick";
 import styled from "styled-components"
 import { Container } from "../atoms/container"
@@ -9,14 +9,23 @@ import "slick-carousel/slick/slick-theme.css"
 import { useState } from "react";
 import { navigate } from "gatsby";
 
+const getElCount = () => {
+    if (typeof window !== 'undefined') {
+        return window?.innerWidth < 641 ? 0 : 1
+    }
+
+    return 0
+}
+
 export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {
     const slickRef = useRef(null);
     var settings = {
-        infinite: true,
-        dots: true,
+        infinite: false,
+        dots: false,
         arrows: false,
         slidesToShow: 2,
         initialSlide: 0,
+        beforeChange: (b, n) => { setActiveSlide(n) },
         responsive: [
             {
                 breakpoint: 640,
@@ -32,6 +41,12 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
     };
 
     const [mouseMoved, setMouseMoved] = useState(false)
+    const [activeSlide, setActiveSlide] = useState(0)
+    const itemsCount = useRef()
+
+    useEffect(() => {
+        slickRef.current.slickGoTo(activeSlide)
+    }, [activeSlide])
 
     const handleClick = (e, url) => {
         e.preventDefault()
@@ -42,12 +57,13 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
         }
     }
 
+    itemsCount.current = 0
     return (
         <Wrapper className={mt ? 'nomargin' : ''}>
             <Container className="container">
                 <h2 className="title">{sectionTitle}</h2>
                 {text && <p className="text">{text}</p>}
-                <Grid>
+                <Grid id='slider-new-arrivals'>
                     <Slider ref={slickRef} {...settings}>
                         {chosenProducts?.map(el => {
                             let isOnePostRendered = false
@@ -55,6 +71,7 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                                 return inEl.productsImages?.map((imageEl, index) => {
                                     if (imageEl.isMainImage && !isOnePostRendered) {
                                         isOnePostRendered = true
+                                        itemsCount.current += 1
                                         return <div onMouseMove={() => setMouseMoved(true)}
                                             onMouseDown={() => setMouseMoved(false)}
                                             key={inEl.popupNames.model + index}>
@@ -66,11 +83,117 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                             })
                         })}
                     </Slider>
+                    <SliderInput
+                        value={activeSlide}
+                        id='slider'
+                        onChange={(e) => { setActiveSlide(e.currentTarget.value) }}
+                        width={100 / (itemsCount.current - getElCount())}
+                        type='range'
+                        min='0'
+                        max={(itemsCount.current - getElCount())} />
                 </Grid>
             </Container>
         </Wrapper>
     )
 }
+
+const SliderInput = styled.input`
+    margin-top: 30px;
+    width: 100%;
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    background: transparent; /* Otherwise white in Chrome */
+    position: relative;
+
+    &::after{
+        position: absolute;
+        content: '';
+        top: 0;
+        bottom: 0;
+        left: ${props => props.value * props.width}%;
+        height: 100%;
+        width: ${props => props.width}%;
+        background: #ADA194;
+        transition: left .4s ease-out;
+        cursor: pointer;
+    }
+
+    &::-ms-track {
+        width: 100%;
+        cursor: pointer;
+
+        /* Hides the slider so custom styles can be added */
+        background: transparent; 
+        border-color: transparent;
+        color: transparent;
+    }
+
+    &::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        height: 100%;
+        width: ${props => props.width}%;
+        background: #ADA194;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    /* All the same stuff for Firefox */
+    &::-moz-range-thumb {
+        height: 100%;
+        width: ${props => props.width}%;
+        background: #ADA194;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    /* All the same stuff for IE */
+    &::-ms-thumb {
+        height: 100%;
+        width: ${props => props.width}%;
+        background: #ADA194;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+&::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: #F2EEE6;
+}
+
+&:focus::-webkit-slider-runnable-track {
+  background: #F2EEE6;
+}
+
+&::-moz-range-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: #F2EEE6;
+}
+
+&::-ms-track {
+  width: 100%;
+  height: 8.4px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 16px 0;
+  color: transparent;
+}
+&::-ms-fill-lower {
+  background: #F2EEE6;
+}
+&:focus::-ms-fill-lower {
+  background: #F2EEE6;
+}
+&::-ms-fill-upper {
+  background: #F2EEE6;
+}
+&:focus::-ms-fill-upper {
+  background: #F2EEE6;
+}
+`
 
 const Wrapper = styled.section`
     margin-top: clamp(80px, ${120 / 1194 * 100}vw, 160px);

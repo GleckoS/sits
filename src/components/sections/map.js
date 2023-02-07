@@ -1,13 +1,11 @@
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import { MapContainer, TileLayer, Marker } from 'react-leaflet'
+import { MapContainer, TileLayer } from 'react-leaflet'
 import { graphql, useStaticQuery } from "gatsby"
 import { Container } from "../atoms/container"
 import { csvParser } from './../../helpers/csvParser'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
-import * as L from "leaflet"
-import MapMarker from './../../../static/MapMarker.svg'
-import MapMarkerChosen from './../../../static/MapMarkerChosen.svg'
+import Marker from "../moleculas/map-marker"
 // import { FullscreenControl } from "react-leaflet-fullscreen";
 require('react-leaflet-markercluster/dist/styles.min.css')
 
@@ -19,41 +17,8 @@ const filterTitle = {
     en: 'Country / City / Area'
 }
 
-const phoneTitle = {
-    en: 'Phone'
-}
-
 const buttonTitle = {
     en: 'WEBSITE'
-}
-let iconPerson
-let chosenIcon
-
-if (typeof window !== 'undefined') {
-
-    chosenIcon = new L.Icon({
-        iconUrl: MapMarkerChosen,
-        iconRetinaUrl: MapMarkerChosen,
-        shadowUrl: null,
-        shadowSize: null,
-        shadowAnchor: null,
-        iconSize: [27, 36],
-        iconAnchor: [13.5, 36],
-        popupAnchor: [0, -36],
-        className: ''
-    });
-
-    iconPerson = new L.Icon({
-        iconUrl: MapMarker,
-        iconRetinaUrl: MapMarker,
-        shadowUrl: null,
-        shadowSize: null,
-        shadowAnchor: null,
-        iconSize: [27, 36],
-        iconAnchor: [13.5, 36],
-        popupAnchor: [0, -36],
-        className: ''
-    });
 }
 
 export default function Map() {
@@ -105,7 +70,9 @@ export default function Map() {
 
     useEffect(() => {
         if (activeDot !== null) {
-            map.current.setView([filtredRetailers[activeDot].Latitude, filtredRetailers[activeDot].Longitude], 14)
+            setTimeout(() => {
+                map.current.setView([filtredRetailers[activeDot].Latitude, filtredRetailers[activeDot].Longitude], 14)
+            }, 1)
         }
     }, [activeDot])
 
@@ -144,10 +111,10 @@ export default function Map() {
                             {filtredRetailers?.map((el, index) => {
                                 return (
                                     <Item id={'map-item-' + index} onClick={() => { itemClick(index) }} className={activeDot === index ? 'active' : ''} key={index}>
-                                        <p className="">{el['Shop name']}</p>
+                                        <p className="t">{el['Shop name']}</p>
                                         <p className="l">{el.Address}</p>
                                         <p className="l">{el.City}, {el.Country}</p>
-                                        <a href={'tel:' + el.Phone} className="l">{el.Phone}</a>
+                                        <a href={'tel:' + el.Phone} className="l phone">{el.Phone}</a>
                                         {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
                                     </Item>
                                 )
@@ -162,15 +129,7 @@ export default function Map() {
                         {/* <FullscreenControl position='topright'/> */}
                         <MarkerClusterGroup showCoverageOnHover={false}>
                             {filtredRetailers?.map((el, index) => (
-                                <Marker
-                                    key={index}
-                                    icon={activeDot === index ? chosenIcon : iconPerson}
-                                    position={[el.Latitude, el.Longitude]}
-                                    eventHandlers={{
-                                        click: () => { markerClick(index) },
-                                    }}
-                                >
-                                </Marker>
+                                <Marker isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
                             ))}
                         </MarkerClusterGroup>
                     </MapContainer>
@@ -194,7 +153,6 @@ const ItemsContent = styled.div`
     bottom: 0;
     top: 0;
     overflow: auto;
-    padding-right: 16px;
 `
 
 const Item = styled.button`
@@ -206,27 +164,44 @@ const Item = styled.button`
 
     padding-bottom: 36px;
     padding-top: 36px;
+    padding-left: 20px;
     border-bottom: 1px solid #707070;
 
-    transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1), padding .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: background-color .4s ease-out, padding .4s ease-out;
+
+    &:focus-visible{
+        outline-color: #000000;
+        outline-offset: -3px;
+        outline: 1px solid;
+    }
+
+    &:hover{
+        background-color:  #F8F5F0;
+    }
 
     &.active{
-        background-color: #F9F5F0;
-        padding-left: 20px;
+        background-color: #F2EEE6;
     }
 
     p,a{
         font-size: 16px;
+        color: #767676 ;
         line-height: 170%;
+
+        &.t{
+            color: unset !important;
+        }
 
         &.l{
             font-weight: 300;
         }
 
         &.phone{
-            margin-top: 16px;
-            @media (max-width: 1024px){
-                margin-top: 8px;
+            color: #767676!important;
+            transition: color .3s ease-out;
+
+            &:hover{
+                color: unset !important;
             }
         }
 
@@ -351,6 +326,57 @@ const Content = styled.div`
         's'
         'm'
         'i';
+    }
+
+    .leaflet-popup-content{
+        margin: 0;
+        padding: 16px;
+    }
+
+    .leaflet-popup-content{
+        display: flex;
+        align-items: flex-end;
+        gap: 36px;
+    }
+
+    .leaflet-popup-content-wrapper{
+        border-radius: 0;
+        border: 1px solid #767676;
+        background-color: #F2EEE6;
+    }
+
+    .leaflet-popup-tip{
+        border: 1px solid #767676;
+        background-color: #F2EEE6;
+    }
+
+    .leaflet-popup{
+        @media (max-width: 864px) {
+            display: none;
+        }
+    }
+
+    .p{
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 0.003em;
+        color: #31231E;
+        margin: 0;
+    }
+
+    .p-l{
+        color: #31231E;
+        margin: 0;
+        color: #767676;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 150%;
+        letter-spacing: 0.003em;
+    }
+
+    a{
+        color: unset;
     }
 `
 

@@ -23,7 +23,7 @@ export const Popup = ({ id, children, title, setPopUpOpened, isPopUpOpened }) =>
             <Box>
                 <Control>
                     <span className="archive-title">{title}</span>
-                    <button onClick={() => { setPopUpOpened(false) }} className="close" aria-label='close pop-up'></button>
+                    <button tabIndex={isPopUpOpened ? '0' : '-1'} onClick={() => { setPopUpOpened(false) }} className="close" aria-label='close pop-up'></button>
                 </Control>
                 <Content id={id}>
                     {children}

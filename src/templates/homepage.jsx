@@ -10,7 +10,6 @@ import NewArrivals from "../components/sections/new-arrivals"
 import ProductGrid from "../components/sections/products-grid"
 import ThreeInformCards from "../components/sections/three-inform-cards"
 import Seo from "../layout/seo"
-import { motion } from "framer-motion"
 import Wrapper from "../components/sections/page-wrapper"
 
 

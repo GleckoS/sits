@@ -12,8 +12,8 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
     const slickRef = useRef(null);
     var settings = {
         fade: true,
-        infinite: true,
-        dots: true,
+        infinite: carousel.length > 5,
+        dots: false,
         arrows: false,
         slidesToShow: 1,
         responsive: [
@@ -43,7 +43,6 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
 
     const [item, setItem] = useState(0)
     const [animationStarted, setAnimationStarted] = useState(false)
-
     return (
         <Wrapper>
             <Container>
@@ -57,11 +56,6 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                         <Link className="underline" tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
                     </div>
                 </div>
-                <button aria-label='prev slide' onClick={() => { slickRef.current.slickPrev() }} className="left">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
-                        <path id="Path_5" data-name="Path 5" d="M10077.916,8682.179l-25.641,40.619,25.641,38.826" transform="translate(-10050.49 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
-                    </svg>
-                </button>
                 <Slider ref={slickRef} {...settings}>
                     {carousel.map((el, index) => {
                         if (el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage) {
@@ -77,15 +71,35 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                                 </div>
                             )
                         }
-
                         return <div className="placeholder">Chosen collection dont have provided "homepage slider preview image"</div>
                     })}
                 </Slider>
-                <button aria-label='next slide' onClick={() => { slickRef.current.slickNext() }} className="right">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
-                        <path id="Path_4" data-name="Path 4" d="M10052.275,8682.179l25.641,40.619-25.641,38.826" transform="translate(-10051.007 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
-                    </svg>
-                </button>
+                <Control>
+                    <button aria-label='prev slide' onClick={() => { slickRef.current.slickPrev() }} className="left">
+                        <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.5 17L1.5 9L9.5 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                    {carousel.length <= 5 ? (
+                        <div className="dots">
+                            {carousel.map((el, index) => (
+                                <button onClick={() => { slickRef.current.slickGoTo(index) }} aria-label={'go to ' + (index + 1) + ' slide'} className={item === (index) ? 'active dot' : "dot"}>
+                                </button>
+                            ))}
+                        </div>
+                    ) : (
+                        <>
+                            <div className="data">
+                                {item + 1} / {carousel.length}
+                            </div>
+                        </>
+                    )}
+                    <button aria-label='next slide' onClick={() => { slickRef.current.slickNext() }} className="right">
+                        <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1.5 17L9.5 9L1.5 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </button>
+                </Control>
             </Container>
             <Container>
                 <Link className="link underline" to={seeAllLink.url} target={seeAllLink.target ? seeAllLink.target : null}>{seeAllLink.title}</Link>
@@ -93,6 +107,105 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
         </Wrapper>
     )
 }
+
+const Control = styled.div`
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 50px;
+
+    @media (max-width: 768px) {
+        display: none;
+    }
+
+    .dots{
+        display: flex;
+        gap: 26px;
+    }
+
+    .dot{
+        cursor: pointer;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: #fff;
+        border: none;
+        position: relative;
+
+        &::after{
+            content: '';
+            position: absolute;
+            border: 1px solid #fff;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            border-radius: 50%;
+            transition: all .3s ease-out;
+        }
+
+        &.active::after{
+            left: -6px;
+            right: -6px;
+            top: -6px;
+            bottom: -6px;
+        }
+    }
+
+    .data{
+        font-weight: 300;
+        font-size: 20px;
+        line-height: 160%;
+        letter-spacing: 0.003em;
+        color: #FFFFFF;
+    }
+
+    .left{
+        position: absolute;
+        left: -50px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 18px;
+        background-color: transparent;
+        border: none;
+        z-index: 4;
+        cursor: pointer;
+
+        svg{
+            width: clamp(20px, ${20 / 768 * 100}vw, 28px);
+            transition: transform .5s ease-out;
+        }
+
+        &:hover{
+            svg{
+                transform: translateX(-2px);
+            }
+        }
+    }
+
+    .right{
+        position: absolute;
+        right: -50px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 18px;
+        background-color: transparent;
+        border: none;
+        z-index: 4;
+        cursor: pointer;
+
+        svg{
+            width: clamp(20px, ${20 / 768 * 100}vw, 28px);
+            transition: transform .5s ease-out;
+        }
+
+        &:hover{
+            svg{
+                transform: translateX(2px);
+            }
+        }
+    }
+`
 
 const Wrapper = styled.section`
     margin-top: clamp(45px, ${85 / 1200 * 100}vw, 120px);
@@ -109,7 +222,6 @@ const Wrapper = styled.section`
     }
 
     .link{
-        margin-left: auto;
         display: block;
         width: fit-content;
         font-size: 18px;
@@ -177,50 +289,6 @@ const Wrapper = styled.section`
     .container{
         margin-top: clamp(60px, ${90 / 1194 * 100}vw, 120px);
         position: relative;
-
-        .left{
-            position: absolute;
-            left: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: transparent;
-            border: none;
-            z-index: 4;
-            cursor: pointer;
-
-            svg{
-                width: clamp(20px, ${20 / 768 * 100}vw, 28px);
-                transition: transform .5s ease-out;
-            }
-
-            &:hover{
-                svg{
-                    transform: translateX(-5px);
-                }
-            }
-        }
-
-        .right{
-            position: absolute;
-            right: 80px;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: transparent;
-            border: none;
-            z-index: 4;
-            cursor: pointer;
-
-            svg{
-                width: clamp(20px, ${20 / 768 * 100}vw, 28px);
-                transition: transform .5s ease-out;
-            }
-
-            &:hover{
-                svg{
-                    transform: translateX(5px);
-                }
-            }
-        }
 
         .slide{
             position: relative;

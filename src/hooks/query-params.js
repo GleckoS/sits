@@ -52,7 +52,7 @@ export function useQueryParam(name, defaultValue) {
         else {
             setQueryParams(Object.assign(Object.assign({}, getQueryParams()), { [name]: val }))
         }
-    }, [defaultValue, name])
+    }, [defaultValue, name, clear])
 
     return [queryParam, changeUrlParam]
 }

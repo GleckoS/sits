@@ -18,6 +18,11 @@ const Wrapper = styled(Link)`
     border-radius: 1000px;
     position: relative;
     z-index: 2;
+    transition: background-color .4s ease-out;
+
+    &:hover{
+        background-color: #785836;
+    }
 
     @media (max-width: 768px) {
         padding: 0;

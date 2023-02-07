@@ -1,8 +1,9 @@
+import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
 
 export const File = ({ file }) => {
-    if(!file?.localFile?.publicURL){
+    if (!file?.localFile?.publicURL) {
         console.log('no file for: ' + file?.title)
         return null
     }

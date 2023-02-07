@@ -1,3 +1,4 @@
+import { AnimatePresence, motion } from "framer-motion"
 import React from "react"
 import { useState } from "react"
 import styled from "styled-components"
@@ -29,11 +30,29 @@ export default function FAQ({ data }) {
                             </Question>
                         ))}
                     </Questions>
-                    <Answers>
-                        {data.map((el, index) => (
-                            <Answer className={index == openedQuestion ? 'active desctop' : 'desctop'} dangerouslySetInnerHTML={{ __html: el.answer }} />
-                        ))}
-                    </Answers>
+                    <AnimatePresence exitBeforeEnter>
+                        <Answers
+                            key={openedQuestion}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{
+                                type: "spring",
+                                mass: 0.35,
+                                stiffness: 75,
+                                duration: .3
+                            }}
+                        >
+                            {data.map((el, index) => {
+                                if (index == openedQuestion)
+                                    return (
+                                        <Answer
+                                            className={index == openedQuestion ? 'active desctop' : 'desctop'}
+                                            dangerouslySetInnerHTML={{ __html: el.answer }} />
+                                    )
+                            })}
+                        </Answers>
+                    </AnimatePresence>
                 </Grid>
             </Container>
         </Wrapper>
@@ -70,7 +89,7 @@ const Grid = styled.div`
 
 `
 
-const Answers = styled.div`
+const Answers = styled(motion.div)`
     padding: 32px;
     background-color: #F9F5F0;
 
@@ -134,11 +153,17 @@ const Answer = styled.div`
 
     a{
         font-weight: 400;
-        text-decoration: underline;
-        transition: color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
 
-        &:hover{
-            color: var(--color-brown);
+        transition: background-size 0.5s ease-out;
+
+        background-image: linear-gradient(#222b40, #222b40);
+        background-size: 80% 1px;
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        padding-bottom: 3px;
+
+        &:hover {
+            background-size: 100% 1px;
         }
     }
 
@@ -180,6 +205,11 @@ const Question = styled.details`
     border-top: 1px solid #31231E;
     padding: clamp(16px, ${32 / 1194 * 100}vw, 32px) 16px;
     width: 100%;
+    transition: background-color .4s ease-out;
+
+    svg{
+        transition: transform .4s ease-out;
+    }
     
     @media (max-width: 1194px) {
         padding: clamp(20px, ${32 / 1194 * 100}vw, 32px) 24px;
@@ -229,11 +259,27 @@ const Question = styled.details`
         border-bottom: 1px solid #31231E;
     }
 
+
+        &:hover{
+            background-color: #F9F5F099;
+                @media (min-width: 1195px) {
+                    svg{
+                        transform: translateX(6px);
+                    }
+                }
+        }
+
     &.active{
         background-color: #F9F5F0;
 
         @media (max-width: 1194px) {
             background-color: transparent;
+        }
+
+        @media (min-width: 1195px) {
+            svg{
+                transform: unset;
+            }
         }
     }
 `

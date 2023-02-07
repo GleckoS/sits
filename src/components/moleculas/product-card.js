@@ -26,11 +26,11 @@ export const ProductCard = ({
         <Link onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'} />
         <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
         <Flex className={threeColumn ? 'three-column' : ''}>
-            <span className="archive-title underline">{data.title}</span>
+            <span className="archive-title">{data.title}</span>
             <Categories>
                 {types?.map(el => (
                     <React.Fragment key={el.name}>
-                        <Category onClick={(e) => {categoryClick(e, el.collectionTypes.typeArchive.url)}} to={el.collectionTypes.typeArchive.url}>
+                        <Category onClick={(e) => { categoryClick(e, el.collectionTypes.typeArchive.url) }} to={el.collectionTypes.typeArchive.url}>
                             {el.name}
                         </Category>
                     </React.Fragment>
@@ -124,7 +124,8 @@ const Categories = styled.div`
     margin-bottom: 6px;
 
     @media (max-width: 768px) {
-        gap: 0;
+        margin-top: 10px;
+        gap: 4px 12px;
         div{
             padding-right: 8px;
             position: relative;
