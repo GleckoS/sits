@@ -8,14 +8,14 @@ export default function Content({ data: { leftColumnTitle, leftColumnContent, ri
         <Wrapper>
             <Container className="container">
                 <Grid>
+                    <Form />
                     <div className="left">
                         <h2>{leftColumnTitle}</h2>
-                        <div dangerouslySetInnerHTML={{ __html: leftColumnContent }} />
+                        <div className="content" dangerouslySetInnerHTML={{ __html: leftColumnContent }} />
                     </div>
-                    <Form />
                     <div className="right">
                         <h2>{rightColumnTitle}</h2>
-                        <div dangerouslySetInnerHTML={{ __html: rightColumnContent }} />
+                        <div className="content" dangerouslySetInnerHTML={{ __html: rightColumnContent }} />
                         <div className="files">
                             {rightColumnFilesToUpload?.map(el => (
                                 <a className="file" download href={el.file.localFile.publicURL}>
@@ -39,7 +39,9 @@ export default function Content({ data: { leftColumnTitle, leftColumnContent, ri
                                             </defs>
                                         </svg>
                                     )}
-                                    <span>{el.file.title}</span>
+                                    <div>
+                                        <span className="underline">{el.file.title} </span><span>({el.file.localFile.prettySize})</span>
+                                    </div>
                                 </a>
                             ))}
                         </div>
@@ -58,7 +60,7 @@ const Wrapper = styled.section`
     }
 
     .files{
-        margin-top: 40px;
+        margin-top: 30px;
         display: grid;
         grid-gap: 16px;
 
@@ -68,26 +70,34 @@ const Wrapper = styled.section`
             grid-gap: 16px;
             align-items: center;
             width: fit-content;
+            text-decoration: unset;
+
+            div{
+                display: flex;
+            }
 
             span{
-                padding: 2px 2px 0px 2px;
-                transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+                text-transform: unset;
+                min-width: fit-content;
             }
 
             &:hover{
                 span{
-                    background-color: #F9F5F0;
+                    background-size: 100% 1px;
                 }
             }
         }
     }
 
     h1, h2{
-        font-size: clamp(26px, ${28 / 1194 * 100}vw, 28px);
+        font-size: clamp(26px, ${44 / 1366 * 100}vw, 44px);
         font-weight: 300;
         font-family: 'Ivy';
-        text-decoration: underline; 
-        margin-bottom: clamp(32px, ${48 / 1194 * 100}vw, 48px);
+        margin-bottom: clamp(16px, ${32 / 1366 * 100}vw, 32px);
+
+        @media (max-width: 768px) {
+            font-size: clamp(26px, ${32 / 640 * 100}vw, 44px);
+        }
     }
 
     .left, .right{
@@ -96,56 +106,73 @@ const Wrapper = styled.section`
             display: grid;
             grid-gap: 16px;
             *{
-                font-size: clamp(16px, ${18 / 1194 * 100}vw, 18px);
+                font-size: clamp(16px, ${20 / 1366 * 100}vw, 20px);
                 font-weight: 300;
+
+                @media (max-width: 768px) {
+                    font-size: clamp(16px, ${20 / 640 * 100}vw, 20px);
+                }
             }
-            a{
-                text-decoration: underline;
+            &.content a{
+                width: fit-content;
+                position: relative;
+                padding-bottom: 3px;
+                text-decoration: unset !important;
+
+                transition: background-size 0.5s ease-out;
+
+                background-image: linear-gradient(#222b40, #222b40);
+                background-size: 80% 1px;
+                background-position: left bottom;
+                background-repeat: no-repeat;
+
+                &:hover {
+                    background-size: 100% 1px;
+                }
             }
         }
     }
 `
 
 const Grid = styled.div`
-    display: flex;
-    justify-content: space-between;
-    gap: 48px;
+    display: grid;
+    grid-template-columns: 475px 475px;
+    grid-template-areas: 
+        'f l'
+        'f r';
+    grid-gap: 64px 260px;
+    width: fit-content;
+    margin: 0 auto;
 
-    @media (max-width: 1194px) {
-            grid-gap: 64px;
-        display: grid;
-        grid-template-columns: auto auto;
-        grid-template-areas: 
-        'l r'
-        'f f';
+    @media (max-width: 1366px) {
+        grid-template-columns: 1fr 1fr;
+        grid-gap: clamp(32px, ${64 / 1366 * 100}vw, 64px) clamp(40px, ${40 / 640 * 100}vw, 64px);
     }
 
-    @media (max-width: 640px) {
+    @media (max-width: 768px) {
         grid-template-columns: 1fr;
         grid-template-areas:
-       'l'
        'f'
+       'l'
        'r' ;
+       max-width: 530px;
+       margin: 0 auto;
     }
 
     .left{
-        max-width: 446px;
-        width: 100%;
         grid-area: l;
 
-        @media (max-width: 1194px) {
+        /* @media (max-width: 1194px) {
             max-width: 536px;
-        }
+        } */
     }
 
     .right{
-        max-width: 300px;
-        width: 100%;
         grid-area: r;
 
-        @media (max-width: 1194px) {
+        /* @media (max-width: 1194px) {
             margin-right: clamp(0px,  ${100 / 1194 * 100}vw, 100px);
-        }
+        } */
 
         @media (max-width: 864px) {
             margin-right: 0;
@@ -153,14 +180,11 @@ const Grid = styled.div`
     }
 
     .form{
-        min-width: 400px;
-        max-width: 600px;
-        width: 100%;
         grid-area: f;
 
-        @media (max-width: 1194px){
+        /* @media (max-width: 1194px){
             max-width: unset;
             min-width: unset;
-        }
+        } */
     }
 `

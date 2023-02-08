@@ -216,7 +216,7 @@ const Wrapper = styled.section`
         }
     }
 
-    @media (max-width: 1240px) {
+    @media (max-width: 1920px) {
         .slick-list{
             overflow: unset;
         }

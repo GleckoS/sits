@@ -34,6 +34,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                     centerPadding: "24px",
                     infinite: false,
                     dots: false,
+                    fade: false,
                 }
             }
         ],

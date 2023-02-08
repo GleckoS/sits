@@ -1,33 +1,47 @@
-import React from "react"
+import React, { useRef, useState } from "react"
 import styled from "styled-components"
 
-export const Label = ({ register, errors, name, obj, rows }) => (
-    <Wrapper className={errors[name] ? 'error' : ''}>
-        <div>
-            <span dangerouslySetInnerHTML={{ __html: obj.icon }} />
-            <span className="name">{obj.label['en']}</span>
-        </div>
-        {rows
-            ? <textarea rows={rows} {...register(name)} placeholder={obj.placeholder['en']} />
-            : <input {...register(name)} placeholder={obj.placeholder['en']} />}
-
-    </Wrapper>
-)
+export const Label = ({ register, errors, name, obj, rows }) => {
+    const [isActive, setIsActive] = useState(false)
+    const [inputValue, setInputValue] = useState('')
+    return (
+        <Wrapper onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!inputValue) }} className={errors[name] ? 'error' : ''}>
+            <span className={isActive ? 'active' : ''}>{obj.placeholder['en']}</span>
+            {rows
+                ? <textarea value={inputValue} rows={rows} {...register(name, {
+                    onChange: (e) => { setInputValue(e.currentTarget.value) }
+                })} />
+                : <input {...register(name, {
+                    onChange: (e) => { setInputValue(e.currentTarget.value) }
+                })} />}
+        </Wrapper>
+    )
+}
 
 const Wrapper = styled.label`
-    display: grid;
-    grid-template-columns: 150px auto;
+    position: relative;
+
+    span{
+        position: absolute;
+        font-weight: 400;
+        font-size: clamp(20px, ${24 / 1366 * 100}vw, 24px);
+        letter-spacing: 0.003em;
+        color: #767676;
+        left: 0;
+        top: 5px;
+        pointer-events: none;
+        transition: all .4s ease-out;
+
+        &.active{
+        font-size: clamp(12px, ${16 / 1366 * 100}vw, 16px);
+            top: 0;
+            transform: translateY(-100%);
+        }
+    }
 
     @media (max-width: 1194px) {
         div{
             margin-top: 10px;
-        }
-    }
-
-    @media (max-width: 540px) {
-        grid-template-columns: 40px auto;
-        .name{
-            display: none;
         }
     }
 
@@ -39,23 +53,25 @@ const Wrapper = styled.label`
         width: fit-content;
         height: fit-content;
     }
-    span{
-        font-size: clamp(16px, ${18 / 1194 * 100}vw, 18px);
-        font-weight: 300;
-    }
     input, textarea{
         background-color: transparent;
         border: unset;
         border-bottom: 1px solid #707070;
-        padding: 10px;
         transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        width: 100% !important;
+        font-weight: 400;
+        font-size: clamp(20px, ${24 / 1366 * 100}vw, 24px);
+        letter-spacing: 0.003em;
+        padding-bottom: 10px;
+        padding-top: 5px;
 
         &:hover{
             background-color: #F9F5F0;
         }
 
-        &:focus{
+        &:focus-visible{
             background-color: #70707016;
+            outline: none;
         }
     }
 

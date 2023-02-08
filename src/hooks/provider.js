@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react"
-import { getCookie } from "../helpers/coockie-manager";
+import { getCookie } from "../helpers/coockie-manager"
 
 export const myContext = React.createContext();
 
 const Provider = ({ children }) => {
 
     const [currentAlternates, changeAlternates] = useState(null)
-    const [searchInputValue, setSearchInputValue] = useState('')
+    const [searchInputValue, setSearchInputValue] = useState(() => {
+        if (typeof window !== 'undefined') {
+            const urlParams = new URLSearchParams(window.location.search)
+            const search = urlParams.get('search')
+            return search ? search : ''
+        }
+
+        return ''
+    })
     const [favouritesCount, setFavouritesCount] = useState(0)
 
     const recalculateFavouritesCount = () => {

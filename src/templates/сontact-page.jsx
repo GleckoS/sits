@@ -47,6 +47,7 @@ export const query = graphql`
                   altText
                   title
                   localFile {
+                    prettySize
                     publicURL
                   }
                 }

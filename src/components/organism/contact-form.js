@@ -1,4 +1,5 @@
 import axios from "axios"
+import { Link } from "gatsby"
 import React from "react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -142,7 +143,12 @@ export const Form = () => {
                 <Label register={register} errors={errors} name='name' obj={name} />
                 <Label register={register} errors={errors} name='country' obj={country} />
                 <Label register={register} errors={errors} name='subject' obj={subject} />
-                <Label register={register} errors={errors} name='message' obj={message} rows='6' />
+                <Label register={register} errors={errors} name='message' obj={message} rows='1' />
+                <Checkbox>
+                    <input {...register('check', { required: true })} type='checkbox' />
+                    <div className="check" />
+                    <span>By sending message, I agree to the <Link to='/privacy-policy/' className='underline'>privacy policy.</Link></span>
+                </Checkbox>
                 <Submit>{submit['en']}</Submit>
                 <Success className={isSended ? 'sended' : ""}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="71.15" height="71.174" viewBox="0 0 71.15 71.174">
@@ -160,6 +166,79 @@ export const Form = () => {
     )
 }
 
+const Checkbox = styled.label`
+    display: grid;
+    grid-gap: 8px;
+    grid-template-columns: auto 1fr;
+    align-items: flex-start;
+    position: relative;
+
+    input{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        user-select: none;
+        opacity: 0;
+    }
+
+    input:checked ~ .check {
+        &::after{
+            transform: unset;
+        }
+
+        &::before{
+            opacity: 1;
+        }
+    }
+
+    .check{
+        width: 30px;
+        height: 30px;
+        border: 2px solid #767676;
+        border-radius: 3px;
+        position: relative;
+
+        &::after{
+            content: "✓";
+            position: absolute;
+            color: #767676;
+            left: 3px;
+            top: -8px;
+            font-size: 40px;
+            transform: scale(0);
+            transform-origin: 50% 80%;
+            transition: transform .3s ease-out;
+        }
+
+        &::before{
+            content: '';
+            position: absolute;
+            width: 13px;
+            height: 13px;
+            right: -2px;
+            top: -2px;
+            background-color: #fff;
+            transition: opacity .1s ease-out;
+            opacity: 0;
+        }
+    }
+
+    span{
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 150% ;
+        font-feature-settings: 'pnum' on, 'onum' on, 'ss01' on, 'ss02' on, 'ss03' on, 'ss04' on;
+        color: #767676;
+
+        a{
+            display: inline-block;
+            text-transform: unset;
+            color: #767676;
+            background-image: linear-gradient(#767676, #767676);
+        }
+    }
+`
+
 const Success = styled.div`
     position: absolute;
     left: 0;
@@ -172,7 +251,7 @@ const Success = styled.div`
         right: -24px;
     }
 
-    background-color: #F9F5F0;
+    background-color: #FFF;
     opacity: 0;
     pointer-events: none;
     transform: translateX(20px);
@@ -215,9 +294,9 @@ const Wrapper = styled.div`
     form{
         position: relative;
         display: grid;
-        grid-gap: 20px;
+        grid-gap: 48px;
 
-        @media (max-width: 1194px) {
+        /* @media (max-width: 1194px) {
             grid-gap: 24px 48px;
             max-width: unset;
             grid-template-columns: 1fr 1fr;
@@ -247,7 +326,7 @@ const Wrapper = styled.div`
             button{
                 grid-area: sixth;
             }
-        }
+        } */
 
         @media (max-width: 820px) {
             grid-template-columns: 1fr;
@@ -262,19 +341,33 @@ const Wrapper = styled.div`
 `
 
 const Submit = styled.button`
-    padding: 2px 2px 0 2px;
-    font-size: 18px;
-    font-weight: 300;
-    text-decoration: underline;
     width: fit-content;
-    background-color: transparent;
-    border: none;
-    margin-left: auto;
+    padding: 17px;
+    width: 100%;
+    background-color: var(--color-brown);
+
+    font-size: clamp(14px, ${18 / 1024 * 100}vw, 18px);
     text-transform: uppercase;
+    color: #fff;
+    border: none;
+    display: block;
     cursor: pointer;
-    transition: background-color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+    transition: background-color .4s ease-out;
 
     &:hover{
-        background-color: #F9F5F0;
+        background-color: #785836;
+    }
+
+    &:active{
+        background-color: #785836;
+    }
+
+    &:focus-visible{
+        outline: 1px solid #88643D;
+        outline-offset: 2px;
+    }
+
+    &:disabled{
+        background: #CFCFCF;
     }
 `

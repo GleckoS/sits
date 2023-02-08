@@ -18,7 +18,7 @@ export const Input = ({ func, tabIndex, placeholder }) => {
                 return (
                     <Wrapper>
                         <span>{placeholder}</span>
-                        <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} tabIndex={tabIndex} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
+                        <input value={context.searchInputValue} onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} tabIndex={tabIndex} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
                         <Link onClick={func} tabIndex={tabIndex} aria-label={'search: ' + context?.searchInputValue} to={context?.searchInputValue ? ('/search/?search=' + context?.searchInputValue) : '/search/'}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                 <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
