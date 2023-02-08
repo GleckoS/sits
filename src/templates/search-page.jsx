@@ -82,6 +82,11 @@ export const query = graphql`
                     ... on WpCollection {
                       slug
                       title
+                      collections {
+                        generalCollectionInformation {
+                          popularImportanceIndex
+                        }
+                      }
                     }
                   }
                   productGallery {
@@ -115,6 +120,11 @@ export const query = graphql`
                     ... on WpCollection {
                       slug
                       title
+                      collections {
+                        generalCollectionInformation {
+                          popularImportanceIndex
+                        }
+                      }
                     }
                   }
                   productGallery {
@@ -148,6 +158,11 @@ export const query = graphql`
                     ... on WpCollection {
                       slug
                       title
+                      collections {
+                        generalCollectionInformation {
+                          popularImportanceIndex
+                        }
+                      }
                     }
                   }
                   productGallery {
@@ -181,6 +196,11 @@ export const query = graphql`
                     ... on WpCollection {
                       slug
                       title
+                      collections {
+                        generalCollectionInformation {
+                          popularImportanceIndex
+                        }
+                      }
                     }
                   }
                   productGallery {
@@ -214,6 +234,11 @@ export const query = graphql`
                     ... on WpCollection {
                       slug
                       title
+                      collections {
+                        generalCollectionInformation {
+                          popularImportanceIndex
+                        }
+                      }
                     }
                   }
                   productGallery {
@@ -247,6 +272,11 @@ export const query = graphql`
                     ... on WpCollection {
                       slug
                       title
+                      collections {
+                        generalCollectionInformation {
+                          popularImportanceIndex
+                        }
+                      }
                     }
                   }
                   productGallery {

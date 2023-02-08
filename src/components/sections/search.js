@@ -2,6 +2,7 @@ import { Link, navigate } from 'gatsby'
 import React, { useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../atoms/container'
+import { MostPopularProductBlock } from '../organism/most-popular-products-block'
 import { ResultMaterialBlock } from '../organism/result-material-block'
 import { ResultProductBlock } from '../organism/results-product-block'
 import { myContext } from "./../../hooks/provider"
@@ -134,9 +135,37 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                     <ResultMaterialBlock setRerender={setRerender} rerender={rerender} count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue} />
                 </Container>
             </Results>
+            {(!searchValue || (sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0)) && (
+                <MostPopularProducts>
+                    <Container>
+                        <h2>Check our most popular products</h2>
+                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={sofasTitle} prefiltredArr={Sofas} />
+                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={armchairsTitle} prefiltredArr={Armchairs} />
+                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} />
+                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={diningChairsTitle} prefiltredArr={DiningChairs} />
+                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={footstoolsTitle} prefiltredArr={Footstools} />
+                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} />
+
+                    </Container>
+                </MostPopularProducts>
+            )}
         </Wrapper>
     )
 }
+
+const MostPopularProducts = styled.div`
+    background-color: #F9F5F0;
+    padding-bottom: 80px;
+    padding-top: 80px;
+    margin-bottom: calc(clamp(45px, 10.050251256281408vw, 160px) * -1 );
+    h2{
+        font-family: "Ivy";
+        font-weight: 300;
+        font-size: 36px;
+        line-height: 150%;
+        letter-spacing: 0.003em;
+    }
+`
 
 const Placeholder = styled.div`
     max-width: 600px;

@@ -96,7 +96,7 @@ const Wrapper = styled.section`
         margin-bottom: clamp(16px, ${32 / 1366 * 100}vw, 32px);
 
         @media (max-width: 768px) {
-            font-size: clamp(26px, ${32 / 640 * 100}vw, 44px);
+            font-size: clamp(26px, ${26 / 320 * 100}vw, 44px);
         }
     }
 
@@ -110,7 +110,7 @@ const Wrapper = styled.section`
                 font-weight: 300;
 
                 @media (max-width: 768px) {
-                    font-size: clamp(16px, ${20 / 640 * 100}vw, 20px);
+                    font-size: clamp(16px, ${16 / 320 * 100}vw, 20px);
                 }
             }
             &.content a{
