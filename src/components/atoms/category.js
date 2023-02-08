@@ -28,5 +28,9 @@ const Wrapper = styled(Link)`
         padding: 0;
         background-color: unset;
         color: #9c6325;
+
+        &:hover{
+            background-color: unset;
+        }
     }
 `

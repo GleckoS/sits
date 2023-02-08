@@ -382,6 +382,7 @@ const Filter = styled.div`
                 gap: 12px;
                 align-items: center;
                 font-size: 18px;
+                pointer-events: all;
 
                 svg{
                     margin-top: 2px;

@@ -336,6 +336,7 @@ const Filter = styled.div`
 
             button{
                 border: none;
+                pointer-events: all;
                 background-color: transparent;
                 display: flex;
                 gap: 12px;

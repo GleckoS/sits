@@ -69,6 +69,10 @@ const Item = styled.div`
         .image{
             height: 80vw;
         }
+
+        .underline{
+            margin: 20px auto 0 auto;
+        }
     }
 
     @media (max-width: 375px){
