@@ -7,22 +7,22 @@ import { Container } from "../atoms/container"
 
 const imageAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .5 } }
+    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
 }
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: 1 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
 }
 
 const textAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: 1.3 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: 1.1 } }
 }
 
 const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.6 } }
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.4 } }
 }
 
 

@@ -20,22 +20,22 @@ const getElCount = () => {
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .5 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
 }
 
 const textAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
 }
 
 const sliderAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: 1.1 } }
+    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
 }
 
 const sliderBarAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: 1.6 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: 1.4 } }
 }
 
 export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {
@@ -114,15 +114,17 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                             })}
                         </Slider>
                     </motion.div>
-                    <SliderInput
-                        variants={sliderBarAnimation}
-                        value={activeSlide}
-                        id='slider'
-                        onChange={(e) => { setActiveSlide(e.currentTarget.value) }}
-                        width={100 / (itemsCount.current - getElCount())}
-                        type='range'
-                        min='0'
-                        max={(itemsCount.current - getElCount())} />
+                    <motion.label variants={sliderBarAnimation}>
+                        <span>Slider control</span>
+                        <SliderInput
+                            value={activeSlide}
+                            id='slider'
+                            onChange={(e) => { setActiveSlide(e.currentTarget.value) }}
+                            width={100 / (itemsCount.current - getElCount())}
+                            type='range'
+                            min='0'
+                            max={(itemsCount.current - getElCount())} />
+                    </motion.label>
                 </Grid>
             </Container>
         </Wrapper>
@@ -232,6 +234,12 @@ const Wrapper = styled(motion.section)`
     background-color: #F9F5F0;
     padding: clamp(40px, ${80 / 768 * 100}vw, 80px) 0;
     overflow: hidden;
+
+    label{
+        span{
+            display: none;
+        }
+    }
 
     .container{
         padding: 0 45px;

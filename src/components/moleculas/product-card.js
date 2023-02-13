@@ -23,7 +23,7 @@ export const ProductCard = ({
 }) => (
     <Wrapper className="product-card">
         <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={model} />
-        <Link onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'} />
+        <Link aria-label={data.title} onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'} />
         <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
         <Flex className={threeColumn ? 'three-column' : ''}>
             <span className="archive-title">{data.title}</span>

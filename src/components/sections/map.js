@@ -24,17 +24,17 @@ const buttonTitle = {
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .5 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
 }
 
 const mapAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .8 } }
+    animate: { opacity: 1, transition: { duration: .5, delay: .6 } }
 }
 
 const searchAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: 1.3 } }
+    animate: { opacity: 1, transition: { duration: .5, delay: 1.1 } }
 }
 
 export default function Map() {

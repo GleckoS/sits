@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import styled from 'styled-components'
 import { CloseButton } from '../../components/atoms/close-button'
 import { Container } from '../../components/atoms/container'
@@ -61,6 +61,7 @@ export default function Header() {
   const [isLeftMenuOpened, setLeftMenuOpened] = useState(false)
   const [isRightMenuOpened, setRightMenuOpened] = useState(false)
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false)
+  const header = useRef(null)
 
   useEffect(() => {
     document.onkeydown = function (evt) {
@@ -98,6 +99,8 @@ export default function Header() {
 
   return (
     <Wrapper
+      onAnimationComplete={() => { let a = header.current.classList.add('active') }}
+      ref={header}
       initial='initial'
       animate='animate'
       exit='exit'
@@ -312,9 +315,14 @@ const Wrapper = styled(motion.header)`
   padding: 0;
   left: 0;
   right: 0;
-  border-bottom: 1px solid #ddd;
   height: 95px;
   background-color: #fff;
+  border-bottom: 1px solid transparent;
+  transition: border .5s ease-out;
+
+  &.active{
+    border-bottom: 1px solid #ddd;
+  }
 
   .logo {
     /* svg path{

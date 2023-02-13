@@ -7,12 +7,12 @@ import { Container } from "../atoms/container"
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .5 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
 }
 
 const textAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
 }
 
 const gridAnimation = {

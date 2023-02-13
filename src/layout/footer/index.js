@@ -22,15 +22,15 @@ const manageCookies = {
 
 const logoAnimation = {
   initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: .5, delay: .5 } }
+  animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
 }
 
 const leftColumnAnimation = {
-  animate: { transition: { staggerChildren: .1, delayChildren: .8 } }
+  animate: { transition: { staggerChildren: .1, delayChildren: .6 } }
 }
 
 const rightColumnAnimation = {
-  animate: { transition: { staggerChildren: .1, delayChildren: .8 } }
+  animate: { transition: { staggerChildren: .1, delayChildren: .6 } }
 }
 
 const leftLinkAnimation = {
@@ -44,7 +44,7 @@ const rightLinkAnimation = {
 }
 
 const socialColumnAnimation = {
-  animate: { transition: { staggerChildren: .1, delayChildren: 1.3 } }
+  animate: { transition: { staggerChildren: .1, delayChildren: 1.1 } }
 }
 
 const socialAnimation = {

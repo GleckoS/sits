@@ -11,32 +11,32 @@ import { motion, useInView } from "framer-motion"
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
 }
 
 const textAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
 }
 
 const sliderAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .6 } }
+    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
 }
 
 const sliderTitleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: 1.1 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: 1.4 } }
 }
 
 const sliderLinkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px'  },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.4 } }
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.7 } }
 }
 
 const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.1 } }
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.4 } }
 }
 
 
