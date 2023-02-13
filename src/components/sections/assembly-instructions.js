@@ -5,7 +5,7 @@ import { useMemo } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { File } from "../atoms/file"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
 import InView from "./in-view-provider"
 
 const title = {

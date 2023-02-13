@@ -4,9 +4,42 @@ import { useEffect } from "react"
 import styled from "styled-components"
 import { csvParser } from "../../helpers/csvParser"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
+import { motion } from "framer-motion"
 
 const searchPlaceholder = {
     en: 'Search'
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+}
+
+const inputAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .9 } }
+}
+
+const gridAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: .9 } }
+}
+
+const blockAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5 } },
+    exit: { opacity: 0 }
+}
+
+const fileAnimation = {
+    initial: { opacity: 0, backgroundSize: '0% 1px' },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3 } }
 }
 
 export default function Content({ data: { title, salesRepresentative: { textUnderPageTitle, csvFileSales } } }) {
@@ -41,39 +74,41 @@ export default function Content({ data: { title, salesRepresentative: { textUnde
     }
 
     return (
-        <Wrapper>
-            <Container>
-                <h1>{title}</h1>
-                {textUnderPageTitle && <p>{textUnderPageTitle}</p>}
-                <Label>
-                    <input onChange={(v) => { changeFilter(v) }} placeholder={searchPlaceholder['en']} />
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                        <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                            <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
-                                <circle cx="8" cy="8" r="8" stroke="none" />
-                                <circle cx="8" cy="8" r="7" fill="none" />
+        <InView param={!!filtredRetailres}>
+            <Wrapper>
+                <Container>
+                    <motion.h1 variants={titleAnimation}>{title}</motion.h1>
+                    {textUnderPageTitle && <motion.p variants={textAnimation}>{textUnderPageTitle}</motion.p>}
+                    <Label variants={inputAnimation}>
+                        <input onChange={(v) => { changeFilter(v) }} placeholder={searchPlaceholder['en']} />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                            <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
+                                    <circle cx="8" cy="8" r="8" stroke="none" />
+                                    <circle cx="8" cy="8" r="7" fill="none" />
+                                </g>
+                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
                             </g>
-                            <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
-                        </g>
-                    </svg>
-                </Label>
-                <Grid>
-                    {filtredRetailres?.map((el, index) => (
-                        <Item key={el.Name + index}>
-                            <span className="country">{el.Country}</span>
-                            <span className="name">{el.Name}</span>
-                            {el['Phone 1'] && <a className="underline" href={'tel:' + el['Phone 1']}>{el['Phone 1']}</a>}
-                            {el['Phone 2'] && <a className="underline"  href={'tel:' + el['Phone 2']}>{el['Phone 2']}</a>}
-                            {el['E-mail'] && <a className="underline"  href={'mailto:' + el['E-mail']}>{el['E-mail']}</a>}
-                        </Item>
-                    ))}
-                </Grid>
-            </Container>
-        </Wrapper>
+                        </svg>
+                    </Label>
+                    <Grid variants={gridAnimation}>
+                        {filtredRetailres?.map((el, index) => (
+                            <Item variants={blockAnimation} key={el.Name + index}>
+                                <span className="country">{el.Country}</span>
+                                <span className="name">{el.Name}</span>
+                                {el['Phone 1'] && <motion.a variants={fileAnimation} className="underline" href={'tel:' + el['Phone 1']}>{el['Phone 1']}</motion.a>}
+                                {el['Phone 2'] && <motion.a variants={fileAnimation} className="underline" href={'tel:' + el['Phone 2']}>{el['Phone 2']}</motion.a>}
+                                {el['E-mail'] && <motion.a variants={fileAnimation} className="underline" href={'mailto:' + el['E-mail']}>{el['E-mail']}</motion.a>}
+                            </Item>
+                        ))}
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
-const Label = styled.label`
+const Label = styled(motion.label)`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -122,7 +157,7 @@ const Wrapper = styled.section`
     }
 `
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: clamp(60px, ${90 / 1194 * 100}vw, 120px) 32px;
@@ -138,7 +173,7 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled.div`
+const Item = styled(motion.div)`
     span{
         display: block;
     }
