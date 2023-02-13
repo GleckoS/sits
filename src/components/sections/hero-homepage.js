@@ -7,17 +7,17 @@ import InView from "./in-view-provider"
 
 const sliderAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
+    animate: { opacity: 1, transition: { duration: .6, delay: .3 } }
 }
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .9 } }
 }
 
 const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.1 } }
+    animate: { opacity: 1, transition: { duration: .3, delay: 1.3 }, transitionEnd: { backgroundSize: '80% 1px' } }
 }
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 

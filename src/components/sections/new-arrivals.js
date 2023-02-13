@@ -21,22 +21,22 @@ const getElCount = () => {
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .3 } }
 }
 
 const textAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .5 } }
 }
 
 const sliderAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
+    animate: { opacity: 1, transition: { duration: .6, delay: .7 } }
 }
 
 const sliderBarAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: 1.4 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .9 } }
 }
 
 export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {

@@ -8,17 +8,17 @@ import InView from "./in-view-provider"
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .3 } }
 }
 
 const textAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .5 } }
 }
 
 const gridAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .6, delay: 1.1 } }
+    animate: { opacity: 1, transition: { duration: .6, delay: .7 } }
 }
 
 export default function ProductGrid({ title, data: {

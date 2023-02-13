@@ -12,32 +12,32 @@ import InView from "./in-view-provider"
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .3 } }
 }
 
 const textAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .5 } }
 }
 
 const sliderAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
+    animate: { opacity: 1, transition: { duration: .6, delay: .7 } }
 }
 
 const sliderTitleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: 1.4 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: 1.2 } }
 }
 
 const sliderLinkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.7 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: 1.4 }, transitionEnd: { backgroundSize: '80% 1px' } }
 }
 
 const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.4 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .7 }, transitionEnd: { backgroundSize: '80% 1px' } }
 }
 
 
@@ -79,7 +79,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
     const [animationStarted, setAnimationStarted] = useState(false)
 
     return (
-        <InView margin= "-100px 0px -300px 0px">
+        <InView margin="-100px 0px -300px 0px">
             <Wrapper>
                 <Container>
                     <motion.h2

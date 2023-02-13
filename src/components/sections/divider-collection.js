@@ -8,27 +8,27 @@ import InView from "./in-view-provider"
 
 const titleAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .3 } }
 }
 
 const textAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+    animate: { opacity: 1, transition: { duration: .4, delay: .5 } }
 }
 
 const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: .9 } }
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .4, delay: .7 } }
 }
 
 const imageAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: 1.4 } }
+    animate: { opacity: 1, transition: { duration: .6, delay: 1.1 } }
 }
 
 const secondImageAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: 1.4 } }
+    animate: { opacity: 1, transition: { duration: .6, delay: 1.1 } }
 }
 
 
