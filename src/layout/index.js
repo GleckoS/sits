@@ -41,7 +41,7 @@ const Wrapper = styled.div`
     min-height: 100vh;
 
     #main{
-        margin-top: 95px;
+        margin-top: 94px;
 
         @media (max-width: 840px){
             margin-top: 76px;

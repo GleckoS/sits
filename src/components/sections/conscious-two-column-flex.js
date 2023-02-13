@@ -1,16 +1,37 @@
+import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import InView from "./in-view-provider"
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+}
+
+const imageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
+}
 
 export default function TwoColumnFlex({ alt, data: { textUnderTitle, sectionTitle, imageOnTheLeftSide } }) {
     return (
-        <Wrapper className={alt ? 'alt' : ''}>
-            <GatsbyImage className="image" image={imageOnTheLeftSide.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeftSide.altText} />
-            <div className="text">
-                <h2>{sectionTitle}</h2>
-                <div dangerouslySetInnerHTML={{ __html: textUnderTitle }} />
-            </div>
-        </Wrapper>
+        <InView>
+            <Wrapper className={alt ? 'alt' : ''}>
+                <motion.div variants={imageAnimation}>
+                    <GatsbyImage className="image" image={imageOnTheLeftSide.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeftSide.altText} />
+                </motion.div>
+                <div className="text">
+                    <motion.h2 variants={titleAnimation}>{sectionTitle}</motion.h2>
+                    <motion.div variants={textAnimation} dangerouslySetInnerHTML={{ __html: textUnderTitle }} />
+                </div>
+            </Wrapper>
+        </InView>
     )
 }
 

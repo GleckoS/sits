@@ -1,19 +1,48 @@
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { motion } from "framer-motion"
+import InView from "./in-view-provider"
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+}
+
+const firstImageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
+}
+
+const secondImageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: 1.4 } }
+}
+
 
 export default function Grid({ data: { sectionTitle, textUnderTitle, imageOnTheLeft, imageUnderSection } }) {
     return (
-        <Wrapper>
-            <div>
-                <GatsbyImage image={imageOnTheLeft.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeft.altText} />
-                <GatsbyImage className="second" image={imageUnderSection.localFile.childImageSharp.gatsbyImageData} alt={imageUnderSection.altText} />
-            </div>
-            <div className="text">
-                <h2>{sectionTitle}</h2>
-                <div dangerouslySetInnerHTML={{ __html: textUnderTitle }} />
-            </div>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <div>
+                    <motion.div variants={firstImageAnimation}>
+                        <GatsbyImage image={imageOnTheLeft.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeft.altText} />
+                    </motion.div>
+                    <motion.div variants={secondImageAnimation} >
+                        <GatsbyImage className="second" image={imageUnderSection.localFile.childImageSharp.gatsbyImageData} alt={imageUnderSection.altText} />
+                    </motion.div>
+                </div>
+                <div className="text">
+                    <motion.h2 variants={titleAnimation}>{sectionTitle}</motion.h2>
+                    <motion.div variants={textAnimation} dangerouslySetInnerHTML={{ __html: textUnderTitle }} />
+                </div>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -62,6 +91,8 @@ const Wrapper = styled.section`
         }
         @media (max-width: 964px){
             margin-top: -100px;
+            left: unset;
+            transform: unset;
             max-width: calc(100% - 60px);
         }
     }

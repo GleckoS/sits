@@ -1,24 +1,39 @@
+import { motion } from "framer-motion"
 import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
+
+const imageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .8 } }
+}
 
 export default function Hero({ data: { pageTitle, backgroundImage, backgroundVideo } }) {
     const videoRef = useRef();
     const setPlayBack = () => {
-        videoRef.current.playbackRate = 0.5 ;
+        videoRef.current.playbackRate = 0.5;
     };
     return (
-        <Wrapper>
-            <video
-                ref={videoRef}
-                onCanPlay={() => setPlayBack()}
-                className="image" playsInline autoPlay muted loop poster={backgroundImage.localFile.publicURL}>
-                <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
-            </video>
-            <Container className="container">
-                <h1 className="archive-title">{pageTitle}</h1>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <motion.video
+                    variants={imageAnimation}
+                    ref={videoRef}
+                    onCanPlay={() => setPlayBack()}
+                    className="image" playsInline autoPlay muted loop poster={backgroundImage.localFile.publicURL}>
+                    <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
+                </motion.video>
+                <Container className="container">
+                    <motion.h1 variants={titleAnimation} className="archive-title">{pageTitle}</motion.h1>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
