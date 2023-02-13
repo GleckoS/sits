@@ -6,6 +6,7 @@ import { Container } from "../atoms/container"
 import { csvParser } from './../../helpers/csvParser'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
 import Marker from "../moleculas/map-marker"
+import { motion, useInView } from "framer-motion"
 // import { FullscreenControl } from "react-leaflet-fullscreen";
 require('react-leaflet-markercluster/dist/styles.min.css')
 
@@ -19,6 +20,21 @@ const filterTitle = {
 
 const buttonTitle = {
     en: 'WEBSITE'
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .5 } }
+}
+
+const mapAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .8 } }
+}
+
+const searchAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: 1.3 } }
 }
 
 export default function Map() {
@@ -88,51 +104,64 @@ export default function Map() {
         document.getElementById('map-content').scrollTo(0, offset)
     }
 
+    const section = useRef(null)
+    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
+
     return (
-        <Wrapper>
+        <Wrapper
+            initial='initial'
+            animate={isSectionInView ? 'animate' : 'initial'}
+            exit='exit'
+            ref={section}>
             <a className="no-focus" href="#footer" aria-label='skip link to footer' />
             <Container>
                 <Content>
-                    <Title>{retailersTitle['en']}</Title>
+                    <Title variants={titleAnimation}>{retailersTitle['en']}</Title>
                     <InputWrapper>
-                        <input value={filter} onChange={(e) => { changeFilter(e.currentTarget.value) }} placeholder={filterTitle['en']} />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                            <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
-                                    <circle cx="8" cy="8" r="8" stroke="none" />
-                                    <circle cx="8" cy="8" r="7" fill="none" />
+                        <motion.div variants={searchAnimation}>
+                            <input value={filter} onChange={(e) => { changeFilter(e.currentTarget.value) }} placeholder={filterTitle['en']} />
+                            <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                                <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                    <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
+                                        <circle cx="8" cy="8" r="8" stroke="none" />
+                                        <circle cx="8" cy="8" r="7" fill="none" />
+                                    </g>
+                                    <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
                                 </g>
-                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
-                            </g>
-                        </svg>
+                            </svg>
+                        </motion.div>
                     </InputWrapper>
                     <MapItems>
-                        <ItemsContent id='map-content'>
-                            {filtredRetailers?.map((el, index) => {
-                                return (
-                                    <Item id={'map-item-' + index} onClick={() => { itemClick(index) }} className={activeDot === index ? 'active' : ''} key={index}>
-                                        <p className="t">{el['Shop name']}</p>
-                                        <p className="l">{el.Address}</p>
-                                        <p className="l">{el.City}, {el.Country}</p>
-                                        <a href={'tel:' + el.Phone} className="l phone">{el.Phone}</a>
-                                        {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
-                                    </Item>
-                                )
-                            })}
-                        </ItemsContent>
+                        <motion.div variants={searchAnimation}>
+                            <ItemsContent id='map-content'>
+                                {filtredRetailers?.map((el, index) => {
+                                    return (
+                                        <Item id={'map-item-' + index} onClick={() => { itemClick(index) }} className={activeDot === index ? 'active' : ''} key={index}>
+                                            <p className="t">{el['Shop name']}</p>
+                                            <p className="l">{el.Address}</p>
+                                            <p className="l">{el.City}, {el.Country}</p>
+                                            <a href={'tel:' + el.Phone} className="l phone">{el.Phone}</a>
+                                            {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
+                                        </Item>
+                                    )
+                                })}
+                            </ItemsContent>
+                        </motion.div>
                     </MapItems>
-                    <MapContainer whenCreated={mapInstance => { map.current = mapInstance }} center={[mapCenter.Latitude, mapCenter.Longitude]} zoom={4} minZoom={3} maxZoom={16} scrollWheelZoom={false}>
-                        <TileLayer
-                            attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
-                            url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
-                        />
-                        {/* <FullscreenControl position='topright'/> */}
-                        <MarkerClusterGroup showCoverageOnHover={false}>
-                            {filtredRetailers?.map((el, index) => (
-                                <Marker isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
-                            ))}
-                        </MarkerClusterGroup>
-                    </MapContainer>
+                    <motion.div className="map" variants={mapAnimation}>
+                        <MapContainer whenCreated={mapInstance => { map.current = mapInstance }} center={[mapCenter.Latitude, mapCenter.Longitude]} zoom={4} minZoom={3} maxZoom={16} scrollWheelZoom={false}>
+                            <TileLayer
+                                attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
+                                url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
+                            />
+                            {/* <FullscreenControl position='topright'/> */}
+                            <MarkerClusterGroup showCoverageOnHover={false}>
+                                {filtredRetailers?.map((el, index) => (
+                                    <Marker isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
+                                ))}
+                            </MarkerClusterGroup>
+                        </MapContainer>
+                    </motion.div>
                 </Content>
             </Container>
         </Wrapper>
@@ -225,13 +254,15 @@ const Item = styled.button`
 `
 
 const InputWrapper = styled.div`
-    margin-top: clamp(32px, ${48 / 1194 * 100}vw,  48px);
-    display: grid;
-    align-items: flex-end;
-    grid-template-columns: 1fr 24px;
-    border-bottom: 1px solid #707070;
-    padding-bottom: 8px;
-    height: 43px;
+    div{
+        margin-top: clamp(32px, ${48 / 1194 * 100}vw,  48px);
+        display: grid;
+        align-items: flex-end;
+        grid-template-columns: 1fr 24px;
+        border-bottom: 1px solid #707070;
+        padding-bottom: 8px;
+        height: 43px;
+    }
     grid-area: s;
 
     input{
@@ -243,11 +274,13 @@ const InputWrapper = styled.div`
     }
 
     @media (max-width: 864px){
-        margin-top: 16px;
+        div{
+            margin-top: 16px;
+        }
     }
 `
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
     position: relative;
     padding: 45px 0;
     background-color: #FBFAF7;
@@ -297,12 +330,14 @@ const Content = styled.div`
     's m'
     'i m';
     grid-gap: 0 16px;
+    .map{
+        grid-area: m;
+    }
     .leaflet-container{
         height: calc(100vh - 96px);
         position: relative;
         z-index: 0;
         max-width: 1370px;
-        grid-area: m;
 
         @media (max-width: 1024px) {
             height: 600px;
@@ -320,11 +355,11 @@ const Content = styled.div`
 
     @media (max-width: 864px) {
         grid-template-columns: 1fr;
-        grid-template-rows: auto auto 1fr 1fr;
+        grid-template-rows: auto 1fr auto  1fr;
         grid-template-areas: 
         't'
-        's'
         'm'
+        's'
         'i';
     }
 
@@ -380,7 +415,7 @@ const Content = styled.div`
     }
 `
 
-const Title = styled.div`
+const Title = styled(motion.div)`
     min-width: clamp(300px, ${392 / 1194 * 100}vw, 445px);
     font-size: 20px;
     font-weight: bold;

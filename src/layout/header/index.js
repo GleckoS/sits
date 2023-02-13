@@ -7,6 +7,7 @@ import { Search } from '../../components/moleculas/search'
 import { LangChanger } from './lang-changer'
 import { Item } from './menu-item'
 import scrollLock from './../../helpers/scroll-lock'
+import { motion } from 'framer-motion'
 
 const linksLeft = {
   en: [
@@ -44,6 +45,16 @@ const furnitureTitle = {
 
 const companyTitle = {
   en: 'COMPANY'
+}
+
+const logoAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: .5 } }
+}
+
+const otherLinksAnimation = {
+  initial: { opacity: 0, backgroundSize: '0 1px' },
+  animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .5, delay: .5 } }
 }
 
 export default function Header() {
@@ -86,55 +97,65 @@ export default function Header() {
   }
 
   return (
-    <>
-      <Wrapper>
-        <a
-          className='no-focus'
-          href='#main'
-          aria-label='skip link to main content'
-        />
-        <Container className='container'>
-          <Button
-            className='control-desctop underline'
-            onClick={() => {
-              setLeftMenuOpened(true)
-              setRightMenuOpened(false)
-            }}>
-            {furnitureTitle['en']}
-          </Button>
-          <LeftMenu className={isLeftMenuOpened ? 'active' : ''}>
-            <Flex>
-              <b>{furnitureTitle['en']}</b>
-              <CloseButton
-                tabIndex={isLeftMenuOpened ? '0' : '-1'}
-                as='button'
-                func={setLeftMenuOpened}
-                val={false}
-              />
-            </Flex>
-            <MenuContent>
+    <Wrapper
+      initial='initial'
+      animate='animate'
+      exit='exit'
+    >
+      <a
+        className='no-focus'
+        href='#main'
+        aria-label='skip link to main content'
+      />
+      <Container className='container'>
+        <Button
+          variants={otherLinksAnimation}
+          className='control-desctop underline'
+          onClick={() => {
+            setLeftMenuOpened(true)
+            setRightMenuOpened(false)
+          }}>
+          {furnitureTitle['en']}
+        </Button>
+        <LeftMenu className={isLeftMenuOpened ? 'active' : ''}>
+          <Flex
+            initial={{ opacity: 0 }}
+            animate={isLeftMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .6 } } : { opacity: 0 }}
+          >
+            <b>{furnitureTitle['en']}</b>
+            <CloseButton
+              tabIndex={isLeftMenuOpened ? '0' : '-1'}
+              as='button'
+              func={setLeftMenuOpened}
+              val={false}
+            />
+          </Flex>
+          <MenuContent>
+            <motion.div initial={{ opacity: 0, x: -10 }} animate={isLeftMenuOpened ? { opacity: 1, x: 0, transition: { duration: .4, delay: 1 } } : { opacity: 0, x: -10 }}>
               <Search
                 func={closeAll}
                 tabIndex={isLeftMenuOpened ? '0' : '-1'}
               />
-              {linksLeft['en'].map((el, index) => (
-                <React.Fragment key={el.name}>
-                  <Item
-                    onBlur={() =>
-                      index === linksLeft['en'].length - 1
-                        ? setLeftMenuOpened()
-                        : null
-                    }
-                    tabIndex={isLeftMenuOpened ? '0' : '-1'}
-                    el={el}
-                    func={(v) => {
-                      setLeftMenuOpened(v)
-                    }}
-                  />
-                </React.Fragment>
-              ))}
-            </MenuContent>
-          </LeftMenu>
+            </motion.div>
+            {linksLeft['en'].map((el, index) => (
+              <motion.div initial={{ opacity: 0, x: -10 }} animate={isLeftMenuOpened ? { opacity: 1, x: 0, transition: { duration: .4, delay: (1 + index * .1) } } : { opacity: 0, x: -10 }} key={el.name}>
+                <Item
+                  onBlur={() =>
+                    index === linksLeft['en'].length - 1
+                      ? setLeftMenuOpened()
+                      : null
+                  }
+                  tabIndex={isLeftMenuOpened ? '0' : '-1'}
+                  el={el}
+                  func={(v) => {
+                    setLeftMenuOpened(v)
+                  }}
+                />
+              </motion.div>
+            ))}
+          </MenuContent>
+        </LeftMenu>
+        <motion.div variants={logoAnimation}>
           <Link
             className='logo'
             onClick={() => {
@@ -154,108 +175,112 @@ export default function Header() {
               />
             </svg>
           </Link>
-          <div className='right'>
-            <LangChanger />
-            <Button
-              className='control-desctop underline'
-              onClick={() => {
-                setRightMenuOpened(true)
-                setLeftMenuOpened(false)
-              }}>
-              {companyTitle['en']}
-            </Button>
-          </div>
-          <RightMenu className={isRightMenuOpened ? 'active' : ''}>
-            <Flex>
-              <CloseButton
-                tabIndex={isRightMenuOpened ? '0' : '-1'}
-                as='button'
-                func={setRightMenuOpened}
-                val={false}
-              />
-              <b>{companyTitle['en']}</b>
-            </Flex>
-            <MenuContent className='reverse'>
-              {linksRight['en'].map((el, index) => (
+        </motion.div>
+        <div className='right'>
+          <LangChanger />
+          <Button
+            variants={otherLinksAnimation}
+            className='control-desctop underline'
+            onClick={() => {
+              setRightMenuOpened(true)
+              setLeftMenuOpened(false)
+            }}>
+            {companyTitle['en']}
+          </Button>
+        </div>
+        <RightMenu className={isRightMenuOpened ? 'active' : ''}>
+          <Flex
+            initial={{ opacity: 0 }}
+            animate={isRightMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .6 } } : { opacity: 0 }}>
+            <CloseButton
+              tabIndex={isRightMenuOpened ? '0' : '-1'}
+              as='button'
+              func={setRightMenuOpened}
+              val={false}
+            />
+            <b>{companyTitle['en']}</b>
+          </Flex>
+          <MenuContent className='reverse'>
+            {linksRight['en'].map((el, index) => (
+              <motion.div initial={{ opacity: 0, x: 10 }} animate={isRightMenuOpened ? { opacity: 1, x: 0, transition: { duration: .4, delay: (1 + index * .1) } } : { opacity: 0, x: 10 }} key={el.name}>
+                <Item
+                  onBlur={() =>
+                    index === linksRight['en'].length - 1
+                      ? setRightMenuOpened()
+                      : null
+                  }
+                  tabIndex={isRightMenuOpened ? '0' : '-1'}
+                  el={el}
+                  func={(v) => {
+                    setRightMenuOpened(v)
+                  }}
+                />
+              </motion.div>
+            ))}
+          </MenuContent>
+        </RightMenu>
+        <Burger
+          variants={otherLinksAnimation}
+          aria-label='burger button'
+          className={
+            isMobileMenuOpened ? 'open control-mobile' : 'control-mobile'
+          }
+          onClick={() => {
+            setMobileMenuOpened(!isMobileMenuOpened)
+          }}>
+          <span />
+        </Burger>
+        <MobileMenu className={isMobileMenuOpened ? 'active' : ''}>
+          <Container className='content'>
+            <Search
+              func={closeAll}
+              tabIndex={isMobileMenuOpened ? '0' : '-1'}
+            />
+            <div className='wrap'>
+              {linksLeft['en'].map((el) => (
                 <React.Fragment key={el.name}>
                   <Item
-                    onBlur={() =>
-                      index === linksRight['en'].length - 1
-                        ? setRightMenuOpened()
-                        : null
-                    }
-                    tabIndex={isRightMenuOpened ? '0' : '-1'}
+                    tabIndex={isMobileMenuOpened ? '0' : '-1'}
                     el={el}
                     func={(v) => {
-                      setRightMenuOpened(v)
+                      setMobileMenuOpened(v)
                     }}
                   />
                 </React.Fragment>
               ))}
-            </MenuContent>
-          </RightMenu>
-          <Burger
-            aria-label='burger button'
-            className={
-              isMobileMenuOpened ? 'open control-mobile' : 'control-mobile'
-            }
-            onClick={() => {
-              setMobileMenuOpened(!isMobileMenuOpened)
-            }}>
-            <span />
-          </Burger>
-          <MobileMenu className={isMobileMenuOpened ? 'active' : ''}>
-            <Container className='content'>
-              <Search
-                func={closeAll}
+            </div>
+            <div className='wrap'>
+              {linksRight['en'].map((el) => (
+                <React.Fragment key={el.name}>
+                  <Item
+                    tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                    el={el}
+                    func={(v) => {
+                      setMobileMenuOpened(v)
+                    }}
+                  />
+                </React.Fragment>
+              ))}
+            </div>
+            <div className='wrap'>
+              <LangChanger
+                onblur={() => {
+                  setMobileMenuOpened(false)
+                }}
                 tabIndex={isMobileMenuOpened ? '0' : '-1'}
               />
-              <div className='wrap'>
-                {linksLeft['en'].map((el) => (
-                  <React.Fragment key={el.name}>
-                    <Item
-                      tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                      el={el}
-                      func={(v) => {
-                        setMobileMenuOpened(v)
-                      }}
-                    />
-                  </React.Fragment>
-                ))}
-              </div>
-              <div className='wrap'>
-                {linksRight['en'].map((el) => (
-                  <React.Fragment key={el.name}>
-                    <Item
-                      tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                      el={el}
-                      func={(v) => {
-                        setMobileMenuOpened(v)
-                      }}
-                    />
-                  </React.Fragment>
-                ))}
-              </div>
-              <div className='wrap'>
-                <LangChanger
-                  onblur={() => {
-                    setMobileMenuOpened(false)
-                  }}
-                  tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                />
-              </div>
-            </Container>
-          </MobileMenu>
-          <Overlay
-            onClick={() => {
-              setLeftMenuOpened(false)
-              setRightMenuOpened(false)
-            }}
-            className={isLeftMenuOpened || isRightMenuOpened ? 'visible' : ''}
-          />
-        </Container>
-      </Wrapper>
-    </>
+            </div>
+          </Container>
+        </MobileMenu>
+        <Overlay
+          onClick={() => {
+            setLeftMenuOpened(false)
+            setRightMenuOpened(false)
+          }}
+          className={isLeftMenuOpened || isRightMenuOpened ? 'visible' : ''}
+        />
+      </Container>
+    </Wrapper>
   )
 }
 
@@ -277,7 +302,7 @@ const Overlay = styled.div`
   }
 `
 
-const Wrapper = styled.header`
+const Wrapper = styled(motion.header)`
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
@@ -460,7 +485,7 @@ const LeftMenu = styled.div`
   }
 `
 
-const MenuContent = styled.div`
+const MenuContent = styled(motion.div)`
   margin-top: 60px;
   display: grid;
   grid-gap: 16px;
@@ -502,7 +527,7 @@ const RightMenu = styled.div`
   }
 `
 
-const Flex = styled.div`
+const Flex = styled(motion.div)`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -513,7 +538,7 @@ const Flex = styled.div`
   }
 `
 
-const Button = styled.button`
+const Button = styled(motion.button)`
   border: none;
   background-color: transparent;
   cursor: pointer;
@@ -528,7 +553,7 @@ const Button = styled.button`
   font-weight: 300;
 `
 
-const Burger = styled.button`
+const Burger = styled(motion.button)`
   border: none;
   background-color: transparent;
   cursor: pointer;

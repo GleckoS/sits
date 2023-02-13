@@ -7,6 +7,38 @@ import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
+import { motion, useInView } from "framer-motion"
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+}
+
+const sliderAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .6 } }
+}
+
+const sliderTitleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: 1.1 } }
+}
+
+const sliderLinkAnimation = {
+    initial: { opacity: 0, backgroundSize: '0 1px'  },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.4 } }
+}
+
+const linkAnimation = {
+    initial: { opacity: 0, backgroundSize: '0 1px' },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.1 } }
+}
+
 
 export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, carousel } }) {
     const slickRef = useRef(null);
@@ -44,17 +76,43 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
 
     const [item, setItem] = useState(0)
     const [animationStarted, setAnimationStarted] = useState(false)
+
+
+    const section = useRef(null)
+    const isSectionInView = useInView(section, { margin: "0px 0px -100px 0px", once: true })
+
     return (
-        <Wrapper>
+        <Wrapper
+            initial='initial'
+            animate={isSectionInView ? 'animate' : 'initial'}
+            exit='exit'
+        >
             <Container>
-                <h2 className="title">{sectionTitle}</h2>
-                {text && <p className="text">{text}</p>}
+                <motion.h2
+                    variants={titleAnimation}
+                    className="title"
+                >
+                    {sectionTitle}
+                </motion.h2>
+                {text &&
+                    <motion.p
+                        variants={textAnimation}
+                        className="text">
+                        {text}
+                    </motion.p>
+                }
             </Container>
-            <Container className="container">
+            <Container
+            ref={section}
+                variants={sliderAnimation}
+                className="container"
+            >
                 <div className="content desctop">
                     <div className={animationStarted ? 'sticky hide' : "sticky"}>
-                        <h3>{carousel[item].selectedCollection.title}</h3>
-                        <Link className="underline" tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
+                        <motion.h3 variants={sliderTitleAnimation}>{carousel[item].selectedCollection.title}</motion.h3>
+                        <motion.div variants={sliderLinkAnimation} className="underline">
+                            <Link tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
+                        </motion.div>
                     </div>
                 </div>
                 <Slider ref={slickRef} {...settings}>
@@ -103,7 +161,11 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                 </Control>
             </Container>
             <Container>
-                <Link className="link underline" to={seeAllLink.url} target={seeAllLink.target ? seeAllLink.target : null}>{seeAllLink.title}</Link>
+                <motion.div
+                    className="underline"
+                    variants={linkAnimation}>
+                    <Link className="link " to={seeAllLink.url} target={seeAllLink.target ? seeAllLink.target : null}>{seeAllLink.title}</Link>
+                </motion.div>
             </Container>
         </Wrapper>
     )
@@ -208,7 +270,7 @@ const Control = styled.div`
     }
 `
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
     margin-top: clamp(45px, ${85 / 1200 * 100}vw, 120px);
 
     .title{
@@ -222,15 +284,17 @@ const Wrapper = styled.section`
         width: fit-content;
     }
 
-    .link{
-        display: block;
-        width: fit-content;
-        font-size: 18px;
-        margin-top: 20px;
-        text-transform: uppercase;
-        text-decoration: underline;
-        position: relative;
-        z-index: 40;
+    .underline{
+        background-size: 0% 1px;
+        a{
+            display: block;
+            width: fit-content;
+            font-size: 18px;
+            margin-top: 20px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 40;
+        }
     }
 
 
@@ -309,9 +373,15 @@ const Wrapper = styled.section`
             &.desctop{
                 pointer-events: none;
 
-                a{
+                .underline{
+                    background-size: 0% 1px;
                     margin-left: auto;
                     background-image: linear-gradient(#fff, #fff);
+
+                    a{
+                        text-decoration: unset;
+                        margin-top: 0;
+                    }
                 }
             }
 
@@ -367,7 +437,6 @@ const Wrapper = styled.section`
                     font-size: 18px;
                 }
                 letter-spacing: 0.55px;
-                text-decoration: underline;
             }
         }
     }

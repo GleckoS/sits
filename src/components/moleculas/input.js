@@ -75,8 +75,8 @@ const Wrapper = styled.label`
             padding-bottom: 0;
         }
         svg{
-            width: 24px;
-            height: 24px;
+            width: 20px !important;
+            height: 20px !important;
         }
         a{
             margin-bottom: -2px !important;

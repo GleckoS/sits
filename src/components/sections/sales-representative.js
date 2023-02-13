@@ -161,6 +161,7 @@ const Item = styled.div`
         margin-bottom: 6px;
         text-underline-offset: 2px;
         width: fit-content;
+        text-transform: unset;
 
         &:last-child{
             margin-bottom: 0;

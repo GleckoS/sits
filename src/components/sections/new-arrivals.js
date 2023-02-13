@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useState } from "react";
 import { navigate } from "gatsby";
+import { motion, useInView } from "framer-motion";
 
 const getElCount = () => {
     if (typeof window !== 'undefined') {
@@ -15,6 +16,26 @@ const getElCount = () => {
     }
 
     return 0
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .5 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
+}
+
+const sliderAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: 1.1 } }
+}
+
+const sliderBarAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: 1.6 } }
 }
 
 export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {
@@ -57,33 +78,44 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
         }
     }
 
+    const section = useRef(null)
+    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
+
     itemsCount.current = 0
     return (
-        <Wrapper className={mt ? 'nomargin' : ''}>
+        <Wrapper
+            initial='initial'
+            animate={isSectionInView ? 'animate' : 'initial'}
+            exit='exit'
+            ref={section}
+            className={mt ? 'nomargin' : ''}>
             <Container className="container">
-                <h2 className="title">{sectionTitle}</h2>
-                {text && <p className="text">{text}</p>}
+                <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
+                {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
                 <Grid id='slider-new-arrivals'>
-                    <Slider ref={slickRef} {...settings}>
-                        {chosenProducts?.map(el => {
-                            let isOnePostRendered = false
-                            return el.products.products.productGallery?.map(inEl => {
-                                return inEl.productsImages?.map((imageEl, index) => {
-                                    if (imageEl.isMainImage && !isOnePostRendered) {
-                                        isOnePostRendered = true
-                                        itemsCount.current += 1
-                                        return <div onMouseMove={() => setMouseMoved(true)}
-                                            onMouseDown={() => setMouseMoved(false)}
-                                            key={inEl.popupNames.model + index}>
-                                            <ProductCard onMouseUp={handleClick} model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
-                                        </div>
-                                    }
-                                    return null
+                    <motion.div variants={sliderAnimation}>
+                        <Slider ref={slickRef} {...settings}>
+                            {chosenProducts?.map(el => {
+                                let isOnePostRendered = false
+                                return el.products.products.productGallery?.map(inEl => {
+                                    return inEl.productsImages?.map((imageEl, index) => {
+                                        if (imageEl.isMainImage && !isOnePostRendered) {
+                                            isOnePostRendered = true
+                                            itemsCount.current += 1
+                                            return <div onMouseMove={() => setMouseMoved(true)}
+                                                onMouseDown={() => setMouseMoved(false)}
+                                                key={inEl.popupNames.model + index}>
+                                                <ProductCard onMouseUp={handleClick} model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
+                                            </div>
+                                        }
+                                        return null
+                                    })
                                 })
-                            })
-                        })}
-                    </Slider>
+                            })}
+                        </Slider>
+                    </motion.div>
                     <SliderInput
+                        variants={sliderBarAnimation}
                         value={activeSlide}
                         id='slider'
                         onChange={(e) => { setActiveSlide(e.currentTarget.value) }}
@@ -97,7 +129,7 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
     )
 }
 
-const SliderInput = styled.input`
+const SliderInput = styled(motion.input)`
     margin-top: 30px;
     width: 100%;
     -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
@@ -195,7 +227,7 @@ const SliderInput = styled.input`
 }
 `
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
     margin-top: clamp(80px, ${120 / 1194 * 100}vw, 160px);
     background-color: #F9F5F0;
     padding: clamp(40px, ${80 / 768 * 100}vw, 80px) 0;

@@ -6,7 +6,6 @@ import { Title } from "../moleculas/title-sub"
 
 
 export default function CataloguesGrid({ data: { title, catalogues: { catalogues } } }) {
-    debugger
     return (
         <Wrapper>
             <Title title={title} />
@@ -58,6 +57,7 @@ const Item = styled.div`
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-family: 'Ivy';
         font-weight: 300;
+        text-transform: unset ;
     }
 
     &:hover{

@@ -1,27 +1,85 @@
+import { motion, useInView } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
+import scrollLock from './../../helpers/scroll-lock'
+
+const sliderAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .5 } }
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: 1 } }
+}
+
+const linkAnimation = {
+    initial: { opacity: 0, backgroundSize: '0 1px' },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.3 } }
+}
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
+    const video = useRef(null)
+    const section = useRef(null)
+    const isSectionInView = useInView(section, { once: true })
+
+    const [canScroll, setCanScroll] = useState(false);
+
+    useEffect(() => {
+        if (canScroll) {
+            video.current.play()
+            // scrollLock.disable('hero')
+        } else {
+            // scrollLock.enable('hero')
+        }
+
+        // return () => {
+        //     scrollLock.disable('hero')
+        // }
+    }, [canScroll]);
+
+
     return (
-        <Wrapper>
-            <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
-            <video className="background video" playsInline autoPlay muted loop poster={backgroundImage.localFile.publicURL} >
+        <Wrapper
+            onAnimationComplete={() => setCanScroll(true)}
+            initial='initial'
+            animate={isSectionInView ? 'animate' : 'initial'}
+            exit='exit'
+            ref={section}
+        >
+            <motion.div variants={sliderAnimation} >
+                <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
+            </motion.div>
+            <motion.video
+                ref={video}
+                variants={sliderAnimation}
+                className="background video"
+                playsInline muted loop
+                preload="none"
+                poster={backgroundImage.localFile.publicURL} >
                 <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
-            </video>
+            </motion.video>
             <div className="content">
-                <h1 className="title">{pageTitle}</h1>
-                {linkUnderPageTitle
-                    ? <Link className="link underline" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
-                    : null}
+                <motion.h1 variants={titleAnimation} className="title">
+                    {pageTitle}
+                </motion.h1>
+                <motion.div
+                    className="link underline"
+                    variants={linkAnimation}
+                >
+                    {linkUnderPageTitle
+                        ? <Link className="" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
+                        : null}
+                </motion.div>
             </div>
-        </Wrapper>
+        </Wrapper >
     )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
     position: relative;
     overflow: hidden;
     max-height: 100vh;
@@ -79,10 +137,6 @@ const Wrapper = styled.section`
         width: 80%;
         text-align: center;
 
-        a{
-            margin: 0 auto;
-            background-image: linear-gradient(#fff, #fff);
-        }
 
         @media (max-width: 1440px) {
             top: 50%;
@@ -104,8 +158,9 @@ const Wrapper = styled.section`
         letter-spacing: 2px;
         color: #fff;
         font-weight: 300;
-        margin-bottom: 30px;
         line-height: 1.2;
+        display: inline-block;
+        margin-bottom: 30px;
     }
     .link{
         font-size: 18px;
@@ -113,6 +168,15 @@ const Wrapper = styled.section`
         text-transform: uppercase;
         position: relative;
         padding-bottom: 3px;
-        text-decoration: underline;
+        margin: 0 auto;
+        background-image: linear-gradient(#fff, #fff);
+        background-size: 0 1px;
+
+        &:hover{
+            background-size: 100% 1px !important;
+        }
+        a{
+            color: #fff;
+        }
     }
 `

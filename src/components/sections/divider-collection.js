@@ -1,30 +1,69 @@
+import { motion, useInView } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .5 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
+}
+
+const linkAnimation = {
+    initial: { opacity: 0, backgroundSize: '0 1px' },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.1 } }
+}
+
+const imageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: 1.6 } }
+}
+
+const secondImageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: 1.6 } }
+}
+
+
 export default function DividerCollection({ data: { sectionTitle, text, link, squareImage, rectangularImageOnTheRight } }) {
+
+    const section = useRef(null)
+    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
+
     return (
-        <Wrapper>
+        <Wrapper
+            initial='initial'
+            animate={isSectionInView ? 'animate' : 'initial'}
+            exit='exit'
+            ref={section}>
             <Container>
                 <Grid>
                     <div className="content">
                         <div>
-                            <h2 className="title">{sectionTitle}</h2>
-                            {text && <p className="text">{text}</p>}
-                            {link?.url && <Link className="link underline" to={link.url} target={link.target ? link.target : null}>{link.title}</Link>}
+                            <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
+                            {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
+                            {link?.url && <motion.div className="underline" variants={linkAnimation}><Link className="link" to={link.url} target={link.target ? link.target : null}>{link.title}</Link></motion.div>}
                         </div>
-                        <GatsbyImage className="square" image={squareImage.localFile.childImageSharp.gatsbyImageData} alt={squareImage.altText} />
+                        <motion.div className="square" variants={imageAnimation}>
+                            <GatsbyImage  className="image" image={squareImage.localFile.childImageSharp.gatsbyImageData} alt={squareImage.altText} />
+                        </motion.div>
                     </div>
-                    <GatsbyImage className="rectangle" image={rectangularImageOnTheRight.localFile.childImageSharp.gatsbyImageData} alt={rectangularImageOnTheRight.altText} />
+                    <motion.div className="rectangle" variants={secondImageAnimation}>
+                        <GatsbyImage className="image" image={rectangularImageOnTheRight.localFile.childImageSharp.gatsbyImageData} alt={rectangularImageOnTheRight.altText} />
+                    </motion.div>
                 </Grid>
             </Container>
         </Wrapper>
     )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
     margin-top: clamp(45px, ${120 / 1200 * 100}vw, 120px);
     .rectangle{
         margin-top: 20px;
@@ -36,6 +75,10 @@ const Wrapper = styled.section`
         @media (max-width: 768px) {
             margin: 0 -24px;
         }
+    }
+
+    .image{
+        height: 100%;
     }
 
     .square{
@@ -74,7 +117,6 @@ const Wrapper = styled.section`
         font-size: 18px;
         margin-top: 40px;
         text-transform: uppercase;
-        text-decoration: underline;
 
         @media (max-width: 768px){
             text-align: center;
@@ -89,6 +131,12 @@ const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 2fr;
     grid-gap: 20px;
+
+    @media (max-width: 768px){
+        .underline{
+            margin: 0 auto;
+        }
+    }
 
     @media (max-width: 1194px) {
         align-items: center;

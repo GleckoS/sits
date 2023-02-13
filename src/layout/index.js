@@ -17,6 +17,8 @@ const animate = cssTransition({
 export default function Layout({ children }) {
 
     const [isCookiesActive, setIsCookiesActive] = useState(false)
+    const [isHeaderLoaded, setIsHeaderLoaded] = useState(false)
+
     return (
         <Wrapper>
             <ToastContainer transition={animate} />
@@ -26,7 +28,7 @@ export default function Layout({ children }) {
             <div id='main'>
                 {children}
             </div>
-            <Footer setIsCookiesActive={setIsCookiesActive}/>
+            <Footer setIsCookiesActive={setIsCookiesActive} />
         </Wrapper>
     )
 }

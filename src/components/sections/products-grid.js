@@ -1,8 +1,24 @@
+import { motion, useInView } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .5 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
+}
+
+const gridAnimation = {
+    initial: { opacity: 0},
+    animate: { opacity: 1, transition: { duration: .6, delay: 1.1 } }
+}
 
 export default function ProductGrid({ title, data: {
     sectionTitle, text,
@@ -13,15 +29,23 @@ export default function ProductGrid({ title, data: {
     sixthLink, sixthImage,
     seventhLink, seventhImage,
     eightsLink, eightsImage } }) {
+
+    const section = useRef(null)
+    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
+
     return (
-        <Wrapper>
+        <Wrapper
+            initial='initial'
+            animate={isSectionInView ? 'animate' : 'initial'}
+            exit='exit'
+            ref={section} >
             <Container>
                 {title
-                    ? <h1 className="title">{title}</h1>
-                    : <h2 className="title">{sectionTitle}</h2>}
-                {text && <p className="text">{text}</p>}
+                    ? <motion.h1 variants={titleAnimation} className="title">{title}</motion.h1>
+                    : <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>}
+                {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
             </Container>
-            <Grid>
+            <Grid variants={gridAnimation}>
                 <Item to={firstLink.url} target={firstLink.target ? firstLink.target : null} className="first">
                     <p >{firstLink.title}</p>
                     <GatsbyImage image={firstImage.localFile.childImageSharp.gatsbyImageData} alt={firstImage.altText} />
@@ -55,7 +79,7 @@ export default function ProductGrid({ title, data: {
     )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
     max-width: 1832px;
     margin: clamp(40px, ${100 / 1194 * 100}vw,110px) auto 0 auto;
 
@@ -80,7 +104,7 @@ const Wrapper = styled.section`
     }
 `
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     margin-top: clamp(40px, ${80 / 1194 * 100}vw, 80px);
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -157,6 +181,7 @@ const Item = styled(Link)`
         display: flex;
         justify-content: center;
         align-items: center;
+        text-align: center;
         z-index: 2;
         font-size: clamp(24px, ${44 / 1194 * 100}vw, 44px);
         font-weight: 300;

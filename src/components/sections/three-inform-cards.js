@@ -1,25 +1,40 @@
+import { motion, useInView } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 
+const imageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .5 } }
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: 1 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: 1.3 } }
+}
+
+const linkAnimation = {
+    initial: { opacity: 0, backgroundSize: '0 1px' },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.6 } }
+}
+
+
 export default function ThreeInformCards({ data: { cards } }) {
+
+
     return (
         <Wrapper>
             <Container>
                 <Grid>
                     {cards.map(el => (
-                        <Item key={el.title}>
-                            <Link to={el.link.url ? el.link.url : null} target={el.link.target ? el.link.target : null}>
-                                <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
-                                <div className="content">
-                                    <h3>{el.title}</h3>
-                                    {el.text && <p>{el.text}</p>}
-                                    {el.link.title && <span className="underline">{el.link.title}</span>}
-                                </div>
-                            </Link>
-                        </Item>
+                        <ItemComponent el={el} />
                     ))}
                 </Grid>
             </Container>
@@ -27,7 +42,32 @@ export default function ThreeInformCards({ data: { cards } }) {
     )
 }
 
-const Wrapper = styled.section`
+const ItemComponent = ({ el }) => {
+
+    const section = useRef(null)
+    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
+
+    return (
+        <Item
+            initial='initial'
+            animate={isSectionInView ? 'animate' : 'initial'}
+            exit='exit'
+            ref={section} key={el.title}>
+            <Link to={el.link.url ? el.link.url : null} target={el.link.target ? el.link.target : null}>
+                <motion.div variants={imageAnimation}>
+                    <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
+                </motion.div>
+                <div className="content">
+                    <motion.h3 variants={titleAnimation}>{el.title}</motion.h3>
+                    {el.text && <motion.p variants={textAnimation}>{el.text}</motion.p>}
+                    {el.link.title && <motion.span variants={linkAnimation} className="underline">{el.link.title}</motion.span>}
+                </div>
+            </Link>
+        </Item>
+    )
+}
+
+const Wrapper = styled(motion.section)`
     margin-top: 50px;
 `
 
@@ -50,7 +90,7 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled.div`
+const Item = styled(motion.div)`
     .image{
         height: 33vw;
         max-height: 666px;

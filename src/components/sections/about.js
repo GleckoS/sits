@@ -1,25 +1,60 @@
+import { motion, useInView } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React from "react"
+import React, { useRef } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 
+const imageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .5 } }
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: 1 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: 1.3 } }
+}
+
+const linkAnimation = {
+    initial: { opacity: 0, backgroundSize: '0 1px' },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.6 } }
+}
+
 export default function About({ color, data: { sectionTitle, text, linkUnderText, imageOnTheLeftSide } }) {
+
+    const section = useRef(null)
+    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
+
     return (
-        <Wrapper className={color ? 'alt' : ''}>
-            <GatsbyImage image={imageOnTheLeftSide.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeftSide.altText} />
+        <Wrapper
+            initial='initial'
+            animate={isSectionInView ? 'animate' : 'initial'}
+            exit='exit'
+            ref={section}
+            className={color ? 'alt' : ''}>
+            <motion.div variants={imageAnimation}>
+                <GatsbyImage image={imageOnTheLeftSide.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeftSide.altText} />
+            </motion.div>
             <Container className="container">
                 <div className="content">
-                    <h2 className="title">{sectionTitle}</h2>
-                    {text && <div className="text" dangerouslySetInnerHTML={{ __html: text }} />}
-                    {linkUnderText?.url && <Link className="link underline" to={linkUnderText.url} target={linkUnderText.target ? linkUnderText.target : null}>{linkUnderText.title}</Link>}
+                    <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
+                    {text && <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: text }} />}
+                    {linkUnderText?.url &&
+                        <motion.div variants={linkAnimation} className="underline">
+                            <Link className="link" to={linkUnderText.url} target={linkUnderText.target ? linkUnderText.target : null}>{linkUnderText.title}</Link>
+                        </motion.div>}
                 </div>
             </Container>
         </Wrapper>
     )
 }
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
 
     margin: clamp(60px, ${100 / 1194 * 100}vw, 100px) 0;
     display: grid;
@@ -55,7 +90,6 @@ const Wrapper = styled.section`
         margin-top: 24px;
         font-size: clamp(16px, ${18 / 1194 * 100}vw, 18px);
         display: block;
-        text-decoration: underline;
     }
 
     @media (max-width: 768px){

@@ -110,7 +110,7 @@ export const Global = createGlobalStyle`
         background-repeat: no-repeat;
 
         &:hover {
-            background-size: 100% 1px;
+            background-size: 100% 1px !important;
         }
     }
 
@@ -120,7 +120,7 @@ export const Global = createGlobalStyle`
         position: relative;
         padding-bottom: 3px;
 
-        transition: background-size 0.4s ease-out;
+        transition: background-size 0.5s ease-out;
 
         background-image: linear-gradient(#222b40, #222b40);
         background-size: 0% 1px;
