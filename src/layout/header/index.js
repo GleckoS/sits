@@ -99,7 +99,7 @@ export default function Header() {
 
   return (
     <Wrapper
-      onAnimationComplete={() => { let a = header.current.classList.add('active') }}
+      onAnimationComplete={() => { header.current.classList.add('active') }}
       ref={header}
       initial='initial'
       animate='animate'

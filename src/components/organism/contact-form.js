@@ -1,4 +1,5 @@
 import axios from "axios"
+import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import React from "react"
 import { useState } from "react"
@@ -107,7 +108,7 @@ const reply = {
     en: 'We’ll get back to you as soon as possible.'
 }
 
-export const Form = () => {
+export const Form = ({titleAnimation, formAnimation}) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [isSended, setIsSended] = useState(false)
 
@@ -137,8 +138,8 @@ export const Form = () => {
 
     return (
         <Wrapper className="form">
-            <h1>{title['en']}</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <motion.h1 variants={titleAnimation}>{title['en']}</motion.h1>
+            <motion.form variants={formAnimation} onSubmit={handleSubmit(onSubmit)}>
                 <Label register={register} errors={errors} name='email' obj={email} />
                 <Label register={register} errors={errors} name='name' obj={name} />
                 <Label register={register} errors={errors} name='country' obj={country} />
@@ -161,7 +162,7 @@ export const Form = () => {
                     <span className="title">{thans['en']}</span>
                     <span className="text">{reply['en']}</span>
                 </Success>
-            </form>
+            </motion.form>
         </Wrapper>
     )
 }
