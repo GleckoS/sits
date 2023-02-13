@@ -1,9 +1,10 @@
-import { motion, useInView } from "framer-motion"
+import { motion} from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useRef } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
 
 const imageAnimation = {
     initial: { opacity: 0 },
@@ -27,14 +28,25 @@ const linkAnimation = {
 
 
 export default function ThreeInformCards({ data: { cards } }) {
-
-
     return (
         <Wrapper>
             <Container>
                 <Grid>
-                    {cards.map(el => (
-                        <ItemComponent el={el} />
+                    {cards.map((el, index) => (
+                        <InView key={el.title + index}>
+                            <Item>
+                                <Link to={el.link.url ? el.link.url : null} target={el.link.target ? el.link.target : null}>
+                                    <motion.div variants={imageAnimation}>
+                                        <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
+                                    </motion.div>
+                                    <div className="content">
+                                        <motion.h3 variants={titleAnimation}>{el.title}</motion.h3>
+                                        {el.text && <motion.p variants={textAnimation}>{el.text}</motion.p>}
+                                        {el.link.title && <motion.span variants={linkAnimation} className="underline">{el.link.title}</motion.span>}
+                                    </div>
+                                </Link>
+                            </Item>
+                        </InView>
                     ))}
                 </Grid>
             </Container>
@@ -42,32 +54,7 @@ export default function ThreeInformCards({ data: { cards } }) {
     )
 }
 
-const ItemComponent = ({ el }) => {
-
-    const section = useRef(null)
-    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
-
-    return (
-        <Item
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
-            exit='exit'
-            ref={section} key={el.title}>
-            <Link to={el.link.url ? el.link.url : null} target={el.link.target ? el.link.target : null}>
-                <motion.div variants={imageAnimation}>
-                    <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.image.altText} />
-                </motion.div>
-                <div className="content">
-                    <motion.h3 variants={titleAnimation}>{el.title}</motion.h3>
-                    {el.text && <motion.p variants={textAnimation}>{el.text}</motion.p>}
-                    {el.link.title && <motion.span variants={linkAnimation} className="underline">{el.link.title}</motion.span>}
-                </div>
-            </Link>
-        </Item>
-    )
-}
-
-const Wrapper = styled(motion.section)`
+const Wrapper = styled.section`
     margin-top: 50px;
 `
 
@@ -90,7 +77,7 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled(motion.div)`
+const Item = styled.div`
     .image{
         height: 33vw;
         max-height: 666px;

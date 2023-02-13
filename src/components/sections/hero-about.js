@@ -1,16 +1,33 @@
+import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
+
+const imageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .8 } }
+}
 
 export default function Hero({ data: { pageTitle, backgroundImage } }) {
+
     return (
-        <Wrapper>
-            <GatsbyImage className="image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
-            <Container className="container">
-                <h1 className="archive-title">{pageTitle}</h1>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <motion.div variants={imageAnimation}>
+                    <GatsbyImage className="image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+                </motion.div>
+                <Container className="container">
+                    <motion.h1 variants={titleAnimation} className="archive-title">{pageTitle}</motion.h1>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 

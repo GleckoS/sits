@@ -1,20 +1,36 @@
+import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import InView from "./in-view-provider"
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
+}
+
+const imageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
+}
 
 export default function TwoColumnGray({ data: { textOnTheRight, imageOnTheLeft } }) {
     return (
-        <Wrapper>
-            <GatsbyImage image={imageOnTheLeft.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeft.altText} />
-            <div className="text" dangerouslySetInnerHTML={{ __html: textOnTheRight }} />
-        </Wrapper>
+        <InView margin="-100px 0px -300px 0px">
+            <Wrapper >
+                <motion.div variants={imageAnimation}>
+                    <GatsbyImage image={imageOnTheLeft.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeft.altText} />
+                </motion.div>
+                <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: textOnTheRight }} />
+            </Wrapper>
+        </InView>
     )
 }
 
 const Wrapper = styled.section`
     margin-top: clamp(60px, ${90 / 1194 * 100}vw, 250px);
     background-image: linear-gradient(90deg, #ebebeb 0%, #cecece 100%);
-        margin-bottom: -120px;
+    margin-bottom: -120px;
 
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -27,6 +43,7 @@ const Wrapper = styled.section`
         margin-top: 0;
         padding-top: 50px;
         align-items: unset;
+        grid-gap: 0;
     }
     
     .text{
@@ -38,8 +55,13 @@ const Wrapper = styled.section`
 
         @media (max-width: 640px){
             max-width: 500px;
-            margin: 0 24px;
+            margin: 0 24px -60px 24px;
         }
+
+        @media (max-width: 440px) {
+            margin: 0 24px -20px 24px;
+        }
+
 
         *{
             font-size: clamp(16px, ${24 / 1194 * 100}vw, 32px);

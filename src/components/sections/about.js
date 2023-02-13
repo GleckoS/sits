@@ -1,9 +1,10 @@
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useRef } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
 
 const imageAnimation = {
     initial: { opacity: 0 },
@@ -27,34 +28,28 @@ const linkAnimation = {
 
 export default function About({ color, data: { sectionTitle, text, linkUnderText, imageOnTheLeftSide } }) {
 
-    const section = useRef(null)
-    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
-
     return (
-        <Wrapper
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
-            exit='exit'
-            ref={section}
-            className={color ? 'alt' : ''}>
-            <motion.div variants={imageAnimation}>
-                <GatsbyImage image={imageOnTheLeftSide.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeftSide.altText} />
-            </motion.div>
-            <Container className="container">
-                <div className="content">
-                    <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
-                    {text && <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: text }} />}
-                    {linkUnderText?.url &&
-                        <motion.div variants={linkAnimation} className="underline">
-                            <Link className="link" to={linkUnderText.url} target={linkUnderText.target ? linkUnderText.target : null}>{linkUnderText.title}</Link>
-                        </motion.div>}
-                </div>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper className={color ? 'alt' : ''}>
+                <motion.div variants={imageAnimation}>
+                    <GatsbyImage image={imageOnTheLeftSide.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeftSide.altText} />
+                </motion.div>
+                <Container className="container">
+                    <div className="content">
+                        <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
+                        {text && <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: text }} />}
+                        {linkUnderText?.url &&
+                            <motion.div variants={linkAnimation} className="underline">
+                                <Link className="link" to={linkUnderText.url} target={linkUnderText.target ? linkUnderText.target : null}>{linkUnderText.title}</Link>
+                            </motion.div>}
+                    </div>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
-const Wrapper = styled(motion.section)`
+const Wrapper = styled.section`
 
     margin: clamp(60px, ${100 / 1194 * 100}vw, 100px) 0;
     display: grid;

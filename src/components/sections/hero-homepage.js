@@ -1,9 +1,9 @@
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect, useRef, useState } from "react"
 import styled from "styled-components"
-import scrollLock from './../../helpers/scroll-lock'
+import InView from "./in-view-provider"
 
 const sliderAnimation = {
     initial: { opacity: 0 },
@@ -19,13 +19,9 @@ const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px' },
     animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.1 } }
 }
-
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
     const video = useRef(null)
-    const section = useRef(null)
-    const isSectionInView = useInView(section, { once: true })
-
     const [canScroll, setCanScroll] = useState(false);
 
     useEffect(() => {
@@ -43,43 +39,39 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
 
 
     return (
-        <Wrapper
-            onAnimationComplete={() => setCanScroll(true)}
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
-            exit='exit'
-            ref={section}
-        >
-            <motion.div variants={sliderAnimation} >
-                <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
-            </motion.div>
-            <motion.video
-                ref={video}
-                variants={sliderAnimation}
-                className="background video"
-                playsInline muted loop
-                preload="none"
-                poster={backgroundImage.localFile.publicURL} >
-                <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
-            </motion.video>
-            <div className="content">
-                <motion.h1 variants={titleAnimation} className="title">
-                    {pageTitle}
-                </motion.h1>
-                <motion.div
-                    className="link underline"
-                    variants={linkAnimation}
-                >
-                    {linkUnderPageTitle
-                        ? <Link className="" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
-                        : null}
+        <InView func={() => setCanScroll(true)} margin='0px 0px 0px 0px'>
+            <Wrapper>
+                <motion.div variants={sliderAnimation} >
+                    <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
-            </div>
-        </Wrapper >
+                <motion.video
+                    ref={video}
+                    variants={sliderAnimation}
+                    className="background video"
+                    playsInline muted loop
+                    preload="none"
+                    poster={backgroundImage.localFile.publicURL} >
+                    <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
+                </motion.video>
+                <div className="content">
+                    <motion.h1 variants={titleAnimation} className="title">
+                        {pageTitle}
+                    </motion.h1>
+                    <motion.div
+                        className="link underline"
+                        variants={linkAnimation}
+                    >
+                        {linkUnderPageTitle
+                            ? <Link className="" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
+                            : null}
+                    </motion.div>
+                </div>
+            </Wrapper>
+        </InView>
     )
 }
 
-const Wrapper = styled(motion.section)`
+const Wrapper = styled.section`
     position: relative;
     overflow: hidden;
     max-height: 100vh;

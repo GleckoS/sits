@@ -7,7 +7,8 @@ import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Link } from "gatsby"
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
+import InView from "./in-view-provider"
 
 const titleAnimation = {
     initial: { opacity: 0 },
@@ -30,7 +31,7 @@ const sliderTitleAnimation = {
 }
 
 const sliderLinkAnimation = {
-    initial: { opacity: 0, backgroundSize: '0 1px'  },
+    initial: { opacity: 0, backgroundSize: '0 1px' },
     animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3, delay: 1.7 } }
 }
 
@@ -77,97 +78,90 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
     const [item, setItem] = useState(0)
     const [animationStarted, setAnimationStarted] = useState(false)
 
-
-    const section = useRef(null)
-    const isSectionInView = useInView(section, { margin: "0px 0px -100px 0px", once: true })
-
     return (
-        <Wrapper
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
-            exit='exit'
-        >
-            <Container>
-                <motion.h2
-                    variants={titleAnimation}
-                    className="title"
+        <InView margin= "-100px 0px -300px 0px">
+            <Wrapper>
+                <Container>
+                    <motion.h2
+                        variants={titleAnimation}
+                        className="title"
+                    >
+                        {sectionTitle}
+                    </motion.h2>
+                    {text &&
+                        <motion.p
+                            variants={textAnimation}
+                            className="text">
+                            {text}
+                        </motion.p>
+                    }
+                </Container>
+                <Container
+                    variants={sliderAnimation}
+                    className="container"
                 >
-                    {sectionTitle}
-                </motion.h2>
-                {text &&
-                    <motion.p
-                        variants={textAnimation}
-                        className="text">
-                        {text}
-                    </motion.p>
-                }
-            </Container>
-            <Container
-            ref={section}
-                variants={sliderAnimation}
-                className="container"
-            >
-                <div className="content desctop">
-                    <div className={animationStarted ? 'sticky hide' : "sticky"}>
-                        <motion.h3 variants={sliderTitleAnimation}>{carousel[item].selectedCollection.title}</motion.h3>
-                        <motion.div variants={sliderLinkAnimation} className="underline">
-                            <Link tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
-                        </motion.div>
-                    </div>
-                </div>
-                <Slider ref={slickRef} {...settings}>
-                    {carousel.map((el, index) => {
-                        if (el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage) {
-                            return (
-                                <div key={index} className="slide">
-                                    <GatsbyImage
-                                        image={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.localFile.childImageSharp.gatsbyImageData}
-                                        alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
-                                    <div className="content mobile">
-                                        <h3>{el.selectedCollection.title}</h3>
-                                        <Link className="underline" tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
-                                    </div>
-                                </div>
-                            )
-                        }
-                        return <div className="placeholder">Chosen collection dont have provided "homepage slider preview image"</div>
-                    })}
-                </Slider>
-                <Control>
-                    <button aria-label='prev slide' onClick={() => { slickRef.current.slickPrev() }} className="left">
-                        <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M9.5 17L1.5 9L9.5 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </button>
-                    {carousel.length <= 5 ? (
-                        <div className="dots">
-                            {carousel.map((el, index) => (
-                                <button onClick={() => { slickRef.current.slickGoTo(index) }} aria-label={'go to ' + (index + 1) + ' slide'} className={item === (index) ? 'active dot' : "dot"}>
-                                </button>
-                            ))}
+                    <div className="content desctop">
+                        <div className={animationStarted ? 'sticky hide' : "sticky"}>
+                            <motion.h3 variants={sliderTitleAnimation}>{carousel[item].selectedCollection.title}</motion.h3>
+                            <motion.div variants={sliderLinkAnimation} className="underline">
+                                <Link tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
+                            </motion.div>
                         </div>
-                    ) : (
-                        <>
-                            <div className="data">
-                                {item + 1} / {carousel.length}
+                    </div>
+                    <Slider ref={slickRef} {...settings}>
+                        {carousel.map((el, index) => {
+                            if (el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage) {
+                                return (
+                                    <div key={index} className="slide">
+                                        <GatsbyImage
+                                            image={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.localFile.childImageSharp.gatsbyImageData}
+                                            alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
+                                        <div className="content mobile">
+                                            <h3>{el.selectedCollection.title}</h3>
+                                            <Link className="underline" tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
+                                        </div>
+                                    </div>
+                                )
+                            }
+                            return <div className="placeholder">Chosen collection dont have provided "homepage slider preview image"</div>
+                        })}
+                    </Slider>
+                    <Control>
+                        <button aria-label='prev slide' onClick={() => { slickRef.current.slickPrev() }} className="left">
+                            <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M9.5 17L1.5 9L9.5 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </button>
+                        {carousel.length <= 5 ? (
+                            <div className="dots">
+                                {carousel.map((el, index) => (
+                                    <button onClick={() => { slickRef.current.slickGoTo(index) }} aria-label={'go to ' + (index + 1) + ' slide'} className={item === (index) ? 'active dot' : "dot"}>
+                                    </button>
+                                ))}
                             </div>
-                        </>
-                    )}
-                    <button aria-label='next slide' onClick={() => { slickRef.current.slickNext() }} className="right">
-                        <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1.5 17L9.5 9L1.5 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                        </svg>
-                    </button>
-                </Control>
-            </Container>
-            <Container>
-                <motion.div
-                    className="underline"
-                    variants={linkAnimation}>
-                    <Link className="link " to={seeAllLink.url} target={seeAllLink.target ? seeAllLink.target : null}>{seeAllLink.title}</Link>
-                </motion.div>
-            </Container>
-        </Wrapper>
+                        ) : (
+                            <>
+                                <div className="data">
+                                    {item + 1} / {carousel.length}
+                                </div>
+                            </>
+                        )}
+                        <button aria-label='next slide' onClick={() => { slickRef.current.slickNext() }} className="right">
+                            <svg width="11" height="18" viewBox="0 0 11 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M1.5 17L9.5 9L1.5 1" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                            </svg>
+                        </button>
+                    </Control>
+                </Container>
+                <Container>
+                    <motion.div
+                        className="underline"
+                        variants={linkAnimation}>
+                        <Link className="link " to={seeAllLink.url} target={seeAllLink.target ? seeAllLink.target : null}>{seeAllLink.title}</Link>
+                    </motion.div>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -270,7 +264,7 @@ const Control = styled.div`
     }
 `
 
-const Wrapper = styled(motion.section)`
+const Wrapper = styled.section`
     margin-top: clamp(45px, ${85 / 1200 * 100}vw, 120px);
 
     .title{

@@ -1,22 +1,51 @@
+import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+}
+
+const imageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
+}
+
+const secondImageAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: 1.4 } }
+}
 
 export default function Grid({ data: { tekstUnderTitle, sectionTitle, imageUnderText, imageOnTheRight } }) {
+
     return (
-        <Wrapper>
-            <Container>
-                <Content>
-                    <GatsbyImage className="image" image={imageOnTheRight.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheRight.altText} />
-                    <GatsbyImage className="item" image={imageUnderText.localFile.childImageSharp.gatsbyImageData} alt={imageUnderText.altText} />
-                    <div className="text">
-                        <h2>{sectionTitle}</h2>
-                        <div dangerouslySetInnerHTML={{ __html: tekstUnderTitle }} />
-                    </div>
-                </Content>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <Container>
+                    <Content>
+                        <motion.div variants={secondImageAnimation} className="image">
+                            <GatsbyImage image={imageOnTheRight.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheRight.altText} />
+                        </motion.div>
+                        <motion.div variants={imageAnimation} className="item">
+                            <GatsbyImage image={imageUnderText.localFile.childImageSharp.gatsbyImageData} alt={imageUnderText.altText} />
+                        </motion.div>
+                        <div className="text">
+                            <motion.h2 variants={titleAnimation}>{sectionTitle}</motion.h2>
+                            <motion.div variants={textAnimation} dangerouslySetInnerHTML={{ __html: tekstUnderTitle }} />
+                        </div>
+                    </Content>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 

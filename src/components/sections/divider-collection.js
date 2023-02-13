@@ -1,9 +1,10 @@
-import { motion, useInView } from "framer-motion"
+import { motion} from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useRef } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
 
 const titleAnimation = {
     initial: { opacity: 0 },
@@ -33,37 +34,32 @@ const secondImageAnimation = {
 
 export default function DividerCollection({ data: { sectionTitle, text, link, squareImage, rectangularImageOnTheRight } }) {
 
-    const section = useRef(null)
-    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
-
     return (
-        <Wrapper
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
-            exit='exit'
-            ref={section}>
-            <Container>
-                <Grid>
-                    <div className="content">
-                        <div>
-                            <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
-                            {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
-                            {link?.url && <motion.div className="underline" variants={linkAnimation}><Link className="link" to={link.url} target={link.target ? link.target : null}>{link.title}</Link></motion.div>}
+        <InView>
+            <Wrapper>
+                <Container>
+                    <Grid>
+                        <div className="content">
+                            <div>
+                                <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
+                                {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
+                                {link?.url && <motion.div className="underline" variants={linkAnimation}><Link className="link" to={link.url} target={link.target ? link.target : null}>{link.title}</Link></motion.div>}
+                            </div>
+                            <motion.div className="square" variants={imageAnimation}>
+                                <GatsbyImage className="image" image={squareImage.localFile.childImageSharp.gatsbyImageData} alt={squareImage.altText} />
+                            </motion.div>
                         </div>
-                        <motion.div className="square" variants={imageAnimation}>
-                            <GatsbyImage  className="image" image={squareImage.localFile.childImageSharp.gatsbyImageData} alt={squareImage.altText} />
+                        <motion.div className="rectangle" variants={secondImageAnimation}>
+                            <GatsbyImage className="image" image={rectangularImageOnTheRight.localFile.childImageSharp.gatsbyImageData} alt={rectangularImageOnTheRight.altText} />
                         </motion.div>
-                    </div>
-                    <motion.div className="rectangle" variants={secondImageAnimation}>
-                        <GatsbyImage className="image" image={rectangularImageOnTheRight.localFile.childImageSharp.gatsbyImageData} alt={rectangularImageOnTheRight.altText} />
-                    </motion.div>
-                </Grid>
-            </Container>
-        </Wrapper>
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
-const Wrapper = styled(motion.section)`
+const Wrapper = styled.section`
     margin-top: clamp(45px, ${120 / 1200 * 100}vw, 120px);
     .rectangle{
         margin-top: 20px;

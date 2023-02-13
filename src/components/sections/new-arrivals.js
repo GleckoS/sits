@@ -8,7 +8,8 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { useState } from "react";
 import { navigate } from "gatsby";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+import InView from "./in-view-provider";
 
 const getElCount = () => {
     if (typeof window !== 'undefined') {
@@ -78,60 +79,54 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
         }
     }
 
-    const section = useRef(null)
-    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
-
     itemsCount.current = 0
     return (
-        <Wrapper
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
-            exit='exit'
-            ref={section}
-            className={mt ? 'nomargin' : ''}>
-            <Container className="container">
-                <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
-                {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
-                <Grid id='slider-new-arrivals'>
-                    <motion.div variants={sliderAnimation}>
-                        <Slider ref={slickRef} {...settings}>
-                            {chosenProducts?.map(el => {
-                                let isOnePostRendered = false
-                                return el.products.products.productGallery?.map(inEl => {
-                                    return inEl.productsImages?.map((imageEl, index) => {
-                                        if (imageEl.isMainImage && !isOnePostRendered) {
-                                            isOnePostRendered = true
-                                            itemsCount.current += 1
-                                            return <div onMouseMove={() => setMouseMoved(true)}
-                                                onMouseDown={() => setMouseMoved(false)}
-                                                key={inEl.popupNames.model + index}>
-                                                <ProductCard onMouseUp={handleClick} model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
-                                            </div>
-                                        }
-                                        return null
+        <InView>
+            <Wrapper className={mt ? 'nomargin' : ''}>
+                <Container className="container">
+                    <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>
+                    {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
+                    <Grid id='slider-new-arrivals'>
+                        <motion.div variants={sliderAnimation}>
+                            <Slider ref={slickRef} {...settings}>
+                                {chosenProducts?.map(el => {
+                                    let isOnePostRendered = false
+                                    return el.products.products.productGallery?.map(inEl => {
+                                        return inEl.productsImages?.map((imageEl, index) => {
+                                            if (imageEl.isMainImage && !isOnePostRendered) {
+                                                isOnePostRendered = true
+                                                itemsCount.current += 1
+                                                return <div onMouseMove={() => setMouseMoved(true)}
+                                                    onMouseDown={() => setMouseMoved(false)}
+                                                    key={inEl.popupNames.model + index}>
+                                                    <ProductCard onMouseUp={handleClick} model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
+                                                </div>
+                                            }
+                                            return null
+                                        })
                                     })
-                                })
-                            })}
-                        </Slider>
-                    </motion.div>
-                    <motion.label variants={sliderBarAnimation}>
-                        <span>Slider control</span>
-                        <SliderInput
-                            value={activeSlide}
-                            id='slider'
-                            onChange={(e) => { setActiveSlide(e.currentTarget.value) }}
-                            width={100 / (itemsCount.current - getElCount())}
-                            type='range'
-                            min='0'
-                            max={(itemsCount.current - getElCount())} />
-                    </motion.label>
-                </Grid>
-            </Container>
-        </Wrapper>
+                                })}
+                            </Slider>
+                        </motion.div>
+                        <motion.label variants={sliderBarAnimation}>
+                            <span>Slider control</span>
+                            <SliderInput
+                                value={activeSlide}
+                                id='slider'
+                                onChange={(e) => { setActiveSlide(e.currentTarget.value) }}
+                                width={100 / (itemsCount.current - getElCount())}
+                                type='range'
+                                min='0'
+                                max={(itemsCount.current - getElCount())} />
+                        </motion.label>
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
-const SliderInput = styled(motion.input)`
+const SliderInput = styled.input`
     margin-top: 30px;
     width: 100%;
     -webkit-appearance: none; /* Hides the slider so that custom slider can be made */

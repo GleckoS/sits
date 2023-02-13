@@ -17,7 +17,7 @@ export function Head({ data: { wpPage: { seo } } }) {
   )
 }
 
-export default function AboutPage({ data: { wpPage: { aboutUs } }, pageContext, location }) {
+export default function AboutPage({ data: { wpPage: { aboutUs } } }) {
     return (
         <Wrapper>
             <Hero data={aboutUs.heroSection} />

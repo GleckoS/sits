@@ -1,9 +1,10 @@
-import { motion, useInView } from "framer-motion"
+import { motion} from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useRef } from "react"
+import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
 
 const titleAnimation = {
     initial: { opacity: 0 },
@@ -16,7 +17,7 @@ const textAnimation = {
 }
 
 const gridAnimation = {
-    initial: { opacity: 0},
+    initial: { opacity: 0 },
     animate: { opacity: 1, transition: { duration: .6, delay: 1.1 } }
 }
 
@@ -30,56 +31,51 @@ export default function ProductGrid({ title, data: {
     seventhLink, seventhImage,
     eightsLink, eightsImage } }) {
 
-    const section = useRef(null)
-    const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
-
     return (
-        <Wrapper
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
-            exit='exit'
-            ref={section} >
-            <Container>
-                {title
-                    ? <motion.h1 variants={titleAnimation} className="title">{title}</motion.h1>
-                    : <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>}
-                {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
-            </Container>
-            <Grid variants={gridAnimation}>
-                <Item to={firstLink.url} target={firstLink.target ? firstLink.target : null} className="first">
-                    <p >{firstLink.title}</p>
-                    <GatsbyImage image={firstImage.localFile.childImageSharp.gatsbyImageData} alt={firstImage.altText} />
-                </Item>
-                <Item to={secondLink.url} target={secondLink.target ? secondLink.target : null} className="second">
-                    <p >{secondLink.title}</p>
-                    <GatsbyImage image={secondImage.localFile.childImageSharp.gatsbyImageData} alt={secondImage.altText} />
-                </Item>
-                <Item to={thirdLink.url} target={thirdLink.target ? thirdLink.target : null} className="third">
-                    <p >{thirdLink.title}</p>
-                    <GatsbyImage image={thirdImage.localFile.childImageSharp.gatsbyImageData} alt={thirdImage.altText} />
-                </Item>
-                <Item to={fourthLink.url} target={fourthLink.target ? fourthLink.target : null} className="fourth">
-                    <p >{fourthLink.title}</p>
-                    <GatsbyImage image={fourthImage.localFile.childImageSharp.gatsbyImageData} alt={fourthImage.altText} />
-                </Item>
-                <Item to={sixthLink.url} target={sixthLink.target ? sixthLink.target : null} className="sixth">
-                    <p >{sixthLink.title}</p>
-                    <GatsbyImage image={sixthImage.localFile.childImageSharp.gatsbyImageData} alt={sixthImage.altText} />
-                </Item>
-                <Item to={seventhLink.url} target={seventhLink.target ? seventhLink.target : null} className="seventh">
-                    <p >{seventhLink.title}</p>
-                    <GatsbyImage image={seventhImage.localFile.childImageSharp.gatsbyImageData} alt={seventhImage.altText} />
-                </Item>
-                <Item to={eightsLink.url} target={eightsLink.target ? eightsLink.target : null} className="eights">
-                    <p >{eightsLink.title}</p>
-                    <GatsbyImage image={eightsImage.localFile.childImageSharp.gatsbyImageData} alt={eightsImage.altText} />
-                </Item>
-            </Grid>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <Container>
+                    {title
+                        ? <motion.h1 variants={titleAnimation} className="title">{title}</motion.h1>
+                        : <motion.h2 variants={titleAnimation} className="title">{sectionTitle}</motion.h2>}
+                    {text && <motion.p variants={textAnimation} className="text">{text}</motion.p>}
+                </Container>
+                <Grid variants={gridAnimation}>
+                    <Item to={firstLink.url} target={firstLink.target ? firstLink.target : null} className="first">
+                        <p >{firstLink.title}</p>
+                        <GatsbyImage image={firstImage.localFile.childImageSharp.gatsbyImageData} alt={firstImage.altText} />
+                    </Item>
+                    <Item to={secondLink.url} target={secondLink.target ? secondLink.target : null} className="second">
+                        <p >{secondLink.title}</p>
+                        <GatsbyImage image={secondImage.localFile.childImageSharp.gatsbyImageData} alt={secondImage.altText} />
+                    </Item>
+                    <Item to={thirdLink.url} target={thirdLink.target ? thirdLink.target : null} className="third">
+                        <p >{thirdLink.title}</p>
+                        <GatsbyImage image={thirdImage.localFile.childImageSharp.gatsbyImageData} alt={thirdImage.altText} />
+                    </Item>
+                    <Item to={fourthLink.url} target={fourthLink.target ? fourthLink.target : null} className="fourth">
+                        <p >{fourthLink.title}</p>
+                        <GatsbyImage image={fourthImage.localFile.childImageSharp.gatsbyImageData} alt={fourthImage.altText} />
+                    </Item>
+                    <Item to={sixthLink.url} target={sixthLink.target ? sixthLink.target : null} className="sixth">
+                        <p >{sixthLink.title}</p>
+                        <GatsbyImage image={sixthImage.localFile.childImageSharp.gatsbyImageData} alt={sixthImage.altText} />
+                    </Item>
+                    <Item to={seventhLink.url} target={seventhLink.target ? seventhLink.target : null} className="seventh">
+                        <p >{seventhLink.title}</p>
+                        <GatsbyImage image={seventhImage.localFile.childImageSharp.gatsbyImageData} alt={seventhImage.altText} />
+                    </Item>
+                    <Item to={eightsLink.url} target={eightsLink.target ? eightsLink.target : null} className="eights">
+                        <p >{eightsLink.title}</p>
+                        <GatsbyImage image={eightsImage.localFile.childImageSharp.gatsbyImageData} alt={eightsImage.altText} />
+                    </Item>
+                </Grid>
+            </Wrapper>
+        </InView>
     )
 }
 
-const Wrapper = styled(motion.section)`
+const Wrapper = styled.section`
     max-width: 1832px;
     margin: clamp(40px, ${100 / 1194 * 100}vw,110px) auto 0 auto;
 
