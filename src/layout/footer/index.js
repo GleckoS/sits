@@ -26,25 +26,25 @@ const logoAnimation = {
 }
 
 const leftColumnAnimation = {
-  animate: { transition: { staggerChildren: .1, delayChildren: .6 } }
+  animate: { transition: { staggerChildren: .075, delayChildren: .5 } }
 }
 
 const rightColumnAnimation = {
-  animate: { transition: { staggerChildren: .1, delayChildren: .6 } }
+  animate: { transition: { staggerChildren: .075, delayChildren: .5 } }
 }
 
 const leftLinkAnimation = {
-  initial: { x: -10, opacity: 0 },
-  animate: { x: 0, opacity: 1, transition: { duration: .5 } }
+  initial: { x: -6, opacity: 0 },
+  animate: { x: 0, opacity: 1, transition: { duration: .35 } }
 }
 
 const rightLinkAnimation = {
-  initial: { x: 10, opacity: 0 },
-  animate: { x: 0, opacity: 1, transition: { duration: .5 } }
+  initial: { x: 6, opacity: 0 },
+  animate: { x: 0, opacity: 1, transition: { duration: .35 } }
 }
 
 const socialColumnAnimation = {
-  animate: { transition: { staggerChildren: .1, delayChildren: 1.1 } }
+  animate: { transition: { staggerChildren: .1, delayChildren: 1 } }
 }
 
 const socialAnimation = {
