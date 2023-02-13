@@ -120,10 +120,10 @@ export default function Header() {
           }}>
           {furnitureTitle['en']}
         </Button>
-        <LeftMenu className={isLeftMenuOpened ? 'active' : ''}>
+        <LeftMenu initial={{ x: -500 }} animate={isLeftMenuOpened ? { x: 0, transition: { duration: .5 } } : { x: -500, transition: { duration: .4 } }}  >
           <Flex
             initial={{ opacity: 0 }}
-            animate={isLeftMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .6 } } : { opacity: 0 }}
+            animate={isLeftMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .3 } } : { opacity: 0 }}
           >
             <b>{furnitureTitle['en']}</b>
             <CloseButton
@@ -134,14 +134,14 @@ export default function Header() {
             />
           </Flex>
           <MenuContent>
-            <motion.div initial={{ opacity: 0, x: -10 }} animate={isLeftMenuOpened ? { opacity: 1, x: 0, transition: { duration: .4, delay: 1 } } : { opacity: 0, x: -10 }}>
+            <motion.div initial={{ opacity: 0 }} animate={isLeftMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .5 } } : { opacity: 0 }}>
               <Search
                 func={closeAll}
                 tabIndex={isLeftMenuOpened ? '0' : '-1'}
               />
             </motion.div>
             {linksLeft['en'].map((el, index) => (
-              <motion.div initial={{ opacity: 0, x: -10 }} animate={isLeftMenuOpened ? { opacity: 1, x: 0, transition: { duration: .4, delay: (1 + index * .1) } } : { opacity: 0, x: -10 }} key={el.name}>
+              <motion.div initial={{ opacity: 0, x: -10 }} animate={isLeftMenuOpened ? { opacity: 1, x: 0, transition: { duration: .35, delay: (.7 + index * .075) } } : { opacity: 0, x: -6 }} key={el.name}>
                 <Item
                   onBlur={() =>
                     index === linksLeft['en'].length - 1
@@ -191,10 +191,10 @@ export default function Header() {
             {companyTitle['en']}
           </Button>
         </div>
-        <RightMenu className={isRightMenuOpened ? 'active' : ''}>
+        <RightMenu initial={{ x: 500 }} animate={isRightMenuOpened ? { x: 0, transition: { duration: .5 } } : { x: 500, transition: { duration: .4 } }} >
           <Flex
             initial={{ opacity: 0 }}
-            animate={isRightMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .6 } } : { opacity: 0 }}>
+            animate={isRightMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .3 } } : { opacity: 0 }}>
             <CloseButton
               tabIndex={isRightMenuOpened ? '0' : '-1'}
               as='button'
@@ -205,7 +205,7 @@ export default function Header() {
           </Flex>
           <MenuContent className='reverse'>
             {linksRight['en'].map((el, index) => (
-              <motion.div initial={{ opacity: 0, x: 10 }} animate={isRightMenuOpened ? { opacity: 1, x: 0, transition: { duration: .4, delay: (1 + index * .1) } } : { opacity: 0, x: 10 }} key={el.name}>
+              <motion.div initial={{ opacity: 0, x: 6 }} animate={isRightMenuOpened ? { opacity: 1, x: 0, transition: { duration: .35, delay: (.7 + index * .075) } } : { opacity: 0, x: 6 }} key={el.name}>
                 <Item
                   onBlur={() =>
                     index === linksRight['en'].length - 1
@@ -233,7 +233,7 @@ export default function Header() {
           }}>
           <span />
         </Burger>
-        <MobileMenu className={isMobileMenuOpened ? 'active' : ''}>
+        <MobileMenu initial={{ opacity: 0 }} animate={isMobileMenuOpened ? { opacity: 1, transition: { duration: .5 } } : { opacity: 0, transition: { duration: .4 } }} className={isMobileMenuOpened ? 'active' : ''}>
           <Container className='content'>
             <Search
               func={closeAll}
@@ -413,7 +413,7 @@ const Wrapper = styled(motion.header)`
   }
 `
 
-const MobileMenu = styled.div`
+const MobileMenu = styled(motion.div)`
   display: none;
   @media (max-width: 840px) {
     display: block;
@@ -428,13 +428,9 @@ const MobileMenu = styled.div`
   transition: all var(--menu-animation);
 
   pointer-events: none;
-  opacity: 0;
-  transform: translateX(50px);
 
   &.active {
     pointer-events: all;
-    opacity: 1;
-    transform: translateX(0);
   }
 
   .wrap {
@@ -458,7 +454,7 @@ const MobileMenu = styled.div`
   }
 `
 
-const LeftMenu = styled.div`
+const LeftMenu = styled(motion.div)`
   overflow: auto;
   position: fixed;
   z-index: 111;
@@ -503,7 +499,7 @@ const MenuContent = styled(motion.div)`
   }
 `
 
-const RightMenu = styled.div`
+const RightMenu = styled(motion.div)`
   overflow: auto;
   position: fixed;
   z-index: 111;
