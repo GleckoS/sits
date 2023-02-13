@@ -5,6 +5,8 @@ import { useMemo } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { File } from "../atoms/file"
+import { AnimatePresence, motion } from "framer-motion"
+import InView from "./in-view-provider"
 
 const title = {
     en: 'Assembly instructions'
@@ -12,6 +14,32 @@ const title = {
 
 const searchPlaceholder = {
     en: 'Search'
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+}
+
+const inputAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+}
+
+const gridAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: .9 } }
+}
+
+const blockAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5 } },
+    exit: { opacity: 0 }
+}
+
+const fileAnimation = {
+    initial: { opacity: 0, backgroundSize: '0% 1px' },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3 } }
 }
 
 
@@ -70,13 +98,13 @@ export default function AssemblyInstructions() {
 
         arr.sort(function (a, b) {
             if (a.letter < b.letter) {
-              return -1;
+                return -1;
             }
             if (a.letter > b.letter) {
-              return 1;
+                return 1;
             }
             return 0;
-          });
+        });
 
         return arr
     }, [nodes])
@@ -104,7 +132,7 @@ export default function AssemblyInstructions() {
                         obj.arr.push(inEl)
                     } else {
                         let items = inEl.collections.generalCollectionInformation.assemblyInstructionFiles.filter(file => file.assemblyInstruction.title.toLowerCase().includes(value.toLowerCase()))
-                        if(items.length > 0){
+                        if (items.length > 0) {
                             obj.arr.push({
                                 title: inEl.title,
                                 collections: { generalCollectionInformation: { assemblyInstructionFiles: items } }
@@ -127,42 +155,46 @@ export default function AssemblyInstructions() {
     }
 
     return (
-        <Wrapper>
-            <Container>
-                <h2>{title['en']}</h2>
-                <Label>
-                    <input onChange={(v) => { changeFilter(v) }} placeholder={searchPlaceholder['en']} />
-                    <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                        <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                            <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
-                                <circle cx="8" cy="8" r="8" stroke="none" />
-                                <circle cx="8" cy="8" r="7" fill="none" />
+        <InView>
+            <Wrapper>
+                <Container>
+                    <motion.h2 variants={titleAnimation}>{title['en']}</motion.h2>
+                    <Label variants={inputAnimation}>
+                        <input onChange={(v) => { changeFilter(v) }} placeholder={searchPlaceholder['en']} />
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                            <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
+                                    <circle cx="8" cy="8" r="8" stroke="none" />
+                                    <circle cx="8" cy="8" r="7" fill="none" />
+                                </g>
+                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
                             </g>
-                            <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
-                        </g>
-                    </svg>
-                </Label>
-                {filtredArr?.map(el => (
-                    <Block>
-                        <span className="letter">{el.letter}</span>
-                        <div className="flex">
-                            {el.arr.map(el => (
-                                <div>
-                                    <span className="collection">{el.title}</span>
-                                    {el.collections?.generalCollectionInformation?.assemblyInstructionFiles?.map(inEl => (
-                                        <File file={inEl.assemblyInstruction} />
+                        </svg>
+                    </Label>
+                    <motion.div variants={gridAnimation}>
+                        {filtredArr?.map(el => (
+                            <Block variants={blockAnimation}>
+                                <span className="letter">{el.letter}</span>
+                                <div className="flex">
+                                    {el.arr.map(el => (
+                                        <div>
+                                            <span className="collection">{el.title}</span>
+                                            {el.collections?.generalCollectionInformation?.assemblyInstructionFiles?.map(inEl => (
+                                                <File variants={fileAnimation} file={inEl.assemblyInstruction} />
+                                            ))}
+                                        </div>
                                     ))}
                                 </div>
-                            ))}
-                        </div>
-                    </Block>
-                ))}
-            </Container>
-        </Wrapper>
+                            </Block>
+                        ))}
+                    </motion.div>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
-const Label = styled.label`
+const Label = styled(motion.label)`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -238,6 +270,6 @@ const Wrapper = styled.section`
 
 `
 
-const Block = styled.div`
+const Block = styled(motion.div)`
     margin-top: 40px;
 `

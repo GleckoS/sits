@@ -3,9 +3,20 @@ import React from "react"
 import { useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
 
 const title = {
     en: 'FAQ'
+}
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+}
+
+const questionAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
 }
 
 export default function FAQ({ data }) {
@@ -13,49 +24,51 @@ export default function FAQ({ data }) {
     const [openedQuestion, setOpenedQuestion] = useState(0)
 
     return (
-        <Wrapper>
-            <Container>
-                <h2>{title['en']}</h2>
-                <Grid>
-                    <Questions>
-                        {data.map((el, index) => (
-                            <Question open={!index} onClick={() => { setOpenedQuestion(index) }} className={index == openedQuestion ? 'active' : ''}>
-                                <summary>
-                                    <span>{el.question}</span>
-                                    <svg className="arrow" xmlns="http://www.w3.org/2000/svg" width="9.513" height="17.37" viewBox="0 0 9.513 17.37">
-                                        <path id="Path_664" data-name="Path 664" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-10051.731 -8681.662)" fill="none" stroke="#31231e" strokeWidth="1.5" />
-                                    </svg>
-                                </summary>
-                                <Answer className='active mobile' dangerouslySetInnerHTML={{ __html: el.answer }} />
-                            </Question>
-                        ))}
-                    </Questions>
-                    <AnimatePresence exitBeforeEnter>
-                        <Answers
-                            key={openedQuestion}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{
-                                type: "spring",
-                                mass: 0.35,
-                                stiffness: 75,
-                                duration: .3
-                            }}
-                        >
-                            {data.map((el, index) => {
-                                if (index == openedQuestion)
-                                    return (
-                                        <Answer
-                                            className={index == openedQuestion ? 'active desctop' : 'desctop'}
-                                            dangerouslySetInnerHTML={{ __html: el.answer }} />
-                                    )
-                            })}
-                        </Answers>
-                    </AnimatePresence>
-                </Grid>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <Container>
+                    <motion.h2 variants={titleAnimation}>{title['en']}</motion.h2>
+                    <Grid variants={questionAnimation}>
+                        <Questions >
+                            {data.map((el, index) => (
+                                <Question open={!index} onClick={() => { setOpenedQuestion(index) }} className={index == openedQuestion ? 'active' : ''}>
+                                    <summary>
+                                        <span>{el.question}</span>
+                                        <svg className="arrow" xmlns="http://www.w3.org/2000/svg" width="9.513" height="17.37" viewBox="0 0 9.513 17.37">
+                                            <path id="Path_664" data-name="Path 664" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-10051.731 -8681.662)" fill="none" stroke="#31231e" strokeWidth="1.5" />
+                                        </svg>
+                                    </summary>
+                                    <Answer className='active mobile' dangerouslySetInnerHTML={{ __html: el.answer }} />
+                                </Question>
+                            ))}
+                        </Questions>
+                        <AnimatePresence exitBeforeEnter >
+                            <Answers
+                                key={openedQuestion}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                exit={{ opacity: 0 }}
+                                transition={{
+                                    type: "spring",
+                                    mass: 0.35,
+                                    stiffness: 75,
+                                    duration: .3
+                                }}
+                            >
+                                {data.map((el, index) => {
+                                    if (index == openedQuestion)
+                                        return (
+                                            <Answer
+                                                className={index == openedQuestion ? 'active desctop' : 'desctop'}
+                                                dangerouslySetInnerHTML={{ __html: el.answer }} />
+                                        )
+                                })}
+                            </Answers>
+                        </AnimatePresence>
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -76,7 +89,7 @@ const Wrapper = styled.section`
     }
 `
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 16px;

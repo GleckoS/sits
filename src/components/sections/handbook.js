@@ -1,23 +1,46 @@
+import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { File } from "../atoms/file"
+import InView from "./in-view-provider"
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+}
+
+const textAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+}
+
+const flexAnimation = {
+    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: .9 } }
+}
+
+const fileAnimation = {
+    initial: { opacity: 0, backgroundSize: '0% 1px' },
+    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3} }
+}
 
 export default function Handbook({ data: { title, text, filesUnderText } }) {
     return (
-        <Wrappers>
-            <Container>
-                <Content>
-                    <h2>{title}</h2>
-                    <div className="text" dangerouslySetInnerHTML={{ __html: text }} />
-                    <Flex>
-                        {filesUnderText.map(el => (
-                            <File file={el.file} />
-                        ))}
-                    </Flex>
-                </Content>
-            </Container>
-        </Wrappers>
+        <InView>
+            <Wrappers>
+                <Container>
+                    <Content>
+                        <motion.h2 variants={titleAnimation}>{title}</motion.h2>
+                        <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: text }} />
+                        <Flex variants={flexAnimation}>
+                            {filesUnderText.map(el => (
+                                <File variants={fileAnimation} file={el.file} />
+                            ))}
+                        </Flex>
+                    </Content>
+                </Container>
+            </Wrappers>
+        </InView>
     )
 }
 
@@ -54,7 +77,7 @@ const Content = styled.div`
     }
 `
 
-const Flex = styled.div`
+const Flex = styled(motion.div)`
     display: flex;
     flex-wrap: wrap;
     gap: 16px;

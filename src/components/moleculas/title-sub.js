@@ -1,13 +1,22 @@
+import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
+import InView from "../sections/in-view-provider"
+
+const titleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
+}
 
 export const Title = ({ small, title }) => (
-    <Wrapper className={small ? 'small' : ''}>
-        <Container>
-            <h1>{title}</h1>
-        </Container>
-    </Wrapper>
+    <InView>
+        <Wrapper className={small ? 'small' : ''}>
+            <Container>
+                <motion.h1 variants={titleAnimation}>{title}</motion.h1>
+            </Container>
+        </Wrapper>
+    </InView>
 )
 
 const Wrapper = styled.div`
