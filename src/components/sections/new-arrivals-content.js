@@ -1,11 +1,17 @@
+import { motion } from "framer-motion"
 import React, { useMemo, useState } from "react"
 import styled from "styled-components"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import { ProductList } from "../organism/products-list"
+import InView from "./in-view-provider"
 
 const title = {
     en: 'New Arrivals'
 }
+
+const titleAnimation = textTransition(1)
+const gridAnimation = imageTransition(2)
 
 export default function Content({ data }) {
 
@@ -18,14 +24,16 @@ export default function Content({ data }) {
     }, [data])
 
     return (
-        <Wrapper>
-            <h1>{title['en']}</h1>
-            <Container>
-                <List>
-                    <ProductList setRerender={setRerender} rerender={rerender} page={page} setPage={setPage} products={products} />
-                </List>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <h1 ><motion.span variants={titleAnimation}>{title['en']}</motion.span></h1>
+                <Container>
+                    <List variants={gridAnimation}>
+                        <ProductList setRerender={setRerender} rerender={rerender} page={page} setPage={setPage} products={products} />
+                    </List>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -33,9 +41,11 @@ const Wrapper = styled.section`
     background-color: #F9F5F0;
 
     h1{
-        font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
-        font-family: 'Ivy';
-        font-weight: 300;
+        span{
+            font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
+            font-family: 'Ivy';
+            font-weight: 300;
+        }
         padding: clamp(20px, ${75 / 1194 * 100}vw, 110px) 45px clamp(45px, ${75 / 1194 * 100}vw, 110px) 45px;
         background-color: #fff;
 
@@ -49,7 +59,7 @@ const Wrapper = styled.section`
     }
 `
 
-const List = styled.div`
+const List = styled(motion.div)`
     margin-bottom: calc(-1 * clamp(45px,10.050251256281408vw,160px));
     padding: 45px 0;
 `
