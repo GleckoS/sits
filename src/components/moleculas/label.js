@@ -1,11 +1,12 @@
-import React, { useRef, useState } from "react"
+import { motion } from "framer-motion"
+import React, { useState } from "react"
 import styled from "styled-components"
 
-export const Label = ({ register, errors, name, obj, rows }) => {
+export const Label = ({ variants, register, errors, name, obj, rows }) => {
     const [isActive, setIsActive] = useState(false)
     const [inputValue, setInputValue] = useState('')
     return (
-        <Wrapper onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!inputValue) }} className={errors[name] ? 'error' : ''}>
+        <Wrapper variants={variants} onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!inputValue) }} className={errors[name] ? 'error' : ''}>
             <span className={isActive ? 'active' : ''}>{obj.placeholder['en']}</span>
             {rows
                 ? <textarea value={inputValue} rows={rows} {...register(name, {
@@ -18,7 +19,7 @@ export const Label = ({ register, errors, name, obj, rows }) => {
     )
 }
 
-const Wrapper = styled.label`
+const Wrapper = styled(motion.label)`
     position: relative;
 
     span{
@@ -30,10 +31,10 @@ const Wrapper = styled.label`
         left: 0;
         top: 5px;
         pointer-events: none;
-        transition: all .4s ease-out;
+        transition: all .3s ease-out;
 
         &.active{
-        font-size: clamp(12px, ${16 / 1366 * 100}vw, 16px);
+            font-size: clamp(12px, ${16 / 1366 * 100}vw, 16px);
             top: 0;
             transform: translateY(-100%);
         }

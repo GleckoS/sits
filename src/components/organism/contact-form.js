@@ -108,7 +108,7 @@ const reply = {
     en: 'We’ll get back to you as soon as possible.'
 }
 
-export const Form = ({titleAnimation, formAnimation}) => {
+export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [isSended, setIsSended] = useState(false)
 
@@ -140,17 +140,17 @@ export const Form = ({titleAnimation, formAnimation}) => {
         <Wrapper className="form">
             <motion.h1 variants={titleAnimation}>{title['en']}</motion.h1>
             <motion.form variants={formAnimation} onSubmit={handleSubmit(onSubmit)}>
-                <Label register={register} errors={errors} name='email' obj={email} />
-                <Label register={register} errors={errors} name='name' obj={name} />
-                <Label register={register} errors={errors} name='country' obj={country} />
-                <Label register={register} errors={errors} name='subject' obj={subject} />
-                <Label register={register} errors={errors} name='message' obj={message} rows='1' />
-                <Checkbox>
+                <Label variants={inputAnimation} register={register} errors={errors} name='email' obj={email} />
+                <Label variants={inputAnimation} register={register} errors={errors} name='name' obj={name} />
+                <Label variants={inputAnimation} register={register} errors={errors} name='country' obj={country} />
+                <Label variants={inputAnimation} register={register} errors={errors} name='subject' obj={subject} />
+                <Label variants={inputAnimation} register={register} errors={errors} name='message' obj={message} rows='1' />
+                <Checkbox variants={inputAnimation}>
                     <input {...register('check', { required: true })} type='checkbox' />
                     <div className="check" />
                     <span>By sending message, I agree to the <Link to='/privacy-policy/' className='underline'>privacy policy.</Link></span>
                 </Checkbox>
-                <Submit>{submit['en']}</Submit>
+                <Submit variants={inputAnimation}>{submit['en']}</Submit>
                 <Success className={isSended ? 'sended' : ""}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="71.15" height="71.174" viewBox="0 0 71.15 71.174">
                         <g id="checkmark.circle" opacity="0.2">
@@ -167,7 +167,7 @@ export const Form = ({titleAnimation, formAnimation}) => {
     )
 }
 
-const Checkbox = styled.label`
+const Checkbox = styled(motion.label)`
     display: grid;
     grid-gap: 8px;
     grid-template-columns: auto 1fr;
@@ -341,7 +341,7 @@ const Wrapper = styled.div`
     }
 `
 
-const Submit = styled.button`
+const Submit = styled(motion.button)`
     width: fit-content;
     padding: 17px;
     width: 100%;

@@ -4,45 +4,42 @@ import { Container } from "../atoms/container"
 import { Form } from "../organism/contact-form"
 import { motion } from "framer-motion"
 import InView from "./in-view-provider"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
-}
+const titleAnimation = textTransition(1)
 
 const formAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .6 } }
+    initial: { opacity: 1 },
+    animate: { transition: { staggerChildren: .1, delayChildren: .5 } }
 }
 
-const titleSecondAnimation = {
+const inputAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: 1.1 } }
+    animate: { opacity: 1, transition: { duration: .6 } }
 }
 
-const textSecondAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: 1.4 } }
-}
+const titleSecondAnimation = textTransition(6)
 
-const titleThirdAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: 1.9 } }
-}
+const textSecondAnimation = textTransition(7)
 
-const textThirdAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: 2.2 } }
-}
+const titleThirdAnimation = textTransition(8)
+
+const textThirdAnimation = textTransition(9)
 
 const gridAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: 2.7 } }
+    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: 2.1 } }
 }
 
 const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0% 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3 } }
+    animate: {
+        opacity: 1, transition: { duration: .4 },
+        transitionEnd: {
+            backgroundSize: '80% 1px',
+            transition: { duration: .4 }
+        }
+    }
 }
 
 export default function Content({ data: { leftColumnTitle, leftColumnContent, rightColumnTitle, rightColumnContent, rightColumnFilesToUpload } }) {
@@ -51,7 +48,7 @@ export default function Content({ data: { leftColumnTitle, leftColumnContent, ri
             <Wrapper>
                 <Container className="container">
                     <Grid>
-                        <Form titleAnimation={titleAnimation} formAnimation={formAnimation} />
+                        <Form inputAnimation={inputAnimation} titleAnimation={titleAnimation} formAnimation={formAnimation} />
                         <div className="left">
                             <motion.h2 variants={titleSecondAnimation}>{leftColumnTitle}</motion.h2>
                             <motion.div variants={textSecondAnimation} className="content" dangerouslySetInnerHTML={{ __html: leftColumnContent }} />
