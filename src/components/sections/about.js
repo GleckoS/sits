@@ -3,31 +3,16 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
 
-const imageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .6, delay: .3 } }
-}
-
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .5 } }
-}
-
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .7 } }
-}
-
-const linkAnimation = {
-    initial: { opacity: 0, backgroundSize: '0 1px' },
-    animate: { opacity: 1, transition: { duration: .4, delay: .9 }, transitionEnd: { backgroundSize: '80% 1px' } }
-}
+const imageAnimation = imageTransition(1)
+const titleAnimation = textTransition(2)
+const textAnimation = textTransition(3)
+const linkAnimation = linkTransition(4)
 
 export default function About({ color, data: { sectionTitle, text, linkUnderText, imageOnTheLeftSide } }) {
-
     return (
         <InView>
             <Wrapper className={color ? 'alt' : ''}>

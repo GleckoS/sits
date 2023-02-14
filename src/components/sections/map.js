@@ -8,6 +8,7 @@ import MarkerClusterGroup from 'react-leaflet-markercluster'
 import Marker from "../moleculas/map-marker"
 import { motion } from "framer-motion"
 import InView from "./in-view-provider"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 // import { FullscreenControl } from "react-leaflet-fullscreen";
 require('react-leaflet-markercluster/dist/styles.min.css')
 
@@ -23,20 +24,9 @@ const buttonTitle = {
     en: 'WEBSITE'
 }
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
-}
-
-const mapAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .6 } }
-}
-
-const searchAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: 1.1 } }
-}
+const titleAnimation = textTransition(1)
+const mapAnimation = imageTransition(2)
+const searchAnimation = imageTransition(3)
 
 export default function Map() {
 

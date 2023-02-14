@@ -1,13 +1,11 @@
 import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
+import { textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import InView from "../sections/in-view-provider"
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
-}
+const titleAnimation = textTransition(1)
 
 export const Title = ({ small, title }) => (
     <InView>

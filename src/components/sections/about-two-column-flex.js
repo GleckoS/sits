@@ -2,31 +2,19 @@ import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import InView from "./in-view-provider"
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
-}
-
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
-}
-
-const imageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
-}
-
+const titleAnimation = textTransition(1)
+const textAnimation = textTransition(2)
+const imageAnimation = imageTransition(3)
 const svgAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: 1.4 } }
+    animate: { opacity: 1, transition: { staggerChildren: .075, delayChildren: 1 } }
 }
-
 const svgItemAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: .2, transition: { duration: .4 } }
+    animate: { opacity: .2, transition: { duration: .6 } }
 }
 
 export default function TwoColumnFlex({ data: { textUnderTitle, sectionTitle, imageOnTheLeft } }) {

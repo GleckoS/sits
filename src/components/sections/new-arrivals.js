@@ -10,6 +10,7 @@ import { useState } from "react";
 import { navigate } from "gatsby";
 import { motion } from "framer-motion";
 import InView from "./in-view-provider";
+import { imageTransition, textTransition } from "../../helpers/animation-controller";
 
 const getElCount = () => {
     if (typeof window !== 'undefined') {
@@ -19,25 +20,10 @@ const getElCount = () => {
     return 0
 }
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .3 } }
-}
-
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .5 } }
-}
-
-const sliderAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .6, delay: .7 } }
-}
-
-const sliderBarAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .9 } }
-}
+const titleAnimation = textTransition(1)
+const textAnimation = textTransition(2)
+const sliderAnimation = imageTransition(3)
+const sliderBarAnimation = imageTransition(5)
 
 export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {
     const slickRef = useRef(null);

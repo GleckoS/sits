@@ -1,18 +1,12 @@
 import { motion } from "framer-motion"
 import React, { useRef } from "react"
 import styled from "styled-components"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
 
-const imageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
-}
-
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .8 } }
-}
+const imageAnimation = imageTransition(1)
+const titleAnimation = textTransition(2)
 
 export default function Hero({ data: { pageTitle, backgroundImage, backgroundVideo } }) {
     const videoRef = useRef();
@@ -40,7 +34,8 @@ export default function Hero({ data: { pageTitle, backgroundImage, backgroundVid
 const Wrapper = styled.section` 
     position: relative;
     overflow: hidden;
-    max-height: calc(100vh - 95px);
+    max-height: calc(100vh - 92px);
+    transform: translateY(-3px);
     .image{
         width: 100%;
         max-width: 1920px;

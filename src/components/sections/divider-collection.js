@@ -1,35 +1,17 @@
-import { motion} from "framer-motion"
+import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .3 } }
-}
-
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .5 } }
-}
-
-const linkAnimation = {
-    initial: { opacity: 0, backgroundSize: '0 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .4, delay: .7 } }
-}
-
-const imageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .6, delay: 1.1 } }
-}
-
-const secondImageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .6, delay: 1.1 } }
-}
+const titleAnimation = textTransition(1)
+const textAnimation = textTransition(2)
+const linkAnimation = linkTransition(3)
+const imageAnimation = imageTransition(6)
+const secondImageAnimation = imageTransition(6)
 
 
 export default function DividerCollection({ data: { sectionTitle, text, link, squareImage, rectangularImageOnTheRight } }) {

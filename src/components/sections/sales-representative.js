@@ -6,40 +6,36 @@ import { csvParser } from "../../helpers/csvParser"
 import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
 import { motion } from "framer-motion"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 
 const searchPlaceholder = {
     en: 'Search'
 }
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
-}
-
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
-}
-
-const inputAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .9 } }
-}
+const titleAnimation = textTransition(1)
+const textAnimation = textTransition(2)
+const inputAnimation = imageTransition(3)
 
 const gridAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: .9 } }
+    animate: { opacity: 1, transition: { staggerChildren: .075, delayChildren: .9 } }
 }
 
 const blockAnimation = {
     initial: { opacity: 0 },
     animate: { opacity: 1, transition: { duration: .5 } },
-    exit: { opacity: 0 }
 }
 
 const fileAnimation = {
     initial: { opacity: 0, backgroundSize: '0% 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3 } }
+    animate: {
+        opacity: 1, 
+        transition: { duration: .4 },
+        transitionEnd: {
+            backgroundSize: '80% 1px',
+            transition: { duration: .4 }
+        }
+    }
 }
 
 export default function Content({ data: { title, salesRepresentative: { textUnderPageTitle, csvFileSales } } }) {

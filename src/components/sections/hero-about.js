@@ -2,18 +2,12 @@ import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
 
-const imageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
-}
-
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .8 } }
-}
+const imageAnimation = imageTransition(1)
+const titleAnimation = textTransition(3, 'slow')
 
 export default function Hero({ data: { pageTitle, backgroundImage } }) {
 

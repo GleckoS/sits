@@ -2,17 +2,11 @@ import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import InView from "./in-view-provider"
 
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .3 } }
-}
-
-const imageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .8 } }
-}
+const textAnimation = textTransition(1)
+const imageAnimation = imageTransition(2)
 
 export default function TwoColumnGray({ data: { textOnTheRight, imageOnTheLeft } }) {
     return (

@@ -14,13 +14,19 @@ const gridAnimation = {
 
 const imageAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3 } }
-
+    animate: { opacity: 1, transition: { duration: .6 } }
 }
 
 const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0% 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3 } }
+    animate: {
+        opacity: 1, 
+        transition: { duration: .6 },
+        transitionEnd: {
+            backgroundSize: '80% 1px',
+            transition: { duration: .6 }
+        }
+    }
 }
 
 

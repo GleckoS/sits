@@ -3,27 +3,12 @@ import React from "react"
 import styled from "styled-components"
 import { motion } from "framer-motion"
 import InView from "./in-view-provider"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
-}
-
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
-}
-
-const firstImageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: .9 } }
-}
-
-const secondImageAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5, delay: 1.4 } }
-}
-
+const titleAnimation = textTransition(1)
+const textAnimation = textTransition(2)
+const firstImageAnimation = imageTransition(3)
+const secondImageAnimation = imageTransition(4)
 
 export default function Grid({ data: { sectionTitle, textUnderTitle, imageOnTheLeft, imageUnderSection } }) {
     return (

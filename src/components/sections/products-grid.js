@@ -3,23 +3,13 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .3 } }
-}
-
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .4, delay: .5 } }
-}
-
-const gridAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .6, delay: .7 } }
-}
+const titleAnimation = textTransition(1)
+const textAnimation = textTransition(2)
+const gridAnimation = imageTransition(3)
 
 export default function ProductGrid({ title, data: {
     sectionTitle, text,
