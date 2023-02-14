@@ -41,4 +41,9 @@ const Wrapper = styled.section`
 const Grid = styled.div`
     display: grid;
     grid-gap: clamp(80px, ${100 / 1194 * 100}vw, 140px);
+
+.gatsby-image-wrapper{
+    width: 100%;
+    height: 100%;
+}
 `

@@ -2,15 +2,30 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
 import { TextBlock } from "../moleculas/best-sellers-grid-text-block"
+import InView from "../sections/in-view-provider"
+import { motion } from "framer-motion"
+import { imageTransition } from "../../helpers/animation-controller"
+
+const imageAnimation = imageTransition(1)
 
 export const Third = ({ data: { slug, title, collections: { collectionBestsellerImageGrid } } }) => (
-    <Wrapper>
-        <TextBlock title={title} slug={slug} description={collectionBestsellerImageGrid.collectionShortBestsellerPageDescription} />
-        <GatsbyImage className="s" image={collectionBestsellerImageGrid.smallSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallSquare.altText} />
-        <GatsbyImage className="b desctop" image={collectionBestsellerImageGrid.bigSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.bigSquare.altText} />
-        <GatsbyImage className="l desctop" image={collectionBestsellerImageGrid.smallLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallLandscape.altText} />
-        <GatsbyImage className="b tablet" image={collectionBestsellerImageGrid.smallLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallLandscape.altText} />
-    </Wrapper>
+    <InView>
+        <Wrapper>
+            <TextBlock title={title} slug={slug} description={collectionBestsellerImageGrid.collectionShortBestsellerPageDescription} />
+            <motion.div variants={imageAnimation} className="s" >
+                <GatsbyImage image={collectionBestsellerImageGrid.smallSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallSquare.altText} />
+            </motion.div>
+            <motion.div variants={imageAnimation} className="b desctop" >
+                <GatsbyImage image={collectionBestsellerImageGrid.bigSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.bigSquare.altText} />
+            </motion.div >
+            <motion.div variants={imageAnimation} className="l desctop">
+                <GatsbyImage image={collectionBestsellerImageGrid.smallLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallLandscape.altText} />
+            </motion.div>
+            <motion.div variants={imageAnimation} className="b tablet" >
+                <GatsbyImage image={collectionBestsellerImageGrid.smallLandscape.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallLandscape.altText} />
+            </motion.div>
+        </Wrapper>
+    </InView>
 )
 
 const Wrapper = styled.div`

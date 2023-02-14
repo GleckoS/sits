@@ -1,12 +1,20 @@
+import { motion } from 'framer-motion'
 import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
+import { linkTransition, textTransition } from '../../helpers/animation-controller'
+
+const titleAnimation = textTransition(3)
+const textAnimation = textTransition(4)
+const linkAnimation = linkTransition(5)
 
 export const TextBlock = ({ title, description, slug }) => (
     <Wrapper className="t">
-        <h2 className="title">{title}</h2>
-        <div className="text" dangerouslySetInnerHTML={{ __html: description }}></div>
-        <Link className="link" to={'/collection/' + slug + '/'}>EXPLORE</Link>
+        <motion.h2 variants={titleAnimation} className="title">{title}</motion.h2>
+        <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: description }} />
+        <motion.div className='underline' variants={linkAnimation}>
+            <Link to={'/collection/' + slug + '/'}>EXPLORE</Link>
+        </motion.div>
     </Wrapper>
 )
 
@@ -33,7 +41,6 @@ const Wrapper = styled.div`
         font-family: 'Ivy';
         font-size: clamp(36px, ${36 / 1240 * 100}vw, 40px);
         font-weight: 300;
-        text-decoration: underline;
         margin-bottom: clamp(12px, ${12 / 1194 * 100}vw, 24px);
 
         @media (max-width: 1240px) {

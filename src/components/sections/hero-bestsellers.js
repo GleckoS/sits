@@ -1,11 +1,18 @@
-import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useEffect, useRef, useState } from "react"
-import styled from "styled-components"
+// import { GatsbyImage } from "gatsby-plugin-image"
+// import React, { useEffect, useRef, useState } from "react"
+import { motion } from "framer-motion"
+import React from "react"
+import styled from "styled-components"  
+import { textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
 
-const title = {
-    en: 'Perhaps inspirational video content?'
-}
+// const title = {
+//     en: 'Perhaps inspirational video content?'
+// }
+
+const titleAnimation = textTransition(1, 'slow')
+const textAnimation = textTransition(1, 'slow')
 
 export default function Hero({ data: { backgroundVideo, pageTitle, text, backgroundImage } }) {
 
@@ -29,8 +36,9 @@ export default function Hero({ data: { backgroundVideo, pageTitle, text, backgro
     // }, [])
 
     return (
-        <Wrapper>
-            {/* <Video onClick={() => { videoState() }}>
+        <InView>
+            <Wrapper>
+                {/* <Video onClick={() => { videoState() }}>
                 <GatsbyImage className="background image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
                 <video ref={videoRef} className="background video" playsInline muted loop poster={backgroundImage.localFile.publicURL} >
                     <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
@@ -47,13 +55,14 @@ export default function Hero({ data: { backgroundVideo, pageTitle, text, backgro
                     </button>
                 </div>
             </Video> */}
-            <Container>
-                <div className="content">
-                    <h1 className="title">{pageTitle}</h1>
-                    {text && <p>{text}</p>}
-                </div>
-            </Container>
-        </Wrapper>
+                <Container>
+                    <div className="content">
+                        <motion.h1 variants={titleAnimation} className="title">{pageTitle}</motion.h1>
+                        {text && <motion.p variants={textAnimation}>{text}</motion.p>}
+                    </div>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -170,7 +179,6 @@ const Wrapper = styled.section`
         font-family: 'Ivy';
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-weight: 300;
-        text-decoration: underline;
         text-align: center;
     }
 
