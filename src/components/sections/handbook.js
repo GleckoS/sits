@@ -1,27 +1,27 @@
 import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
+import { textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import { File } from "../atoms/file"
 import InView from "./in-view-provider"
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
-}
-
-const textAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
-}
-
+const titleAnimation = textTransition(1)
+const textAnimation = textTransition(2)
 const flexAnimation = {
-    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: .9 } }
+    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: .7 } }
 }
 
 const fileAnimation = {
     initial: { opacity: 0, backgroundSize: '0% 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3} }
+    animate: {
+        opacity: 1,
+        transition: { duration: .4 },
+        transitionEnd: {
+            backgroundSize: '80% 1px',
+            transition: { duration: .4 }
+        }
+    }
 }
 
 export default function Handbook({ data: { title, text, filesUnderText } }) {

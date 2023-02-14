@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from "framer-motion"
 import React from "react"
 import { useState } from "react"
 import styled from "styled-components"
+import { textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
 
@@ -9,14 +10,27 @@ const title = {
     en: 'FAQ'
 }
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
+const titleAnimation = textTransition(1)
+
+const questionGridAnimation = {
+    animate: { transition: { staggerChildren: .1, delayChildren: .5 } }
 }
 
 const questionAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
+    animate: { opacity: 1, transition: { duration: .4 } }
+}
+
+const questionTextAnimation = {
+    initial: { opacity: 0, x: -10 },
+    animate: { opacity: 1, x: 0, transition: { duration: .4 } }
+}
+
+const answerAnimation = (count) => {
+    return {
+        initial: { opacity: 0 },
+        animate: { opacity: 1, transition: { duration: .6, delay: .9 + (.1 * (count - 1)) } }
+    }
 }
 
 export default function FAQ({ data }) {
@@ -28,12 +42,12 @@ export default function FAQ({ data }) {
             <Wrapper>
                 <Container>
                     <motion.h2 variants={titleAnimation}>{title['en']}</motion.h2>
-                    <Grid variants={questionAnimation}>
-                        <Questions >
+                    <Grid >
+                        <Questions variants={questionGridAnimation}>
                             {data.map((el, index) => (
-                                <Question open={!index} onClick={() => { setOpenedQuestion(index) }} className={index == openedQuestion ? 'active' : ''}>
+                                <Question variants={questionAnimation} open={!index} onClick={() => { setOpenedQuestion(index) }} className={index == openedQuestion ? 'active' : ''}>
                                     <summary>
-                                        <span>{el.question}</span>
+                                        <motion.span variants={questionTextAnimation}>{el.question}</motion.span>
                                         <svg className="arrow" xmlns="http://www.w3.org/2000/svg" width="9.513" height="17.37" viewBox="0 0 9.513 17.37">
                                             <path id="Path_664" data-name="Path 664" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-10051.731 -8681.662)" fill="none" stroke="#31231e" strokeWidth="1.5" />
                                         </svg>
@@ -42,29 +56,31 @@ export default function FAQ({ data }) {
                                 </Question>
                             ))}
                         </Questions>
-                        <AnimatePresence exitBeforeEnter >
-                            <Answers
-                                key={openedQuestion}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{
-                                    type: "spring",
-                                    mass: 0.35,
-                                    stiffness: 75,
-                                    duration: .3
-                                }}
-                            >
-                                {data.map((el, index) => {
-                                    if (index == openedQuestion)
-                                        return (
-                                            <Answer
-                                                className={index == openedQuestion ? 'active desctop' : 'desctop'}
-                                                dangerouslySetInnerHTML={{ __html: el.answer }} />
-                                        )
-                                })}
-                            </Answers>
-                        </AnimatePresence>
+                        <motion.div className="wrap-ans" variants={answerAnimation(data.length)}>
+                            <AnimatePresence exitBeforeEnter >
+                                <Answers
+                                    key={openedQuestion}
+                                    initial={{ opacity: 0 }}
+                                    animate={{ opacity: 1 }}
+                                    exit={{ opacity: 0 }}
+                                    transition={{
+                                        type: "spring",
+                                        mass: 0.35,
+                                        stiffness: 75,
+                                        duration: .3
+                                    }}
+                                >
+                                    {data.map((el, index) => {
+                                        if (index == openedQuestion)
+                                            return (
+                                                <Answer
+                                                    className={index == openedQuestion ? 'active desctop' : 'desctop'}
+                                                    dangerouslySetInnerHTML={{ __html: el.answer }} />
+                                            )
+                                    })}
+                                </Answers>
+                            </AnimatePresence>
+                        </motion.div>
                     </Grid>
                 </Container>
             </Wrapper>
@@ -87,9 +103,13 @@ const Wrapper = styled.section`
     details > summary::-webkit-details-marker {
         display: none;
     }
+
+    .wrap-ans{
+        height: 100%;
+    }
 `
 
-const Grid = styled(motion.div)`
+const Grid = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 16px;
@@ -105,6 +125,7 @@ const Grid = styled(motion.div)`
 const Answers = styled(motion.div)`
     padding: 32px;
     background-color: #F9F5F0;
+    height: 100%;
 
     @media (max-width: 1194px) {
         display: none !important;
@@ -205,14 +226,14 @@ const Answer = styled.div`
     }
 `
 
-const Questions = styled.div`
+const Questions = styled(motion.div)`
 
     @media (max-width: 640px) {
         margin: 0 -24px;
     }
 `
 
-const Question = styled.details`
+const Question = styled(motion.details)`
     border: none;
     background-color: transparent;
     border-top: 1px solid #31231E;

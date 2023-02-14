@@ -7,6 +7,7 @@ import { Container } from "../atoms/container"
 import { File } from "../atoms/file"
 import { motion } from "framer-motion"
 import InView from "./in-view-provider"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 
 const title = {
     en: 'Assembly instructions'
@@ -16,30 +17,30 @@ const searchPlaceholder = {
     en: 'Search'
 }
 
-const titleAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .3 } }
-}
+const titleAnimation = textTransition(1)
 
-const inputAnimation = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .3, delay: .6 } }
-}
+const inputAnimation = imageTransition(2)
 
 const gridAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { staggerChildren: .1, delayChildren: .9 } }
+    animate: { opacity: 1, transition: { staggerChildren: 0, delayChildren: .9 } }
 }
 
 const blockAnimation = {
     initial: { opacity: 0 },
-    animate: { opacity: 1, transition: { duration: .5 } },
-    exit: { opacity: 0 }
+    animate: { opacity: 1, transition: { duration: .6 } },
 }
 
 const fileAnimation = {
     initial: { opacity: 0, backgroundSize: '0% 1px' },
-    animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .3 } }
+    animate: {
+        opacity: 1,
+        transition: { duration: .4 },
+        transitionEnd: {
+            backgroundSize: '80% 1px',
+            transition: { duration: .4 }
+        }
+    }
 }
 
 
