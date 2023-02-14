@@ -9,6 +9,9 @@ import scrollLock from './../../helpers/scroll-lock'
 import { partSlugDeTransform, partSlugTransform } from "../../helpers/slug-maker"
 import { Title } from "../../components/moleculas/title-sub"
 import { useQueryParam } from "../../hooks/query-params"
+import { imageTransition } from "../../helpers/animation-controller"
+import { motion } from "framer-motion"
+import InView from "./in-view-provider"
 
 const sortBy = {
     en: [
@@ -150,6 +153,10 @@ const searchFilterTitle = {
     en: 'Search: '
 }
 
+const filterItemAnimation = imageTransition(-1.5)
+const filterAnimation = imageTransition(1)
+const gridAnimation = imageTransition(1)
+
 export default function MaterialsArchive({ location, materials }) {
     const [sort, setSort] = useQueryParam('sort', 'Popular')
     const [color, setColor] = useQueryParam('color', 'All')
@@ -288,85 +295,94 @@ export default function MaterialsArchive({ location, materials }) {
     }, [isMobileFilterOpened])
 
     return (
-        <Wrapper>
-            <FilterComponent
-                view={view['en']}
-                reset={reset['en']}
-                featuresTitle={featuresTitle['en']}
-                texturesTitle={texturesTitle['en']}
-                colorRangeTitle={colorRangeTitle['en']}
-                sortByTitle={sortByTitle['en']}
-                filterTitle={filterTitle['en']}
-                sortFilterTitle={sortFilterTitle['en']}
-                sortBy={sortBy['en']}
-                colorRange={colorRange['en']}
-                texturesArr={texturesArr['en']}
-                featuresArr={featuresArr['en']}
-                setSort={(v) => { setSort(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
-                setColor={(v) => { setColor(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
-                setTextures={(v) => { setTextures(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
-                setFeatures={(v) => { setFeatures(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
-                setMobileFilterOpened={setMobileFilterOpened}
-                sort={partSlugDeTransform(sort)}
-                color={partSlugDeTransform(color)}
-                textures={partSlugDeTransform(textures)}
-                features={partSlugDeTransform(features)}
-                isMobileFilterOpened={isMobileFilterOpened}
-                clearAll={clearAll}
-                inputValue={inputValue}
-                setInputValue={setInputValue}
-                setSearch={setSearch}
-                openedFilter={openedFilter}
-                setOpenedFilter={setOpenedFilter}
-            />
-            <Title small={true} title={'Materials'} />
-            <Container>
-                <ActiveFilters>
-                    {color !== 'All' && (
-                        <FilterItem onClick={() => { setColor('All') }}>
-                            {/* replace capital letters with space and small letter because of bug in wp */}
-                            {partSlugDeTransform(color.replace(/([A-Z])/g, ' $1').trim())}
-                            <CloseButton tabIndex={-1} />
-                        </FilterItem>
-                    )}
-                    {textures !== 'All' && (
-                        <FilterItem onClick={() => { setTextures('All') }}>
-                            {partSlugDeTransform(textures)}
-                            <CloseButton tabIndex={-1} />
-                        </FilterItem>
-                    )}
-                    {features !== 'All' && (
-                        <FilterItem onClick={() => { setFeatures('All') }}>
-                            {partSlugDeTransform(features)}
-                            <CloseButton tabIndex={-1} />
-                        </FilterItem>
-                    )}
-                    {(color !== 'All' || textures !== 'All' || features !== 'All') && (
-                        <FilterItem onClick={() => { clearAll('') }} className="close">
-                            {clearAllTitle['en']}
-                            <CloseButton tabIndex={-1} />
-                        </FilterItem>
-                    )}
-                    {search !== '' && (
-                        <FilterItem onClick={() => { setSearch('') }}>
-                            {searchFilterTitle['en']}{search}
-                            <CloseButton tabIndex={-1} />
-                        </FilterItem>
-                    )}
-                </ActiveFilters>
-                {filtredProducts.length > 0
-                    ? <MaterialList page={page} setPage={setPage} color={color} materials={filtredProducts} />
-                    : <NoResults>
-                        <h2>{noResultTitle['en']}</h2>
-                        <p>{noResultMessage['en']}</p>
-                    </NoResults>
-                }
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <FilterComponent
+                    filterAnimation={filterAnimation}
+                    view={view['en']}
+                    reset={reset['en']}
+                    featuresTitle={featuresTitle['en']}
+                    texturesTitle={texturesTitle['en']}
+                    colorRangeTitle={colorRangeTitle['en']}
+                    sortByTitle={sortByTitle['en']}
+                    filterTitle={filterTitle['en']}
+                    sortFilterTitle={sortFilterTitle['en']}
+                    sortBy={sortBy['en']}
+                    colorRange={colorRange['en']}
+                    texturesArr={texturesArr['en']}
+                    featuresArr={featuresArr['en']}
+                    setSort={(v) => { setSort(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                    setColor={(v) => { setColor(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                    setTextures={(v) => { setTextures(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                    setFeatures={(v) => { setFeatures(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                    setMobileFilterOpened={setMobileFilterOpened}
+                    sort={partSlugDeTransform(sort)}
+                    color={partSlugDeTransform(color)}
+                    textures={partSlugDeTransform(textures)}
+                    features={partSlugDeTransform(features)}
+                    isMobileFilterOpened={isMobileFilterOpened}
+                    clearAll={clearAll}
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
+                    setSearch={setSearch}
+                    openedFilter={openedFilter}
+                    setOpenedFilter={setOpenedFilter}
+                />
+                <Title small={true} title={'Materials'} />
+                <Container>
+                    <ActiveFilters variants={gridAnimation} >
+                        {color !== 'All' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setColor('All') }}>
+                                {/* replace capital letters with space and small letter because of bug in wp */}
+                                {partSlugDeTransform(color.replace(/([A-Z])/g, ' $1').trim())}
+                                <CloseButton tabIndex={-1} />
+                            </FilterItem>
+                        )}
+                        {textures !== 'All' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setTextures('All') }}>
+                                {partSlugDeTransform(textures)}
+                                <CloseButton tabIndex={-1} />
+                            </FilterItem>
+                        )}
+                        {features !== 'All' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setFeatures('All') }}>
+                                {partSlugDeTransform(features)}
+                                <CloseButton tabIndex={-1} />
+                            </FilterItem>
+                        )}
+                        {(color !== 'All' || textures !== 'All' || features !== 'All') && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { clearAll('') }} className="close">
+                                {clearAllTitle['en']}
+                                <CloseButton tabIndex={-1} />
+                            </FilterItem>
+                        )}
+                        {search !== '' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
+                                {searchFilterTitle['en']}{search}
+                                <CloseButton tabIndex={-1} />
+                            </FilterItem>
+                        )}
+                    </ActiveFilters>
+                    {filtredProducts.length > 0
+                        ? (
+                            <motion.div variants={gridAnimation} >
+                                <MaterialList page={page} setPage={setPage} color={color} materials={filtredProducts} />
+                            </motion.div>
+                        )
+                        : (
+                            <NoResults variants={gridAnimation} >
+                                <h2>{noResultTitle['en']}</h2>
+                                <p>{noResultMessage['en']}</p>
+                            </NoResults>
+                        )
+                    }
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
-const NoResults = styled.div`
+const NoResults = styled(motion.div)`
     padding: 120px 0 120px 0;
     text-align: center;
     max-width: 926px;
@@ -399,14 +415,14 @@ const Wrapper = styled.div`
     }
 `
 
-const ActiveFilters = styled.div`
+const ActiveFilters = styled(motion.div)`
     margin: 20px 0;
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
 `
 
-const FilterItem = styled.button`
+const FilterItem = styled(motion.button)`
     cursor: pointer;
     border: none;
     padding: 8px 20px;

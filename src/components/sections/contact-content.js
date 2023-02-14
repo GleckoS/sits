@@ -4,7 +4,7 @@ import { Container } from "../atoms/container"
 import { Form } from "../organism/contact-form"
 import { motion } from "framer-motion"
 import InView from "./in-view-provider"
-import { imageTransition, textTransition } from "../../helpers/animation-controller"
+import { textTransition } from "../../helpers/animation-controller"
 
 const titleAnimation = textTransition(1)
 

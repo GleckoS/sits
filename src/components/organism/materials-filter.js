@@ -3,12 +3,14 @@ import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { DropDown } from "../moleculas/dropdown"
 import { CloseButton } from './../atoms/close-button'
+import { motion } from "framer-motion"
 
 const searchTitle = {
     en: 'Search'
 }
 
 export const FilterComponent = ({
+    filterAnimation,
     sortBy,
     colorRange,
     texturesArr,
@@ -105,7 +107,7 @@ export const FilterComponent = ({
                 </button>
             </Flex>
         </MobileFilters>
-        <Filter>
+        <Filter variants={filterAnimation}>
             <Container className="container">
                 <div className="left">
                     <DropDown id='1' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
@@ -290,7 +292,7 @@ const MobileFilters = styled.div`
     }
 `
 
-const Filter = styled.div`
+const Filter = styled(motion.div)`
     position: sticky;
     z-index: 101;
     top: 95px;

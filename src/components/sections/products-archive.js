@@ -9,6 +9,9 @@ import scrollLock from './../../helpers/scroll-lock'
 import { partSlugDeTransform, partSlugTransform } from "../../helpers/slug-maker"
 import { Title } from "../../components/moleculas/title-sub"
 import { useQueryParam } from "../../hooks/query-params"
+import InView from "./in-view-provider"
+import { imageTransition } from "../../helpers/animation-controller"
+import { motion } from "framer-motion"
 
 const sortBy = {
     en: [
@@ -120,6 +123,9 @@ const searchFilterTitle = {
     en: 'Search: '
 }
 
+const filterItemAnimation = imageTransition(-1.5)
+const filterAnimation = imageTransition(1)
+const gridAnimation = imageTransition(1)
 
 export default function ProductArchive({ location, pageContext: { type: name, title }, products }) {
     const [sort, setSort] = useQueryParam('sort', 'Popular')
@@ -152,6 +158,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
         setType('All')
         setUpholsterys('All')
         setPage('1')
+        setSearch('')
     }
 
     const filtredProducts = useMemo(() => {
@@ -256,86 +263,93 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
     }, [isMobileFilterOpened])
 
     return (
-        <Wrapper>
-            <FilterComponent
-                filterTitle={filterTitle['en']}
-                sortByTitle={sortByTitle['en']}
-                sortBy={sortBy['en']}
-                name={name}
-                typeTitle={typeTitle['en']}
-                sofasTypes={sofasTypes['en']}
-                upholsterysTitle={upholsterysTitle['en']}
-                upholsterysArr={upholsterysArr['en']}
-                coversTitle={coversTitle['en']}
-                covesArr={covesArr['en']}
-                reset={reset['en']}
-                view={view['en']}
-                sort={partSlugDeTransform(sort)}
-                type={partSlugDeTransform(type)}
-                upholsterys={partSlugDeTransform(upholsterys)}
-                cover={partSlugDeTransform(cover)}
-                sortFilterTitle={sortFilterTitle['en']}
-                setMobileFilterOpened={setMobileFilterOpened}
-                isMobileFilterOpened={isMobileFilterOpened}
-                setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
-                setCover={(v) => { setCover(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
-                setType={(v) => { setType(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
-                setSort={(v) => { setSort(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
-                clearAll={clearAll}
-                inputValue={inputValue}
-                setInputValue={setInputValue}
-                setSearch={setSearch}
-                setOpenedFilter={setOpenedFilter}
-                openedFilter={openedFilter}
-            />
-            <Title small={true} title={title} />
-            <Container className="content-wrap">
-                <ActiveFilters>
-                    {type !== 'All' && (
-                        <FilterItem onClick={() => { setType('All') }}>
-                            {partSlugDeTransform(type)}
-                            <CloseButton />
-                        </FilterItem>
-                    )}
-                    {upholsterys !== 'All' && (
-                        <FilterItem onClick={() => { setUpholsterys('All') }}>
-                            {partSlugDeTransform(upholsterys)}
-                            <CloseButton />
-                        </FilterItem>
-                    )}
-                    {cover !== 'All' && (
-                        <FilterItem onClick={() => { setCover('All') }}>
-                            {partSlugDeTransform(cover)}
-                            <CloseButton />
-                        </FilterItem>
-                    )}
-                    {search !== '' && (
-                        <FilterItem onClick={() => { setSearch('') }}>
-                            {searchFilterTitle['en']}{search}
-                            <CloseButton />
-                        </FilterItem>
-                    )}
-                    {(type !== 'All' || cover !== 'All' || upholsterys !== 'All') && (
-                        <FilterItem onClick={() => { clearAll('') }} className="close">
-                            {clearAllTitle['en']}
-                            <CloseButton />
-                        </FilterItem>
-                    )}
-                </ActiveFilters>
-                {filtredProducts.length > 0
-                    ? <ProductList changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
-                    : (
-                        <NoResults>
-                            <h2>{noResultTitle['en']}</h2>
-                            <p>{noResultMessage['en']}</p>
-                        </NoResults>
-                    )}
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <FilterComponent
+                    filterAnimation={filterAnimation}
+                    filterTitle={filterTitle['en']}
+                    sortByTitle={sortByTitle['en']}
+                    sortBy={sortBy['en']}
+                    name={name}
+                    typeTitle={typeTitle['en']}
+                    sofasTypes={sofasTypes['en']}
+                    upholsterysTitle={upholsterysTitle['en']}
+                    upholsterysArr={upholsterysArr['en']}
+                    coversTitle={coversTitle['en']}
+                    covesArr={covesArr['en']}
+                    reset={reset['en']}
+                    view={view['en']}
+                    sort={partSlugDeTransform(sort)}
+                    type={partSlugDeTransform(type)}
+                    upholsterys={partSlugDeTransform(upholsterys)}
+                    cover={partSlugDeTransform(cover)}
+                    sortFilterTitle={sortFilterTitle['en']}
+                    setMobileFilterOpened={setMobileFilterOpened}
+                    isMobileFilterOpened={isMobileFilterOpened}
+                    setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                    setCover={(v) => { setCover(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                    setType={(v) => { setType(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                    setSort={(v) => { setSort(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
+                    clearAll={clearAll}
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
+                    setSearch={(v) => { setSearch(v); setPage('1'); window.scrollTo(0, 0) }}
+                    setOpenedFilter={setOpenedFilter}
+                    openedFilter={openedFilter}
+                />
+                <Title small={true} title={title} />
+                <Container className="content-wrap">
+                    <ActiveFilters variants={gridAnimation} >
+                        {type !== 'All' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setType('All') }}>
+                                {partSlugDeTransform(type)}
+                                <CloseButton />
+                            </FilterItem>
+                        )}
+                        {upholsterys !== 'All' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setUpholsterys('All') }}>
+                                {partSlugDeTransform(upholsterys)}
+                                <CloseButton />
+                            </FilterItem>
+                        )}
+                        {cover !== 'All' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setCover('All') }}>
+                                {partSlugDeTransform(cover)}
+                                <CloseButton />
+                            </FilterItem>
+                        )}
+                        {search !== '' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
+                                {searchFilterTitle['en']}{search}
+                                <CloseButton />
+                            </FilterItem>
+                        )}
+                        {(type !== 'All' || cover !== 'All' || upholsterys !== 'All') && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { clearAll('') }} className="close">
+                                {clearAllTitle['en']}
+                                <CloseButton />
+                            </FilterItem>
+                        )}
+                    </ActiveFilters>
+                    {filtredProducts.length > 0
+                        ? (
+                            <motion.div variants={gridAnimation}>
+                                <ProductList changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
+                            </motion.div>
+                        )
+                        : (
+                            <NoResults variants={gridAnimation}>
+                                <h2>{noResultTitle['en']}</h2>
+                                <p>{noResultMessage['en']}</p>
+                            </NoResults>
+                        )}
+                </Container>
+            </Wrapper>
+        </InView >
     )
 }
 
-const NoResults = styled.div`
+const NoResults = styled(motion.div)`
     padding: 120px 0 120px 0;
     text-align: center;
     max-width: 926px;
@@ -369,14 +383,14 @@ const Wrapper = styled.div`
     }
 `
 
-const ActiveFilters = styled.div`
+const ActiveFilters = styled(motion.div)`
     margin: 20px 0;
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
 `
 
-const FilterItem = styled.button`
+const FilterItem = styled(motion.button)`
     cursor: pointer;
     border: none;
     padding: 8px 20px;
