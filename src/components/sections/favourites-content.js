@@ -1,12 +1,15 @@
+import { motion } from "framer-motion"
 import React from "react"
 import { useState } from "react"
 import styled from "styled-components"
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import { getCookie } from "../../helpers/coockie-manager"
 import { Container } from "../atoms/container"
 import { FavouriteCollectionBlock } from "../organism/favourite-collection-block"
 import { FavouriteColorBlock } from "../organism/favourite-color-block"
 import { FavouriteMaterialBlock } from "../organism/favourite-material-block"
 import { FavouriteProductBlock } from "../organism/favourite-product-block"
+import InView from "./in-view-provider"
 
 const noResultTitle = 'You have No Favorites yet'
 const noResultMessage = `Favorized products and covers will show up here.<br/>
@@ -21,6 +24,23 @@ const footstoolsTitle = 'Footstools'
 const outdoorFurnituresTitle = 'Outdoor Furnitures'
 const materialsTitle = 'Covers'
 const colorsTitle = 'Colors of covers'
+
+
+const titleAnimation = textTransition(1, 'slow')
+const noresultsAnimation = imageTransition(3)
+const contentAnimation = {
+    animate: { transition: { staggerChildren: .3, delayChildren: .6 } }
+}
+
+const contentTitleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .4 } }
+}
+
+const contentGridAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .6 } }
+}
 
 export default function Content({ data: { Collections, Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures } }) {
 
@@ -50,33 +70,35 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
         })
     }
     return (
-        <Wrapper>
-            <Container>
-                <h1>My Favourites</h1>
-            </Container>
-            <Results>
+        <InView>
+            <Wrapper>
                 <Container>
-                    {(collectionsCount + sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount + colorsItemCount === 0) && (
-                        <NoResults>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="101.944" height="94.563" viewBox="0 0 101.944 94.563">
-                                <path id="Path_676" data-name="Path 676" d="M48.722,89.283l-4.994-4.507A432.65,432.65,0,0,1,11.937,53.107Q0,39.586,0,25.7A24.883,24.883,0,0,1,7.369,7.369,24.734,24.734,0,0,1,25.579,0a27.7,27.7,0,0,1,12.3,2.984,28.913,28.913,0,0,1,10.841,9.805A35.33,35.33,0,0,1,59.806,2.984,25.73,25.73,0,0,1,71.865,0a24.734,24.734,0,0,1,18.21,7.369A24.883,24.883,0,0,1,97.444,25.7q0,13.886-11.937,27.406A432.648,432.648,0,0,1,53.716,84.776Zm0-9.623" transform="translate(2.25 2.25)" fill="none" stroke="#bababa" strokeWidth="4.5" strokeDasharray="14 4" opacity="0.38" />
-                            </svg>
-                            <h2>{noResultTitle}</h2>
-                            <p dangerouslySetInnerHTML={{ __html: noResultMessage }}></p>
-                        </NoResults>
-                    )}
-                    <FavouriteCollectionBlock setRerender={changeFavourites} count={collectionsCount} setCount={setCollectionsCount} title={collectionsTitle} prefiltredArr={Collections} filter={favourites.collections} />
-                    <FavouriteProductBlock setRerender={changeFavourites} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} filter={favourites.products} />
-                    <FavouriteProductBlock setRerender={changeFavourites} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} filter={favourites.products} />
-                    <FavouriteProductBlock setRerender={changeFavourites} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} filter={favourites.products} />
-                    <FavouriteProductBlock setRerender={changeFavourites} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} filter={favourites.products} />
-                    <FavouriteProductBlock setRerender={changeFavourites} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} filter={favourites.products} />
-                    <FavouriteProductBlock setRerender={changeFavourites} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} filter={favourites.products} />
-                    <FavouriteMaterialBlock setRerender={changeFavourites} count={coversItemCount} setCount={setCoversItemCount} title={materialsTitle} prefiltredArr={Materials} filter={favourites.materials} />
-                    <FavouriteColorBlock setRerender={changeFavourites} count={colorsItemCount} setCount={setColorsItemCount} title={colorsTitle} prefiltredArr={Materials} filter={favourites.colors} />
+                    <h1><motion.span variants={titleAnimation}>My Favourites</motion.span></h1>
                 </Container>
-            </Results>
-        </Wrapper>
+                <Results>
+                    <Container>
+                        {(collectionsCount + sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount + colorsItemCount === 0) && (
+                            <NoResults variants={noresultsAnimation}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="101.944" height="94.563" viewBox="0 0 101.944 94.563">
+                                    <path id="Path_676" data-name="Path 676" d="M48.722,89.283l-4.994-4.507A432.65,432.65,0,0,1,11.937,53.107Q0,39.586,0,25.7A24.883,24.883,0,0,1,7.369,7.369,24.734,24.734,0,0,1,25.579,0a27.7,27.7,0,0,1,12.3,2.984,28.913,28.913,0,0,1,10.841,9.805A35.33,35.33,0,0,1,59.806,2.984,25.73,25.73,0,0,1,71.865,0a24.734,24.734,0,0,1,18.21,7.369A24.883,24.883,0,0,1,97.444,25.7q0,13.886-11.937,27.406A432.648,432.648,0,0,1,53.716,84.776Zm0-9.623" transform="translate(2.25 2.25)" fill="none" stroke="#bababa" strokeWidth="4.5" strokeDasharray="14 4" opacity="0.38" />
+                                </svg>
+                                <h2>{noResultTitle}</h2>
+                                <p dangerouslySetInnerHTML={{ __html: noResultMessage }}></p>
+                            </NoResults>
+                        )}
+                        <FavouriteCollectionBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={collectionsCount} setCount={setCollectionsCount} title={collectionsTitle} prefiltredArr={Collections} filter={favourites.collections} />
+                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} filter={favourites.products} />
+                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} filter={favourites.products} />
+                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} filter={favourites.products} />
+                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} filter={favourites.products} />
+                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} filter={favourites.products} />
+                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} filter={favourites.products} />
+                        <FavouriteMaterialBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={coversItemCount} setCount={setCoversItemCount} title={materialsTitle} prefiltredArr={Materials} filter={favourites.materials} />
+                        <FavouriteColorBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={colorsItemCount} setCount={setColorsItemCount} title={colorsTitle} prefiltredArr={Materials} filter={favourites.colors} />
+                    </Container>
+                </Results>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -101,7 +123,7 @@ const Results = styled.div`
     }
 `
 
-const NoResults = styled.div`
+const NoResults = styled(motion.div)`
     padding: 120px 0 120px 0;
     text-align: center;
     max-width: 926px;

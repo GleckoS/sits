@@ -2,9 +2,10 @@ import React, { useEffect, useMemo, useRef, useState } from "react"
 import styled from "styled-components"
 import { LoadMore } from "../atoms/load-more"
 import { ResultsGrid } from "../atoms/result-grid"
+import { motion } from "framer-motion"
 import { Card } from "../moleculas/search-material-card"
 
-export const FavouriteMaterialBlock = ({ setRerender, count, setCount, prefiltredArr, filter, title }) => {
+export const FavouriteMaterialBlock = ({ contentGridAnimation, contentTitleAnimation, animation, setRerender, count, setCount, prefiltredArr, filter, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
@@ -39,9 +40,9 @@ export const FavouriteMaterialBlock = ({ setRerender, count, setCount, prefiltre
     if (filtredArr.length > 0) {
         renderCount.current = 0
         return (
-            <Wrapper>
-                <h2>{title} ({filtredArr.length})</h2>
-                <ResultsGrid>
+            <Wrapper variants={animation}>
+                <motion.h2 variants={contentTitleAnimation}>{title} ({filtredArr.length})</motion.h2>
+                <ResultsGrid variants={contentGridAnimation}>
                     {filtredArr.map(el => {
                         renderCount.current += 1
                         let image = el.materials.materialColorVariants[0].squarePreviewImage
@@ -67,7 +68,7 @@ export const FavouriteMaterialBlock = ({ setRerender, count, setCount, prefiltre
     return null
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     padding-top: 120px;
 
     &:first-child{

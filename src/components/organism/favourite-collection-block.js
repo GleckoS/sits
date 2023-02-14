@@ -2,9 +2,10 @@ import React, { useEffect, useMemo, useRef, useState } from "react"
 import styled from "styled-components"
 import { LoadMore } from "../atoms/load-more"
 import { ResultsGrid } from "../atoms/result-grid"
+import { motion } from "framer-motion"
 import { Card } from "../moleculas/search-product-card"
 
-export const FavouriteCollectionBlock = ({ setRerender, count, setCount, prefiltredArr, filter, title }) => {
+export const FavouriteCollectionBlock = ({ contentGridAnimation, contentTitleAnimation, animation, setRerender, count, setCount, prefiltredArr, filter, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
@@ -41,9 +42,9 @@ export const FavouriteCollectionBlock = ({ setRerender, count, setCount, prefilt
     if (filtredArr.length > 0) {
         renderCount.current = 0
         return (
-            <Wrapper>
-                <h2>{title} ({filtredArr.length})</h2>
-                <ResultsGrid>
+            <Wrapper variants={animation}>
+                <motion.h2 variants={contentTitleAnimation}>{title} ({filtredArr.length})</motion.h2>
+                <ResultsGrid variants={contentGridAnimation}>
                     {filtredArr.map(el => {
                         renderCount.current += 1
                         let image = el.collections.generalCollectionInformation?.collectionPagePreviewImage?.localFile
@@ -53,7 +54,7 @@ export const FavouriteCollectionBlock = ({ setRerender, count, setCount, prefilt
                     })}
                 </ResultsGrid>
                 {count > showCount && (
-                    <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }}/>
+                    <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }} />
                 )}
             </Wrapper>
         )
@@ -62,7 +63,7 @@ export const FavouriteCollectionBlock = ({ setRerender, count, setCount, prefilt
     return null
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     padding-top: 120px;
 
     &:first-child{

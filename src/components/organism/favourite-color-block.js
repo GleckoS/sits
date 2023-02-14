@@ -4,8 +4,12 @@ import { getCookie } from '../../helpers/coockie-manager'
 import { LoadMore } from '../atoms/load-more'
 import { ResultsGrid } from '../atoms/result-grid'
 import { Card } from '../moleculas/search-material-card'
+import { motion } from "framer-motion"
 
 export const FavouriteColorBlock = ({
+  contentGridAnimation,
+  contentTitleAnimation,
+  animation,
   setRerender,
   count,
   setCount,
@@ -54,9 +58,9 @@ export const FavouriteColorBlock = ({
   if (filtredArr.length > 0) {
     renderCount.current = 0
     return (
-      <Wrapper>
-        <h2>{title} ({filtredArr.length})</h2>
-        <ResultsGrid>
+      <Wrapper variants={animation}>
+        <motion.h2 variants={contentTitleAnimation}>{title} ({filtredArr.length})</motion.h2>
+        <ResultsGrid variants={contentGridAnimation}>
           {filtredArr.map((el) => {
             renderCount.current += 1
             return (
@@ -86,7 +90,7 @@ export const FavouriteColorBlock = ({
   return null
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   padding-top: 120px;
 
   &:first-child {

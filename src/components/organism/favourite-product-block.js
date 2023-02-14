@@ -3,9 +3,13 @@ import styled from 'styled-components'
 import { getCookie } from '../../helpers/coockie-manager'
 import { LoadMore } from '../atoms/load-more'
 import { ResultsGrid } from '../atoms/result-grid'
+import { motion } from "framer-motion"
 import { Card } from '../moleculas/search-product-card'
 
 export const FavouriteProductBlock = ({
+  contentGridAnimation,
+  contentTitleAnimation,
+  animation,
   setRerender,
   count,
   setCount,
@@ -58,9 +62,9 @@ export const FavouriteProductBlock = ({
   if (filtredArr.length > 0) {
     renderCount.current = 0
     return (
-      <Wrapper>
-        <h2>{title} ({count})</h2>
-        <ResultsGrid>
+      <Wrapper variants={animation}>
+        <motion.h2 variants={contentTitleAnimation}>{title} ({count})</motion.h2>
+        <ResultsGrid variants={contentGridAnimation}>
           {filtredArr?.map((el) => {
             let renderedlist = []
             return el.products.productGallery?.map((inEl, index) => {
@@ -120,7 +124,7 @@ export const FavouriteProductBlock = ({
   return null
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   padding-top: 120px;
 
   &:first-child {
