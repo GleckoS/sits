@@ -117,8 +117,8 @@ const Item = styled.div`
     }
 
     img{
-        width: 32px;
-        height: 32px;
+        width: 40px;
+        height: 40px;
         opacity: .65;
         transition: opacity .5s ease-out;
     }

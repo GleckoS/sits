@@ -69,10 +69,6 @@ const Wrapper = styled.div`
         font-size: clamp(23px, ${36 / 1194 * 100}vw, 36px);
         line-height: 110%;
         font-family: 'Ivy';
-
-        @media (max-width: 768px) {
-            text-decoration: none;
-        }
     }
 
     .image{

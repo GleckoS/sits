@@ -19,6 +19,9 @@ export const Card = ({ setRerender, variant, rerender, type, model, slug, title,
 const Wrapper = styled.div`
     position: relative;
     span{
+        font-weight: 300;
+        line-height: 110%;
+        font-family: 'Ivy';
         font-size: clamp(18px, ${28 / 1194 * 100}vw, 28px);
         font-weight: 300;
         margin-top: clamp(8px, ${12 / 1194 * 100}vw, 12px);

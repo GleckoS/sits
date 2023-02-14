@@ -5,6 +5,7 @@ import { imageTransition, textTransition } from "../../helpers/animation-control
 import { Container } from "../atoms/container"
 import { ProductList } from "../organism/products-list"
 import InView from "./in-view-provider"
+import { useQueryParam } from "../../hooks/query-params"
 
 const title = {
     en: 'New Arrivals'
@@ -15,7 +16,7 @@ const gridAnimation = imageTransition(2)
 
 export default function Content({ data }) {
 
-    const [page, setPage] = useState(1)
+    const [page, setPage] = useQueryParam('page', 1)
 
     const [rerender, setRerender] = useState(false)
 

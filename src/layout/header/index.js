@@ -435,6 +435,12 @@ const MobileMenu = styled(motion.div)`
 
   .wrap {
     margin-top: 40px;
+
+    &:last-child{
+      @supports (-webkit-touch-callout: none) {
+        padding-bottom: 100px;
+      }
+    }
   }
 
   .content {

@@ -15,7 +15,7 @@ export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
     return (
         <Item>
             <div className="image-wrap"> 
-                <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'product'} title={popupNames.model} />
+                <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={popupNames.model} />
                 <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             </div>
             <Flex>

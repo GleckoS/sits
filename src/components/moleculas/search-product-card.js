@@ -28,8 +28,10 @@ const Wrapper = styled.div`
     }
     
     span{
-        font-size: clamp(18px, ${28 / 1194 * 100}vw, 28px);
         font-weight: 300;
+        line-height: 110%;
+        font-family: 'Ivy';
+        font-size: clamp(18px, ${28 / 1194 * 100}vw, 28px);
         margin-top: 12px;
         display: block;
     }

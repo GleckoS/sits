@@ -100,7 +100,7 @@ const Wrapper = styled(motion.div)`
   h2 {
     margin-bottom: 40px;
     font-family: 'Ivy';
-    font-size: clamp(26px, ${(28 / 1194) * 100}vw, 28px);
+        font-size: clamp(23px, ${36 / 1194 * 100}vw, 36px);
     font-weight: 300;
   }
 

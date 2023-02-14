@@ -29,7 +29,7 @@ export const MaterialCard = ({ variant = '', color, data: { materials: { materia
 
     const [newVariant, setNewVariant] = useState(choosenVariant)
 
-    useEffect(() => { 
+    useEffect(() => {
         setChoosenVariant(() => {
             for (let i = 0; i < variants.length; i++) {
                 if (variant) {
@@ -75,7 +75,7 @@ export const MaterialCard = ({ variant = '', color, data: { materials: { materia
                     </SliderWrapper>
                 </Link>
             </div>
-            <span className="title">{title}</span>
+            <span className="archive-title">{title}</span>
             <VariantsPicker>
                 {variants.map((el, index) => (
                     <VariantCircle aria-label={'change color to: ' + el.colorGroup} key={el.variantColor} onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
@@ -89,12 +89,14 @@ export const MaterialCard = ({ variant = '', color, data: { materials: { materia
 const Wrapper = styled.div`
     max-width: 430px;
 
-    .title{
+    .archive-title{
         margin-top: 10px;
         margin-bottom: 16px;
         display: block;
-        font-size: clamp(16px, ${26 / 1194 * 100}vw, 32px);
+        font-size: clamp(23px, ${36 / 1194 * 100}vw, 36px);
         font-weight: 300;
+        line-height: 110%;
+        font-family: 'Ivy';
     }
     
     .hearth {
