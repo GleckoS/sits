@@ -2,21 +2,36 @@ import { graphql, Link } from "gatsby"
 import * as React from "react"
 import styled from "styled-components"
 import { Container } from "../components/atoms/container"
+import InView from "../components/sections/in-view-provider"
 import Map from "../components/sections/map"
+import { BrownLink } from "../components/atoms/brown-link"
+import { linkTransition, textTransition } from "../helpers/animation-controller"
+import { motion } from "framer-motion"
+
+const titleAnimation = textTransition(1)
+const textAnimation = textTransition(2)
+const buttonAnimation = linkTransition(3)
+const linkAnimation = linkTransition(4)
 
 const NotFoundPage = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } } } }) => {
   return (
     <Wrapper>
-      <Section>
-        <Container>
-          <h1>{pageTitle}</h1>
-          <div className="text" dangerouslySetInnerHTML={{ __html: textUnderPageTitle }} />
-          <Buttons>
-            <Link className='button' to={coloredLink.url}>{coloredLink.title}</Link>
-            <Link className='underline' to={underlinedLink.url}>{underlinedLink.title}</Link>
-          </Buttons>
-        </Container>  
-      </Section>
+      <InView>
+        <Section>
+          <Container>
+            <motion.h1 variants={titleAnimation}>{pageTitle}</motion.h1>
+            <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: textUnderPageTitle }} />
+            <Buttons>
+              <motion.div variants={buttonAnimation} >
+                <BrownLink className='button' to={coloredLink.url}>{coloredLink.title}</BrownLink>
+              </motion.div>
+              <motion.div variants={linkAnimation}>
+                <Link className='underline' to={underlinedLink.url}>{underlinedLink.title}</Link>
+              </motion.div>
+            </Buttons>
+          </Container>
+        </Section>
+      </InView>
       <Map />
     </Wrapper>
   )
@@ -37,8 +52,11 @@ const Section = styled.section`
       font-family: 'Ivy';
       font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
       font-weight: 300;
-      text-decoration: underline;
       text-align: center;
+  }
+
+  .underline{
+    background-size: inherit;
   }
 
   .text{
@@ -49,8 +67,19 @@ const Section = styled.section`
       text-align: center;
     }
     a{
-        text-decoration: underline;
-        text-underline-offset: 2px !important;
+        position: relative;
+        text-decoration: unset !important;
+
+        transition: background-size 0.5s ease-out;
+
+        background-image: linear-gradient(#222b40, #222b40);
+        background-size: 80% 1px;
+        background-position: left bottom;
+        background-repeat: no-repeat;
+
+        &:hover {
+            background-size: 100% 1px !important;
+        }
     }
   }
 `
