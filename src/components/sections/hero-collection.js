@@ -2,7 +2,7 @@ import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
+import { imageTransition } from "../../helpers/animation-controller"
 import { accessoriesText, armrestText, confortText, coversText, dimensionsText, downloadText, legsText, upholsterysText } from "../../texts"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from "../atoms/category"
@@ -15,21 +15,27 @@ import { TwoColumnImageGrid } from "../organism/two-column-image-grid"
 import InView from "./in-view-provider"
 
 const sliderAnimation = imageTransition(1)
-const titleAnimation = textTransition(3)
-const categoriesGridAnimation = textTransition(4)
-const textAnimation = textTransition(5)
-const linkAnimation = linkTransition(6)
 
-const upholsterysAnimation = textTransition(7)
-const comfortAnimation = textTransition(8)
-const coversAnimation = textTransition(9)
+const addInformAnimation = {
+    animate: { transition: { staggerChildren: .2, delayChildren: .5 } }
+}
 
-const dimensionsAnimation = (i) => textTransition(7 + i)
-const legsAnimation = (i) => textTransition(7 + i)
-const armrestsAnimation = (i) => textTransition(7 + i)
-const accessoriesAnimation = (i) => textTransition(7 + i)
+const itemAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .4 } }
+}
 
-const buttonAnimation = (i) => textTransition(7 + i)
+const linkAnimation = {
+    initial: { opacity: 0, backgroundSize: '0 1px' },
+    animate: {
+        opacity: 1,
+         transition: { duration: .4 }, 
+         transitionEnd: {
+            backgroundSize: '80% 1px',
+            transition: { duration: .6 }
+        }
+    }
+}
 
 export default function Hero({
     itemCategories,
@@ -61,53 +67,53 @@ export default function Hero({
                 <Container>
                     <Grid>
                         <TwoColumnImageGrid sliderAnimation={sliderAnimation} gallery={collectionGallery} title={title} popupNames={popupNames} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
-                        <div className="content">
-                            <Flex variants={titleAnimation}>
+                        <motion.div variants={addInformAnimation} className="content">
+                            <Flex variants={itemAnimation}>
                                 <h1 >{title}</h1>
                                 <AddToFauvorite type='collections' title={title} />
                             </Flex>
-                            <Categories variants={categoriesGridAnimation}>
+                            <Categories variants={itemAnimation}>
                                 {itemCategories.map(el => (
                                     <React.Fragment key={el.name}>
                                         <Category to={el.collectionTypes.typeArchive.url}>{el.name}</Category>
                                     </React.Fragment>
                                 ))}
                             </Categories>
-                            <Description variants={textAnimation} dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />
+                            <Description variants={itemAnimation} dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />
                             {collectionProductSheet
                                 ? <DownloadWithArrow linkAnimation={linkAnimation} className='link' file={collectionProductSheet.localFile.publicURL}>
                                     {downloadText['en']}
                                 </DownloadWithArrow>
                                 : null}
                             {upholsterys.nodes.length
-                                ? <Tooltip animation={upholsterysAnimation} title={upholsterysText['en']} data={upholsterys} />
+                                ? <Tooltip animation={itemAnimation} title={upholsterysText['en']} data={upholsterys} />
                                 : null}
                             {comfort.nodes.length
-                                ? <TooltipPopup animation={comfortAnimation} title={confortText['en']} data={comfort} />
+                                ? <TooltipPopup animation={itemAnimation} title={confortText['en']} data={comfort} />
                                 : null}
                             {covers.nodes.length
-                                ? <Tooltip animation={coversAnimation} title={coversText['en']} data={covers} />
+                                ? <Tooltip animation={itemAnimation} title={coversText['en']} data={covers} />
                                 : null}
                             {dimensions.dimensions || legs.dimensions || armrest.dimensions || accessories.dimensions
-                                ? <Popups>
+                                ? <Popups variants={itemAnimation}>
                                     {dimensions.dimensions
-                                        ? <PopupButton animation={dimensionsAnimation(0)} data={dimensions} title={dimensionsText['en']} />
+                                        ? <PopupButton data={dimensions} title={dimensionsText['en']} />
                                         : null}
                                     {legs.dimensions
-                                        ? <PopupButton animation={legsAnimation(dimensions.dimensions ? 1 : 0)} data={legs} title={legsText['en']} />
+                                        ? <PopupButton data={legs} title={legsText['en']} />
                                         : null}
                                     {armrest.dimensions
-                                        ? <PopupButton animation={dimensionsAnimation((dimensions.dimensions ? 1 : 0) + (legs.dimensions ? 1 : 0))} data={armrest} title={armrestText['en']} />
+                                        ? <PopupButton data={armrest} title={armrestText['en']} />
                                         : null}
                                     {accessories.dimensions
-                                        ? <PopupButton animation={accessoriesAnimation((armrest.dimensions ? 1 : 0) + (dimensions.dimensions ? 1 : 0) + (legs.dimensions ? 1 : 0))} data={accessories} title={accessoriesText['en']} />
+                                        ? <PopupButton data={accessories} title={accessoriesText['en']} />
                                         : null}
                                 </Popups>
                                 : null}
-                            <motion.div animation={buttonAnimation((armrest.dimensions ? 1 : 0) + (dimensions.dimensions ? 1 : 0) + (legs.dimensions ? 1 : 0) + (accessories.dimensions ? 1 : 0))}>
+                            <motion.div variants={itemAnimation}>
                                 <Link className="yellow-button" to='/where-to-buy/' target='_blank'>Find retailers</Link>
                             </motion.div>
-                        </div>
+                        </motion.div>
                     </Grid>
                 </Container>
             </Wrapper>
@@ -175,7 +181,7 @@ const Categories = styled(motion.div)`
     margin-top: clamp(10px, ${20 / 1194 * 100}vw, 20px);
 `
 
-const Popups = styled.div`
+const Popups = styled(motion.div)`
     margin-top: 60px;
     border-top: 1px solid var(--text-color);
 `

@@ -1,15 +1,15 @@
-import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { Popup } from "../moleculas/popup"
 
 
-export const PopupButton = ({ animation, data, title }) => {
+export const PopupButton = ({ data, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
+
     return (
         <>
-            <Wrapper variants={animation} onClick={() => { setPopUpOpened(true) }}>
+            <Wrapper onClick={() => { setPopUpOpened(true) }}>
                 <span>
                     {title}
                 </span>
@@ -50,7 +50,7 @@ export const PopupButton = ({ animation, data, title }) => {
     )
 }
 
-const Wrapper = styled(motion.button)`
+const Wrapper = styled.button`
     display: flex;
     justify-content: space-between;
     width: 100%;

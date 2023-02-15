@@ -1,25 +1,39 @@
+import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
+import InView from "./in-view-provider"
+
+const titleAnimation = textTransition(1)
+const gridAnimation = {
+    animate: { transition: { staggerChildren: .2, delayChildren: .5 } }
+}
+const itemAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .4 } }
+}
 
 export default function Accessories({ data }) {
     return (
-        <Wrapper>
-            <Container>
-                <h2>
-                    Accessories for this model
-                </h2>
-                <Grid>
-                    {data.map((el, index) => (
-                        <Item key={el.accessoryTitle + index}>
-                            <GatsbyImage image={el.accessoryImage.localFile.childImageSharp.gatsbyImageData} alt={el.accessoryImage.altText} />
-                            <h3>{el.accessoryTitle}</h3>
-                        </Item>
-                    ))}
-                </Grid>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <Container>
+                    <motion.h2 variants={titleAnimation}>
+                        Accessories for this model
+                    </motion.h2>
+                    <Grid variants={gridAnimation}>
+                        {data.map((el, index) => (
+                            <Item variants={itemAnimation} key={el.accessoryTitle + index}>
+                                <GatsbyImage image={el.accessoryImage.localFile.childImageSharp.gatsbyImageData} alt={el.accessoryImage.altText} />
+                                <h3>{el.accessoryTitle}</h3>
+                            </Item>
+                        ))}
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -34,7 +48,7 @@ const Wrapper = styled.section`
     }
 `
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 32px;
@@ -49,7 +63,7 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled.div`
+const Item = styled(motion.div)`
 
     h3{
         font-size: clamp(16px, ${26 / 768 * 100}vw, 28px);

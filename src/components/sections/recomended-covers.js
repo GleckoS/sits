@@ -1,22 +1,36 @@
+import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
+import { textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import { MaterialCard } from "../moleculas/material-card"
+import InView from "./in-view-provider"
 
-export default function RecomendedCovers({ background, title, data: { covers } }) {
+const titleAnimation = textTransition(1)
+const gridAnimation = {
+    animate: { transition: { staggerChildren: .2, delayChildren: .5 } }
+}
+const itemAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .4 } }
+}
+
+export default function RecomendedCovers({ isMarginTop, background, title, data: { covers } }) {
     return (
-        <Wrapper className={background}>
-            <Container>
-                <h2>{title}</h2>
-                <Grid>
-                    {covers.map((el, index) => (
-                        <React.Fragment key={el.cover.title + index}>
-                            <MaterialCard variant={el.colorVariantName} data={el.cover} />
-                        </React.Fragment>
-                    ))}
-                </Grid>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper data-margin-top={isMarginTop ? 'true' : 'false'} className={background}>
+                <Container>
+                    <motion.h2 variants={titleAnimation}>{title}</motion.h2>
+                    <Grid variants={gridAnimation}>
+                        {covers.map((el, index) => (
+                            <motion.div variants={itemAnimation} key={el.cover.title + index}>
+                                <MaterialCard variant={el.colorVariantName} data={el.cover} />
+                            </motion.div>
+                        ))}
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -24,6 +38,10 @@ const Wrapper = styled.section`
     margin-top: clamp(60px, ${90 / 1194 * 100}vw, 120px);
     padding: 40px 0 0 0;
     background-color: #F9F5F0;
+
+    &[data-margin-top="false"]{
+        margin-top: 0;
+    }
     
     &.white{
         background-color: #fff;
@@ -35,11 +53,10 @@ const Wrapper = styled.section`
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-weight: 300;
         font-family: 'Ivy';
-        text-decoration: underline;
     }
 `
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 20px;

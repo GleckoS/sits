@@ -1,36 +1,50 @@
+import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
+import { textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import { ProductCard } from "../moleculas/product-card"
+import InView from "./in-view-provider"
+
+const titleAnimation = textTransition(1)
+const gridAnimation = {
+    animate: { transition: { staggerChildren: .2, delayChildren: .5 } }
+}
+const itemAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .4 } }
+}
 
 export default function SimilarProducts({ isLast, materials, title, data }) {
     return (
-        <Wrapper isLast={isLast} className={materials ? 'materials' : ''}>
-            <Container>
-                <h2>
-                    {title}
-                </h2>
-                <Grid>
-                    {data?.map(el => {
-                        let isOnePostRendered = false
-                        if (!el.product) {
-                            return null
-                        }
-                        return el.product.products.productGallery?.map(inEl => {
-                            return inEl.productsImages?.map((imageEl, index) => {
-                                if (imageEl.isMainImage && !isOnePostRendered) {
-                                    isOnePostRendered = true
-                                    return <Item key={inEl.popupNames.model + index}>
-                                        <ProductCard threeColumn={true} model={inEl.popupNames.model} types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} />
-                                    </Item>
-                                }
+        <InView>
+            <Wrapper isLast={isLast} className={materials ? 'materials' : ''}>
+                <Container>
+                    <motion.h2 variants={titleAnimation}>
+                        {title}
+                    </motion.h2>
+                    <Grid variants={gridAnimation}>
+                        {data?.map(el => {
+                            let isOnePostRendered = false
+                            if (!el.product) {
                                 return null
+                            }
+                            return el.product.products.productGallery?.map(inEl => {
+                                return inEl.productsImages?.map((imageEl, index) => {
+                                    if (imageEl.isMainImage && !isOnePostRendered) {
+                                        isOnePostRendered = true
+                                        return <Item variants={itemAnimation} key={inEl.popupNames.model + index}>
+                                            <ProductCard threeColumn={true} model={inEl.popupNames.model} types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} />
+                                        </Item>
+                                    }
+                                    return null
+                                })
                             })
-                        })
-                    })}
-                </Grid>
-            </Container>
-        </Wrapper>
+                        })}
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -54,7 +68,7 @@ const Wrapper = styled.section`
     }
 `
 
-const Grid = styled.div`
+const Grid = styled(motion.div)`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-gap: 32px;
@@ -69,7 +83,7 @@ const Grid = styled.div`
     }
 `
 
-const Item = styled.div`
+const Item = styled(motion.div)`
 
     h3{
         font-size: clamp(16px, ${26 / 768 * 100}vw, 28px);
