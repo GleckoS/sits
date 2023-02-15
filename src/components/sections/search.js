@@ -7,6 +7,9 @@ import { ResultMaterialBlock } from '../organism/result-material-block'
 import { ResultProductBlock } from '../organism/results-product-block'
 import { myContext } from "./../../hooks/provider"
 import { BrownLink } from './../atoms/brown-link'
+import InView from './in-view-provider'
+import { imageTransition, textTransition } from "../../helpers/animation-controller"
+import { motion } from 'framer-motion'
 
 const pageTitle = 'Looking for something specific?'
 const placeholder = 'Search'
@@ -21,6 +24,28 @@ const diningChairsTitle = 'Dining Chairs'
 const footstoolsTitle = 'Footstools'
 const outdoorFurnituresTitle = 'Outdoor Furnitures'
 const materialsTitle = 'Covers'
+
+
+const inputAnimation = imageTransition(1)
+const popularTitleAnimation = imageTransition(1)
+
+const popularContentAnimation = {
+    animate: { transition: { staggerChildren: .3, delayChildren: .8 } }
+}
+
+const contentAnimation = {
+    animate: { transition: { staggerChildren: .3, delayChildren: .6 } }
+}
+
+const contentTitleAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .4 } }
+}
+
+const contentGridAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .6 } }
+}
 
 export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures, location }) {
 
@@ -79,73 +104,78 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                     }
 
                     return (
-                        <Placeholder>
-                            <h1>{pageTitle}</h1>
-                            <Input>
-                                <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
-                                <Link aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                                        <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                            <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
-                                                <circle cx="8" cy="8" r="8" stroke="none" />
-                                                <circle cx="8" cy="8" r="7" fill="none" />
+                        <InView>
+                            <Placeholder variants={inputAnimation}>
+                                <h1>{pageTitle}</h1>
+                                <Input>
+                                    <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
+                                    <Link aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                                            <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
+                                                    <circle cx="8" cy="8" r="8" stroke="none" />
+                                                    <circle cx="8" cy="8" r="7" fill="none" />
+                                                </g>
+                                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
                                             </g>
-                                            <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
-                                        </g>
-                                    </svg>
-                                </Link>
-                            </Input>
-                            <BrownLink to="/contact/">Contact us</BrownLink>
-                        </Placeholder>
+                                        </svg>
+                                    </Link>
+                                </Input>
+                                <BrownLink to="/contact/">Contact us</BrownLink>
+                            </Placeholder>
+                        </InView>
                     )
                 }}
             </myContext.Consumer>
             <Results className={searchValue ? '' : 'disable'} id='results'>
                 <Container>
                     {(sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0 && searchValue) && (
-                        <NoResults>
-                            <myContext.Consumer>
-                                {context => (
-                                    <Input>
-                                        <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
-                                        <Link aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                                                <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                                    <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
-                                                        <circle cx="8" cy="8" r="8" stroke="none" />
-                                                        <circle cx="8" cy="8" r="7" fill="none" />
+                        <InView>
+                            <NoResults variants={inputAnimation}>
+                                <myContext.Consumer>
+                                    {context => (
+                                        <Input>
+                                            <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
+                                            <Link aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                                                    <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                                        <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
+                                                            <circle cx="8" cy="8" r="8" stroke="none" />
+                                                            <circle cx="8" cy="8" r="7" fill="none" />
+                                                        </g>
+                                                        <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
                                                     </g>
-                                                    <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
-                                                </g>
-                                            </svg>
-                                        </Link>
-                                    </Input>
-                                )}
-                            </myContext.Consumer>
-                            <p>{noResultMessage.replace('<search>', searchValue)}</p>
-                            <BrownLink to="/contact/">Contact us</BrownLink>
-                        </NoResults>
+                                                </svg>
+                                            </Link>
+                                        </Input>
+                                    )}
+                                </myContext.Consumer>
+                                <p>{noResultMessage.replace('<search>', searchValue)}</p>
+                                <BrownLink to="/contact/">Contact us</BrownLink>
+                            </NoResults>
+                        </InView>
                     )}
-                    <ResultProductBlock setRerender={setRerender} rerender={rerender} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} searchValue={searchValue} />
-                    <ResultProductBlock setRerender={setRerender} rerender={rerender} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} searchValue={searchValue} />
-                    <ResultProductBlock setRerender={setRerender} rerender={rerender} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} searchValue={searchValue} />
-                    <ResultProductBlock setRerender={setRerender} rerender={rerender} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} searchValue={searchValue} />
-                    <ResultProductBlock setRerender={setRerender} rerender={rerender} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} searchValue={searchValue} />
-                    <ResultProductBlock setRerender={setRerender} rerender={rerender} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} searchValue={searchValue} />
-                    <ResultMaterialBlock setRerender={setRerender} rerender={rerender} count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue} />
+                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} searchValue={searchValue} />
+                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} searchValue={searchValue} />
+                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} searchValue={searchValue} />
+                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} searchValue={searchValue} />
+                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} searchValue={searchValue} />
+                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} searchValue={searchValue} />
+                    <ResultMaterialBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue} />
                 </Container>
             </Results>
             {(!searchValue || (sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0)) && (
                 <MostPopularProducts>
                     <Container>
-                        <h2>Check our most popular products</h2>
-                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={sofasTitle} prefiltredArr={Sofas} />
-                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={armchairsTitle} prefiltredArr={Armchairs} />
-                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} />
-                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={diningChairsTitle} prefiltredArr={DiningChairs} />
-                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={footstoolsTitle} prefiltredArr={Footstools} />
-                        <MostPopularProductBlock setRerender={setRerender} rerender={rerender} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} />
-
+                        <InView margin = "-100px 0px -200px 0px" >
+                            <motion.h2 variants={popularTitleAnimation}>Check our most popular products</motion.h2>
+                        </InView>
+                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={sofasTitle} prefiltredArr={Sofas} />
+                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={armchairsTitle} prefiltredArr={Armchairs} />
+                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} />
+                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={diningChairsTitle} prefiltredArr={DiningChairs} />
+                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={footstoolsTitle} prefiltredArr={Footstools} />
+                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} />
                     </Container>
                 </MostPopularProducts>
             )}
@@ -167,7 +197,7 @@ const MostPopularProducts = styled.div`
     }
 `
 
-const Placeholder = styled.div`
+const Placeholder = styled(motion.div)`
     max-width: 600px;
     margin: 160px auto 100px;
     h1{
@@ -235,7 +265,7 @@ const Results = styled.div`
     }
 `
 
-const NoResults = styled.div`
+const NoResults = styled(motion.div)`
     padding: 120px 0 120px 0;
     text-align: center;
     max-width: 926px;

@@ -1,9 +1,21 @@
+import { motion } from "framer-motion"
 import React, { useMemo, useRef, useState } from "react"
 import styled from "styled-components"
 import { LoadMore } from "../atoms/load-more"
 import { Card } from "../moleculas/search-material-card"
+import InView from "../sections/in-view-provider"
 
-export const ResultMaterialBlock = ({ setRerender, rerender, count, setCount, prefiltredArr, searchValue, title }) => {
+export const ResultMaterialBlock = ({
+    contentGridAnimation,
+    contentTitleAnimation,
+    animation,
+    setRerender,
+    rerender,
+    count,
+    setCount,
+    prefiltredArr,
+    searchValue,
+    title }) => {
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
         let colors = []
@@ -64,28 +76,37 @@ export const ResultMaterialBlock = ({ setRerender, rerender, count, setCount, pr
     if (filtredArr.length > 0) {
         renderCount.current = 0
         return (
-            <Wrapper>
-                <h2>{title}</h2>
-                <ResultsGrid>
-                    {filtredArr.map(el => {
-                        return el.arr.map((inEl, index) => {
-                            if (renderCount.current < showCount) {
-                                renderCount.current += 1
-                                return <Card setRerender={setRerender} variant={index} rerender={rerender} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
-                            }
-                            return null
-                        })
-                    })}
-                </ResultsGrid>
-                {count > showCount && (
-                    <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }}/>
-                )}
-            </Wrapper>
+            <InView>
+                <Wrapper variants={animation}>
+                    <motion.h2 variants={contentTitleAnimation}>{title}</motion.h2>
+                    <ResultsGrid variants={contentGridAnimation}>
+                        {filtredArr.map(el => {
+                            return el.arr.map((inEl, index) => {
+                                if (renderCount.current < showCount) {
+                                    renderCount.current += 1
+                                    return <motion.div
+                                        initial={{ opacity: 0 }}
+                                        animate={{ opacity: 1 }}
+                                        exit={{ opacity: 0 }}
+                                        transition={{ duration: .6 }}
+                                        key={inEl.variantName + index}>
+                                        <Card setRerender={setRerender} variant={index} rerender={rerender} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
+                                    </motion.div>
+                                }
+                                return null
+                            })
+                        })}
+                    </ResultsGrid>
+                    {count > showCount && (
+                        <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }} />
+                    )}
+                </Wrapper>
+            </InView>
         )
     }
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     padding-top: 120px;
 
     &:first-child{
@@ -105,7 +126,7 @@ const Wrapper = styled.div`
 
 `
 
-const ResultsGrid = styled.div`
+const ResultsGrid = styled(motion.div)`
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-gap: 42px 16px;

@@ -1,10 +1,23 @@
+import { motion } from "framer-motion"
 import React, { useMemo, useRef, useState } from "react"
 import styled from "styled-components"
 import { LoadMore } from "../atoms/load-more"
 import { ResultsGrid } from "../atoms/result-grid"
 import { Card } from "../moleculas/search-product-card"
+import InView from "../sections/in-view-provider"
 
-export const ResultProductBlock = ({ setRerender, rerender, count, setCount, prefiltredArr, searchValue, title }) => {
+export const ResultProductBlock = ({
+    contentGridAnimation,
+    contentTitleAnimation,
+    animation,
+    setRerender,
+    rerender,
+    count,
+    setCount,
+    prefiltredArr,
+    searchValue,
+    title
+}) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
@@ -77,25 +90,34 @@ export const ResultProductBlock = ({ setRerender, rerender, count, setCount, pre
     if (filtredArr.length > 0) {
         renderCount.current = 0
         return (
-            <Wrapper>
-                <h2>{title}</h2>
-                <ResultsGrid>
-                    {filtredArr?.map(el => {
-                        return el.products.productGallery?.map(inEl => {
-                            return inEl.productsImages?.map(imageEl => {
-                                if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
-                                    renderCount.current += 1
-                                    return <Card setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
-                                }
-                                return null
+            <InView>
+                <Wrapper variants={animation}>
+                    <motion.h2 variants={contentTitleAnimation}>{title}</motion.h2>
+                    <ResultsGrid variants={contentGridAnimation}>
+                        {filtredArr?.map(el => {
+                            return el.products.productGallery?.map(inEl => {
+                                return inEl.productsImages?.map((imageEl, index) => {
+                                    if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount) {
+                                        renderCount.current += 1
+                                        return <motion.div
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: .6 }}
+                                            key={inEl.popupNames.model + index}>
+                                            <Card setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
+                                        </motion.div>
+                                    }
+                                    return null
+                                })
                             })
-                        })
-                    })}
-                </ResultsGrid>
-                {count > showCount && (
-                    <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }} />
-                )}
-            </Wrapper>
+                        })}
+                    </ResultsGrid>
+                    {count > showCount && (
+                        <LoadMore count={addCount} onClick={() => { setShowCount(showCount + addCount) }} />
+                    )}
+                </Wrapper>
+            </InView>
         )
     }
 

@@ -1,9 +1,18 @@
+import { motion } from "framer-motion"
 import React, { useMemo, useRef, useState } from "react"
 import styled from "styled-components"
 import { ResultsGrid } from "../atoms/result-grid"
 import { Card } from "../moleculas/search-product-card"
+import InView from "../sections/in-view-provider"
 
-export const MostPopularProductBlock = ({ setRerender, rerender, prefiltredArr, title }) => {
+export const MostPopularProductBlock = ({
+    contentGridAnimation,
+    contentTitleAnimation,
+    animation,
+    setRerender,
+    rerender,
+    prefiltredArr,
+    title }) => {
 
     const sortedArr = useMemo(() => {
         let filtrArr = [...prefiltredArr.nodes]
@@ -32,31 +41,40 @@ export const MostPopularProductBlock = ({ setRerender, rerender, prefiltredArr, 
     if (prefiltredArr.nodes.length > 0) {
         renderCount.current = 0
         return (
-            <Wrapper>
-                <h2>{title}</h2>
-                <ResultsGrid>
-                    {sortedArr.map(el => {
-                        let isOneElementRendered = false
-                        return el.products.productGallery?.map(inEl => {
-                            return inEl.productsImages?.map(imageEl => {
-                                if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount && !isOneElementRendered) {
-                                    renderCount.current += 1
-                                    isOneElementRendered = true
-                                    return <Card setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
-                                }
-                                return null
+            <InView>
+                <Wrapper variants={animation}>
+                    <motion.h2 variants={contentTitleAnimation}>{title}</motion.h2>
+                    <ResultsGrid variants={contentGridAnimation}>
+                        {sortedArr.map(el => {
+                            let isOneElementRendered = false
+                            return el.products.productGallery?.map(inEl => {
+                                return inEl.productsImages?.map((imageEl, index) => {
+                                    if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < showCount && !isOneElementRendered) {
+                                        renderCount.current += 1
+                                        isOneElementRendered = true
+                                        return <motion.div
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                            transition={{ duration: .6 }}
+                                            key={inEl.popupNames.model + index}>
+                                            <Card setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
+                                        </motion.div>
+                                    }
+                                    return null
+                                })
                             })
-                        })
-                    })}
-                </ResultsGrid>
-            </Wrapper>
+                        })}
+                    </ResultsGrid>
+                </Wrapper>
+            </InView>
         )
     }
 
     return null
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     padding-top: 120px;
 
     &:first-child{

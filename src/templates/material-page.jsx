@@ -9,6 +9,7 @@ import SimilarProducts from "../components/sections/similar-products"
 import Video from "../components/sections/video"
 import Seo from "../layout/seo"
 
+
 export function Head({ data: { wpMaterials: { seo } } }) {
   return (
     <>
