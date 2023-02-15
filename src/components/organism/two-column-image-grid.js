@@ -8,8 +8,9 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import AddToFauvorite from "../atoms/add-to-favourite"
+import { motion } from "framer-motion"
 
-export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewImage, products, title }) => {
+export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
 
     var settings = {
@@ -63,7 +64,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
     const [rerender, setRerender] = useState(false)
 
     return (
-        <Box>
+        <Box variants={sliderAnimation}>
             <Popup id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
                 <PopupGrid>
                     {popUpImages?.map((el, index) => (
@@ -159,7 +160,7 @@ export const TwoColumnImageGrid = ({ gallery, popupNames, collectionPagePreviewI
     )
 }
 
-const Box = styled.div`
+const Box = styled(motion.div)`
     .in{
         background-color: #F9F5F0;
     }

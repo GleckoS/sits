@@ -1,8 +1,9 @@
+import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
 
-export const TooltipPopup = ({ title, data, onlyImage }) => (
-    <Wrapper>
+export const TooltipPopup = ({animation, title, data, onlyImage }) => (
+    <Wrapper variants={animation}>
         <span className="title">{title}</span>
         <Grid>
             {data.nodes.map((el, index) => (
@@ -171,7 +172,7 @@ const Popup = styled.div`
     }
 `
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     margin-top: 40px;
 
     .title{

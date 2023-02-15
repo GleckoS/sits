@@ -1,6 +1,8 @@
+import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
+import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
 import { accessoriesText, armrestText, confortText, coversText, dimensionsText, downloadText, legsText, upholsterysText } from "../../texts"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from "../atoms/category"
@@ -10,6 +12,24 @@ import { TooltipPopup } from "../moleculas/inform-with-tolltip-popup"
 import { Tooltip } from "../moleculas/inform-with-tooltip"
 import { PopupButton } from "../organism/pop-up-other-collection-data"
 import { TwoColumnImageGrid } from "../organism/two-column-image-grid"
+import InView from "./in-view-provider"
+
+const sliderAnimation = imageTransition(1)
+const titleAnimation = textTransition(3)
+const categoriesGridAnimation = textTransition(4)
+const textAnimation = textTransition(5)
+const linkAnimation = linkTransition(6)
+
+const upholsterysAnimation = textTransition(7)
+const comfortAnimation = textTransition(8)
+const coversAnimation = textTransition(9)
+
+const dimensionsAnimation = (i) => textTransition(7 + i)
+const legsAnimation = (i) => textTransition(7 + i)
+const armrestsAnimation = (i) => textTransition(7 + i)
+const accessoriesAnimation = (i) => textTransition(7 + i)
+
+const buttonAnimation = (i) => textTransition(7 + i)
 
 export default function Hero({
     itemCategories,
@@ -36,58 +56,62 @@ export default function Hero({
         }
     } }) {
     return (
-        <Wrapper>
-            <Container>
-                <Grid>
-                    <TwoColumnImageGrid gallery={collectionGallery} title={title} popupNames={popupNames} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
-                    <div className="content">
-                        <Flex>
-                            <h1>{title}</h1>
-                            <AddToFauvorite type='collections' title={title} />
-                        </Flex>
-                        <Categories>
-                            {itemCategories.map(el => (
-                                <React.Fragment key={el.name}>
-                                    <Category to={el.collectionTypes.typeArchive.url}>{el.name}</Category>
-                                </React.Fragment>
-                            ))}
-                        </Categories>
-                        <Description dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />
-                        {collectionProductSheet
-                            ? <DownloadWithArrow className='link' file={collectionProductSheet.localFile.publicURL}>
-                                {downloadText['en']}
-                            </DownloadWithArrow>
-                            : null}
-                        {upholsterys.nodes.length
-                            ? <Tooltip title={upholsterysText['en']} data={upholsterys} />
-                            : null}
-                        {comfort.nodes.length
-                            ? <TooltipPopup title={confortText['en']} data={comfort} />
-                            : null}
-                        {covers.nodes.length
-                            ? <Tooltip title={coversText['en']} data={covers} />
-                            : null}
-                        {dimensions.dimensions || legs.dimensions || armrest.dimensions || accessories.dimensions
-                            ? <Popups>
-                                {dimensions.dimensions
-                                    ? <PopupButton data={dimensions} title={dimensionsText['en']} />
-                                    : null}
-                                {legs.dimensions
-                                    ? <PopupButton data={legs} title={legsText['en']} />
-                                    : null}
-                                {armrest.dimensions
-                                    ? <PopupButton data={armrest} title={armrestText['en']} />
-                                    : null}
-                                {accessories.dimensions
-                                    ? <PopupButton data={accessories} title={accessoriesText['en']} />
-                                    : null}
-                            </Popups>
-                            : null}
-                        <Link className="yellow-button" to='/where-to-buy/' target='_blank'>Find retailers</Link>
-                    </div>
-                </Grid>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper>
+                <Container>
+                    <Grid>
+                        <TwoColumnImageGrid sliderAnimation={sliderAnimation} gallery={collectionGallery} title={title} popupNames={popupNames} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
+                        <div className="content">
+                            <Flex variants={titleAnimation}>
+                                <h1 >{title}</h1>
+                                <AddToFauvorite type='collections' title={title} />
+                            </Flex>
+                            <Categories variants={categoriesGridAnimation}>
+                                {itemCategories.map(el => (
+                                    <React.Fragment key={el.name}>
+                                        <Category to={el.collectionTypes.typeArchive.url}>{el.name}</Category>
+                                    </React.Fragment>
+                                ))}
+                            </Categories>
+                            <Description variants={textAnimation} dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />
+                            {collectionProductSheet
+                                ? <DownloadWithArrow linkAnimation={linkAnimation} className='link' file={collectionProductSheet.localFile.publicURL}>
+                                    {downloadText['en']}
+                                </DownloadWithArrow>
+                                : null}
+                            {upholsterys.nodes.length
+                                ? <Tooltip animation={upholsterysAnimation} title={upholsterysText['en']} data={upholsterys} />
+                                : null}
+                            {comfort.nodes.length
+                                ? <TooltipPopup animation={comfortAnimation} title={confortText['en']} data={comfort} />
+                                : null}
+                            {covers.nodes.length
+                                ? <Tooltip animation={coversAnimation} title={coversText['en']} data={covers} />
+                                : null}
+                            {dimensions.dimensions || legs.dimensions || armrest.dimensions || accessories.dimensions
+                                ? <Popups>
+                                    {dimensions.dimensions
+                                        ? <PopupButton animation={dimensionsAnimation(0)} data={dimensions} title={dimensionsText['en']} />
+                                        : null}
+                                    {legs.dimensions
+                                        ? <PopupButton animation={legsAnimation(dimensions.dimensions ? 1 : 0)} data={legs} title={legsText['en']} />
+                                        : null}
+                                    {armrest.dimensions
+                                        ? <PopupButton animation={dimensionsAnimation((dimensions.dimensions ? 1 : 0) + (legs.dimensions ? 1 : 0))} data={armrest} title={armrestText['en']} />
+                                        : null}
+                                    {accessories.dimensions
+                                        ? <PopupButton animation={accessoriesAnimation((armrest.dimensions ? 1 : 0) + (dimensions.dimensions ? 1 : 0) + (legs.dimensions ? 1 : 0))} data={accessories} title={accessoriesText['en']} />
+                                        : null}
+                                </Popups>
+                                : null}
+                            <motion.div animation={buttonAnimation((armrest.dimensions ? 1 : 0) + (dimensions.dimensions ? 1 : 0) + (legs.dimensions ? 1 : 0) + (accessories.dimensions ? 1 : 0))}>
+                                <Link className="yellow-button" to='/where-to-buy/' target='_blank'>Find retailers</Link>
+                            </motion.div>
+                        </div>
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -96,7 +120,7 @@ const Wrapper = styled.div`
     overflow: hidden;
 `
 
-const Description = styled.div`
+const Description = styled(motion.div)`
     margin-top: clamp(16px,${24 / 1194 * 100}vw,40px);
     p{
         font-size: clamp(16px,${20 / 1194 * 100}vw,20px);
@@ -129,7 +153,7 @@ const Grid = styled.div`
         }
     }
 `
-const Flex = styled.div`
+const Flex = styled(motion.div)`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -141,11 +165,10 @@ const Flex = styled.div`
         font-weight: 300;
         position: relative;
         width: fit-content;
-        text-decoration: underline;
     }
 `
 
-const Categories = styled.div`
+const Categories = styled(motion.div)`
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
