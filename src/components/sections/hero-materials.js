@@ -1,5 +1,7 @@
+import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
+import { imageTransition } from "../../helpers/animation-controller"
 import { careInstructionsText, downloadFabricText, featuresText, textureText } from "../../texts"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Container } from "../atoms/container"
@@ -7,6 +9,30 @@ import { DownloadWithArrow } from "../atoms/download-with-arrow"
 import { Tooltip } from "../moleculas/inform-with-tooltip"
 import { TooltipOnlyImage } from "../moleculas/inform-with-tooltip-only-image"
 import { MaterialsSlider } from "../organism/materials-slider"
+import InView from "./in-view-provider"
+
+const sliderAnimation = imageTransition(1)
+
+const addInformAnimation = {
+    animate: { transition: { staggerChildren: .2, delayChildren: .5 } }
+}
+
+const itemAnimation = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1, transition: { duration: .4 } }
+}
+
+const linkAnimation = {
+    initial: { opacity: 0, backgroundSize: '0 1px' },
+    animate: {
+        opacity: 1,
+        transition: { duration: .4 },
+        transitionEnd: {
+            backgroundSize: '80% 1px',
+            transition: { duration: .6 }
+        }
+    }
+}
 
 export default function Hero({
     isLast,
@@ -27,31 +53,33 @@ export default function Hero({
     }
 }) {
     return (
-        <Wrapper isLast={isLast}>
-            <Container>
-                <Grid>
-                    <MaterialsSlider variant={variant} variants={materialColorVariants} />
-                    <div className="content">
-                        <Flex>
-                            <h1 className="archive-title">{title}</h1>
-                            <AddToFauvorite type='materials' title={title} />
-                        </Flex>
-                        <Description className="p" dangerouslySetInnerHTML={{ __html: materialQuickDescription }} />
-                        {materialProductSheet
-                            ? <DownloadWithArrow className='link' file={materialProductSheet.localFile.publicURL}>
-                                {downloadFabricText['en']}
-                            </DownloadWithArrow>
-                            : null}
-                        {!!features.nodes.length && <Tooltip title={featuresText['en']} data={features} />}
-                        {!!textures.nodes.length && <Tooltip title={textureText['en']} data={textures} />}
-                        {!!careInstructions.nodes.length && <TooltipOnlyImage title={careInstructionsText['en']} data={careInstructions} />}
-                        {textUnderCareInstructionIcons
-                            ? <span className="anotation" dangerouslySetInnerHTML={{ __html: textUnderCareInstructionIcons }} />
-                            : null}
-                    </div>
-                </Grid>
-            </Container>
-        </Wrapper>
+        <InView>
+            <Wrapper isLast={isLast}>
+                <Container>
+                    <Grid>
+                        <MaterialsSlider animation={sliderAnimation} variant={variant} variants={materialColorVariants} />
+                        <motion.div variants={addInformAnimation} className="content">
+                            <Flex variants={itemAnimation}>
+                                <h1 className="archive-title">{title}</h1>
+                                <AddToFauvorite type='materials' title={title} />
+                            </Flex>
+                            <Description variants={itemAnimation} className="p" dangerouslySetInnerHTML={{ __html: materialQuickDescription }} />
+                            {materialProductSheet
+                                ? <DownloadWithArrow linkAnimation={linkAnimation} className='link' file={materialProductSheet.localFile.publicURL}>
+                                    {downloadFabricText['en']}
+                                </DownloadWithArrow>
+                                : null}
+                            {!!features.nodes.length && <Tooltip animation={itemAnimation} title={featuresText['en']} data={features} />}
+                            {!!textures.nodes.length && <Tooltip animation={itemAnimation} title={textureText['en']} data={textures} />}
+                            {!!careInstructions.nodes.length && <TooltipOnlyImage animation={itemAnimation} title={careInstructionsText['en']} data={careInstructions} />}
+                            {textUnderCareInstructionIcons
+                                ? <motion.span variants={itemAnimation} className="anotation" dangerouslySetInnerHTML={{ __html: textUnderCareInstructionIcons }} />
+                                : null}
+                        </motion.div>
+                    </Grid>
+                </Container>
+            </Wrapper>
+        </InView>
     )
 }
 
@@ -137,7 +165,7 @@ const Grid = styled.div`
         }
     }
 `
-const Description = styled.div`
+const Description = styled(motion.div)`
     margin-top: clamp(16px,${24 / 1194 * 100}vw,40px);
 
     p{
@@ -147,7 +175,7 @@ const Description = styled.div`
     max-width: 640px;
 `
 
-const Flex = styled.div`
+const Flex = styled(motion.div)`
     display: flex;
     justify-content: space-between;
     align-items: center;

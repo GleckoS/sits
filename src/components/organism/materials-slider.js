@@ -1,9 +1,10 @@
+import { motion } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const MaterialsSlider = ({ variant, variants }) => {
+export const MaterialsSlider = ({ animation, variant, variants }) => {
     const [choosenVariant, setChoosenVariant] = useState(() => {
         if (variant) {
             return variant
@@ -36,7 +37,7 @@ export const MaterialsSlider = ({ variant, variants }) => {
     }
 
     return (
-        <>
+        <motion.div variants={animation}>
             <div className="slider">
                 <SliderWrapper id='background'>
                     <button aria-label='prev slide' onClick={() => { onVariantChange(choosenVariant - 1) }} className="left slide">
@@ -86,7 +87,7 @@ export const MaterialsSlider = ({ variant, variants }) => {
                     </VariantGallery>
                 ))}
             </div>
-        </>
+        </motion.div>
     )
 }
 

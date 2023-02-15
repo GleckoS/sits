@@ -1,8 +1,9 @@
+import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
 
-export const TooltipOnlyImage = ({ title, data }) => (
-    <Wrapper>
+export const TooltipOnlyImage = ({ animation, title, data }) => (
+    <Wrapper variants={animation}>
         <span className="title">{title}</span>
         <Grid>
             {data.nodes.map((el, index) => (
@@ -17,7 +18,7 @@ export const TooltipOnlyImage = ({ title, data }) => (
     </Wrapper>
 )
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     margin-top: 40px;
 
     @media (max-width: 520px) {
