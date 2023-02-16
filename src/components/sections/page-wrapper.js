@@ -11,7 +11,8 @@ export default function Wrapper({ children }) {
                     type: "spring",
                     mass: 0.35,
                     stiffness: 75,
-                    duration: .2
+                    duration: .2,
+                    when: 'beforeChildren'
                 }
             }}
             exit={{

@@ -1,7 +1,7 @@
 const transition = (index = 1, timing) => {
     return {
         duration: timing === 'slow' ? .6 : .4,
-        delay: .3 + ((index - 1) * .2)
+        delay: .2 + ((index - 1) * .2)
     }
 }
 

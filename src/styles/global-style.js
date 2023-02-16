@@ -84,6 +84,11 @@ export const Global = createGlobalStyle`
         font-variant-numeric: oldstyle-nums;
     }
 
+    body{
+        scrollbar-gutter: stable both-edges;
+        overflow: overlay;
+    }
+
     @media (max-width: 420px) {
         .slick-dots li{
             margin: 0 2px !important; 
