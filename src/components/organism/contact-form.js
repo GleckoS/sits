@@ -1,5 +1,5 @@
 import axios from "axios"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { Link } from "gatsby"
 import React from "react"
 import { useState } from "react"
@@ -139,7 +139,7 @@ export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
     return (
         <Wrapper className="form">
             <motion.h1 variants={titleAnimation}>{title['en']}</motion.h1>
-            <motion.form variants={formAnimation} onSubmit={handleSubmit(onSubmit)}>
+            <motion.form autocomplete="off" variants={formAnimation} onSubmit={handleSubmit(onSubmit)}>
                 <Label variants={inputAnimation} register={register} errors={errors} name='email' obj={email} />
                 <Label variants={inputAnimation} register={register} errors={errors} name='name' obj={name} />
                 <Label variants={inputAnimation} register={register} errors={errors} name='country' obj={country} />
@@ -151,17 +151,21 @@ export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
                     <span>By sending message, I agree to the <Link to='/privacy-policy/' className='underline'>privacy policy.</Link></span>
                 </Checkbox>
                 <Submit variants={inputAnimation}>{submit['en']}</Submit>
-                <Success className={isSended ? 'sended' : ""}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="71.15" height="71.174" viewBox="0 0 71.15 71.174">
-                        <g id="checkmark.circle" opacity="0.2">
-                            <rect id="Rectangle_621" data-name="Rectangle 621" width="71.149" height="71.174" opacity="0" />
-                            <path id="Path_673" data-name="Path 673" d="M35.569,71.139a35.784,35.784,0,0,0,35.58-35.569A35.789,35.789,0,0,0,35.545,0,35.76,35.76,0,0,0,0,35.569,35.8,35.8,0,0,0,35.569,71.139Zm0-4.6A30.975,30.975,0,1,1,66.55,35.569,30.881,30.881,0,0,1,35.569,66.539Z" fill="rgba(0,0,0,0.85)" />
-                            <path id="Path_674" data-name="Path 674" d="M17.742,37.577a2.589,2.589,0,0,0,2.2-1.26L37.162,9.4a3.907,3.907,0,0,0,.631-1.72,2.152,2.152,0,0,0-2.237-2.042A2.467,2.467,0,0,0,33.648,6.86L17.633,32.228,9.448,22.151a2.291,2.291,0,0,0-2.02-1.078,2.126,2.126,0,0,0-2.115,2.153,2.9,2.9,0,0,0,.651,1.726l9.478,11.365A2.731,2.731,0,0,0,17.742,37.577Z" transform="translate(13.982 14.838)" fill="rgba(0,0,0,0.85)" />
-                        </g>
-                    </svg>
-                    <span className="title">{thans['en']}</span>
-                    <span className="text">{reply['en']}</span>
-                </Success>
+                <AnimatePresence mode="wait">
+                    {isSended && (
+                        <Success initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: .5} }} exit={{ opacity: 0 }} className={isSended ? 'sended' : ""}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="71.15" height="71.174" viewBox="0 0 71.15 71.174">
+                                <g id="checkmark.circle" opacity="0.2">
+                                    <rect id="Rectangle_621" data-name="Rectangle 621" width="71.149" height="71.174" opacity="0" />
+                                    <path id="Path_673" data-name="Path 673" d="M35.569,71.139a35.784,35.784,0,0,0,35.58-35.569A35.789,35.789,0,0,0,35.545,0,35.76,35.76,0,0,0,0,35.569,35.8,35.8,0,0,0,35.569,71.139Zm0-4.6A30.975,30.975,0,1,1,66.55,35.569,30.881,30.881,0,0,1,35.569,66.539Z" fill="rgba(0,0,0,0.85)" />
+                                    <path id="Path_674" data-name="Path 674" d="M17.742,37.577a2.589,2.589,0,0,0,2.2-1.26L37.162,9.4a3.907,3.907,0,0,0,.631-1.72,2.152,2.152,0,0,0-2.237-2.042A2.467,2.467,0,0,0,33.648,6.86L17.633,32.228,9.448,22.151a2.291,2.291,0,0,0-2.02-1.078,2.126,2.126,0,0,0-2.115,2.153,2.9,2.9,0,0,0,.651,1.726l9.478,11.365A2.731,2.731,0,0,0,17.742,37.577Z" transform="translate(13.982 14.838)" fill="rgba(0,0,0,0.85)" />
+                                </g>
+                            </svg>
+                            <span className="title">{thans['en']}</span>
+                            <span className="text">{reply['en']}</span>
+                        </Success>
+                    )}
+                </AnimatePresence>
             </motion.form>
         </Wrapper>
     )
@@ -240,7 +244,7 @@ const Checkbox = styled(motion.label)`
     }
 `
 
-const Success = styled.div`
+const Success = styled(motion.div)`
     position: absolute;
     left: 0;
     top: 0;
@@ -253,16 +257,10 @@ const Success = styled.div`
     }
 
     background-color: #FFF;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateX(20px);
+    opacity: 1;
+    pointer-events: all;
     transition: all .3s cubic-bezier(0.39, 0.575, 0.565, 1);
 
-    &.sended{
-        opacity: 1;
-        pointer-events: all;
-        transform: unset;
-    }
 
     display: flex;
     flex-direction: column;

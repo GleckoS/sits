@@ -12,7 +12,7 @@ export const Label = ({ variants, register, errors, name, obj, rows }) => {
                 ? <textarea value={inputValue} rows={rows} {...register(name, {
                     onChange: (e) => { setInputValue(e.currentTarget.value) }
                 })} />
-                : <input {...register(name, {
+                : <input autoComplete="off" {...register(name, {
                     onChange: (e) => { setInputValue(e.currentTarget.value) }
                 })} />}
         </Wrapper>

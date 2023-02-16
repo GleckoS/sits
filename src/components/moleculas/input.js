@@ -1,9 +1,10 @@
 import { Link, navigate } from "gatsby"
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { myContext } from "./../../hooks/provider"
 
 export const Input = ({ func, tabIndex, placeholder }) => {
+    const [isActive, setIsActive] = useState(false)
 
     const enterListener = (e, input) => {
         if (e.key === "Enter") {
@@ -16,9 +17,9 @@ export const Input = ({ func, tabIndex, placeholder }) => {
         <myContext.Consumer>
             {context => {
                 return (
-                    <Wrapper>
-                        <span>{placeholder}</span>
-                        <input value={context.searchInputValue} onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} tabIndex={tabIndex} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
+                    <Wrapper onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
+                        <span className={isActive ? 'active' : ''}>{placeholder}</span>
+                        <input value={context.searchInputValue} onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} tabIndex={tabIndex} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
                         <Link onClick={func} tabIndex={tabIndex} aria-label={'search: ' + context?.searchInputValue} to={context?.searchInputValue ? ('/search/?search=' + context?.searchInputValue) : '/search/'}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                 <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
@@ -38,8 +39,23 @@ export const Input = ({ func, tabIndex, placeholder }) => {
 }
 
 const Wrapper = styled.label`
+    position: relative;
     span{
-        display: none;
+        position: absolute;
+        font-weight: 400;
+        font-size: 18px;
+        letter-spacing: 0.003em;
+        color: #767676;
+        left: 0;
+        top: -5px;
+        pointer-events: none;
+        transition: all .3s ease-out;
+
+        &.active{
+            font-size: 12px;
+            top: 0;
+            transform: translateY(-100%);
+        }
     }
     border-bottom: 1px solid black;
     display: flex;
