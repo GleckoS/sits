@@ -12,12 +12,10 @@ const linkAnimation = linkTransition(4, 'slow')
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
-    const video = useRef(null)
     const [canScroll, setCanScroll] = useState(false);
 
     useEffect(() => {
         if (canScroll) {
-            video.current.play()
             // scrollLock.disable('hero')
         } else {
             // scrollLock.enable('hero')
@@ -36,11 +34,9 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
                 <motion.video
-                    ref={video}
                     variants={sliderAnimation}
                     className="background video"
-                    playsInline muted loop
-                    preload="none"
+                    playsInline muted loop autoPlay
                     poster={backgroundImage.localFile.publicURL} >
                     <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
                 </motion.video>

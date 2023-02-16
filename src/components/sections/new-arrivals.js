@@ -64,7 +64,6 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
             }
         }
     }
-
     itemsCount.current = 0
     return (
         <InView>
@@ -96,14 +95,16 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                         </motion.div>
                         <motion.label variants={sliderBarAnimation}>
                             <span>Slider control</span>
-                            <SliderInput
-                                value={activeSlide}
-                                id='slider'
-                                onChange={(e) => { setActiveSlide(e.currentTarget.value) }}
-                                width={100 / (itemsCount.current - getElCount())}
-                                type='range'
-                                min='0'
-                                max={(itemsCount.current - getElCount())} />
+                            <SliderInputWrapper value={activeSlide} width={100 / (itemsCount.current - getElCount())}>
+                                <SliderInput
+                                    value={activeSlide}
+                                    id='slider'
+                                    onChange={(e) => { setActiveSlide(e.currentTarget.value) }}
+                                    width={100 / (itemsCount.current - getElCount())}
+                                    type='range'
+                                    min='0'
+                                    max={(itemsCount.current - getElCount())} />
+                            </SliderInputWrapper>
                         </motion.label>
                     </Grid>
                 </Container>
@@ -112,12 +113,10 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
     )
 }
 
-const SliderInput = styled.input`
-    margin-top: 30px;
-    width: 100%;
-    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    background: transparent; /* Otherwise white in Chrome */
+const SliderInputWrapper = styled.div`
     position: relative;
+    margin-top: 30px;
+    height: 8px;
 
     &::after{
         position: absolute;
@@ -130,7 +129,17 @@ const SliderInput = styled.input`
         background: #ADA194;
         transition: left .4s ease-out;
         cursor: pointer;
+        pointer-events: none;
     }
+
+`
+
+const SliderInput = styled.input`
+    width: 100%;
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    background: transparent; /* Otherwise white in Chrome */
+    height: 8px;
+    transform: translateY(-10px);
 
     &::-ms-track {
         width: 100%;
@@ -171,7 +180,7 @@ const SliderInput = styled.input`
 
 &::-webkit-slider-runnable-track {
   width: 100%;
-  height: 8.4px;
+  height: 8px;
   cursor: pointer;
   background: #F2EEE6;
 }
@@ -182,20 +191,21 @@ const SliderInput = styled.input`
 
 &::-moz-range-track {
   width: 100%;
-  height: 8.4px;
+  height: 8px;
   cursor: pointer;
   background: #F2EEE6;
 }
 
 &::-ms-track {
   width: 100%;
-  height: 8.4px;
+  height: 8px;
   cursor: pointer;
   background: transparent;
   border-color: transparent;
   border-width: 16px 0;
   color: transparent;
 }
+
 &::-ms-fill-lower {
   background: #F2EEE6;
 }
@@ -215,6 +225,7 @@ const Wrapper = styled(motion.section)`
     background-color: #F9F5F0;
     padding: clamp(40px, ${80 / 768 * 100}vw, 80px) 0;
     overflow: hidden;
+
 
     label{
         span{
