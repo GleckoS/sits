@@ -144,7 +144,7 @@ export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
                 <Label variants={inputAnimation} register={register} errors={errors} name='name' obj={name} />
                 <Label variants={inputAnimation} register={register} errors={errors} name='country' obj={country} />
                 <Label variants={inputAnimation} register={register} errors={errors} name='subject' obj={subject} />
-                <Label variants={inputAnimation} register={register} errors={errors} name='message' obj={message} rows='1' />
+                <Label variants={inputAnimation} register={register} errors={errors} name='message' obj={message} rows='3' />
                 <Checkbox variants={inputAnimation}>
                     <input {...register('check', { required: true })} type='checkbox' />
                     <div className="check" />

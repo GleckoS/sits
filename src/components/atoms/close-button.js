@@ -32,4 +32,15 @@ const Button = styled.div`
             transform: scale(1.15);
         }
     }
+
+    @media (max-width: 640px) {
+        width: 15px;
+        height: 15px;
+        transform: translateY(-2px);
+        svg{
+        width: 15px;
+        height: 15px;
+
+        }
+    }
 `
