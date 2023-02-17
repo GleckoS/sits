@@ -9,12 +9,11 @@ import SimilarProducts from "../components/sections/similar-products"
 import Video from "../components/sections/video"
 import Seo from "../layout/seo"
 
-
-export function Head({ data: { wpMaterials: { seo } } }) {
+export function Head({ pageContext, data: { wpMaterials: { seo } } }) {
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} />
+      <Seo seo={seo} pageContext={pageContext}/>
     </>
   )
 }

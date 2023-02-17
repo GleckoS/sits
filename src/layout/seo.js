@@ -2,8 +2,20 @@ import React from "react"
 
 const siteUrl = 'https://www.sits.eu'
 
-export default function Seo({ seo }) {
-    const canonical = siteUrl + seo.canonical
+export default function Seo({ isArchive = false, pageContext, seo }) {
+    const canonical = siteUrl + pageContext.uri
+
+
+    const thing = isArchive && {
+        "thing": {
+            "@type": "ProductGroup",
+            "name": pageContext.productType,
+            "description": seo.metaDesc,
+            // "keywords": "dining chairs",
+            // "image": "https://www.sits.eu/sites/default/files/styles/product_view_top_slider/public/SOPHIA_technical_3seater_nori_1_nature_1.jpg?itok=iT3cN9eI",
+            "url": canonical
+        }
+    }
     return (
         <>
             <meta charSet="utf-8" />
@@ -89,25 +101,17 @@ export default function Seo({ seo }) {
                         },
                         "logo": "https://www.sits.eu/sites/default/files/logo.png",
                         "vatId": "8741704017",
-
-                        // "thing": {
-                        //     "@type": "ProductGroup",
-                        //     "name": "Dining Chairs",
-                        //     "description": "Meta description",
-                        //     "keywords": "dining chairs",
-                        //     "image": "https://www.sits.eu/sites/default/files/styles/product_view_top_slider/public/SOPHIA_technical_3seater_nori_1_nature_1.jpg?itok=iT3cN9eI",
-                        //     "url": "https://sitsmaster.gatsbyjs.io/products/dining-chairs/"
-                        // }
-
-                        // "ispartof":{
-                        //     "@type": "WebSite",
-                        //     "name": "Sits Furniture",
-                        //     "url": "https://sitsmaster.gatsbyjs.io/",
-                        //     "potentialAction": {
-                        //       "@type": "SearchAction",
-                        //       "target": "https://sitsmaster.gatsbyjs.io/search/?search={search_term_string}",
-                        //       "query-input": "required name=search_term_string"
-                        //   }}
+                        thing,
+                        "ispartof": {
+                            "@type": "WebSite",
+                            "name": "Sits Furniture",
+                            "url": siteUrl,
+                            "potentialAction": {
+                                "@type": "SearchAction",
+                                "target": canonical + "?search={search_term_string}",
+                                "query-input": "required name=search_term_string"
+                            }
+                        }
 
                     }
                 )}

@@ -6,11 +6,11 @@ import Wrapper from "../components/sections/page-wrapper"
 import Content from "../components/sections/sales-representative"
 import Seo from "../layout/seo"
 
-export function Head({ data: { wpPage: { seo } } }) {
+export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} />
+      <Seo seo={seo} pageContext={pageContext}/>
     </>
   )
 }

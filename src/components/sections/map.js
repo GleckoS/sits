@@ -143,7 +143,7 @@ export default function Map() {
                                 {/* <FullscreenControl position='topright'/> */}
                                 <MarkerClusterGroup showCoverageOnHover={false}>
                                     {filtredRetailers?.map((el, index) => (
-                                        <Marker isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
+                                        <Marker key={el['Shop name'] + index} isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
                                     ))}
                                 </MarkerClusterGroup>
                             </MapContainer>

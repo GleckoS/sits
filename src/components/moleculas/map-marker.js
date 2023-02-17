@@ -50,7 +50,6 @@ export default function MapMarker({ isActive, markerClick, index, el, map }) {
 
     return (
         <Marker
-            key={index}
             icon={isActive ? chosenIcon : iconPerson}
             position={[el.Latitude, el.Longitude]}
             eventHandlers={{

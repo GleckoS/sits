@@ -11,7 +11,7 @@ export const ProductList = ({ changeType, setRerender, setPage, page, rerender, 
     renderCount.current = 0
     return (
         <AnimatePresence mode='wait'>
-            <Wrapper>
+            <Wrapper key='wrapper'>
                 {products?.map(el => {
                     return el.products.productGallery?.map(inEl => {
                         return inEl.productsImages?.map((imageEl, index) => {
@@ -36,7 +36,7 @@ export const ProductList = ({ changeType, setRerender, setPage, page, rerender, 
             </Wrapper>
             {isAllRendered.current
                 ? null
-                : <LoadMore onClick={() => { setPage(+page + 1) }} />}
+                : <LoadMore key='loadMore' onClick={() => { setPage(+page + 1) }} />}
         </AnimatePresence>
     )
 }
