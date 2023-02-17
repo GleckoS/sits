@@ -1,3 +1,4 @@
+import { motion } from "framer-motion"
 import React, { useEffect } from "react"
 import styled from "styled-components"
 
@@ -19,7 +20,7 @@ export const Popup = ({ id, children, title, setPopUpOpened, isPopUpOpened }) =>
     }, [isPopUpOpened])
 
     return (
-        <Wrapper className={isPopUpOpened ? 'active' : ''} >
+        <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: .5} }} exit={{ opacity: 0, transition: {duration: .3} }}>
             <Box>
                 <Control>
                     <span className="archive-title">{title}</span>
@@ -77,7 +78,7 @@ const Box = styled.div`
 `
 
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     position: fixed;
     left: 0;
     right: 0;
@@ -85,14 +86,8 @@ const Wrapper = styled.div`
     bottom: 0;
     z-index: 1000;
     background-color: var(--gray);
-    transition: opacity .7s ease-out;
-    opacity: 0;
-    pointer-events: none;
-
-    &.active{
-        opacity: 1;
-        pointer-events: all;
-    }
+    transition: opacity .7s cubic-bezier(0.42, 0, 0.58, 1);
+    pointer-events: all;
 
     span{
         font-size: clamp(28px, ${40 / 1194 * 100}vw, 44px);

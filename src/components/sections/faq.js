@@ -188,7 +188,7 @@ const Answer = styled.div`
     a{
         font-weight: 400;
 
-        transition: background-size 0.5s ease-out;
+        transition: background-size 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 
         background-image: linear-gradient(#222b40, #222b40);
         background-size: 80% 1px;
@@ -239,10 +239,10 @@ const Question = styled(motion.details)`
     border-top: 1px solid #31231E;
     padding: clamp(16px, ${32 / 1194 * 100}vw, 32px) 16px;
     width: 100%;
-    transition: background-color .4s ease-out;
+    transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1);
 
     svg{
-        transition: transform .4s ease-out;
+        transition: transform .4s cubic-bezier(0.42, 0, 0.58, 1);
     }
     
     @media (max-width: 1194px) {

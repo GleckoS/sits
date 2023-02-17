@@ -14,7 +14,7 @@ import { imageTransition, textTransition } from "../../helpers/animation-control
 
 const getElCount = () => {
     if (typeof window !== 'undefined') {
-        return window?.innerWidth < 641 ? 0 : 1
+        return window?.innerWidth < 641 ? 1 : 2
     }
 
     return 0
@@ -95,7 +95,7 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                         </motion.div>
                         <motion.label variants={sliderBarAnimation}>
                             <span>Slider control</span>
-                            <SliderInputWrapper value={activeSlide} width={100 / (itemsCount.current - getElCount())}>
+                            <SliderInputWrapper totalCount={itemsCount.current - getElCount()} value={activeSlide} width={100 / (itemsCount.current - getElCount())}>
                                 <SliderInput
                                     value={activeSlide}
                                     id='slider'
@@ -123,11 +123,12 @@ const SliderInputWrapper = styled.div`
         content: '';
         top: 0;
         bottom: 0;
-        left: ${props => props.value * props.width}%;
+        left: ${props => (props.value * props.width)}%;
+        transform: translateX(-${props => props.value * props.width}%);
         height: 100%;
         width: ${props => props.width}%;
         background: #ADA194;
-        transition: left .4s ease-out;
+        transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
         cursor: pointer;
         pointer-events: none;
     }

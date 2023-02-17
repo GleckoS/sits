@@ -92,6 +92,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                                 return (
                                     <div key={index} className="slide">
                                         <GatsbyImage
+                                            className="image"
                                             image={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.localFile.childImageSharp.gatsbyImageData}
                                             alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
                                         <div className="content mobile">
@@ -176,7 +177,7 @@ const Control = styled.div`
             top: 0;
             bottom: 0;
             border-radius: 50%;
-            transition: all .3s ease-out;
+            transition: all .3s cubic-bezier(0.42, 0, 0.58, 1);
         }
 
         &.active::after{
@@ -193,6 +194,9 @@ const Control = styled.div`
         line-height: 160%;
         letter-spacing: 0.003em;
         color: #FFFFFF;
+        width: 80px;
+        display: flex;
+        justify-content: center;
     }
 
     .left{
@@ -208,7 +212,7 @@ const Control = styled.div`
 
         svg{
             width: clamp(20px, ${20 / 768 * 100}vw, 28px);
-            transition: transform .5s ease-out;
+            transition: transform .5s cubic-bezier(0.42, 0, 0.58, 1);
         }
 
         &:hover{
@@ -231,7 +235,7 @@ const Control = styled.div`
 
         svg{
             width: clamp(20px, ${20 / 768 * 100}vw, 28px);
-            transition: transform .5s ease-out;
+            transition: transform .5s cubic-bezier(0.42, 0, 0.58, 1);
         }
 
         &:hover{
@@ -257,7 +261,7 @@ const Wrapper = styled.section`
     }
 
     .underline{
-        background-size: 0% 1px;
+        background-size: 80% 1px;
         a{
             display: block;
             width: fit-content;
@@ -274,9 +278,19 @@ const Wrapper = styled.section`
     .slick-slide{
         transition: all var(--animation) !important;
         pointer-events: none;
+        
+
+        cursor: pointer;
+        cursor: hand;
+        cursor: grab;
+
+        &:active{
+        cursor: grabbing;
+
+        }
 
         @media (max-width: 768px) {
-            transition: all .6s ease;
+            transition: all .6s cubic-bezier(0.42, 0, 0.58, 1);
         }
         &.slick-active{
             pointer-events: all;
@@ -317,6 +331,20 @@ const Wrapper = styled.section`
     }
 
     .slide{
+        .image{
+            position: relative;
+
+            &::after{
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                top: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0) 66.15%, rgba(0, 0, 0, 0.3) 100%);
+
+            }
+        }
     }
 
     .placeholder{
@@ -346,7 +374,7 @@ const Wrapper = styled.section`
                 pointer-events: none;
 
                 .underline{
-                    background-size: 0% 1px;
+                    background-size: 80% 1px;
                     margin-left: auto;
                     background-image: linear-gradient(#fff, #fff);
 
@@ -374,7 +402,7 @@ const Wrapper = styled.section`
                 &.hide{
                     opacity: 0;
                 }
-                transition:  opacity .4s ease;
+                transition:  opacity .4s cubic-bezier(0.42, 0, 0.58, 1);
                 position: sticky;
                 top: 120px;
                 z-index: 5;

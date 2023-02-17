@@ -38,7 +38,7 @@ const Popup = styled.div`
     right: 0;
     transform: translateY(-100%) ;
     width: 500px;
-    transition: all .4s ease-out;
+    transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
     z-index: 2;
     border: 2px solid #C3C3C3;
 
@@ -66,7 +66,6 @@ const Popup = styled.div`
         @media (max-width: 600px) {
             display: none;
         }
-
     }
 
     &::after{
@@ -199,7 +198,7 @@ const Item = styled.div`
     position: relative;
     cursor: pointer;
     opacity: .75;
-    transition: all .4s ease-out;
+    transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
 
     @media (max-width: 600px) {
         position: unset;

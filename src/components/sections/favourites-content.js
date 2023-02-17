@@ -138,8 +138,6 @@ const NoResults = styled(motion.div)`
         font-family: 'Ivy';
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-weight: 300;
-        text-decoration: underline;
-        
     }
 
     p{
@@ -147,8 +145,21 @@ const NoResults = styled(motion.div)`
         font-weight: 300;
 
         a{
-            text-decoration: underline;
-            text-underline-offset: 2px !important;
+            width: fit-content;
+            position: relative;
+            padding-bottom: 1px;
+            text-decoration: unset !important;
+
+            transition: background-size 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+
+            background-image: linear-gradient(#222b40, #222b40);
+            background-size: 80% 1px;
+            background-position: left bottom;
+            background-repeat: no-repeat;
+
+            &:hover {
+                background-size: 100% 1px !important;
+            }
         }
     }
 `

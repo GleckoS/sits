@@ -25,13 +25,13 @@ const Wrapper = styled(motion.label)`
     span{
         position: absolute;
         font-weight: 400;
-        font-size: clamp(20px, ${24 / 1366 * 100}vw, 24px);
+        font-size: 20px;
         letter-spacing: 0.003em;
         color: #767676;
         left: 0;
         top: 5px;
         pointer-events: none;
-        transition: all .3s ease-out;
+        transition: all .3s cubic-bezier(0.42, 0, 0.58, 1);
 
         &.active{
             font-size: clamp(12px, ${16 / 1366 * 100}vw, 16px);

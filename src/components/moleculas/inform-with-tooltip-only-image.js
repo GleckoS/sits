@@ -41,42 +41,48 @@ const Popup = styled.div`
     left: 50%;
     transform: translateY(-100%) translateX(-50%);
     width: 200px;
-    transition: all .5s ease-out;
+    transition: all .5s cubic-bezier(0.42, 0, 0.58, 1);
     z-index: 2;
     border: 2px solid #C3C3C3;
     text-align: center;
 
+
+    &::before{
+        content: "";
+        position: absolute;
+        z-index: -1;
+        bottom: 0;
+        right: 50%;
+        background: #C3C3C3;
+        transform: translateX(50%) translateY(10px) rotate(45deg);
+        width: 24px;
+        height: 24px;
+
+        @media (max-width: 1024px) {
+            left: 7px;
+            transform:  translateY(10px) rotate(45deg);
+            right: unset;
+        }
+
+        @media (max-width: 600px) {
+            display: none;
+        }
+    }
+
+    &::after{
+        content: '';
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        top: 0;
+        background-color: #fff;
+        z-index: -1;
+    }
+
     @media (max-width: 1024px) {
         left: 0%;
         transform: translateY(-100% ) ;
-
-        &::before{
-            content: "";
-            position: absolute;
-            z-index: -1;
-            bottom: 0;
-            background: #C3C3C3;
-            transform: translateY(10px) rotate(45deg);
-            width: 24px;
-            height: 24px;
-            left: 3px;
-
-            @media (max-width: 520px) {
-                display: none;
-            }
-
-        }
-
-        &::after{
-            content: '';
-            position: absolute;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            top: 0;
-            background-color: #fff;
-            z-index: -1;
-        }
     }
 
     @media (max-width: 520px) {
@@ -121,7 +127,7 @@ const Item = styled.div`
         width: 40px;
         height: 40px;
         opacity: .65;
-        transition: opacity .5s ease-out;
+        transition: opacity .5s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     &:hover{

@@ -143,7 +143,7 @@ const Button = styled.button`
 
   svg {
     path{
-      transition: all .3s ease-out;
+      transition: all .3s cubic-bezier(0.42, 0, 0.58, 1);
     }
     width: 28px;
     height: 26px;

@@ -1,7 +1,8 @@
-const transition = (index = 1, timing) => {
+const transition = (index = 1, timing, isLink = false) => {
     return {
-        duration: timing === 'slow' ? .6 : .4,
-        delay: .2 + ((index - 1) * .2)
+        duration: timing === 'slow' ? .7 : .5,
+        delay: .2 + ((index - 1) * .2),
+        ease: isLink ? [0.76, 0, 0.24, 1] : [0.42, 0, 0.58, 1]
     }
 }
 

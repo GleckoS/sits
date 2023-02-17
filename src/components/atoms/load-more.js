@@ -27,7 +27,7 @@ const Wrapper = styled.button`
     margin: 32px auto 0 auto;
     display: block;
     cursor: pointer;
-    transition: background-color .4s ease-out;
+    transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1);
 
     &:hover{
         background-color: #785836;

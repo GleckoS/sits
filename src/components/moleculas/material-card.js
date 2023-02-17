@@ -16,15 +16,14 @@ export const MaterialCard = ({ variant = '', color, data: { materials: { materia
     const [choosenVariant, setChoosenVariant] = useState(() => {
         for (let i = 0; i < variants.length; i++) {
             if (variant) {
-                if (variants[i].variantName === variant)
-                    return i
+                return variant
             }
             else {
                 if (variants[i].isMainColor)
-                    return i
+                    return variants[i].variantName
             }
         }
-        return 0
+        return variants[0].variantName
     })
 
     const [newVariant, setNewVariant] = useState(choosenVariant)
@@ -34,38 +33,37 @@ export const MaterialCard = ({ variant = '', color, data: { materials: { materia
             for (let i = 0; i < variants.length; i++) {
                 if (variant) {
                     if (variants[i].variantName === variant)
-                        return i
+                        return variants[i].variantName
                 }
                 else {
                     if (variants[i].isMainColor)
-                        return i
+                        return variants[i].variantName
                 }
             }
-            return 0
+            return variants[0].variantName
         })
     }, [variants])
 
-    const onVariantChange = (index) => {
-        document.getElementById('background').style.backgroundColor = variants[choosenVariant].squarePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
+    const onVariantChange = (i) => {
+        document.getElementById('background').style.backgroundColor = variants.filter(el => el.variantName === choosenVariant)[0].squarePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
 
-        setNewVariant(index)
+        setNewVariant(variants[i].variantName)
         setTimeout(() => {
             setNewVariant(choosenVariant)
-            setChoosenVariant(index)
+            setChoosenVariant(variants[i].variantName)
         }, 50)
 
     }
-
     return (
         <Wrapper>
             <div className="wrap">
-                <AddToFauvorite type={'colors'} title={variants[choosenVariant]?.variantName ? variants[choosenVariant]?.variantName : variants[0].variantName} />
+                <AddToFauvorite type={'colors'} title={variants.filter(el => el.variantName === choosenVariant)[0]?.variantName ? variants.filter(el => el.variantName === choosenVariant)[0]?.variantName : variants[0].variantName} />
                 <Link aria-label={'material: ' + title} to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
                     <SliderWrapper id='background'>
                         {variants.map((el, index) => {
-                            if (index === choosenVariant || index === newVariant) {
+                            if (variants[index].variantName === choosenVariant || variants[index].variantName === newVariant) {
                                 return (
-                                    <SliderContent key={el.variantName} className={index === choosenVariant ? 'active' : ''}>
+                                    <SliderContent key={el.variantName} className={variants[index].variantName === choosenVariant ? 'active' : ''}>
                                         <GatsbyImage className="image" image={el.squarePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.squarePreviewImage.altText} />
                                     </SliderContent>
                                 )
@@ -78,7 +76,7 @@ export const MaterialCard = ({ variant = '', color, data: { materials: { materia
             <span className="archive-title">{title}</span>
             <VariantsPicker>
                 {variants.map((el, index) => (
-                    <VariantCircle aria-label={'change color to: ' + el.colorGroup} key={el.variantColor} onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
+                    <VariantCircle aria-label={'change color to: ' + el.colorGroup} key={el.variantColor} onClick={() => { onVariantChange(index) }} className={variants[index].variantName === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
                     </VariantCircle>
                 ))}
             </VariantsPicker>
@@ -136,7 +134,7 @@ const VariantCircle = styled.button`
     height: 26px;
     border-radius: 50%;
     border: 1px solid #BABABA;
-    transition: border .4s ease-out;
+    transition: border .4s cubic-bezier(0.42, 0, 0.58, 1);
     cursor: pointer;
 
     display: flex;
@@ -154,7 +152,7 @@ const VariantCircle = styled.button`
         border: 1px solid #0B0B0B;
         border-radius: 50%;
         opacity: 0;
-        transition: all .25s ease-out;
+        transition: all .25s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     &:hover{
@@ -165,7 +163,7 @@ const VariantCircle = styled.button`
 
     svg{
         opacity: 0;
-        transition: opacity .4s ease-out;
+        transition: opacity .4s cubic-bezier(0.42, 0, 0.58, 1);
         mix-blend-mode: color-burn;
     }
 
@@ -194,7 +192,7 @@ const SliderContent = styled.div`
     right: 0;
     top: 0;
     bottom: 0;
-    transition: opacity .6s ease-out;
+    transition: opacity .6s cubic-bezier(0.42, 0, 0.58, 1);
 
     &.active{
         position: relative;
@@ -202,7 +200,7 @@ const SliderContent = styled.div`
     }
 
     .image img{
-        transition: transform .6s ease-out;
+        transition: transform .6s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
 `

@@ -4,6 +4,7 @@ import styled from "styled-components"
 import { Grid } from "./cookies-grid"
 import scrollLock from './../helpers/scroll-lock'
 import { getCookie, setCookie } from "../helpers/coockie-manager"
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion"
 
 function datalayerArguments() {
     if (typeof window !== "undefined" && !!arguments) {
@@ -81,6 +82,11 @@ export default function Cookies({ isActive, setIsActive }) {
 
     const changeTabs = (index) => {
         const arr = [...activeCookie]
+        
+        if(arr[index].name === "necessary"){
+            return null
+        }
+
         arr[index].isActive = !arr[index].isActive
 
         setActiveCookie(arr)
@@ -168,75 +174,107 @@ export default function Cookies({ isActive, setIsActive }) {
     }
 
     return (
-        <>
-            <Overlay className={isActive ? 'active' : ''} />
-            <Wrapper className={isActive ? 'active' : ''}>
-                <Content>
-                    <TabsControl>
-                        <button tabIndex={isActive ? '0' : '-1'} className={activeTab === 0 ? 'active' : ''} onClick={() => { setActiveTab(0) }}>
-                            {consentTabName['en']}
-                        </button>
-                        <button tabIndex={isActive ? '0' : '-1'} className={activeTab === 1 ? 'active' : ''} onClick={() => { setActiveTab(1) }}>
-                            {detailsTabName['en']}
-                        </button>
-                        <button tabIndex={isActive ? '0' : '-1'} className={activeTab === 2 ? 'active' : ''} onClick={() => { setActiveTab(2) }}>
-                            {aboutTabName['en']}
-                        </button>
-                    </TabsControl>
-                    <TabWrapper>
-                        <Tab className={activeTab === 0 ? 'active' : ''}>
-                            <div className="content" dangerouslySetInnerHTML={{ __html: consentTab.tabContent }} />
-                        </Tab>
-                        <Tab className={activeTab === 1 ? 'active' : ''}>
-                            {detailsTab.cookies.map((el, index) => {
-                                let count = 0
-                                el.innerParts?.forEach(inEl => {
-                                    count += inEl.innerPartCookies.length
-                                })
-                                return (
-                                    <div key={el.partName + index} className="parts">
-                                        <div className="name">
-                                            <button tabIndex={isActive ? '0' : '-1'} className={activeCookie[index].isActive ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
-                                            {el.partName} {count > 0 && `(${count})`}
-                                        </div>
-                                        <p className="description">
-                                            {el.partDescription}
-                                        </p>
-                                        {el.innerParts?.map((el, id) => (
-                                            <React.Fragment key={el.innerPartName + id}><Grid isActive={isActive} active={activeCookie[index].isActive} el={el} /></React.Fragment>
-                                        ))}
-                                    </div>
-                                )
-                            })}
-                        </Tab>
-                        <Tab className={activeTab === 2 ? 'active' : ''}>
-                            <div className="content" dangerouslySetInnerHTML={{ __html: aboutCookiesTab.tabContent }} />
-                        </Tab>
-                    </TabWrapper>
-                    <Buttons>
-                        <button tabIndex={isActive ? '0' : '-1'} onClick={() => { rejectAll() }}>
-                            {denyButton['en']}
-                        </button>
-                        {activeTab === 1 ? (
-                            <button onClick={() => { acceptPart() }} tabIndex={isActive ? '0' : '-1'}>
-                                {allowChosenButton['en']}
-                            </button>
-                        ) : (
-                            <button onClick={() => { setActiveTab(1) }} tabIndex={isActive ? '0' : '-1'}>
-                                {setButton['en']}
-                            </button>
-                        )}
-                        <button tabIndex={isActive ? '0' : '-1'} onClick={() => { acceptAll() }} className="allow">
-                            {allowButton['en']}
-                        </button>
-                    </Buttons>
-                </Content>
-            </Wrapper>
-        </>
+        <AnimatePresence mode="wait">
+            {isActive && (
+                <>
+                    <Overlay initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key='cookie-overlay' />
+                    <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key='cookie-wrapper'>
+                        <Content>
+                            <TabsControl>
+                                <AnimateSharedLayout>
+                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(0) }}>
+                                        {consentTabName['en']}
+                                        {activeTab === 0 && (
+                                            <motion.div
+                                                className="underline"
+                                                layoutId="underline"
+                                            />
+                                        )}
+                                    </button>
+                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(1) }}>
+                                        {detailsTabName['en']}
+                                        {activeTab === 1 && (
+                                            <motion.div
+                                                className="underline"
+                                                layoutId="underline"
+                                            />
+                                        )}
+                                    </button>
+                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(2) }}>
+                                        {aboutTabName['en']}
+                                        {activeTab === 2 && (
+                                            <motion.div
+                                                className="underline"
+                                                layoutId="underline"
+                                            />
+                                        )}
+                                    </button>
+                                </AnimateSharedLayout>
+                            </TabsControl>
+                            <TabWrapper transition={{duration: .5}}>
+                                <AnimatePresence mode='wait'>
+                                    {activeTab === 0 && (
+                                        <Tab key='cookies-first-tab' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                                            <div className="content" dangerouslySetInnerHTML={{ __html: consentTab.tabContent }} />
+                                        </Tab>
+                                    )}
+                                    {activeTab === 1 && (
+                                        <Tab key='cookies-second-tab' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                                            {detailsTab.cookies.map((el, index) => {
+                                                let count = 0
+                                                el.innerParts?.forEach(inEl => {
+                                                    count += inEl.innerPartCookies.length
+                                                })
+                                                return (
+                                                    <div key={el.partName + index} className="parts">
+                                                        <div className="name">
+                                                            <button tabIndex={isActive ? '0' : '-1'} className={activeCookie[index].isActive ? "radio active" : 'radio'} onClick={() => { changeTabs(index) }}><span /></button>
+                                                            {el.partName} {count > 0 && `(${count})`}
+                                                        </div>
+                                                        <p className="description">
+                                                            {el.partDescription}
+                                                        </p>
+                                                        {el.innerParts?.map((el, id) => (
+                                                            <React.Fragment key={el.innerPartName + id}><Grid isActive={isActive} active={activeCookie[index].isActive} el={el} /></React.Fragment>
+                                                        ))}
+                                                    </div>
+                                                )
+                                            })}
+                                        </Tab>
+                                    )}
+                                    {activeTab === 2 && (
+                                        <Tab key='cookies-third-tab' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
+                                            <div className="content" dangerouslySetInnerHTML={{ __html: aboutCookiesTab.tabContent }} />
+                                        </Tab>
+                                    )}
+                                </AnimatePresence>
+                            </TabWrapper>
+                            <Buttons>
+                                <button tabIndex={isActive ? '0' : '-1'} onClick={() => { rejectAll() }}>
+                                    {denyButton['en']}
+                                </button>
+                                {activeTab === 1 ? (
+                                    <button onClick={() => { acceptPart() }} tabIndex={isActive ? '0' : '-1'}>
+                                        {allowChosenButton['en']}
+                                    </button>
+                                ) : (
+                                    <button onClick={() => { setActiveTab(1) }} tabIndex={isActive ? '0' : '-1'}>
+                                        {setButton['en']}
+                                    </button>
+                                )}
+                                <button tabIndex={isActive ? '0' : '-1'} onClick={() => { acceptAll() }} className="allow">
+                                    {allowButton['en']}
+                                </button>
+                            </Buttons>
+                        </Content>
+                    </Wrapper>
+                </>
+            )}
+        </AnimatePresence>
     )
 }
 
-const TabWrapper = styled.div`
+const TabWrapper = styled(motion.div)`
     overflow: auto;
     max-height: calc(100vh - 200px - 48px - 48px - 48px - 32px);
     padding-right: 20px;
@@ -247,7 +285,7 @@ const TabWrapper = styled.div`
     }
 `
 
-const Overlay = styled.div`
+const Overlay = styled(motion.div)`
     position: fixed;
     left: 0;
     right: 0;
@@ -256,17 +294,11 @@ const Overlay = styled.div`
     background: #888888;
     mix-blend-mode: multiply;
     z-index: 10000;
-    opacity: 0;
     pointer-events: none;
-    transition: opacity .6s ease-out;
-
-    &.active{
-        opacity: 1;
-        pointer-events: all;
-    }
+    transition: opacity .6s cubic-bezier(0.42, 0, 0.58, 1);
 `
 
-const Wrapper = styled.aside`
+const Wrapper = styled(motion.aside)`
     position: fixed;
     z-index: 100000;
     left: 50%;
@@ -277,14 +309,7 @@ const Wrapper = styled.aside`
     width: 100%;
     max-height: calc(100vh - 200px);
 
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity .6s ease-out;
-
-    &.active{
-        opacity: 1;
-        pointer-events: all;
-    }
+    transition: opacity .6s cubic-bezier(0.42, 0, 0.58, 1);
 
     @media (max-height: 639px) {
         max-height: 100vh;
@@ -304,12 +329,22 @@ const Wrapper = styled.aside`
     .item-wrapper{
         *{
             color: #BBBBBB !important;
+            
             transition: color .2s cubic-bezier(0.39, 0.575, 0.565, 1);
+        }
+
+        .underline{
+            background-image: linear-gradient(#BBBBBB, #BBBBBB);
         }
 
         &.active{
             *{
                 color: #31231E !important;
+            }
+
+            .underline{
+                
+                background-image: linear-gradient(#31231E, #31231E);
             }
         }
     }
@@ -331,9 +366,9 @@ const TabsControl = styled.div`
         padding: 0 24px 8px 24px;
         border: none;
         background-color: transparent;
-        border-bottom: 1px solid #F8F5F0;
         cursor: pointer;
         font-size: 18px;
+        position: relative;
         
 
         @media (max-width: 440px){
@@ -343,9 +378,14 @@ const TabsControl = styled.div`
         @media (max-width: 340px){
             padding: 0 12px 8px 12px;
         }
-
-        &.active{
-            border-bottom: 2px solid #926F45;
+        .underline {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: #926F45;
+            opacity: 0.85;
         }
     }
 `
@@ -363,9 +403,19 @@ const Buttons = styled.div`
         background: #F9F5F0;
         border: none;
         cursor: pointer;
+        transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1);
+
+        &:hover{
+            background-color: #F4F4F4;
+        }
 
         &.allow{
-            background: #EDC53D;
+            color: #fff;
+            background-color: var(--color-brown);
+
+            &:hover{
+                background-color: #785836;
+            }
         }
     }
 
@@ -387,8 +437,7 @@ const Buttons = styled.div`
     }
 `
 
-const Tab = styled.div`
-    display: none;
+const Tab = styled(motion.div)`
 
     .content{
         display: grid;
@@ -396,9 +445,6 @@ const Tab = styled.div`
         margin-top: 18px;
     }
 
-    &.active{
-        display: block;
-    }
 
     .parts{
         margin-top: 26px;
@@ -415,7 +461,6 @@ const Tab = styled.div`
     }
 
     .show-all{
-        text-decoration: underline;
         text-transform: uppercase;
         width: fit-content;
         border: none;
@@ -424,6 +469,7 @@ const Tab = styled.div`
         grid-column-start: 0;
         grid-column-end: 3;
         margin: 0 auto;
+        transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
 
         @media (max-width: 640px){
             grid-column-start: 1;

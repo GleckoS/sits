@@ -14,7 +14,7 @@ const title = {
 
 const email = {
     placeholder: {
-        en: 'Your e-Mail',
+        en: 'Your e-mail',
     },
     label: {
         en: 'E-Mail'
@@ -153,7 +153,7 @@ export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
                 <Submit variants={inputAnimation}>{submit['en']}</Submit>
                 <AnimatePresence mode="wait">
                     {isSended && (
-                        <Success initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: .5} }} exit={{ opacity: 0 }} className={isSended ? 'sended' : ""}>
+                        <Success initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0 }} className={isSended ? 'sended' : ""}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="71.15" height="71.174" viewBox="0 0 71.15 71.174">
                                 <g id="checkmark.circle" opacity="0.2">
                                     <rect id="Rectangle_621" data-name="Rectangle 621" width="71.149" height="71.174" opacity="0" />
@@ -188,7 +188,7 @@ const Checkbox = styled(motion.label)`
 
     input:checked ~ .check {
         &::after{
-            transform: unset;
+            transform: translate(-50%, -50%) scale(1);
         }
 
         &::before{
@@ -204,33 +204,25 @@ const Checkbox = styled(motion.label)`
         position: relative;
 
         &::after{
-            content: "✓";
+            content: "";
             position: absolute;
             color: #767676;
-            left: 3px;
-            top: -8px;
             font-size: 40px;
-            transform: scale(0);
-            transform-origin: 50% 80%;
-            transition: transform .3s ease-out;
-        }
-
-        &::before{
-            content: '';
-            position: absolute;
-            width: 13px;
-            height: 13px;
-            right: -2px;
-            top: -2px;
-            background-color: #fff;
-            transition: opacity .1s ease-out;
-            opacity: 0;
+            width: 16px;
+            height: 16px;
+            background-color: #767676;
+            border-radius: 2px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transform-origin: 50% 50%;
+            transition: transform .3s cubic-bezier(0.42, 0, 0.58, 1);
         }
     }
 
     span{
         font-weight: 400;
-        font-size: 20px;
+        font-size: clamp(16px, ${20 / 1194 * 100}vw, 20px);
         line-height: 150% ;
         font-feature-settings: 'pnum' on, 'onum' on, 'ss01' on, 'ss02' on, 'ss03' on, 'ss04' on;
         color: #767676;
@@ -351,7 +343,7 @@ const Submit = styled(motion.button)`
     border: none;
     display: block;
     cursor: pointer;
-    transition: background-color .4s ease-out;
+    transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1);
 
     &:hover{
         background-color: #785836;

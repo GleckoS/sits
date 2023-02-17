@@ -61,7 +61,7 @@ const Wrapper = styled(motion.section)`
     svg{
         width: clamp(88px, ${164 / 1194 * 100}vw, 164px);
         height: clamp(88px, ${164 / 1194 * 100}vw, 164px);
-        transition: transform .5s ease-out;
+        transition: transform .5s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     .wrap{

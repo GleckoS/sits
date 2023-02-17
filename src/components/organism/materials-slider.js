@@ -11,28 +11,39 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
         }
         for (let i = 0; i < variants.length; i++) {
             if (variants[i].isMainColor) {
-                return i
+                return variants[i].variantName
             }
         }
-        return 0
+        return variants[0].variantName
     })
 
     const [newVariant, setNewVariant] = useState(choosenVariant)
 
-    const onVariantChange = (index) => {
+    const onVariantChange = (index, direction) => {
         let number = index
-        if (index < 0) {
-            number = variants.length - 1
-        }
-        if (index > variants.length - 1) {
-            number = 0
-        }
-        document.getElementById('background').style.backgroundColor = variants[choosenVariant].landscapePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
+        if (!index) {
+            let curIndex = 0
+            for (let i = 0; i < variants.length; i++) {
+                if (variants[i].variantName === choosenVariant) {
+                    curIndex = i
+                    i = variant.length
+                }
+            }
 
-        setNewVariant(number)
+            number = curIndex + direction
+            if (number < 0) {
+                number = variants.length - 1
+            }
+            if (number > variants.length - 1) {
+                number = 0
+            }
+        }
+        document.getElementById('background').style.backgroundColor = variants.filter(el => el.variantName === choosenVariant)[0].landscapePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
+
+        setNewVariant(variants[number].variantName)
         setTimeout(() => {
             setNewVariant(choosenVariant)
-            setChoosenVariant(number)
+            setChoosenVariant(variants[number].variantName)
         }, 50)
     }
 
@@ -40,22 +51,22 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
         <motion.div variants={animation}>
             <div className="slider">
                 <SliderWrapper id='background'>
-                    <button aria-label='prev slide' onClick={() => { onVariantChange(choosenVariant - 1) }} className="left slide">
+                    <button aria-label='prev slide' onClick={() => { onVariantChange(null, -1) }} className="left slide">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
                             <path id="Path_5" data-name="Path 5" d="M10077.916,8682.179l-25.641,40.619,25.641,38.826" transform="translate(-10050.49 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
                         </svg>
                     </button>
                     {variants.map((el, index) => {
-                        if (index === choosenVariant || index === newVariant) {
+                        if (variants[index].variantName === choosenVariant || variants[index].variantName === newVariant) {
                             return (
-                                <SliderContent key={el.landscapePreviewImage.altText + index} className={index === choosenVariant ? 'active' : ''}>
+                                <SliderContent key={el.landscapePreviewImage.altText + index} className={variants[index].variantName === choosenVariant ? 'active' : ''}>
                                     <AddToFauvorite type={'colors'} title={el.variantName} />
                                     <GatsbyImage className="image" image={el.landscapePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.landscapePreviewImage.altText} />
                                 </SliderContent>
                             )
                         }
                     })}
-                    <button aria-label='next slide' onClick={() => { onVariantChange(choosenVariant + 1) }} className="right slide">
+                    <button aria-label='next slide' onClick={() => { onVariantChange(null, 1) }} className="right slide">
                         <svg xmlns="http://www.w3.org/2000/svg" width="28.694" height="81.072" viewBox="0 0 28.694 81.072">
                             <path id="Path_4" data-name="Path 4" d="M10052.275,8682.179l25.641,40.619-25.641,38.826" transform="translate(-10051.007 -8681.378)" fill="none" stroke="#fff" strokeWidth="3" />
                         </svg>
@@ -63,10 +74,10 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
                 </SliderWrapper>
                 <VariantsPicker>
                     {variants.map((el, index) => (
-                        <VariantCircle key={el.variantColor + index} onClick={() => { onVariantChange(index) }} className={index === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
+                        <VariantCircle key={el.variantColor + index} onClick={() => { onVariantChange(index) }} className={variants[index].variantName === choosenVariant ? 'active' : ''} image={el.variantColorImage?.localFile?.publicURL} color={el.variantColor}>
                             <svg id="Selected_Color" data-name="Selected Color" xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
-                                <path id="Path_132" data-name="Path 132" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-8670.342 10076.238) rotate(-90)" fill="none" stroke="#31231e" stroke-width="3" />
-                                <g id="Ellipse_199" data-name="Ellipse 199" fill="none" stroke="#31231e" stroke-width="3">
+                                <path id="Path_132" data-name="Path 132" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-8670.342 10076.238) rotate(-90)" fill="none" stroke="#31231e" strokeWidth="3" />
+                                <g id="Ellipse_199" data-name="Ellipse 199" fill="none" stroke="#31231e" strokeWidth="3">
                                     <circle cx="20" cy="20" r="20" stroke="none" />
                                     <circle cx="20" cy="20" r="18.5" fill="none" />
                                 </g>
@@ -77,11 +88,11 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
             </div>
             <div className="relative">
                 {variants.map((el, index) => (
-                    <VariantGallery key={el.variantName + index} className={index === choosenVariant ? 'active' : ''}>
+                    <VariantGallery key={el.variantName + index} className={variants[index].variantName === choosenVariant ? 'active' : ''}>
                         <span className="variant-name">{el.variantName}</span>
                         <div className="grid">
                             {el.variantGallery?.map((el, inIndex) => (
-                                <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                                <GatsbyImage key={inIndex} className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                             ))}
                         </div>
                     </VariantGallery>

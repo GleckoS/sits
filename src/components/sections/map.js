@@ -13,7 +13,7 @@ import { imageTransition, textTransition } from "../../helpers/animation-control
 require('react-leaflet-markercluster/dist/styles.min.css')
 
 const retailersTitle = {
-    en: 'RETAILERS'
+    en: 'RETAILERS:'
 }
 
 const filterTitle = {
@@ -97,7 +97,7 @@ export default function Map() {
 
 
     return (
-        <InView>
+        <InView margin = "-100px 0px -15px 0px">
             <Wrapper>
                 <a className="no-focus" href="#footer" aria-label='skip link to footer' />
                 <Container>
@@ -177,13 +177,14 @@ const Item = styled.button`
     display: block;
     text-align: left;
     width: 100%;
+    cursor: pointer;
 
     padding-bottom: 36px;
     padding-top: 36px;
     padding-left: 20px;
     border-bottom: 1px solid #707070;
 
-    transition: background-color .4s ease-out, padding .4s ease-out;
+    transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1), padding .4s cubic-bezier(0.42, 0, 0.58, 1);
 
     &:focus-visible{
         outline-color: #000000;
@@ -214,7 +215,7 @@ const Item = styled.button`
 
         &.phone{
             color: #767676!important;
-            transition: color .3s ease-out;
+            transition: color .3s cubic-bezier(0.42, 0, 0.58, 1);
 
             &:hover{
                 color: unset !important;
@@ -395,6 +396,11 @@ const Content = styled.div`
         font-size: 16px;
         line-height: 150%;
         letter-spacing: 0.003em;
+            transition: color .3s cubic-bezier(0.42, 0, 0.58, 1);
+
+        &.phone:hover{
+            color: unset;
+        }
     }
 
     a{

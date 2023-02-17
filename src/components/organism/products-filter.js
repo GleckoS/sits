@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { CloseButton } from "../atoms/close-button"
 import { Container } from "../atoms/container"
 import { DropDown } from "../moleculas/dropdown"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 const searchTitle = {
     en: 'Search'
@@ -42,78 +42,82 @@ export const FilterComponent = ({
     openedFilter
 }) => (
     <>
-        <MobileFilters className={isMobileFilterOpened ? 'active' : ''}>
-            <Flex>
-                <b>{filterTitle}</b>
-                <CloseButton as='button' func={setMobileFilterOpened} val={false} />
-            </Flex>
-            <FilterBlock>
-                <span>{sortByTitle}</span>
-                <div className="flex">
-                    {sortBy.map(el => (
-                        <button key={el.val} onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
-                            </svg>
-                            {el.name}
+        <AnimatePresence mode='wait'>
+            {isMobileFilterOpened && (
+                <MobileFilters initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: .5} }} exit={{ opacity: 0, transition: {duration: .3} }}>
+                    <Flex>
+                        <b>{filterTitle}</b>
+                        <CloseButton as='button' func={setMobileFilterOpened} val={false} />
+                    </Flex>
+                    <FilterBlock>
+                        <span>{sortByTitle}</span>
+                        <div className="flex">
+                            {sortBy.map(el => (
+                                <button key={el.val} onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                        <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
+                                    </svg>
+                                    {el.name}
+                                </button>
+                            ))}
+                        </div>
+                    </FilterBlock>
+                    {name === 'Sofas' && (
+                        <FilterBlock>
+                            <span>{typeTitle}</span>
+                            <div className="flex">
+                                {sofasTypes.map(el => (
+                                    <button key={el.val} onClick={() => { setType(el.val) }} className={el.val === type ? 'active' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                            <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
+                                        </svg>
+                                        {el.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </FilterBlock>
+                    )}
+                    {name !== "Coffee tables" && (
+                        <FilterBlock>
+                            <span>{upholsterysTitle}</span>
+                            <div className="flex">
+                                {upholsterysArr.map(el => (
+                                    <button key={el.val} onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                            <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
+                                        </svg>
+                                        {el.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </FilterBlock>
+                    )}
+                    {name !== "Coffee tables" && (
+                        <FilterBlock>
+                            <span>{coversTitle}</span>
+                            <div className="flex">
+                                {covesArr.map(el => (
+                                    <button key={el.val} onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                            <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
+                                        </svg>
+                                        {el.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </FilterBlock>
+                    )}
+                    <Flex className="center">
+                        <button className="underlined" onClick={() => { clearAll(); setSort('Popular') }}>
+                            {reset}
                         </button>
-                    ))}
-                </div>
-            </FilterBlock>
-            {name === 'Sofas' && (
-                <FilterBlock>
-                    <span>{typeTitle}</span>
-                    <div className="flex">
-                        {sofasTypes.map(el => (
-                            <button key={el.val} onClick={() => { setType(el.val) }} className={el.val === type ? 'active' : ''}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
-                                </svg>
-                                {el.name}
-                            </button>
-                        ))}
-                    </div>
-                </FilterBlock>
+                        <button className="filled" onClick={() => { setMobileFilterOpened(false); window?.scrollTo({ top: 0 }) }}>
+                            {view}
+                        </button>
+                    </Flex>
+                </MobileFilters>
             )}
-            {name !== "Coffee tables" && (
-                <FilterBlock>
-                    <span>{upholsterysTitle}</span>
-                    <div className="flex">
-                        {upholsterysArr.map(el => (
-                            <button key={el.val} onClick={() => { setUpholsterys(el.val) }} className={el.val === upholsterys ? 'active' : ''}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
-                                </svg>
-                                {el.name}
-                            </button>
-                        ))}
-                    </div>
-                </FilterBlock>
-            )}
-            {name !== "Coffee tables" && (
-                <FilterBlock>
-                    <span>{coversTitle}</span>
-                    <div className="flex">
-                        {covesArr.map(el => (
-                            <button key={el.val} onClick={() => { setCover(el.val) }} className={el.val === cover ? 'active' : ''}>
-                                <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                    <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
-                                </svg>
-                                {el.name}
-                            </button>
-                        ))}
-                    </div>
-                </FilterBlock>
-            )}
-            <Flex className="center">
-                <button className="underlined" onClick={() => { clearAll(); setSort('Popular') }}>
-                    {reset}
-                </button>
-                <button className="filled" onClick={() => { setMobileFilterOpened(false); window?.scrollTo({ top: 0 }) }}>
-                    {view}
-                </button>
-            </Flex>
-        </MobileFilters>
+        </AnimatePresence>
         <Filter variants={filterAnimation}>
             <Container className="container">
                 <div className="left">
@@ -186,12 +190,11 @@ const Search = styled.label`
         cursor: pointer;
 
         svg{
-            transition: transform .4s ease-out;
+            transition: transform .4s cubic-bezier(0.42, 0, 0.58, 1);
         }
 
         :hover{
             svg{
-                transform: scale(1.15);
             }
         }
     }
@@ -305,7 +308,7 @@ const FilterBlock = styled.div`
     }
 `
 
-const MobileFilters = styled.div`
+const MobileFilters = styled(motion.div)`
     position: fixed;
     z-index: 112;
     left: 0;
@@ -321,16 +324,6 @@ const MobileFilters = styled.div`
         padding-bottom: 120px;
     }
     transition:  all var(--menu-animation);
-
-    pointer-events: none;
-    opacity: 0;
-    transform: translateX(50px);
-
-    &.active{
-        pointer-events: all;
-        opacity: 1;
-        transform: translateX(0);
-    }
 `
 
 const Filter = styled(motion.div)`
@@ -385,6 +378,7 @@ const Filter = styled(motion.div)`
                 align-items: center;
                 font-size: 18px;
                 pointer-events: all;
+                cursor: pointer;
 
                 svg{
                     margin-top: 2px;

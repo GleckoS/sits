@@ -28,8 +28,8 @@ export const Global = createGlobalStyle`
         --text-color: #31231E;
 
 
-        --animation: .8s ease-out;
-        --menu-animation: .55s ease-out;
+        --animation: .8s cubic-bezier(0.42, 0, 0.58, 1);
+        --menu-animation: .55s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     .yellow-button{
@@ -46,7 +46,7 @@ export const Global = createGlobalStyle`
         margin: 0 auto;
         margin-top: 45px;
         cursor: pointer;
-        transition: background-color .4s ease-out, border .4s ease-out;
+        transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1), border .4s cubic-bezier(0.42, 0, 0.58, 1);
         border: 1px solid #31231E;
 
         &:hover{
@@ -96,18 +96,17 @@ export const Global = createGlobalStyle`
     }
 
     .slick-dots li button:before{
-        transition: opacity .3s ease-out;
+        transition: opacity .3s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     .underline{
         width: fit-content;
-        display: block;
         position: relative;
         padding-bottom: 3px;
         text-decoration: unset !important;
         text-transform: uppercase;
 
-        transition: background-size 0.5s ease-out;
+        transition: background-size 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 
         background-image: linear-gradient(#222b40, #222b40);
         background-size: 80% 1px;
@@ -125,7 +124,7 @@ export const Global = createGlobalStyle`
         position: relative;
         padding-bottom: 3px;
 
-        transition: background-size 0.5s ease-out;
+        transition: background-size 0.5s cubic-bezier(0.76, 0, 0.24, 1);
 
         background-image: linear-gradient(#222b40, #222b40);
         background-size: 0% 1px;
@@ -168,14 +167,14 @@ export const Global = createGlobalStyle`
     }
 
     .Toastify__toast{
-        transition: all .4s ease-out;
+        transition: all .4s cubic-bezier(0.42, 0, 0.58, 1);
 
         &.enter {
-            animation: ${enter} 0.5s ease-out both;
+            animation: ${enter} 0.5s cubic-bezier(0.42, 0, 0.58, 1) both;
         }
 
         &.exit {
-            animation: ${exit} 0.5s ease-out both;
+            animation: ${exit} 0.5s cubic-bezier(0.42, 0, 0.58, 1) both;
         }
     }
 

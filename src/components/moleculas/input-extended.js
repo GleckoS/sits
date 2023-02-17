@@ -35,12 +35,11 @@ const Wrapper = styled.label`
     }
 
     svg{
-        transition: transform .4s ease-out;
+        transition: transform .4s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     a:hover{
         svg{
-            transform: scale(1.15);
         }
     }
 

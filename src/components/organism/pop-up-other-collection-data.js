@@ -1,3 +1,4 @@
+import { AnimatePresence } from "framer-motion"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useState } from "react"
 import styled from "styled-components"
@@ -17,35 +18,39 @@ export const PopupButton = ({ data, title }) => {
                     <path id="Path_3" data-name="Path 3" d="M10052.275,8682.179l7.924,8.347-7.924,7.979" transform="translate(-10051.731 -8681.662)" fill="none" stroke="#31231e" strokeWidth="1.5" />
                 </svg>
             </Wrapper>
-            <Popup title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
-                <PopupContent>
-                    {data.featuredImage
-                        ? (
-                            <PopupFeatured>
-                                <GatsbyImage image={data.featuredImage.localFile.childImageSharp.gatsbyImageData} alt={data.featuredImage.altText} />
-                                {data.featuredImageTitle
-                                    ? <div className="pop-title" dangerouslySetInnerHTML={{ __html: data.featuredImageTitle }} />
-                                    : null}
-                                {data.featuredImageTextUnderTitle
-                                    ? <div className="pop-text" dangerouslySetInnerHTML={{ __html: data.featuredImageTextUnderTitle }} />
-                                    : null}
-                            </PopupFeatured>
-                        ) : null}
-                    <PopupGrid>
-                        {data.dimensions?.map((el, index) => (
-                            <div key={el.title + index}>
-                                <div className="image-wrap">
-                                    <img className="svg" src={el.image.localFile.publicURL} alt={el.image.altText} />
-                                </div>
-                                <div className="pop-title" dangerouslySetInnerHTML={{ __html: el.title }} />
-                                {el.textUnderTitle
-                                    ? <div className="pop-text" dangerouslySetInnerHTML={{ __html: el.textUnderTitle }} />
-                                    : null}
-                            </div>
-                        ))}
-                    </PopupGrid>
-                </PopupContent>
-            </Popup>
+            <AnimatePresence mode='wait'>
+                {isPopUpOpened && (
+                    <Popup title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
+                        <PopupContent>
+                            {data.featuredImage
+                                ? (
+                                    <PopupFeatured>
+                                        <GatsbyImage image={data.featuredImage.localFile.childImageSharp.gatsbyImageData} alt={data.featuredImage.altText} />
+                                        {data.featuredImageTitle
+                                            ? <div className="pop-title" dangerouslySetInnerHTML={{ __html: data.featuredImageTitle }} />
+                                            : null}
+                                        {data.featuredImageTextUnderTitle
+                                            ? <div className="pop-text" dangerouslySetInnerHTML={{ __html: data.featuredImageTextUnderTitle }} />
+                                            : null}
+                                    </PopupFeatured>
+                                ) : null}
+                            <PopupGrid>
+                                {data.dimensions?.map((el, index) => (
+                                    <div key={el.title + index}>
+                                        <div className="image-wrap">
+                                            <img className="svg" src={el.image.localFile.publicURL} alt={el.image.altText} />
+                                        </div>
+                                        <div className="pop-title" dangerouslySetInnerHTML={{ __html: el.title }} />
+                                        {el.textUnderTitle
+                                            ? <div className="pop-text" dangerouslySetInnerHTML={{ __html: el.textUnderTitle }} />
+                                            : null}
+                                    </div>
+                                ))}
+                            </PopupGrid>
+                        </PopupContent>
+                    </Popup>
+                )}
+            </AnimatePresence>
         </>
     )
 }
@@ -60,7 +65,7 @@ const Wrapper = styled.button`
     padding: 0 6px;
     height: clamp(45px, ${56 / 1194 * 100}vw, 66px);
     border-bottom: 1px solid var(--text-color);
-    transition: background-color .5s ease-out, padding .5s ease-out;
+    transition: background-color .5s cubic-bezier(0.42, 0, 0.58, 1), padding .5s cubic-bezier(0.42, 0, 0.58, 1);
     cursor: pointer;
 
     &:hover{

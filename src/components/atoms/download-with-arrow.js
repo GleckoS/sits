@@ -43,7 +43,7 @@ const Link = styled.a`
     }
 
     #Line_75, #Path_16{
-        transition: all .5s ease-out;
+        transition: all .5s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     &:hover{

@@ -76,7 +76,7 @@ const Wrapper = styled.section`
         }
         @media (max-width: 964px){
             margin-top: -100px;
-            left: unset;
+            left: 30px;
             transform: unset;
             max-width: calc(100% - 60px);
         }
@@ -111,7 +111,7 @@ const Wrapper = styled.section`
             padding-bottom: 3px;
             text-decoration: unset !important;
 
-            transition: background-size 0.5s ease-out;
+            transition: background-size 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 
             background-image: linear-gradient(#222b40, #222b40);
             background-size: 80% 1px;

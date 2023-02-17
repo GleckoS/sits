@@ -20,8 +20,8 @@ export default function Layout({ children }) {
     const [isHeaderLoaded, setIsHeaderLoaded] = useState(false)
 
     return (
-        <Wrapper>
-            <ToastContainer transition={animate} />
+        <App>
+            <ToastContainer limit={5} transition={animate} />
             <Global />
             <Cookies isActive={isCookiesActive} setIsActive={setIsCookiesActive} />
             <Header />
@@ -29,11 +29,11 @@ export default function Layout({ children }) {
                 {children}
             </div>
             <Footer setIsCookiesActive={setIsCookiesActive} />
-        </Wrapper>
+        </App>
     )
 }
 
-const Wrapper = styled.div`
+const App = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;

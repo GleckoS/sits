@@ -65,11 +65,11 @@ export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
                 <button onClick={() => { navigator.clipboard.writeText(data.current.innerText); toast(copySuccessed['en']) }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24.762" height="30.471" viewBox="0 0 24.762 30.471">
                         <g id="Group_777" data-name="Group 777" transform="translate(-1637 -2205.529)">
-                            <g id="Rectangle_98" data-name="Rectangle 98" transform="translate(1637 2210)" fill="none" stroke="#707070" stroke-width="1.5">
+                            <g id="Rectangle_98" data-name="Rectangle 98" transform="translate(1637 2210)" fill="none" stroke="#707070" strokeWidth="1.5">
                                 <rect width="20" height="26" stroke="none" />
                                 <rect x="0.75" y="0.75" width="18.5" height="24.5" fill="none" />
                             </g>
-                            <path id="Path_57" data-name="Path 57" d="M3577.607,933.279h19.405V957.7" transform="translate(-1936 1273)" fill="none" stroke="#707070" stroke-width="1.5" />
+                            <path id="Path_57" data-name="Path 57" d="M3577.607,933.279h19.405V957.7" transform="translate(-1936 1273)" fill="none" stroke="#707070" strokeWidth="1.5" />
                         </g>
                     </svg>
 

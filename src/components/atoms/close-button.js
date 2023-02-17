@@ -24,12 +24,11 @@ const Button = styled.div`
     cursor: pointer;
 
     svg{
-        transition: transform .4s ease-out;
+        transition: transform .4s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     &:hover{
         svg{
-            transform: scale(1.15);
         }
     }
 

@@ -10,7 +10,7 @@ export const Category = (props) => (
 
 
 const Wrapper = styled(Link)`
-    padding: 3px 10px;
+    padding: 3px 10px 4px 10px;
     background-color: var(--color-brown);
     color: #fff;
     font-size: clamp(11px, ${12 / 1194 * 100}vw, 15px);
@@ -18,7 +18,7 @@ const Wrapper = styled(Link)`
     border-radius: 1000px;
     position: relative;
     z-index: 2;
-    transition: background-color .4s ease-out;
+    transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1);
 
     &:hover{
         background-color: #785836;
@@ -28,6 +28,7 @@ const Wrapper = styled(Link)`
         padding: 0;
         background-color: unset;
         color: #9c6325;
+        border-radius: unset;
 
         &:hover{
             background-color: unset;

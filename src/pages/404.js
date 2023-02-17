@@ -70,7 +70,7 @@ const Section = styled.section`
         position: relative;
         text-decoration: unset !important;
 
-        transition: background-size 0.5s ease-out;
+        transition: background-size 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 
         background-image: linear-gradient(#222b40, #222b40);
         background-size: 80% 1px;

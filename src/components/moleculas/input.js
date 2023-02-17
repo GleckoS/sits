@@ -49,7 +49,7 @@ const Wrapper = styled.label`
         left: 0;
         top: -5px;
         pointer-events: none;
-        transition: all .3s ease-out;
+        transition: all .3s cubic-bezier(0.42, 0, 0.58, 1);
 
         &.active{
             font-size: 12px;
@@ -63,12 +63,11 @@ const Wrapper = styled.label`
     align-items: center;
 
     svg{
-        transition: transform .4s ease-out;
+        transition: transform .4s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     a:hover{
         svg{
-            transform: scale(1.15);
         }
     }
 

@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import AddToFauvorite from "../atoms/add-to-favourite"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
@@ -65,15 +65,19 @@ export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, colle
 
     return (
         <Box variants={sliderAnimation}>
-            <Popup id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
-                <PopupGrid>
-                    {popUpImages?.map((el, index) => (
-                        <React.Fragment key={el.popupNames.model + index}>
-                            <ImageGridItem setRerender={setRerender} rerender={rerender} image={el.image} popupNames={el.popupNames} />
-                        </React.Fragment>
-                    ))}
-                </PopupGrid>
-            </Popup>
+            <AnimatePresence mode='wait'>
+                {isPopUpOpened && (
+                    <Popup  id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
+                        <PopupGrid>
+                            {popUpImages?.map((el, index) => (
+                                <React.Fragment key={el.popupNames.model + index}>
+                                    <ImageGridItem setRerender={setRerender} rerender={rerender} image={el.image} popupNames={el.popupNames} />
+                                </React.Fragment>
+                            ))}
+                        </PopupGrid>
+                    </Popup>
+                )}
+            </AnimatePresence>
             <Wrapper>
                 {collectionPagePreviewImage
                     ? <>
@@ -242,7 +246,7 @@ const SliderWrapper = styled.div`
             background-color: #fff;
             right: 20px;
             bottom: 20px;
-            transition: opacity .5s ease-out;
+            transition: opacity .5s cubic-bezier(0.42, 0, 0.58, 1);
 
             b{
                 font-size: 24px;
@@ -285,7 +289,7 @@ const Wrapper = styled.div`
         top: 10px;
         z-index: 2;
         opacity: 0;
-        transition: opacity .5s ease-out;
+        transition: opacity .5s cubic-bezier(0.42, 0, 0.58, 1);
 
         @media (max-width: 1024px) {
             opacity: 1;
@@ -343,7 +347,7 @@ const Wrapper = styled.div`
             right: 20px;
             bottom: 20px;
             opacity: 0;
-            transition: all .5s ease-out;
+            transition: all .5s cubic-bezier(0.42, 0, 0.58, 1);
 
             &:hover{
                 background-color: #fff;
@@ -362,7 +366,7 @@ const Wrapper = styled.div`
                 bottom: -6px;
                 height: 1px;
                 background-color: #31231E;
-                transition: all .5s ease-out;
+                transition: all .5s cubic-bezier(0.42, 0, 0.58, 1);
             }
 
             &::before{
@@ -373,7 +377,7 @@ const Wrapper = styled.div`
                 bottom: -6px;
                 width: 1px;
                 background-color: #31231E;
-                transition: all .5s ease-out;
+                transition: all .5s cubic-bezier(0.42, 0, 0.58, 1);
             }
         }
 

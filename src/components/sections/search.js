@@ -49,6 +49,7 @@ const contentGridAnimation = {
 
 export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures, location }) {
 
+    const [isActive, setIsActive] = useState(false)
     // REWORK
     const searchValue = useMemo(() => {
         const urlParams = new URLSearchParams(location.search)
@@ -70,6 +71,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
     const enterListener = (e, input) => {
         if (e.key === "Enter") {
             window.scrollTo(0, 0)
+            setIsActive(!!input)
             navigate(input ? ('?search=' + input) : '')
         }
     }
@@ -85,16 +87,17 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                     if (searchValue) {
                         return (
                             <Content>
-                                <Input>
-                                    <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
-                                    <Link onClick={() => { window.scrollTo(0, 0) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
+                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder}</span>
+                                    <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
+                                    <Link onClick={() => { window.scrollTo(0, 0); setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
+                                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
                                                     <circle cx="8" cy="8" r="8" stroke="none" />
                                                     <circle cx="8" cy="8" r="7" fill="none" />
                                                 </g>
-                                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
+                                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
                                             </g>
                                         </svg>
                                     </Link>
@@ -107,16 +110,17 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                         <InView>
                             <Placeholder variants={inputAnimation}>
                                 <h1>{pageTitle}</h1>
-                                <Input>
-                                    <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
-                                    <Link aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
+                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder}</span>
+                                    <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
+                                    <Link onClick={() => {setIsActive(!!context.searchInputValue)}} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
+                                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
                                                     <circle cx="8" cy="8" r="8" stroke="none" />
                                                     <circle cx="8" cy="8" r="7" fill="none" />
                                                 </g>
-                                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
+                                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
                                             </g>
                                         </svg>
                                     </Link>
@@ -134,16 +138,17 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                             <NoResults variants={inputAnimation}>
                                 <myContext.Consumer>
                                     {context => (
-                                        <Input>
-                                            <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} placeholder={placeholder} />
-                                            <Link aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                        <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
+                                            <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder}</span>
+                                            <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
+                                            <Link onClick={() => {setIsActive(!!context.searchInputValue)}} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                                     <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                                        <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" stroke-width="2">
+                                                        <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
                                                             <circle cx="8" cy="8" r="8" stroke="none" />
                                                             <circle cx="8" cy="8" r="7" fill="none" />
                                                         </g>
-                                                        <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" stroke-width="2" />
+                                                        <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
                                                     </g>
                                                 </svg>
                                             </Link>
@@ -167,7 +172,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
             {(!searchValue || (sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0)) && (
                 <MostPopularProducts>
                     <Container>
-                        <InView margin = "-100px 0px -200px 0px" >
+                        <InView margin="-100px 0px -200px 0px" >
                             <motion.h2 variants={popularTitleAnimation}>Check our most popular products</motion.h2>
                         </InView>
                         <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={sofasTitle} prefiltredArr={Sofas} />
@@ -191,7 +196,7 @@ const MostPopularProducts = styled.div`
     h2{
         font-family: "Ivy";
         font-weight: 300;
-        font-size: 36px;
+        font-size: clamp(26px, ${36 / 1194 * 100}vw, 36px);
         line-height: 150%;
         letter-spacing: 0.003em;
     }
@@ -199,7 +204,7 @@ const MostPopularProducts = styled.div`
 
 const Placeholder = styled(motion.div)`
     max-width: 600px;
-    margin: 160px auto 100px;
+    margin: clamp(100px, ${160 / 1194 * 100}vw, 160px) auto 100px;
     h1{
         font-family: 'Ivy';
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
@@ -220,7 +225,8 @@ const Input = styled.div`
     justify-content: space-between;
     align-items: center;
     background-color: #fff;
-    padding: 16px;
+    padding: 32px 16px 16px 16px;
+    position: relative;
 
     input{
         border: none;
@@ -230,10 +236,37 @@ const Input = styled.div`
         font-size: 20px;
         font-weight: 300;
         border-bottom: 1px solid black;
+
+        @media (max-width: 768px){
+            font-size: 18px;
+        }
+    }
+
+    span{
+        position: absolute;
+        font-weight: 400;
+        font-size: 20px;
+        letter-spacing: 0.003em;
+        color: #767676;
+        left: 16px;
+        top: 28px;
+        pointer-events: none;
+        transition: all .3s cubic-bezier(0.42, 0, 0.58, 1);
+
+        @media (max-width: 768px){
+            font-size: 18px;
+            top: 32px;
+        }
+
+        &.active{
+            font-size: clamp(12px, ${16 / 1366 * 100}vw, 16px);
+            top: 28px;
+            transform: translateY(-100%);
+        }
     }
 
     svg{
-        transition: transform .4s ease-out;
+        transition: transform .4s cubic-bezier(0.42, 0, 0.58, 1);
     }
 
     a{
@@ -251,12 +284,20 @@ const Content = styled.div`
     z-index: 10;
     right: 45px;
     top: 100px;
+
+    @media (max-width: 768px) {
+        right: 24px;
+    }
 `
 
 const Results = styled.div`
     background-color: #F9F5F0;
     padding: 0 0 60px 0;
     margin-bottom: calc(clamp(45px, 10.050251256281408vw, 160px) * -1 );
+    @media (max-width: 480px) {
+        padding-top: 80px;
+    }
+
 
     &.disable{
         padding: 0 0 1px 0;

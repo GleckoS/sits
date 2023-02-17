@@ -65,7 +65,7 @@ const Wrapper = styled.div`
     .content{
         opacity: 0;
         pointer-events: none;
-        transition: opacity .4s ease-out;
+        transition: opacity .4s cubic-bezier(0.42, 0, 0.58, 1);
 
         .item{
             cursor: pointer;
@@ -114,7 +114,7 @@ const Wrapper = styled.div`
         }
     }
 
-    transition: background-color .4s ease-out, border .4s ease-out;
+    transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1), border .4s cubic-bezier(0.42, 0, 0.58, 1);
 
     &.active{
         background-color: #fff;

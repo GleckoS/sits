@@ -120,7 +120,7 @@ export default function Header() {
           }}>
           {furnitureTitle['en']}
         </Button>
-        <LeftMenu initial={{ x: -500 }} animate={isLeftMenuOpened ? { x: 0, transition: { duration: .5 } } : { x: -500, transition: { duration: .4 } }}  >
+        <LeftMenu initial={{ x: -500 }} animate={isLeftMenuOpened ? { x: 0, transition: { duration: .5 } } : { x: -500, transition: { duration: .3 } }}  >
           <Flex
             initial={{ opacity: 0 }}
             animate={isLeftMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .3 } } : { opacity: 0 }}
@@ -191,7 +191,7 @@ export default function Header() {
             {companyTitle['en']}
           </Button>
         </div>
-        <RightMenu initial={{ x: 500 }} animate={isRightMenuOpened ? { x: 0, transition: { duration: .5 } } : { x: 500, transition: { duration: .4 } }} >
+        <RightMenu initial={{ x: 500 }} animate={isRightMenuOpened ? { x: 0, transition: { duration: .5 } } : { x: 500, transition: { duration: .3 } }} >
           <Flex
             initial={{ opacity: 0 }}
             animate={isRightMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .3 } } : { opacity: 0 }}>
@@ -233,7 +233,7 @@ export default function Header() {
           }}>
           <span />
         </Burger>
-        <MobileMenu initial={{ opacity: 0 }} animate={isMobileMenuOpened ? { opacity: 1, transition: { duration: .5 } } : { opacity: 0, transition: { duration: .4 } }} className={isMobileMenuOpened ? 'active' : ''}>
+        <MobileMenu initial={{ opacity: 0 }} animate={isMobileMenuOpened ? { opacity: 1, transition: { duration: .5 } } : { opacity: 0, transition: { duration: .3 } }} className={isMobileMenuOpened ? 'active' : ''}>
           <Container className='content'>
             <Search
               func={closeAll}
@@ -297,7 +297,7 @@ const Overlay = styled.div`
   z-index: 110;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 
   &.visible {
     opacity: 1;
@@ -318,7 +318,7 @@ const Wrapper = styled(motion.header)`
   height: 95px;
   background-color: #fff;
   border-bottom: 1px solid transparent;
-  transition: border .5s ease-out;
+  transition: border .5s cubic-bezier(0.42, 0, 0.58, 1);
 
   &.active{
     border-bottom: 1px solid #ddd;
@@ -326,7 +326,7 @@ const Wrapper = styled(motion.header)`
 
   .logo {
     /* svg path{
-            transition: fill .4s ease-out;
+            transition: fill .4s cubic-bezier(0.42, 0, 0.58, 1);
         }
         &:hover{
             svg path{
@@ -349,7 +349,7 @@ const Wrapper = styled(motion.header)`
     svg {
       path {
         fill: transparent;
-        transition: all 0.5s ease-out;
+        transition: all 0.5s cubic-bezier(0.42, 0, 0.58, 1);
       }
     }
 

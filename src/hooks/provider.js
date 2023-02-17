@@ -6,6 +6,7 @@ export const myContext = React.createContext();
 const Provider = ({ children }) => {
 
     const [currentAlternates, changeAlternates] = useState(null)
+    const [transition, setTransition] = useState(0)
     const [searchInputValue, setSearchInputValue] = useState(() => {
         if (typeof window !== 'undefined') {
             const urlParams = new URLSearchParams(window.location.search)
@@ -45,7 +46,6 @@ const Provider = ({ children }) => {
     useEffect(() => {
         recalculateFavouritesCount()
     }, [])
-
     return (
         <myContext.Provider value={{
             currentAlternates,
@@ -53,7 +53,9 @@ const Provider = ({ children }) => {
             searchInputValue,
             setSearchInputValue,
             favouritesCount,
-            recalculateFavouritesCount
+            recalculateFavouritesCount,
+            transition,
+            setTransition
         }}>
             {children}
         </myContext.Provider>
