@@ -10,7 +10,7 @@ import { partSlugDeTransform, partSlugTransform } from "../../helpers/slug-maker
 import { Title } from "../../components/moleculas/title-sub"
 import { useQueryParam } from "../../hooks/query-params"
 import { imageTransition } from "../../helpers/animation-controller"
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import InView from "./in-view-provider"
 
 const sortBy = {
@@ -187,7 +187,6 @@ export default function MaterialsArchive({ location, materials }) {
     }, [location])
 
     const [isMobileFilterOpened, setMobileFilterOpened] = useState(false)
-    const [openedFilter, setOpenedFilter] = useState(false)
 
     const clearAll = () => {
         setColor("All")
@@ -196,7 +195,8 @@ export default function MaterialsArchive({ location, materials }) {
     }
 
     const filtredProducts = useMemo(() => {
-        let arr = [...materials]
+        const json = JSON.stringify(materials);
+        let arr = JSON.parse(json);
         let locSort = partSlugDeTransform(sort)
         let locColor = partSlugDeTransform(color)
         let locTextures = partSlugDeTransform(textures)
@@ -207,17 +207,16 @@ export default function MaterialsArchive({ location, materials }) {
         }
 
         if (locColor !== 'All') {
-            arr = arr.filter(el => {
-                let isAccessed = false
-                el.materials.materialColorVariants.every(inEl => {
-                    if (inEl.colorGroup === locColor) {
-                        isAccessed = true
-                        return false
-                    }
-                    return true
-                })
-                return isAccessed
+            arr = arr.map(el => {
+                let data = { ...el, id: Math.random() }
+                data.materials.materialColorVariants = data.materials.materialColorVariants.filter(inEl => inEl.colorGroup === color)
+                if (data.materials.materialColorVariants.length > 0) {
+                    return data
+                }
+                return null
             })
+            arr = arr.filter(el => el !== null)
+
         }
         if (locTextures !== 'All') {
             arr = arr.filter(el => {
@@ -325,8 +324,6 @@ export default function MaterialsArchive({ location, materials }) {
                     inputValue={inputValue}
                     setInputValue={setInputValue}
                     setSearch={setSearch}
-                    openedFilter={openedFilter}
-                    setOpenedFilter={setOpenedFilter}
                 />
                 <Title small={true} title={'Materials'} />
                 <Container>
@@ -363,19 +360,21 @@ export default function MaterialsArchive({ location, materials }) {
                             </FilterItem>
                         )}
                     </ActiveFilters>
-                    {filtredProducts.length > 0
-                        ? (
-                            <motion.div variants={gridAnimation} >
-                                <MaterialList page={page} setPage={setPage} color={color} materials={filtredProducts} />
-                            </motion.div>
-                        )
-                        : (
-                            <NoResults variants={gridAnimation} >
-                                <h2>{noResultTitle['en']}</h2>
-                                <p>{noResultMessage['en']}</p>
-                            </NoResults>
-                        )
-                    }
+                    <AnimatePresence mode='wait'>
+                        {filtredProducts.length > 0
+                            ? (
+                                <motion.div key='list' variants={gridAnimation} >
+                                    <MaterialList itemKey={sort + color + textures + features + search} page={page} setPage={setPage} color={color} materials={filtredProducts} />
+                                </motion.div>
+                            )
+                            : (
+                                <NoResults key='no-list' variants={gridAnimation} >
+                                    <h2>{noResultTitle['en']}</h2>
+                                    <p>{noResultMessage['en']}</p>
+                                </NoResults>
+                            )
+                        }
+                    </AnimatePresence>
                 </Container>
             </Wrapper>
         </InView>
@@ -408,6 +407,11 @@ const Wrapper = styled.div`
     padding:  0 0 86px 0;
     position: relative;
     margin-bottom: calc(-1 * clamp(45px, ${120 / 1194 * 100}vw, 160px));
+    padding-top: 91px;
+
+    @media (max-width: 1180px){
+        padding-top: 64px;
+    }
 
     .button{
         margin: 0 auto;

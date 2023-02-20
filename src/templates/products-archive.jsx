@@ -42,6 +42,7 @@ export const query = graphql`
         }
         allWpProduct(sort: {date: DESC}, filter: {types: {nodes: {elemMatch: {name: {eq: $productType}}}}}){
           nodes{
+            id
             types {
               nodes {
                 name
@@ -96,6 +97,7 @@ export const query = graphql`
                 productsImages {
                   isMainImage
                   featuredProductImage {
+                  id
                     altText
                     localFile {
                       childImageSharp {

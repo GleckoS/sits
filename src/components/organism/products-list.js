@@ -1,47 +1,52 @@
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion"
 import React from "react"
 import { useRef } from "react"
 import styled from "styled-components"
 import { LoadMore } from "../atoms/load-more"
 import { ProductCard } from "../moleculas/product-card"
 
-export const ProductList = ({ changeType, setRerender, setPage, page, rerender, products }) => {
+export const ProductList = ({ itemKey, changeType, setRerender, setPage, page, rerender, products }) => {
     const renderCount = useRef(0)
     const isAllRendered = useRef(true)
     renderCount.current = 0
     return (
-        <AnimatePresence mode='wait'>
+        <>
             <Wrapper key='wrapper'>
-                {products?.map(el => {
-                    return el.products.productGallery?.map(inEl => {
-                        return inEl.productsImages?.map((imageEl, index) => {
-                            if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < page * 8) {
-                                renderCount.current += 1
-                                isAllRendered.current = true
-                                return <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    exit={{ opacity: 0 }}
-                                    transition={{duration: .6}}
-                                    key={inEl.popupNames.model + index}>
-                                    <ProductCard categoryClick={changeType} setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
-                                </motion.div>
-                            } else if (isAllRendered && renderCount.current >= page * 8) {
-                                isAllRendered.current = false
-                            }
-                            return null
+                <AnimatePresence mode='popLayout'>
+                    {products?.map(el => {
+                        return el.products.productGallery?.map((inEl, i) => {
+                            return inEl.productsImages?.map((imageEl, index) => {
+                                if (imageEl.isMainImage && el.products.collection?.slug && renderCount.current < page * 8) {
+                                    renderCount.current += 1
+                                    isAllRendered.current = true
+                                    return (
+                                        <motion.div
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1, transition: { duration: .4 } }}
+                                            exit={{ opacity: 0, transition: { duration: .3 } }}
+                                            key={inEl.popupNames.model + index + imageEl.featuredProductImage.id + itemKey}>
+                                            <ProductCard categoryClick={changeType} setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
+                                        </motion.div>
+                                    )
+                                } else if (isAllRendered && renderCount.current >= page * 8) {
+                                    isAllRendered.current = false
+                                }
+                                return null
+                            })
                         })
-                    })
-                })}
+                    })}
+                </AnimatePresence>
             </Wrapper>
-            {isAllRendered.current
-                ? null
-                : <LoadMore key='loadMore' onClick={() => { setPage(+page + 1) }} />}
-        </AnimatePresence>
+            {
+                isAllRendered.current
+                    ? null
+                    : <LoadMore key='loadMore' onClick={() => { setPage(+page + 1) }} />
+            }
+        </>
     )
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 50px 20px;

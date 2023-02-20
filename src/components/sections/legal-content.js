@@ -20,7 +20,7 @@ export default function Content({ data: { sections } }) {
                     </LeftColumn>
                     <Control className={isMenuOpened ? 'opened' : ''}>
                         {sections.map((el, index) => (
-                            <a onClick={() => { setMenuOpened(false) }} key={el.sectionTitle + index} href={'#' + el.sectionTitle}>
+                            <a onClick={(e) => { e.preventDefault(); setMenuOpened(false); document.getElementById(el.sectionTitle).scrollIntoView({ behavior: "smooth" }) }} key={el.sectionTitle + index} href={'#' + el.sectionTitle}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12.898" height="12.898" viewBox="0 0 12.898 12.898">
                                     <g id="Icon_feather-external-link" data-name="Icon feather-external-link" transform="translate(25 -0.788) rotate(135)">
                                         <path id="Path_643" data-name="Path 643" d="M22.5,4.5h5.745v5.745" transform="translate(-6.51 0)" fill="none" stroke="#bababa" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />

@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { DropDown } from "../moleculas/dropdown"
@@ -37,138 +37,140 @@ export const FilterComponent = ({
     inputValue,
     setInputValue,
     setSearch,
-    setOpenedFilter,
-    openedFilter
-}) => (
-    <>
-        <AnimatePresence mode="wait">
-            {isMobileFilterOpened && (
-                <MobileFilters initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={isMobileFilterOpened ? 'active' : ''}>
-                    <Flex>
-                        <b>{filterTitle}</b>
-                        <CloseButton as='button' func={setMobileFilterOpened} val={false} />
-                    </Flex>
-                    <FilterBlock>
-                        <span>{sortByTitle}</span>
-                        <div className="flex">
-                            {sortBy.map(el => (
-                                <button key={el.name} onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                        <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
-                                    </svg>
-                                    {el.name}
-                                </button>
-                            ))}
-                        </div>
-                    </FilterBlock>
-                    <FilterBlock>
-                        <span>{colorRangeTitle}</span>
-                        <div className="flex">
-                            {colorRange.map(el => (
-                                <button key={el.name} onClick={() => { setColor(el.val) }} className={el.val === color ? 'active' : ''}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                        <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
-                                    </svg>
-                                    {el.name}
-                                </button>
-                            ))}
-                        </div>
-                    </FilterBlock>
-                    <FilterBlock>
-                        <span>{texturesTitle}</span>
-                        <div className="flex">
-                            {texturesArr.map(el => (
-                                <button key={el.name} onClick={() => { setTextures(el.val) }} className={el.val === textures ? 'active' : ''}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                        <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
-                                    </svg>
-                                    {el.name}
-                                </button>
-                            ))}
-                        </div>
-                    </FilterBlock>
-                    <FilterBlock>
-                        <span>{featuresTitle}</span>
-                        <div className="flex">
-                            {featuresArr.map(el => (
-                                <button key={el.name} onClick={() => { setFeatures(el.val) }} className={el.val === features ? 'active' : ''}>
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
-                                        <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
-                                    </svg>
-                                    {el.name}
-                                </button>
-                            ))}
-                        </div>
-                    </FilterBlock>
-                    <Flex className="center">
-                        <button className="underlined" onClick={() => { clearAll(); setSort('Popular') }}>
-                            {reset}
-                        </button>
-                        <button className="filled" onClick={() => { setMobileFilterOpened(false); window?.scrollTo({ top: 0 }) }}>
-                            {view}
-                        </button>
-                    </Flex>
-                </MobileFilters>
-            )}
-        </AnimatePresence>
-        <Filter variants={filterAnimation}>
-            <Container className="container">
-                <div className="left">
-                    <DropDown id='1' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
-                    <DropDown id='2' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={color} func={setColor} data={colorRange} controlTitle={colorRangeTitle} />
-                    <DropDown id='3' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={textures} func={setTextures} data={texturesArr} controlTitle={texturesTitle} />
-                    <DropDown id='4' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={features} func={setFeatures} data={featuresArr} controlTitle={featuresTitle} />
-                </div>
-                <div className="left-alt">
-                    <button onClick={() => { setMobileFilterOpened(true) }}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14.595" viewBox="0 0 15 14.595">
-                            <g id="Group_520" data-name="Group 520" transform="translate(5432.613 -238.318)">
-                                <line id="Line_258" data-name="Line 258" y2="14.595" transform="translate(-5430.658 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
-                                <line id="Line_259" data-name="Line 259" y2="14.595" transform="translate(-5425.122 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
-                                <line id="Line_260" data-name="Line 260" y2="14.595" transform="translate(-5419.586 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
-                                <g id="Ellipse_295" data-name="Ellipse 295" transform="translate(-5432.613 243.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
-                                    <circle cx="2" cy="2" r="2" stroke="none" />
-                                    <circle cx="2" cy="2" r="1.5" fill="none" />
-                                </g>
-                                <g id="Ellipse_296" data-name="Ellipse 296" transform="translate(-5427.113 238.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
-                                    <circle cx="2" cy="2" r="2" stroke="none" />
-                                    <circle cx="2" cy="2" r="1.5" fill="none" />
-                                </g>
-                                <g id="Ellipse_297" data-name="Ellipse 297" transform="translate(-5421.613 248.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
-                                    <circle cx="2" cy="2" r="2" stroke="none" />
-                                    <circle cx="2" cy="2" r="1.5" fill="none" />
-                                </g>
-                            </g>
-                        </svg>
-                        {sortFilterTitle}
-                    </button>
-                </div>
-                <div>
-                    <Search className="label">
-                        <span>{searchTitle['en']}</span>
-                        <input onKeyDown={(e) => {
-                            if (e.key === "Enter") {
-                                setSearch(inputValue)
-                                setInputValue('')
-                            }
-                        }} value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
-                        <button onClick={() => { setSearch(inputValue); setInputValue('') }} aria-label={'search: ' + inputValue}>
-                            <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                                <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                    <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
-                                        <circle cx="8" cy="8" r="8" stroke="none" />
-                                        <circle cx="8" cy="8" r="7" fill="none" />
+}) => {
+
+    const [openedFilter, setOpenedFilter] = useState(false)
+    return (
+        <>
+            <AnimatePresence mode="wait">
+                {isMobileFilterOpened && (
+                    <MobileFilters initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className={isMobileFilterOpened ? 'active' : ''}>
+                        <Flex>
+                            <b>{filterTitle}</b>
+                            <CloseButton as='button' func={setMobileFilterOpened} val={false} />
+                        </Flex>
+                        <FilterBlock>
+                            <span>{sortByTitle}</span>
+                            <div className="flex">
+                                {sortBy.map(el => (
+                                    <button key={el.name} onClick={() => { setSort(el.val) }} className={el.val === sort ? 'active' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                            <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
+                                        </svg>
+                                        {el.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </FilterBlock>
+                        <FilterBlock>
+                            <span>{colorRangeTitle}</span>
+                            <div className="flex">
+                                {colorRange.map(el => (
+                                    <button key={el.name} onClick={() => { setColor(el.val) }} className={el.val === color ? 'active' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                            <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
+                                        </svg>
+                                        {el.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </FilterBlock>
+                        <FilterBlock>
+                            <span>{texturesTitle}</span>
+                            <div className="flex">
+                                {texturesArr.map(el => (
+                                    <button key={el.name} onClick={() => { setTextures(el.val) }} className={el.val === textures ? 'active' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                            <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
+                                        </svg>
+                                        {el.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </FilterBlock>
+                        <FilterBlock>
+                            <span>{featuresTitle}</span>
+                            <div className="flex">
+                                {featuresArr.map(el => (
+                                    <button key={el.name} onClick={() => { setFeatures(el.val) }} className={el.val === features ? 'active' : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="15.541" height="11.357" viewBox="0 0 15.541 11.357">
+                                            <path id="Path_160" data-name="Path 160" d="M2040.209,10461.905l4.285,4.092,9.881-9.252" transform="translate(-2039.519 -10456.016)" fill="none" stroke="var(--color-brown)" strokeWidth="2" />
+                                        </svg>
+                                        {el.name}
+                                    </button>
+                                ))}
+                            </div>
+                        </FilterBlock>
+                        <Flex className="center">
+                            <button className="underlined" onClick={() => { clearAll(); setSort('Popular') }}>
+                                {reset}
+                            </button>
+                            <button className="filled" onClick={() => { setMobileFilterOpened(false); window?.scrollTo({ top: 0 }) }}>
+                                {view}
+                            </button>
+                        </Flex>
+                    </MobileFilters>
+                )}
+            </AnimatePresence>
+            <Filter variants={filterAnimation}>
+                <Container className="container">
+                    <div className="left">
+                        <DropDown id='1' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={sort} func={setSort} data={sortBy} controlTitle={sortByTitle + ': ' + sort} />
+                        <DropDown id='2' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={color} func={setColor} data={colorRange} controlTitle={colorRangeTitle} />
+                        <DropDown id='3' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={textures} func={setTextures} data={texturesArr} controlTitle={texturesTitle} />
+                        <DropDown id='4' openedFilter={openedFilter} setOpenedFilter={setOpenedFilter} controller={features} func={setFeatures} data={featuresArr} controlTitle={featuresTitle} />
+                    </div>
+                    <div className="left-alt">
+                        <button onClick={() => { setMobileFilterOpened(true) }}>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="15" height="14.595" viewBox="0 0 15 14.595">
+                                <g id="Group_520" data-name="Group 520" transform="translate(5432.613 -238.318)">
+                                    <line id="Line_258" data-name="Line 258" y2="14.595" transform="translate(-5430.658 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
+                                    <line id="Line_259" data-name="Line 259" y2="14.595" transform="translate(-5425.122 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
+                                    <line id="Line_260" data-name="Line 260" y2="14.595" transform="translate(-5419.586 238.318)" fill="none" stroke="#31231e" strokeWidth="1" />
+                                    <g id="Ellipse_295" data-name="Ellipse 295" transform="translate(-5432.613 243.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
+                                        <circle cx="2" cy="2" r="2" stroke="none" />
+                                        <circle cx="2" cy="2" r="1.5" fill="none" />
                                     </g>
-                                    <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
+                                    <g id="Ellipse_296" data-name="Ellipse 296" transform="translate(-5427.113 238.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
+                                        <circle cx="2" cy="2" r="2" stroke="none" />
+                                        <circle cx="2" cy="2" r="1.5" fill="none" />
+                                    </g>
+                                    <g id="Ellipse_297" data-name="Ellipse 297" transform="translate(-5421.613 248.55)" fill="#fff" stroke="#31231e" strokeWidth="1">
+                                        <circle cx="2" cy="2" r="2" stroke="none" />
+                                        <circle cx="2" cy="2" r="1.5" fill="none" />
+                                    </g>
                                 </g>
                             </svg>
+                            {sortFilterTitle}
                         </button>
-                    </Search>
-                </div>
-            </Container>
-        </Filter>
-    </>
-)
+                    </div>
+                    <div>
+                        <Search className="label">
+                            <span>{searchTitle['en']}</span>
+                            <input onKeyDown={(e) => {
+                                if (e.key === "Enter") {
+                                    setSearch(inputValue)
+                                    setInputValue('')
+                                }
+                            }} value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
+                            <button onClick={() => { setSearch(inputValue); setInputValue('') }} aria-label={'search: ' + inputValue}>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                                    <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                        <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
+                                            <circle cx="8" cy="8" r="8" stroke="none" />
+                                            <circle cx="8" cy="8" r="7" fill="none" />
+                                        </g>
+                                        <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
+                                    </g>
+                                </svg>
+                            </button>
+                        </Search>
+                    </div>
+                </Container>
+            </Filter>
+        </>
+    )
+}
 
 
 const Search = styled.label`
@@ -296,15 +298,15 @@ const MobileFilters = styled(motion.div)`
 `
 
 const Filter = styled(motion.div)`
-    position: sticky;
+    position: fixed;
     z-index: 101;
     top: 95px;
     left: 0;
     right: 0;
-    height: 75px;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     margin-top: -1px;
+    height: 75px;
 
     @media (max-width: 1180px){
         height:64px;

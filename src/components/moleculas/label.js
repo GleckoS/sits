@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 
 const errorMessage = {
-    en: 'This fiels is required.'
+    en: 'This field is required.'
 }
 
 export const Label = ({ required = false, variants, register, errors, name, obj, rows }) => {
@@ -24,12 +24,25 @@ export const Label = ({ required = false, variants, register, errors, name, obj,
             <AnimatePresence mode='wait'>
                 {errors[name] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">{errorMessage['en']}</motion.span>}
             </AnimatePresence>
+            <AnimatePresence mode="wait">
+                {errors[name] && (
+                    <motion.svg initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="error-svg" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12.0312 16H12.0413M12.0312 8V12M7.89125 2H16.1712L22.0312 7.86V16.14L16.1712 22H7.89125L2.03125 16.14V7.86L7.89125 2Z" stroke="#A32D2D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </motion.svg>
+                )}
+            </AnimatePresence>
         </Wrapper>
     )
 }
 
 const Wrapper = styled(motion.label)`
     position: relative;
+    
+    .error-svg{
+        position: absolute;
+        right: 5px;
+        top: 9px;
+    }
 
     span{
         position: absolute;

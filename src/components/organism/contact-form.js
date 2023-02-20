@@ -62,7 +62,7 @@ const country = {
 
 const subject = {
     placeholder: {
-        en: 'Choose topic',
+        en: 'Subject',
     },
     label: {
         en: 'Subject'
@@ -109,7 +109,7 @@ const reply = {
 }
 
 const errorMessage = {
-    en: 'This fiels is required.'
+    en: 'This field is required.'
 }
 
 export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
@@ -154,7 +154,9 @@ export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
                     <div className="check" />
                     <span>By sending message, I agree to the <Link to='/privacy-policy/' className='underline'>privacy policy.</Link></span>
                     <AnimatePresence mode='wait'>
-                        {errors['check'] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">{errorMessage['en']}</motion.span>}
+                        {errors['check'] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">
+                            {errorMessage['en']}
+                        </motion.span>}
                     </AnimatePresence>
                 </Checkbox>
                 <Submit variants={inputAnimation}>{submit['en']}</Submit>
@@ -290,12 +292,16 @@ const Success = styled(motion.div)`
 const Wrapper = styled.div`
 
     .erorr-span{
-        font-size: 10px;
-        color: red;
+        font-size: 14px;
+        color: #A32D2D;
         position: absolute;
-        left: 0;
-        bottom: 0;
-        transform: translateY(calc(100% + 3px));
+        right: 0;
+        top: 0;
+        text-align: right;
+        transform: translateY(-100%);
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
     }
     
     form{

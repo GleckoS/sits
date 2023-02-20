@@ -43,6 +43,9 @@ export const imageTransition = (index, timing = 'slow') => {
         animate: {
             opacity: 1,
             transition: transition(index, timing)
+        },
+        exit :{
+            opacity: 0
         }
     }
 }

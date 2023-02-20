@@ -148,10 +148,9 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                 setType(params.get('type'))
             }
         }
-    }, [location, setType])
+    }, [location, setType, name, setPage])
 
     const [isMobileFilterOpened, setMobileFilterOpened] = useState(false)
-    const [openedFilter, setOpenedFilter] = useState(false)
 
     const clearAll = () => {
         setCover('All')
@@ -294,8 +293,6 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                     inputValue={inputValue}
                     setInputValue={setInputValue}
                     setSearch={(v) => { setSearch(v); setPage('1'); window.scrollTo(0, 0) }}
-                    setOpenedFilter={setOpenedFilter}
-                    openedFilter={openedFilter}
                 />
                 <Title small={true} title={title} />
                 <Container className="content-wrap">
@@ -334,7 +331,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                     {filtredProducts.length > 0
                         ? (
                             <motion.div variants={gridAnimation}>
-                                <ProductList changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
+                                <ProductList itemKey={sort + type + cover + upholsterys + search} changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
                             </motion.div>
                         )
                         : (
@@ -373,6 +370,11 @@ const Wrapper = styled.div`
     padding:  0 0 86px 0;
     position: relative;
     margin-bottom: calc(-1 * clamp(45px,10.050251256281408vw,160px));
+    padding-top: 91px;
+
+    @media (max-width: 1180px){
+        padding-top: 64px;
+    }
 
     .button{
         margin-top: 42px;
