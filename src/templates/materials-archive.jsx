@@ -10,7 +10,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Seo seo={seo} pageContext={pageContext} />
     </>
   )
 }

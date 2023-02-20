@@ -20,7 +20,7 @@ const linksLeft = {
     { name: 'Footstools', url: '/products/footstools/' },
     { name: 'Coffee Tables', url: '/products/coffee-tables/' },
     { name: 'Outdoor Furniture', url: '/products/outdoor-furnitures/' },
-    { name: 'Covers', url: '/materials/' },
+    { name: 'Covers', url: '/material/' },
     { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
   ]
 }

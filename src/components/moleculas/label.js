@@ -1,8 +1,12 @@
-import { motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
 
-export const Label = ({ variants, register, errors, name, obj, rows }) => {
+const errorMessage = {
+    en: 'This fiels is required.'
+}
+
+export const Label = ({ required = false, variants, register, errors, name, obj, rows }) => {
     const [isActive, setIsActive] = useState(false)
     const [inputValue, setInputValue] = useState('')
     return (
@@ -10,11 +14,16 @@ export const Label = ({ variants, register, errors, name, obj, rows }) => {
             <span className={isActive ? 'active' : ''}>{obj.placeholder['en']}</span>
             {rows
                 ? <textarea value={inputValue} rows={rows} {...register(name, {
+                    required: required,
                     onChange: (e) => { setInputValue(e.currentTarget.value) }
                 })} />
                 : <input autoComplete="off" {...register(name, {
+                    required: required,
                     onChange: (e) => { setInputValue(e.currentTarget.value) }
                 })} />}
+            <AnimatePresence mode='wait'>
+                {errors[name] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">{errorMessage['en']}</motion.span>}
+            </AnimatePresence>
         </Wrapper>
     )
 }

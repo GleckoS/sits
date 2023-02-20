@@ -330,7 +330,7 @@ exports.createPages = async ({
                 slug
                 id
                 uri
-            }
+            } 
         }
     }
   `);

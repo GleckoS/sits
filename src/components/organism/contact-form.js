@@ -62,7 +62,7 @@ const country = {
 
 const subject = {
     placeholder: {
-        en: 'Choose',
+        en: 'Choose topic',
     },
     label: {
         en: 'Subject'
@@ -108,6 +108,10 @@ const reply = {
     en: 'We’ll get back to you as soon as possible.'
 }
 
+const errorMessage = {
+    en: 'This fiels is required.'
+}
+
 export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [isSended, setIsSended] = useState(false)
@@ -140,15 +144,18 @@ export const Form = ({ inputAnimation, titleAnimation, formAnimation }) => {
         <Wrapper className="form">
             <motion.h1 variants={titleAnimation}>{title['en']}</motion.h1>
             <motion.form autocomplete="off" variants={formAnimation} onSubmit={handleSubmit(onSubmit)}>
-                <Label variants={inputAnimation} register={register} errors={errors} name='email' obj={email} />
-                <Label variants={inputAnimation} register={register} errors={errors} name='name' obj={name} />
-                <Label variants={inputAnimation} register={register} errors={errors} name='country' obj={country} />
-                <Label variants={inputAnimation} register={register} errors={errors} name='subject' obj={subject} />
-                <Label variants={inputAnimation} register={register} errors={errors} name='message' obj={message} rows='3' />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='email' obj={email} />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='name' obj={name} />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='country' obj={country} />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='subject' obj={subject} />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='message' obj={message} rows='3' />
                 <Checkbox variants={inputAnimation}>
                     <input {...register('check', { required: true })} type='checkbox' />
                     <div className="check" />
                     <span>By sending message, I agree to the <Link to='/privacy-policy/' className='underline'>privacy policy.</Link></span>
+                    <AnimatePresence mode='wait'>
+                        {errors['check'] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">{errorMessage['en']}</motion.span>}
+                    </AnimatePresence>
                 </Checkbox>
                 <Submit variants={inputAnimation}>{submit['en']}</Submit>
                 <AnimatePresence mode="wait">
@@ -281,6 +288,15 @@ const Success = styled(motion.div)`
 `
 
 const Wrapper = styled.div`
+
+    .erorr-span{
+        font-size: 10px;
+        color: red;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        transform: translateY(calc(100% + 3px));
+    }
     
     form{
         position: relative;
