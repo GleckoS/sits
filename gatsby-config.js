@@ -22,7 +22,7 @@ module.exports = {
       },
     }
   },
-    "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap",`gatsby-plugin-react-helmet`,
+    "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap", `gatsby-plugin-react-helmet`,
   {
     resolve: "gatsby-plugin-sharp",
     options: {
@@ -64,5 +64,20 @@ module.exports = {
       theme_color: `#996D3E`,
       display: `standalone`
     }
-  }]
+  },
+  {
+    resolve: `gatsby-plugin-gatsby-cloud`,
+    options: {
+      allPageHeaders: [
+        'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload',
+        'X-Frame-Options: SAMEORIGIN'
+      ], // option to add headers for all pages. `Link` headers are transformed by the below criteria
+      mergeSecurityHeaders: true, // boolean to turn off the default security headers
+      mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
+      mergeCachingHeaders: true, // boolean to turn off the default caching headers
+      transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
+      generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
+    },
+  }
+  ]
 };
