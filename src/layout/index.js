@@ -17,7 +17,6 @@ const animate = cssTransition({
 export default function Layout({ children }) {
 
     const [isCookiesActive, setIsCookiesActive] = useState(false)
-    const [isHeaderLoaded, setIsHeaderLoaded] = useState(false)
 
     return (
         <App>

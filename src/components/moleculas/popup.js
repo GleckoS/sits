@@ -86,7 +86,6 @@ const Wrapper = styled(motion.div)`
     bottom: 0;
     z-index: 1000;
     background-color: var(--gray);
-    transition: opacity .7s cubic-bezier(0.42, 0, 0.58, 1);
     pointer-events: all;
 
     span{

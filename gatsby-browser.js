@@ -34,7 +34,7 @@ export const shouldUpdateScroll = ({
     else if (prevRouterProps) {
         debugger
         const savedPosition = getSavedScrollPosition(location) || [0, 0]
-        window.setTimeout(() => window.scrollTo(...savedPosition), TRANSITION_DELAY)
+        window.setTimeout(() => window.scrollTo(...savedPosition), TRANSITION_DELAY * 2) 
         return false
     }
 }

@@ -36,6 +36,7 @@ const allowButton = {
     en: 'Allow all'
 }
 
+
 export default function Cookies({ isActive, setIsActive }) {
     const { wpPage: { cookies: { consentTab, aboutCookiesTab, detailsTab } } } = useStaticQuery(graphql`
     query {
@@ -82,8 +83,8 @@ export default function Cookies({ isActive, setIsActive }) {
 
     const changeTabs = (index) => {
         const arr = [...activeCookie]
-        
-        if(arr[index].name === "necessary"){
+
+        if (arr[index].name === "necessary") {
             return null
         }
 
@@ -177,8 +178,8 @@ export default function Cookies({ isActive, setIsActive }) {
         <AnimatePresence mode="wait">
             {isActive && (
                 <>
-                    <Overlay initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key='cookie-overlay' />
-                    <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key='cookie-wrapper'>
+                    <Overlay initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-overlay' />
+                    <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-wrapper'>
                         <Content>
                             <TabsControl>
                                 <AnimateSharedLayout>
@@ -211,7 +212,7 @@ export default function Cookies({ isActive, setIsActive }) {
                                     </button>
                                 </AnimateSharedLayout>
                             </TabsControl>
-                            <TabWrapper transition={{duration: .5}}>
+                            <TabWrapper transition={{ duration: .5 }}>
                                 <AnimatePresence mode='wait'>
                                     {activeTab === 0 && (
                                         <Tab key='cookies-first-tab' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
@@ -295,7 +296,6 @@ const Overlay = styled(motion.div)`
     mix-blend-mode: multiply;
     z-index: 10000;
     pointer-events: none;
-    transition: opacity .6s cubic-bezier(0.42, 0, 0.58, 1);
 `
 
 const Wrapper = styled(motion.aside)`
@@ -309,7 +309,6 @@ const Wrapper = styled(motion.aside)`
     width: 100%;
     max-height: calc(100vh - 200px);
 
-    transition: opacity .6s cubic-bezier(0.42, 0, 0.58, 1);
 
     @media (max-height: 639px) {
         max-height: 100vh;
