@@ -24,14 +24,14 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
     <Wrapper>
-      <Hero data={homepage.heroH} />
-      <Bestsellers data={homepage.bestsellersCarousel} />
+      {/* <Hero data={homepage.heroH} /> */}
+      {/* <Bestsellers data={homepage.bestsellersCarousel} /> */}
       <About data={homepage.aboutSection} />
-      <ProductGrid data={homepage.productsGrid} />
+      {/* <ProductGrid data={homepage.productsGrid} />
       <DividerCollection data={homepage.dividerSection} />
       <NewArrivals mt={true} data={homepage.newArrivalsH} />
       <ThreeInformCards data={homepage.sectionWithThreeInformCardsH} />
-      <Map />
+      <Map /> */}
     </Wrapper>
   )
 }
