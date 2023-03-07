@@ -1,9 +1,6 @@
 import React from "react"
 import styled from "styled-components"
-
-const loadMore = {
-    en: 'LOAD MORE'
-}
+import { loadMore } from "../../texts"
 
 export const LoadMore = ({
     onClick = () => { },

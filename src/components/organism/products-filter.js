@@ -4,10 +4,7 @@ import { CloseButton } from "../atoms/close-button"
 import { Container } from "../atoms/container"
 import { DropDown } from "../moleculas/dropdown"
 import { AnimatePresence, motion } from "framer-motion"
-
-const searchTitle = {
-    en: 'Search'
-}
+import { searchPlaceholder as searchTitle } from "../../texts"
 
 export const FilterComponent = ({
     filterAnimation,

@@ -1,5 +1,5 @@
 import { Link, navigate } from 'gatsby'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Container } from '../atoms/container'
 import { MostPopularProductBlock } from '../organism/most-popular-products-block'
@@ -8,22 +8,12 @@ import { ResultProductBlock } from '../organism/results-product-block'
 import { myContext } from "./../../hooks/provider"
 import { BrownLink } from './../atoms/brown-link'
 import InView from './in-view-provider'
-import { imageTransition, textTransition } from "../../helpers/animation-controller"
+import { imageTransition } from "../../helpers/animation-controller"
 import { motion } from 'framer-motion'
-
-const pageTitle = 'Looking for something specific?'
-const placeholder = 'Search'
-const noResultTitle = 'No results'
-const noResultMessage = `We couldn’t find any matches for „<search>”.
-Double check your search for any typos or spelling errors - or try a different search term.`
-
-const sofasTitle = 'Sofas'
-const armchairsTitle = 'Armchairs'
-const coffeeTablesTitle = 'Coffee Tables'
-const diningChairsTitle = 'Dining Chairs'
-const footstoolsTitle = 'Footstools'
-const outdoorFurnituresTitle = 'Outdoor Furnitures'
-const materialsTitle = 'Covers'
+import {
+    armchairsTitle, sofasTitle, coffeeTablesTitle, diningChairsTitle, footstoolsTitle, outdoorFurnituresTitle, materialsTitle,
+    searchPlaceholder as placeholder, searchPageTitle as pageTitle, searchNoResultMessage, contatcButton
+} from '../../texts'
 
 
 const inputAnimation = imageTransition(1)
@@ -88,7 +78,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                         return (
                             <Content>
                                 <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder}</span>
+                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder['en']}</span>
                                     <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
                                     <Link onClick={() => { window.scrollTo(0, 0); setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
@@ -109,11 +99,11 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                     return (
                         <InView>
                             <Placeholder variants={inputAnimation}>
-                                <h1>{pageTitle}</h1>
+                                <h1>{pageTitle['en']}</h1>
                                 <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder}</span>
+                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder['en']}</span>
                                     <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                                    <Link onClick={() => {setIsActive(!!context.searchInputValue)}} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                    <Link onClick={() => { setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                                 <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
@@ -125,7 +115,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                                         </svg>
                                     </Link>
                                 </Input>
-                                <BrownLink to="/contact/">Contact us</BrownLink>
+                                <BrownLink to="/contact/">{contatcButton['en']}</BrownLink>
                             </Placeholder>
                         </InView>
                     )
@@ -139,9 +129,9 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                                 <myContext.Consumer>
                                     {context => (
                                         <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                            <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder}</span>
+                                            <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder['en']}</span>
                                             <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                                            <Link onClick={() => {setIsActive(!!context.searchInputValue)}} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                            <Link onClick={() => { setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                                     <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                                         <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
@@ -155,8 +145,8 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                                         </Input>
                                     )}
                                 </myContext.Consumer>
-                                <p>{noResultMessage.replace('<search>', searchValue)}</p>
-                                <BrownLink to="/contact/">Contact us</BrownLink>
+                                <p>{searchNoResultMessage['en'].replace('<search>', searchValue)}</p>
+                                <BrownLink to="/contact/">{contatcButton['en']}</BrownLink>
                             </NoResults>
                         </InView>
                     )}

@@ -5,10 +5,8 @@ import styled from "styled-components"
 import { textTransition } from "../../helpers/animation-controller"
 import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
+import { faqTitle as title } from "../../texts"
 
-const title = {
-    en: 'FAQ'
-}
 
 const titleAnimation = textTransition(1)
 

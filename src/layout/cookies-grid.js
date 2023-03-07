@@ -1,17 +1,5 @@
 import React, { useState } from "react"
-import styled from "styled-components"
-
-const expireTitle = {
-    en: 'Expiry: '
-}
-
-const typeTitle = {
-    en: 'Type: '
-}
-
-const loadMoreTitle = {
-    en: 'LOAD MORE '
-}
+import { expireTitle, typeTitle, loadMoreTitle } from "../texts/cookie"
 
 export const Grid = ({ isActive, active, el: data }) => {
 

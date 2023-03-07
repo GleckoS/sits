@@ -11,24 +11,16 @@ import Video from "../components/sections/video"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
 import Wrapper from "../components/sections/page-wrapper"
+import { accessoriesSectionTitle, accessoriesTitle, collectionCoversTitle, collectionSimilarTitle } from "../texts"
 
 export function Head({ pageContext, data: { wpCollection: { seo } } }) {
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Seo seo={seo} pageContext={pageContext} />
     </>
   )
 }
-
-const similarTitle = {
-  en: 'Similar products'
-}
-
-const coversTitle = {
-  en: 'Recommended covers for '
-}
-
 export default function Collection({ data: { wpCollection, allWpProduct } }) {
 
   const products = useMemo(() => {
@@ -43,9 +35,9 @@ export default function Collection({ data: { wpCollection, allWpProduct } }) {
       />
       {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
       {wpCollection.collections.videoSection?.video && <Video isMarginBottom={!wpCollection.collections.recommendedCovers.covers && !wpCollection.collections.accessoriesSection.accessories} data={wpCollection.collections.videoSection} />}
-      {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers isMarginTop={wpCollection.collections.twoColumn.imageOnTheLeftSide || wpCollection.collections.videoSection?.video} title={coversTitle['en'] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
-      {wpCollection.collections.accessoriesSection.accessories && <Accessories data={wpCollection.collections.accessoriesSection.accessories} />}
-      {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts title={similarTitle['en']} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
+      {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers isMarginTop={wpCollection.collections.twoColumn.imageOnTheLeftSide || wpCollection.collections.videoSection?.video} title={collectionCoversTitle['en'] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
+      {wpCollection.collections.accessoriesSection.accessories && <Accessories title={accessoriesSectionTitle['en']} data={wpCollection.collections.accessoriesSection.accessories} />}
+      {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts title={collectionSimilarTitle['en']} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
       <Map />
     </Wrapper>
   )

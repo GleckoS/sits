@@ -12,158 +12,23 @@ import { useQueryParam } from "../../hooks/query-params"
 import { imageTransition } from "../../helpers/animation-controller"
 import { AnimatePresence, motion } from "framer-motion"
 import InView from "./in-view-provider"
-
-const sortBy = {
-    en: [
-        {
-            name: 'Popular', val: 'Popular'
-        },
-        {
-            name: 'Alphabetical', val: 'Alphabetical'
-        },
-        {
-            name: 'New Arrivals', val: 'New Arrivals'
-        }
-    ]
-}
-
-const colorRange = {
-    en: [
-        {
-            name: 'All Colors', val: 'All'
-        },
-        {
-            name: 'Natural', val: "natural"
-        },
-        {
-            name: 'Light Grey', val: "lightGrey"
-        },
-        {
-            name: 'Dark Grey', val: 'darkGrey'
-        },
-        {
-            name: 'Blue', val: "blue"
-        },
-        {
-            name: 'Green', val: "green"
-        },
-        {
-            name: 'Brown', val: "brown"
-        },
-        {
-            name: 'Sunset', val: "sunset"
-        }
-    ]
-}
-
-const texturesArr = {
-    en: [
-        {
-            name: 'All Textures', val: 'All'
-        },
-        {
-            name: 'Plain', val: 'Plain'
-        },
-        {
-            name: 'Chunky Structure', val: 'Structure'
-        },
-        {
-            name: 'Velvet', val: 'Velvet'
-        },
-        {
-            name: 'Leather', val: 'Leather'
-        },
-        {
-            name: 'Chenille', val: 'Chenille'
-        }
-    ]
-}
-
-const featuresArr = {
-    en: [
-        {
-            name: 'All Features', val: 'All'
-        },
-        {
-            name: 'Washable', val: 'Washable'
-        },
-        {
-            name: 'Eco-Friendly', val: 'Eco-Friendly'
-        },
-        {
-            name: 'Natural', val: 'Natural'
-        },
-        {
-            name: 'Easy to Clean', val: 'Easy to Clean'
-        },
-        {
-            name: 'Pet-Friendly', val: 'Pet-Friendly'
-        },
-        {
-            name: 'Outdoor', val: 'Outdoor'
-        }
-    ]
-}
-
-const clearAllTitle = {
-    'en': 'Clear all filters'
-}
-
-const filterTitle = {
-    en: 'Filter'
-}
-
-const sortByTitle = {
-    en: 'Sort by'
-}
-
-const colorRangeTitle = {
-    en: 'Color Range'
-}
-
-const texturesTitle = {
-    en: 'Textures'
-}
-
-const featuresTitle = {
-    en: 'Features'
-}
-
-const reset = {
-    en: 'RESET ALL'
-}
-
-const view = {
-    en: 'VIEW'
-}
-
-const sortFilterTitle = {
-    en: 'Sort & Filter'
-}
-
-const noResultTitle = {
-    en: 'No results'
-}
-
-const noResultMessage = {
-    en: `We couldn’t find any matches for your filters.`
-}
-
-const searchFilterTitle = {
-    en: 'Search: '
-}
+import { searchPlaceholder as searchFilterTitle } from "../../texts"
+import {
+    sortBy, colorRange, texturesArr, featuresArr, clearAllTitle, filterTitle, sortByTitle, colorRangeTitle,
+    texturesTitle, featuresTitle, reset, view, sortFilterTitle, noResultTitle, noResultMessage, sortParamName, colorParamName, texturesParamName, featuresParamName, searchParamName, pageParamName
+} from "../../texts/filter"
 
 const filterItemAnimation = imageTransition(-1.5)
 const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
 export default function MaterialsArchive({ location, materials }) {
-    const [sort, setSort] = useQueryParam('sort', 'Popular')
-    const [color, setColor] = useQueryParam('color', 'All')
-    const [textures, setTextures] = useQueryParam('textures', 'All')
-    const [features, setFeatures] = useQueryParam('features', 'All')
-    const [search, setSearch] = useQueryParam('search', '')
-    const [page, setPage] = useQueryParam('page', '1')
+    const [sort, setSort] = useQueryParam(sortParamName['en'], 'Popular')
+    const [color, setColor] = useQueryParam(colorParamName['en'], 'All')
+    const [textures, setTextures] = useQueryParam(texturesParamName['en'], 'All')
+    const [features, setFeatures] = useQueryParam(featuresParamName['en'], 'All')
+    const [search, setSearch] = useQueryParam(searchParamName['en'], '')
+    const [page, setPage] = useQueryParam(pageParamName['en'], '1')
     const [inputValue, setInputValue] = useState('')
 
     useEffect(() => {

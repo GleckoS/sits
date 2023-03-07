@@ -38,6 +38,7 @@ export const query = graphql`
               }
             }
             contact {
+              privacyPolicyText
               leftColumnTitle
               leftColumnContent
               rightColumnTitle

@@ -3,16 +3,10 @@ import { useState } from 'react'
 import styled from 'styled-components'
 import { getCookie, setCookie } from '../../helpers/coockie-manager'
 import { toast } from 'react-toastify'
-import { Link, navigate } from 'gatsby'
+import { Link } from 'gatsby'
 import { myContext } from '../../hooks/provider'
+import { addMessage, favouriteLink, removeMessage } from '../../texts'
 
-const removeMessage = {
-  en: ' removed from '
-}
-
-const addMessage = {
-  en: ` added to `
-}
 
 const Toast = ({ toastProps }) => {
   return (
@@ -21,7 +15,7 @@ const Toast = ({ toastProps }) => {
         ? toastProps.title + addMessage['en']
         : toastProps.title + removeMessage['en']
       }
-      <span className='underline'>MY{'\u00A0'}FAVOURITES</span>
+      <span className='underline' dangerouslySetInnerHTML={{ __html: favouriteLink['en'] }} />
     </ToastWrapper>
   )
 }

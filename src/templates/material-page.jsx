@@ -8,22 +8,15 @@ import RecomendedCovers from "../components/sections/recomended-covers"
 import SimilarProducts from "../components/sections/similar-products"
 import Video from "../components/sections/video"
 import Seo from "../layout/seo"
+import { similarTitle, coversTitle } from "../texts"
 
 export function Head({ pageContext, data: { wpMaterials: { seo } } }) {
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Seo seo={seo} pageContext={pageContext} />
     </>
   )
-}
-
-const similarTitle = {
-  en: ' is a popular choice for these models'
-}
-
-const coversTitle = {
-  en: 'Similar Covers'
 }
 
 export default function Material({ location, data: { wpMaterials }, pageContext }) {

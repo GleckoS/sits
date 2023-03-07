@@ -8,44 +8,7 @@ import { LangChanger } from './lang-changer'
 import { Item } from './menu-item'
 import scrollLock from './../../helpers/scroll-lock'
 import { motion } from 'framer-motion'
-
-const linksLeft = {
-  en: [
-    { name: 'Best Seller', url: '/best-sellers/' },
-    { name: 'New Arrivals', url: '/new-arrivals/' },
-    { name: 'All products', url: '/products/' },
-    { name: 'Sofas', url: '/products/sofas/' },
-    { name: 'Armchairs', url: '/products/armchairs/' },
-    { name: 'Dining Chairs', url: '/products/dining-chairs/' },
-    { name: 'Footstools', url: '/products/footstools/' },
-    { name: 'Coffee Tables', url: '/products/coffee-tables/' },
-    { name: 'Outdoor Furniture', url: '/products/outdoor-furnitures/' },
-    { name: 'Covers', url: '/material/' },
-    { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
-  ]
-}
-
-const linksRight = {
-  en: [
-    { name: 'About Sits', url: '/about-sits/' },
-    { name: 'Conscious', url: '/conscious/' },
-    { name: 'Furniture Care', url: '/furniture-care/' },
-    { name: 'Catalogues', url: '/catalogues/' },
-    { name: 'Virtual showroom', url: 'https://showroom.sits.eu/' },
-    { name: 'Sales Representative', url: '/sales-representative/' },
-    { name: 'Where to Buy', url: '/where-to-buy/' },
-    { name: 'Contact', url: '/contact/' }
-    // { name: 'For Retailers', icon: 'out', url: 'https://sitsconnect.pl/' },
-  ]
-}
-
-const furnitureTitle = {
-  en: 'FURNITURE'
-}
-
-const companyTitle = {
-  en: 'COMPANY'
-}
+import { linksLeft, linksRight, furnitureTitle, companyTitle } from '../../texts'
 
 const logoAnimation = {
   initial: { opacity: 0 },

@@ -6,10 +6,8 @@ import { Container } from "../atoms/container"
 import { ProductList } from "../organism/products-list"
 import InView from "./in-view-provider"
 import { useQueryParam } from "../../hooks/query-params"
+import { newArrivalsTitle } from "../../texts"
 
-const title = {
-    en: 'New Arrivals'
-}
 
 const titleAnimation = textTransition(1)
 const gridAnimation = imageTransition(2)
@@ -27,7 +25,7 @@ export default function Content({ data }) {
     return (
         <InView>
             <Wrapper>
-                <h1 ><motion.span variants={titleAnimation}>{title['en']}</motion.span></h1>
+                <h1 ><motion.span variants={titleAnimation}>{newArrivalsTitle['en']}</motion.span></h1>
                 <Container>
                     <List variants={gridAnimation}>
                         <ProductList setRerender={setRerender} rerender={rerender} page={page} setPage={setPage} products={products} />

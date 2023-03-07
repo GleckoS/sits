@@ -43,7 +43,7 @@ export const MostPopularProductBlock = ({
         return (
             <InView>
                 <Wrapper variants={animation}>
-                    <motion.h2 variants={contentTitleAnimation}>{title}</motion.h2>
+                    <motion.h2 variants={contentTitleAnimation}>{title['en']}</motion.h2>
                     <ResultsGrid variants={contentGridAnimation}>
                         {sortedArr.map(el => {
                             let isOneElementRendered = false

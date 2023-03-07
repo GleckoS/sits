@@ -2,11 +2,8 @@ import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useRef } from "react"
 import { toast } from "react-toastify"
 import styled from "styled-components"
+import { fabricTitle, leatherTitle, legsTitle, materialTitle, modelTitle, tableTopTitle, legsMaterialTitle, comfortTitle, coverTitle, armrestTitle, accessoriesTitle, copyConfig, copySuccessed } from "../../texts"
 import AddToFauvorite from "../atoms/add-to-favourite"
-
-const copySuccessed = {
-    en: 'Configuration copied successfully'
-}
 
 export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
 
@@ -14,52 +11,52 @@ export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
 
     return (
         <Item>
-            <div className="image-wrap"> 
+            <div className="image-wrap">
                 <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={popupNames.model} />
                 <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
             </div>
             <Flex>
                 <Data ref={data}>
-                    <span><span>Model:</span> <strong>{popupNames.model}</strong></span>
+                    <span><span>{modelTitle['en']}</span> <strong>{popupNames.model}</strong></span>
 
                     {popupNames.material
-                        ? <span><span>Material:</span> <strong>{popupNames.material}</strong></span>
+                        ? <span><span>{materialTitle['en']}</span> <strong>{popupNames.material}</strong></span>
                         : null}
 
                     {popupNames.tableTopMaterial
-                        ? <span><span>Table top material:</span> <strong>{popupNames.tableTopMaterial}</strong></span>
+                        ? <span><span>{tableTopTitle['en']}</span> <strong>{popupNames.tableTopMaterial}</strong></span>
                         : null}
 
                     {popupNames.leather
-                        ? <span><span>Leather:</span> <strong>{popupNames.leather}</strong></span>
+                        ? <span><span>{leatherTitle['en']}</span> <strong>{popupNames.leather}</strong></span>
                         : null}
 
                     {popupNames.fabric
-                        ? <span><span>Fabric:</span> <strong>{popupNames.fabric}</strong></span>
+                        ? <span><span>{fabricTitle['en']}</span> <strong>{popupNames.fabric}</strong></span>
                         : null}
 
                     {popupNames.legs
-                        ? <span><span>Legs:</span> <strong>{popupNames.legs}</strong></span>
+                        ? <span><span>{legsTitle['en']}</span> <strong>{popupNames.legs}</strong></span>
                         : null}
 
                     {popupNames.materialOfTheLegs
-                        ? <span><span>Material of the legs:</span> <strong>{popupNames.materialOfTheLegs}</strong></span>
+                        ? <span><span>{legsMaterialTitle['en']}</span> <strong>{popupNames.materialOfTheLegs}</strong></span>
                         : null}
 
                     {popupNames.comfort && !popupNames.tableTopMaterial && !popupNames.materialOfTheLegs && !popupNames.material
-                        ? <span><span>Comfort:</span> <strong>{popupNames.comfort}</strong></span>
+                        ? <span><span>{comfortTitle['en']}</span> <strong>{popupNames.comfort}</strong></span>
                         : null}
 
                     {popupNames.cover && !popupNames.tableTopMaterial && !popupNames.materialOfTheLegs && !popupNames.material
-                        ? <span><span>Cover:</span> <strong>{popupNames.cover}</strong></span>
+                        ? <span><span>{coverTitle['en']}</span> <strong>{popupNames.cover}</strong></span>
                         : null}
 
                     {popupNames.armrests
-                        ? <span><span>Armrests:</span> <strong>{popupNames.armrests}</strong></span>
+                        ? <span><span>{armrestTitle['en']}</span> <strong>{popupNames.armrests}</strong></span>
                         : null}
 
                     {popupNames.accessories
-                        ? <span><span>Accessories:</span> <strong>{popupNames.accessories}</strong></span>
+                        ? <span><span>{accessoriesTitle['en']}</span> <strong>{popupNames.accessories}</strong></span>
                         : null}
                 </Data>
                 <button onClick={() => { navigator.clipboard.writeText(data.current.innerText); toast(copySuccessed['en']) }}>
@@ -74,7 +71,7 @@ export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
                     </svg>
 
                     <span className="underline">
-                        Copy Configuration
+                        {copyConfig['en']}
                     </span>
                 </button>
             </Flex>

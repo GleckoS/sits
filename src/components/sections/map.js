@@ -9,20 +9,9 @@ import Marker from "../moleculas/map-marker"
 import { motion } from "framer-motion"
 import InView from "./in-view-provider"
 import { imageTransition, textTransition } from "../../helpers/animation-controller"
+import { retailersTitle, filterTitle, buttonTitle } from "../../texts/map"
 // import { FullscreenControl } from "react-leaflet-fullscreen";
 require('react-leaflet-markercluster/dist/styles.min.css')
-
-const retailersTitle = {
-    en: 'RETAILERS:'
-}
-
-const filterTitle = {
-    en: 'Country / City / Area'
-}
-
-const buttonTitle = {
-    en: 'WEBSITE'
-}
 
 const titleAnimation = textTransition(1)
 const mapAnimation = imageTransition(2)
@@ -97,7 +86,7 @@ export default function Map() {
 
 
     return (
-        <InView margin = "-100px 0px -15px 0px">
+        <InView margin="-100px 0px -15px 0px">
             <Wrapper>
                 <a className="no-focus" href="#footer" aria-label='skip link to footer' />
                 <Container>
@@ -404,7 +393,7 @@ const Content = styled.div`
     }
 
     a{
-        color: unset;
+        color: unset !important;
     }
 `
 

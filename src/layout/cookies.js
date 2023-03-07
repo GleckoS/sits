@@ -5,6 +5,7 @@ import { Grid } from "./cookies-grid"
 import scrollLock from './../helpers/scroll-lock'
 import { getCookie, setCookie } from "../helpers/coockie-manager"
 import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion"
+import { allowButton, allowChosenButton, setButton, denyButton, aboutTabName, detailsTabName, consentTabName } from "../texts/cookie"
 
 function datalayerArguments() {
     if (typeof window !== "undefined" && !!arguments) {
@@ -12,30 +13,6 @@ function datalayerArguments() {
         window.dataLayer.push(arguments)
     }
 }
-
-const consentTabName = {
-    en: 'Consent'
-}
-const detailsTabName = {
-    en: 'Details'
-}
-const aboutTabName = {
-    en: 'About cookies'
-}
-
-const denyButton = {
-    en: 'Deny'
-}
-const setButton = {
-    en: 'Set preferences'
-}
-const allowChosenButton = {
-    en: 'Allow chosen'
-}
-const allowButton = {
-    en: 'Allow all'
-}
-
 
 export default function Cookies({ isActive, setIsActive }) {
     const { wpPage: { cookies: { consentTab, aboutCookiesTab, detailsTab } } } = useStaticQuery(graphql`

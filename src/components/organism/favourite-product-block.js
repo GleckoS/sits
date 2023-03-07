@@ -63,7 +63,7 @@ export const FavouriteProductBlock = ({
     renderCount.current = 0
     return (
       <Wrapper variants={animation}>
-        <motion.h2 variants={contentTitleAnimation}>{title} ({count})</motion.h2>
+        <motion.h2 variants={contentTitleAnimation}>{title['en']} ({count})</motion.h2>
         <ResultsGrid variants={contentGridAnimation}>
           {filtredArr?.map((el) => {
             let renderedlist = []

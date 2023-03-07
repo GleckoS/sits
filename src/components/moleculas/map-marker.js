@@ -3,11 +3,7 @@ import { Marker, Popup } from 'react-leaflet'
 import * as L from "leaflet"
 import MapMarkerSVG from './../../../static/MapMarker.svg'
 import MapMarkerChosenSVG from './../../../static/MapMarkerChosen.svg'
-
-
-const buttonTitle = {
-    en: 'WEBSITE'
-}
+import { buttonTitle } from "../../texts/map"
 
 let iconPerson
 let chosenIcon

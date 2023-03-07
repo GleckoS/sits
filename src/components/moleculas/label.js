@@ -1,17 +1,14 @@
 import { AnimatePresence, motion } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
-
-const errorMessage = {
-    en: 'This field is required.'
-}
+import { errorMessage } from "../../texts/contact"
 
 export const Label = ({ required = false, variants, register, errors, name, obj, rows }) => {
     const [isActive, setIsActive] = useState(false)
     const [inputValue, setInputValue] = useState('')
     return (
         <Wrapper variants={variants} onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!inputValue) }} className={errors[name] ? 'error' : ''}>
-            <span className={isActive ? 'active' : ''}>{obj.placeholder['en']}</span>
+            <span className={isActive ? 'active' : ''}>{obj['en']}</span>
             {rows
                 ? <textarea value={inputValue} rows={rows} {...register(name, {
                     required: required,

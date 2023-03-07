@@ -4,22 +4,7 @@ import React, { useRef } from 'react'
 import styled from 'styled-components'
 import { Container } from '../../components/atoms/container'
 import { myContext } from "../../hooks/provider"
-
-const left = [
-  { name: 'ABOUT', url: '/about-sits/' },
-  { name: 'CONSCIOUS', url: '/conscious/' },
-  { name: 'LEGAL', url: '/legal/' }
-]
-
-const right = [
-  { name: 'WHERE TO BUY', url: '/where-to-buy/' },
-  { name: 'CONTACT', url: '/contact/' },
-  { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' }
-]
-
-const manageCookies = {
-  en: 'MANAGE COOKIES'
-}
+import { manageCookies, left, right } from '../../texts'
 
 const logoAnimation = {
   initial: { opacity: 0 },
@@ -88,7 +73,7 @@ export default function Footer({ setIsCookiesActive }) {
                   </motion.div>
                   <Center>
                     <motion.div variants={leftColumnAnimation}>
-                      {left.map((el) => (
+                      {left['en'].map((el) => (
                         <motion.div variants={leftLinkAnimation} key={el.name}>
                           <Link className='left styled-link' to={el.url}>
                             {el.name}
@@ -100,7 +85,7 @@ export default function Footer({ setIsCookiesActive }) {
                       </motion.button>
                     </motion.div>
                     <motion.div variants={rightColumnAnimation}>
-                      {right.map((el) => (
+                      {right['en'].map((el) => (
                         <motion.div variants={rightLinkAnimation} key={el.name}>
                           <Link className='right styled-link' to={el.url}>
                             {el.name}

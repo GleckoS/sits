@@ -12,128 +12,24 @@ import { useQueryParam } from "../../hooks/query-params"
 import InView from "./in-view-provider"
 import { imageTransition } from "../../helpers/animation-controller"
 import { motion } from "framer-motion"
-
-const sortBy = {
-    en: [
-        {
-            name: 'Popular', val: 'Popular'
-        },
-        {
-            name: 'Alphabetical', val: 'Alphabetical'
-        },
-        {
-            name: 'New Arrivals', val: 'New Arrivals'
-        }
-    ]
-}
-
-const sofasTypes = {
-    en: [
-        {
-            name: 'All Types', val: 'All'
-        },
-        {
-            name: 'Regular Sofas', val: 'Regular Sofas'
-        },
-        {
-            name: 'Sofa Beds', val: 'Sofa Beds'
-        },
-        {
-            name: 'Corner Sofas', val: 'Corner Sofas'
-        },
-        {
-            name: 'Modular Systems', val: 'Modular Systems'
-        }
-    ]
-}
-
-const upholsterysArr = {
-    en: [
-        {
-            name: 'All upholsteries', val: 'All'
-        },
-        {
-            name: 'Fabric', val: 'Fabric'
-        },
-        {
-            name: 'Leather', val: 'Leather'
-        },
-    ]
-}
-
-const covesArr = {
-    en: [
-        {
-            name: 'All Covers', val: 'All'
-        },
-        {
-            name: 'Fixed', val: 'Fixed'
-        },
-        {
-            name: 'Removable', val: 'Removable'
-        },
-    ]
-}
-
-const clearAllTitle = {
-    'en': 'Clear all filters'
-}
-
-const filterTitle = {
-    en: 'Filter'
-}
-
-const sortByTitle = {
-    en: 'Sort by'
-}
-
-const typeTitle = {
-    en: 'Type of sofa'
-}
-
-const upholsterysTitle = {
-    en: 'Type of upholstery'
-}
-
-const coversTitle = {
-    en: 'Type of cover'
-}
-
-const reset = {
-    en: 'RESET ALL'
-}
-
-const view = {
-    en: 'VIEW'
-}
-
-const sortFilterTitle = {
-    en: 'Sort & Filter'
-}
-
-const noResultTitle = {
-    en: 'No results'
-}
-
-const noResultMessage = {
-    en: `We couldn’t find any matches for your filters.`
-}
-
-const searchFilterTitle = {
-    en: 'Search: '
-}
+import {
+    typeTitle, sortByTitle, filterTitle, clearAllTitle, upholsterysArr, covesArr, sofasTypes,
+    coverParamName, pageParamName, searchParamName, sortBy, sortParamName, typeParamName, noResultMessage,
+    upholsteryParamName, upholsterysTitle, coversTitle, reset, view, sortFilterTitle, noResultTitle
+} from "../../texts/filter"
+import { searchPlaceholder as searchFilterTitle } from "../../texts"
 
 const filterItemAnimation = imageTransition(-1.5)
 const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
 export default function ProductArchive({ location, pageContext: { type: name, title }, products }) {
-    const [sort, setSort] = useQueryParam('sort', 'Popular')
-    const [type, setType] = useQueryParam('type', 'All')
-    const [cover, setCover] = useQueryParam('cover', 'All')
-    const [upholsterys, setUpholsterys] = useQueryParam('upholstery', 'All')
-    const [search, setSearch] = useQueryParam('search', '')
-    const [page, setPage] = useQueryParam('page', '1')
+    const [sort, setSort] = useQueryParam(sortParamName['en'], 'Popular')
+    const [type, setType] = useQueryParam(typeParamName['en'], 'All')
+    const [cover, setCover] = useQueryParam(coverParamName['en'], 'All')
+    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName['en'], 'All')
+    const [search, setSearch] = useQueryParam(searchParamName['en'], '')
+    const [page, setPage] = useQueryParam(pageParamName['en'], '1')
     const [inputValue, setInputValue] = useState('')
     const [defaultPosts] = useState(products)
 

@@ -15,13 +15,15 @@ const itemAnimation = {
     animate: { opacity: 1, transition: { duration: .4 } }
 }
 
-export default function Accessories({ data }) {
+
+
+export default function Accessories({ data, title }) {
     return (
         <InView>
             <Wrapper>
                 <Container>
                     <motion.h2 variants={titleAnimation}>
-                        Accessories for this model
+                        {title}
                     </motion.h2>
                     <Grid variants={gridAnimation}>
                         {data.map((el, index) => (

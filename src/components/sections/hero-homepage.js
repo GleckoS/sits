@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useEffect, useRef, useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
 import InView from "./in-view-provider"
@@ -11,24 +11,8 @@ const titleAnimation = textTransition(3, 'slow')
 const linkAnimation = linkTransition(4, 'slow')
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
-
-    const [canScroll, setCanScroll] = useState(false);
-
-    useEffect(() => {
-        if (canScroll) {
-            // scrollLock.disable('hero')
-        } else {
-            // scrollLock.enable('hero')
-        }
-
-        // return () => {
-        //     scrollLock.disable('hero')
-        // }
-    }, [canScroll]);
-
-
     return (
-        <InView func={() => setCanScroll(true)} margin='0px 0px 0px 0px'>
+        <InView margin='0px 0px 0px 0px'>
             <Wrapper>
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />

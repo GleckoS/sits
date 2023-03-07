@@ -1,7 +1,6 @@
 import React, { useRef, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
-
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
@@ -10,6 +9,7 @@ import { Link } from "gatsby"
 import { motion } from "framer-motion"
 import InView from "./in-view-provider"
 import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
+import { exploreButton } from "../../texts"
 
 const titleAnimation = textTransition(1)
 const textAnimation = textTransition(2)
@@ -82,7 +82,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                         <div className={animationStarted ? 'sticky hide' : "sticky"}>
                             <motion.h3 variants={sliderTitleAnimation}>{carousel[item].selectedCollection.title}</motion.h3>
                             <motion.div variants={sliderLinkAnimation} className="underline">
-                                <Link tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >EXPLORE</Link>
+                                <Link tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >{exploreButton['en']}</Link>
                             </motion.div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                                             alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
                                         <div className="content mobile">
                                             <h3>{el.selectedCollection.title}</h3>
-                                            <Link className="underline" tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >EXPLORE</Link>
+                                            <Link className="underline" tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >{exploreButton['en']}</Link>
                                         </div>
                                     </div>
                                 )

@@ -7,10 +7,7 @@ import { Container } from "../atoms/container"
 import InView from "./in-view-provider"
 import { motion } from "framer-motion"
 import { imageTransition, textTransition } from "../../helpers/animation-controller"
-
-const searchPlaceholder = {
-    en: 'Search'
-}
+import { searchPlaceholder } from "../../texts"
 
 const titleAnimation = textTransition(1)
 const textAnimation = textTransition(2)

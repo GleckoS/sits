@@ -4,12 +4,13 @@ import { Helmet } from "react-helmet"
 import ProductGrid from "../components/sections/products-grid"
 import Seo from "../layout/seo"
 import Wrapper from "../components/sections/page-wrapper"
+import { allProductsTitle } from "../texts"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Seo seo={seo} pageContext={pageContext} />
     </>
   )
 }
@@ -17,7 +18,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function AllProducts({ data: { wpPage, homepage }, pageContext, location }) {
   return (
     <Wrapper>
-      <ProductGrid title={'Discover our collections'} data={homepage.homepage.productsGrid} />
+      <ProductGrid title={allProductsTitle['en']} data={homepage.homepage.productsGrid} />
     </Wrapper>
   )
 }

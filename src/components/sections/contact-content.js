@@ -42,13 +42,13 @@ const linkAnimation = {
     }
 }
 
-export default function Content({ data: { leftColumnTitle, leftColumnContent, rightColumnTitle, rightColumnContent, rightColumnFilesToUpload } }) {
+export default function Content({ data: { privacyPolicyText, leftColumnTitle, leftColumnContent, rightColumnTitle, rightColumnContent, rightColumnFilesToUpload } }) {
     return (
         <InView>
             <Wrapper>
                 <Container className="container">
                     <Grid>
-                        <Form inputAnimation={inputAnimation} titleAnimation={titleAnimation} formAnimation={formAnimation} />
+                        <Form privacyPolicyText={privacyPolicyText} inputAnimation={inputAnimation} titleAnimation={titleAnimation} formAnimation={formAnimation} />
                         <div className="left">
                             <motion.h2 variants={titleSecondAnimation}>{leftColumnTitle}</motion.h2>
                             <motion.div variants={textSecondAnimation} className="content" dangerouslySetInnerHTML={{ __html: leftColumnContent }} />

@@ -78,7 +78,7 @@ export const ResultMaterialBlock = ({
         return (
             <InView>
                 <Wrapper variants={animation}>
-                    <motion.h2 variants={contentTitleAnimation}>{title}</motion.h2>
+                    <motion.h2 variants={contentTitleAnimation}>{title['en']}</motion.h2>
                     <ResultsGrid variants={contentGridAnimation}>
                         {filtredArr.map(el => {
                             return el.arr.map((inEl, index) => {

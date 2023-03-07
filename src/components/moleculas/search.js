@@ -2,10 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Input } from "./input"
 import { InputExt } from './input-extended'
-
-const searchTitle = {
-    en: 'Search'
-}
+import { searchPlaceholder as searchTitle } from "../../texts"
 
 export const Search = ({ func = () => { }, tabIndex = 0, type }) => {
     return (
