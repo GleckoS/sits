@@ -10,18 +10,18 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
       <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext} />
+      <Seo seo={seo} pageContext={pageContext}/>
     </>
   )
 }
 
 export default function WhereToBuyPage({ data: { wpPage: { title } }, pageContext, location }) {
-  return (
-    <Wrapper>
-      <Title title={title} />
-      <Map isComponent={true} />
-    </Wrapper>
-  )
+    return (
+        <Wrapper>
+            <Title title={title} />
+            <Map />
+        </Wrapper>
+    )
 }
 
 export const query = graphql`

@@ -17,7 +17,6 @@ const Provider = ({ children }) => {
         return ''
     })
     const [favouritesCount, setFavouritesCount] = useState(0)
-    const [showMap, setShowMap] = useState(false)
 
     const recalculateFavouritesCount = () => {
         let itemsCount = 0
@@ -46,10 +45,6 @@ const Provider = ({ children }) => {
 
     useEffect(() => {
         recalculateFavouritesCount()
-
-        setTimeout(() => {
-            setShowMap(true)
-        }, 5000)
     }, [])
     return (
         <myContext.Provider value={{
@@ -60,8 +55,7 @@ const Provider = ({ children }) => {
             favouritesCount,
             recalculateFavouritesCount,
             transition,
-            setTransition,
-            showMap
+            setTransition
         }}>
             {children}
         </myContext.Provider>

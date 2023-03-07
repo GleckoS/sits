@@ -10,7 +10,6 @@ import { motion } from "framer-motion"
 import InView from "./in-view-provider"
 import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import { retailersTitle, filterTitle, buttonTitle } from "../../texts/map"
-import { myContext } from "../../hooks/provider"
 // import { FullscreenControl } from "react-leaflet-fullscreen";
 require('react-leaflet-markercluster/dist/styles.min.css')
 
@@ -18,23 +17,7 @@ const titleAnimation = textTransition(1)
 const mapAnimation = imageTransition(2)
 const searchAnimation = imageTransition(3)
 
-export default function MapWrapper({isComponent}) {
-    return (
-        <myContext.Consumer>
-            {({ showMap }) => {
-                if (!showMap && !isComponent) {
-                    return null
-                }
-
-                return (
-                    <Map />
-                )
-            }}
-        </myContext.Consumer>
-    )
-}
-
-function Map() {
+export default function Map() {
 
     const { wpPage: { retailers: { csvFile } } } = useStaticQuery(graphql`
     query {
