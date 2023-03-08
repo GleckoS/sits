@@ -4,18 +4,18 @@ export const contactUrls = {
 }
 
 export const favouritesUrl = {
-    EN: '/favourites/',
-    FR: ''
+    EN: '/favourites/', 
+    FR: '/fr/favourites/'
 }
 
 export const collectionUrl = {
-    EN: '/collection/',  // just prefix 
-    FR: '/fr/le-collectione/'
+    EN: '/collection/',
+    FR: '/fr/collection/'
 }
 
 export const materialUrl = {
-    EN: '/material/',  // just prefix 
-    FR: '/fr/le-material/'
+    EN: '/material/',
+    FR: '/fr/material/'
 }
 
 export const searchUrl = {
@@ -24,9 +24,11 @@ export const searchUrl = {
 }
 
 export const whereToBuyUrl = {
-    EN: '/where-to-buy/'
+    EN: '/where-to-buy/', 
+    FR: '/fr/where-to-buy/'
 }
 
 export const homepageUrl = {
-    EN: '/'
+    EN: '/', 
+    FR: '/fr/'
 }

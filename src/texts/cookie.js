@@ -1,39 +1,49 @@
 export const consentTabName = {
-    EN: 'Consent'
+    EN: 'Consent',
+    FR: 'Consent'
 }
 
 export const detailsTabName = {
-    EN: 'Details'
+    EN: 'Details',
+    FR: 'Details'
 }
 
 export const aboutTabName = {
-    EN: 'About cookies'
+    EN: 'About cookies',
+    FR: 'About cookies'
 }
 
 export const denyButton = {
-    EN: 'Deny'
+    EN: 'Deny',
+    FR: 'Deny'
 }
 
 export const setButton = {
-    EN: 'Set preferences'
+    EN: 'Set preferences',
+    FR: 'Set preferences'
 }
 
 export const allowChosenButton = {
-    EN: 'Allow chosen'
+    EN: 'Allow chosen',
+    FR: 'Allow chosen'
 }
 
 export const allowButton = {
-    EN: 'Allow all'
+    EN: 'Allow all',
+    FR: 'Allow all'
 }
 
 export const expireTitle = {
-    EN: 'Expiry: '
+    EN: 'Expiry: ',
+    FR: 'Expiry: '
 }
 
 export const typeTitle = {
-    EN: 'Type: '
+    EN: 'Type: ',
+    FR: 'Type: '
 }
 
 export const loadMoreTitle = {
-    EN: 'LOAD MORE '
+    EN: 'LOAD MORE ',
+    FR: 'LOAD MORE '
 }
