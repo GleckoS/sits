@@ -17,7 +17,7 @@ const titleAnimation = textTransition(1)
 const mapAnimation = imageTransition(2)
 const searchAnimation = imageTransition(3)
 
-export default function Map() {
+export default function Map({ language }) {
 
     const { wpPage: { retailers: { csvFile } } } = useStaticQuery(graphql`
     query {
@@ -91,10 +91,10 @@ export default function Map() {
                 <a className="no-focus" href="#footer" aria-label='skip link to footer' />
                 <Container>
                     <Content>
-                        <Title variants={titleAnimation}>{retailersTitle['en']}</Title>
+                        <Title variants={titleAnimation}>{retailersTitle[language]}</Title>
                         <InputWrapper>
                             <motion.div variants={searchAnimation}>
-                                <input value={filter} onChange={(e) => { changeFilter(e.currentTarget.value) }} placeholder={filterTitle['en']} />
+                                <input value={filter} onChange={(e) => { changeFilter(e.currentTarget.value) }} placeholder={filterTitle[language]} />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                     <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                         <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
@@ -116,7 +116,7 @@ export default function Map() {
                                                 <p className="l">{el.Address}</p>
                                                 <p className="l">{el.City}, {el.Country}</p>
                                                 <a href={'tel:' + el.Phone} className="l phone">{el.Phone}</a>
-                                                {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
+                                                {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle[language]}</a>}
                                             </Item>
                                         )
                                     })}
@@ -132,7 +132,7 @@ export default function Map() {
                                 {/* <FullscreenControl position='topright'/> */}
                                 <MarkerClusterGroup showCoverageOnHover={false}>
                                     {filtredRetailers?.map((el, index) => (
-                                        <Marker key={el['Shop name'] + index} isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
+                                        <Marker language={language} key={el['Shop name'] + index} isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
                                     ))}
                                 </MarkerClusterGroup>
                             </MapContainer>

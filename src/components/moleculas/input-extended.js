@@ -1,14 +1,16 @@
 import { Link } from "gatsby"
 import React, { useState } from "react"
 import styled from "styled-components"
+import { searchParamName } from "../../texts/filter"
+import { searchUrl } from "../../texts/urls"
 
-export const InputExt = ({ tabIndex, placeholder }) => {
+export const InputExt = ({ language, tabIndex, placeholder }) => {
     const [inputValue, setInputValue] = useState('')
     return (
         <Wrapper className="label">
             <span>{placeholder}</span>
             <input tabIndex={tabIndex} onChange={(e) => { setInputValue(e.target.value) }} />
-            <Link tabIndex={tabIndex} aria-label={'search: ' + inputValue} to={inputValue ? ('/search/?search=' + inputValue) : '/search/'}>
+            <Link tabIndex={tabIndex} aria-label={'search: ' + inputValue} to={inputValue ? (searchUrl[language] + '?' + searchParamName[language] + '=' + inputValue) : searchUrl[language]}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                     <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                         <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">

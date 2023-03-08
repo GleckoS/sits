@@ -35,7 +35,7 @@ const fileAnimation = {
     }
 }
 
-export default function Content({ data: { title, salesRepresentative: { textUnderPageTitle, csvFileSales } } }) {
+export default function Content({ language, data: { title, salesRepresentative: { textUnderPageTitle, csvFileSales } } }) {
 
     const [retailers, setRetailers] = useState(null)
     const [filtredRetailres, setFiltredRetailers] = useState(null)
@@ -77,7 +77,7 @@ export default function Content({ data: { title, salesRepresentative: { textUnde
                     <motion.h1 variants={titleAnimation}>{title}</motion.h1>
                     {textUnderPageTitle && <motion.p variants={textAnimation}>{textUnderPageTitle}</motion.p>}
                     <Label onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!inputValue) }} variants={inputAnimation}>
-                        <span className={isActive || inputValue ? 'active' : ''}>{searchPlaceholder['en']}</span>
+                        <span className={isActive || inputValue ? 'active' : ''}>{searchPlaceholder[language]}</span>
                         <input onChange={(v) => { changeFilter(v) }} />
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">

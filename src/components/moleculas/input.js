@@ -1,14 +1,16 @@
 import { Link, navigate } from "gatsby"
 import React, { useState } from "react"
 import styled from "styled-components"
+import { searchUrl } from "../../texts/urls"
 import { myContext } from "./../../hooks/provider"
+import { searchParamName } from './../../texts/filter'
 
-export const Input = ({ func, tabIndex, placeholder }) => {
+export const Input = ({ language, func, tabIndex, placeholder }) => {
     const [isActive, setIsActive] = useState(false)
 
     const enterListener = (e, input) => {
         if (e.key === "Enter") {
-            navigate(input ? ('/search/?search=' + input) : '/search/')
+            navigate(input ? (searchUrl[language] + '?' + searchParamName[language] + '=' + input) : searchUrl[language])
             func()
         }
     }
@@ -20,7 +22,7 @@ export const Input = ({ func, tabIndex, placeholder }) => {
                     <Wrapper onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
                         <span className={isActive ? 'active' : ''}>{placeholder}</span>
                         <input value={context.searchInputValue} onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} tabIndex={tabIndex} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                        <Link onClick={func} tabIndex={tabIndex} aria-label={'search: ' + context?.searchInputValue} to={context?.searchInputValue ? ('/search/?search=' + context?.searchInputValue) : '/search/'}>
+                        <Link onClick={func} tabIndex={tabIndex} aria-label={'search: ' + context?.searchInputValue} to={context?.searchInputValue ? (searchUrl[language] + '?' + searchParamName[language] + '=' + context?.searchInputValue) : searchUrl[language]}>
                             <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                 <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                     <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">

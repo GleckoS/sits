@@ -2,9 +2,10 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
+import { materialUrl } from "../../texts/urls"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const MaterialCard = ({ variant = '', color, data: { materials: { materialColorVariants }, title, slug } }) => {
+export const MaterialCard = ({ language, variant = '', color, data: { materials: { materialColorVariants }, title, slug } }) => {
     const variants = useMemo(() => {
         let arr = materialColorVariants
         if (color && color !== 'All') {
@@ -58,7 +59,7 @@ export const MaterialCard = ({ variant = '', color, data: { materials: { materia
         <Wrapper>
             <div className="wrap">
                 <AddToFauvorite type={'colors'} title={variants.filter(el => el.variantName === choosenVariant)[0]?.variantName ? variants.filter(el => el.variantName === choosenVariant)[0]?.variantName : variants[0].variantName} />
-                <Link aria-label={'material: ' + title} to={'/material/' + slug + '/'} state={{ variant: choosenVariant }}>
+                <Link aria-label={'material: ' + title} to={materialUrl[language] + slug + '/'} state={{ variant: choosenVariant }}>
                     <SliderWrapper id='background'>
                         {variants.map((el, index) => {
                             if (variants[index].variantName === choosenVariant || variants[index].variantName === newVariant) {

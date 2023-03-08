@@ -5,23 +5,29 @@ import Map from "../components/sections/map"
 import Content from "../components/sections/new-arrivals-content"
 import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
 export default function NewArrivalsPage({ data: { wpPage, allWpProduct }, pageContext, location }) {
-    return (
-        <Wrapper>
-            <Content data={wpPage.newArrivals.products} />
-            <Map/>
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Content language={pageContext.language} data={wpPage.newArrivals.products} />
+      <Map language={pageContext.language} />
+    </Wrapper>
+  )
 }
 
 export const query = graphql`

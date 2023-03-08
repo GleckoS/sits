@@ -8,6 +8,7 @@ import Cookies from "./cookies"
 import { ToastContainer } from 'react-toastify'
 import { cssTransition } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
+import { myContext } from "../hooks/provider"
 
 const animate = cssTransition({
     enter: "enter",
@@ -19,16 +20,20 @@ export default function Layout({ children }) {
     const [isCookiesActive, setIsCookiesActive] = useState(false)
 
     return (
-        <App>
-            <ToastContainer limit={5} transition={animate} />
-            <Global />
-            <Cookies isActive={isCookiesActive} setIsActive={setIsCookiesActive} />
-            <Header />
-            <div id='main'>
-                {children}
-            </div>
-            <Footer setIsCookiesActive={setIsCookiesActive} />
-        </App>
+        <myContext.Consumer>
+            {context => (
+                < App >
+                    <ToastContainer limit={5} transition={animate} />
+                    <Global />
+                    <Cookies language={context.language} isActive={isCookiesActive} setIsActive={setIsCookiesActive} />
+                    <Header language={context.language} />
+                    <div id='main'>
+                        {children}
+                    </div>
+                    <Footer language={context.language} setIsCookiesActive={setIsCookiesActive} />
+                </App>
+            )}
+        </myContext.Consumer >
     )
 }
 

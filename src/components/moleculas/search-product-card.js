@@ -2,14 +2,15 @@ import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { collectionUrl } from "../../texts/urls"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const Card = ({ setRerender, rerender, type = 'products', model, image, data: { title, slug } }) => {
+export const Card = ({ language, setRerender, rerender, type = 'products', model, image, data: { title, slug } }) => {
 
     return (
         <Wrapper>
             <AddToFauvorite setRerender={setRerender} rerender={rerender} type={type} title={model} />
-            <Link to={'/collection/' + slug + '/'}>
+            <Link to={collectionUrl[language] + slug + '/'}>
                 <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                 <span>{model}</span>
             </Link>

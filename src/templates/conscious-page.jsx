@@ -7,27 +7,33 @@ import Hero from "../components/sections/hero-conscious"
 import Map from "../components/sections/map"
 import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
 export default function ConsciousPage({ data: { wpPage: { conscious } }, pageContext, location }) {
-    return (
-        <Wrapper>
-            <Hero data={conscious.heroSectionConscious} />
-            <TwoColumnFlex data={conscious.twoColumnFlexConscious} />
-            <TwoColumnFlex alt={true} data={conscious.twoColumnFlexConsciousSecond} />
-            <Grid data={conscious.gridSectionConsious} />
-            <TwoColumnFlex alt={true} data={conscious.twoColumnFlexConsciousThird} />
-            <Map />
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Hero data={conscious.heroSectionConscious} />
+      <TwoColumnFlex data={conscious.twoColumnFlexConscious} />
+      <TwoColumnFlex alt={true} data={conscious.twoColumnFlexConsciousSecond} />
+      <Grid data={conscious.gridSectionConsious} />
+      <TwoColumnFlex alt={true} data={conscious.twoColumnFlexConsciousThird} />
+      <Map language={pageContext.language} />
+    </Wrapper>
+  )
 }
 
 export const query = graphql`

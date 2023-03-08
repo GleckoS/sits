@@ -5,12 +5,13 @@ import Map from "../components/sections/map"
 import { Helmet } from "react-helmet"
 import Seo from "../layout/seo"
 import Wrapper from "../components/sections/page-wrapper"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo isArchive={true} seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo isArchive={true} seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
@@ -18,8 +19,13 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function Products({ data, pageContext, location }) {
   return (
     <Wrapper>
-      <ProductArchive location={location} pageContext={pageContext} products={data.allWpProduct.nodes} data={''} />
-      <Map />
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <ProductArchive language={pageContext.language} location={location} pageContext={pageContext} products={data.allWpProduct.nodes} data={''} />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }

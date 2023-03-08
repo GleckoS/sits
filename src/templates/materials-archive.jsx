@@ -5,21 +5,27 @@ import Map from "../components/sections/map"
 import MaterialsArchive from "../components/sections/materials-archive"
 import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext} />
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
-export default function Material({ data: { allWpMaterials }, location }) {
+export default function Material({ data: { allWpMaterials }, location, pageContext }) {
   return (
     <Wrapper>
-      <MaterialsArchive location={location} materials={allWpMaterials.nodes} />
-      <Map />
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <MaterialsArchive language={pageContext.language} location={location} materials={allWpMaterials.nodes} />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }

@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { fabricTitle, leatherTitle, legsTitle, materialTitle, modelTitle, tableTopTitle, legsMaterialTitle, comfortTitle, coverTitle, armrestTitle, accessoriesTitle, copyConfig, copySuccessed } from "../../texts"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
+export const ImageGridItem = ({ language, setRerender, rerender, image, popupNames }) => {
 
     const data = useRef(null)
 
@@ -17,49 +17,49 @@ export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
             </div>
             <Flex>
                 <Data ref={data}>
-                    <span><span>{modelTitle['en']}</span> <strong>{popupNames.model}</strong></span>
+                    <span><span>{modelTitle[language]}</span> <strong>{popupNames.model}</strong></span>
 
                     {popupNames.material
-                        ? <span><span>{materialTitle['en']}</span> <strong>{popupNames.material}</strong></span>
+                        ? <span><span>{materialTitle[language]}</span> <strong>{popupNames.material}</strong></span>
                         : null}
 
                     {popupNames.tableTopMaterial
-                        ? <span><span>{tableTopTitle['en']}</span> <strong>{popupNames.tableTopMaterial}</strong></span>
+                        ? <span><span>{tableTopTitle[language]}</span> <strong>{popupNames.tableTopMaterial}</strong></span>
                         : null}
 
                     {popupNames.leather
-                        ? <span><span>{leatherTitle['en']}</span> <strong>{popupNames.leather}</strong></span>
+                        ? <span><span>{leatherTitle[language]}</span> <strong>{popupNames.leather}</strong></span>
                         : null}
 
                     {popupNames.fabric
-                        ? <span><span>{fabricTitle['en']}</span> <strong>{popupNames.fabric}</strong></span>
+                        ? <span><span>{fabricTitle[language]}</span> <strong>{popupNames.fabric}</strong></span>
                         : null}
 
                     {popupNames.legs
-                        ? <span><span>{legsTitle['en']}</span> <strong>{popupNames.legs}</strong></span>
+                        ? <span><span>{legsTitle[language]}</span> <strong>{popupNames.legs}</strong></span>
                         : null}
 
                     {popupNames.materialOfTheLegs
-                        ? <span><span>{legsMaterialTitle['en']}</span> <strong>{popupNames.materialOfTheLegs}</strong></span>
+                        ? <span><span>{legsMaterialTitle[language]}</span> <strong>{popupNames.materialOfTheLegs}</strong></span>
                         : null}
 
                     {popupNames.comfort && !popupNames.tableTopMaterial && !popupNames.materialOfTheLegs && !popupNames.material
-                        ? <span><span>{comfortTitle['en']}</span> <strong>{popupNames.comfort}</strong></span>
+                        ? <span><span>{comfortTitle[language]}</span> <strong>{popupNames.comfort}</strong></span>
                         : null}
 
                     {popupNames.cover && !popupNames.tableTopMaterial && !popupNames.materialOfTheLegs && !popupNames.material
-                        ? <span><span>{coverTitle['en']}</span> <strong>{popupNames.cover}</strong></span>
+                        ? <span><span>{coverTitle[language]}</span> <strong>{popupNames.cover}</strong></span>
                         : null}
 
                     {popupNames.armrests
-                        ? <span><span>{armrestTitle['en']}</span> <strong>{popupNames.armrests}</strong></span>
+                        ? <span><span>{armrestTitle[language]}</span> <strong>{popupNames.armrests}</strong></span>
                         : null}
 
                     {popupNames.accessories
-                        ? <span><span>{accessoriesTitle['en']}</span> <strong>{popupNames.accessories}</strong></span>
+                        ? <span><span>{accessoriesTitle[language]}</span> <strong>{popupNames.accessories}</strong></span>
                         : null}
                 </Data>
-                <button onClick={() => { navigator.clipboard.writeText(data.current.innerText); toast(copySuccessed['en']) }}>
+                <button onClick={() => { navigator.clipboard.writeText(data.current.innerText); toast(copySuccessed[language]) }}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="24.762" height="30.471" viewBox="0 0 24.762 30.471">
                         <g id="Group_777" data-name="Group 777" transform="translate(-1637 -2205.529)">
                             <g id="Rectangle_98" data-name="Rectangle 98" transform="translate(1637 2210)" fill="none" stroke="#707070" strokeWidth="1.5">
@@ -71,7 +71,7 @@ export const ImageGridItem = ({ setRerender, rerender, image, popupNames }) => {
                     </svg>
 
                     <span className="underline">
-                        {copyConfig['en']}
+                        {copyConfig[language]}
                     </span>
                 </button>
             </Flex>

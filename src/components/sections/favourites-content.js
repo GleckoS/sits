@@ -31,7 +31,7 @@ const contentGridAnimation = {
     animate: { opacity: 1, transition: { duration: .6 } }
 }
 
-export default function Content({ data: { Collections, Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures } }) {
+export default function Content({ language, data: { Collections, Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures } }) {
 
     const [favourites, setFavourites] = useState({
         collections: getCookie('collections'),
@@ -62,7 +62,7 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
         <InView>
             <Wrapper>
                 <Container>
-                    <h1><motion.span variants={titleAnimation}>{favouritesTitle['en']}</motion.span></h1>
+                    <h1><motion.span variants={titleAnimation}>{favouritesTitle[language]}</motion.span></h1>
                 </Container>
                 <Results>
                     <Container>
@@ -71,8 +71,8 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
                                 <svg xmlns="http://www.w3.org/2000/svg" width="101.944" height="94.563" viewBox="0 0 101.944 94.563">
                                     <path id="Path_676" data-name="Path 676" d="M48.722,89.283l-4.994-4.507A432.65,432.65,0,0,1,11.937,53.107Q0,39.586,0,25.7A24.883,24.883,0,0,1,7.369,7.369,24.734,24.734,0,0,1,25.579,0a27.7,27.7,0,0,1,12.3,2.984,28.913,28.913,0,0,1,10.841,9.805A35.33,35.33,0,0,1,59.806,2.984,25.73,25.73,0,0,1,71.865,0a24.734,24.734,0,0,1,18.21,7.369A24.883,24.883,0,0,1,97.444,25.7q0,13.886-11.937,27.406A432.648,432.648,0,0,1,53.716,84.776Zm0-9.623" transform="translate(2.25 2.25)" fill="none" stroke="#bababa" strokeWidth="4.5" strokeDasharray="14 4" opacity="0.38" />
                                 </svg>
-                                <h2>{noResultTitle['en']}</h2>
-                                <p dangerouslySetInnerHTML={{ __html: noResultMessage['en'] }}></p>
+                                <h2>{noResultTitle[language]}</h2>
+                                <p dangerouslySetInnerHTML={{ __html: noResultMessage[language] }}></p>
                             </NoResults>
                         )}
                         <FavouriteCollectionBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={collectionsCount} setCount={setCollectionsCount} title={collectionsTitle} prefiltredArr={Collections} filter={favourites.collections} />

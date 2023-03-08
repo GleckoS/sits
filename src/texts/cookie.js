@@ -1,39 +1,39 @@
 export const consentTabName = {
-    en: 'Consent'
+    EN: 'Consent'
 }
 
 export const detailsTabName = {
-    en: 'Details'
+    EN: 'Details'
 }
 
 export const aboutTabName = {
-    en: 'About cookies'
+    EN: 'About cookies'
 }
 
 export const denyButton = {
-    en: 'Deny'
+    EN: 'Deny'
 }
 
 export const setButton = {
-    en: 'Set preferences'
+    EN: 'Set preferences'
 }
 
 export const allowChosenButton = {
-    en: 'Allow chosen'
+    EN: 'Allow chosen'
 }
 
 export const allowButton = {
-    en: 'Allow all'
+    EN: 'Allow all'
 }
 
 export const expireTitle = {
-    en: 'Expiry: '
+    EN: 'Expiry: '
 }
 
 export const typeTitle = {
-    en: 'Type: '
+    EN: 'Type: '
 }
 
 export const loadMoreTitle = {
-    en: 'LOAD MORE '
+    EN: 'LOAD MORE '
 }

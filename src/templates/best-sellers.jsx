@@ -8,12 +8,13 @@ import Hero from "../components/sections/hero-bestsellers"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
 import Wrapper from "../components/sections/page-wrapper"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
@@ -21,11 +22,16 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function Bestsellers({ data: { wpPage: { bestSellers } }, pageContext }) {
   return (
     <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
       <Hero data={bestSellers.hero} />
-      <BestSellersGrid data={bestSellers.imageGrids} />
-      <NewArrivals data={bestSellers.newArrivals} />
+      <BestSellersGrid data={bestSellers.imageGrids} language={pageContext.language} />
+      <NewArrivals language={pageContext.language} data={bestSellers.newArrivals} />
       <ThreeInformCards data={bestSellers.sectionWithThreeInformCards} />
-      <Map />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }

@@ -23,13 +23,13 @@ const filterItemAnimation = imageTransition(-1.5)
 const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
-export default function ProductArchive({ location, pageContext: { type: name, title }, products }) {
-    const [sort, setSort] = useQueryParam(sortParamName['en'], 'Popular')
-    const [type, setType] = useQueryParam(typeParamName['en'], 'All')
-    const [cover, setCover] = useQueryParam(coverParamName['en'], 'All')
-    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName['en'], 'All')
-    const [search, setSearch] = useQueryParam(searchParamName['en'], '')
-    const [page, setPage] = useQueryParam(pageParamName['en'], '1')
+export default function ProductArchive({ language, location, pageContext: { type: name, title }, products }) {
+    const [sort, setSort] = useQueryParam(sortParamName[language], 'Popular')
+    const [type, setType] = useQueryParam(typeParamName[language], 'All')
+    const [cover, setCover] = useQueryParam(coverParamName[language], 'All')
+    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName[language], 'All')
+    const [search, setSearch] = useQueryParam(searchParamName[language], '')
+    const [page, setPage] = useQueryParam(pageParamName[language], '1')
     const [inputValue, setInputValue] = useState('')
     const [defaultPosts] = useState(products)
 
@@ -162,23 +162,23 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
             <Wrapper>
                 <FilterComponent
                     filterAnimation={filterAnimation}
-                    filterTitle={filterTitle['en']}
-                    sortByTitle={sortByTitle['en']}
-                    sortBy={sortBy['en']}
+                    filterTitle={filterTitle[language]}
+                    sortByTitle={sortByTitle[language]}
+                    sortBy={sortBy[language]}
                     name={name}
-                    typeTitle={typeTitle['en']}
-                    sofasTypes={sofasTypes['en']}
-                    upholsterysTitle={upholsterysTitle['en']}
-                    upholsterysArr={upholsterysArr['en']}
-                    coversTitle={coversTitle['en']}
-                    covesArr={covesArr['en']}
-                    reset={reset['en']}
-                    view={view['en']}
+                    typeTitle={typeTitle[language]}
+                    sofasTypes={sofasTypes[language]}
+                    upholsterysTitle={upholsterysTitle[language]}
+                    upholsterysArr={upholsterysArr[language]}
+                    coversTitle={coversTitle[language]}
+                    covesArr={covesArr[language]}
+                    reset={reset[language]}
+                    view={view[language]}
                     sort={partSlugDeTransform(sort)}
                     type={partSlugDeTransform(type)}
                     upholsterys={partSlugDeTransform(upholsterys)}
                     cover={partSlugDeTransform(cover)}
-                    sortFilterTitle={sortFilterTitle['en']}
+                    sortFilterTitle={sortFilterTitle[language]}
                     setMobileFilterOpened={setMobileFilterOpened}
                     isMobileFilterOpened={isMobileFilterOpened}
                     setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
@@ -189,6 +189,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                     inputValue={inputValue}
                     setInputValue={setInputValue}
                     setSearch={(v) => { setSearch(v); setPage('1'); window.scrollTo(0, 0) }}
+                    language={language}
                 />
                 <Title small={true} title={title} />
                 <Container className="content-wrap">
@@ -213,13 +214,13 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                         )}
                         {search !== '' && (
                             <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
-                                {searchFilterTitle['en']}{search}
+                                {searchFilterTitle[language]}{search}
                                 <CloseButton />
                             </FilterItem>
                         )}
                         {(type !== 'All' || cover !== 'All' || upholsterys !== 'All') && (
                             <FilterItem variants={filterItemAnimation} onClick={() => { clearAll('') }} className="close">
-                                {clearAllTitle['en']}
+                                {clearAllTitle[language]}
                                 <CloseButton />
                             </FilterItem>
                         )}
@@ -227,13 +228,13 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                     {filtredProducts.length > 0
                         ? (
                             <motion.div variants={gridAnimation}>
-                                <ProductList itemKey={sort + type + cover + upholsterys + search} changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
+                                <ProductList language={language} itemKey={sort + type + cover + upholsterys + search} changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
                             </motion.div>
                         )
                         : (
                             <NoResults variants={gridAnimation}>
-                                <h2>{noResultTitle['en']}</h2>
-                                <p>{noResultMessage['en']}</p>
+                                <h2>{noResultTitle[language]}</h2>
+                                <p>{noResultMessage[language]}</p>
                             </NoResults>
                         )}
                 </Container>

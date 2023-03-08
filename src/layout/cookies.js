@@ -14,7 +14,7 @@ function datalayerArguments() {
     }
 }
 
-export default function Cookies({ isActive, setIsActive }) {
+export default function Cookies({ language, isActive, setIsActive }) {
     const { wpPage: { cookies: { consentTab, aboutCookiesTab, detailsTab } } } = useStaticQuery(graphql`
     query {
         wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
@@ -161,7 +161,7 @@ export default function Cookies({ isActive, setIsActive }) {
                             <TabsControl>
                                 <AnimateSharedLayout>
                                     <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(0) }}>
-                                        {consentTabName['en']}
+                                        {consentTabName[language]}
                                         {activeTab === 0 && (
                                             <motion.div
                                                 className="underline"
@@ -170,7 +170,7 @@ export default function Cookies({ isActive, setIsActive }) {
                                         )}
                                     </button>
                                     <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(1) }}>
-                                        {detailsTabName['en']}
+                                        {detailsTabName[language]}
                                         {activeTab === 1 && (
                                             <motion.div
                                                 className="underline"
@@ -179,7 +179,7 @@ export default function Cookies({ isActive, setIsActive }) {
                                         )}
                                     </button>
                                     <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(2) }}>
-                                        {aboutTabName['en']}
+                                        {aboutTabName[language]}
                                         {activeTab === 2 && (
                                             <motion.div
                                                 className="underline"
@@ -213,7 +213,7 @@ export default function Cookies({ isActive, setIsActive }) {
                                                             {el.partDescription}
                                                         </p>
                                                         {el.innerParts?.map((el, id) => (
-                                                            <React.Fragment key={el.innerPartName + id}><Grid isActive={isActive} active={activeCookie[index].isActive} el={el} /></React.Fragment>
+                                                            <React.Fragment key={el.innerPartName + id}><Grid language={language} isActive={isActive} active={activeCookie[index].isActive} el={el} /></React.Fragment>
                                                         ))}
                                                     </div>
                                                 )
@@ -229,19 +229,19 @@ export default function Cookies({ isActive, setIsActive }) {
                             </TabWrapper>
                             <Buttons>
                                 <button tabIndex={isActive ? '0' : '-1'} onClick={() => { rejectAll() }}>
-                                    {denyButton['en']}
+                                    {denyButton[language]}
                                 </button>
                                 {activeTab === 1 ? (
                                     <button onClick={() => { acceptPart() }} tabIndex={isActive ? '0' : '-1'}>
-                                        {allowChosenButton['en']}
+                                        {allowChosenButton[language]}
                                     </button>
                                 ) : (
                                     <button onClick={() => { setActiveTab(1) }} tabIndex={isActive ? '0' : '-1'}>
-                                        {setButton['en']}
+                                        {setButton[language]}
                                     </button>
                                 )}
                                 <button tabIndex={isActive ? '0' : '-1'} onClick={() => { acceptAll() }} className="allow">
-                                    {allowButton['en']}
+                                    {allowButton[language]}
                                 </button>
                             </Buttons>
                         </Content>

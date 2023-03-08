@@ -35,6 +35,7 @@ export const FilterComponent = ({
     inputValue,
     setInputValue,
     setSearch,
+    language
 }) => {
     const [openedFilter, setOpenedFilter] = useState(false)
 
@@ -150,7 +151,7 @@ export const FilterComponent = ({
                     </div>
                     <div>
                         <Search className="label">
-                            <span>{searchTitle['en']}</span>
+                            <span>{searchTitle[language]}</span>
                             <input onKeyDown={(e) => {
                                 if (e.key === "Enter") {
                                     setSearch(inputValue)

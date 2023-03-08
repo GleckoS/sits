@@ -3,12 +3,12 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { errorMessage } from "../../texts/contact"
 
-export const Label = ({ required = false, variants, register, errors, name, obj, rows }) => {
+export const Label = ({ language, required = false, variants, register, errors, name, obj, rows }) => {
     const [isActive, setIsActive] = useState(false)
     const [inputValue, setInputValue] = useState('')
     return (
         <Wrapper variants={variants} onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!inputValue) }} className={errors[name] ? 'error' : ''}>
-            <span className={isActive ? 'active' : ''}>{obj['en']}</span>
+            <span className={isActive ? 'active' : ''}>{obj[language]}</span>
             {rows
                 ? <textarea value={inputValue} rows={rows} {...register(name, {
                     required: required,
@@ -19,7 +19,7 @@ export const Label = ({ required = false, variants, register, errors, name, obj,
                     onChange: (e) => { setInputValue(e.currentTarget.value) }
                 })} />}
             <AnimatePresence mode='wait'>
-                {errors[name] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">{errorMessage['en']}</motion.span>}
+                {errors[name] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">{errorMessage[language]}</motion.span>}
             </AnimatePresence>
             <AnimatePresence mode="wait">
                 {errors[name] && (

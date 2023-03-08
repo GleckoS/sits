@@ -5,12 +5,13 @@ import ProductGrid from "../components/sections/products-grid"
 import Seo from "../layout/seo"
 import Wrapper from "../components/sections/page-wrapper"
 import { allProductsTitle } from "../texts"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext} />
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
@@ -18,7 +19,12 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function AllProducts({ data: { wpPage, homepage }, pageContext, location }) {
   return (
     <Wrapper>
-      <ProductGrid title={allProductsTitle['en']} data={homepage.homepage.productsGrid} />
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <ProductGrid title={allProductsTitle[pageContext.language]} data={homepage.homepage.productsGrid} />
     </Wrapper>
   )
 }

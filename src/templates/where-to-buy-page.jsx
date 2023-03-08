@@ -5,23 +5,29 @@ import { Title } from "../components/moleculas/title-sub"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
 import Wrapper from "../components/sections/page-wrapper"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
 export default function WhereToBuyPage({ data: { wpPage: { title } }, pageContext, location }) {
-    return (
-        <Wrapper>
-            <Title title={title} />
-            <Map />
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Title title={title} />
+      <Map language={pageContext.language} />
+    </Wrapper>
+  )
 }
 
 export const query = graphql`

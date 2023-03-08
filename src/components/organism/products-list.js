@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { LoadMore } from "../atoms/load-more"
 import { ProductCard } from "../moleculas/product-card"
 
-export const ProductList = ({ itemKey, changeType, setRerender, setPage, page, rerender, products }) => {
+export const ProductList = ({ language, itemKey, changeType, setRerender, setPage, page, rerender, products }) => {
     const renderCount = useRef(0)
     const isAllRendered = useRef(true)
     renderCount.current = 0
@@ -25,7 +25,7 @@ export const ProductList = ({ itemKey, changeType, setRerender, setPage, page, r
                                             animate={{ opacity: 1, transition: { duration: .4 } }}
                                             exit={{ opacity: 0, transition: { duration: .3 } }}
                                             key={inEl.popupNames.model + index + imageEl.featuredProductImage.id + itemKey}>
-                                            <ProductCard categoryClick={changeType} setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
+                                            <ProductCard language={language} categoryClick={changeType} setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
                                         </motion.div>
                                     )
                                 } else if (isAllRendered && renderCount.current >= page * 8) {

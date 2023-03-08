@@ -11,12 +11,13 @@ import ProductGrid from "../components/sections/products-grid"
 import ThreeInformCards from "../components/sections/three-inform-cards"
 import Seo from "../layout/seo"
 import Wrapper from "../components/sections/page-wrapper"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
@@ -24,14 +25,19 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
     <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
       <Hero data={homepage.heroH} />
-      <Bestsellers data={homepage.bestsellersCarousel} />
+      <Bestsellers language={pageContext.language} data={homepage.bestsellersCarousel} />
       <About data={homepage.aboutSection} />
       <ProductGrid data={homepage.productsGrid} />
       <DividerCollection data={homepage.dividerSection} />
-      <NewArrivals mt={true} data={homepage.newArrivalsH} />
+      <NewArrivals language={pageContext.language} mt={true} data={homepage.newArrivalsH} />
       <ThreeInformCards data={homepage.sectionWithThreeInformCardsH} />
-      <Map />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }
