@@ -11,7 +11,7 @@ import Video from "../components/sections/video"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
 import Wrapper from "../components/sections/page-wrapper"
-import { accessoriesSectionTitle, accessoriesTitle, collectionCoversTitle, collectionSimilarTitle } from "../texts"
+import { accessoriesSectionTitle, collectionCoversTitle, collectionSimilarTitle } from "../texts"
 
 export function Head({ pageContext, data: { wpCollection: { seo } } }) {
   return (
@@ -38,7 +38,7 @@ export default function Collection({ data: { wpCollection, allWpProduct } }) {
       {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers isMarginTop={wpCollection.collections.twoColumn.imageOnTheLeftSide || wpCollection.collections.videoSection?.video} title={collectionCoversTitle['en'] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
       {wpCollection.collections.accessoriesSection.accessories && <Accessories title={accessoriesSectionTitle['en']} data={wpCollection.collections.accessoriesSection.accessories} />}
       {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts title={collectionSimilarTitle['en']} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
-      {/* <Map /> */}
+      <Map />
     </Wrapper>
   )
 }
