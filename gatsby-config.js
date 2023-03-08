@@ -6,7 +6,7 @@ module.exports = {
   plugins: [{
     resolve: 'gatsby-source-wordpress',
     options: {
-      "url": "https://sits.kryptonum.co.uk/graphql",
+      "url": "https://sits.headlesshub.com/graphql",
       schema: {
         timeout: 1000000000,
         circularQueryLimit: 100,

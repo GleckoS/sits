@@ -16,7 +16,7 @@ export const Form = ({ privacyPolicyText, inputAnimation, titleAnimation, formAn
     const onSubmit = data => {
         setIsSended(true)
 
-        let url = 'https://sits.kryptonum.co.uk/wp-json/contact-form-7/v1/contact-forms/34241/feedback'
+        let url = 'https://sits.headlesshub.com/wp-json/contact-form-7/v1/contact-forms/34241/feedback'
 
         let body = new FormData()
 
