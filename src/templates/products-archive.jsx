@@ -17,6 +17,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 }
 
 export default function Products({ data, pageContext, location }) {
+  debugger
   return (
     <Wrapper>
       <myContext.Consumer>
@@ -31,7 +32,7 @@ export default function Products({ data, pageContext, location }) {
 }
 
 export const query = graphql`
-    query products($id: String!, $productType: String!) {
+    query products($id: String!, $productType: String!, $language: WpLanguageCodeEnum!) {
         wpPage(id: {eq: $id}){
             id
             seo {
@@ -46,7 +47,10 @@ export const query = graphql`
               }
             }
         }
-        allWpProduct(sort: {date: DESC}, filter: {types: {nodes: {elemMatch: {name: {eq: $productType}}}}}){
+        allWpProduct(
+          sort: {date: DESC}
+          filter: {language: {code: {eq: $language}}, types: {nodes: {elemMatch: {name: {eq: $productType}}}}}
+        ) {
           nodes{
             id
             types {

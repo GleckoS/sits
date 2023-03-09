@@ -205,17 +205,17 @@ export const linksLeft = {
         { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
     ],
     FR: [
-        { name: 'Best Seller', url: '/best-sellers/' },
-        { name: 'New Arrivals', url: '/new-arrivals/' },
-        { name: 'All products', url: '/products/' },
-        { name: 'Sofas', url: '/products/sofas/' },
-        { name: 'Armchairs', url: '/products/armchairs/' },
-        { name: 'Dining Chairs', url: '/products/dining-chairs/' },
-        { name: 'Footstools', url: '/products/footstools/' },
-        { name: 'Coffee Tables', url: '/products/coffee-tables/' },
-        { name: 'Outdoor Furniture', url: '/products/outdoor-furnitures/' },
-        { name: 'Covers', url: '/material/' },
-        { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
+        { name: 'Best Seller', url: '/fr/best-sellers/' },
+        { name: 'New Arrivals', url: '/fr/new-arrivals/' },
+        { name: 'All products', url: '/fr/products/' },
+        { name: 'Sofas', url: '/fr/products/sofas/' },
+        { name: 'Armchairs', url: '/fr/products/armchairs/' },
+        { name: 'Dining Chairs', url: '/fr/products/dining-chairs/' },
+        { name: 'Footstools', url: '/fr/products/footstools/' },
+        { name: 'Coffee Tables', url: '/fr/products/coffee-tables/' },
+        { name: 'Outdoor Furniture', url: '/fr/products/outdoor-furnitures/' },
+        { name: 'Covers', url: '/fr/materials/' },
+        { name: 'My Favourites', icon: 'hearth', url: '/fr/favourites/' }
     ]
 }
 
@@ -244,12 +244,12 @@ export const linksRight = {
 
 export const furnitureTitle = {
     EN: 'FURNITURE',
-    FR: 'FURNITURE'
+    FR: 'MEUBLES'
 }
 
 export const companyTitle = {
     EN: 'COMPANY',
-    FR: 'COMPANY'
+    FR: 'ENTREPRISE'
 }
 
 export const copySuccessed = {

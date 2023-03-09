@@ -1,6 +1,6 @@
 export const contactUrls = {
     EN: '/contact/',
-    FR: '/fr/contact'
+    FR: '/fr/contact/'
 }
 
 export const favouritesUrl = {
@@ -10,7 +10,7 @@ export const favouritesUrl = {
 
 export const collectionUrl = {
     EN: '/collection/',
-    FR: '/fr/collection/'
+    FR: '/fr/collectione/'
 }
 
 export const materialUrl = {

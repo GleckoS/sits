@@ -22,11 +22,17 @@ export default function RecomendedCovers({ language, isMarginTop, background, ti
                 <Container>
                     <motion.h2 variants={titleAnimation}>{title}</motion.h2>
                     <Grid variants={gridAnimation}>
-                        {covers.map((el, index) => (
-                            <motion.div variants={itemAnimation} key={el.cover.title + index}>
-                                <MaterialCard language={language} variant={el.colorVariantName} data={el.cover} />
-                            </motion.div>
-                        ))}
+                        {covers.map((el, index) => {
+                            if (!el.cover) {
+                                return null
+                            }
+
+                            return (
+                                <motion.div variants={itemAnimation} key={el.cover.title + index}>
+                                    <MaterialCard language={language} variant={el.colorVariantName} data={el.cover} />
+                                </motion.div>
+                            )
+                        })}
                     </Grid>
                 </Container>
             </Wrapper>
