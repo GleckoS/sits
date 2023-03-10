@@ -13,6 +13,9 @@ export default function BestSellersGrid({ data, language }) {
             <Container>
                 <Grid>
                     {data.map(el => {
+                        if(!el.collection){
+                            return null
+                        }
                         switch (el.fieldGroupName) {
                             case "Page_Bestsellers_ImageGrids_First":
                                 return <First data={el.collection} language={language} />
