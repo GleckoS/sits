@@ -39,6 +39,16 @@ export default function Bestsellers({ data: { wpPage: { bestSellers } }, pageCon
 export const query = graphql`
     query bestsellers($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

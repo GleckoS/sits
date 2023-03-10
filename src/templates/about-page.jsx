@@ -37,6 +37,16 @@ export default function AboutPage({ pageContext, data: { wpPage: { aboutUs } } }
 export const query = graphql`
     query about($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

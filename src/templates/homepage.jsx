@@ -22,14 +22,9 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
   )
 }
 
-export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
+export default function Homepage({ data: { wpPage: { language, translations, homepage } }, pageContext }) {
   return (
     <Wrapper>
-      <myContext.Consumer>
-        {context => {
-          context.setLanguage(pageContext.language)
-        }}
-      </myContext.Consumer>
       <Hero data={homepage.heroH} />
       <Bestsellers language={pageContext.language} data={homepage.bestsellersCarousel} />
       <About data={homepage.aboutSection} />
@@ -45,6 +40,16 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
 export const query = graphql`
     query homepage($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

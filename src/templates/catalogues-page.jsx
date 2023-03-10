@@ -33,6 +33,16 @@ export default function CataloguesPage({ data, pageContext, location }) {
 export const query = graphql`
     query catalogues($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

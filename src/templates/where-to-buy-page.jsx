@@ -33,6 +33,16 @@ export default function WhereToBuyPage({ data: { wpPage: { title } }, pageContex
 export const query = graphql`
     query whereToBuy($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             title
             seo {
               canonical

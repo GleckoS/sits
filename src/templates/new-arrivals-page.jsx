@@ -33,6 +33,16 @@ export default function NewArrivalsPage({ data: { wpPage, allWpProduct }, pageCo
 export const query = graphql`
     query newArrivals($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             id
             seo {
               canonical

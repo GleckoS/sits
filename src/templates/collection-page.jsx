@@ -53,6 +53,16 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
 export const query = graphql`
     query collection($id: String!) {
           wpCollection(id: {eq: $id}){
+            language {
+              name
+            }
+            translations {
+              language {
+                name
+                code
+              }
+              uri
+            }
             seo {
               canonical
               metaDesc

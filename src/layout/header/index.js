@@ -21,7 +21,7 @@ const otherLinksAnimation = {
   animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .5, delay: .5 } }
 }
 
-export default function Header({language}) {
+export default function Header({ data, language }) {
   const [isLeftMenuOpened, setLeftMenuOpened] = useState(false)
   const [isRightMenuOpened, setRightMenuOpened] = useState(false)
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false)
@@ -144,7 +144,7 @@ export default function Header({language}) {
           </Link>
         </motion.div>
         <div className='right'>
-          <LangChanger />
+          <LangChanger setMobileMenuOpened={setMobileMenuOpened} data={data} language={language} />
           <Button
             variants={otherLinksAnimation}
             className='control-desctop underline'
@@ -231,6 +231,9 @@ export default function Header({language}) {
             </div>
             <div className='wrap'>
               <LangChanger
+              setMobileMenuOpened={setMobileMenuOpened}
+              data={data}
+                language={language}
                 onblur={() => {
                   setMobileMenuOpened(false)
                 }}

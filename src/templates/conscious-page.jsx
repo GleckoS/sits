@@ -39,6 +39,16 @@ export default function ConsciousPage({ data: { wpPage: { conscious } }, pageCon
 export const query = graphql`
     query conscious($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

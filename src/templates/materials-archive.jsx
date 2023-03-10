@@ -33,6 +33,16 @@ export default function Material({ data: { allWpMaterials }, location, pageConte
 export const query = graphql`
     query material($id: String!, $language: WpLanguageCodeEnum!) {
         wpPage(id: {eq: $id}) {
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             id
             seo {
               canonical

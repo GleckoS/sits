@@ -32,6 +32,16 @@ export default function AllProducts({ data: { wpPage, homepage }, pageContext, l
 export const query = graphql`
     query allProducts($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             id
             seo {
               canonical

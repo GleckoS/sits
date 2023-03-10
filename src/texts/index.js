@@ -368,3 +368,8 @@ export const inThisImage = {
     EN: 'In this image',
     FR: 'In this image'
 }
+
+export const selectLanguage = {
+    EN: 'Select your country',
+    FR: 'Select your country'
+}

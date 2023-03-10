@@ -8,32 +8,25 @@ import Cookies from "./cookies"
 import { ToastContainer } from 'react-toastify'
 import { cssTransition } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css'
-import { myContext } from "../hooks/provider"
 
 const animate = cssTransition({
     enter: "enter",
     exit: "exit"
 })
 
-export default function Layout({ children }) {
-
+export default function Layout({ data, pageContext, children }) {
     const [isCookiesActive, setIsCookiesActive] = useState(false)
-
     return (
-        <myContext.Consumer>
-            {context => (
-                < App >
-                    <ToastContainer limit={5} transition={animate} />
-                    <Global />
-                    <Cookies language={context.language} isActive={isCookiesActive} setIsActive={setIsCookiesActive} />
-                    <Header language={context.language} />
-                    <div id='main'>
-                        {children}
-                    </div>
-                    <Footer language={context.language} setIsCookiesActive={setIsCookiesActive} />
-                </App>
-            )}
-        </myContext.Consumer >
+        <App>
+            <ToastContainer limit={5} transition={animate} />
+            <Global />
+            <Cookies language={pageContext.language || 'EN'} isActive={isCookiesActive} setIsActive={setIsCookiesActive} />
+            <Header data={data} language={pageContext.language || 'EN'} />
+            <div id='main'>
+                {children}
+            </div>
+            <Footer language={pageContext.language || 'EN'} setIsCookiesActive={setIsCookiesActive} />
+        </App>
     )
 }
 

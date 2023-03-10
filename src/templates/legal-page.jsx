@@ -31,6 +31,16 @@ export default function LegalPage({ data: { wpPage: { legal } }, pageContext, lo
 export const query = graphql`
     query legal($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             seo {
               canonical
               metaDesc

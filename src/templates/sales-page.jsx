@@ -33,6 +33,16 @@ export default function SalesRepresentativePage({ data: { wpPage }, pageContext,
 export const query = graphql`
     query salesRepresentative($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             id
             seo {
               canonical

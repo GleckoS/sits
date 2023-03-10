@@ -47,6 +47,16 @@ export default function Material({ location, data: { wpMaterials }, pageContext 
 export const query = graphql`
     query material($id: String!) {
         wpMaterials(id: {eq: $id}) {
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

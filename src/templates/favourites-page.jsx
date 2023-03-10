@@ -33,6 +33,16 @@ export default function FavouritesPage({ data, pageContext, location }) {
 export const query = graphql`
     query favourites($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             id
             seo {
               canonical
