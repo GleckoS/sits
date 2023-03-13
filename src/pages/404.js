@@ -95,6 +95,10 @@ const Buttons = styled.div`
   .button{
     width: fit-content;
   }
+
+  a{
+    margin-top: 0 !important;
+  }
 `
 
 export const query = graphql`
