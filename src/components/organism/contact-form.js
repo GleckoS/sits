@@ -20,11 +20,11 @@ export const Form = ({ privacyPolicyText, inputAnimation, titleAnimation, formAn
 
         let body = new FormData()
 
-        body.append('email-sits', data.email)
-        body.append("message-sits", data.message)
-        body.append('fullname-sits', data.name)
-        body.append('country-sits', data.country)
-        body.append('subject-sits', data.subject)
+        body.append('email', data.ail)
+        body.append("message", data.ssage)
+        body.append('fullname', data.me)
+        body.append('country', data.untry)
+        body.append('subject', data.bject)
 
         axios.post(url, body)
             .then((res) => {
@@ -41,11 +41,11 @@ export const Form = ({ privacyPolicyText, inputAnimation, titleAnimation, formAn
         <Wrapper className="form">
             <motion.h1 variants={titleAnimation}>{title['en']}</motion.h1>
             <motion.form autocomplete="off" variants={formAnimation} onSubmit={handleSubmit(onSubmit)}>
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='email-sits' obj={email} />
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='name-sits' obj={name} />
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='country-sits' obj={country} />
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='subject-sits' obj={subject} />
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='message-sits' obj={message} rows='3' />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='ail' obj={email} />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='me' obj={name} />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='untry' obj={country} />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='bject' obj={subject} />
+                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='ssage' obj={message} rows='3' />
                 <Checkbox variants={inputAnimation}>
                     <input {...register('check', { required: true })} type='checkbox' />
                     <div className="check" />
