@@ -1,7 +1,5 @@
 import { createGlobalStyle, keyframes } from "styled-components"
 
-
-
 const enter = keyframes`
     0% {
         opacity: 0;

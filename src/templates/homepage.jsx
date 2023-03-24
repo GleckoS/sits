@@ -24,7 +24,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
     <Wrapper>
-      {/* <Hero data={homepage.heroH} /> */}
+      <Hero data={homepage.heroH} />
       <Bestsellers data={homepage.bestsellersCarousel} />
       <About data={homepage.aboutSection} />
       <ProductGrid data={homepage.productsGrid} />
@@ -83,6 +83,9 @@ export const query = graphql`
                 altText
                 localFile {
                   publicURL
+                  childImageSharp {
+                    gatsbyImageData
+                  }
                 }
               }
               pageTitle

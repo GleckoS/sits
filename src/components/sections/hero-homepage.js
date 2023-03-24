@@ -17,13 +17,14 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
-                <motion.video
+                <GatsbyImage objectPosition='50% 100%' className="background video" image={backgroundVideo.localFile.childImageSharp.gatsbyImageData} alt={backgroundVideo.altText} />
+                {/* <motion.video
                     variants={sliderAnimation}
                     className="background video"
                     playsInline muted loop autoPlay
                     poster={backgroundImage.localFile.publicURL} >
-                    <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
-                </motion.video>
+                    <source src={backgroundVideo.localFile.publicURL} type="video/mp4" /> 
+                </motion.video>*/}
                 <div className="content">
                     <motion.h1 variants={titleAnimation} className="title">
                         {pageTitle}
