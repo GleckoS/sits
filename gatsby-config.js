@@ -28,7 +28,7 @@ module.exports = {
     options: {
       defaults: {
         placeholder: `dominantColor`,
-        quality: 100,
+        quality: 80,
       },
     }
   },
