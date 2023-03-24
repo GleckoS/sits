@@ -9,6 +9,9 @@ module.exports = {
       "url": "https://sits.headlesshub.com/graphql",
       schema: {
         timeout: 1000000000,
+        circularQueryLimit: 100,
+        perPage: 10,
+        requestConcurrency: 6,
       },
       type: {
         MediaItem: {
