@@ -31,7 +31,7 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
       <DividerCollection data={homepage.dividerSection} />
       <NewArrivals mt={true} data={homepage.newArrivalsH} />
       <ThreeInformCards data={homepage.sectionWithThreeInformCardsH} />
-      <Map />
+      {/* <Map /> */}
     </Wrapper>
   )
 }
