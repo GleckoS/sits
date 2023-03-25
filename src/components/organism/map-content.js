@@ -10,7 +10,7 @@ import { motion } from "framer-motion"
 import InView from "../sections/in-view-provider"
 import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import { retailersTitle, filterTitle, buttonTitle } from "../../texts/map"
-// import { FullscreenControl } from "react-leaflet-fullscreen";
+import { FullscreenControl } from "react-leaflet-fullscreen";
 require('react-leaflet-markercluster/dist/styles.min.css')
 
 const titleAnimation = textTransition(1)
@@ -129,7 +129,7 @@ export default function MapContent() {
                                     attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
                                     url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
                                 />
-                                {/* <FullscreenControl position='topright'/> */}
+                                <FullscreenControl position='topright'/>
                                 <MarkerClusterGroup showCoverageOnHover={false}>
                                     {filtredRetailers?.map((el, index) => (
                                         <Marker key={el['Shop name'] + index} isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />

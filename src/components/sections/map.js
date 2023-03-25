@@ -56,13 +56,14 @@ const Placeholder = styled.section`
     h2{
         text-align: center;
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
-        font-family: 'Ivy';
         font-weight: 300;
         margin: clamp(20px, ${75 / 1194 * 100}vw, 110px) 0 clamp(45px, ${75 / 1194 * 100}vw, 110px);
 
         button{
             border: none;
             background-color: transparent;
+            transform: unset;
+            font-weight: 300;
         }
     }
 `
