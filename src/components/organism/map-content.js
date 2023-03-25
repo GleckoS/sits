@@ -7,7 +7,7 @@ import { csvParser } from './../../helpers/csvParser'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
 import Marker from "../moleculas/map-marker"
 import { motion } from "framer-motion"
-import InView from "./in-view-provider"
+import InView from "../sections/in-view-provider"
 import { imageTransition, textTransition } from "../../helpers/animation-controller"
 import { retailersTitle, filterTitle, buttonTitle } from "../../texts/map"
 // import { FullscreenControl } from "react-leaflet-fullscreen";
