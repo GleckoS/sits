@@ -11,20 +11,31 @@ const titleAnimation = textTransition(3, 'slow')
 const linkAnimation = linkTransition(4, 'slow')
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
+
+    const [isVideoActive, setVideoActive] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setVideoActive(true)
+        }, 3000)
+    }, [])
+
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper>
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
-                <GatsbyImage objectPosition='50% 100%' className="background video" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
-                {/* <motion.video
-                    variants={sliderAnimation}
-                    className="background video"
-                    playsInline muted loop autoPlay
-                    poster={backgroundImage.localFile.publicURL} >
-                    <source src={backgroundVideo.localFile.publicURL} type="video/mp4" /> 
-                </motion.video>*/}
+                <GatsbyImage objectPosition='50% 100%' className="background video image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+                {isVideoActive && (
+                    <motion.video
+                        variants={sliderAnimation}
+                        className="background video"
+                        playsInline muted loop autoPlay
+                        poster={backgroundImage.localFile.publicURL} >
+                        <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
+                    </motion.video>
+                )}
                 <div className="content">
                     <motion.h1 variants={titleAnimation} className="title">
                         {pageTitle}
@@ -66,6 +77,14 @@ const Wrapper = styled.section`
         left: 50%;
         transform: translateX(-50%);
         min-height: 530px;
+
+        &.video{
+            z-index: 5;
+        }
+
+        &.image{
+            z-index: 6;
+        }
 
         @media (max-width: 540px) {
             min-height: 440px;
