@@ -21,7 +21,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
 
     return (
         <InView margin='0px 0px 0px 0px'>
-            <Wrapper className={isPlaceholderDisabled ? 'video-active' : 'placeholder-active'}>
+            <Wrapper >
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
@@ -80,16 +80,6 @@ const Wrapper = styled.section`
         @media (max-width: 389px) {
             min-height: 400px;
             min-width: unset;
-        }
-    }
-
-    &.placeholder-active{
-        
-    }
-
-    &.video-active{
-        .placeholder{
-            display: none;
         }
     }
 
