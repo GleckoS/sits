@@ -21,6 +21,11 @@ const Placeholder = styled.section`
     background-color: #FBFAF7;
     margin-bottom: -120px;
     margin-top: clamp(45px, ${120 / 1194 * 100}vw, 160px);
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     
     h2{
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
