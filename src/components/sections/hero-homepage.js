@@ -25,7 +25,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
-                {documentWidth <= 768 && (
+                {documentWidth > 768 && (
                     <motion.video
                         variants={sliderAnimation}
                         className="background video"
