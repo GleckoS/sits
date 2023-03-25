@@ -13,16 +13,21 @@ const linkAnimation = linkTransition(4, 'slow')
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
     const [isVideoActive, setVideoActive] = useState(false)
+    const [isPlaceholderDisabled, setPlaceholderDisabled] = useState(false)
 
     useEffect(() => {
         setTimeout(() => {
             setVideoActive(true)
+
+            setTimeout(() => {
+                setPlaceholderDisabled(true)
+            }, 1000)
         }, 3000)
     }, [])
 
     return (
         <InView margin='0px 0px 0px 0px'>
-            <Wrapper className={isVideoActive ? 'video-active' : 'placeholder-active'}>
+            <Wrapper className={isPlaceholderDisabled ? 'video-active' : 'placeholder-active'}>
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
@@ -79,11 +84,11 @@ const Wrapper = styled.section`
         min-height: 530px;
 
         &.video{
-            z-index: 6;
+            z-index: 5;
         }
 
         &.placeholder{
-            z-index: 5;
+            z-index: 6;
         }
 
         @media (max-width: 540px) {
