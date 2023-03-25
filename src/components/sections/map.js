@@ -1,21 +1,44 @@
-import React, { Suspense } from "react"
+import React, { useMemo } from "react"
 import styled from "styled-components"
+import MapContent from "../organism/map-content"
+import { myContext } from "../../hooks/provider"
+import { getCookie } from "../../helpers/coockie-manager"
 
-const MapContent = React.lazy(() => import('../organism/map-content'))
+// const MapContent = React.lazy(() => import('../organism/map-content'))
 
-export default function Map() {
-    if (true) {
+function Map({ isActive, setIsActive }) {
+
+    const isCookiesAccepted = useMemo(() => {
+        return getCookie('marketing') === 'granted'
+    }, [isActive])
+
+    if (isCookiesAccepted) {
         return (
             <Placeholder>
-                <h2>To see the map you should accept cookies</h2>
+                <h2>
+                    Please accept <button onClick={() => { setIsActive(true) }}>cookies policy</button>
+                    to see the map
+                </h2>
             </Placeholder>
         )
     }
 
     return (
-        <Suspense fallback={<div>Loading...</div>}>
-            <MapContent />
-        </Suspense>
+        // <Suspense fallback={<div>Loading...</div>}>
+        <MapContent />
+        // </Suspense>
+    )
+}
+
+export default function MapWrapper() {
+    return (
+        <myContext.Consumer>
+            {context => {
+                return (
+                    <Map isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
+                )
+            }}
+        </myContext.Consumer>
     )
 }
 
@@ -31,6 +54,7 @@ const Placeholder = styled.section`
     align-items: center;
     
     h2{
+        text-align: center;
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-family: 'Ivy';
         font-weight: 300;

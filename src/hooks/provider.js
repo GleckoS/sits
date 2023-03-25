@@ -5,6 +5,7 @@ export const myContext = React.createContext();
 
 const Provider = ({ children }) => {
 
+    const [isCookiesActive, setIsCookiesActive] = useState(false)
     const [currentAlternates, changeAlternates] = useState(null)
     const [transition, setTransition] = useState(0)
     const [searchInputValue, setSearchInputValue] = useState(() => {
@@ -55,7 +56,9 @@ const Provider = ({ children }) => {
             favouritesCount,
             recalculateFavouritesCount,
             transition,
-            setTransition
+            setTransition,
+            isCookiesActive,
+            setIsCookiesActive
         }}>
             {children}
         </myContext.Provider>

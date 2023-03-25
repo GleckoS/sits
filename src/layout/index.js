@@ -4,31 +4,37 @@ import { Global } from "../styles/global-style"
 import Footer from "./footer"
 import Header from "./header"
 import Cookies from "./cookies"
+import { myContext } from "../hooks/provider"
 
 import { ToastContainer } from 'react-toastify'
-import { cssTransition } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css'
+import { cssTransition } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css' //TODO: try without
 
-const animate = cssTransition({
+const animate = cssTransition({ 
     enter: "enter",
     exit: "exit"
 })
 
 export default function Layout({ children }) {
 
-    const [isCookiesActive, setIsCookiesActive] = useState(false)
 
     return (
-        <App>
-            <ToastContainer limit={5} transition={animate} />
-            <Global />
-            <Cookies isActive={isCookiesActive} setIsActive={setIsCookiesActive} />
-            <Header />
-            <div id='main'>
-                {children}
-            </div>
-            <Footer setIsCookiesActive={setIsCookiesActive} />
-        </App>
+        <myContext.Consumer>
+            {context => {
+                return (
+                    <App>
+                        <ToastContainer limit={5} transition={animate} />
+                        <Global />
+                        <Cookies isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
+                        <Header />
+                        <div id='main'>
+                            {children}
+                        </div>
+                        <Footer setIsCookiesActive={context.setIsCookiesActive} />
+                    </App>
+                )
+            }}
+        </myContext.Consumer>
     )
 }
 
