@@ -1,6 +1,7 @@
-import React from "react"
+import React, { Suspense } from "react"
 import styled from "styled-components"
-import MapContent from "../organism/map-content"
+
+const MapContent = React.lazy(() => import('../organism/map-content'))
 
 export default function Map() {
     if (null) {
@@ -12,7 +13,9 @@ export default function Map() {
     }
 
     return (
-        <MapContent />
+        <Suspense fallback={<div>Loading...</div>}>
+            <MapContent />
+        </Suspense>
     )
 }
 
