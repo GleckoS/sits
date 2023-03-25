@@ -3,6 +3,7 @@ import styled from "styled-components"
 import MapContent from "../organism/map-content"
 import { myContext } from "../../hooks/provider"
 import { getCookie } from "../../helpers/coockie-manager"
+import { StaticImage } from "gatsby-plugin-image"
 
 // const MapContent = React.lazy(() => import('../organism/map-content'))
 
@@ -15,6 +16,7 @@ function Map({ isActive, setIsActive }) {
     if (!isCookiesAccepted) {
         return (
             <Placeholder>
+                <StaticImage className="image" image='./../../../static/map.jpg' alt='background'/>
                 <h2>
                     Please accept <button className="underline" onClick={() => { setIsActive(true) }}>cookies policy</button><br />
                     to see the map
@@ -52,8 +54,17 @@ const Placeholder = styled.section`
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+
+    .image{
+        position: absolute;
+        inset: 16px;
+        z-index: 0;
+    }
     
     h2{
+        position: relative;
+        z-index: 2;
         text-align: center;
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-weight: 300;
