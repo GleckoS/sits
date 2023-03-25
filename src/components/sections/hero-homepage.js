@@ -18,7 +18,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
         }
         return 0
     }, [])
-
+    console.log(documentWidth)
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
