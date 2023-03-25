@@ -26,7 +26,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
-                <GatsbyImage objectPosition='50% 100%' className="background video image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
+                <GatsbyImage objectPosition='50% 100%' className="background video placeholder" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
                 {isVideoActive && (
                     <motion.video
                         variants={sliderAnimation}
@@ -82,7 +82,7 @@ const Wrapper = styled.section`
             z-index: 5;
         }
 
-        &.image{
+        &.placeholder{
             z-index: 6;
         }
 
@@ -119,6 +119,7 @@ const Wrapper = styled.section`
         transform: translate(-50%, -50%);
         width: 80%;
         text-align: center;
+        z-index: 7;
 
 
         @media (max-width: 1440px) {
