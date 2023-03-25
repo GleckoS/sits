@@ -22,7 +22,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
 
     return (
         <InView margin='0px 0px 0px 0px'>
-            <Wrapper>
+            <Wrapper className={isVideoActive ? 'video-active' : 'placeholder-active'}>
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
@@ -79,11 +79,11 @@ const Wrapper = styled.section`
         min-height: 530px;
 
         &.video{
-            z-index: 5;
+            z-index: 6;
         }
 
         &.placeholder{
-            z-index: 6;
+            z-index: 5;
         }
 
         @media (max-width: 540px) {
@@ -93,6 +93,16 @@ const Wrapper = styled.section`
         @media (max-width: 389px) {
             min-height: 400px;
             min-width: unset;
+        }
+    }
+
+    &.placeholder-active{
+        
+    }
+
+    &.video-active{
+        .placeholder{
+            display: none;
         }
     }
 
