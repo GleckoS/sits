@@ -12,7 +12,7 @@ function Map({ isActive, setIsActive }) {
         return getCookie('marketing') === 'granted'
     }, [isActive])
 
-    if (isCookiesAccepted) {
+    if (!isCookiesAccepted) {
         return (
             <Placeholder>
                 <h2>
