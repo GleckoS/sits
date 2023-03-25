@@ -12,17 +12,11 @@ const linkAnimation = linkTransition(4, 'slow')
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
-    const [isVideoActive, setVideoActive] = useState(false)
-    const [isPlaceholderDisabled, setPlaceholderDisabled] = useState(false)
-
-    useEffect(() => {
-        setTimeout(() => {
-            setVideoActive(true)
-
-            setTimeout(() => {
-                setPlaceholderDisabled(true)
-            }, 1000)
-        }, 3000)
+    const documentWidth = useMemo(() => {
+        if (typeof window !== 'undefined') {
+            return window.innerWidth
+        }
+        return 0
     }, [])
 
     return (
@@ -31,8 +25,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
-                <GatsbyImage objectPosition='50% 100%' className="background video placeholder" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
-                {isVideoActive && (
+                {documentWidth <= 768 && (
                     <motion.video
                         variants={sliderAnimation}
                         className="background video"
@@ -45,10 +38,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                     <motion.h1 variants={titleAnimation} className="title">
                         {pageTitle}
                     </motion.h1>
-                    <motion.div
-                        className="link underline"
-                        variants={linkAnimation}
-                    >
+                    <motion.div className="link underline" variants={linkAnimation} >
                         {linkUnderPageTitle
                             ? <Link className="" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
                             : null}
@@ -82,14 +72,6 @@ const Wrapper = styled.section`
         left: 50%;
         transform: translateX(-50%);
         min-height: 530px;
-
-        &.video{
-            z-index: 5;
-        }
-
-        &.placeholder{
-            z-index: 6;
-        }
 
         @media (max-width: 540px) {
             min-height: 440px;
@@ -134,7 +116,6 @@ const Wrapper = styled.section`
         transform: translate(-50%, -50%);
         width: 80%;
         text-align: center;
-        z-index: 7;
 
 
         @media (max-width: 1440px) {
