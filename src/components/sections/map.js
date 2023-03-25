@@ -16,7 +16,7 @@ function Map({ isActive, setIsActive }) {
     if (!isCookiesAccepted) {
         return (
             <Placeholder>
-                <StaticImage className="image" image='./../../../static/map.jpg' alt='background'/>
+                <StaticImage className="image" src='./../../../static/map.jpg' alt='background'/>
                 <h2>
                     Please accept <button className="underline" onClick={() => { setIsActive(true) }}>cookies policy</button><br />
                     to see the map
