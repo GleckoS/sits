@@ -16,7 +16,7 @@ function Map({ isActive, setIsActive }) {
         return (
             <Placeholder>
                 <h2>
-                    Please accept <button onClick={() => { setIsActive(true) }}>cookies policy</button>
+                    Please accept <button className="underline" onClick={() => { setIsActive(true) }}>cookies policy</button><br />
                     to see the map
                 </h2>
             </Placeholder>
@@ -59,5 +59,10 @@ const Placeholder = styled.section`
         font-family: 'Ivy';
         font-weight: 300;
         margin: clamp(20px, ${75 / 1194 * 100}vw, 110px) 0 clamp(45px, ${75 / 1194 * 100}vw, 110px);
+
+        button{
+            border: none;
+            background-color: transparent;
+        }
     }
 `

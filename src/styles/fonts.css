@@ -4,8 +4,8 @@
     font-display: swap;
     font-style: italic;
     src: url(/fonts/IvyPrestoDisplayLightItalic.woff2) format("woff2");
-}
-
+} 
+/* TODO: remove unused fonts */
 @font-face {
     font-family: 'Gothic';
     font-weight: 700;
