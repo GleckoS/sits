@@ -60,6 +60,7 @@ const Placeholder = styled.section`
         position: absolute;
         inset: 16px;
         z-index: 0;
+        opacity: .2;
     }
     
     h2{
