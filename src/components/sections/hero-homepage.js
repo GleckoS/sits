@@ -17,7 +17,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                 <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
-                <GatsbyImage objectPosition='50% 100%' className="background video" image={backgroundVideo.localFile.childImageSharp.gatsbyImageData} alt={backgroundVideo.altText} />
+                <GatsbyImage objectPosition='50% 100%' className="background video" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
                 {/* <motion.video
                     variants={sliderAnimation}
                     className="background video"

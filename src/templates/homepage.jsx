@@ -83,9 +83,6 @@ export const query = graphql`
                 altText
                 localFile {
                   publicURL
-                  childImageSharp {
-                    gatsbyImageData
-                  }
                 }
               }
               pageTitle
