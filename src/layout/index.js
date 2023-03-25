@@ -8,7 +8,7 @@ import { myContext } from "../hooks/provider"
 
 import { ToastContainer } from 'react-toastify'
 import { cssTransition } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css' //TODO: try without
+import 'react-toastify/dist/ReactToastify.css'
 
 const animate = cssTransition({ 
     enter: "enter",

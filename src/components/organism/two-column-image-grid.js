@@ -250,7 +250,7 @@ const SliderWrapper = styled.div`
 
             b{
                 font-size: 24px;
-                font-weight: 900;
+                font-weight: 700;
             }
 
             &::after{
@@ -355,7 +355,7 @@ const Wrapper = styled.div`
 
             b{
                 font-size: 24px;
-                font-weight: 900;
+                font-weight: 700;
             }
 
             &::after{
