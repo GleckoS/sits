@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useState, useEffect } from "react"
+import React, { useMemo } from "react"
 import styled from "styled-components"
 import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
 import InView from "./in-view-provider"
