@@ -4,7 +4,7 @@ import styled from "styled-components"
 const MapContent = React.lazy(() => import('../organism/map-content'))
 
 export default function Map() {
-    if (null) {
+    if (true) {
         return (
             <Placeholder>
                 <h2>To see the map you should accept cookies</h2>
