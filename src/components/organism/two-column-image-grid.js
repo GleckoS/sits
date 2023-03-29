@@ -39,19 +39,12 @@ export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, colle
     })
 
     useEffect(() => {
-
-        const keyPress = function (e) {
-            if (e.key == "Escape") {
-                setPopUpOpened(false)
-            }
-        }
-
         if (typeof window !== 'undefined') {
-            document.addEventListener('keypress', keyPress)
-        }
-
-        return () => {
-            document.removeEventListener('keypress', keyPress)
+            document.onkeydown = function (e) {
+                if (e.key == "Escape") {
+                    setPopUpOpened(false)
+                }
+            }
         }
     }, [])
 
