@@ -14,7 +14,7 @@ export default function Hero({ data: { pageTitle, backgroundImage, backgroundVid
         videoRef.current.playbackRate = 0.5;
     };
     return (
-        <InView>
+        <InView margin='0px 0px 0px 0px'>
             <Wrapper>
                 <motion.video
                     variants={imageAnimation}

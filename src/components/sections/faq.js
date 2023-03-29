@@ -235,7 +235,6 @@ const Question = styled(motion.details)`
     border: none;
     background-color: transparent;
     border-top: 1px solid #31231E;
-    padding: clamp(16px, ${32 / 1194 * 100}vw, 32px) 16px;
     width: 100%;
     transition: background-color .4s cubic-bezier(0.42, 0, 0.58, 1);
 
@@ -267,6 +266,7 @@ const Question = styled(motion.details)`
         align-items: center;
         width: 100%;
         cursor: pointer;
+        padding: clamp(16px, ${32 / 1194 * 100}vw, 32px) 16px;
 
         &::-webkit-details-marker{
             display: none;

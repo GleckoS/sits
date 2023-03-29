@@ -39,6 +39,23 @@ export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, colle
     })
 
     useEffect(() => {
+
+        const keyPress = function (e) {
+            if (e.key == "Escape") {
+                setPopUpOpened(false)
+            }
+        }
+
+        if (typeof window !== 'undefined') {
+            document.addEventListener('keypress', keyPress)
+        }
+
+        return () => {
+            document.removeEventListener('keypress', keyPress)
+        }
+    }, [])
+
+    useEffect(() => {
         if (isPopUpOpened) {
             let arr = []
             popUpImages.forEach(el => {
@@ -67,7 +84,7 @@ export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, colle
         <Box variants={sliderAnimation}>
             <AnimatePresence mode='wait'>
                 {isPopUpOpened && (
-                    <Popup  id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
+                    <Popup id='popup' title={title} setPopUpOpened={setPopUpOpened} isPopUpOpened={isPopUpOpened}>
                         <PopupGrid>
                             {popUpImages?.map((el, index) => (
                                 <React.Fragment key={el.popupNames.model + index}>

@@ -230,7 +230,10 @@ const Wrapper = styled(motion.section)`
 
     label{
         span{
-            display: none;
+            height: 1px;
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
         }
     }
 
