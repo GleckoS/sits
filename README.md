@@ -4,6 +4,6 @@
   </a>
 </p><p align="center">
   <a href="https://sits.eu">
-    <img alt="Sits" src="https://raw.githubusercontent.com/KryptonumDev/sits/master/static/sites/default/files/logo.png" width="300" />
+    <img alt="Sits" src="https://raw.githubusercontent.com/KryptonumDev/sits/master/static/sites/default/files/logo.svg" width="300" />
   </a>
 </p>
