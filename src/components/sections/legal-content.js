@@ -20,14 +20,14 @@ export default function Content({ data: { sections } }) {
                     </LeftColumn>
                     <Control className={isMenuOpened ? 'opened' : ''}>
                         {sections.map((el, index) => (
-                            <a onClick={(e) => { e.preventDefault(); setMenuOpened(false); document.getElementById(el.sectionTitle).scrollIntoView({ behavior: "smooth" }) }} key={el.sectionTitle + index} href={'#' + el.sectionTitle}>
+                            <a  onClick={(e) => { e.preventDefault(); setMenuOpened(false); document.getElementById(el.sectionTitle).scrollIntoView({ behavior: "smooth" }) }} key={el.sectionTitle + index} href={'#' + el.sectionTitle}>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="12.898" height="12.898" viewBox="0 0 12.898 12.898">
                                     <g id="Icon_feather-external-link" data-name="Icon feather-external-link" transform="translate(25 -0.788) rotate(135)">
                                         <path id="Path_643" data-name="Path 643" d="M22.5,4.5h5.745v5.745" transform="translate(-6.51 0)" fill="none" stroke="#bababa" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                                         <path id="Path_644" data-name="Path 644" d="M18.533,11.5l7-7" transform="translate(-3.798 0)" fill="none" stroke="#bababa" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" />
                                     </g>
                                 </svg>
-                                <span>
+                                <span className="underline">
                                     {el.sectionTitle}
                                 </span>
                             </a>
@@ -70,7 +70,6 @@ const Wrapper = styled.section`
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-family: 'Ivy';
         font-weight: 300;
-        text-decoration: underline;
     }
 
     h3,h4,h5,h6{
@@ -178,14 +177,25 @@ const Control = styled.aside`
     position: sticky;
     top: 160px;
     a{
-        text-decoration: underline;
         display: grid;
         grid-gap: 12px;
         grid-template-columns: 7px auto;
         align-items: center;
         text-transform: uppercase;
 
+        &:hover{
+            span{
+                background-size:100% 1px ;
+            }
+
+            svg{
+                transform: translateY(2px);
+            }
+        }
+
         svg{
+            transform: translateY(-1px);
+            transition: transform .2s ease-out;
             margin-top: 2px;
         }
     }

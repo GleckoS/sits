@@ -26,9 +26,7 @@ function Map({ isActive, setIsActive }) {
     }
 
     return (
-        // <Suspense fallback={<div>Loading...</div>}>
         <MapContent />
-        // </Suspense>
     )
 }
 

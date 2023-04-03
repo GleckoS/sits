@@ -38,6 +38,7 @@ export default function MapContent() {
     const [retailers, setRetailers] = useState(null)
     const [filtredRetailers, setFiltredRetailers] = useState(null)
     const [filter, changeFilter] = useState('')
+    const [activeDot, setActiveDot] = useState(null)
 
     useEffect(() => {
         fetch(csvFile.localFile.publicURL)
@@ -51,6 +52,7 @@ export default function MapContent() {
 
     useEffect(() => {
         if (retailers) {
+            setActiveDot(null)
             setFiltredRetailers(retailers.filter((el) =>
                 el.City.toLowerCase().includes(filter.toLowerCase())
                 || el.Country.toLowerCase().includes(filter.toLowerCase())
@@ -61,7 +63,6 @@ export default function MapContent() {
         }
     }, [retailers, filter])
 
-    const [activeDot, setActiveDot] = useState(null)
     const map = useRef()
 
     useEffect(() => {

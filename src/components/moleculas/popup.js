@@ -19,6 +19,16 @@ export const Popup = ({ id, children, title, setPopUpOpened, isPopUpOpened }) =>
         }
     }, [isPopUpOpened])
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            document.onkeydown = function (e) {
+                if (e.key == "Escape") {
+                    setPopUpOpened(false)
+                }
+            }
+        }
+    }, [])
+
     return (
         <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1, transition: {duration: .5} }} exit={{ opacity: 0, transition: {duration: .3} }}>
             <Box>

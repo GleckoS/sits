@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Container } from "../atoms/container"
 import { DropDown } from "../moleculas/dropdown"
@@ -37,6 +37,17 @@ export const FilterComponent = ({
 }) => {
 
     const [openedFilter, setOpenedFilter] = useState(false)
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            document.onkeydown = function (e) {
+                if (e.key == "Escape") {
+                    setOpenedFilter(false)
+                }
+            }
+        }
+    }, [])
+
     return (
         <>
             <AnimatePresence mode="wait">

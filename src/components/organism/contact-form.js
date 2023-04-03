@@ -92,6 +92,10 @@ const Checkbox = styled(motion.label)`
         opacity: 0;
     }
 
+    input:focus ~ .check{
+        outline: 2px solid var(--color-brown);
+    }
+
     input:checked ~ .check {
         &::after{
             transform: translate(-50%, -50%) scale(1);
@@ -158,10 +162,10 @@ const Checkbox = styled(motion.label)`
 
 const Success = styled(motion.div)`
     position: absolute;
-    left: 0;
+    left: -5px;
     top: -30px;
     bottom: -5px;
-    right: 0;
+    right: -5px;
 
     @media (max-width: 640px) {
         left: -24px;

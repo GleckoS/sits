@@ -7,6 +7,7 @@ import Map from "../components/sections/map"
 import { BrownLink } from "../components/atoms/brown-link"
 import { linkTransition, textTransition } from "../helpers/animation-controller"
 import { motion } from "framer-motion"
+import Wrapper from "../components/sections/page-wrapper"
 
 const titleAnimation = textTransition(1)
 const textAnimation = textTransition(2)
@@ -38,9 +39,6 @@ const NotFoundPage = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageT
 }
 
 export default NotFoundPage
-
-const Wrapper = styled.main`
-`
 
 const Section = styled.section`
   background-color: var(--light-background);

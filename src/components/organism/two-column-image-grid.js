@@ -39,16 +39,6 @@ export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, colle
     })
 
     useEffect(() => {
-        if (typeof window !== 'undefined') {
-            document.onkeydown = function (e) {
-                if (e.key == "Escape") {
-                    setPopUpOpened(false)
-                }
-            }
-        }
-    }, [])
-
-    useEffect(() => {
         if (isPopUpOpened) {
             let arr = []
             popUpImages.forEach(el => {

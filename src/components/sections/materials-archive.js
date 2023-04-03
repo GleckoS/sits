@@ -57,6 +57,7 @@ export default function MaterialsArchive({ location, materials }) {
         setColor("All")
         setTextures("All")
         setFeatures("All")
+        setSearch('')
     }
 
     const filtredProducts = useMemo(() => {
@@ -212,15 +213,15 @@ export default function MaterialsArchive({ location, materials }) {
                                 <CloseButton tabIndex={-1} />
                             </FilterItem>
                         )}
-                        {(color !== 'All' || textures !== 'All' || features !== 'All') && (
-                            <FilterItem variants={filterItemAnimation} onClick={() => { clearAll('') }} className="close">
-                                {clearAllTitle['en']}
+                        {search !== '' && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
+                                {searchFilterTitle['en']}: „{search}”
                                 <CloseButton tabIndex={-1} />
                             </FilterItem>
                         )}
-                        {search !== '' && (
-                            <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
-                                {searchFilterTitle['en']}{search}
+                        {(color !== 'All' || textures !== 'All' || features !== 'All') && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { clearAll('') }} className="close">
+                                {clearAllTitle['en']}
                                 <CloseButton tabIndex={-1} />
                             </FilterItem>
                         )}

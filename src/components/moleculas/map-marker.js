@@ -43,7 +43,7 @@ export default function MapMarker({ isActive, markerClick, index, el, map }) {
             popupRef.current.openOn(map.current)
         }
     }, [isActive, map, popupRef])
-
+    
     return (
         <Marker
             icon={isActive ? chosenIcon : iconPerson}

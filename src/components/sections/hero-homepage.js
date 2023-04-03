@@ -40,7 +40,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                     </motion.h1>
                     <motion.div className="link underline" variants={linkAnimation} >
                         {linkUnderPageTitle
-                            ? <Link className="" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
+                            ? <Link className="white-focus" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
                             : null}
                     </motion.div>
                 </div>
@@ -141,6 +141,10 @@ const Wrapper = styled.section`
         margin: 0 auto;
         background-image: linear-gradient(#fff, #fff);
         background-size: 0 1px;
+
+        .white-focus:focus-visible{
+            outline-color: #fff;
+        }
 
         &:hover{
             background-size: 100% 1px !important;

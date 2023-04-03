@@ -270,6 +270,16 @@ const Flex = styled(motion.div)`
   gap: 16px;
   margin-top: 20px;
 
+
+  a{
+    width: 43.2px;
+    height: 43.2px;
+    border-radius: 50%;
+
+    &:focus-
+
+  }
+
   svg path, svg rect {
     transition: fill 0.4s cubic-bezier(0.42, 0, 0.58, 1);
   }

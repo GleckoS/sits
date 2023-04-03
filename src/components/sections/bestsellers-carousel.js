@@ -204,11 +204,16 @@ const Control = styled.div`
         left: -50px;
         top: 50%;
         transform: translateY(-50%);
-        height: 18px;
+        height: 28px;
+        padding: 5px 0;
         background-color: transparent;
         border: none;
         z-index: 4;
         cursor: pointer;
+
+        &:focus-visible{
+            outline-color: #fff;
+        }
 
         svg{
             width: clamp(20px, ${20 / 768 * 100}vw, 28px);
@@ -227,11 +232,16 @@ const Control = styled.div`
         right: -50px;
         top: 50%;
         transform: translateY(-50%);
-        height: 18px;
+        height: 28px;
+        padding: 5px 0;
         background-color: transparent;
         border: none;
         z-index: 4;
         cursor: pointer;
+
+        &:focus-visible{
+            outline-color: #fff;
+        }
 
         svg{
             width: clamp(20px, ${20 / 768 * 100}vw, 28px);

@@ -63,6 +63,9 @@ const Grid = styled.div`
 `
 
 const Item = styled.div`
+    a{
+        display: block;
+    }
     .image{
         height: 33vw;
         max-height: 666px;

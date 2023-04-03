@@ -132,7 +132,6 @@ export const Global = createGlobalStyle`
         &:hover {
             background-size: 100% 1px;
         }
-
     }
     
     .no-focus {

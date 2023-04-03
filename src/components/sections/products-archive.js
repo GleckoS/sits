@@ -213,7 +213,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                         )}
                         {search !== '' && (
                             <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
-                                {searchFilterTitle['en']}{search}
+                                {searchFilterTitle['en']}: „{search}”
                                 <CloseButton />
                             </FilterItem>
                         )}

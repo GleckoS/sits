@@ -42,7 +42,7 @@ export default function CataloguesGrid({ data: { title, catalogues: { catalogues
                                 <Item key={index}>
                                     <a href={el.catalogueFile?.localFile?.publicURL ? el.catalogueFile?.localFile?.publicURL : el.catalogueFile?.mediaItemUrl} target='_blank' rel="noreferrer noopener" download>
                                         <motion.div variants={imageAnimation}>
-                                            <GatsbyImage image={el.cataloguePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.cataloguePreviewImage.altText} />
+                                            <GatsbyImage className="image" image={el.cataloguePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.cataloguePreviewImage.altText} />
                                         </motion.div>
                                         <motion.p variants={linkAnimation} className="underline">{el.catalogueTitle}</motion.p>
                                     </a>
@@ -81,6 +81,9 @@ const Grid = styled(motion.div)`
 `
 
 const Item = styled.div`
+    a{
+        display: block;
+    }
     p{
         margin-top: 24px;
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
@@ -90,7 +93,19 @@ const Item = styled.div`
         padding-bottom: 0;
     }
 
+    .image{
+        width: 100%;
+        img{
+            transition: transform .4s ease-in-out;
+        }
+    }
+
     a:hover{
+        .image{
+            img{
+                transform: scale(1.04);
+            }
+        }
         .underline{
             background-size: 100% 1px !important;
         }
