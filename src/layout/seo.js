@@ -1,6 +1,6 @@
 import React from "react"
 
-const siteUrl = 'https://www.sits.eu'
+const siteUrl = 'https://sits.eu'
 
 export default function Seo({ isArchive = false, pageContext, seo }) {
     const canonical = siteUrl + pageContext.uri
@@ -19,7 +19,6 @@ export default function Seo({ isArchive = false, pageContext, seo }) {
     return (
         <>
             <meta charSet="utf-8" />
-            <meta name="robots" content="noindex" />
             <meta property="og:site_name" content={seo.opengraphSiteName} />
             <meta name="google-site-verification" content="M2kghTKPmXOB2ezGLw7ShbO3sdW6rMn_uhsSVbHCt7I" />
 
@@ -99,7 +98,7 @@ export default function Seo({ isArchive = false, pageContext, seo }) {
                             "postalCode": "87-300",
                             "streetAddress": "Gen. Sikorskiego 60"
                         },
-                        "logo": "https://www.sits.eu/sites/default/files/logo.png",
+                        "logo": "https://sits.eu/sites/default/files/logo.png",
                         "vatId": "8741704017",
                         thing,
                         "ispartof": {

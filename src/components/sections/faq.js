@@ -55,7 +55,7 @@ export default function FAQ({ data }) {
                             ))}
                         </Questions>
                         <motion.div className="wrap-ans" variants={answerAnimation(data.length)}>
-                            <AnimatePresence exitBeforeEnter >
+                            <AnimatePresence mode="wait" >
                                 <Answers
                                     key={openedQuestion}
                                     initial={{ opacity: 0 }}

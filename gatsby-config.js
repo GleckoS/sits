@@ -1,7 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: `Sits`,
-    siteUrl: `https://www.yourdomain.tld`
+    siteUrl: `https://sits.eu`
   },
   plugins: [{
     resolve: 'gatsby-source-wordpress',
@@ -78,6 +78,14 @@ module.exports = {
       transformHeaders: (headers, path) => headers, // optional transform for manipulating headers under each path (e.g.sorting), etc.
       generateMatchPathRewrites: true, // boolean to turn off automatic creation of redirect rules for client only paths
     },
+  },
+  {
+    resolve: 'gatsby-plugin-robots-txt',
+    options: {
+      host: 'https://sits.eu',
+      sitemap: 'https://sits.eu/sitemap-index.xml',
+      policy: [{userAgent: '*', allow: '/'}]
+    }
   }
   ]
 };

@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion'
 
 export const wrapPageElement = ({ element, props }) => (
     <Layout {...props}>
-        <AnimatePresence exitBeforeEnter>
+        <AnimatePresence mode='wait'>
             {element}
         </AnimatePresence>
     </Layout>

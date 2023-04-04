@@ -1,10 +1,62 @@
 const fs = require('fs')
 const { resolve } = require('path')
+const fetch = (...args) =>
+  import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+
+const csvParser = (data) => {
+  let lines = data.split("\r\n");
+
+  let result = [];
+
+  let headers = lines[0].split(";");
+
+  for (let i = 1; i < lines.length; i++) {
+    let obj = {};
+    let currentline = lines[i].split(";");
+    for (let j = 0; j < headers.length; j++) {
+      obj[headers[j]] = currentline[j];
+    }
+
+    result.push(obj)
+
+  }
+
+  return result; //JSON
+};
 
 exports.createPages = async ({
     graphql,
     actions: { createPage, createRedirect },
 }) => {
+
+    // Create redirects
+  
+    const { data: { wpPage: { redirects: { csvRedirectsFile } } } } = await graphql(`
+    query{
+      wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
+        redirects {
+          csvRedirectsFile {
+            localFile {
+                publicURL
+            }
+          }
+        }
+      }
+    }
+    `)
+  
+    if (csvRedirectsFile?.localFile?.publicURL) {
+      const result = await fetch(`https://sits.eu${csvRedirectsFile.localFile.publicURL}`)
+      const resultData = await result.text()
+  
+      csvParser(resultData)?.forEach(el => {
+        createRedirect({
+          fromPath: el.from,
+          toPath: el.to,
+          isPermanent: el.status === '301',
+        });
+      })
+    }
 
     // COLLECTION
 
