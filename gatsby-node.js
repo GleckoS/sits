@@ -8,11 +8,11 @@ const csvParser = (data) => {
 
     let result = [];
 
-    let headers = lines[0].split(";");
+    let headers = lines[0].split(",");
 
     for (let i = 1; i < lines.length; i++) {
         let obj = {};
-        let currentline = lines[i].split(";");
+        let currentline = lines[i].split(",");
         for (let j = 0; j < headers.length; j++) {
             obj[headers[j]] = currentline[j];
         }
@@ -50,11 +50,11 @@ exports.createPages = async ({
         const resultData = await result.text()
 
         csvParser(resultData)?.forEach(el => {
-            if (el.from && el.to) {
+            if (el.From && el.To) {
                 createRedirect({
-                    fromPath: el.from,
-                    toPath: el.to,
-                    isPermanent: el.status === '301',
+                    fromPath: el.From,
+                    toPath: el.To,
+                    isPermanent: el.Status === '301',
                 });
             }
         })
