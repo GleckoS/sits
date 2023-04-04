@@ -66,7 +66,12 @@ export default function Seo({ isArchive = false, pageContext, seo }) {
                         <meta property="twitter:image" content={siteUrl + seo.opengraphImage.localFile.publicURL} />
                     </>
                 )
-                : null}
+                : (
+                    <>
+                        <meta property="og:image" content={siteUrl + '/og-image.jpg'} />
+                        <meta property="twitter:image" content={siteUrl + '/og-image.jpg'} />
+                    </>
+                )}
 
             <script type="application/ld+json">
                 {JSON.stringify(
