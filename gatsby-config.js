@@ -22,7 +22,7 @@ module.exports = {
       },
     }
   },
-    "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap", `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap", `gatsby-plugin-react-helmet`,`gatsby-plugin-csp`,
   {
     resolve: "gatsby-plugin-sharp",
     options: {
