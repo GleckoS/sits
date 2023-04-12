@@ -16,8 +16,11 @@ export const csvParser = (data) => {
             obj[headers[j]] = currentline[j];
         }
 
-        result.push(obj)
-
+        if (isNaN(obj.Latitude) || isNaN(obj.Longitude)) {
+            console.log(`ERROR: ${obj.Name} has invalid coordinates: ${obj.Latitude}, ${obj.Longitude}; remove all commas from excel file`)
+        } else {
+            result.push(obj)
+        }
     }
 
     //return result; //JavaScript object
