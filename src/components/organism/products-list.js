@@ -28,7 +28,7 @@ export const ProductList = ({ itemKey, changeType, setRerender, setPage, page, r
                                             <ProductCard categoryClick={changeType} setRerender={setRerender} rerender={rerender} model={inEl.popupNames.model} types={el.products.collection?.types?.nodes} data={el.products.collection} image={imageEl.featuredProductImage} />
                                         </motion.div>
                                     )
-                                } else if (isAllRendered && renderCount.current >= page * 8) {
+                                } else if (imageEl.isMainImage && isAllRendered && renderCount.current >= page * 8) {
                                     isAllRendered.current = false
                                 }
                                 return null
