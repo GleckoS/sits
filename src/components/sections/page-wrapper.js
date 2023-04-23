@@ -9,6 +9,25 @@ export default function Wrapper({ children }) {
                 <motion.main
                     onAnimationStart={({opacity}) => { setTransition(opacity) }}
                     // onAnimationComplete={(el) => { debugger }}
+                    initial={{ opacity: 0 }}
+                    animate={{
+                        opacity: 1,
+                        transition: {
+                            type: "spring",
+                            mass: 0.35,
+                            stiffness: 75,
+                            duration: .2,
+                            when: 'beforeChildren'
+                        }
+                    }}
+                    exit={{
+                        opacity: 0,
+                        transition: {
+                            type: "spring",
+                            mass: 0.35,
+                            stiffness: 75,
+                        },
+                    }}
                 >
                     {children}
                 </motion.main>
