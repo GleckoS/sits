@@ -35,7 +35,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                     </motion.video>
                 )}
                 <div className="content">
-                    <motion.h1 variants={titleAnimation} className="title">
+                    <motion.h1 className="title">
                         {pageTitle}
                     </motion.h1>
                     <motion.div className="link underline" variants={linkAnimation} >
