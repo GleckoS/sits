@@ -85,6 +85,13 @@ export const Global = createGlobalStyle`
     body{
         scrollbar-gutter: stable both-edges;
         overflow: overlay;
+
+        @media (max-width: 640px) {
+            &.loading main{
+                opacity: 1 !important;
+                transition: unset !important;
+            }
+        }
     }
 
     @media (max-width: 420px) {

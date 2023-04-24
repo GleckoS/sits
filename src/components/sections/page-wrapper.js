@@ -7,8 +7,8 @@ export default function Wrapper({ children }) {
         <myContext.Consumer>
             {({ setTransition }) => (
                 <motion.main
-                    onAnimationStart={({opacity}) => { setTransition(opacity) }}
-                    // onAnimationComplete={(el) => { debugger }}
+                    onAnimationStart={({ opacity }) => { setTransition(opacity) }}
+                    onAnimationComplete={() => { document.body.classList.remove('loading') }}
                     initial={{ opacity: 0 }}
                     animate={{
                         opacity: 1,

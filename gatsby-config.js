@@ -27,7 +27,7 @@ module.exports = {
     resolve: "gatsby-plugin-sharp",
     options: {
       defaults: {
-        placeholder: `dominantColor`,
+        placeholder: `blurred`,
         quality: 70,
       },
     }
