@@ -21,7 +21,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
   )
 }
 
-export default function Homepage({ data: { wpPage: { homepage } } }) {
+export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
   return (
     <Wrapper>
       <Hero data={homepage.heroH} />

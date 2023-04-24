@@ -14,10 +14,7 @@ export const wrapRootElement = ({ element }) => (
     <Provider>{element}</Provider> 
 )
 
-export const onRenderBody = ({ setHeadComponents, setBodyAttributes }) => {
-    setBodyAttributes({
-        className: 'loading'
-    })
+export const onRenderBody = ({ setHeadComponents }) => {
     setHeadComponents([
         <link
             rel="preload"

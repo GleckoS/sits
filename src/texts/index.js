@@ -148,9 +148,8 @@ export const linksLeft = {
     en: [
         { name: 'Best Seller', url: '/best-sellers/' },
         { name: 'New Arrivals', url: '/new-arrivals/' },
-        { name: 'All Products', url: '/products/' },
+        { name: 'All products', url: '/products/' },
         { name: 'Sofas', url: '/products/sofas/' },
-        { name: 'Sofa Beds', url: '/products/sofas/?type=Sofa-Beds' },
         { name: 'Armchairs', url: '/products/armchairs/' },
         { name: 'Dining Chairs', url: '/products/dining-chairs/' },
         { name: 'Footstools', url: '/products/footstools/' },
@@ -167,7 +166,7 @@ export const linksRight = {
         { name: 'Conscious', url: '/conscious/' },
         { name: 'Furniture Care', url: '/furniture-care/' },
         { name: 'Catalogues', url: '/catalogues/' },
-        { name: 'Virtual Showroom', url: 'https://showroom.sits.eu/' },
+        { name: 'Virtual showroom', url: 'https://showroom.sits.eu/' },
         { name: 'Sales Representative', url: '/sales-representative/' },
         { name: 'Where to Buy', url: '/where-to-buy/' },
         { name: 'Contact', url: '/contact/' }
