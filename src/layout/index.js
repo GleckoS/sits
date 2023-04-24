@@ -16,8 +16,6 @@ const animate = cssTransition({
 })
 
 export default function Layout({ children }) {
-
-
     return (
         <myContext.Consumer>
             {context => {
