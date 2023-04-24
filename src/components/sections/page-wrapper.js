@@ -9,14 +9,14 @@ export default function Wrapper({ children }) {
                 <motion.main
                     onAnimationStart={({ opacity }) => { setTransition(opacity) }}
                     onAnimationComplete={() => { document.body.classList.remove('loading') }}
-                    initial={{ opacity: (document.body.classList.contains('loading') && window.innerWidth <= 640) ? 1 : 0 }}
+                    initial={{ opacity: 0 }}
                     animate={{
                         opacity: 1,
                         transition: {
                             type: "spring",
                             mass: 0.35,
                             stiffness: 75,
-                            duration: (document.body.classList.contains('loading') && window.innerWidth <= 640) ? 0 : .2,
+                            duration: .2,
                             when: 'beforeChildren'
                         }
                     }}
