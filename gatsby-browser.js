@@ -7,7 +7,7 @@ import { AnimatePresence } from 'framer-motion'
 
 export const wrapPageElement = ({ element, props }) => (
     <Layout {...props}>
-        <AnimatePresence mode='wait'>
+        <AnimatePresence initial={false} mode='wait'>
             {element}
         </AnimatePresence>
     </Layout>
@@ -32,9 +32,8 @@ export const shouldUpdateScroll = ({
     }
     // if we used the browser's forwards or back button
     else if (prevRouterProps) {
-        debugger
         const savedPosition = getSavedScrollPosition(location) || [0, 0]
-        window.setTimeout(() => window.scrollTo(...savedPosition), TRANSITION_DELAY * 2) 
+        window.setTimeout(() => window.scrollTo(...savedPosition), TRANSITION_DELAY * 2)
         return false
     }
 }
