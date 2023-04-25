@@ -155,8 +155,8 @@ export default function Cookies({ isActive, setIsActive }) {
         <AnimatePresence initial={false} mode="wait">
             {isActive && (
                 <>
-                    <Overlay initial={{ opacity: 1 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-overlay' />
-                    <Wrapper initial={{ opacity: 1 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-wrapper'>
+                    <Overlay initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-overlay' />
+                    <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-wrapper'>
                         <Content>
                             <TabsControl>
                                 <AnimateSharedLayout>
