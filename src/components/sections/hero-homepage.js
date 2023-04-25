@@ -8,7 +8,7 @@ import InView from "./in-view-provider"
 
 const sliderAnimation = imageTransition(1)
 const titleAnimation = textTransition(3, 'slow')
-const linkAnimation = linkTransition(4, 'slow')
+const linkAnimation = linkTransition(3, 'slow')
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
@@ -38,7 +38,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                     <motion.h1 className="title">
                         {pageTitle}
                     </motion.h1>
-                    <motion.div className="link underline" variants={linkAnimation} >
+                    <motion.div className="link underline" >
                         {linkUnderPageTitle
                             ? <Link className="white-focus" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
                             : null}
