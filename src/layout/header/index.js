@@ -10,6 +10,16 @@ import scrollLock from './../../helpers/scroll-lock'
 import { motion } from 'framer-motion'
 import { linksLeft, linksRight, furnitureTitle, companyTitle } from '../../texts'
 
+const logoAnimation = {
+  initial: { opacity: 0 },
+  animate: { opacity: 1, transition: { duration: .5 } }
+}
+
+const otherLinksAnimation = {
+  initial: { opacity: 0, backgroundSize: '0 1px' },
+  animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .5, delay: .5 } }
+}
+
 export default function Header() {
   const [isLeftMenuOpened, setLeftMenuOpened] = useState(false)
   const [isRightMenuOpened, setRightMenuOpened] = useState(false)
@@ -65,6 +75,7 @@ export default function Header() {
       />
       <Container className='container'>
         <Button
+          variants={otherLinksAnimation}
           className='control-desctop underline'
           onClick={() => {
             setLeftMenuOpened(true)
@@ -110,7 +121,7 @@ export default function Header() {
             ))}
           </MenuContent>
         </LeftMenu>
-        <motion.div >
+        <motion.div variants={logoAnimation}>
           <Link
             className='logo'
             onClick={() => {
@@ -134,6 +145,7 @@ export default function Header() {
         <div className='right'>
           <LangChanger />
           <Button
+            variants={otherLinksAnimation}
             className='control-desctop underline'
             onClick={() => {
               setRightMenuOpened(true)
@@ -174,6 +186,7 @@ export default function Header() {
           </MenuContent>
         </RightMenu>
         <Burger
+          variants={otherLinksAnimation}
           aria-label='burger button'
           className={
             isMobileMenuOpened ? 'open control-mobile' : 'control-mobile'

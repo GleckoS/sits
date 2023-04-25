@@ -22,7 +22,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
-                <motion.div>
+                <motion.div variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                 </motion.div>
                 {documentWidth > 768 && (
@@ -35,7 +35,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                     </motion.video>
                 )}
                 <div className="content">
-                    <motion.h1 className="title">
+                    <motion.h1 variants={titleAnimation} className="title">
                         {pageTitle}
                     </motion.h1>
                     <motion.div className="link underline" >
