@@ -1,4 +1,4 @@
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
 import MapContent from "../organism/map-content"
 import { myContext } from "../../hooks/provider"
@@ -9,14 +9,18 @@ import { StaticImage } from "gatsby-plugin-image"
 
 function Map({ isActive, setIsActive }) {
 
-    const isCookiesAccepted = useMemo(() => {
-        return getCookie('marketing') === 'granted'
+    const [isCookiesAccepted, setIsCookiesAccepted] = useState(false)
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsCookiesAccepted(getCookie('marketing') === 'granted')
+        }, 1)
     }, [isActive])
 
     if (!isCookiesAccepted) {
         return (
             <Placeholder>
-                <StaticImage className="image" src='./../../../static/map.jpg' alt='background'/>
+                <StaticImage className="image" src='./../../../static/map.jpg' alt='background' />
                 <h2>
                     Please accept <button className="underline" onClick={() => { setIsActive(true) }}>cookies policy</button><br />
                     to see the map
