@@ -7,8 +7,6 @@ import { imageTransition, linkTransition, textTransition } from "../../helpers/a
 import InView from "./in-view-provider"
 
 const sliderAnimation = imageTransition(1)
-const titleAnimation = textTransition(3, 'slow')
-const linkAnimation = linkTransition(4, 'slow')
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
@@ -26,12 +24,11 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
-                <motion.div className="background" variants={sliderAnimation} >
+                <motion.div className="background wrapper" variants={sliderAnimation} >
                     <GatsbyImage objectPosition='50% 100%' className=" image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                     {documentWidth > 768 && (
                         <video
                             className="background video"
-                            variants={sliderAnimation}
                             playsInline muted loop autoPlay
                             poster={backgroundImage.localFile.publicURL} >
                             <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
@@ -39,14 +36,14 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
                     )}
                 </motion.div>
                 <div className="content">
-                    <motion.h1 variants={titleAnimation} className="title">
+                    <h1 className="title">
                         {pageTitle}
-                    </motion.h1>
-                    <motion.div className="link underline" variants={linkAnimation} >
+                    </h1>
+                    <div className="link underline" >
                         {linkUnderPageTitle
                             ? <Link className="white-focus" to={linkUnderPageTitle.url} target={linkUnderPageTitle ? linkUnderPageTitle : null}>{linkUnderPageTitle.title}</Link>
                             : null}
-                    </motion.div>
+                    </div>
                 </div>
             </Wrapper>
         </InView>
@@ -69,12 +66,19 @@ const Wrapper = styled.section`
         max-height: calc(100vh - 75px);
     }
 
-    .background{
-        max-width: 100%;
-        min-width: 964px;
+    .video{
+        clip-path: inset(0px 0px);
         position: relative;
         left: 50%;
         transform: translateX(-50%);
+        max-width: 100%;
+        min-width: 964px;
+        *:focus-visible{
+            outline: none;
+        }
+    }
+
+    .background{
         min-height: 530px;
 
         @media (max-width: 540px) {
@@ -144,7 +148,6 @@ const Wrapper = styled.section`
         padding-bottom: 3px;
         margin: 0 auto;
         background-image: linear-gradient(#fff, #fff);
-        background-size: 0 1px;
 
         .white-focus:focus-visible{
             outline-color: #fff;
