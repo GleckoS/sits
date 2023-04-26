@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useMemo } from "react"
+import React, { useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
 import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
 import InView from "./in-view-provider"
@@ -12,12 +12,16 @@ const linkAnimation = linkTransition(4, 'slow')
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
-    const documentWidth = useMemo(() => {
+    const [documentWidth, setDocumentWidth] = useState(0)
+
+    useEffect(() => {
         if (typeof window !== 'undefined') {
-            return window.innerWidth
+            setTimeout(() => {
+                setDocumentWidth(window.innerWidth)
+            }, 1)
         }
-        return 0
     }, [])
+
 
     return (
         <InView margin='0px 0px 0px 0px'>
