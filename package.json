@@ -20,6 +20,7 @@
     "csvtojson": "^2.0.10",
     "framer-motion": "^9.0.1",
     "gatsby": "^5.2.0",
+    "gatsby-plugin-facebook-pixel": "^1.0.8",
     "gatsby-plugin-gatsby-cloud": "^5.7.0",
     "gatsby-plugin-google-tagmanager": "^5.5.0",
     "gatsby-plugin-image": "^3.2.0",

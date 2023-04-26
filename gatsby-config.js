@@ -86,6 +86,12 @@ module.exports = {
       sitemap: 'https://sits.eu/sitemap-index.xml',
       policy: [{userAgent: '*', allow: '/'}]
     }
+  },
+  {
+    resolve: `gatsby-plugin-facebook-pixel`,
+    options: {
+      pixelId: "1619411831581925",
+    },
   }
   ]
 };

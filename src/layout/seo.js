@@ -21,6 +21,7 @@ export default function Seo({ isArchive = false, pageContext, seo }) {
             <meta charSet="utf-8" />
             <meta property="og:site_name" content={seo.opengraphSiteName} />
             <meta name="google-site-verification" content="M2kghTKPmXOB2ezGLw7ShbO3sdW6rMn_uhsSVbHCt7I" />
+            <meta name="facebook-domain-verification" content="Kgqyu3tcp9asb3ha11p2x50c0lzfxnm" />
 
             {/* 
             <link rel="alternate" href="https://www.sits.eu/" hreflang="x-default" />
