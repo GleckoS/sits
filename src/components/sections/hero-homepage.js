@@ -26,18 +26,18 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
-                <motion.div variants={sliderAnimation} >
-                    <GatsbyImage objectPosition='50% 100%' className="background image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
+                <motion.div className="background" variants={sliderAnimation} >
+                    <GatsbyImage objectPosition='50% 100%' className=" image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
+                    {documentWidth > 768 && (
+                        <video
+                            className="background video"
+                            variants={sliderAnimation}
+                            playsInline muted loop autoPlay
+                            poster={backgroundImage.localFile.publicURL} >
+                            <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
+                        </video>
+                    )}
                 </motion.div>
-                {documentWidth > 768 && (
-                    <motion.video
-                        variants={sliderAnimation}
-                        className="background video"
-                        playsInline muted loop autoPlay
-                        poster={backgroundImage.localFile.publicURL} >
-                        <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
-                    </motion.video>
-                )}
                 <div className="content">
                     <motion.h1 variants={titleAnimation} className="title">
                         {pageTitle}
