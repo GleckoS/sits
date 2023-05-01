@@ -260,7 +260,7 @@ export const query = graphql`
                 }
             }
         }
-        OutdoorFurnitures : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Outdoor furnitures"}}}}}) {
+        OutdoorFurnitures : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Outdoor furniture"}}}}}) {
             nodes {
                 types {
                   nodes {

@@ -90,7 +90,7 @@ export const footstoolsTitle = {
     en: 'Footstools'
 }
 export const outdoorFurnituresTitle = {
-    en: 'Outdoor Furnitures'
+    en: 'Outdoor Furniture'
 }
 export const materialsTitle = {
     en: 'Covers'
