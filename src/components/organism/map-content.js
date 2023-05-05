@@ -17,7 +17,7 @@ const titleAnimation = textTransition(1)
 const mapAnimation = imageTransition(2)
 const searchAnimation = imageTransition(3)
 
-export default function MapContent() {
+export default function MapContent({ subset, scale = 4, lat = '52.5144926020739', lon = '13.388333544050788' }) {
 
     const { wpPage: { retailers: { csvFile } } } = useStaticQuery(graphql`
     query {
@@ -34,7 +34,7 @@ export default function MapContent() {
     }
   `)
 
-    const [mapCenter] = useState({ Latitude: 52.5144926020739, Longitude: 13.388333544050788 })
+    const [mapCenter] = useState({ Latitude: lat, Longitude: lon })
     const [retailers, setRetailers] = useState(null)
     const [filtredRetailers, setFiltredRetailers] = useState(null)
     const [filter, changeFilter] = useState('')
@@ -111,6 +111,9 @@ export default function MapContent() {
                             <motion.div variants={searchAnimation}>
                                 <ItemsContent id='map-content'>
                                     {filtredRetailers?.map((el, index) => {
+                                        if (subset && subset !== el['Country']) {
+                                            return null
+                                        }
                                         return (
                                             <Item id={'map-item-' + index} onClick={() => { itemClick(index) }} className={activeDot === index ? 'active' : ''} key={index}>
                                                 <p className="t">{el['Shop name']}</p>
@@ -125,16 +128,21 @@ export default function MapContent() {
                             </motion.div>
                         </MapItems>
                         <motion.div className="map" variants={mapAnimation}>
-                            <MapContainer whenCreated={mapInstance => { map.current = mapInstance }} center={[mapCenter.Latitude, mapCenter.Longitude]} zoom={4} minZoom={3} maxZoom={16} scrollWheelZoom={false}>
+                            <MapContainer whenCreated={mapInstance => { map.current = mapInstance }} center={[mapCenter.Latitude, mapCenter.Longitude]} zoom={scale} minZoom={3} maxZoom={16} scrollWheelZoom={false}>
                                 <TileLayer
                                     attribution='Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ'
                                     url="https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}"
                                 />
                                 {/* <FullscreenControl position='topright'/> */}
                                 <MarkerClusterGroup showCoverageOnHover={false}>
-                                    {filtredRetailers?.map((el, index) => (
-                                        <Marker key={el['Shop name'] + index} isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
-                                    ))}
+                                    {filtredRetailers?.map((el, index) => {
+                                        if (subset && subset !== el['Country']) {
+                                            return null
+                                        }
+                                        return (
+                                            <Marker key={el['Shop name'] + index} isActive={activeDot === index} map={map} el={el} index={index} markerClick={markerClick} />
+                                        )
+                                    })}
                                 </MarkerClusterGroup>
                             </MapContainer>
                         </motion.div>

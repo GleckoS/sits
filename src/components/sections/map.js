@@ -7,7 +7,7 @@ import { StaticImage } from "gatsby-plugin-image"
 
 // const MapContent = React.lazy(() => import('../organism/map-content'))
 
-function Map({ isActive, setIsActive }) {
+function Map({ subset, lat, lon, scale, isActive, setIsActive }) {
 
     const [isCookiesAccepted, setIsCookiesAccepted] = useState(false)
 
@@ -30,16 +30,16 @@ function Map({ isActive, setIsActive }) {
     }
 
     return (
-        <MapContent />
+        <MapContent subset={subset} lat={lat} lon={lon} scale={scale} />
     )
 }
 
-export default function MapWrapper() {
+export default function MapWrapper({ subset, lat, lon, scale }) {
     return (
         <myContext.Consumer>
             {context => {
                 return (
-                    <Map isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
+                    <Map subset={subset} lat={lat} lon={lon} scale={scale} isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
                 )
             }}
         </myContext.Consumer>

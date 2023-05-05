@@ -37,7 +37,7 @@ if (typeof window !== 'undefined') {
 
 export default function MapMarker({ isActive, markerClick, index, el, map }) {
     let popupRef = useRef();
-
+    
     useEffect(() => {
         if (isActive && popupRef?.current) {
             popupRef.current.openOn(map.current)
