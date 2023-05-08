@@ -27,7 +27,7 @@ export default function WhereToBuyPage() {
   return (
     <Wrapper>
       <Title title={'–15% na całą kolekcję SITS'} text={'Skandynawski design w najlepszym wydaniu teraz 15% taniej. Promocja trwa w dniach 15.05-31.05 i obowiązuje we wszystkich salonach sprzedaży w Polsce. Listę salonów znajdziesz poniżej.'} />
-      <Map subset={'Poland'} scale={7} lat={'52.1'} lon={'20.388333544050788'} />
+      <Map subset={'Poland'} scale={6} lat={'52.1'} lon={'20'} />
     </Wrapper>
   )
 }

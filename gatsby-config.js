@@ -3,7 +3,17 @@ module.exports = {
     title: `Sits`,
     siteUrl: `https://sits.eu`
   },
-  plugins: [{
+  plugins: [
+    
+    {
+      resolve: "gatsby-plugin-sitemap",
+      options: {
+        excludes: [
+          "/rabat-15-na-cala-kolekcje-w-polsce",
+        ]
+      }
+    },
+    {
     resolve: 'gatsby-source-wordpress',
     options: {
       "url": "https://sits.headlesshub.com/graphql",
@@ -22,7 +32,7 @@ module.exports = {
       },
     }
   },
-    "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", "gatsby-plugin-sitemap", `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", `gatsby-plugin-react-helmet`,
   {
     resolve: "gatsby-plugin-sharp",
     options: {
