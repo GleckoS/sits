@@ -19,7 +19,7 @@ const searchAnimation = imageTransition(3)
 
 export default function MapContent({ subset, scale = 4, lat = '52.5144926020739', lon = '13.388333544050788' }) {
 
-    const { wpPage: { retailers: { csvFile } } } = useStaticQuery(graphql`
+    const { wpPage: { retailers: { csvFile, csvFileDiscount } } } = useStaticQuery(graphql`
     query {
         wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
             retailers {
@@ -29,10 +29,18 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
                     publicURL
                   }
                 }
+                csvFileDiscount{
+                    id
+                    localFile {
+                      publicURL
+                    }
+                }
             }
         }
     }
   `)
+
+    const file = subset ? csvFileDiscount || csvFile : csvFile
 
     const [mapCenter] = useState({ Latitude: lat, Longitude: lon })
     const [retailers, setRetailers] = useState(null)
@@ -41,14 +49,14 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
     const [activeDot, setActiveDot] = useState(null)
 
     useEffect(() => {
-        fetch(csvFile.localFile.publicURL)
+        fetch(file.localFile.publicURL)
             .then(res => res.text())
             .then(data => {
                 let arr = csvParser(data)
                 setRetailers(arr)
                 setFiltredRetailers(arr)
             })
-    }, [csvFile.localFile.publicURL])
+    }, [file.localFile.publicURL])
 
     useEffect(() => {
         if (retailers) {
