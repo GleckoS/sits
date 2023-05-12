@@ -26,7 +26,7 @@ const csvParser = (data) => {
 
 exports.createPages = async ({
     graphql,
-    actions: { createPage },
+    actions: { createPage, createRedirect },
 }) => {
 
     // Create redirects
