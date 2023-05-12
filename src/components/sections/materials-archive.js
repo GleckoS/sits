@@ -22,13 +22,13 @@ const filterItemAnimation = imageTransition(-1.5)
 const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
-export default function MaterialsArchive({ location, materials }) {
-    const [sort, setSort] = useQueryParam(sortParamName['en'], 'Popular')
-    const [color, setColor] = useQueryParam(colorParamName['en'], 'All')
-    const [textures, setTextures] = useQueryParam(texturesParamName['en'], 'All')
-    const [features, setFeatures] = useQueryParam(featuresParamName['en'], 'All')
-    const [search, setSearch] = useQueryParam(searchParamName['en'], '')
-    const [page, setPage] = useQueryParam(pageParamName['en'], '1')
+export default function MaterialsArchive({ language, location, materials }) {
+    const [sort, setSort] = useQueryParam(sortParamName[language], 'Popular')
+    const [color, setColor] = useQueryParam(colorParamName[language], 'All')
+    const [textures, setTextures] = useQueryParam(texturesParamName[language], 'All')
+    const [features, setFeatures] = useQueryParam(featuresParamName[language], 'All')
+    const [search, setSearch] = useQueryParam(searchParamName[language], '')
+    const [page, setPage] = useQueryParam(pageParamName[language], '1')
     const [inputValue, setInputValue] = useState('')
 
     useEffect(() => {
@@ -164,18 +164,18 @@ export default function MaterialsArchive({ location, materials }) {
             <Wrapper>
                 <FilterComponent
                     filterAnimation={filterAnimation}
-                    view={view['en']}
-                    reset={reset['en']}
-                    featuresTitle={featuresTitle['en']}
-                    texturesTitle={texturesTitle['en']}
-                    colorRangeTitle={colorRangeTitle['en']}
-                    sortByTitle={sortByTitle['en']}
-                    filterTitle={filterTitle['en']}
-                    sortFilterTitle={sortFilterTitle['en']}
-                    sortBy={sortBy['en']}
-                    colorRange={colorRange['en']}
-                    texturesArr={texturesArr['en']}
-                    featuresArr={featuresArr['en']}
+                    view={view[language]}
+                    reset={reset[language]}
+                    featuresTitle={featuresTitle[language]}
+                    texturesTitle={texturesTitle[language]}
+                    colorRangeTitle={colorRangeTitle[language]}
+                    sortByTitle={sortByTitle[language]}
+                    filterTitle={filterTitle[language]}
+                    sortFilterTitle={sortFilterTitle[language]}
+                    sortBy={sortBy[language]}
+                    colorRange={colorRange[language]}
+                    texturesArr={texturesArr[language]}
+                    featuresArr={featuresArr[language]}
                     setSort={(v) => { setSort(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
                     setColor={(v) => { setColor(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
                     setTextures={(v) => { setTextures(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
@@ -190,6 +190,7 @@ export default function MaterialsArchive({ location, materials }) {
                     inputValue={inputValue}
                     setInputValue={setInputValue}
                     setSearch={setSearch}
+                    language={language}
                 />
                 <Title small={true} title={'Materials'} />
                 <Container>
@@ -215,13 +216,13 @@ export default function MaterialsArchive({ location, materials }) {
                         )}
                         {search !== '' && (
                             <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
-                                {searchFilterTitle['en']}: „{search}”
+                                {searchFilterTitle[language]}{search}
                                 <CloseButton tabIndex={-1} />
                             </FilterItem>
                         )}
-                        {(color !== 'All' || textures !== 'All' || features !== 'All') && (
-                            <FilterItem variants={filterItemAnimation} onClick={() => { clearAll('') }} className="close">
-                                {clearAllTitle['en']}
+                        {(color !== 'All' || textures !== 'All' || features !== 'All' || search !== '') && (
+                            <FilterItem variants={filterItemAnimation} onClick={() => { clearAll() }} className="close">
+                                {clearAllTitle[language]}
                                 <CloseButton tabIndex={-1} />
                             </FilterItem>
                         )}
@@ -230,13 +231,13 @@ export default function MaterialsArchive({ location, materials }) {
                         {filtredProducts.length > 0
                             ? (
                                 <motion.div key='list' variants={gridAnimation} >
-                                    <MaterialList itemKey={sort + color + textures + features + search} page={page} setPage={setPage} color={color} materials={filtredProducts} />
+                                    <MaterialList language={language} itemKey={sort + color + textures + features + search} page={page} setPage={setPage} color={color} materials={filtredProducts} />
                                 </motion.div>
                             )
                             : (
                                 <NoResults key='no-list' variants={gridAnimation} >
-                                    <h2>{noResultTitle['en']}</h2>
-                                    <p>{noResultMessage['en']}</p>
+                                    <h2>{noResultTitle[language]}</h2>
+                                    <p>{noResultMessage[language]}</p>
                                 </NoResults>
                             )
                         }

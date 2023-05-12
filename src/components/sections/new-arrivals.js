@@ -25,7 +25,7 @@ const textAnimation = textTransition(2)
 const sliderAnimation = imageTransition(3)
 const sliderBarAnimation = imageTransition(5)
 
-export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProducts } }) {
+export default function NewArrivals({ language, mt, data: { sectionTitle, text, chosenProducts } }) {
     const slickRef = useRef(null);
     var settings = {
         infinite: false,
@@ -84,7 +84,7 @@ export default function NewArrivals({ mt, data: { sectionTitle, text, chosenProd
                                                 return <div onMouseMove={() => setMouseMoved(true)}
                                                     onMouseDown={() => setMouseMoved(false)}
                                                     key={inEl.popupNames.model + index}>
-                                                    <ProductCard onMouseUp={handleClick} model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
+                                                    <ProductCard language={language} onMouseUp={handleClick} model={inEl.popupNames.model} types={el.products.products.collection.types.nodes} data={el.products.products.collection} image={imageEl.featuredProductImage} />
                                                 </div>
                                             }
                                             return null

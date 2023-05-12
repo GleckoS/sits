@@ -12,32 +12,39 @@ import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
 import Wrapper from "../components/sections/page-wrapper"
 import { accessoriesSectionTitle, collectionCoversTitle, collectionSimilarTitle } from "../texts"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpCollection: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext} />
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
-export default function Collection({ data: { wpCollection, allWpProduct } }) {
+export default function Collection({ data: { wpCollection, allWpProduct }, pageContext }) {
 
   const products = useMemo(() => {
     return allWpProduct.nodes.filter(el => el.products?.collection?.id === wpCollection.id)
   }, [allWpProduct, wpCollection])
   return (
     <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
       <Hero
+        language={pageContext.language}
         itemCategories={wpCollection.types.nodes}
         products={products}
         data={wpCollection}
       />
       {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
       {wpCollection.collections.videoSection?.video && <Video isMarginBottom={!wpCollection.collections.recommendedCovers.covers && !wpCollection.collections.accessoriesSection.accessories} data={wpCollection.collections.videoSection} />}
-      {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers isMarginTop={wpCollection.collections.twoColumn.imageOnTheLeftSide || wpCollection.collections.videoSection?.video} title={collectionCoversTitle['en'] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
-      {wpCollection.collections.accessoriesSection.accessories && <Accessories title={accessoriesSectionTitle['en']} data={wpCollection.collections.accessoriesSection.accessories} />}
-      {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts title={collectionSimilarTitle['en']} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
+      {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers language={pageContext.language} isMarginTop={wpCollection.collections.twoColumn.imageOnTheLeftSide || wpCollection.collections.videoSection?.video} title={collectionCoversTitle[pageContext.language] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
+      {wpCollection.collections.accessoriesSection.accessories && <Accessories title={accessoriesSectionTitle[pageContext.language]} data={wpCollection.collections.accessoriesSection.accessories} />}
+      {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts language={pageContext.language} title={collectionSimilarTitle[pageContext.language]} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
       <Map />
     </Wrapper>
   )
@@ -46,6 +53,16 @@ export default function Collection({ data: { wpCollection, allWpProduct } }) {
 export const query = graphql`
     query collection($id: String!) {
           wpCollection(id: {eq: $id}){
+            language {
+              name
+            }
+            translations {
+              language {
+                name
+                code
+              }
+              uri
+            }
             seo {
               canonical
               metaDesc

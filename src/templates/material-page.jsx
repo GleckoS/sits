@@ -9,12 +9,13 @@ import SimilarProducts from "../components/sections/similar-products"
 import Video from "../components/sections/video"
 import Seo from "../layout/seo"
 import { similarTitle, coversTitle } from "../texts"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpMaterials: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext} />
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
@@ -23,17 +24,22 @@ export default function Material({ location, data: { wpMaterials }, pageContext 
 
   return (
     <Wrapper>
-      <Hero isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video && !wpMaterials.materials.popularProductsUsingThisMaterial.productList} variant={location?.state?.variant} data={wpMaterials} />
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Hero language={pageContext.language} isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video && !wpMaterials.materials.popularProductsUsingThisMaterial.productList} variant={location?.state?.variant} data={wpMaterials} />
       {wpMaterials.materials.popularProductsUsingThisMaterial.productList
-        && <SimilarProducts isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video} materials={true} title={wpMaterials.title + similarTitle['en']} data={wpMaterials.materials.popularProductsUsingThisMaterial.productList} />}
+        && <SimilarProducts language={pageContext.language} isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video} materials={true} title={wpMaterials.title + similarTitle[pageContext.language]} data={wpMaterials.materials.popularProductsUsingThisMaterial.productList} />}
 
       {wpMaterials.materials.videoSection?.video
         && <Video isLast={!wpMaterials.materials.similarCovers.covers} materials={true} data={wpMaterials.materials.videoSection} />}
 
       {wpMaterials.materials.similarCovers.covers
-        && <RecomendedCovers background='white' title={coversTitle['en']} data={wpMaterials.materials.similarCovers} />}
+        && <RecomendedCovers language={pageContext.language} background='white' title={coversTitle[pageContext.language]} data={wpMaterials.materials.similarCovers} />}
 
-      <Map />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }
@@ -41,6 +47,16 @@ export default function Material({ location, data: { wpMaterials }, pageContext 
 export const query = graphql`
     query material($id: String!) {
         wpMaterials(id: {eq: $id}) {
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

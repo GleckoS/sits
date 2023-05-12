@@ -12,7 +12,8 @@ export const MostPopularProductBlock = ({
     setRerender,
     rerender,
     prefiltredArr,
-    title }) => {
+    title,
+    language }) => {
 
     const sortedArr = useMemo(() => {
         let filtrArr = [...prefiltredArr.nodes]
@@ -43,7 +44,7 @@ export const MostPopularProductBlock = ({
         return (
             <InView>
                 <Wrapper variants={animation}>
-                    <motion.h2 variants={contentTitleAnimation}>{title['en']}</motion.h2>
+                    <motion.h2 variants={contentTitleAnimation}>{title[language]}</motion.h2>
                     <ResultsGrid variants={contentGridAnimation}>
                         {sortedArr.map(el => {
                             let isOneElementRendered = false
@@ -58,7 +59,7 @@ export const MostPopularProductBlock = ({
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: .6 }}
                                             key={inEl.popupNames.model + index}>
-                                            <Card setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
+                                            <Card language={language} setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
                                         </motion.div>
                                     }
                                     return null

@@ -1,6 +1,5 @@
 import axios from "axios"
 import { AnimatePresence, motion } from "framer-motion"
-import { Link } from "gatsby"
 import React from "react"
 import { useState } from "react"
 import { useForm } from "react-hook-form"
@@ -9,7 +8,7 @@ import styled from "styled-components"
 import { Label } from "../moleculas/label"
 import { email, name, country, subject, message, errorMessage , title, submit, thans, reply} from "../../texts/contact"
 
-export const Form = ({ privacyPolicyText, inputAnimation, titleAnimation, formAnimation }) => {
+export const Form = ({ language, privacyPolicyText, inputAnimation, titleAnimation, formAnimation }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [isSended, setIsSended] = useState(false)
 
@@ -39,24 +38,24 @@ export const Form = ({ privacyPolicyText, inputAnimation, titleAnimation, formAn
 
     return (
         <Wrapper className="form">
-            <motion.h1 variants={titleAnimation}>{title['en']}</motion.h1>
+            <motion.h1 variants={titleAnimation}>{title[language]}</motion.h1>
             <motion.form autocomplete="off" variants={formAnimation} onSubmit={handleSubmit(onSubmit)}>
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='ail' obj={email} />
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='me' obj={name} />
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='untry' obj={country} />
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='bject' obj={subject} />
-                <Label variants={inputAnimation} register={register} required={true} errors={errors} name='ssage' obj={message} rows='3' />
+                <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='email' obj={email} />
+                <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='fullname' obj={name} />
+                <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='country' obj={country} />
+                <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='subject' obj={subject} />
+                <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='message' obj={message} rows='3' />
                 <Checkbox variants={inputAnimation}>
                     <input {...register('check', { required: true })} type='checkbox' />
                     <div className="check" />
                     <span dangerouslySetInnerHTML={{__html: privacyPolicyText}}/>
                     <AnimatePresence mode='wait'>
                         {errors['check'] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">
-                            {errorMessage['en']}
+                            {errorMessage[language]}
                         </motion.span>}
                     </AnimatePresence>
                 </Checkbox>
-                <Submit variants={inputAnimation}>{submit['en']}</Submit>
+                <Submit variants={inputAnimation}>{submit[language]}</Submit>
                 <AnimatePresence mode="wait">
                     {isSended && (
                         <Success initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0 }} className={isSended ? 'sended' : ""}>
@@ -67,8 +66,8 @@ export const Form = ({ privacyPolicyText, inputAnimation, titleAnimation, formAn
                                     <path id="Path_674" data-name="Path 674" d="M17.742,37.577a2.589,2.589,0,0,0,2.2-1.26L37.162,9.4a3.907,3.907,0,0,0,.631-1.72,2.152,2.152,0,0,0-2.237-2.042A2.467,2.467,0,0,0,33.648,6.86L17.633,32.228,9.448,22.151a2.291,2.291,0,0,0-2.02-1.078,2.126,2.126,0,0,0-2.115,2.153,2.9,2.9,0,0,0,.651,1.726l9.478,11.365A2.731,2.731,0,0,0,17.742,37.577Z" transform="translate(13.982 14.838)" fill="rgba(0,0,0,0.85)" />
                                 </g>
                             </svg>
-                            <span className="title">{thans['en']}</span>
-                            <span className="text">{reply['en']}</span>
+                            <span className="title">{thans[language]}</span>
+                            <span className="text">{reply[language]}</span>
                         </Success>
                     )}
                 </AnimatePresence>

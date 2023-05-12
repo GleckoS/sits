@@ -31,7 +31,7 @@ const answerAnimation = (count) => {
     }
 }
 
-export default function FAQ({ data }) {
+export default function FAQ({ language, data }) {
 
     const [openedQuestion, setOpenedQuestion] = useState(0)
 
@@ -39,7 +39,7 @@ export default function FAQ({ data }) {
         <InView>
             <Wrapper>
                 <Container>
-                    <motion.h2 variants={titleAnimation}>{title['en']}</motion.h2>
+                    <motion.h2 variants={titleAnimation}>{title[language]}</motion.h2>
                     <Grid >
                         <Questions variants={questionGridAnimation}>
                             {data.map((el, index) => (

@@ -3,18 +3,19 @@ import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 import { linkTransition, textTransition } from '../../helpers/animation-controller'
+import { collectionUrl } from '../../texts/urls'
 import { exploreButton } from './../../texts'
 
 const titleAnimation = textTransition(3)
 const textAnimation = textTransition(4)
 const linkAnimation = linkTransition(5)
 
-export const TextBlock = ({ title, description, slug }) => (
+export const TextBlock = ({ title, description, slug, language }) => (
     <Wrapper className="t">
         <motion.h2 variants={titleAnimation} className="title">{title}</motion.h2>
         <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: description }} />
         <motion.div className='underline' variants={linkAnimation}>
-            <Link to={'/collection/' + slug + '/'}>{exploreButton['en']}</Link>
+            <Link to={collectionUrl[language] + slug + '/'}>{exploreButton[language]}</Link>
         </motion.div>
     </Wrapper>
 )

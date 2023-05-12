@@ -37,7 +37,7 @@ const fileAnimation = {
 }
 
 
-export default function AssemblyInstructions() {
+export default function AssemblyInstructions({language}) {
 
     const { allWpCollection: { nodes } } = useStaticQuery(graphql`
     query {
@@ -154,9 +154,9 @@ export default function AssemblyInstructions() {
         <InView>
             <Wrapper>
                 <Container>
-                    <motion.h2 variants={titleAnimation}>{title['en']}</motion.h2>
+                    <motion.h2 variants={titleAnimation}>{title[language]}</motion.h2>
                     <Label onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!inputValue) }} variants={inputAnimation}>
-                        <span className={isActive || inputValue ? 'active' : ''}>{searchPlaceholder['en']}</span>
+                        <span className={isActive || inputValue ? 'active' : ''}>{searchPlaceholder[language]}</span>
                         <input onChange={(v) => { changeFilter(v) }} />
                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">

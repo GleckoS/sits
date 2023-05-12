@@ -15,7 +15,8 @@ export const FavouriteProductBlock = ({
   setCount,
   prefiltredArr,
   filter,
-  title
+  title,
+  language
 }) => {
   const filtredArr = useMemo(() => {
     let arr = prefiltredArr.nodes
@@ -63,7 +64,7 @@ export const FavouriteProductBlock = ({
     renderCount.current = 0
     return (
       <Wrapper variants={animation}>
-        <motion.h2 variants={contentTitleAnimation}>{title['en']} ({count})</motion.h2>
+        <motion.h2 variants={contentTitleAnimation}>{title[language]} ({count})</motion.h2>
         <ResultsGrid variants={contentGridAnimation}>
           {filtredArr?.map((el) => {
             let renderedlist = []
@@ -95,6 +96,7 @@ export const FavouriteProductBlock = ({
                     return (
                       <React.Fragment key={inEl.popupNames.model + index}>
                         <Card
+                          language={language}
                           setRerender={setRerender}
                           image={imageEl.featuredProductImage}
                           data={el.products.collection}

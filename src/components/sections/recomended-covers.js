@@ -15,18 +15,24 @@ const itemAnimation = {
     animate: { opacity: 1, transition: { duration: .4 } }
 }
 
-export default function RecomendedCovers({ isMarginTop, background, title, data: { covers } }) {
+export default function RecomendedCovers({ language, isMarginTop, background, title, data: { covers } }) {
     return (
         <InView>
             <Wrapper data-margin-top={isMarginTop ? 'true' : 'false'} className={background}>
                 <Container>
                     <motion.h2 variants={titleAnimation}>{title}</motion.h2>
                     <Grid variants={gridAnimation}>
-                        {covers.map((el, index) => (
-                            <motion.div variants={itemAnimation} key={el.cover.title + index}>
-                                <MaterialCard variant={el.colorVariantName} data={el.cover} />
-                            </motion.div>
-                        ))}
+                        {covers.map((el, index) => {
+                            if (!el.cover) {
+                                return null
+                            }
+
+                            return (
+                                <motion.div variants={itemAnimation} key={el.cover.title + index}>
+                                    <MaterialCard language={language} variant={el.colorVariantName} data={el.cover} />
+                                </motion.div>
+                            )
+                        })}
                     </Grid>
                 </Container>
             </Wrapper>

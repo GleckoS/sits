@@ -5,7 +5,7 @@ import { ResultsGrid } from "../atoms/result-grid"
 import { motion } from "framer-motion"
 import { Card } from "../moleculas/search-product-card"
 
-export const FavouriteCollectionBlock = ({ contentGridAnimation, contentTitleAnimation, animation, setRerender, count, setCount, prefiltredArr, filter, title }) => {
+export const FavouriteCollectionBlock = ({ language, contentGridAnimation, contentTitleAnimation, animation, setRerender, count, setCount, prefiltredArr, filter, title }) => {
 
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
@@ -43,14 +43,14 @@ export const FavouriteCollectionBlock = ({ contentGridAnimation, contentTitleAni
         renderCount.current = 0
         return (
             <Wrapper variants={animation}>
-                <motion.h2 variants={contentTitleAnimation}>{title['en']} ({filtredArr.length})</motion.h2>
+                <motion.h2 variants={contentTitleAnimation}>{title[language]} ({filtredArr.length})</motion.h2>
                 <ResultsGrid variants={contentGridAnimation}>
                     {filtredArr.map(el => {
                         renderCount.current += 1
                         let image = el.collections.generalCollectionInformation?.collectionPagePreviewImage?.localFile
                             ? el.collections.generalCollectionInformation?.collectionPagePreviewImage
                             : el.collections.generalCollectionInformation?.collectionGallery[0]
-                        return <Card setRerender={setRerender} type={'collections'} image={image} data={el} model={el.title} />
+                        return <Card language={language} setRerender={setRerender} type={'collections'} image={image} data={el} model={el.title} />
                     })}
                 </ResultsGrid>
                 {count > showCount && (

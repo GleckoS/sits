@@ -5,12 +5,13 @@ import Content from "../components/sections/favourites-content"
 import Map from "../components/sections/map"
 import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
@@ -18,8 +19,13 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function FavouritesPage({ data, pageContext, location }) {
   return (
     <Wrapper>
-      <Content data={data} />
-      <Map />
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Content language={pageContext.language} data={data} />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }
@@ -27,6 +33,16 @@ export default function FavouritesPage({ data, pageContext, location }) {
 export const query = graphql`
     query favourites($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             id
             seo {
               canonical

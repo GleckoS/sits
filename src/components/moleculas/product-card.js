@@ -2,6 +2,7 @@ import { Link, navigate } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import React from "react"
 import styled from "styled-components"
+import { collectionUrl } from "../../texts/urls"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from './../atoms/category'
 
@@ -19,11 +20,12 @@ export const ProductCard = ({
     data,
     types,
     image,
-    categoryClick = () => { }
+    categoryClick = () => { },
+    language
 }) => (
     <Wrapper className="product-card">
         <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={model} />
-        <Link onDragStart={event => event.preventDefault()} aria-label={data.title} onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, '/collection/' + data.slug + '/') }} className="link" to={'/collection/' + data.slug + '/'} />
+        <Link onDragStart={event => event.preventDefault()} aria-label={data.title} onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, collectionUrl[language] + data.slug + '/') }} className="link product-card" to={collectionUrl[language] + data.slug + '/'} />
         <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
         <Flex className={threeColumn ? 'three-column' : ''}>
             <span className="archive-title">{data.title}</span>

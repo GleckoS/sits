@@ -14,6 +14,8 @@ import {
     armchairsTitle, sofasTitle, coffeeTablesTitle, diningChairsTitle, footstoolsTitle, outdoorFurnituresTitle, materialsTitle,
     searchPlaceholder as placeholder, searchPageTitle as pageTitle, searchNoResultMessage, contatcButton
 } from '../../texts'
+import { contactUrls } from '../../texts/urls'
+import { searchParamName } from '../../texts/filter'
 
 
 const inputAnimation = imageTransition(1)
@@ -37,13 +39,13 @@ const contentGridAnimation = {
     animate: { opacity: 1, transition: { duration: .6 } }
 }
 
-export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures, location }) {
+export default function Search({ language, Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures, location }) {
 
     const [isActive, setIsActive] = useState(false)
     // REWORK
     const searchValue = useMemo(() => {
         const urlParams = new URLSearchParams(location.search)
-        const search = urlParams.get('search')
+        const search = urlParams.get(searchParamName[language])
         return search ? search : ''
     }, [location])
 
@@ -62,7 +64,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
         if (e.key === "Enter") {
             window.scrollTo(0, 0)
             setIsActive(!!input)
-            navigate(input ? ('?search=' + input) : '')
+            navigate(input ? ('?' + searchParamName[language] + '=' + input) : '')
         }
     }
 
@@ -78,9 +80,9 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                         return (
                             <Content>
                                 <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder['en']}</span>
+                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
                                     <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                                    <Link onClick={() => { window.scrollTo(0, 0); setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                    <Link onClick={() => { window.scrollTo(0, 0); setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?' + searchParamName[language] + '=' + context.searchInputValue) : ''}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                                 <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
@@ -99,11 +101,11 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                     return (
                         <InView>
                             <Placeholder variants={inputAnimation}>
-                                <h1>{pageTitle['en']}</h1>
+                                <h1>{pageTitle[language]}</h1>
                                 <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder['en']}</span>
+                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
                                     <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                                    <Link onClick={() => { setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                    <Link onClick={() => { setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?' + searchParamName[language] + '=' + context.searchInputValue) : ''}>
                                         <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                             <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                                 <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
@@ -115,7 +117,7 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                                         </svg>
                                     </Link>
                                 </Input>
-                                <BrownLink to="/contact/">{contatcButton['en']}</BrownLink>
+                                <BrownLink to={contactUrls[language]}>{contatcButton[language]}</BrownLink>
                             </Placeholder>
                         </InView>
                     )
@@ -129,9 +131,9 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                                 <myContext.Consumer>
                                     {context => (
                                         <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                            <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder['en']}</span>
+                                            <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
                                             <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                                            <Link onClick={() => { setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?search=' + context.searchInputValue) : ''}>
+                                            <Link onClick={() => { setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?' + searchParamName[language] + '=' + context.searchInputValue) : ''}>
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                                     <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                                         <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
@@ -145,18 +147,18 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                                         </Input>
                                     )}
                                 </myContext.Consumer>
-                                <p>{searchNoResultMessage['en'].replace('<search>', searchValue)}</p>
-                                <BrownLink to="/contact/">{contatcButton['en']}</BrownLink>
+                                <p>{searchNoResultMessage[language].replace('<search>', searchValue)}</p>
+                                <BrownLink to={contactUrls[language]}>{contatcButton[language]}</BrownLink>
                             </NoResults>
                         </InView>
                     )}
-                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} searchValue={searchValue} />
-                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} searchValue={searchValue} />
-                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} searchValue={searchValue} />
-                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} searchValue={searchValue} />
-                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} searchValue={searchValue} />
-                    <ResultProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} searchValue={searchValue} />
-                    <ResultMaterialBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue} />
+                    <ResultProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} searchValue={searchValue} />
+                    <ResultProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} searchValue={searchValue} />
+                    <ResultProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} searchValue={searchValue} />
+                    <ResultProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} searchValue={searchValue} />
+                    <ResultProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} searchValue={searchValue} />
+                    <ResultProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} searchValue={searchValue} />
+                    <ResultMaterialBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={setRerender} rerender={rerender} count={coversItemCount} setCount={coversFurnituresItemCount} title={materialsTitle} prefiltredArr={Materials} searchValue={searchValue} />
                 </Container>
             </Results>
             {(!searchValue || (sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0)) && (
@@ -165,12 +167,12 @@ export default function Search({ Materials, Sofas, Armchairs, CoffeeTables, Dini
                         <InView margin="-100px 0px -200px 0px" >
                             <motion.h2 variants={popularTitleAnimation}>Check our most popular products</motion.h2>
                         </InView>
-                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={sofasTitle} prefiltredArr={Sofas} />
-                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={armchairsTitle} prefiltredArr={Armchairs} />
-                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} />
-                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={diningChairsTitle} prefiltredArr={DiningChairs} />
-                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={footstoolsTitle} prefiltredArr={Footstools} />
-                        <MostPopularProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} />
+                        <MostPopularProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={sofasTitle} prefiltredArr={Sofas} />
+                        <MostPopularProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={armchairsTitle} prefiltredArr={Armchairs} />
+                        <MostPopularProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} />
+                        <MostPopularProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={diningChairsTitle} prefiltredArr={DiningChairs} />
+                        <MostPopularProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={footstoolsTitle} prefiltredArr={Footstools} />
+                        <MostPopularProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} />
                     </Container>
                 </MostPopularProducts>
             )}

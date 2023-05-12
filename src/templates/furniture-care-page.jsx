@@ -8,31 +8,47 @@ import Handbook from "../components/sections/handbook"
 import Map from "../components/sections/map"
 import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
 export default function FurnitureCarePage({ data: { wpPage: { title, furnitureCare } }, pageContext, location }) {
-    return (
-        <Wrapper>
-            <Title title={title} />
-            <Faq data={furnitureCare.faq} />
-            <Handbook data={furnitureCare.handbook}/>
-            <AssemblyInstructions /> 
-            <Map />
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Title title={title} />
+      <Faq language={pageContext.language} data={furnitureCare.faq} />
+      <Handbook data={furnitureCare.handbook} />
+      <AssemblyInstructions language={pageContext.language} />
+      <Map language={pageContext.language} />
+    </Wrapper>
+  )
 }
 
 export const query = graphql`
     query furnitureCare($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

@@ -5,37 +5,54 @@ import Map from "../components/sections/map"
 import Wrapper from "../components/sections/page-wrapper"
 import Search from "../components/sections/search"
 import Seo from "../layout/seo"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
 export default function SearchPage({ data: { Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures, wpPage }, pageContext, location }) {
-    return (
-        <Wrapper>
-            <Search
-                location={location}
-                Sofas={Sofas}
-                Armchairs={Armchairs}
-                CoffeeTables={CoffeeTables}
-                DiningChairs={DiningChairs}
-                Footstools={Footstools}
-                OutdoorFurnitures={OutdoorFurnitures}
-                Materials={Materials}
-            />
-            <Map />
-        </Wrapper>
-    )
+  return (
+    <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Search
+        language={pageContext.language}
+        location={location}
+        Sofas={Sofas}
+        Armchairs={Armchairs}
+        CoffeeTables={CoffeeTables}
+        DiningChairs={DiningChairs}
+        Footstools={Footstools}
+        OutdoorFurnitures={OutdoorFurnitures}
+        Materials={Materials}
+      />
+      <Map language={pageContext.language} />
+    </Wrapper>
+  )
 }
 
 export const query = graphql`
     query search($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             id
             seo {
               canonical

@@ -5,6 +5,7 @@ import styled from 'styled-components'
 import { Container } from '../../components/atoms/container'
 import { myContext } from "../../hooks/provider"
 import { manageCookies, left, right } from '../../texts'
+import { homepageUrl } from '../../texts/urls'
 
 const logoAnimation = {
   initial: { opacity: 0 },
@@ -38,7 +39,7 @@ const socialAnimation = {
   animate: { opacity: 1, transition: { duration: .5 } }
 }
 
-export default function Footer({ setIsCookiesActive }) {
+export default function Footer({ language, setIsCookiesActive }) {
 
   const section = useRef(null)
   const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
@@ -57,7 +58,7 @@ export default function Footer({ setIsCookiesActive }) {
               <Container className='container'>
                 <Menu>
                   <motion.div variants={logoAnimation}>
-                    <Link to='/' className='logo' aria-label='link to homepage'>
+                    <Link to={homepageUrl[language]} className='logo' aria-label='link to homepage'>
                       <svg
                         xmlns='http://www.w3.org/2000/svg'
                         width='161.888'
@@ -73,7 +74,7 @@ export default function Footer({ setIsCookiesActive }) {
                   </motion.div>
                   <Center>
                     <motion.div variants={leftColumnAnimation}>
-                      {left['en'].map((el) => (
+                      {left[language].map((el) => (
                         <motion.div variants={leftLinkAnimation} key={el.name}>
                           <Link className='left styled-link' to={el.url}>
                             {el.name}
@@ -81,11 +82,11 @@ export default function Footer({ setIsCookiesActive }) {
                         </motion.div>
                       ))}
                       <motion.button variants={leftLinkAnimation} className='left styled-link' onClick={() => { setIsCookiesActive(true) }}>
-                        {manageCookies['en']}
+                        {manageCookies[language]}
                       </motion.button>
                     </motion.div>
                     <motion.div variants={rightColumnAnimation}>
-                      {right['en'].map((el) => (
+                      {right[language].map((el) => (
                         <motion.div variants={rightLinkAnimation} key={el.name}>
                           <Link className='right styled-link' to={el.url}>
                             {el.name}

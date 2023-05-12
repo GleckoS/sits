@@ -1,6 +1,17 @@
 
 export const sortBy = {
-    en: [
+    EN: [
+        {
+            name: 'Popular', val: 'Popular' // val must be popular in each language
+        },
+        {
+            name: 'Alphabetical', val: 'Alphabetical'
+        },
+        {
+            name: 'New Arrivals', val: 'New Arrivals'
+        }
+    ],
+    FR: [
         {
             name: 'Popular', val: 'Popular' // val must be popular in each language
         },
@@ -14,7 +25,33 @@ export const sortBy = {
 }
 
 export const colorRange = {
-    en: [
+    EN: [
+        {
+            name: 'All Colors', val: 'All' // val must be All in each language
+        },
+        {
+            name: 'Natural', val: "natural"
+        },
+        {
+            name: 'Light Grey', val: "lightGrey"
+        },
+        {
+            name: 'Dark Grey', val: 'darkGrey'
+        },
+        {
+            name: 'Blue', val: "blue"
+        },
+        {
+            name: 'Green', val: "green"
+        },
+        {
+            name: 'Brown', val: "brown"
+        },
+        {
+            name: 'Sunset', val: "sunset"
+        }
+    ],
+    FR: [
         {
             name: 'All Colors', val: 'All' // val must be All in each language
         },
@@ -44,7 +81,24 @@ export const colorRange = {
 
 
 export const sofasTypes = {
-    en: [
+    EN: [
+        {
+            name: 'All Types', val: 'All' // val must be All in each language
+        },
+        {
+            name: 'Regular Sofas', val: 'Regular Sofas'
+        },
+        {
+            name: 'Sofa Beds', val: 'Sofa Beds'
+        },
+        {
+            name: 'Corner Sofas', val: 'Corner Sofas'
+        },
+        {
+            name: 'Modular Systems', val: 'Modular Systems'
+        }
+    ],
+    FR: [
         {
             name: 'All Types', val: 'All' // val must be All in each language
         },
@@ -64,7 +118,18 @@ export const sofasTypes = {
 }
 
 export const upholsterysArr = {
-    en: [
+    EN: [
+        {
+            name: 'All upholsteries', val: 'All'
+        },
+        {
+            name: 'Fabric', val: 'Fabric'
+        },
+        {
+            name: 'Leather', val: 'Leather'
+        },
+    ],
+    FR: [
         {
             name: 'All upholsteries', val: 'All'
         },
@@ -78,7 +143,18 @@ export const upholsterysArr = {
 }
 
 export const covesArr = {
-    en: [
+    EN: [
+        {
+            name: 'All Covers', val: 'All'
+        },
+        {
+            name: 'Fixed', val: 'Fixed'
+        },
+        {
+            name: 'Removable', val: 'Removable'
+        },
+    ],
+    FR: [
         {
             name: 'All Covers', val: 'All'
         },
@@ -92,7 +168,27 @@ export const covesArr = {
 }
 
 export const texturesArr = {
-    en: [
+    EN: [
+        {
+            name: 'All Textures', val: 'All' // val must be All in each language
+        },
+        {
+            name: 'Plain', val: 'Plain'
+        },
+        {
+            name: 'Chunky Structure', val: 'Structure'
+        },
+        {
+            name: 'Velvet', val: 'Velvet'
+        },
+        {
+            name: 'Leather', val: 'Leather'
+        },
+        {
+            name: 'Chenille', val: 'Chenille'
+        }
+    ],
+    FR: [
         {
             name: 'All Textures', val: 'All' // val must be All in each language
         },
@@ -115,7 +211,30 @@ export const texturesArr = {
 }
 
 export const featuresArr = {
-    en: [
+    EN: [
+        {
+            name: 'All Features', val: 'All' // val must be All in each language
+        },
+        {
+            name: 'Washable', val: 'Washable'
+        },
+        {
+            name: 'Eco-Friendly', val: 'Eco-Friendly'
+        },
+        {
+            name: 'Natural', val: 'Natural'
+        },
+        {
+            name: 'Easy to Clean', val: 'Easy to Clean'
+        },
+        {
+            name: 'Pet-Friendly', val: 'Pet-Friendly'
+        },
+        {
+            name: 'Outdoor', val: 'Outdoor'
+        }
+    ],
+    FR: [
         {
             name: 'All Features', val: 'All' // val must be All in each language
         },
@@ -141,91 +260,116 @@ export const featuresArr = {
 }
 
 export const clearAllTitle = {
-    'en': 'Clear all filters'
+    EN: 'Clear all filters',
+    FR: 'Clear all filters'
 }
 
 export const filterTitle = {
-    en: 'Filter'
+    EN: 'Filter',
+    FR: 'Filter'
 }
 
 export const sortByTitle = {
-    en: 'Sort by'
+    EN: 'Sort by',
+    FR: 'Sort by'
 }
 
 export const colorRangeTitle = {
-    en: 'Color Range'
+    EN: 'Color Range',
+    FR: 'Color Range'
 }
 
 export const texturesTitle = {
-    en: 'Textures'
+    EN: 'Textures',
+    FR: 'Textures'
 }
 
 export const featuresTitle = {
-    en: 'Features'
+    EN: 'Features',
+    FR: 'Features'
 }
 
 export const reset = {
-    en: 'RESET ALL'
+    EN: 'RESET ALL',
+    FR: 'RESET ALL'
 }
 
 export const view = {
-    en: 'VIEW'
+    EN: 'VIEW',
+    FR: 'VIEW'
 }
 
 export const sortFilterTitle = {
-    en: 'Sort & Filter'
+    EN: 'Sort & Filter',
+    FR: 'Sort & Filter'
 }
 
 export const noResultTitle = {
-    en: 'No results'
+    EN: 'No results',
+    FR: 'No results'
 }
 
 export const noResultMessage = {
-    en: `We couldn’t find any matches for your filters.`
+    EN: `We couldn’t find any matches for your filters.`,
+    FR: `We couldn’t find any matches for your filters.`
 }
 
 export const sortParamName = {
-    en: 'sort'
+    EN: 'sort',
+    FR: 'sort'
 }
 
 export const colorParamName = {
-    en: 'color'
+    EN: 'color',
+    FR: 'color'
 }
 
 export const texturesParamName = {
-    en: 'textures'
+    EN: 'textures',
+    FR: 'textures'
 }
 
 export const featuresParamName = {
-    en: 'features'
+    EN: 'features',
+    FR: 'features'
 }
 
 export const searchParamName = {
-    en: 'search'
+    EN: 'search',
+    FR: 'search'
 }
 
 export const pageParamName = {
-    en: 'page'
+    EN: 'page',
+    FR: 'strona'
 }
 
 export const typeParamName = {
-    en: 'type'
+    EN: 'type',
+    FR: 'type'
 }
 
 export const coverParamName = {
-    en: 'cover'
+    EN: 'cover',
+    FR: 'cover'
 }
 
 export const upholsteryParamName = {
-    en: 'upholstery'
+    EN: 'upholstery',
+    FR: 'upholstery'
 }
+
 export const upholsterysTitle = {
-    en: 'Type of upholstery'
+    EN: 'Type of upholstery',
+    FR: 'Type of upholstery'
 }
+
 export const coversTitle = {
-    en: 'Type of cover'
+    EN: 'Type of cover',
+    FR: 'Type of cover'
 }
 
 export const typeTitle = {
-    en: 'Type of sofa'
+    EN: 'Type of sofa',
+    FR: 'Type of sofa'
 }

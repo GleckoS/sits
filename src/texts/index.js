@@ -1,136 +1,177 @@
 export const downloadText = {
-    'en': 'Download Product Sheet'
+    EN: 'Download Product Sheet',
+    FR: 'Download Product Sheet'
 }
 
 export const downloadFabricText = {
-    'en': 'Download Fabric Specification'
+    EN: 'Download Fabric Specification',
+    FR: 'Download Fabric Specification'
 }
 
 export const featuresText = {
-    'en': 'FEATURES'
+    EN: 'FEATURES',
+    FR: 'FEATURES'
 }
 
 export const textureText = {
-    'en': 'TEXTURE'
+    EN: 'TEXTURE',
+    FR: 'TEXTURE'
 }
 
 export const careInstructionsText = {
-    'en': 'CARE INSTRUCTIONS'
+    EN: 'CARE INSTRUCTIONS',
+    FR: 'CARE INSTRUCTIONS'
 }
 
 export const upholsterysText = {
-    'en': 'UPSHOLSTERYS'
+    EN: 'UPSHOLSTERYS',
+    FR: 'UPSHOLSTERYS'
 }
 
 export const confortText = {
-    'en': 'COMFORT'
+    EN: 'COMFORT',
+    FR: 'COMFORT'
 }
 
 export const coversText = {
-    'en': 'COVERS'
+    EN: 'COVERS',
+    FR: 'COVERS'
 }
 
 export const dimensionsText = {
-    'en': 'Dimensions'
+    EN: 'Dimensions',
+    FR: 'Dimensions'
 }
 
 export const legsText = {
-    'en': 'Legs'
+    EN: 'Legs',
+    FR: 'Legs'
 }
 
 export const accessoriesText = {
-    'en': 'Accessories'
+    EN: 'Accessories',
+    FR: 'Accessories'
 }
 
 export const armrestText = {
-    'en': 'Armrest'
+    EN: 'Armrest',
+    FR: 'Armrest'
 }
 
 export const faqTitle = {
-    en: 'FAQ'
+    EN: 'FAQ',
+    FR: 'FAQ'
 }
 
 export const assemblyTitle = {
-    en: 'Assembly instructions'
+    EN: 'Assembly instructions',
+    FR: 'Assembly instructions'
 }
 
 export const searchPlaceholder = {
-    en: 'Search'
+    EN: 'Search',
+    FR: 'Search'
 }
 
 export const exploreButton = {
-    en: 'EXPLORE'
+    EN: 'EXPLORE',
+    FR: 'EXPLORE'
 }
 
 export const noResultTitle = {
-    en: 'You have No Favorites yet'
+    EN: 'You have No Favorites yet',
+    FR: 'You have No Favorites yet'
 }
 
 export const noResultMessage = {
-    en: `Favorized products and covers will show up here.<br/>
+    EN: `Favorized products and covers will show up here.<br/>
+    Great! Take me to <a href='/products/'>products</a> or <a href='/material/'>covers</a>.`,
+    FR: `Favorized products and covers will show up here.<br/>
     Great! Take me to <a href='/products/'>products</a> or <a href='/material/'>covers</a>.`
 }
 
 export const collectionsTitle = {
-    en: 'Collections'
+    EN: 'Collections',
+    FR: 'Collections'
 }
 export const sofasTitle = {
-    en: 'Sofas'
+    EN: 'Sofas',
+    FR: 'Sofas'
 }
 export const armchairsTitle = {
-    en: 'Armchairs'
+    EN: 'Armchairs',
+    FR: 'Armchairs'
 }
 export const coffeeTablesTitle = {
-    en: 'Coffee Tables'
+    EN: 'Coffee Tables',
+    FR: 'Coffee Tables'
 }
 export const diningChairsTitle = {
-    en: 'Dining Chairs'
+    EN: 'Dining Chairs',
+    FR: 'Dining Chairs'
 }
 export const footstoolsTitle = {
-    en: 'Footstools'
+    EN: 'Footstools',
+    FR: 'Footstools'
 }
 export const outdoorFurnituresTitle = {
-    en: 'Outdoor Furniture'
+    EN: 'Outdoor Furniture',
+    FR: 'Outdoor Furniture'
 }
 export const materialsTitle = {
-    en: 'Covers'
+    EN: 'Covers',
+    FR: 'Covers'
 }
 export const colorsTitle = {
-    en: 'Colors of covers'
+    EN: 'Colors of covers',
+    FR: 'Colors of covers'
 }
 export const favouritesTitle = {
-    en: 'My Favourites'
+    EN: 'My Favourites',
+    FR: 'My Favourites'
 }
 
 export const similarTitle = {
-    en: 'is a popular choice for these models'
+    EN: 'is a popular choice for these models',
+    FR: 'is a popular choice for these models'
 }
 
 export const coversTitle = {
-    en: 'Similar Covers'
+    EN: 'Similar Covers',
+    FR: 'Similar Covers'
 }
 
 
 export const collectionSimilarTitle = {
-    en: 'Similar products'
+    EN: 'Similar products',
+    FR: 'Similar products'
 }
 
 export const collectionCoversTitle = {
-    en: 'Recommended covers for '
+    EN: 'Recommended covers for ',
+    FR: 'Recommended covers for '
 }
 export const allProductsTitle = {
-    en: 'Discover our collections'
+    EN: 'Discover our collections',
+    FR: 'Discover our collections'
 }
 export const newArrivalsTitle = {
-    en: 'New Arrivals'
+    EN: 'New Arrivals',
+    FR: 'New Arrivals'
 }
 
 export const manageCookies = {
-    en: 'MANAGE COOKIES'
+    EN: 'MANAGE COOKIES',
+    FR: 'MANAGE COOKIES'
 }
 
 export const left = {
-    en: [
+    EN: [
+        { name: 'ABOUT', url: '/about-sits/' },
+        { name: 'CONSCIOUS', url: '/conscious/' },
+        { name: 'LEGAL', url: '/legal/' }
+    ],
+    FR: [
         { name: 'ABOUT', url: '/about-sits/' },
         { name: 'CONSCIOUS', url: '/conscious/' },
         { name: 'LEGAL', url: '/legal/' }
@@ -138,14 +179,19 @@ export const left = {
 }
 
 export const right = {
-    en: [
+    EN: [
+        { name: 'WHERE TO BUY', url: '/where-to-buy/' },
+        { name: 'CONTACT', url: '/contact/' },
+        { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' }
+    ],
+    FR: [
         { name: 'WHERE TO BUY', url: '/where-to-buy/' },
         { name: 'CONTACT', url: '/contact/' },
         { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' }
     ]
 }
 export const linksLeft = {
-    en: [
+    EN: [
         { name: 'Best Seller', url: '/best-sellers/' },
         { name: 'New Arrivals', url: '/new-arrivals/' },
         { name: 'All products', url: '/products/' },
@@ -157,11 +203,34 @@ export const linksLeft = {
         { name: 'Outdoor Furniture', url: '/products/outdoor-furnitures/' },
         { name: 'Covers', url: '/material/' },
         { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
+    ],
+    FR: [
+        { name: 'Best Seller', url: '/fr/best-sellers/' },
+        { name: 'New Arrivals', url: '/fr/new-arrivals/' },
+        { name: 'All products', url: '/fr/products/' },
+        { name: 'Sofas', url: '/fr/products/sofas/' },
+        { name: 'Armchairs', url: '/fr/products/armchairs/' },
+        { name: 'Dining Chairs', url: '/fr/products/dining-chairs/' },
+        { name: 'Footstools', url: '/fr/products/footstools/' },
+        { name: 'Coffee Tables', url: '/fr/products/coffee-tables/' },
+        { name: 'Outdoor Furniture', url: '/fr/products/outdoor-furnitures/' },
+        { name: 'Covers', url: '/fr/materials/' },
+        { name: 'My Favourites', icon: 'hearth', url: '/fr/favourites/' }
     ]
 }
 
 export const linksRight = {
-    en: [
+    EN: [
+        { name: 'About Sits', url: '/about-sits/' },
+        { name: 'Conscious', url: '/conscious/' },
+        { name: 'Furniture Care', url: '/furniture-care/' },
+        { name: 'Catalogues', url: '/catalogues/' },
+        { name: 'Virtual showroom', url: 'https://showroom.sits.eu/' },
+        { name: 'Sales Representative', url: '/sales-representative/' },
+        { name: 'Where to Buy', url: '/where-to-buy/' },
+        { name: 'Contact', url: '/contact/' }
+    ],
+    FR: [
         { name: 'About Sits', url: '/about-sits/' },
         { name: 'Conscious', url: '/conscious/' },
         { name: 'Furniture Care', url: '/furniture-care/' },
@@ -174,94 +243,133 @@ export const linksRight = {
 }
 
 export const furnitureTitle = {
-    en: 'FURNITURE'
+    EN: 'FURNITURE',
+    FR: 'MEUBLES'
 }
 
 export const companyTitle = {
-    en: 'COMPANY'
+    EN: 'COMPANY',
+    FR: 'ENTREPRISE'
 }
 
 export const copySuccessed = {
-    en: 'Configuration copied successfully'
+    EN: 'Configuration copied successfully',
+    FR: 'Configuration copied successfully'
 }
 
 export const materialTitle = {
-    en: 'Material:'
+    EN: 'Material:',
+    FR: 'Material:'
 }
 
 export const tableTopTitle = {
-    en: 'Table top material:'
+    EN: 'Table top material:',
+    FR: 'Table top material:'
 }
 
 export const leatherTitle = {
-    en: 'Leather:'
+    EN: 'Leather:',
+    FR: 'Leather:'
 }
 
 export const fabricTitle = {
-    en: 'Fabric:'
+    EN: 'Fabric:',
+    FR: 'Fabric:'
 }
 
 export const modelTitle = {
-    en: 'Model:'
+    EN: 'Model:',
+    FR: 'Model:'
 }
 
 export const legsTitle = {
-    en: 'Legs:'
+    EN: 'Legs:',
+    FR: 'Legs:'
 }
 
 export const legsMaterialTitle = {
-    en: 'Material of the legs:'
+    EN: 'Material of the legs:',
+    FR: 'Material of the legs:'
 }
 
 export const comfortTitle = {
-    en: 'Comfort:'
+    EN: 'Comfort:',
+    FR: 'Comfort:'
 }
 
 export const coverTitle = {
-    en: 'Cover:'
+    EN: 'Cover:',
+    FR: 'Cover:'
 }
 
 export const armrestTitle = {
-    en: 'Armrests:'
+    EN: 'Armrests:',
+    FR: 'Armrests:'
 }
 
 export const accessoriesTitle = {
-    en: 'Accessories:'
+    EN: 'Accessories:',
+    FR: 'Accessories:'
 }
 
 export const copyConfig = {
-    en: 'Copy Configuration'
+    EN: 'Copy Configuration',
+    FR: 'Copy Configuration'
 }
 
 export const loadMore = {
-    en: 'LOAD MORE'
+    EN: 'LOAD MORE',
+    FR: 'LOAD MORE'
 }
 
 export const removeMessage = {
-    en: ' removed from '
+    EN: ' removed from ',
+    FR: ' removed from '
 }
 
 export const addMessage = {
-    en: ` added to `
+    EN: ` added to `,
+    FR: ` added to `
 }
 
 export const favouriteLink = {
-    en: 'MY&nbsp;FAVOURITES'
+    EN: 'MY&nbsp;FAVOURITES',
+    FR: 'MY&nbsp;FAVOURITES'
 }
 
 export const accessoriesSectionTitle = {
-    en: 'Accessories for this model'
+    EN: 'Accessories for this model',
+    FR: 'Accessories for this model'
 }
 
 export const searchPageTitle = {
-    en: 'Looking for something specific?'
+    EN: 'Looking for something specific?',
+    FR: 'Looking for something specific?'
 }
 
 export const searchNoResultMessage = {
-    en: `We couldn’t find any matches for „<search>”.
+    EN: `We couldn’t find any matches for „<search>”.
+    Double check your search for any typos or spelling errors - or try a different search term.`,
+    FR: `We couldn’t find any matches for „<search>”.
     Double check your search for any typos or spelling errors - or try a different search term.`
 }
 
 export const contatcButton = {
-    en: 'Contact us'
+    EN: 'Contact us',
+    FR: 'Contact us'
+}
+
+export const findRetailers = {
+    EN: 'Find retailers',
+    FR: 'Find retailers'
+}
+
+export const inThisImage = {
+    EN: 'In this image',
+    FR: 'In this image'
+}
+
+export const selectLanguage = {
+    EN: 'Select your country',
+    FR: 'Select your country'
 }
