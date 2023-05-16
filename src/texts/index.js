@@ -19,11 +19,11 @@ export const careInstructionsText = {
 }
 
 export const upholsterysText = {
-    'en': 'UPSHOLSTERYS'
+    'en': 'UPSHOLSTERY'
 }
 
 export const confortText = {
-    'en': 'COMFORT'
+    'en': 'COMFORTS'
 }
 
 export const coversText = {
