@@ -276,9 +276,6 @@ const Flex = styled(motion.div)`
     width: 43.2px;
     height: 43.2px;
     border-radius: 50%;
-
-    &:focus-
-
   }
 
   svg path, svg rect {
