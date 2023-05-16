@@ -8,7 +8,7 @@ import Wrapper from "../components/sections/page-wrapper"
 export function Head() {
   const seo = {
     title: 'Rabat 15% na całą kolekcję. Skandynawski design w Polsce | SITS',
-    metaDesc: 'Skandynawski design w najlepszym wydaniu teraz 15% taniej. Promocja trwa w dniach 15-31.05 i obowiązuje we wszystkich salonach sprzedaży w Polsce. Lista salonów na dole strony.',
+    metaDesc: 'Skandynawski design w najlepszym wydaniu teraz 15% taniej. Promocja trwa w dniach 15.05-31.05 i obowiązuje w wybranych salonach sprzedaży w Polsce. Listę salonów znajdziesz poniżej.',
     opengraphSiteName: 'SITS'
   }
   const pageContext = {
@@ -26,7 +26,7 @@ export function Head() {
 export default function WhereToBuyPage() {
   return (
     <Wrapper>
-      <Title title={'–15% na całą kolekcję SITS'} text={'Skandynawski design w najlepszym wydaniu teraz 15% taniej. Promocja trwa w dniach 15.05-31.05 i obowiązuje we wszystkich salonach sprzedaży w Polsce. Listę salonów znajdziesz poniżej.'} />
+      <Title title={'–15% na całą kolekcję SITS'} text={'Skandynawski design w najlepszym wydaniu teraz 15% taniej. Promocja trwa w dniach 15.05-31.05 i obowiązuje w wybranych salonach sprzedaży w Polsce. Listę salonów znajdziesz poniżej.'} />
       <Map subset={'Poland'} scale={6} lat={'52.1'} lon={'20'} />
     </Wrapper>
   )
