@@ -67,6 +67,7 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
                 || el.Continent.toLowerCase().includes(filter.toLowerCase())
                 || el.Address.toLowerCase().includes(filter.toLowerCase())
                 || el.Region.toLowerCase().includes(filter.toLowerCase())
+                || el['Additional keywords']?.split('|')?.some((el) => el.toLowerCase().includes(filter.toLowerCase()))
             ))
         }
     }, [retailers, filter])

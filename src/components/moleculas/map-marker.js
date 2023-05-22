@@ -37,13 +37,17 @@ if (typeof window !== 'undefined') {
 
 export default function MapMarker({ isActive, markerClick, index, el, map }) {
     let popupRef = useRef();
-    
+
+    if (isNaN(el.Latitude) || isNaN(el.Longitude)) {
+        console.log(el.name + ' has wrong coordinates')
+    }
+
     useEffect(() => {
         if (isActive && popupRef?.current) {
             popupRef.current.openOn(map.current)
         }
     }, [isActive, map, popupRef])
-    
+
     return (
         <Marker
             icon={isActive ? chosenIcon : iconPerson}

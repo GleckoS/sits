@@ -1,30 +1,37 @@
-export const csvParser = (data) => {
-    let lines = data.split("\r\n");
-
-    let result = [];
-
-    let headers = lines[0].replace(',,', ',').split(",");
-
-    for (let i = 1; i < lines.length; i++) {
-        if (lines[i].includes(',,')) {
-            lines[i] = lines[i].replace(',,', ', ,')
-        }
-
-        let obj = {};
-        let currentline = lines[i].split(",");
-        for (let j = 0; j < headers.length; j++) {
-            obj[headers[j]] = currentline[j];
-        }
-
-        if (!obj.Latitude && !obj.Longitude) {
-            result.push(obj)
-        } else if (isNaN(obj.Latitude) || isNaN(obj.Longitude)) {
-            console.log(`ERROR: ${obj['Shop name']} has invalid coordinates: ${obj.Latitude}, ${obj.Longitude}; remove all commas from excel file`)
-        } else {
-            result.push(obj)
-        }
+export function csvParser(csvText) {
+    let p = '',
+      row = [''],
+      ret = [row],
+      i = 0,
+      r = 0,
+      s = true,
+      l;
+    for (l of csvText) {
+      if ('"' === l) {
+        if (s && l === p) row[i] += l;
+        s = !s;
+      } else if (',' === l && s) l = row[++i] = '';
+      else if ('\n' === l && s) {
+        if ('\r' === p) row[i] = row[i].slice(0, -1);
+        row = ret[++r] = [l = ''];
+        i = 0;
+      } else row[i] += l;
+      p = l;
     }
-
-    //return result; //JavaScript object
-    return result; //JSON
-};
+    
+    const headers = ret[0];
+    const result = [];
+    
+    for (let j = 1; j < ret.length; j++) {
+      const currentRow = ret[j];
+      const obj = {};
+      for (let k = 0; k < headers.length; k++) {
+        const key = headers[k];
+        const value = currentRow[k];
+        obj[key] = value;
+      }
+      result.push(obj);
+    }
+  
+    return result;
+  }
