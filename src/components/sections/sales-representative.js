@@ -59,7 +59,8 @@ export default function Content({ data: { title, salesRepresentative: { textUnde
                 let isCountry = el.Country.toLowerCase().includes(value.toLowerCase())
                 let isContinent = el.Region.toLowerCase().includes(value.toLowerCase())
                 let isRegion = el.Continent.toLowerCase().includes(value.toLowerCase())
-                return isName || isContinent || isCountry || isRegion
+                let isAdditionalWords = el['Additional keywords']?.split('|')?.some((el) => el.toLowerCase().includes(value.toLowerCase()))
+                return isName || isContinent || isCountry || isRegion || isAdditionalWords
             })
             setInputValue(value)
             setFiltredRetailers(arr)
@@ -148,7 +149,7 @@ const Label = styled(motion.label)`
     input{
         border: none;
         width: 100%;
-        padding: 0 2px 2px 0;
+        padding: 0 2px 10px 0;
         margin: 0 6px 0 0;
         transition: width .3s cubic-bezier(0.39, 0.575, 0.565, 1);
     }

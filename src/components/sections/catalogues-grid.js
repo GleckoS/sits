@@ -20,7 +20,7 @@ const imageAnimation = {
 const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0% 1px' },
     animate: {
-        opacity: 1, 
+        opacity: 1,
         transition: { duration: .6 },
         transitionEnd: {
             backgroundSize: '80% 1px',
@@ -44,7 +44,7 @@ export default function CataloguesGrid({ data: { title, catalogues: { catalogues
                                         <motion.div variants={imageAnimation}>
                                             <GatsbyImage className="image" image={el.cataloguePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.cataloguePreviewImage.altText} />
                                         </motion.div>
-                                        <motion.p variants={linkAnimation} className="underline">{el.catalogueTitle}</motion.p>
+                                        <motion.p variants={linkAnimation} className="underline">{el.catalogueTitle} <span>({el.catalogueFile?.localFile?.prettySize})</span></motion.p>
                                     </a>
                                 </Item>
                             ))}
@@ -91,6 +91,12 @@ const Item = styled.div`
         font-weight: 300;
         text-transform: unset ;
         padding-bottom: 0;
+    }
+
+    span{
+        font-family: 'Gothic';
+        font-size: 18px;
+        white-space: nowrap;
     }
 
     .image{
