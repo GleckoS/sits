@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
+import { imageTransition } from "../../helpers/animation-controller"
 import InView from "./in-view-provider"
 
 const sliderAnimation = imageTransition(1)
@@ -19,7 +19,6 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
             }, 1)
         }
     }, [])
-
 
     return (
         <InView margin='0px 0px 0px 0px'>
@@ -67,7 +66,7 @@ const Wrapper = styled.section`
     }
 
     .video{
-        clipPath: inset(0px 0px);
+        clip-path: inset(0px 0px);
         position: relative;
         left: 50%;
         transform: translateX(-50%);
