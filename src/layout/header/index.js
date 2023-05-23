@@ -71,7 +71,7 @@ export default function Header() {
     <Wrapper
       onAnimationComplete={() => { header.current.classList.add('active') }}
       ref={header}
-      initial={isMobile ? 'animvate' : 'initial'}
+      initial={isMobile ? 'animate' : 'initial'}
       animate='animate'
       exit='exit'
     >
