@@ -24,7 +24,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
                 <motion.div className="background wrapper" variants={sliderAnimation} >
-                    <GatsbyImage objectPosition='50% 100%' className=" image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
+                    <GatsbyImage loading="eager" quality={50} objectPosition='50% 100%' className="image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
                     {documentWidth > 768 && (
                         <video
                             className="background video"
