@@ -7,6 +7,7 @@ const transition = (index = 1, timing, isLink = false) => {
 }
 
 export const linkTransition = (index, timing = 'fast') => {
+
     return {
         initial: {
             opacity: 0,
@@ -24,6 +25,7 @@ export const linkTransition = (index, timing = 'fast') => {
 }
 
 export const textTransition = (index, timing = 'fast') => {
+
     return {
         initial: {
             opacity: 0
@@ -36,6 +38,7 @@ export const textTransition = (index, timing = 'fast') => {
 }
 
 export const imageTransition = (index, timing = 'slow') => {
+
     return {
         initial: {
             opacity: 0
@@ -44,7 +47,7 @@ export const imageTransition = (index, timing = 'slow') => {
             opacity: 1,
             transition: transition(index, timing)
         },
-        exit :{
+        exit: {
             opacity: 0
         }
     }

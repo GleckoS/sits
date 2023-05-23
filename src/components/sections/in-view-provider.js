@@ -12,10 +12,14 @@ export default function InView({ param = true, func = () => { }, children, margi
         return false;
     })()
 
-    if(isMobile){
-        return <div>
+    if (isMobile) {
+        return <motion.div
+            initial='animate'
+            animate={'animate'}
+            ref={section}
+        >
             {children}
-        </div>
+        </motion.div>
     }
 
 

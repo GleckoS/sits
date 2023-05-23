@@ -60,11 +60,18 @@ export default function Header() {
     setMobileMenuOpened(false)
   }
 
+  const isMobile = (() => {
+    if (typeof window !== 'undefined')
+      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    return false;
+  })()
+
   return (
     <Wrapper
       onAnimationComplete={() => { header.current.classList.add('active') }}
       ref={header}
-      initial='initial'
+      initial={isMobile ? 'animvate' : 'initial'}
       animate='animate'
       exit='exit'
     >

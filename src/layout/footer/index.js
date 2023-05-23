@@ -54,8 +54,8 @@ export default function Footer({ setIsCookiesActive }) {
       {({ transition }) => {
         return (
           <Wrapper
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
+            initial={isMobile ? 'animate' : 'initial'}
+            animate={isSectionInView || isMobile ? 'animate' : 'initial'}
             exit='exit'
             ref={section}
             id='footer'>

@@ -67,7 +67,7 @@ const Wrapper = styled.section`
     }
 
     .video{
-        clip-path: inset(0px 0px);
+        clipPath: inset(0px 0px);
         position: relative;
         left: 50%;
         transform: translateX(-50%);
