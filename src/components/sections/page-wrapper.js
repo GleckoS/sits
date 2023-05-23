@@ -3,11 +3,26 @@ import { motion } from "framer-motion"
 import { myContext } from "../../hooks/provider"
 
 export default function Wrapper({ children }) {
+    const isMobile = (() => {
+        if (typeof window !== 'undefined')
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        return false;
+    })()
+
+    if (isMobile) {
+        return (
+            <main>
+                {children}
+            </main>
+        )
+    }
+
     return (
         <myContext.Consumer>
             {({ setTransition }) => (
                 <motion.main
-                    onAnimationStart={({opacity}) => { setTransition(opacity) }}
+                    onAnimationStart={({ opacity }) => { setTransition(opacity) }}
                     // onAnimationComplete={(el) => { debugger }}
                     initial={{ opacity: 1 }}
                     animate={{

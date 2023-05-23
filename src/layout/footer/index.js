@@ -42,6 +42,12 @@ export default function Footer({ setIsCookiesActive }) {
 
   const section = useRef(null)
   const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
+  const isMobile = (() => {
+    if (typeof window !== 'undefined')
+      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    return false;
+  })()
 
   return (
     <myContext.Consumer>
@@ -53,7 +59,7 @@ export default function Footer({ setIsCookiesActive }) {
             exit='exit'
             ref={section}
             id='footer'>
-            <BottomPart opacity={transition}>
+            <BottomPart opacity={isMobile ? '1' : transition}>
               <Container className='container'>
                 <Menu>
                   <motion.div variants={logoAnimation}>
@@ -275,9 +281,6 @@ const Flex = styled(motion.div)`
     width: 43.2px;
     height: 43.2px;
     border-radius: 50%;
-
-    &:focus-
-
   }
 
   svg path, svg rect {

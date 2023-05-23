@@ -5,12 +5,25 @@ export default function InView({ param = true, func = () => { }, children, margi
 
     const section = useRef(null)
     const isSectionInView = useInView(section, { margin: margin, once: true })
+    const isMobile = (() => {
+        if (typeof window !== 'undefined')
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        return false;
+    })()
+
+    if(isMobile){
+        return <div>
+            {children}
+        </div>
+    }
+
 
     return (
         <motion.div
             onAnimationComplete={func}
             initial='initial'
-            animate={ (isSectionInView && param) ? 'animate' : 'initial'}
+            animate={(isSectionInView && param) ? 'animate' : 'initial'}
             exit='exit'
             ref={section}>
             {children}
