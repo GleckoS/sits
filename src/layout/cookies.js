@@ -151,12 +151,19 @@ export default function Cookies({ isActive, setIsActive }) {
         setIsActive(false)
     }
 
+    const isMobile = (() => {
+        if (typeof window !== 'undefined')
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        return false;
+    })()
+
     return (
         <AnimatePresence initial={false} mode="wait">
             {isActive && (
                 <>
-                    <Overlay initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-overlay' />
-                    <Wrapper initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-wrapper'>
+                    <Overlay initial={{ opacity: isMobile ? 1 : 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-overlay' />
+                    <Wrapper initial={{ opacity: isMobile ? 1 : 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-wrapper'>
                         <Content>
                             <TabsControl>
                                 <AnimateSharedLayout>
@@ -190,7 +197,7 @@ export default function Cookies({ isActive, setIsActive }) {
                                 </AnimateSharedLayout>
                             </TabsControl>
                             <TabWrapper transition={{ duration: .5 }}>
-                                <AnimatePresence mode='wait'>
+                                <AnimatePresence initial={false} mode='wait'>
                                     {activeTab === 0 && (
                                         <Tab key='cookies-first-tab' initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
                                             <div className="content" dangerouslySetInnerHTML={{ __html: consentTab.tabContent }} />

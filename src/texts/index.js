@@ -155,7 +155,7 @@ export const linksLeft = {
         { name: 'Dining Chairs', url: '/products/dining-chairs/' },
         { name: 'Footstools', url: '/products/footstools/' },
         { name: 'Coffee Tables', url: '/products/coffee-tables/' },
-        { name: 'Outdoor Furniture', url: '/products/outdoor-furnitures/' },
+        { name: 'Outdoor Furniture', url: '/products/outdoor-furniture/' },
         { name: 'Covers', url: '/material/' },
         { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
     ]
