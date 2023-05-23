@@ -9,17 +9,13 @@ export default function InView({ param = true, func = () => { }, children, margi
         if (typeof window !== 'undefined')
             return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-        return false;
+        return true;
     })()
 
     if (isMobile) {
-        return <motion.div
-            initial='animate'
-            animate={'animate'}
-            ref={section}
-        >
+        return <div>
             {children}
-        </motion.div>
+        </div>
     }
 
 

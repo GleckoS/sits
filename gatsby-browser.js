@@ -26,7 +26,7 @@ export const shouldUpdateScroll = ({
         if (typeof window !== 'undefined')
             return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-        return false;
+        return true;
     })()
 
     if (!isMobile) return true

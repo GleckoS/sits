@@ -155,7 +155,7 @@ export default function Cookies({ isActive, setIsActive }) {
         if (typeof window !== 'undefined')
             return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-        return false;
+        return true;
     })()
 
     return (

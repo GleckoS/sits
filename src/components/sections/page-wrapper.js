@@ -7,7 +7,7 @@ export default function Wrapper({ children }) {
         if (typeof window !== 'undefined')
             return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-        return false;
+        return true;
     })()
 
     if (isMobile) {
