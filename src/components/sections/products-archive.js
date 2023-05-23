@@ -24,12 +24,12 @@ const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
 export default function ProductArchive({ location, pageContext: { type: name, title }, products }) {
-    const [sort, setSort] = useQueryParam(sortParamName['en'], 'Popular')
-    const [type, setType] = useQueryParam(typeParamName['en'], 'All')
-    const [cover, setCover] = useQueryParam(coverParamName['en'], 'All')
-    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName['en'], 'All')
-    const [search, setSearch] = useQueryParam(searchParamName['en'], '')
-    const [page, setPage] = useQueryParam(pageParamName['en'], '1')
+    const [sort, setSort] = useQueryParam(sortParamName['en'], 'Popular', location)
+    const [type, setType] = useQueryParam(typeParamName['en'], 'All', location)
+    const [cover, setCover] = useQueryParam(coverParamName['en'], 'All', location)
+    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName['en'], 'All', location)
+    const [search, setSearch] = useQueryParam(searchParamName['en'], '', location)
+    const [page, setPage] = useQueryParam(pageParamName['en'], '1', location)
     const [inputValue, setInputValue] = useState('')
     const [defaultPosts] = useState(products)
 

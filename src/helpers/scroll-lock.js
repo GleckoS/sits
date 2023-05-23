@@ -6,11 +6,18 @@ if (typeof document !== `undefined`) {
 }
 
 export default {
+    isFirefox: () => {
+        if (typeof window === 'undefined') return false
+
+        return navigator.userAgent.toLowerCase().indexOf('firefox') > -1
+    },
     scrollPosition: 0,
     instances: [
 
     ],
     enable(item) {
+        if (this.isFirefox) return null
+
         this.scrollPosition = (window.pageYOffset || document.documentElement.scrollTop) - (document.documentElement.clientTop || 0)
         this.instances.push(item)
         $body.style.overflow = 'hidden';
@@ -19,6 +26,8 @@ export default {
         $body.style.width = '100%';
     },
     disable(item) {
+        if (this.isFirefox) return null
+
         if (this.instances.includes(item)) {
             this.instances = this.instances.filter(el => el !== item)
             if (!this.instances.length && item) {

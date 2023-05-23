@@ -4,7 +4,7 @@ import styled from "styled-components"
 export const DropDown = ({ id, openedFilter, setOpenedFilter, controller, func, data, controlTitle }) => {
 
     return (
-        <Wrapper onFocus={() => { setOpenedFilter(id) }} onBlur={() => { setOpenedFilter(false) }} className={openedFilter === id ? 'active' : ''}>
+        <Wrapper onClick={(e) => { e.currentTarget.focus() }} onFocus={() => { setOpenedFilter(id) }} onBlur={() => { setOpenedFilter(false) }} className={openedFilter === id ? 'active' : ''}>
             <button className="control">
                 <span>
                     {controlTitle}

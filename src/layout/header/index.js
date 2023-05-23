@@ -7,7 +7,7 @@ import { Search } from '../../components/moleculas/search'
 import { LangChanger } from './lang-changer'
 import { Item } from './menu-item'
 import scrollLock from './../../helpers/scroll-lock'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { linksLeft, linksRight, furnitureTitle, companyTitle } from '../../texts'
 
 const logoAnimation = {
@@ -196,48 +196,52 @@ export default function Header() {
           }}>
           <span />
         </Burger>
-        <MobileMenu initial={{ opacity: 0 }} animate={isMobileMenuOpened ? { opacity: 1, transition: { duration: .5 } } : { opacity: 0, transition: { duration: .3 } }} className={isMobileMenuOpened ? 'active' : ''}>
-          <Container className='content'>
-            <Search
-              func={closeAll}
-              tabIndex={isMobileMenuOpened ? '0' : '-1'}
-            />
-            <div className='wrap'>
-              {linksLeft['en'].map((el) => (
-                <React.Fragment key={el.name}>
-                  <Item
-                    tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                    el={el}
-                    func={(v) => {
-                      setMobileMenuOpened(v)
+        <AnimatePresence mode='wait'>
+          {isMobileMenuOpened && (
+            <MobileMenu initial={{ opacity: 0 }} exit={{ opacity: 0, transition: { duration: .3 } }} animate={{ opacity: 1, transition: { duration: .5 } }} className={isMobileMenuOpened ? 'active' : ''}>
+              <Container className='content'>
+                <Search
+                  func={closeAll}
+                  tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                />
+                <div className='wrap'>
+                  {linksLeft['en'].map((el) => (
+                    <React.Fragment key={el.name}>
+                      <Item
+                        tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                        el={el}
+                        func={(v) => {
+                          setMobileMenuOpened(v)
+                        }}
+                      />
+                    </React.Fragment>
+                  ))}
+                </div>
+                <div className='wrap'>
+                  {linksRight['en'].map((el) => (
+                    <React.Fragment key={el.name}>
+                      <Item
+                        tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                        el={el}
+                        func={(v) => {
+                          setMobileMenuOpened(v)
+                        }}
+                      />
+                    </React.Fragment>
+                  ))}
+                </div>
+                <div className='wrap'>
+                  <LangChanger
+                    onblur={() => {
+                      setMobileMenuOpened(false)
                     }}
-                  />
-                </React.Fragment>
-              ))}
-            </div>
-            <div className='wrap'>
-              {linksRight['en'].map((el) => (
-                <React.Fragment key={el.name}>
-                  <Item
                     tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                    el={el}
-                    func={(v) => {
-                      setMobileMenuOpened(v)
-                    }}
                   />
-                </React.Fragment>
-              ))}
-            </div>
-            <div className='wrap'>
-              <LangChanger
-                onblur={() => {
-                  setMobileMenuOpened(false)
-                }}
-                tabIndex={isMobileMenuOpened ? '0' : '-1'}
-              />
-            </div>
-          </Container>
-        </MobileMenu>
+                </div>
+              </Container>
+            </MobileMenu>
+          )}
+        </AnimatePresence>
         <Overlay
           onClick={() => {
             setLeftMenuOpened(false)
@@ -388,7 +392,6 @@ const MobileMenu = styled(motion.div)`
   top: 75px;
   bottom: 0;
   background-color: #fff;
-  transition: all var(--menu-animation);
 
   pointer-events: none;
 

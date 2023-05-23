@@ -150,6 +150,7 @@ export const linksLeft = {
         { name: 'New Arrivals', url: '/new-arrivals/' },
         { name: 'All products', url: '/products/' },
         { name: 'Sofas', url: '/products/sofas/' },
+        { name: 'Sofa beds', url: '/products/sofas/?type=Sofa-Beds' },
         { name: 'Armchairs', url: '/products/armchairs/' },
         { name: 'Dining Chairs', url: '/products/dining-chairs/' },
         { name: 'Footstools', url: '/products/footstools/' },

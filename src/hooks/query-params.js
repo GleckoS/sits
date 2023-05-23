@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import queryString from 'query-string'
 
 function getQueryParams() {
@@ -13,7 +13,7 @@ function setQueryParams(query) {
     if (typeof window !== 'undefined') {
         const hasKeys = Object.keys(query).length > 0
         const urlSuffix = hasKeys ? `?${queryString.stringify(query)}` : ''
-        window.history.replaceState(window.history.state, '', `${window.location.pathname}${urlSuffix}`)
+        window.history.pushState({ path: `${window.location.pathname}${urlSuffix}` }, '', `${window.location.pathname}${urlSuffix}`)
     }
 }
 
@@ -23,7 +23,7 @@ function clearQueryParam(key) {
     setQueryParams(queryParams)
 }
 
-export function useQueryParam(name, defaultValue) {
+export function useQueryParam(name, defaultValue, location) {
 
     const [queryParam, setQueryParam] = useState(() => {
         let value = defaultValue
@@ -41,7 +41,9 @@ export function useQueryParam(name, defaultValue) {
     })
 
     const clear = useCallback(() => {
-        clearQueryParam(name)
+        if (queryParam !== defaultValue) {
+            clearQueryParam(name)
+        }
     }, [name]);
 
     const changeUrlParam = useCallback((val) => {
@@ -53,6 +55,23 @@ export function useQueryParam(name, defaultValue) {
             setQueryParams(Object.assign(Object.assign({}, getQueryParams()), { [name]: val }))
         }
     }, [defaultValue, name, clear])
+
+    useEffect(() => {
+        setQueryParam(() => {
+            let value = defaultValue
+            let param = null
+            if (typeof window !== 'undefined') {
+                const queryString = window.location.search
+                const urlParams = new URLSearchParams(queryString)
+
+                if (urlParams.has(name))
+                    param = urlParams.get(name)
+
+            }
+
+            return param || value
+        })
+    }, [location])
 
     return [queryParam, changeUrlParam]
 }
