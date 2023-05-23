@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { Global } from "../styles/global-style"
 import Footer from "./footer"
 import Header from "./header"
-// import Cookies from "./cookies"
+import Cookies from "./cookies"
 import { myContext } from "../hooks/provider"
 
 import { ToastContainer } from 'react-toastify'
@@ -23,7 +23,7 @@ export default function Layout({ children }) {
                     <App>
                         <ToastContainer limit={5} transition={animate} />
                         <Global />
-                        {/* <Cookies isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} /> */}
+                        <Cookies isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
                         <Header />
                         <div id='main'>
                             {children}

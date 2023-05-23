@@ -13,13 +13,9 @@ export default function InView({ param = true, func = () => { }, children, margi
     })()
 
     if (isMobile) {
-        return <motion.div
-            initial='animate'
-            animate={'animate'}
-            ref={section}
-        >
+        return <div>
             {children}
-        </motion.div>
+        </div>
     }
 
 
