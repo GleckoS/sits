@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Grid } from "./cookies-grid"
 import scrollLock from './../helpers/scroll-lock'
 import { getCookie, setCookie } from "../helpers/coockie-manager"
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { allowButton, allowChosenButton, setButton, denyButton, aboutTabName, detailsTabName, consentTabName } from "../texts/cookie"
 
 function datalayerArguments() {
@@ -94,7 +94,11 @@ export default function Cookies({ isActive, setIsActive }) {
                 'wait_for_update': 2500
             });
             datalayerArguments("set", "ads_data_redaction", true);
-            setIsActive(true)
+
+            window.addEventListener('scroll', () => {
+                setIsActive(true)
+            }, { once: true })
+
             scrollLock.enable('cookie')
         }
 
@@ -166,7 +170,6 @@ export default function Cookies({ isActive, setIsActive }) {
                     <Wrapper initial={{ opacity: isMobile ? 1 : 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-wrapper'>
                         <Content>
                             <TabsControl>
-                                <AnimateSharedLayout>
                                     <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(0) }}>
                                         {consentTabName['en']}
                                         {activeTab === 0 && (
@@ -194,7 +197,6 @@ export default function Cookies({ isActive, setIsActive }) {
                                             />
                                         )}
                                     </button>
-                                </AnimateSharedLayout>
                             </TabsControl>
                             <TabWrapper transition={{ duration: .5 }}>
                                 <AnimatePresence initial={false} mode='wait'>
