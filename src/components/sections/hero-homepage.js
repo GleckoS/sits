@@ -78,7 +78,11 @@ const Wrapper = styled.section`
     }
 
     .background{
-        min-height: 530px;
+        min-height: 100vh;
+        
+        @media (max-width: 768px) {
+            min-height: 530px;
+        }
 
         @media (max-width: 540px) {
             min-height: 440px;
