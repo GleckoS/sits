@@ -94,7 +94,9 @@ export default function Cookies({ isActive, setIsActive }) {
                 'wait_for_update': 2500
             });
             datalayerArguments("set", "ads_data_redaction", true);
-            setIsActive(true)
+            window.addEventListener('scroll', () => {
+                setIsActive(true)
+            }, { once: true })
             scrollLock.enable('cookie')
         }
 
