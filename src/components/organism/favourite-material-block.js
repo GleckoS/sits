@@ -41,7 +41,7 @@ export const FavouriteMaterialBlock = ({ contentGridAnimation, contentTitleAnima
         renderCount.current = 0
         return (
             <Wrapper variants={animation}>
-                <motion.h2 variants={contentTitleAnimation}>{title} ({filtredArr.length})</motion.h2>
+                <motion.h2 variants={contentTitleAnimation}>{title['en']} ({filtredArr.length})</motion.h2>
                 <ResultsGrid variants={contentGridAnimation}>
                     {filtredArr.map(el => {
                         renderCount.current += 1
