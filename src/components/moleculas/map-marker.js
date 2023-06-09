@@ -9,6 +9,7 @@ let iconPerson
 let chosenIcon
 
 if (typeof window !== 'undefined') {
+
     chosenIcon = new L.Icon({
         iconUrl: MapMarkerChosenSVG,
         iconRetinaUrl: MapMarkerChosenSVG,

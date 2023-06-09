@@ -1,5 +1,6 @@
 import { Link } from "gatsby"
 import React from "react"
+import styled from "styled-components"
 import { myContext } from "../../hooks/provider"
 import Counter from "./favourite-counter"
 

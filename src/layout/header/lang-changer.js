@@ -1,5 +1,5 @@
 import React from "react"
-// import styled from "styled-components"
+import styled from "styled-components"
 
 export const LangChanger = ({ onblur = () => null, tabIndex = 0 }) => (
     <React.Fragment>
@@ -24,26 +24,26 @@ export const LangChanger = ({ onblur = () => null, tabIndex = 0 }) => (
     // </Button>
 )
 
-// const Button = styled.button`
-//     border: none;
-//     background-color: transparent;
-//     cursor: pointer;
-//     color: #BABABA;
-//     font-size: 14px;
-//     display: inline-flex;
-//     align-items: center;
-//     gap: 8px;
-//     margin-right: 40px;
+const Button = styled.button`
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: #BABABA;
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-right: 40px;
 
-//     svg{
-//         margin-top: 2px;
-//     }
+    svg{
+        margin-top: 2px;
+    }
 
-//     @media (max-width: 840px) {
-//         margin-bottom: 20px;
-//         @supports  (-webkit-touch-callout: none){
-//             margin-bottom: 120px;
-//         }
-//     }
+    @media (max-width: 840px) {
+        margin-bottom: 20px;
+        @supports  (-webkit-touch-callout: none){
+            margin-bottom: 120px;
+        }
+    }
 
-// `
+`
