@@ -57,7 +57,14 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
     }
 
     const filtredProducts = useMemo(() => {
-        let arr = [...defaultPosts]
+        let arr = [...defaultPosts].filter(el => {
+            if(!el.products.collection){
+                console.log('product ' + el.title +  ' without collection')
+                return false
+            }
+
+            return el.products.collection
+        })
         let locSort = partSlugDeTransform(sort)
         let locType = partSlugDeTransform(type)
         let locUpholsterys = partSlugDeTransform(upholsterys)

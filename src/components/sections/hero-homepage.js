@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
-import { GatsbyImage, getImage, withArtDirection } from "gatsby-plugin-image"
+import { GatsbyImage } from "gatsby-plugin-image"
 import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { imageTransition } from "../../helpers/animation-controller"
@@ -19,7 +19,7 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
             }, 1)
         }
     }, [])
-
+    
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
