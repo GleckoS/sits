@@ -10,16 +10,6 @@ const sliderAnimation = imageTransition(1)
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
-    const images = withArtDirection(
-        getImage(backgroundImage.localFile),
-        [
-            {
-                media: "(max-width: 768px)",
-                image: getImage(backgroundImageMobile.localFile),
-            },
-        ]
-    )
-
     const [documentWidth, setDocumentWidth] = useState(0)
 
     useEffect(() => {
@@ -34,13 +24,14 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
                 <motion.div className="background wrapper" variants={sliderAnimation} >
-                    <GatsbyImage loading="eager" objectPosition='50% 100%' className="background image" image={images} alt={backgroundImage.altText} />
+                    <GatsbyImage loading="eager" objectPosition='50% 100%' className="background image" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
                     {documentWidth > 768 && (
                         <video
                             // ref={videoRef}
                             className="background video"
                             // className={videoActive ? "background video active" : "background video"}
                             playsInline muted loop autoPlay
+                            poster={backgroundImage.localFile.publicURL}
                         >
                             <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
                         </video>
@@ -107,6 +98,11 @@ const Wrapper = styled.section`
             inset: 0;
             z-index: -1;
             opacity: 1;
+            display: none;
+
+            @media (max-width: 768px) {
+                display: block;
+            }
         }
 
         &.video{
@@ -114,6 +110,10 @@ const Wrapper = styled.section`
             width: 100%;
             object-fit: cover;
             opacity: 1;
+
+            @media (max-width: 768px) {
+                display: none;
+            }
         }
 
         &.wrapper{
