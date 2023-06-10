@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
 import { Global } from "../styles/global-style"
 import Footer from "./footer"
@@ -10,12 +10,19 @@ import { ToastContainer } from 'react-toastify'
 import { cssTransition } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-const animate = cssTransition({ 
+const animate = cssTransition({
     enter: "enter",
     exit: "exit"
 })
 
 export default function Layout({ children }) {
+
+    const [isPageLoaded, setIsPageLoaded] = useState(false)
+
+    useEffect(() => {
+        setIsPageLoaded(true)
+    }, [])
+
     return (
         <myContext.Consumer>
             {context => {
@@ -29,6 +36,7 @@ export default function Layout({ children }) {
                             {children}
                         </div>
                         <Footer setIsCookiesActive={context.setIsCookiesActive} />
+                        <Overlay className={isPageLoaded ? 'disabled' : ''} />
                     </App>
                 )
             }}
@@ -50,5 +58,22 @@ const App = styled.div`
             margin-top: 76px;
         }
 
+    }
+`
+
+const Overlay = styled.div`
+    position: fixed;
+    z-index: 100000000;
+    inset: 0;
+    background-color: #fff;
+    pointer-events: none;
+    transition: opacity .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+
+    &.disabled{
+        opacity: 0;
+    }
+
+    @media (max-width: 768px) {
+        display: none;
     }
 `
