@@ -10,35 +10,31 @@ const sliderAnimation = imageTransition(1)
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
-    // const [documentWidth, setDocumentWidth] = useState(0)
-    // const [videoActive, setVideoActive] = useState(false)
-    // const videoRef = React.useRef(null)
+    const [documentWidth, setDocumentWidth] = useState(0)
 
-    // useEffect(() => {
-    //     if (typeof window !== 'undefined') {
-    //         videoRef.current.load()
-
-    //         videoRef.current.addEventListener('loadeddata', () => {
-    //             debugger
-    //             setVideoActive(true)
-    //             videoRef.current.play()
-    //         }, { once: true })
-    //     }
-    // }, [])
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setTimeout(() => {
+                setDocumentWidth(window.innerWidth)
+            }, 1)
+        }
+    }, [])
 
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
                 <motion.div className="background wrapper" variants={sliderAnimation} >
                     <GatsbyImage loading="eager" quality={50} objectPosition='50% 100%' className="background image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
-                    <video
-                        // ref={videoRef}
-                        className="background video"
-                        // className={videoActive ? "background video active" : "background video"}
-                        playsInline muted loop autoPlay
-                    >
-                        <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
-                    </video>
+                    {documentWidth > 768 && (
+                        <video
+                            // ref={videoRef}
+                            className="background video"
+                            // className={videoActive ? "background video active" : "background video"}
+                            playsInline muted loop autoPlay
+                        >
+                            <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
+                        </video>
+                    )}
                 </motion.div>
                 <div className="content">
                     <h1 className="title">
@@ -95,6 +91,8 @@ const Wrapper = styled.section`
     } */
 
     .background{
+        opacity: 0;
+        
         &.image{
             position: absolute;
             inset: 0;
