@@ -5,18 +5,18 @@ export default function InView({ param = true, func = () => { }, children, margi
 
     const section = useRef(null)
     const isSectionInView = useInView(section, { margin: margin, once: true })
-    // const isMobile = (() => {
-    //     if (typeof window !== 'undefined')
-    //         return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    const isMobile = (() => {
+        if (typeof window !== 'undefined')
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-    //     return true;
-    // })()
+        return true;
+    })()
 
-    // if (isMobile) {
-    //     return <div>
-    //         {children}
-    //     </div>
-    // }
+    if (isMobile) {
+        return <div>
+            {children}
+        </div>
+    }
 
     return (
         <motion.div
