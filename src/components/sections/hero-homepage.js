@@ -10,29 +10,35 @@ const sliderAnimation = imageTransition(1)
 
 export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPageTitle, backgroundImage, backgroundImageMobile } }) {
 
-    const [documentWidth, setDocumentWidth] = useState(0)
+    // const [documentWidth, setDocumentWidth] = useState(0)
+    // const [videoActive, setVideoActive] = useState(false)
+    // const videoRef = React.useRef(null)
 
-    useEffect(() => {
-        if (typeof window !== 'undefined') {
-            setTimeout(() => {
-                setDocumentWidth(window.innerWidth)
-            }, 1)
-        }
-    }, [])
+    // useEffect(() => {
+    //     if (typeof window !== 'undefined') {
+    //         videoRef.current.load()
+
+    //         videoRef.current.addEventListener('loadeddata', () => {
+    //             debugger
+    //             setVideoActive(true)
+    //             videoRef.current.play()
+    //         }, { once: true })
+    //     }
+    // }, [])
 
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
                 <motion.div className="background wrapper" variants={sliderAnimation} >
-                    <GatsbyImage loading="eager" quality={50} objectPosition='50% 100%' className="image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
-                    {documentWidth > 768 && (
-                        <video
-                            className="background video"
-                            playsInline muted loop autoPlay
-                            poster={backgroundImage.localFile.publicURL} >
-                            <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
-                        </video>
-                    )}
+                    {/* <GatsbyImage loading="eager" quality={50} objectPosition='50% 100%' className="background image" image={backgroundImage.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} /> */}
+                    <video
+                        // ref={videoRef}
+                        className="background video"
+                        // className={videoActive ? "background video active" : "background video"}
+                        playsInline muted loop autoPlay
+                    >
+                        <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
+                    </video>
                 </motion.div>
                 <div className="content">
                     <h1 className="title">
@@ -55,16 +61,27 @@ const Wrapper = styled.section`
     max-height: 100vh;
     top: -95px;
     margin-bottom: -95px;
+    min-height: 100vh;
 
     @media (max-width: 1440px) {
         max-height: calc(100vh - 95px);
         top: unset;
         margin-bottom: unset;
     }
-    @media (max-width: 840px) {
-        max-height: calc(100vh - 75px);
+
+    @media (max-width: 1024px) {
+        min-height: 520px;
+        height: 100%;
     }
 
+    @media (max-width: 540px) {
+        min-height: 440px;
+    }
+
+    @media (max-width: 389px) {
+        min-height: 400px;
+    }
+/* 
     .video{
         clip-path: inset(0px 0px);
         position: relative;
@@ -75,37 +92,35 @@ const Wrapper = styled.section`
         *:focus-visible{
             outline: none;
         }
-    }
+    } */
 
     .background{
-        min-height: 530px;
+        &.image{
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+        }
 
-        @media (max-width: 540px) {
-            min-height: 440px;
-        } 
+        &.video{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            opacity: 1;
 
-        @media (max-width: 389px) {
-            min-height: 400px;
-            min-width: unset;
+            &.active{
+                opacity: 1;
+            }
+        }
+
+        &.wrapper{
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
     }
 
-    .image{
-        display: none;
-    }
-
-    @media (max-width: 768px) {
-        .video{
-            display: none;
-        }
-        .image{
-            display: block;
-        }
-        .background{
-            min-width: unset;
-            max-height: calc(100vh - 75px);
-        }
-    }
     .content{
         position: absolute;
         left: 50%;
