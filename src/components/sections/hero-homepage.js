@@ -92,11 +92,12 @@ const Wrapper = styled.section`
 
     .background{
         opacity: 0;
-        
+
         &.image{
             position: absolute;
             inset: 0;
             z-index: -1;
+            opacity: 1;
         }
 
         &.video{
@@ -104,10 +105,6 @@ const Wrapper = styled.section`
             width: 100%;
             object-fit: cover;
             opacity: 1;
-
-            &.active{
-                opacity: 1;
-            }
         }
 
         &.wrapper{
