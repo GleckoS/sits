@@ -20,7 +20,6 @@ export default function Seo({ isArchive = false, pageContext, seo }) {
         <>
             <meta charSet="utf-8" />
             <meta property="og:site_name" content={seo.opengraphSiteName} />
-            <meta name="google-site-verification" content="MaTT8qBdKw4SVNEQIeKa_vUF7Bjkp1YmSe70dNnYJTY" />
             <meta name="facebook-domain-verification" content="Kgqyu3tcp9asb3ha11p2x50c0lzfxnm" />
 
             {/* 
