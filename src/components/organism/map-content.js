@@ -60,6 +60,7 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
 
     useEffect(() => {
         if (retailers) {
+            debugger
             setActiveDot(null)
             setFiltredRetailers(retailers.filter((el) =>
                 el.City.toLowerCase().includes(filter.toLowerCase())
@@ -67,7 +68,7 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
                 || el.Continent.toLowerCase().includes(filter.toLowerCase())
                 || el.Address.toLowerCase().includes(filter.toLowerCase())
                 || el.Region.toLowerCase().includes(filter.toLowerCase())
-                || el['Additional keywords'].includes(filter.toLowerCase())
+                || el['Additional keywords']?.includes(filter.toLowerCase())
             ))
         }
     }, [retailers, filter])
