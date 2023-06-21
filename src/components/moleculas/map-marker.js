@@ -60,7 +60,7 @@ export default function MapMarker({ isActive, markerClick, index, el, map }) {
                 <div>
                     <p className="p">{el['Shop name']}</p>
                     <p className="p-l">{el.Address}</p>
-                    <p className="p-l">{el.City}, {el.Country}</p>
+                    <p className="p-l">{el.City ? el.City + ', ' : ''}{el.Country}</p>
                     <a href={'tel:' + el.Phone} className="p-l phone">{el.Phone}</a>
                 </div>
                 {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}

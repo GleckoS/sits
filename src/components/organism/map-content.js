@@ -127,7 +127,7 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
                                             <Item id={'map-item-' + index} onClick={() => { itemClick(index) }} className={activeDot === index ? 'active' : ''} key={index}>
                                                 <p className="t">{el['Shop name']}</p>
                                                 <p className="l">{el.Address}</p>
-                                                <p className="l">{el.City}, {el.Country}</p>
+                                                <p className="l">{el.City ? el.City + ', ' : ''}{el.Country}</p>
                                                 <a href={'tel:' + el.Phone} className="l phone">{el.Phone}</a>
                                                 {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
                                             </Item>
