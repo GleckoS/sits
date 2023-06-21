@@ -59,7 +59,10 @@ export default function Content({ data: { title, salesRepresentative: { textUnde
                 let isCountry = el.Country.toLowerCase().includes(value.toLowerCase())
                 let isContinent = el.Region.toLowerCase().includes(value.toLowerCase())
                 let isRegion = el.Continent.toLowerCase().includes(value.toLowerCase())
-                let isAdditionalWords = el['Additional keywords'].includes(value.toLowerCase())
+                let isAdditionalWords = el['Additional keywords']?.toLowerCase().includes(value.toLowerCase())
+
+                debugger
+
                 return isName || isContinent || isCountry || isRegion || isAdditionalWords
             })
             setInputValue(value)
