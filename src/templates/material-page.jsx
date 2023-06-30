@@ -23,7 +23,7 @@ export default function Material({ location, data: { wpMaterials }, pageContext 
 
   return (
     <Wrapper>
-      <Hero isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video && !wpMaterials.materials.popularProductsUsingThisMaterial.productList} variant={location?.state?.variant} data={wpMaterials} />
+      <Hero isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.youtubeOembed && !wpMaterials.materials.videoSection?.video && !wpMaterials.materials.popularProductsUsingThisMaterial.productList} variant={location?.state?.variant} data={wpMaterials} />
       {wpMaterials.materials.popularProductsUsingThisMaterial.productList
         && <SimilarProducts isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video} materials={true} title={wpMaterials.title + similarTitle['en']} data={wpMaterials.materials.popularProductsUsingThisMaterial.productList} />}
 
