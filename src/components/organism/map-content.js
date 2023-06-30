@@ -24,21 +24,21 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
         wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
             retailers {
                 csvFile {
-                  id
-                  localFile {
-                    publicURL
-                  }
+                    id
+                    localFile {
+                        publicURL
+                    }
                 }
                 csvFileDiscount{
                     id
                     localFile {
-                      publicURL
+                        publicURL
                     }
                 }
             }
         }
     }
-  `)
+`)
 
     const file = subset ? csvFileDiscount || csvFile : csvFile
 
@@ -60,7 +60,6 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
 
     useEffect(() => {
         if (retailers) {
-            debugger
             setActiveDot(null)
             setFiltredRetailers(retailers.filter((el) =>
                 el.City.toLowerCase().includes(filter.toLowerCase())
@@ -68,7 +67,7 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
                 || el.Continent.toLowerCase().includes(filter.toLowerCase())
                 || el.Address.toLowerCase().includes(filter.toLowerCase())
                 || el.Region.toLowerCase().includes(filter.toLowerCase())
-                || el['Additional keywords']?.includes(filter.toLowerCase())
+                || el['Additional keywords']?.toLowerCase().includes(filter.toLowerCase())
             ))
         }
     }, [retailers, filter])
@@ -128,7 +127,7 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
                                             <Item id={'map-item-' + index} onClick={() => { itemClick(index) }} className={activeDot === index ? 'active' : ''} key={index}>
                                                 <p className="t">{el['Shop name']}</p>
                                                 <p className="l">{el.Address}</p>
-                                                <p className="l">{el.City}, {el.Country}</p>
+                                                <p className="l">{el.City ? el.City + ', ' : ''}{el.Country}</p>
                                                 <a href={'tel:' + el.Phone} className="l phone">{el.Phone}</a>
                                                 {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
                                             </Item>
@@ -159,7 +158,7 @@ export default function MapContent({ subset, scale = 4, lat = '52.5144926020739'
                     </Content>
                 </Container>
             </Wrapper>
-        </InView >
+        </InView>
     )
 }
 
