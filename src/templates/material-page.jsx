@@ -27,7 +27,7 @@ export default function Material({ location, data: { wpMaterials }, pageContext 
       {wpMaterials.materials.popularProductsUsingThisMaterial.productList
         && <SimilarProducts isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video} materials={true} title={wpMaterials.title + similarTitle['en']} data={wpMaterials.materials.popularProductsUsingThisMaterial.productList} />}
 
-      {wpMaterials.materials.videoSection?.video
+      {(wpMaterials.materials.videoSection?.video || wpMaterials.materials.videoSection?.youtubeOembed)
         && <Video isLast={!wpMaterials.materials.similarCovers.covers} materials={true} data={wpMaterials.materials.videoSection} />}
 
       {wpMaterials.materials.similarCovers.covers
@@ -195,6 +195,7 @@ export const query = graphql`
               }
             }
             videoSection {
+              youtubeOembed
               video {
                 altText
                 localFile{

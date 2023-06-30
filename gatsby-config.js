@@ -5,14 +5,6 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-hotjar`,
-      options: {
-        includeInDevelopment: true, // optional parameter to include script in development
-        id: '3528063',
-        sv: '6',
-      },
-    },
-    {
       resolve: "gatsby-plugin-sitemap",
       options: {
         excludes: [

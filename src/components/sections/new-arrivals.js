@@ -179,46 +179,46 @@ const SliderInput = styled.input`
         opacity: 0;
     }
 
-&::-webkit-slider-runnable-track {
-  width: 100%;
-  height: 8px;
-  cursor: pointer;
-  background: #F2EEE6;
-}
+    &::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #F2EEE6;
+    }
 
-&:focus::-webkit-slider-runnable-track {
-  background: #F2EEE6;
-}
+    &:focus::-webkit-slider-runnable-track {
+    background: #F2EEE6;
+    }
 
-&::-moz-range-track {
-  width: 100%;
-  height: 8px;
-  cursor: pointer;
-  background: #F2EEE6;
-}
+    &::-moz-range-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: #F2EEE6;
+    }
 
-&::-ms-track {
-  width: 100%;
-  height: 8px;
-  cursor: pointer;
-  background: transparent;
-  border-color: transparent;
-  border-width: 16px 0;
-  color: transparent;
-}
+    &::-ms-track {
+    width: 100%;
+    height: 8px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    border-width: 16px 0;
+    color: transparent;
+    }
 
-&::-ms-fill-lower {
-  background: #F2EEE6;
-}
-&:focus::-ms-fill-lower {
-  background: #F2EEE6;
-}
-&::-ms-fill-upper {
-  background: #F2EEE6;
-}
-&:focus::-ms-fill-upper {
-  background: #F2EEE6;
-}
+    &::-ms-fill-lower {
+    background: #F2EEE6;
+    }
+    &:focus::-ms-fill-lower {
+    background: #F2EEE6;
+    }
+    &::-ms-fill-upper {
+    background: #F2EEE6;
+    }
+    &:focus::-ms-fill-upper {
+    background: #F2EEE6;
+    }
 `
 
 const Wrapper = styled(motion.section)`
