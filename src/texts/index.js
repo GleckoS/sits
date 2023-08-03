@@ -156,6 +156,7 @@ export const linksLeft = {
         { name: 'Footstools', url: '/products/footstools/' },
         { name: 'Coffee Tables', url: '/products/coffee-tables/' },
         { name: 'Outdoor Furniture', url: '/products/outdoor-furniture/' },
+        { name: 'Product configurator', url: 'https://sitsconnect.pl/configurator' },
         { name: 'Covers', url: '/material/' },
         { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
     ]
