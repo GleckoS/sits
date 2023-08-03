@@ -215,7 +215,7 @@ export const linksLeft = {
         { name: 'Repose-pieds', url: '/products/footstools/' },
         { name: 'Tables basses', url: '/products/coffee-tables/' },
         { name: 'Mobilier d’extérieur', url: '/products/outdoor-furnitures/' },
-        { name: 'Configurateur de produit', url: 'https://sitsconnect.pl/configurator' }
+        { name: 'Configurateur de produit', url: 'https://sitsconnect.pl/configurator' },
         { name: 'Housses', url: '/material/' },
         { name: 'Mes favoris', icon: 'hearth', url: '/favourites/' }
     ]
