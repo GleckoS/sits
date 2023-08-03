@@ -4,6 +4,7 @@ import MapContent from "../organism/map-content"
 import { myContext } from "../../hooks/provider"
 import { getCookie } from "../../helpers/coockie-manager"
 import { StaticImage } from "gatsby-plugin-image"
+import { acceptCookiesFirst, acceptCookiesSecond, acceptCookiesThird } from "../../texts/cookie"
 
 // const MapContent = React.lazy(() => import('../organism/map-content'))
 
@@ -22,8 +23,9 @@ function Map({ language, subset, lat, lon, scale, isActive, setIsActive }) {
             <Placeholder>
                 <StaticImage className="image" src='./../../../static/map.jpg' alt='background' />
                 <h2>
-                    Please accept <button className="underline" onClick={() => { setIsActive(true) }}>cookies policy</button><br />
-                    to see the map
+                    {acceptCookiesFirst[language]}
+                    <button className="underline" onClick={() => { setIsActive(true) }}> {acceptCookiesSecond[language]} </button><br />
+                    {acceptCookiesThird[language]}
                 </h2>
             </Placeholder>
         )

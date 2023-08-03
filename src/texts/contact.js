@@ -1,50 +1,50 @@
 
 export const errorMessage = {
     EN: 'This field is required.',
-    FR: 'This field is required.'
+    FR: 'Ce champ est obligatoire.'
 }
 
 export const email = {
     EN: 'Your e-mail',
-    FR: 'Your e-mail',
+    FR: 'Votre adresse e-mail'
 }
 
 export const name = {
     EN: 'Your name',
-    FR: 'Your name'
+    FR: 'Votre nom'
 }
 
 export const country = {
     EN: 'Your country',
-    FR: 'Your country'
+    FR: 'Votre pays de résidence'
 }
 
 export const subject = {
     EN: 'Subject',
-    FR: 'Subject'
+    FR: 'Objet'
 }
 
 export const message = {
     EN: 'Your message',
-    FR: 'Your message'
+    FR: 'Votre message'
 }
 
 export const title = {
     EN: 'Contact us',
-    FR: 'Contact us'
+    FR: 'Votre nom'
 }
 
 export const submit = {
     EN: 'Send your message',
-    FR: 'Send your message'
+    FR: 'Envoyer le message'
 }
 
 export const thans = {
     EN: 'Thanks for your message!',
-    FR: 'Thanks for your message!'
+    FR: 'Merci de nous avoir contactés !'
 }
 
 export const reply = {
     EN: 'We’ll get back to you as soon as possible.',
-    FR: 'We’ll get back to you as soon as possible.'
+    FR: 'Nos équipes vous répondront dans les plus brefs délais.'
 }
