@@ -186,6 +186,7 @@ exports.createPages = async ({
   `);
 
     footstoolsArchives.forEach(({ id, slug, uri, title, types }) => {
+        if(!types.nodes[0]) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -221,6 +222,7 @@ exports.createPages = async ({
   `);
 
     sofasArchives.forEach(({ id, slug, uri, title, types }) => {
+        if(!types.nodes[0]) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -256,6 +258,7 @@ exports.createPages = async ({
   `);
 
     armchairsArchives.forEach(({ id, slug, uri, title, types }) => {
+        if(!types.nodes[0]) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -291,6 +294,7 @@ exports.createPages = async ({
   `);
 
     tablesArchives.forEach(({ id, slug, uri, title, types }) => {
+        if(!types.nodes[0]) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -326,6 +330,7 @@ exports.createPages = async ({
   `);
 
     chairsArchives.forEach(({ id, slug, uri, title, types }) => {
+        if(!types.nodes[0]) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -361,6 +366,7 @@ exports.createPages = async ({
   `);
 
     outdoorArchives.forEach(({ id, slug, uri, title, types }) => {
+        if(!types.nodes[0]) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
