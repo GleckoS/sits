@@ -75,6 +75,7 @@ exports.createPages = async ({
   `);
 
     collections.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/collection-page.jsx'),
@@ -101,6 +102,7 @@ exports.createPages = async ({
   `);
 
     materials.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/material-page.jsx'),
@@ -127,6 +129,7 @@ exports.createPages = async ({
   `);
 
     materialArchives.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/materials-archive.jsx'),
@@ -154,6 +157,7 @@ exports.createPages = async ({
 
 
     productsArchives.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/all-products-page.jsx'),
@@ -186,7 +190,7 @@ exports.createPages = async ({
   `);
 
     footstoolsArchives.forEach(({ id, slug, uri, title, types }) => {
-        if(!types.nodes[0]) return;
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -222,7 +226,7 @@ exports.createPages = async ({
   `);
 
     sofasArchives.forEach(({ id, slug, uri, title, types }) => {
-        if(!types.nodes[0]) return;
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -258,7 +262,7 @@ exports.createPages = async ({
   `);
 
     armchairsArchives.forEach(({ id, slug, uri, title, types }) => {
-        if(!types.nodes[0]) return;
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -294,7 +298,7 @@ exports.createPages = async ({
   `);
 
     tablesArchives.forEach(({ id, slug, uri, title, types }) => {
-        if(!types.nodes[0]) return;
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -330,7 +334,7 @@ exports.createPages = async ({
   `);
 
     chairsArchives.forEach(({ id, slug, uri, title, types }) => {
-        if(!types.nodes[0]) return;
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -366,7 +370,7 @@ exports.createPages = async ({
   `);
 
     outdoorArchives.forEach(({ id, slug, uri, title, types }) => {
-        if(!types.nodes[0]) return;
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -396,6 +400,7 @@ exports.createPages = async ({
   `);
 
     Homepage.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/homepage.jsx'),
@@ -422,6 +427,7 @@ exports.createPages = async ({
   `);
 
     Bestsellers.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/best-sellers.jsx'),
@@ -448,6 +454,7 @@ exports.createPages = async ({
   `);
 
     Search.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/search-page.jsx'),
@@ -474,6 +481,7 @@ exports.createPages = async ({
   `);
 
     Favourites.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/favourites-page.jsx'),
@@ -500,6 +508,7 @@ exports.createPages = async ({
   `);
 
     Where.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/where-to-buy-page.jsx'),
@@ -526,6 +535,7 @@ exports.createPages = async ({
   `);
 
     Furniture.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/furniture-care-page.jsx'),
@@ -552,6 +562,7 @@ exports.createPages = async ({
   `);
 
     Catalogue.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/catalogues-page.jsx'),
@@ -578,6 +589,7 @@ exports.createPages = async ({
   `);
 
     Contact.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/сontact-page.jsx'),
@@ -604,6 +616,7 @@ exports.createPages = async ({
   `);
 
     Legal.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/legal-page.jsx'),
@@ -630,6 +643,7 @@ exports.createPages = async ({
   `);
 
     Sales.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/sales-page.jsx'),
@@ -656,6 +670,7 @@ exports.createPages = async ({
   `);
 
     About.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/about-page.jsx'),
@@ -682,6 +697,7 @@ exports.createPages = async ({
   `);
 
     Conscious.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/conscious-page.jsx'),
@@ -708,6 +724,7 @@ exports.createPages = async ({
   `);
 
     Arrivals.forEach(({ id, slug, uri }) => {
+        if(uri.includes('/fr/')) return;
         createPage({
             path: uri,
             component: resolve('src/templates/new-arrivals-page.jsx'),
