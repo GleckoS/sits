@@ -38,6 +38,10 @@ const Wrapper = styled.div`
     height: fit-content;
     padding-bottom: 10px;
 
+    *{
+        text-align: left;
+    }
+
     svg{
         margin-top: 4px;
     }
@@ -60,6 +64,11 @@ const Wrapper = styled.div`
         font-size: 18px;
         pointer-events: all;
         cursor: pointer;
+        height: 30px;
+
+        span{
+            line-height: 20px;
+        }
     }
 
     .content{
@@ -70,7 +79,8 @@ const Wrapper = styled.div`
         .item{
             cursor: pointer;
             margin-top: 20px;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 10px;
             justify-content: space-between;
             width: 100%;
             align-items: center;

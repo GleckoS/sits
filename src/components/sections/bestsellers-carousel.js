@@ -79,16 +79,19 @@ export default function Bestsellers({ language, data: { seeAllLink, text, sectio
                     variants={sliderAnimation}
                     className="container"
                 >
-                    <div className="content desctop">
-                        <div className={animationStarted ? 'sticky hide' : "sticky"}>
-                            <motion.h3 variants={sliderTitleAnimation}>{carousel[item].selectedCollection.title}</motion.h3>
-                            <motion.div variants={sliderLinkAnimation} className="underline">
-                                <Link tabIndex={-1} to={collectionUrl[language] + carousel[item].selectedCollection.slug + '/'} >{exploreButton[language]}</Link>
-                            </motion.div>
+                    {carousel[item].selectedCollection && (
+                        <div className="content desctop">
+                            <div className={animationStarted ? 'sticky hide' : "sticky"}>
+                                <motion.h3 variants={sliderTitleAnimation}>{carousel[item].selectedCollection.title}</motion.h3>
+                                <motion.div variants={sliderLinkAnimation} className="underline">
+                                    <Link tabIndex={-1} to={collectionUrl[language] + carousel[item].selectedCollection.slug + '/'} >{exploreButton[language]}</Link>
+                                </motion.div>
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <Slider ref={slickRef} {...settings}>
                         {carousel.map((el, index) => {
+                            if (!el.selectedCollection) return <div className="placeholder">Collection not selected</div>
                             if (el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage) {
                                 return (
                                     <div key={index} className="slide">

@@ -10,7 +10,7 @@ export const favouritesUrl = {
 
 export const collectionUrl = {
     EN: '/collection/',
-    FR: '/fr/collectione/'
+    FR: '/fr/collection/'
 }
 
 export const materialUrl = {

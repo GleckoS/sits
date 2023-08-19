@@ -4,12 +4,14 @@ import React, { useEffect, useMemo, useState } from "react"
 import styled from "styled-components"
 import { materialUrl } from "../../texts/urls"
 import AddToFauvorite from "../atoms/add-to-favourite"
+import { colorGroupTransaltions } from "../../texts/filter"
+import { partSlugDeTransform } from "../../helpers/slug-maker"
 
 export const MaterialCard = ({ language, variant = '', color, data: { materials: { materialColorVariants }, title, slug } }) => {
     const variants = useMemo(() => {
         let arr = materialColorVariants
         if (color && color !== 'All') {
-            arr = arr.filter(el => el.colorGroup === color)
+            arr = arr.filter(el => colorGroupTransaltions[el.colorGroup][language] === partSlugDeTransform(color))
         }
         return arr
     }, [color])

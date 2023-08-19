@@ -12,10 +12,10 @@ import { useQueryParam } from "../../hooks/query-params"
 import { imageTransition } from "../../helpers/animation-controller"
 import { AnimatePresence, motion } from "framer-motion"
 import InView from "./in-view-provider"
-import { searchPlaceholder as searchFilterTitle } from "../../texts"
+import { meterialsAlterTitle, searchPlaceholder as searchFilterTitle } from "../../texts"
 import {
-    sortBy, colorRange, texturesArr, featuresArr, clearAllTitle, filterTitle, sortByTitle, colorRangeTitle,
-    texturesTitle, featuresTitle, reset, view, sortFilterTitle, noResultTitle, noResultMessage, sortParamName, colorParamName, texturesParamName, featuresParamName, searchParamName, pageParamName
+    sortBy, featuresArrAll, clearAllTitle, filterTitle, sortByTitle, colorRangeTitle,
+    texturesTitle, featuresTitle, reset, view, sortFilterTitle, noResultTitle, noResultMessage, sortParamName, colorParamName, texturesParamName, featuresParamName, searchParamName, pageParamName, texturesArrAll, colorRangeAll, colorGroupTransaltions
 } from "../../texts/filter"
 
 const filterItemAnimation = imageTransition(-1.5)
@@ -23,18 +23,51 @@ const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
 export default function MaterialsArchive({ language, location, materials }) {
-    const [sort, setSort] = useQueryParam(sortParamName[language], 'Popular')
+    const [sort, setSort] = useQueryParam(sortParamName[language], sortBy[language][0].val)
     const [color, setColor] = useQueryParam(colorParamName[language], 'All')
     const [textures, setTextures] = useQueryParam(texturesParamName[language], 'All')
     const [features, setFeatures] = useQueryParam(featuresParamName[language], 'All')
     const [search, setSearch] = useQueryParam(searchParamName[language], '')
     const [page, setPage] = useQueryParam(pageParamName[language], '1')
     const [inputValue, setInputValue] = useState('')
+    const [featuresArr] = useState(() => {
+        const arr = [{ name: featuresArrAll[language], val: 'All' }]
+        materials.forEach(el => {
+            el.features.nodes.forEach(inEl => {
+                if (!arr.find(item => item.name === inEl.name)) {
+                    arr.push({ name: inEl.name, val: inEl.name })
+                }
+            })
+        })
+        return arr
+    })
+    const [texturesArr] = useState(() => {
+        const arr = [{ name: texturesArrAll[language], val: 'All' }]
+        materials.forEach(el => {
+            el.textures.nodes.forEach(inEl => {
+                if (!arr.find(item => item.name === inEl.name)) {
+                    arr.push({ name: inEl.name, val: inEl.name })
+                }
+            })
+        })
+        return arr
+    })
+    const [colorRange] = useState(() => {
+        const arr = [{ name: colorRangeAll[language], val: 'All' }] // TODO: przerobić kolory
+        materials.forEach(el => {
+            el.materials.materialColorVariants.forEach(inEl => {
+                if (!arr.find(item => item.name === colorGroupTransaltions[inEl.colorGroup][language])) {
+                    arr.push({ name: colorGroupTransaltions[inEl.colorGroup][language] , val: colorGroupTransaltions[inEl.colorGroup][language] })
+                }
+            })
+        })
+        return arr
+    })
 
     useEffect(() => {
         if (location.search === '') {
-            if (sort === 'Popular') {
-                setSort('Popular')
+            if (sort === sortBy[language][0].val) {
+                setSort(sortBy[language][0].val)
             }
             if (color === 'All') {
                 setColor('All')
@@ -75,12 +108,13 @@ export default function MaterialsArchive({ language, location, materials }) {
         if (locColor !== 'All') {
             arr = arr.map(el => {
                 let data = { ...el, id: Math.random() }
-                data.materials.materialColorVariants = data.materials.materialColorVariants.filter(inEl => inEl.colorGroup === color)
+                data.materials.materialColorVariants = data.materials.materialColorVariants.filter(inEl => colorGroupTransaltions[inEl.colorGroup][language] === partSlugDeTransform(color))
                 if (data.materials.materialColorVariants.length > 0) {
                     return data
                 }
                 return null
             })
+            debugger
             arr = arr.filter(el => el !== null)
 
         }
@@ -88,6 +122,7 @@ export default function MaterialsArchive({ language, location, materials }) {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.textures.nodes.every(inEl => {
+                    debugger
                     if (inEl.name === locTextures) {
                         isAccessed = true
                         return false
@@ -101,7 +136,6 @@ export default function MaterialsArchive({ language, location, materials }) {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.features.nodes.every(inEl => {
-
                     if (inEl.name === locFeatures) {
                         isAccessed = true
                         return false
@@ -111,7 +145,7 @@ export default function MaterialsArchive({ language, location, materials }) {
                 return isAccessed
             })
         }
-        if (locSort === 'Popular') {
+        if (locSort === sortBy[language][0].val) {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.materials.generalMaterialInformationCopy.isPopular) {
@@ -122,7 +156,7 @@ export default function MaterialsArchive({ language, location, materials }) {
             })
             arr = filtrArr
         }
-        if (locSort === 'New Arrivals') {
+        if (locSort === sortBy[language][1].val) {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.materials.generalMaterialInformationCopy.isNewArrival) {
@@ -133,7 +167,7 @@ export default function MaterialsArchive({ language, location, materials }) {
             })
             arr = filtrArr
         }
-        if (locSort === 'Alphabetical') {
+        if (locSort === sortBy[language][2].val) {
             arr.sort((a, b) => a.title.localeCompare(b.title))
         }
         return arr
@@ -173,9 +207,9 @@ export default function MaterialsArchive({ language, location, materials }) {
                     filterTitle={filterTitle[language]}
                     sortFilterTitle={sortFilterTitle[language]}
                     sortBy={sortBy[language]}
-                    colorRange={colorRange[language]}
-                    texturesArr={texturesArr[language]}
-                    featuresArr={featuresArr[language]}
+                    colorRange={colorRange}
+                    texturesArr={texturesArr}
+                    featuresArr={featuresArr}
                     setSort={(v) => { setSort(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
                     setColor={(v) => { setColor(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
                     setTextures={(v) => { setTextures(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
@@ -192,7 +226,7 @@ export default function MaterialsArchive({ language, location, materials }) {
                     setSearch={setSearch}
                     language={language}
                 />
-                <Title small={true} title={'Materials'} />
+                <Title small={true} title={meterialsAlterTitle[language]} />
                 <Container>
                     <ActiveFilters variants={gridAnimation} >
                         {color !== 'All' && (
@@ -216,7 +250,7 @@ export default function MaterialsArchive({ language, location, materials }) {
                         )}
                         {search !== '' && (
                             <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
-                                {searchFilterTitle[language]}{search}
+                                {searchFilterTitle[language]}: „{search}”
                                 <CloseButton tabIndex={-1} />
                             </FilterItem>
                         )}

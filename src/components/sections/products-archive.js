@@ -13,9 +13,9 @@ import InView from "./in-view-provider"
 import { imageTransition } from "../../helpers/animation-controller"
 import { motion } from "framer-motion"
 import {
-    typeTitle, sortByTitle, filterTitle, clearAllTitle, upholsterysArr, covesArr, sofasTypes,
+    typeTitle, sortByTitle, filterTitle, clearAllTitle, 
     coverParamName, pageParamName, searchParamName, sortBy, sortParamName, typeParamName, noResultMessage,
-    upholsteryParamName, upholsterysTitle, coversTitle, reset, view, sortFilterTitle, noResultTitle
+    upholsteryParamName, upholsterysTitle, coversTitle, reset, view, sortFilterTitle, noResultTitle, upholsterysArrAll, covesArrAll, sofasTypesAll
 } from "../../texts/filter"
 import { searchPlaceholder as searchFilterTitle } from "../../texts"
 
@@ -24,7 +24,7 @@ const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
 export default function ProductArchive({ language, location, pageContext: { type: name, title }, products }) {
-    const [sort, setSort] = useQueryParam(sortParamName[language], 'Popular')
+    const [sort, setSort] = useQueryParam(sortParamName[language], sortBy[language][0].val)
     const [type, setType] = useQueryParam(typeParamName[language], 'All')
     const [cover, setCover] = useQueryParam(coverParamName[language], 'All')
     const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName[language], 'All')
@@ -32,6 +32,39 @@ export default function ProductArchive({ language, location, pageContext: { type
     const [page, setPage] = useQueryParam(pageParamName[language], '1')
     const [inputValue, setInputValue] = useState('')
     const [defaultPosts] = useState(products)
+    const [upholsterysArr] = useState(() => {
+        const arr = [{ name: upholsterysArrAll[language], val: 'All' }]
+        products.forEach(el => {
+            el.products.collection.upholsterys?.nodes?.forEach(inEl => {
+                if (!arr.find(el => el.name === inEl.name)) {
+                    arr.push({ name: inEl.name, val: inEl.name })
+                }
+            })
+        })
+        return arr
+    })
+    const [coversArr] = useState(() => {
+        const arr = [{ name: covesArrAll[language], val: 'All' }]
+        products.forEach(el => {
+            el.products.collection.covers?.nodes?.forEach(inEl => {
+                if (!arr.find(el => el.name === inEl.name)) {
+                    arr.push({ name: inEl.name, val: inEl.name })
+                }
+            })
+        })
+        return arr
+    })
+    const [sofasTypes] = useState(() => {
+        const arr = [{ name: sofasTypesAll[language], val: 'All' }]
+        products.forEach(el => {
+            el.types.nodes.forEach(inEl => {
+                if (!arr.find(el => el.name === inEl.name)) {
+                    arr.push({ name: inEl.name, val: inEl.name })
+                }
+            })
+        })
+        return arr
+    })
 
     const changeType = useCallback((e, url) => {
         if (typeof window !== 'undefined' && name === 'sofas') {
@@ -115,7 +148,7 @@ export default function ProductArchive({ language, location, pageContext: { type
             })
         }
 
-        if (locSort === 'Popular') {
+        if (locSort === sortBy[language][0].val) {
             let filtrArr = [...arr]
 
             filtrArr.sort((a, b) => {
@@ -125,7 +158,7 @@ export default function ProductArchive({ language, location, pageContext: { type
             arr = filtrArr
         }
 
-        if (locSort === 'New Arrivals') {
+        if (locSort === sortBy[language][1].val) {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.products.isNewArrival) {
@@ -137,7 +170,7 @@ export default function ProductArchive({ language, location, pageContext: { type
             arr = filtrArr
         }
 
-        if (locSort === 'Alphabetical') {
+        if (locSort === sortBy[language][2].val) {
             arr.sort((a, b) => a.products.collection.title.localeCompare(b.products.collection.title))
         }
         return arr
@@ -167,11 +200,11 @@ export default function ProductArchive({ language, location, pageContext: { type
                     sortBy={sortBy[language]}
                     name={name}
                     typeTitle={typeTitle[language]}
-                    sofasTypes={sofasTypes[language]}
+                    sofasTypes={sofasTypes}
                     upholsterysTitle={upholsterysTitle[language]}
-                    upholsterysArr={upholsterysArr[language]}
+                    upholsterysArr={upholsterysArr}
                     coversTitle={coversTitle[language]}
-                    covesArr={covesArr[language]}
+                    covesArr={coversArr}
                     reset={reset[language]}
                     view={view[language]}
                     sort={partSlugDeTransform(sort)}

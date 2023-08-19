@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react"
 import queryString from 'query-string'
+import { partSlugDeTransform } from "../helpers/slug-maker"
 
 function getQueryParams() {
     let queryParams = {}
@@ -46,7 +47,7 @@ export function useQueryParam(name, defaultValue) {
 
     const changeUrlParam = useCallback((val) => {
         setQueryParam(val)
-        if (val === defaultValue) {
+        if (partSlugDeTransform(String(val)) === defaultValue) {
             clear()
         }
         else {

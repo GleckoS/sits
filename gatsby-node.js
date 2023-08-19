@@ -214,7 +214,7 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'footstools',
-                productType: types.nodes[0].name,
+                productType: types.nodes[0]?.name,
                 language: language?.code ? language.code : 'EN'
             },
         });
@@ -244,6 +244,7 @@ exports.createPages = async ({
   `);
 
     sofasArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -253,7 +254,7 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'sofas',
-                productType: types.nodes[0].name,
+                productType: types.nodes[0]?.name,
                 language: language?.code ? language.code : 'EN'
             },
         });
@@ -283,6 +284,7 @@ exports.createPages = async ({
   `);
 
     armchairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -292,7 +294,7 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'armchairs',
-                productType: types.nodes[0].name,
+                productType: types.nodes[0]?.name,
                 language: language?.code ? language.code : 'EN'
             },
         });
@@ -322,6 +324,7 @@ exports.createPages = async ({
   `);
 
     tablesArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -331,7 +334,7 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'coffee tables',
-                productType: types.nodes[0].name,
+                productType: types.nodes[0]?.name,
                 language: language?.code ? language.code : 'EN'
             },
         });
@@ -361,6 +364,7 @@ exports.createPages = async ({
   `);
 
     chairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -370,7 +374,7 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'dining chairs',
-                productType: types.nodes[0].name,
+                productType: types.nodes[0]?.name,
                 language: language?.code ? language.code : 'EN'
             },
         });
@@ -400,6 +404,7 @@ exports.createPages = async ({
   `);
 
     outdoorArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -409,7 +414,7 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'outdoor furniture',
-                productType: types.nodes[0].name,
+                productType: types.nodes[0]?.name,
                 language: language?.code ? language.code : 'EN'
             },
         });
