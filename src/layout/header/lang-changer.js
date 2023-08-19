@@ -6,9 +6,9 @@ import { icons } from "../../texts/icons"
 
 export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 }) => {
 
-    if (!data) return null
-
     const [isOpened, setIsOpened] = useState(false)
+
+    if (!data) return null
 
     const locData = data.wpPage || data.wpCollection || data.wpMaterials
 

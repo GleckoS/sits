@@ -42,7 +42,8 @@ export function useQueryParam(name, defaultValue, location) {
     })
 
     const clear = useCallback(() => {
-        if (queryParam !== defaultValue) {
+        let params = getQueryParams()
+        if(params[name] && params[name] !== defaultValue){
             clearQueryParam(name)
         }
     }, [name]);

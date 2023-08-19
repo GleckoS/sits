@@ -23,12 +23,12 @@ const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
 export default function MaterialsArchive({ language, location, materials }) {
-    const [sort, setSort] = useQueryParam(sortParamName[language], sortBy[language][0].val)
-    const [color, setColor] = useQueryParam(colorParamName[language], 'All')
-    const [textures, setTextures] = useQueryParam(texturesParamName[language], 'All')
-    const [features, setFeatures] = useQueryParam(featuresParamName[language], 'All')
-    const [search, setSearch] = useQueryParam(searchParamName[language], '')
-    const [page, setPage] = useQueryParam(pageParamName[language], '1')
+    const [sort, setSort] = useQueryParam(sortParamName[language], sortBy[language][0].val, location)
+    const [color, setColor] = useQueryParam(colorParamName[language], 'All', location)
+    const [textures, setTextures] = useQueryParam(texturesParamName[language], 'All', location)
+    const [features, setFeatures] = useQueryParam(featuresParamName[language], 'All', location)
+    const [search, setSearch] = useQueryParam(searchParamName[language], '', location)
+    const [page, setPage] = useQueryParam(pageParamName[language], '1', location)
     const [inputValue, setInputValue] = useState('')
     const [featuresArr] = useState(() => {
         const arr = [{ name: featuresArrAll[language], val: 'All' }]
