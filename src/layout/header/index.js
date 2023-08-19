@@ -1,5 +1,5 @@
 import { Link } from 'gatsby'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { CloseButton } from '../../components/atoms/close-button'
 import { Container } from '../../components/atoms/container'
@@ -7,25 +7,14 @@ import { Search } from '../../components/moleculas/search'
 import { LangChanger } from './lang-changer'
 import { Item } from './menu-item'
 import scrollLock from './../../helpers/scroll-lock'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { linksLeft, linksRight, furnitureTitle, companyTitle } from '../../texts'
 import { homepageUrl } from '../../texts/urls'
-
-const logoAnimation = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: .5 } }
-}
-
-const otherLinksAnimation = {
-  initial: { opacity: 0, backgroundSize: '0 1px' },
-  animate: { opacity: 1, backgroundSize: '80% 1px', transition: { duration: .5, delay: .5 } }
-}
 
 export default function Header({ data, language }) {
   const [isLeftMenuOpened, setLeftMenuOpened] = useState(false)
   const [isRightMenuOpened, setRightMenuOpened] = useState(false)
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false)
-  const header = useRef(null)
 
   useEffect(() => {
     document.onkeydown = function (evt) {
@@ -62,13 +51,7 @@ export default function Header({ data, language }) {
   }
 
   return (
-    <Wrapper
-      onAnimationComplete={() => { header.current.classList.add('active') }}
-      ref={header}
-      initial='initial'
-      animate='animate'
-      exit='exit'
-    >
+    <Wrapper>
       <a
         className='no-focus'
         href='#main'
@@ -76,7 +59,6 @@ export default function Header({ data, language }) {
       />
       <Container className='container'>
         <Button
-          variants={otherLinksAnimation}
           className='control-desctop underline'
           onClick={() => {
             setLeftMenuOpened(true)
@@ -122,7 +104,7 @@ export default function Header({ data, language }) {
             ))}
           </MenuContent>
         </LeftMenu>
-        <motion.div variants={logoAnimation}>
+        <motion.div>
           <Link
             className='logo'
             onClick={() => {
@@ -146,7 +128,6 @@ export default function Header({ data, language }) {
         <div className='right'>
           <LangChanger setMobileMenuOpened={setMobileMenuOpened} data={data} language={language} />
           <Button
-            variants={otherLinksAnimation}
             className='control-desctop underline'
             onClick={() => {
               setRightMenuOpened(true)
@@ -187,7 +168,6 @@ export default function Header({ data, language }) {
           </MenuContent>
         </RightMenu>
         <Burger
-          variants={otherLinksAnimation}
           aria-label='burger button'
           className={
             isMobileMenuOpened ? 'open control-mobile' : 'control-mobile'
@@ -197,51 +177,55 @@ export default function Header({ data, language }) {
           }}>
           <span />
         </Burger>
-        <MobileMenu initial={{ opacity: 0 }} animate={isMobileMenuOpened ? { opacity: 1, transition: { duration: .5 } } : { opacity: 0, transition: { duration: .3 } }} className={isMobileMenuOpened ? 'active' : ''}>
-          <Container className='content'>
-            <Search
-              func={closeAll}
-              tabIndex={isMobileMenuOpened ? '0' : '-1'}
-            />
-            <div className='wrap'>
-              {linksLeft[language].map((el) => (
-                <React.Fragment key={el.name}>
-                  <Item
-                    tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                    el={el}
-                    func={(v) => {
-                      setMobileMenuOpened(v)
-                    }}
-                  />
-                </React.Fragment>
-              ))}
-            </div>
-            <div className='wrap'>
-              {linksRight[language].map((el) => (
-                <React.Fragment key={el.name}>
-                  <Item
-                    tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                    el={el}
-                    func={(v) => {
-                      setMobileMenuOpened(v)
-                    }}
-                  />
-                </React.Fragment>
-              ))}
-            </div>
-            <div className='wrap'>
-              <LangChanger
+        <AnimatePresence mode='wait'>
+          {isMobileMenuOpened && (
+            <MobileMenu initial={{ opacity: 0 }} exit={{ opacity: 0, transition: { duration: .3 } }} animate={{ opacity: 1, transition: { duration: .5 } }} className={isMobileMenuOpened ? 'active' : ''}>
+              <Container className='content'>
+                <Search
+                  func={closeAll}
+                  tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                />
+                <div className='wrap'>
+                  {linksLeft[language].map((el) => (
+                    <React.Fragment key={el.name}>
+                      <Item
+                        tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                        el={el}
+                        func={(v) => {
+                          setMobileMenuOpened(v)
+                        }}
+                      />
+                    </React.Fragment>
+                  ))}
+                </div>
+                <div className='wrap'>
+                  {linksRight[language].map((el) => (
+                    <React.Fragment key={el.name}>
+                      <Item
+                        tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                        el={el}
+                        func={(v) => {
+                          setMobileMenuOpened(v)
+                        }}
+                      />
+                    </React.Fragment>
+                  ))}
+                </div>
+                <div className='wrap'>
+                  <LangChanger
               setMobileMenuOpened={setMobileMenuOpened}
               data={data}
                 language={language}
-                onblur={() => {
-                  setMobileMenuOpened(false)
-                }}
-                tabIndex={isMobileMenuOpened ? '0' : '-1'}
-              />
-            </div>
-          </Container>
-        </MobileMenu>
+                    onblur={() => {
+                      setMobileMenuOpened(false)
+                    }}
+                    tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                  />
+                </div>
+              </Container>
+            </MobileMenu>
+          )}
+        </AnimatePresence>
         <Overlay
           onClick={() => {
             setLeftMenuOpened(false)
@@ -272,7 +256,7 @@ const Overlay = styled.div`
   }
 `
 
-const Wrapper = styled(motion.header)`
+const Wrapper = styled.header`
   max-width: 1920px;
   width: 100%;
   margin: 0 auto;
@@ -286,10 +270,7 @@ const Wrapper = styled(motion.header)`
   background-color: #fff;
   border-bottom: 1px solid transparent;
   transition: border .5s cubic-bezier(0.42, 0, 0.58, 1);
-
-  &.active{
-    border-bottom: 1px solid #ddd;
-  }
+  border-bottom: 1px solid #ddd;
 
   .logo {
     /* svg path{
@@ -392,7 +373,6 @@ const MobileMenu = styled(motion.div)`
   top: 75px;
   bottom: 0;
   background-color: #fff;
-  transition: all var(--menu-animation);
 
   pointer-events: none;
 

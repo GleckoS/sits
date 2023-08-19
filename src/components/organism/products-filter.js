@@ -333,7 +333,6 @@ const MobileFilters = styled(motion.div)`
     @supports  (-webkit-touch-callout: none){
         padding-bottom: 120px;
     }
-    transition:  all var(--menu-animation);
 `
 
 const Filter = styled(motion.div)`

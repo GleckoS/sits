@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
 import { Link } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
-import React, { useEffect, useMemo, useState } from "react"
+import React, { useEffect, useState } from "react"
 import styled from "styled-components"
-import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
+import { imageTransition } from "../../helpers/animation-controller"
 import InView from "./in-view-provider"
 
 const sliderAnimation = imageTransition(1)
@@ -19,18 +19,20 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
             }, 1)
         }
     }, [])
-
-
+    
     return (
         <InView margin='0px 0px 0px 0px'>
             <Wrapper >
                 <motion.div className="background wrapper" variants={sliderAnimation} >
-                    <GatsbyImage objectPosition='50% 100%' className=" image mobile" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImageMobile.altText} />
+                    <GatsbyImage loading="eager" objectPosition='50% 100%' className="background image" image={backgroundImageMobile.localFile.childImageSharp.gatsbyImageData} alt={backgroundImage.altText} />
                     {documentWidth > 768 && (
                         <video
+                            // ref={videoRef}
                             className="background video"
+                            // className={videoActive ? "background video active" : "background video"}
                             playsInline muted loop autoPlay
-                            poster={backgroundImage.localFile.publicURL} >
+                            poster={backgroundImage.localFile.publicURL}
+                        >
                             <source src={backgroundVideo.localFile.publicURL} type="video/mp4" />
                         </video>
                     )}
@@ -56,16 +58,27 @@ const Wrapper = styled.section`
     max-height: 100vh;
     top: -95px;
     margin-bottom: -95px;
+    min-height: 100vh;
 
     @media (max-width: 1440px) {
         max-height: calc(100vh - 95px);
         top: unset;
         margin-bottom: unset;
     }
-    @media (max-width: 840px) {
-        max-height: calc(100vh - 75px);
+
+    @media (max-width: 1024px) {
+        min-height: 520px;
+        height: 100%;
     }
 
+    @media (max-width: 540px) {
+        min-height: 440px;
+    }
+
+    @media (max-width: 389px) {
+        min-height: 400px;
+    }
+/* 
     .video{
         clip-path: inset(0px 0px);
         position: relative;
@@ -76,37 +89,42 @@ const Wrapper = styled.section`
         *:focus-visible{
             outline: none;
         }
-    }
+    } */
 
     .background{
-        min-height: 530px;
 
-        @media (max-width: 540px) {
-            min-height: 440px;
-        } 
-
-        @media (max-width: 389px) {
-            min-height: 400px;
-            min-width: unset;
-        }
-    }
-
-    .image{
-        display: none;
-    }
-
-    @media (max-width: 768px) {
-        .video{
+        &.image{
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: 1;
             display: none;
+
+            @media (max-width: 768px) {
+                display: block;
+            }
         }
-        .image{
-            display: block;
+
+        &.video{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            opacity: 1;
+
+            @media (max-width: 768px) {
+                display: none;
+            }
         }
-        .background{
-            min-width: unset;
-            max-height: calc(100vh - 75px);
+
+        &.wrapper{
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
         }
     }
+
     .content{
         position: absolute;
         left: 50%;

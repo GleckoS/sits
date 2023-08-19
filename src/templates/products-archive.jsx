@@ -62,6 +62,7 @@ export const query = graphql`
         ) {
           nodes{
             id
+            title
             types {
               nodes {
                 name

@@ -183,20 +183,20 @@ const Control = styled.aside`
         align-items: center;
         text-transform: uppercase;
 
+        svg{
+            transform: translateX(-1px) rotateZ(-90deg);
+            transition: transform .2s ease-out;
+            margin-top: 2px;
+        }
+
         &:hover{
             span{
                 background-size:100% 1px ;
             }
 
             svg{
-                transform: translateY(2px);
+                transform: translateX(2px) rotateZ(-90deg);
             }
-        }
-
-        svg{
-            transform: translateY(-1px);
-            transition: transform .2s ease-out;
-            margin-top: 2px;
         }
     }
 

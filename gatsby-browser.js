@@ -22,6 +22,14 @@ export const shouldUpdateScroll = ({
     routerProps: { location },
     getSavedScrollPosition
 }) => {
+    const isMobile = (() => {
+        if (typeof window !== 'undefined')
+            return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        return true;
+    })()
+
+    if (!isMobile) return true
     // transition duration from `layout.js` * 1000 to get time in ms
     // * 2 for exit + enter animation
     const TRANSITION_DELAY = 500

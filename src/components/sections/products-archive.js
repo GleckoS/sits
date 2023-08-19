@@ -24,12 +24,12 @@ const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
 export default function ProductArchive({ language, location, pageContext: { type: name, title }, products }) {
-    const [sort, setSort] = useQueryParam(sortParamName[language], sortBy[language][0].val)
-    const [type, setType] = useQueryParam(typeParamName[language], 'All')
-    const [cover, setCover] = useQueryParam(coverParamName[language], 'All')
-    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName[language], 'All')
-    const [search, setSearch] = useQueryParam(searchParamName[language], '')
-    const [page, setPage] = useQueryParam(pageParamName[language], '1')
+    const [sort, setSort] = useQueryParam(sortParamName[language], sortBy[language][0].val, location)
+    const [type, setType] = useQueryParam(typeParamName[language], 'All', location)
+    const [cover, setCover] = useQueryParam(coverParamName[language], 'All', location)
+    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName[language], 'All', location)
+    const [search, setSearch] = useQueryParam(searchParamName[language], '', location)
+    const [page, setPage] = useQueryParam(pageParamName[language], '1', location)
     const [inputValue, setInputValue] = useState('')
     const [defaultPosts] = useState(products)
     const [upholsterysArr] = useState(() => {
@@ -90,7 +90,14 @@ export default function ProductArchive({ language, location, pageContext: { type
     }
 
     const filtredProducts = useMemo(() => {
-        let arr = [...defaultPosts]
+        let arr = [...defaultPosts].filter(el => {
+            if(!el.products.collection){
+                console.log('product ' + el.title +  ' without collection')
+                return false
+            }
+
+            return el.products.collection
+        })
         let locSort = partSlugDeTransform(sort)
         let locType = partSlugDeTransform(type)
         let locUpholsterys = partSlugDeTransform(upholsterys)

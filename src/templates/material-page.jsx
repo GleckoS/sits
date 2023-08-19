@@ -29,11 +29,16 @@ export default function Material({ location, data: { wpMaterials }, pageContext 
           context.setLanguage(pageContext.language)
         }}
       </myContext.Consumer>
-      <Hero language={pageContext.language} isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video && !wpMaterials.materials.popularProductsUsingThisMaterial.productList} variant={location?.state?.variant} data={wpMaterials} />
+      <Hero
+        language={pageContext.language}
+        isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.youtubeOembed && !wpMaterials.materials.videoSection?.video && !wpMaterials.materials.popularProductsUsingThisMaterial.productList}
+        variant={location?.state?.variant}
+        data={wpMaterials} />
+
       {wpMaterials.materials.popularProductsUsingThisMaterial.productList
         && <SimilarProducts language={pageContext.language} isLast={!wpMaterials.materials.similarCovers.covers && !wpMaterials.materials.videoSection?.video} materials={true} title={wpMaterials.title + similarTitle[pageContext.language]} data={wpMaterials.materials.popularProductsUsingThisMaterial.productList} />}
 
-      {wpMaterials.materials.videoSection?.video
+      {(wpMaterials.materials.videoSection?.video || wpMaterials.materials.videoSection?.youtubeOembed)
         && <Video isLast={!wpMaterials.materials.similarCovers.covers} materials={true} data={wpMaterials.materials.videoSection} />}
 
       {wpMaterials.materials.similarCovers.covers
@@ -211,6 +216,7 @@ export const query = graphql`
               }
             }
             videoSection {
+              youtubeOembed
               video {
                 altText
                 localFile{

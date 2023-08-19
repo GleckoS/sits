@@ -41,7 +41,7 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
         data={wpCollection}
       />
       {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
-      {wpCollection.collections.videoSection?.video && <Video isMarginBottom={!wpCollection.collections.recommendedCovers.covers && !wpCollection.collections.accessoriesSection.accessories} data={wpCollection.collections.videoSection} />}
+      {(wpCollection.collections.videoSection?.video || wpCollection.collections.videoSection?.youtubeOembed) && <Video isMarginBottom={!wpCollection.collections.recommendedCovers.covers && !wpCollection.collections.accessoriesSection.accessories} data={wpCollection.collections.videoSection} />}
       {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers language={pageContext.language} isMarginTop={wpCollection.collections.twoColumn.imageOnTheLeftSide || wpCollection.collections.videoSection?.video} title={collectionCoversTitle[pageContext.language] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
       {wpCollection.collections.accessoriesSection.accessories && <Accessories title={accessoriesSectionTitle[pageContext.language]} data={wpCollection.collections.accessoriesSection.accessories} />}
       {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts language={pageContext.language} title={collectionSimilarTitle[pageContext.language]} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
@@ -77,6 +77,7 @@ export const query = graphql`
             id
             collections {
               videoSection {
+                youtubeOembed
                 video{
                   altText
                   localFile {

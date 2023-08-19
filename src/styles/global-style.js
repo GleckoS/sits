@@ -111,6 +111,10 @@ export const Global = createGlobalStyle`
         background-position: left bottom;
         background-repeat: no-repeat;
 
+        @media (pointer: coarse) {
+            background-size: 80% 1px !important;
+        }
+
         &:hover {
             background-size: 100% 1px !important;
         }
@@ -129,8 +133,12 @@ export const Global = createGlobalStyle`
         background-position: left bottom;
         background-repeat: no-repeat;
 
+        @media (pointer: coarse) {
+            background-size: 80% 1px !important;
+        }
+
         &:hover {
-            background-size: 100% 1px;
+            background-size: 100% 1px !important;
         }
     }
     

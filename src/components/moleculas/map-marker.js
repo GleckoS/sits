@@ -37,13 +37,17 @@ if (typeof window !== 'undefined') {
 
 export default function MapMarker({ language, isActive, markerClick, index, el, map }) {
     let popupRef = useRef();
-    
+
+    if (isNaN(el.Latitude) || isNaN(el.Longitude)) {
+        console.log(el.name + ' has wrong coordinates')
+    }
+
     useEffect(() => {
         if (isActive && popupRef?.current) {
             popupRef.current.openOn(map.current)
         }
     }, [isActive, map, popupRef])
-    
+
     return (
         <Marker
             icon={isActive ? chosenIcon : iconPerson}
@@ -56,7 +60,7 @@ export default function MapMarker({ language, isActive, markerClick, index, el, 
                 <div>
                     <p className="p">{el['Shop name']}</p>
                     <p className="p-l">{el.Address}</p>
-                    <p className="p-l">{el.City}, {el.Country}</p>
+                    <p className="p-l">{el.City ? el.City + ', ' : ''}{el.Country}</p>
                     <a href={'tel:' + el.Phone} className="p-l phone">{el.Phone}</a>
                 </div>
                 {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle[language]}</a>}

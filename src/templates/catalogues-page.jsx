@@ -61,6 +61,7 @@ export const query = graphql`
                 catalogueFile {
                   localFile {
                     publicURL
+                    prettySize
                   }
                   mediaItemUrl
                 }

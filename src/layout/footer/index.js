@@ -43,18 +43,24 @@ export default function Footer({ language, setIsCookiesActive }) {
 
   const section = useRef(null)
   const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
+  const isMobile = (() => {
+    if (typeof window !== 'undefined')
+      return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    return true;
+  })()
 
   return (
     <myContext.Consumer>
       {({ transition }) => {
         return (
           <Wrapper
-            initial='initial'
-            animate={isSectionInView ? 'animate' : 'initial'}
+            initial={isMobile ? 'animate' : 'initial'}
+            animate={isSectionInView || isMobile ? 'animate' : 'initial'}
             exit='exit'
             ref={section}
             id='footer'>
-            <BottomPart opacity={transition}>
+            <BottomPart opacity={isMobile ? '1' : transition}>
               <Container className='container'>
                 <Menu>
                   <motion.div variants={logoAnimation}>

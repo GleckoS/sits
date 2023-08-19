@@ -20,17 +20,16 @@ export const Title = ({ small, title, text }) => (
 )
 
 const Wrapper = styled.div`
-margin: clamp(20px, ${75 / 1194 * 100}vw, 110px) 0 clamp(45px, ${75 / 1194 * 100}vw, 110px);
+    margin: clamp(20px, ${75 / 1194 * 100}vw, 110px) 0 clamp(45px, ${75 / 1194 * 100}vw, 110px);
+
+    &.small{
+        margin: 30px 0;
+    }
+
     h1{
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-family: 'Ivy';
         font-weight: 300;
-    }
-
-    &.small{
-        h1{
-            margin: 30px 0;
-        }
     }
 
     p{
