@@ -26,7 +26,7 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
             for (let i = 0; i < variants.length; i++) {
                 if (variants[i].variantName === choosenVariant) {
                     curIndex = i
-                    i = variant.length
+                    i = variants.length
                 }
             }
 
