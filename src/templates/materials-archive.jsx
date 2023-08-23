@@ -25,7 +25,7 @@ export default function Material({ data: { allWpMaterials }, location }) {
 }
 
 export const query = graphql`
-    query material($id: String!) {
+    query material($id: String!, $language: String!) {
         wpPage(id: {eq: $id}) {
             id
             seo {
@@ -40,7 +40,7 @@ export const query = graphql`
               }
             }
         }
-      allWpMaterials{
+      allWpMaterials(filter: {language: {slug: {eq: $language}}}){
         nodes{
           features {
             nodes {

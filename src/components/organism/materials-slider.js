@@ -27,7 +27,8 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
 
     const onVariantChange = (index, direction) => {
         let number = index
-        if (index >= 0) {
+        if (typeof index === 'object') {
+            debugger
             let curIndex = 0
             for (let i = 0; i < variants.length; i++) {
                 if (variants[i].variantName === choosenVariant) {
