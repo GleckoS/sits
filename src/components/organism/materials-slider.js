@@ -168,10 +168,6 @@ const VariantGallery = styled.div`
         font-weight: 300;
         margin-bottom: 40px;
         display: block;
-
-        @media (max-width: 1024px) {
-            display: none;
-        }
     }
 
     .grid{

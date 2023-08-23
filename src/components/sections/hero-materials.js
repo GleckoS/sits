@@ -111,7 +111,7 @@ const Wrapper = styled.div`
         grid-area: gallery;
 
         @media (max-width: 1024px) {
-            padding-top: 60px;
+            padding-bottom: 60px;
         }
     }
 `
