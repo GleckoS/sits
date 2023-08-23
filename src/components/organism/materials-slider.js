@@ -38,7 +38,7 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
                 number = 0
             }
         }
-        document.getElementById('background').style.backgroundColor = variants.filter(el => el.variantName === choosenVariant)[0].landscapePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
+        document.getElementById('background').style.backgroundColor = variants.filter(el => el.variantName === choosenVariant)?.[0]?.landscapePreviewImage?.localFile?.childImageSharp?.gatsbyImageData?.backgroundColor || '#F9F5F0'
 
         setNewVariant(variants[number].variantName)
         setTimeout(() => {
