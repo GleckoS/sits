@@ -7,13 +7,19 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 export const MaterialsSlider = ({ animation, variant, variants }) => {
     const [choosenVariant, setChoosenVariant] = useState(() => {
         if (variant) {
-            return variant
-        }
-        for (let i = 0; i < variants.length; i++) {
-            if (variants[i].isMainColor) {
-                return variants[i].variantName
+            let isActual = false
+            for (let i = 0; i < variants.length; i++) {
+                if (variants[i].variantName === variant) {
+                    isActual = true
+                }
             }
+            if (isActual) return variant
         }
+
+        for (let i = 0; i < variants.length; i++) {
+            if (variants[i].isMainColor) return variants[i].variantName
+        }
+
         return variants[0].variantName
     })
 
