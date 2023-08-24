@@ -7,13 +7,19 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 export const MaterialsSlider = ({ animation, variant, variants }) => {
     const [choosenVariant, setChoosenVariant] = useState(() => {
         if (variant) {
-            return variant
-        }
-        for (let i = 0; i < variants.length; i++) {
-            if (variants[i].isMainColor) {
-                return variants[i].variantName
+            let isActual = false
+            for (let i = 0; i < variants.length; i++) {
+                if (variants[i].variantName === variant) {
+                    isActual = true
+                }
             }
+            if (isActual) return variant
         }
+
+        for (let i = 0; i < variants.length; i++) {
+            if (variants[i].isMainColor) return variants[i].variantName
+        }
+
         return variants[0].variantName
     })
 
@@ -21,12 +27,13 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
 
     const onVariantChange = (index, direction) => {
         let number = index
-        if (!index) {
+        if (typeof index === 'object') {
+            debugger
             let curIndex = 0
             for (let i = 0; i < variants.length; i++) {
                 if (variants[i].variantName === choosenVariant) {
                     curIndex = i
-                    i = variant.length
+                    i = variants.length
                 }
             }
 
@@ -38,7 +45,7 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
                 number = 0
             }
         }
-        document.getElementById('background').style.backgroundColor = variants.filter(el => el.variantName === choosenVariant)[0].landscapePreviewImage.localFile.childImageSharp.gatsbyImageData.backgroundColor
+        document.getElementById('background').style.backgroundColor = variants.filter(el => el.variantName === choosenVariant)?.[0]?.landscapePreviewImage?.localFile?.childImageSharp?.gatsbyImageData?.backgroundColor || '#F9F5F0'
 
         setNewVariant(variants[number].variantName)
         setTimeout(() => {
@@ -168,10 +175,6 @@ const VariantGallery = styled.div`
         font-weight: 300;
         margin-bottom: 40px;
         display: block;
-
-        @media (max-width: 1024px) {
-            display: none;
-        }
     }
 
     .grid{
