@@ -19,8 +19,8 @@ module.exports = {
         schema: {
           timeout: 1000000000,
           circularQueryLimit: 100,
-          perPage: 5,
-          requestConcurrency: 3,
+          perPage: 10,
+          requestConcurrency: 10,
         },
         type: {
           MediaItem: {
