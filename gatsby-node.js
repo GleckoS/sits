@@ -176,7 +176,8 @@ exports.createPages = async ({
                 id,
                 slug,
                 uri,
-                language: language?.code ? language.code : 'EN'
+                language: language?.code ? language.code : 'EN',
+                homepageId: Homepage.find(el => el.language?.code === language?.code)?.id,
             },
         });
     })

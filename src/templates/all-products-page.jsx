@@ -30,7 +30,7 @@ export default function AllProducts({ data: { wpPage, homepage }, pageContext, l
 }
 
 export const query = graphql`
-    query allProducts($id: String!) {
+    query allProducts($id: String!, $homepageId: String!) {
         wpPage(id: {eq: $id}){
           language {
             name
@@ -55,7 +55,7 @@ export const query = graphql`
               }
             }
         }
-        homepage : wpPage(id: {eq: "cG9zdDoyOTY4Mg=="}) {
+        homepage : wpPage(id: {eq: $homepageId}) {
             id
             homepage{
             productsGrid {
