@@ -16,11 +16,14 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         "url": "https://sits.headlesshub.com/graphql",
+        production: {
+          hardCacheMediaFiles: true,
+        },
         schema: {
           timeout: 1000000000,
           circularQueryLimit: 100,
-          perPage: 6,
-          requestConcurrency: 3,
+          perPage: 1,
+          requestConcurrency: 1,
         },
         type: {
           MediaItem: {
