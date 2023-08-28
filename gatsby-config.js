@@ -16,19 +16,6 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         "url": "https://sits.headlesshub.com/graphql",
-        schema: {
-          timeout: 1000000000,
-          circularQueryLimit: 100,
-          perPage: 6,
-          requestConcurrency: 3,
-        },
-        type: {
-          MediaItem: {
-            localFile: {
-              maxFileSizeBytes: 52428800, // 50Mb
-            },
-          },
-        },
       }
     },
     "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", `gatsby-plugin-react-helmet`,
