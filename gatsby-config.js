@@ -16,19 +16,36 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         "url": "https://sits.headlesshub.com/graphql",
-        schema: {
-          timeout: 1000000000,
-          circularQueryLimit: 100,
-          perPage: 5,
-          requestConcurrency: 3,
+        develop: {
+          hardCacheMediaFiles: true,
+          hardCacheData: false,
+          nodeUpdateInterval: 600000 
         },
+        verbose: true,
+        debug: {
+          graphql: {
+            showQueryVarsOnError: true,
+            panicOnError: true,
+            writeQueriesToDisk: true,
+          },
+        },
+        schema: {
+          perPage: 25,
+          timeout: 300000,
+          requestConcurrency: 1,
+        },
+        excludeFieldNames: ['comments', 'blocksJSON', 'previewBlocks', 'previewBlocksJSON'],
         type: {
+          Comment: {
+            limit: 0,
+          },
           MediaItem: {
+            lazyNodes: false,
             localFile: {
               maxFileSizeBytes: 52428800, // 50Mb
             },
           },
-        },
+        }
       }
     },
     "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", `gatsby-plugin-react-helmet`,
@@ -38,6 +55,7 @@ module.exports = {
         defaults: {
           placeholder: `dominantColor`,
           quality: 70,
+          formats: [`webp`],
         },
       }
     },
