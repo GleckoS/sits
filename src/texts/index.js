@@ -25,12 +25,12 @@ export const careInstructionsText = {
 
 export const upholsterysText = {
     EN: 'UPSHOLSTERY',
-    FR: 'REMBOURRAGES'
+    FR: 'TISSUS'
 }
 
 export const confortText = {
     EN: 'COMFORTS',
-    FR: 'GARNITURES'
+    FR: 'REMBOURRAGES'
 }
 
 export const coversText = {
@@ -124,7 +124,7 @@ export const materialsTitle = {
 }
 export const meterialsAlterTitle = {
     EN: 'Materials',
-    FR: 'Matériaux'
+    FR: 'TISSUS'
 }
 export const colorsTitle = {
     EN: 'Colors of covers',
@@ -153,7 +153,7 @@ export const collectionSimilarTitle = {
 
 export const collectionCoversTitle = {
     EN: 'Recommended covers for ',
-    FR: 'Couvertures recommandées pour '
+    FR: 'Tissus recommandés pour le '
 }
 export const allProductsTitle = {
     EN: 'Discover our collections',
