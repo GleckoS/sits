@@ -1,7 +1,33 @@
 const fs = require('fs')
-const { resolve } = require('path')
-const fetch = (...args) =>
-    import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+const { resolve } = require('path');
+const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+
+const productSearchTypes = {
+    sofas: {
+        EN: 'Sofas',
+        FR: 'Canapés'
+    },
+    armchairs: {
+        EN: 'Armchairs',
+        FR: 'Fauteuils'
+    },
+    coffeTables: {
+        EN: 'Coffee Tables',
+        FR: 'Tables Basses'
+    },
+    dinningChairs: {
+        EN: 'Dining Chairs',
+        FR: 'Chaises de salle à manger'
+    },
+    footstools: {
+        EN: 'Footstools',
+        FR: 'Repose-pieds'
+    },
+    outdoorFurniture: {
+        EN: 'Outdoor Furniture',
+        FR: 'Mobilier d’extérieur'
+    },
+}
 
 const csvParser = (data) => {
     let lines = data.split("\r\n");
@@ -506,7 +532,13 @@ exports.createPages = async ({
                 id,
                 slug,
                 uri,
-                language: language?.code ? language.code : 'EN'
+                language: language?.code ? language.code : 'EN',
+                sofas: productSearchTypes.sofas[language?.code ? language.code : 'EN'],
+                armchairs: productSearchTypes.armchairs[language?.code ? language.code : 'EN'],
+                footstools: productSearchTypes.footstools[language?.code ? language.code : 'EN'],
+                dinningChairs: productSearchTypes.dinningChairs[language?.code ? language.code : 'EN'],
+                coffeTables: productSearchTypes.coffeTables[language?.code ? language.code : 'EN'],
+                outdoorFurniture: productSearchTypes.outdoorFurniture[language?.code ? language.code : 'EN'],
             },
         });
     })
