@@ -150,38 +150,6 @@ exports.createPages = async ({
         });
     })
 
-    // PRODUCTS
-
-    const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
-    query {
-        allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
-        }
-    }
-  `);
-
-
-    productsArchives.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/all-products-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN',
-                homepageId: Homepage.find(el => el.language?.code === language?.code)?.id,
-            },
-        });
-    })
-
     // FOOTSTOOLS
 
     const { data: { allWpPage: { nodes: footstoolsArchives } } } = await graphql(`
@@ -447,6 +415,38 @@ exports.createPages = async ({
                 slug,
                 uri,
                 language: language?.code ? language.code : 'EN'
+            },
+        });
+    })
+
+    // PRODUCTS
+
+    const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
+            nodes {
+                slug
+                id
+                uri
+                language {
+                  code
+                }
+            }
+        }
+    }
+  `);
+
+
+    productsArchives.forEach(({ id, slug, uri, language }) => {
+        createPage({
+            path: uri,
+            component: resolve('src/templates/all-products-page.jsx'),
+            context: {
+                id,
+                slug,
+                uri,
+                language: language?.code ? language.code : 'EN',
+                homepageId: Homepage.find(el => el.language?.code === language?.code)?.id,
             },
         });
     })

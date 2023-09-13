@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Grid } from "./cookies-grid"
 import scrollLock from './../helpers/scroll-lock'
 import { getCookie, setCookie } from "../helpers/coockie-manager"
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { allowButton, allowChosenButton, setButton, denyButton, aboutTabName, detailsTabName, consentTabName } from "../texts/cookie"
 
 function datalayerArguments() {
@@ -168,35 +168,36 @@ export default function Cookies({ language, isActive, setIsActive }) {
                     <Wrapper initial={{ opacity: isMobile ? 1 : 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-wrapper'>
                         <Content>
                             <TabsControl>
-                                <AnimateSharedLayout>
-                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(0) }}>
-                                        {consentTabName[language]}
-                                        {activeTab === 0 && (
-                                            <motion.div
-                                                className="underline"
-                                                layoutId="underline"
-                                            />
-                                        )}
-                                    </button>
-                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(1) }}>
-                                        {detailsTabName[language]}
-                                        {activeTab === 1 && (
-                                            <motion.div
-                                                className="underline"
-                                                layoutId="underline"
-                                            />
-                                        )}
-                                    </button>
-                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(2) }}>
-                                        {aboutTabName[language]}
-                                        {activeTab === 2 && (
-                                            <motion.div
-                                                className="underline"
-                                                layoutId="underline"
-                                            />
-                                        )}
-                                    </button>
-                                </AnimateSharedLayout>
+                                <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(0) }}>
+                                    {consentTabName[language]}
+                                    {activeTab === 0 && (
+                                        <motion.div
+                                            key={'1'}
+                                            className="underline"
+                                            layoutId="underline"
+                                        />
+                                    )}
+                                </button>
+                                <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(1) }}>
+                                    {detailsTabName[language]}
+                                    {activeTab === 1 && (
+                                        <motion.div
+                                            key={'2'}
+                                            className="underline"
+                                            layoutId="underline"
+                                        />
+                                    )}
+                                </button>
+                                <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(2) }}>
+                                    {aboutTabName[language]}
+                                    {activeTab === 2 && (
+                                        <motion.div
+                                            key={'3'}
+                                            className="underline"
+                                            layoutId="underline"
+                                        />
+                                    )}
+                                </button>
                             </TabsControl>
                             <TabWrapper transition={{ duration: .5 }}>
                                 <AnimatePresence initial={false} mode='wait'>

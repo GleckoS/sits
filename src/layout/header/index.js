@@ -211,17 +211,6 @@ export default function Header({ data, language }) {
                     </React.Fragment>
                   ))}
                 </div>
-                <div className='wrap'>
-                  <LangChanger
-              setMobileMenuOpened={setMobileMenuOpened}
-              data={data}
-                language={language}
-                    onblur={() => {
-                      setMobileMenuOpened(false)
-                    }}
-                    tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                  />
-                </div>
               </Container>
             </MobileMenu>
           )}
@@ -338,14 +327,11 @@ const Wrapper = styled.header`
   @media (max-width: 840px) {
     height: 76px;
 
-    .right {
+    /* .right {
       display: none;
-    }
+    } */
 
-    svg {
-      height: 30px;
-      width: fit-content;
-    }
+
 
     .container {
       display: flex;

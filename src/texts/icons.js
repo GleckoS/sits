@@ -1,7 +1,7 @@
 export const icons = {
     EN: `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
     <defs>
-      <clipPath id="clip-path">
+      <clipPath id="clip-path-2">
         <circle id="Ellipse_303" data-name="Ellipse 303" cx="8" cy="8" r="8" transform="translate(-18967 -323)" fill="#fff" stroke="#707070" stroke-width="1"/>
       </clipPath>
     </defs>
@@ -24,7 +24,7 @@ export const icons = {
   `,
   FR: `<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16" height="16" viewBox="0 0 16 16">
   <defs>
-    <clipPath id="clip-path">
+    <clipPath id="clip-path-1">
       <circle id="Ellipse_307" data-name="Ellipse 307" cx="8" cy="8" r="8" transform="translate(-18900 -245)" fill="#fff" stroke="#707070" stroke-width="1"/>
     </clipPath>
   </defs>

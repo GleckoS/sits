@@ -20,6 +20,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 }
 
 export default function Bestsellers({ data: { wpPage: { bestSellers } }, pageContext }) {
+  debugger
   return (
     <Wrapper>
       <myContext.Consumer>

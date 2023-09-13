@@ -1,3 +1,8 @@
+export const langSwitcherNames = {
+    EN: 'International',
+    FR: 'France'
+}
+
 export const downloadText = {
     EN: 'Download Product Sheet',
     FR: 'Télécharger la fiche produit'
@@ -24,7 +29,7 @@ export const careInstructionsText = {
 }
 
 export const upholsterysText = {
-    EN: 'UPSHOLSTERY',
+    EN: 'UPHOLSTERY',
     FR: 'TISSUS'
 }
 
@@ -173,12 +178,14 @@ export const left = {
     EN: [
         { name: 'ABOUT', url: '/about-sits/' },
         { name: 'CONSCIOUS', url: '/conscious/' },
-        { name: 'LEGAL', url: '/legal/' }
+        { name: 'LEGAL', url: '/legal/' },
+        { name: 'PUBLICK INFORMATION', url: '/public-information/' }
     ],
     FR: [
         { name: 'À PROPOS', url: '/fr/une-fabrication-traditionnelle-artisanale/' },
         { name: 'DÉMARCHE ÉCO-RESPONSABLE', url: '/fr/demarche-eco-responsable/' },
-        { name: 'MENTIONS LÉGALES', url: '/fr/juridique/' }
+        { name: 'MENTIONS LÉGALES', url: '/fr/juridique/' },
+        { name: 'PUBLICK INFORMATION', url: '/public-information/' }
     ]
 }
 

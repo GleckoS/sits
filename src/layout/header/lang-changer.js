@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { selectLanguage } from "../../texts"
+import { langSwitcherNames, selectLanguage } from "../../texts"
 import { Link } from "gatsby"
 import { icons } from "../../texts/icons"
 
@@ -15,11 +15,10 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
     if (!locData?.language) {
         return null
     }
-
     return (
         <>
             <Button onClick={() => { setIsOpened(!isOpened) }} onBlur={() => { setIsOpened(false) }} tabIndex={tabIndex}>
-                {selectLanguage[language]}
+                <span>{selectLanguage[language]}</span>
                 <svg className="planet" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19">
                     <g id="Group_551" data-name="Group 551" transform="translate(-190 -981)">
                         <g id="Ellipse_319" data-name="Ellipse 319" transform="translate(190 981)" fill="none" stroke="#bababa" strokeWidth="1.5">
@@ -38,7 +37,7 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
                     <div className="first">
                         <div>
                             <span className="icon" dangerouslySetInnerHTML={{ __html: icons[language] }} />
-                            {locData.language.name}
+                            {langSwitcherNames[language]}
                         </div>
                         <span className="dot" />
                     </div>
@@ -47,7 +46,7 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
                         <Link tabIndex={isOpened ? '0' : '-1'} to={el.uri}>
                             <div>
                                 <span className="icon" dangerouslySetInnerHTML={{ __html: icons[el.language.code] }} />
-                                {el.language.name}
+                                {langSwitcherNames[el.language.code]}
                             </div>
                             <span className="dot" />
                         </Link>
@@ -58,13 +57,13 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
                 <div className="first">
                     <div>
                         <span className="icon" dangerouslySetInnerHTML={{ __html: icons[language] }} />
-                        {locData.language.name}
+                        {langSwitcherNames[language]}
                     </div>
                     <span className="dot" />
                 </div>
 
                 {locData.translations?.map(el => (
-                    <Link onClick={() => {
+                    <div onClick={() => {
                         setTimeout(() => {
                             setMobileMenuOpened(false)
                         }, 200)
@@ -72,10 +71,10 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
                     } tabIndex={isOpened ? '0' : '-1'} to={el.uri}>
                         <div>
                             <span className="icon" dangerouslySetInnerHTML={{ __html: icons[el.language.code] }} />
-                            {el.language.name}
+                            {langSwitcherNames[el.language.code]}
                         </div>
                         <span className="dot" />
-                    </Link>
+                    </div>
                 ))}
             </LanguageOptions>
         </>
@@ -103,7 +102,12 @@ const LanguageOptions = styled.div`
         display: none;
     }
 
-    @media (max-width: 840px) {
+    @media (max-width: 420px) {
+        width: 140px;
+        left: unset;
+    }
+
+    /* @media (max-width: 840px) {
         display: none;
 
         &.mobile{
@@ -122,7 +126,7 @@ const LanguageOptions = styled.div`
                 max-width: 200px;
             }
         }
-    }
+    } */
 
     &.active{
         opacity: 1;
@@ -206,7 +210,13 @@ const Button = styled.button`
         margin-top: 2px;
     }
 
-    @media (max-width: 840px) {
+    @media (max-width: 450px) {
+        margin-right: 20px;
+        margin-left: 10px;
+        text-align: right;
+    }
+
+    /* @media (max-width: 840px) {
         margin-bottom: 20px;
         flex-direction: row-reverse;
 
@@ -220,16 +230,33 @@ const Button = styled.button`
         @supports  (-webkit-touch-callout: none){
             margin-bottom: 120px;
         }
+    } */
+
+    .planet{
+        min-width: 19px;
+
+        @media (max-width: 420px) {
+            min-width: 25px;
+            min-height: 25px;
+        }
     }
 
+    > span{
+        color: #BABABA;
+        font-size: 14px;
+        @media (max-width: 420px) {
+            display: none;
+        }
+    }
     
     .planet g, .planet line{
         transition: stroke .4s ease-out;
+        
     }
 
     &:hover{
         .planet g, .planet line{
-            stroke: #edc53d;
+            stroke: var(--color-brown);
         }
     }
 

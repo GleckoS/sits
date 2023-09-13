@@ -31,22 +31,3 @@ export default function WhereToBuyPage() {
     </Wrapper>
   )
 }
-
-// export const query = graphql`
-//     query whereToBuy($id: String!) {
-//         wpPage(id: {eq: $id}){
-//             title
-//             seo {
-//               canonical
-//               metaDesc
-//               opengraphSiteName
-//               title
-//               opengraphImage {
-//                 localFile {
-//                   publicURL
-//                 }
-//               }
-//             }
-//         }
-//     }
-// `

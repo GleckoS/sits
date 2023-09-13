@@ -289,14 +289,14 @@ const Flex = styled(motion.div)`
   }
   .path:hover {
     svg path {
-      fill: #edc53d;
+      fill: var(--color-brown);
     }
   }
 
   .rect:hover {
     svg{
       rect{
-        fill: #edc53d;
+        fill: var(--color-brown);
       }
     }
   }

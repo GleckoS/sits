@@ -11,7 +11,6 @@ import ProductGrid from "../components/sections/products-grid"
 import ThreeInformCards from "../components/sections/three-inform-cards"
 import Seo from "../layout/seo"
 import Wrapper from "../components/sections/page-wrapper"
-import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (

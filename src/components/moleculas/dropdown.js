@@ -31,7 +31,8 @@ export const DropDown = ({ id, openedFilter, setOpenedFilter, controller, func, 
 }
 
 const Wrapper = styled.div`
-    width: 240px;
+    max-width: 280px;
+    width: 100%;
     padding: 10px 22px 0 22px;
     margin: 12px -22px 0 -22px;
     border: 1px solid transparent;
@@ -61,13 +62,16 @@ const Wrapper = styled.div`
         justify-content: space-between;
         align-items: center;
         font-weight: 300;
-        font-size: 18px;
+        font-size: 16px;
         pointer-events: all;
         cursor: pointer;
         height: 30px;
 
         span{
             line-height: 20px;
+            min-width: max-content;
+            display: block;
+            margin-right: 8px;
         }
     }
 
