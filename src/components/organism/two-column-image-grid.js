@@ -86,7 +86,7 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
                             let { popupNames } = popUpImages.filter(inEl => inEl.image.title === collectionPagePreviewImage.title)[0]
                             return (
                                 <div className="image-wrap">
-                                    <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={popupNames.model} />
+                                    <AddToFauvorite language={language} setRerender={setRerender} rerender={rerender} type={'products'} title={popupNames.model} />
                                     <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(collectionPagePreviewImage.title) }}>
                                         <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
                                         <span className="in"> {inThisImage[language]} <b>+</b> </span>
@@ -110,7 +110,7 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
                         }
                         return (
                             <div className="image-wrap">
-                                <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={popUp[0].popupNames.model} />
+                                <AddToFauvorite language={language} setRerender={setRerender} rerender={rerender} type={'products'} title={popUp[0].popupNames.model} />
                                 <button key={el.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
                                     <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                                     <span className="in"> {inThisImage[language]} <b>+</b> </span>

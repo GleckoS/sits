@@ -35,12 +35,12 @@ const ToastWrapper = styled(Link)`
   }
 `
 
-export default function AddToFauvorite({ setRerender = () => { }, rerender, type, title }) {
+export default function AddToFauvorite({ language, setRerender = () => { }, rerender, type, title }) {
   const [isActive, setIsActive] = useState(() => {
     if (typeof window === 'undefined') {
       return false
     }
-    let cookie = getCookie(type)
+    let cookie = getCookie(type + language)
     if (!cookie) {
       setCookie(type, '')
     }
@@ -49,14 +49,14 @@ export default function AddToFauvorite({ setRerender = () => { }, rerender, type
 
   const clickHandler = (e, recalculate, language) => {
     e.preventDefault()
-    let cookie = getCookie(type)
+    let cookie = getCookie(type + language)
     if (cookie?.includes(title)) {
       cookie = cookie.replace(title + '|', '')
       setCookie(type, cookie)
       setIsActive(false)
       toast(<Toast />, { type: 'remove', title: title, language: language })
     } else {
-      setCookie(type, cookie + title + '|')
+      setCookie(type + language, cookie + title + '|')
       setIsActive(true)
       toast(<Toast />, { type: 'add', title: title, language: language })
     }
@@ -69,9 +69,9 @@ export default function AddToFauvorite({ setRerender = () => { }, rerender, type
       if (typeof window === 'undefined') {
         return false
       }
-      let cookie = getCookie(type)
+      let cookie = getCookie(type + language)
       if (!cookie) {
-        setCookie(type, '')
+        setCookie(type + language, '')
       }
       return cookie?.includes(title)
     })
@@ -88,7 +88,7 @@ export default function AddToFauvorite({ setRerender = () => { }, rerender, type
                 : 'add item to favourite list'
             }
             onClick={(e) => {
-              clickHandler(e, context.recalculateFavouritesCount, context.language);
+              clickHandler(e, context.recalculateFavouritesCount, language);
             }}
             className={isActive ? 'active hearth' : 'hearth'}>
             <svg

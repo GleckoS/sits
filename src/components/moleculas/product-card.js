@@ -24,7 +24,7 @@ export const ProductCard = ({
     language
 }) => (
     <Wrapper className="product-card">
-        <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={model} />
+        <AddToFauvorite language={language} setRerender={setRerender} rerender={rerender} type={'products'} title={model} />
         <Link onDragStart={event => event.preventDefault()} aria-label={data.title} onClick={(e) => { e.preventDefault() }} onMouseUp={(e) => { onMouseUp(e, collectionUrl[language] + data.slug + '/') }} className="link product-card" to={collectionUrl[language] + data.slug + '/'} />
         <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
         <Flex className={threeColumn ? 'three-column' : ''}>

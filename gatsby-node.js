@@ -568,7 +568,13 @@ exports.createPages = async ({
                 id,
                 slug,
                 uri,
-                language: language?.code ? language.code : 'EN'
+                language: language?.code ? language.code : 'EN',
+                sofas: productSearchTypes.sofas[language?.code ? language.code : 'EN'],
+                armchairs: productSearchTypes.armchairs[language?.code ? language.code : 'EN'],
+                footstools: productSearchTypes.footstools[language?.code ? language.code : 'EN'],
+                dinningChairs: productSearchTypes.dinningChairs[language?.code ? language.code : 'EN'],
+                coffeTables: productSearchTypes.coffeTables[language?.code ? language.code : 'EN'],
+                outdoorFurniture: productSearchTypes.outdoorFurniture[language?.code ? language.code : 'EN'],
             },
         });
     })

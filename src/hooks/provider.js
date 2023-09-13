@@ -23,22 +23,22 @@ const Provider = ({ children }) => {
     const recalculateFavouritesCount = () => {
         let itemsCount = 0
         if (typeof window !== 'undefined') {
-            let collection = getCookie('collections')
-            let products = getCookie('products')
-            let materials = getCookie('materials')
-            let colors = getCookie('colors')
+            let collection = getCookie('collections' + language)
+            let products = getCookie('products' + language)
+            let materials = getCookie('materials' + language)
+            let colors = getCookie('colors' + language)
 
             if (collection?.includes("|")) {
-                itemsCount += getCookie('collections').split("|").length - 1
+                itemsCount += collection.split("|").length - 1
             }
             if (products?.includes("|")) {
-                itemsCount += getCookie('products').split("|").length - 1
+                itemsCount += products.split("|").length - 1
             }
             if (materials?.includes("|")) {
-                itemsCount += getCookie('materials').split("|").length - 1
+                itemsCount += materials.split("|").length - 1
             }
             if (colors?.includes("|")) {
-                itemsCount += getCookie('colors').split("|").length - 1
+                itemsCount += colors.split("|").length - 1
             }
         }
 
@@ -47,7 +47,8 @@ const Provider = ({ children }) => {
 
     useEffect(() => {
         recalculateFavouritesCount()
-    }, [])
+    }, [language])
+
     return (
         <myContext.Provider value={{
             currentAlternates,

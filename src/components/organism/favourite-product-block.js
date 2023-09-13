@@ -62,6 +62,7 @@ export const FavouriteProductBlock = ({
   const renderCount = useRef(0)
   if (filtredArr.length > 0) {
     renderCount.current = 0
+    
     return (
       <Wrapper variants={animation}>
         <motion.h2 variants={contentTitleAnimation}>{title[language]} ({count})</motion.h2>
@@ -89,7 +90,7 @@ export const FavouriteProductBlock = ({
                   && el.products.collection?.slug
                   && renderCount.current < showCount
                 ) {
-                  let cookie = getCookie('products')
+                  let cookie = getCookie('products' + language)
                   if (cookie?.includes(inEl.popupNames.model)) {
                     renderedlist.push(inEl.popupNames.model)
                     renderCount.current += 1

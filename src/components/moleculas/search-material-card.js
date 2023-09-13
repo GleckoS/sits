@@ -8,7 +8,7 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 export const Card = ({ language, setRerender, variant, rerender, type, model, slug, title, image }) => {
         return (
         <Wrapper>
-            <AddToFauvorite setRerender={setRerender} rerender={rerender} type={type} title={model} />
+            <AddToFauvorite language={language} setRerender={setRerender} rerender={rerender} type={type} title={model} />
             <Link to={materialUrl[language] + slug + '/'} state={{ variant: variant !== undefined ? model : null }}>
                 <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                 <span>{title}</span>

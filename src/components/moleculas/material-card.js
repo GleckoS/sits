@@ -60,7 +60,7 @@ export const MaterialCard = ({ language, variant = '', color, data: { materials:
     return (
         <Wrapper>
             <div className="wrap">
-                <AddToFauvorite type={'colors'} title={variants.filter(el => el.variantName === choosenVariant)[0]?.variantName ? variants.filter(el => el.variantName === choosenVariant)[0]?.variantName : variants[0].variantName} />
+                <AddToFauvorite language={language} type={'colors'} title={variants.filter(el => el.variantName === choosenVariant)[0]?.variantName ? variants.filter(el => el.variantName === choosenVariant)[0]?.variantName : variants[0].variantName} />
                 <Link className="wrap-link" aria-label={'material: ' + title} to={materialUrl[language] + slug + '/'} state={{ variant: choosenVariant }}>
                     <SliderWrapper id='background'>
                         {variants.map((el, index) => {

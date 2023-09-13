@@ -9,7 +9,7 @@ export const Card = ({ language, setRerender, rerender, type = 'products', model
 
     return (
         <Wrapper>
-            <AddToFauvorite setRerender={setRerender} rerender={rerender} type={type} title={model} />
+            <AddToFauvorite language={language} setRerender={setRerender} rerender={rerender} type={type} title={model} />
             <Link to={collectionUrl[language] + slug + '/'}>
                 <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
                 <span>{model}</span>

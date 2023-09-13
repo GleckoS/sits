@@ -58,11 +58,11 @@ export default function Hero({
             <Wrapper isLast={isLast}>
                 <Container>
                     <Grid>
-                        <MaterialsSlider animation={sliderAnimation} variant={variant} variants={materialColorVariants} />
+                        <MaterialsSlider language={language} animation={sliderAnimation} variant={variant} variants={materialColorVariants} />
                         <motion.div variants={addInformAnimation} className="content">
                             <Flex variants={itemAnimation}>
                                 <h1 className="archive-title">{title}</h1>
-                                <AddToFauvorite type='materials' title={title} />
+                                <AddToFauvorite language={language} type='materials' title={title} />
                             </Flex>
                             <Description variants={itemAnimation} className="p" dangerouslySetInnerHTML={{ __html: materialQuickDescription }} />
                             {materialProductSheet

@@ -72,7 +72,7 @@ export default function Hero({
                         <motion.div variants={addInformAnimation} className="content">
                             <Flex variants={itemAnimation}>
                                 <h1 >{title}</h1>
-                                <AddToFauvorite type='collections' title={title} />
+                                <AddToFauvorite language={language} type='collections' title={title} />
                             </Flex>
                             <Categories variants={itemAnimation}>
                                 {itemCategories.map(el => (

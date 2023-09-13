@@ -22,7 +22,7 @@ export const FavouriteColorBlock = ({
     let arr = prefiltredArr.nodes
     let filtred = []
     if (filter) {
-      let cookie = getCookie('colors')
+      let cookie = getCookie('colors' + language)
       arr.forEach((el) => {
         el.materials.materialColorVariants.forEach((inEl, index) => {
           if (cookie?.includes(inEl.variantName)) {

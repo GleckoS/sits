@@ -34,10 +34,10 @@ const contentGridAnimation = {
 export default function Content({ language, data: { Collections, Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures } }) {
 
     const [favourites, setFavourites] = useState({
-        collections: getCookie('collections'),
-        products: getCookie('products'),
-        materials: getCookie('materials'),
-        colors: getCookie('colors')
+        collections: getCookie('collections' + language),
+        products: getCookie('products' + language),
+        materials: getCookie('materials' + language),
+        colors: getCookie('colors' + language)
     })
 
     const [collectionsCount, setCollectionsCount] = useState(0)
@@ -52,10 +52,10 @@ export default function Content({ language, data: { Collections, Materials, Sofa
 
     const changeFavourites = () => {
         setFavourites({
-            collections: getCookie('collections'),
-            products: getCookie('products'),
-            materials: getCookie('materials'),
-            colors: getCookie('colors')
+            collections: getCookie('collections' + language),
+            products: getCookie('products' + language),
+            materials: getCookie('materials' + language),
+            colors: getCookie('colors' + language)
         })
     }
     return (
@@ -75,15 +75,15 @@ export default function Content({ language, data: { Collections, Materials, Sofa
                                 <p dangerouslySetInnerHTML={{ __html: noResultMessage[language] }}></p>
                             </NoResults>
                         )}
-                        <FavouriteCollectionBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={collectionsCount} setCount={setCollectionsCount} title={collectionsTitle} prefiltredArr={Collections} filter={favourites.collections} />
-                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} filter={favourites.products} />
-                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} filter={favourites.products} />
-                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} filter={favourites.products} />
-                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} filter={favourites.products} />
-                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} filter={favourites.products} />
-                        <FavouriteProductBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} filter={favourites.products} />
-                        <FavouriteMaterialBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={coversItemCount} setCount={setCoversItemCount} title={materialsTitle} prefiltredArr={Materials} filter={favourites.materials} />
-                        <FavouriteColorBlock contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={colorsItemCount} setCount={setColorsItemCount} title={colorsTitle} prefiltredArr={Materials} filter={favourites.colors} />
+                        <FavouriteCollectionBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={collectionsCount} setCount={setCollectionsCount} title={collectionsTitle} prefiltredArr={Collections} filter={favourites.collections} />
+                        <FavouriteProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={sofasItemCount} setCount={setSofasItemCount} title={sofasTitle} prefiltredArr={Sofas} filter={favourites.products} />
+                        <FavouriteProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={armchairsItemCount} setCount={setArmchairsItemCount} title={armchairsTitle} prefiltredArr={Armchairs} filter={favourites.products} />
+                        <FavouriteProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={coffeTablesItemCount} setCount={setCoffeTablesItemCount} title={coffeeTablesTitle} prefiltredArr={CoffeeTables} filter={favourites.products} />
+                        <FavouriteProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={diningChairsItemCount} setCount={setDiningChairsItemCount} title={diningChairsTitle} prefiltredArr={DiningChairs} filter={favourites.products} />
+                        <FavouriteProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={footstoolsItemCount} setCount={setFootstoolsItemCount} title={footstoolsTitle} prefiltredArr={Footstools} filter={favourites.products} />
+                        <FavouriteProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={outdoorFurnituresItemCount} setCount={setOutdoorFurnituresItemCount} title={outdoorFurnituresTitle} prefiltredArr={OutdoorFurnitures} filter={favourites.products} />
+                        <FavouriteMaterialBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={coversItemCount} setCount={setCoversItemCount} title={materialsTitle} prefiltredArr={Materials} filter={favourites.materials} />
+                        <FavouriteColorBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={contentAnimation} setRerender={changeFavourites} count={colorsItemCount} setCount={setColorsItemCount} title={colorsTitle} prefiltredArr={Materials} filter={favourites.colors} />
                     </Container>
                 </Results>
             </Wrapper>
