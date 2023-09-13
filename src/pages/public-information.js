@@ -3,6 +3,7 @@ import Map from "../components/sections/map"
 import { Title } from "../components/moleculas/title-sub"
 import Seo from "../layout/seo"
 import Wrapper from "../components/sections/page-wrapper"
+import { Helmet } from "react-helmet"
 
 export function Head() {
   const seo = {
@@ -14,7 +15,11 @@ export function Head() {
     uri: '/public-information/'
   }
   return (
-    <Seo seo={seo} pageContext={pageContext} />
+    <>
+      <meta name="robots" content="noindex" />
+      <Helmet htmlAttributes={{ lang: 'pl' }} />
+      <Seo seo={seo} pageContext={pageContext} />
+    </>
   )
 }
 
@@ -23,7 +28,7 @@ export default function WhereToBuyPage() {
     <Wrapper>
       <Title
         title={'Public information'}
-        text={'Information on <a class="underline" href="https://drive.google.com/file/d/1HvOQ6kdNTJHaE-kYJZ51CQsEdkY-NuHt/view" target="__blank" rel="noopener noreferer">the implementation of the tax strategy</a>'}
+        text={'Informacja o <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Strategia_Sits-sig.pdf" target="__blank" rel="noopener noreferer">realizacji strategii podatkowej</a>'}
       />
       <Map scale={6} lat={'52.1'} lon={'20'} />
     </Wrapper>
