@@ -13,7 +13,7 @@ export const Title = ({ small, title, text }) => (
         <Wrapper className={small ? 'small' : ''}>
             <Container>
                 <motion.h1 variants={titleAnimation}>{title}</motion.h1>
-                {text && <motion.p variants={textAnimation}>{text}</motion.p>}
+                {text && <motion.p variants={textAnimation} dangerouslySetInnerHTML={{ __html: text }}></motion.p>}
             </Container>
         </Wrapper>
     </InView>
@@ -36,5 +36,9 @@ const Wrapper = styled.div`
         margin-top: 20px;
         max-width: 640px;
         font-size: 20px;
+
+        a{
+            text-transform: unset;
+        }
     }
 `
