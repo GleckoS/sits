@@ -133,7 +133,8 @@ export const left = {
     en: [
         { name: 'ABOUT', url: '/about-sits/' },
         { name: 'CONSCIOUS', url: '/conscious/' },
-        { name: 'LEGAL', url: '/legal/' }
+        { name: 'LEGAL', url: '/legal/' },
+        { name: 'PUBLIC INFORMATION', url: '/public-information/' }
     ]
 }
 
