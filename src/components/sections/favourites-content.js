@@ -93,10 +93,10 @@ export default function Content({ data: { Collections, Materials, Sofas, Armchai
 
 const Wrapper = styled.section`
     h1{
+        font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-family: 'Ivy';
-        font-size: 40px;
         font-weight: 300;
-        padding: clamp(20px, ${70 / 1194 * 100}vw, 90px) 0 clamp(40px, ${100 / 1194 * 100}vw, 110px) 0;
+        margin: 30px 0;
     }
 `
 

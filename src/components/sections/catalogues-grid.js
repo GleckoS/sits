@@ -34,7 +34,7 @@ export default function CataloguesGrid({ data: { title, catalogues: { catalogues
     return (
         <InView>
             <Wrapper>
-                <Title title={title} />
+                <Title small={true} title={title} />
                 <Content>
                     <Container>
                         <Grid variants={gridAnimation}>

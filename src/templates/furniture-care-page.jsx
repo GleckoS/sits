@@ -21,7 +21,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function FurnitureCarePage({ data: { wpPage: { title, furnitureCare } }, pageContext, location }) {
     return (
         <Wrapper>
-            <Title title={title} />
+            <Title small={true} title={title} />
             <Faq data={furnitureCare.faq} />
             <Handbook data={furnitureCare.handbook}/>
             <AssemblyInstructions /> 

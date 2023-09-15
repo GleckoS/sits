@@ -18,7 +18,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 export default function WhereToBuyPage({ data: { wpPage: { title } }, pageContext, location }) {
     return (
         <Wrapper>
-            <Title title={title} />
+            <Title small={true} title={title} />
             <Map />
         </Wrapper>
     )
