@@ -35,7 +35,7 @@ export default function ProductArchive({ language, location, pageContext: { type
     const [upholsterysArr] = useState(() => {
         const arr = [{ name: upholsterysArrAll[language], val: 'All' }]
         products.forEach(el => {
-            el.products.collection.upholsterys?.nodes?.forEach(inEl => {
+            el?.products?.collection?.upholsterys?.nodes?.forEach(inEl => {
                 if (!arr.find(el => el.name === inEl.name)) {
                     arr.push({ name: inEl.name, val: inEl.name })
                 }
@@ -46,7 +46,7 @@ export default function ProductArchive({ language, location, pageContext: { type
     const [coversArr] = useState(() => {
         const arr = [{ name: covesArrAll[language], val: 'All' }]
         products.forEach(el => {
-            el.products.collection.covers?.nodes?.forEach(inEl => {
+            el?.products?.collection?.covers?.nodes?.forEach(inEl => {
                 if (!arr.find(el => el.name === inEl.name)) {
                     arr.push({ name: inEl.name, val: inEl.name })
                 }
