@@ -56,9 +56,22 @@ const Wrapper = styled.div`
         font-weight: 300;
         margin-bottom: clamp(24px, ${24 / 1194 * 100}vw, 40px);
 
+        
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
         @media (max-width: 1240px) {
             font-size: clamp(16px, ${24 / 1194 * 100}vw, 24px);
             margin-bottom: clamp(24px, ${40 / 1194 * 100}vw, 40px);
+        }
+        
+        @media (max-width: 640px) {
+            display: block;
+            -webkit-line-clamp: unset;
+            -webkit-box-orient: unset;
+            overflow: visible;
         }
     }
 
