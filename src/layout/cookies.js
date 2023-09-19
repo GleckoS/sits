@@ -15,37 +15,43 @@ function datalayerArguments() {
 }
 
 export default function Cookies({ language, isActive, setIsActive }) {
-    const { wpPage: { cookies: { consentTab, aboutCookiesTab, detailsTab } } } = useStaticQuery(graphql`
-    query {
-        wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
-            cookies {
-              consentTab {
-                tabContent
-              }
-              aboutCookiesTab {
-                tabContent
-              }
-              detailsTab {
-                cookies {
-                  partName
-                  workPartName
-                  partDescription
-                  innerParts {
-                    innerPartName
-                    cookieDescriptionUrl
-                    innerPartCookies {
-                      cookieName
-                      cookieDescription
-                      expireTime
-                      cookieType
+    const { allWpPage } = useStaticQuery(graphql`
+        query Cookies($language: WpLanguageCodeEnum){
+            allWpPage(filter: {template: {templateName: {eq: "Global Config"}}, language: {code: {eq: $language}}}) {
+                nodes{
+                    language {
+                        code
                     }
-                  }
+                    cookies {
+                        consentTab {
+                            tabContent
+                        }
+                        aboutCookiesTab {
+                            tabContent
+                        }
+                        detailsTab {
+                            cookies {
+                                partName
+                                workPartName
+                                partDescription
+                                innerParts {
+                                    innerPartName
+                                    cookieDescriptionUrl
+                                    innerPartCookies {
+                                        cookieName
+                                        cookieDescription
+                                        expireTime
+                                        cookieType
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
         }
-    }
-  `)
+    `)
+    const { cookies: { consentTab, aboutCookiesTab, detailsTab } } = allWpPage.nodes.filter(el => el.language.code === language)[0]
 
     const [activeTab, setActiveTab] = useState(0)
 
