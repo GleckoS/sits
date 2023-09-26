@@ -27,7 +27,7 @@ export default function FurnitureCarePage({ data: { wpPage: { title, furnitureCa
           context.setLanguage(pageContext.language)
         }}
       </myContext.Consumer>
-      <Title title={title} />
+      <Title small={true} title={title} />
       <Faq language={pageContext.language} data={furnitureCare.faq} />
       <Handbook data={furnitureCare.handbook} />
       <AssemblyInstructions language={pageContext.language} />
