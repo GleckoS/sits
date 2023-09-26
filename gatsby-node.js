@@ -50,41 +50,43 @@ const csvParser = (data) => {
     return result; //JSON
 };
 
-exports.createPages = async ({
-    graphql,
-    actions: { createPage, createRedirect },
-}) => {
+exports.onPostBuild = async ({ graphql }) => {
 
-    // Create redirects
-
-    const { data: { wpPage: { redirects: { csvRedirectsFile } } } } = await graphql(`
-    query{
-      wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
-        redirects {
-          csvRedirectsFile {
-            localFile {
-                publicURL
-            }
+  // Create redirects
+  const { data: { wpPage: { redirects: { csvRedirectsFile } } } } = await graphql(`
+  query{
+    wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
+      redirects {
+        csvRedirectsFile {
+          localFile {
+            publicURL
           }
         }
       }
     }
-    `)
+  }
+  `)
 
-    if (csvRedirectsFile?.localFile?.publicURL) {
-        const result = await fetch(`https://sits.eu${csvRedirectsFile.localFile.publicURL}`)
-        const resultData = await result.text()
+  if (csvRedirectsFile?.localFile.publicURL) {
+    const result = await fetch(`https://sits.eu${csvRedirectsFile.localFile.publicURL}`)
+    const resultData = await result.text()
 
-        csvParser(resultData)?.forEach(el => {
-            if (el.From && el.To) {
-                createRedirect({
-                    fromPath: el.From,
-                    toPath: el.To,
-                    isPermanent: el.Status === '301',
-                });
-            }
-        })
-    }
+    const redirectConfig = csvParser(resultData)?.map(el => (
+      `[[redirects]]
+        from = "${el.From}"
+        to = "${el.To}"
+        status = ${el.Status}
+        force = ${el.Force || false}`
+    ))
+
+    fs.writeFileSync('netlify.toml', redirectConfig.join('\n'));
+  }
+};
+
+exports.createPages = async ({
+    graphql,
+    actions: { createPage },
+}) => {
 
     // COLLECTION
 
