@@ -16,19 +16,6 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         "url": "https://sits.headlesshub.com/graphql",
-        develop: {
-          hardCacheMediaFiles: true,
-          hardCacheData: false,
-          nodeUpdateInterval: 600000 
-        },
-        verbose: true,
-        debug: {
-          graphql: {
-            showQueryVarsOnError: true,
-            panicOnError: true,
-            writeQueriesToDisk: true,
-          },
-        },
         schema: {
           perPage: 25,
           timeout: 300000,
@@ -40,7 +27,6 @@ module.exports = {
             limit: 0,
           },
           MediaItem: {
-            lazyNodes: false,
             localFile: {
               maxFileSizeBytes: 52428800, // 50Mb
             },
