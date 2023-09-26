@@ -15,24 +15,12 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
     if (!locData?.language) {
         return null
     }
+
     return (
         <>
             <Button onClick={() => { setIsOpened(!isOpened) }} onBlur={() => { setIsOpened(false) }} tabIndex={tabIndex}>
-                <span>{selectLanguage[language]}</span>
-                <svg className="planet" xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19">
-                    <g id="Group_551" data-name="Group 551" transform="translate(-190 -981)">
-                        <g id="Ellipse_319" data-name="Ellipse 319" transform="translate(190 981)" fill="none" stroke="#bababa" strokeWidth="1.5">
-                            <circle cx="9.5" cy="9.5" r="9.5" stroke="none" />
-                            <circle cx="9.5" cy="9.5" r="8.75" fill="none" />
-                        </g>
-                        <g id="Ellipse_320" data-name="Ellipse 320" transform="translate(195 981)" fill="none" stroke="#bababa" strokeWidth="1.5">
-                            <ellipse cx="4.5" cy="9.5" rx="4.5" ry="9.5" stroke="none" />
-                            <ellipse cx="4.5" cy="9.5" rx="3.75" ry="8.75" fill="none" />
-                        </g>
-                        <line id="Line_340" data-name="Line 340" x2="16.5" transform="translate(191 987.5)" fill="none" stroke="#bababa" strokeWidth="1.5" />
-                        <line id="Line_341" data-name="Line 341" x2="16.5" transform="translate(191 993.5)" fill="none" stroke="#bababa" strokeWidth="1.5" />
-                    </g>
-                </svg>
+                <span>{langSwitcherNames[language]}</span>
+                <span className="svg" dangerouslySetInnerHTML={{ __html: icons[language] }} />
                 <LanguageOptions onFocus={() => { setIsOpened(true) }} className={isOpened ? 'active' : ''}>
                     <div className="first">
                         <div>
@@ -205,8 +193,14 @@ const Button = styled.button`
     gap: 8px;
     margin-right: 40px;
     position: relative;
+    justify-content: flex-end;
+    min-width: 150px;
 
-    .planet{
+    @media (max-width: 390px) {
+        min-width: fit-content;
+    }
+
+    .svg{
         margin-top: 2px;
     }
 
@@ -232,12 +226,22 @@ const Button = styled.button`
         }
     } */
 
-    .planet{
-        min-width: 19px;
+    .svg{
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        @media (max-width: 420px) {
-            min-width: 25px;
-            min-height: 25px;
+
+        svg{
+            border-radius: 50%;
+        border: 1px solid #BABABA;
+            min-width: 21px;
+            min-height: 21px;
+
+            @media (max-width: 420px) {
+                min-width: 25px;
+                min-height: 25px;
+            }
         }
     }
 
@@ -249,15 +253,8 @@ const Button = styled.button`
         }
     }
     
-    .planet g, .planet line{
+    .svg g, .svg line{
         transition: stroke .4s ease-out;
-        
-    }
-
-    &:hover{
-        .planet g, .planet line{
-            stroke: var(--color-brown);
-        }
     }
 
 `
