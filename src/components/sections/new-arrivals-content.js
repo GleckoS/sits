@@ -7,14 +7,15 @@ import { ProductList } from "../organism/products-list"
 import InView from "./in-view-provider"
 import { useQueryParam } from "../../hooks/query-params"
 import { newArrivalsTitle } from "../../texts"
+import { pageParamName } from "../../texts/filter"
 
 
 const titleAnimation = textTransition(1)
 const gridAnimation = imageTransition(2)
 
-export default function Content({ data }) {
+export default function Content({ language, data }) {
 
-    const [page, setPage] = useQueryParam('page', 1)
+    const [page, setPage] = useQueryParam(pageParamName[language], 1)
 
     const [rerender, setRerender] = useState(false)
 
@@ -25,10 +26,10 @@ export default function Content({ data }) {
     return (
         <InView>
             <Wrapper>
-                <h1 ><motion.span variants={titleAnimation}>{newArrivalsTitle['en']}</motion.span></h1>
+                <h1 ><motion.span variants={titleAnimation}>{newArrivalsTitle[language]}</motion.span></h1>
                 <Container>
                     <List variants={gridAnimation}>
-                        <ProductList setRerender={setRerender} rerender={rerender} page={page} setPage={setPage} products={products} />
+                        <ProductList language={language} setRerender={setRerender} rerender={rerender} page={page} setPage={setPage} products={products} />
                     </List>
                 </Container>
             </Wrapper>

@@ -15,13 +15,14 @@ export const FavouriteColorBlock = ({
   setCount,
   prefiltredArr,
   filter,
-  title
+  title,
+  language
 }) => {
   const filtredArr = useMemo(() => {
     let arr = prefiltredArr.nodes
     let filtred = []
     if (filter) {
-      let cookie = getCookie('colors')
+      let cookie = getCookie('colors' + language)
       arr.forEach((el) => {
         el.materials.materialColorVariants.forEach((inEl, index) => {
           if (cookie?.includes(inEl.variantName)) {
@@ -59,12 +60,13 @@ export const FavouriteColorBlock = ({
     renderCount.current = 0
     return (
       <Wrapper variants={animation}>
-        <motion.h2 variants={contentTitleAnimation}>{title['en']} ({filtredArr.length})</motion.h2>
+        <motion.h2 variants={contentTitleAnimation}>{title[language]} ({filtredArr.length})</motion.h2>
         <ResultsGrid variants={contentGridAnimation}>
           {filtredArr.map((el) => {
             renderCount.current += 1
             return (
               <Card
+              language={language}
                 setRerender={setRerender}
                 variant={el.colorId}
                 type={'colors'}

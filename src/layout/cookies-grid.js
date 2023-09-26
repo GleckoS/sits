@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { expireTitle, typeTitle, loadMoreTitle } from "../texts/cookie"
 
-export const Grid = ({ isActive, active, el: data }) => {
+export const Grid = ({ language, isActive, active, el: data }) => {
 
     const [showAll, setShowAll] = useState(false)
 
@@ -19,8 +19,8 @@ export const Grid = ({ isActive, active, el: data }) => {
                                     <p className="item-description">{el.cookieDescription}</p>
                                 </div>
                                 <div className="item-flex">
-                                    <p>{expireTitle['en']}{el.expireTime}</p>
-                                    <p>{typeTitle['en']}{el.cookieType}</p>
+                                    <p>{expireTitle[language]}{el.expireTime}</p>
+                                    <p>{typeTitle[language]}{el.cookieType}</p>
                                 </div>
                             </div>
                         )
@@ -29,7 +29,7 @@ export const Grid = ({ isActive, active, el: data }) => {
                             isButtonRendered = true
                             return (
                                 <button tabIndex={isActive && active ? '0' : '-1'} key={'button'} items={data.innerPartCookies.length} className="show-all underline" onClick={() => { setShowAll(true) }}>
-                                    {loadMoreTitle['en']}
+                                    {loadMoreTitle[language]}
                                     <span className="desctop"> ({data.innerPartCookies.length - 3})</span>
                                     <span className="tablet"> ({data.innerPartCookies.length - 2})</span>
                                     <span className="mobile"> ({data.innerPartCookies.length - 1})</span>

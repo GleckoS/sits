@@ -7,30 +7,46 @@ import TwoColumnGray from "../components/sections/about-two-column-flex-gray"
 import Hero from "../components/sections/hero-about"
 import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
-export default function AboutPage({ data: { wpPage: { aboutUs } } }) {
-    return (
-        <Wrapper>
-            <Hero data={aboutUs.heroSection} />
-            <Grid data={aboutUs.gridSection}/>
-            <TwoColumnFlex data={aboutUs.twoColumnFlex}/>
-            <TwoColumnGray data={aboutUs.twoColumnFlexWithGrayBackground}/>
-        </Wrapper>
-    )
+export default function AboutPage({ pageContext, data: { wpPage: { aboutUs } } }) {
+  return (
+    <Wrapper>
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Hero data={aboutUs.heroSection} />
+      <Grid data={aboutUs.gridSection} />
+      <TwoColumnFlex data={aboutUs.twoColumnFlex} />
+      <TwoColumnGray data={aboutUs.twoColumnFlexWithGrayBackground} />
+    </Wrapper>
+  )
 }
 
 export const query = graphql`
     query about($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

@@ -1,39 +1,65 @@
+
 export const consentTabName = {
-    en: 'Consent'
+    EN: 'Consent',
+    FR: 'J’accepte'
 }
 
 export const detailsTabName = {
-    en: 'Details'
+    EN: 'Details',
+    FR: 'Détails'
 }
 
 export const aboutTabName = {
-    en: 'About cookies'
+    EN: 'About cookies',
+    FR: 'À propos des cookies'
 }
 
 export const denyButton = {
-    en: 'Deny'
+    EN: 'Deny',
+    FR: 'Je refuse'
 }
 
 export const setButton = {
-    en: 'Set preferences'
+    EN: 'Set preferences',
+    FR: 'Paramètres des préférences'
 }
 
 export const allowChosenButton = {
-    en: 'Allow chosen'
+    EN: 'Allow chosen',
+    FR: 'Autoriser la sélection'
 }
 
 export const allowButton = {
-    en: 'Allow all'
+    EN: 'Allow all',
+    FR: 'Tout autoriser'
 }
 
 export const expireTitle = {
-    en: 'Expiry: '
+    EN: 'Expiry:',
+    FR: 'Date d’expiration : '
 }
 
 export const typeTitle = {
-    en: 'Type: '
+    EN: 'Type:',
+    FR: 'Type : '
 }
 
 export const loadMoreTitle = {
-    en: 'LOAD MORE '
+    EN: 'LOAD MORE ',
+    FR: 'AFFICHER LA SUITE '
+}
+
+export const acceptCookiesFirst = {
+    EN: 'Please accept',
+    FR: 'Veuillez accepter la'
+}
+
+export const acceptCookiesSecond = {
+    EN: 'COOKIES POLICY',
+    FR: 'POLITIQUE EN MATIÈRE DE COOKIES'
+}
+
+export const acceptCookiesThird = {
+    EN: 'to see the map',
+    FR: 'pour afficher la carte'
 }

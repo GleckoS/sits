@@ -3,7 +3,8 @@ import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 import { imageTransition } from "../../helpers/animation-controller"
-import { accessoriesText, armrestText, confortText, coversText, dimensionsText, downloadText, legsText, upholsterysText } from "../../texts"
+import { accessoriesText, armrestText, confortText, coversText, dimensionsText, downloadText, findRetailers, legsText, upholsterysText } from "../../texts"
+import { whereToBuyUrl } from "../../texts/urls"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { Category } from "../atoms/category"
 import { Container } from "../atoms/container"
@@ -29,8 +30,8 @@ const linkAnimation = {
     initial: { opacity: 0, backgroundSize: '0 1px' },
     animate: {
         opacity: 1,
-         transition: { duration: .4 }, 
-         transitionEnd: {
+        transition: { duration: .4 },
+        transitionEnd: {
             backgroundSize: '80% 1px',
             transition: { duration: .6 }
         }
@@ -38,6 +39,7 @@ const linkAnimation = {
 }
 
 export default function Hero({
+    language,
     itemCategories,
     products,
     data: {
@@ -66,11 +68,11 @@ export default function Hero({
             <Wrapper>
                 <Container>
                     <Grid>
-                        <TwoColumnImageGrid sliderAnimation={sliderAnimation} gallery={collectionGallery} title={title} popupNames={popupNames} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
+                        <TwoColumnImageGrid language={language} sliderAnimation={sliderAnimation} gallery={collectionGallery} title={title} popupNames={popupNames} collectionPagePreviewImage={collectionPagePreviewImage} products={products} />
                         <motion.div variants={addInformAnimation} className="content">
                             <Flex variants={itemAnimation}>
                                 <h1 >{title}</h1>
-                                <AddToFauvorite type='collections' title={title} />
+                                <AddToFauvorite language={language} type='collections' title={title} />
                             </Flex>
                             <Categories variants={itemAnimation}>
                                 {itemCategories.map(el => (
@@ -82,36 +84,36 @@ export default function Hero({
                             <Description variants={itemAnimation} dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />
                             {collectionProductSheet
                                 ? <DownloadWithArrow linkAnimation={linkAnimation} className='link' file={collectionProductSheet.localFile.publicURL}>
-                                    {downloadText['en']}
+                                    {downloadText[language]}
                                 </DownloadWithArrow>
                                 : null}
                             {upholsterys.nodes.length
-                                ? <Tooltip animation={itemAnimation} title={upholsterysText['en']} data={upholsterys} />
+                                ? <Tooltip animation={itemAnimation} title={upholsterysText[language]} data={upholsterys} />
                                 : null}
                             {comfort.nodes.length
-                                ? <TooltipPopup animation={itemAnimation} title={confortText['en']} data={comfort} />
+                                ? <TooltipPopup animation={itemAnimation} title={confortText[language]} data={comfort} />
                                 : null}
                             {covers.nodes.length
-                                ? <Tooltip animation={itemAnimation} title={coversText['en']} data={covers} />
+                                ? <Tooltip animation={itemAnimation} title={coversText[language]} data={covers} />
                                 : null}
                             {dimensions.dimensions || legs.dimensions || armrest.dimensions || accessories.dimensions
                                 ? <Popups variants={itemAnimation}>
                                     {dimensions.dimensions
-                                        ? <PopupButton data={dimensions} title={dimensionsText['en']} />
+                                        ? <PopupButton data={dimensions} title={dimensionsText[language]} />
                                         : null}
                                     {legs.dimensions
-                                        ? <PopupButton data={legs} title={legsText['en']} />
+                                        ? <PopupButton data={legs} title={legsText[language]} />
                                         : null}
                                     {armrest.dimensions
-                                        ? <PopupButton data={armrest} title={armrestText['en']} />
+                                        ? <PopupButton data={armrest} title={armrestText[language]} />
                                         : null}
                                     {accessories.dimensions
-                                        ? <PopupButton data={accessories} title={accessoriesText['en']} />
+                                        ? <PopupButton data={accessories} title={accessoriesText[language]} />
                                         : null}
                                 </Popups>
                                 : null}
                             <motion.div variants={itemAnimation}>
-                                <Link className="yellow-button" to='/where-to-buy/' target='_blank'>Find retailers</Link>
+                                <Link className="yellow-button" to={whereToBuyUrl[language]} target='_blank'>{findRetailers[language]}</Link>
                             </motion.div>
                         </motion.div>
                     </Grid>

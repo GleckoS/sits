@@ -16,7 +16,8 @@ export const ResultProductBlock = ({
     setCount,
     prefiltredArr,
     searchValue,
-    title
+    title,
+    language
 }) => {
 
     const filtredArr = useMemo(() => {
@@ -92,7 +93,7 @@ export const ResultProductBlock = ({
         return (
             <InView>
                 <Wrapper variants={animation}>
-                    <motion.h2 variants={contentTitleAnimation}>{title['en']}</motion.h2>
+                    <motion.h2 variants={contentTitleAnimation}>{title[language]}</motion.h2>
                     <ResultsGrid variants={contentGridAnimation}>
                         {filtredArr?.map(el => {
                             return el.products.productGallery?.map(inEl => {
@@ -105,7 +106,7 @@ export const ResultProductBlock = ({
                                             exit={{ opacity: 0 }}
                                             transition={{ duration: .6 }}
                                             key={inEl.popupNames.model + index}>
-                                            <Card setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
+                                            <Card language={language} setRerender={setRerender} rerender={rerender} image={imageEl.featuredProductImage} data={el.products.collection} model={inEl.popupNames.model} />
                                         </motion.div>
                                     }
                                     return null

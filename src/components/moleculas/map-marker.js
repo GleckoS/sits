@@ -35,7 +35,7 @@ if (typeof window !== 'undefined') {
     });
 }
 
-export default function MapMarker({ isActive, markerClick, index, el, map }) {
+export default function MapMarker({ language, isActive, markerClick, index, el, map }) {
     let popupRef = useRef();
 
     if (isNaN(el.Latitude) || isNaN(el.Longitude)) {
@@ -63,7 +63,7 @@ export default function MapMarker({ isActive, markerClick, index, el, map }) {
                     <p className="p-l">{el.City ? el.City + ', ' : ''}{el.Country}</p>
                     <a href={'tel:' + el.Phone} className="p-l phone">{el.Phone}</a>
                 </div>
-                {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle['en']}</a>}
+                {(el.Website && el.Website !== ' ') && <a className="link underline" rel='noopener noreferrer nofollow' target='_blank' href={el.Website}>{buttonTitle[language]}</a>}
             </Popup>
         </Marker>
     )

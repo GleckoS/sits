@@ -7,23 +7,26 @@ import { Fourth } from "../organism/best-sellers-grid-fourth"
 import { Second } from "../organism/best-sellers-grid-second"
 import { Third } from "../organism/best-sellers-grid-third"
 
-export default function BestSellersGrid({ data }) {
+export default function BestSellersGrid({ data, language }) {
     return (
         <Wrapper>
             <Container>
                 <Grid>
                     {data.map(el => {
+                        if(!el.collection){
+                            return null
+                        }
                         switch (el.fieldGroupName) {
                             case "Page_Bestsellers_ImageGrids_First":
-                                return <First data={el.collection} />
+                                return <First data={el.collection} language={language} />
                             case "Page_Bestsellers_ImageGrids_Second":
-                                return <Second data={el.collection} />
+                                return <Second data={el.collection} language={language} />
                             case "Page_Bestsellers_ImageGrids_Third":
-                                return <Third data={el.collection} />
+                                return <Third data={el.collection} language={language} />
                             case "Page_Bestsellers_ImageGrids_Fourth":
-                                return <Fourth data={el.collection} />
+                                return <Fourth data={el.collection} language={language} />
                             case "Page_Bestsellers_ImageGrids_Fifth":
-                                return <Fifth data={el.collection} />
+                                return <Fifth data={el.collection} language={language} />
                             default:
                                 return null
                         }

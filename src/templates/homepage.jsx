@@ -15,23 +15,23 @@ import Wrapper from "../components/sections/page-wrapper"
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
-export default function Homepage({ data: { wpPage: { homepage } }, pageContext }) {
+export default function Homepage({ data: { wpPage: { language, translations, homepage } }, pageContext }) {
   return (
     <Wrapper>
       <Hero data={homepage.heroH} />
-      <Bestsellers data={homepage.bestsellersCarousel} />
+      <Bestsellers language={pageContext.language} data={homepage.bestsellersCarousel} />
       <About data={homepage.aboutSection} />
       <ProductGrid data={homepage.productsGrid} />
       <DividerCollection data={homepage.dividerSection} />
-      <NewArrivals mt={true} data={homepage.newArrivalsH} />
+      <NewArrivals language={pageContext.language} mt={true} data={homepage.newArrivalsH} />
       <ThreeInformCards data={homepage.sectionWithThreeInformCardsH} />
-      <Map />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }
@@ -39,6 +39,16 @@ export default function Homepage({ data: { wpPage: { homepage } }, pageContext }
 export const query = graphql`
     query homepage($id: String!) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
           seo {
             canonical
             metaDesc

@@ -9,8 +9,9 @@ import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import AddToFauvorite from "../atoms/add-to-favourite"
 import { AnimatePresence, motion } from "framer-motion"
+import { inThisImage } from "../../texts"
 
-export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, collectionPagePreviewImage, products, title }) => {
+export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNames, collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
 
     var settings = {
@@ -71,7 +72,7 @@ export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, colle
                         <PopupGrid>
                             {popUpImages?.map((el, index) => (
                                 <React.Fragment key={el.popupNames.model + index}>
-                                    <ImageGridItem setRerender={setRerender} rerender={rerender} image={el.image} popupNames={el.popupNames} />
+                                    <ImageGridItem language={language} setRerender={setRerender} rerender={rerender} image={el.image} popupNames={el.popupNames} />
                                 </React.Fragment>
                             ))}
                         </PopupGrid>
@@ -85,10 +86,10 @@ export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, colle
                             let { popupNames } = popUpImages.filter(inEl => inEl.image.title === collectionPagePreviewImage.title)[0]
                             return (
                                 <div className="image-wrap">
-                                    <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={popupNames.model} />
+                                    <AddToFauvorite language={language} setRerender={setRerender} rerender={rerender} type={'products'} title={popupNames.model} />
                                     <button aria-label='open pop-up with images' onClick={() => { setPopUpOpened(collectionPagePreviewImage.title) }}>
                                         <GatsbyImage image={collectionPagePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={collectionPagePreviewImage.altText} />
-                                        <span className="in"> In this image <b>+</b> </span>
+                                        <span className="in"> {inThisImage[language]} <b>+</b> </span>
                                     </button>
                                 </div>
                             )
@@ -109,10 +110,10 @@ export const TwoColumnImageGrid = ({ sliderAnimation, gallery, popupNames, colle
                         }
                         return (
                             <div className="image-wrap">
-                                <AddToFauvorite setRerender={setRerender} rerender={rerender} type={'products'} title={popUp[0].popupNames.model} />
+                                <AddToFauvorite language={language} setRerender={setRerender} rerender={rerender} type={'products'} title={popUp[0].popupNames.model} />
                                 <button key={el.title + index} aria-label='open pop-up with images' onClick={() => { setPopUpOpened(el.title) }}>
                                     <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
-                                    <span className="in"> In this image <b>+</b> </span>
+                                    <span className="in"> {inThisImage[language]} <b>+</b> </span>
                                 </button>
                             </div>
                         )

@@ -1,7 +1,33 @@
 const fs = require('fs')
-const { resolve } = require('path')
-const fetch = (...args) =>
-    import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+const { resolve } = require('path');
+const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+
+const productSearchTypes = {
+    sofas: {
+        EN: 'Sofas',
+        FR: 'Canapés'
+    },
+    armchairs: {
+        EN: 'Armchairs',
+        FR: 'Fauteuils'
+    },
+    coffeTables: {
+        EN: 'Coffee Tables',
+        FR: 'Tables Basses'
+    },
+    dinningChairs: {
+        EN: 'Dining Chairs',
+        FR: 'Chaises de salle à manger'
+    },
+    footstools: {
+        EN: 'Footstools',
+        FR: 'Repose-pieds'
+    },
+    outdoorFurniture: {
+        EN: 'Outdoor Furniture',
+        FR: 'Mobilier d’extérieur'
+    },
+}
 
 const csvParser = (data) => {
     let lines = data.split("\r\n");
@@ -69,20 +95,23 @@ exports.createPages = async ({
                 id
                 slug
                 uri
+                language {
+                  code
+                }
             }
         }
-    }
+    } 
   `);
 
-    collections.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    collections.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/collection-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     });
@@ -96,20 +125,23 @@ exports.createPages = async ({
                 id
                 slug
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    materials.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    materials.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/material-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     });
@@ -123,13 +155,15 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    materialArchives.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    materialArchives.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/materials-archive.jsx'),
@@ -137,35 +171,7 @@ exports.createPages = async ({
                 id,
                 slug,
                 uri,
-                language: 'en'
-            },
-        });
-    })
-
-    // PRODUCTS
-
-    const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
-    query {
-        allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
-            nodes {
-                slug
-                id
-                uri
-            }
-        }
-    }
-  `);
-
-
-    productsArchives.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
-        createPage({
-            path: uri,
-            component: resolve('src/templates/all-products-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -185,13 +191,15 @@ exports.createPages = async ({
                     name
                   }
                 }
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    footstoolsArchives.forEach(({ id, slug, uri, title, types }) => {
-        if (uri.includes('/fr/')) return;
+    footstoolsArchives.forEach(({ id, slug, uri, title, types, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -201,7 +209,8 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'footstools',
-                productType: types.nodes[0].name
+                productType: types.nodes[0]?.name,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -221,13 +230,16 @@ exports.createPages = async ({
                     name
                   }
                 }
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    sofasArchives.forEach(({ id, slug, uri, title, types }) => {
-        if (uri.includes('/fr/')) return;
+    sofasArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -237,7 +249,8 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'sofas',
-                productType: types.nodes[0].name
+                productType: types.nodes[0]?.name,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -257,13 +270,16 @@ exports.createPages = async ({
                     name
                   }
                 }
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    armchairsArchives.forEach(({ id, slug, uri, title, types }) => {
-        if (uri.includes('/fr/')) return;
+    armchairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -273,7 +289,8 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'armchairs',
-                productType: types.nodes[0].name
+                productType: types.nodes[0]?.name,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -293,13 +310,16 @@ exports.createPages = async ({
                     name
                   }
                 }
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    tablesArchives.forEach(({ id, slug, uri, title, types }) => {
-        if (uri.includes('/fr/')) return;
+    tablesArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -309,7 +329,8 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'coffee tables',
-                productType: types.nodes[0].name
+                productType: types.nodes[0]?.name,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -329,13 +350,16 @@ exports.createPages = async ({
                     name
                   }
                 }
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    chairsArchives.forEach(({ id, slug, uri, title, types }) => {
-        if (uri.includes('/fr/')) return;
+    chairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -345,7 +369,8 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'dining chairs',
-                productType: types.nodes[0].name
+                productType: types.nodes[0]?.name,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -365,13 +390,16 @@ exports.createPages = async ({
                     name
                   }
                 }
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    outdoorArchives.forEach(({ id, slug, uri, title, types }) => {
-        if (uri.includes('/fr/')) return;
+    outdoorArchives.forEach(({ id, slug, uri, title, types, language }) => {
+
         createPage({
             path: uri,
             component: resolve('src/templates/products-archive.jsx'),
@@ -381,7 +409,8 @@ exports.createPages = async ({
                 uri,
                 title,
                 type: 'outdoor furniture',
-                productType: types.nodes[0].name
+                productType: types.nodes[0]?.name,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -395,20 +424,55 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Homepage.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Homepage.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/homepage.jsx'),
             context: {
                 id,
                 slug,
+                uri,
+                language: language?.code ? language.code : 'EN'
+            },
+        });
+    })
+
+    // PRODUCTS
+
+    const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
+            nodes {
+                slug
+                id
                 uri
+                language {
+                  code
+                }
+            }
+        }
+    }
+  `);
+
+
+    productsArchives.forEach(({ id, slug, uri, language }) => {
+        createPage({
+            path: uri,
+            component: resolve('src/templates/all-products-page.jsx'),
+            context: {
+                id,
+                slug,
+                uri,
+                language: language?.code ? language.code : 'EN',
+                homepageId: Homepage.find(el => el.language?.code === language?.code)?.id,
             },
         });
     })
@@ -422,20 +486,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Bestsellers.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Bestsellers.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/best-sellers.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -449,20 +516,29 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Search.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Search.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/search-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN',
+                sofas: productSearchTypes.sofas[language?.code ? language.code : 'EN'],
+                armchairs: productSearchTypes.armchairs[language?.code ? language.code : 'EN'],
+                footstools: productSearchTypes.footstools[language?.code ? language.code : 'EN'],
+                dinningChairs: productSearchTypes.dinningChairs[language?.code ? language.code : 'EN'],
+                coffeTables: productSearchTypes.coffeTables[language?.code ? language.code : 'EN'],
+                outdoorFurniture: productSearchTypes.outdoorFurniture[language?.code ? language.code : 'EN'],
             },
         });
     })
@@ -476,20 +552,29 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Favourites.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Favourites.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/favourites-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN',
+                sofas: productSearchTypes.sofas[language?.code ? language.code : 'EN'],
+                armchairs: productSearchTypes.armchairs[language?.code ? language.code : 'EN'],
+                footstools: productSearchTypes.footstools[language?.code ? language.code : 'EN'],
+                dinningChairs: productSearchTypes.dinningChairs[language?.code ? language.code : 'EN'],
+                coffeTables: productSearchTypes.coffeTables[language?.code ? language.code : 'EN'],
+                outdoorFurniture: productSearchTypes.outdoorFurniture[language?.code ? language.code : 'EN'],
             },
         });
     })
@@ -503,20 +588,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Where.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Where.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/where-to-buy-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -530,20 +618,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Furniture.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Furniture.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/furniture-care-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -557,20 +648,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Catalogue.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Catalogue.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/catalogues-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -584,20 +678,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Contact.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Contact.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/сontact-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -611,20 +708,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Legal.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Legal.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/legal-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -638,20 +738,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Sales.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Sales.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/sales-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -665,20 +768,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    About.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    About.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/about-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -692,20 +798,23 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Conscious.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Conscious.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/conscious-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
@@ -719,22 +828,39 @@ exports.createPages = async ({
                 slug
                 id
                 uri
+                language {
+                  code
+                }
             }
         }
     }
   `);
 
-    Arrivals.forEach(({ id, slug, uri }) => {
-        if (uri.includes('/fr/')) return;
+    Arrivals.forEach(({ id, slug, uri, language }) => {
         createPage({
             path: uri,
             component: resolve('src/templates/new-arrivals-page.jsx'),
             context: {
                 id,
                 slug,
-                uri
+                uri,
+                language: language?.code ? language.code : 'EN'
             },
         });
     })
 
+}
+
+exports.onCreatePage = async ({ page, actions }) => {
+  const { createPage, deletePage } = actions
+
+  if (page.path.match(/^\/[a-z]{2}\/404\/$/)) {
+    const oldPage = { ...page }
+
+    const langCode = page.path.split(`/`)[1]
+    page.matchPath = `/${langCode}/*`
+
+    deletePage(oldPage)
+    createPage(page)
+  }
 }

@@ -9,8 +9,9 @@ import { Item } from './menu-item'
 import scrollLock from './../../helpers/scroll-lock'
 import { AnimatePresence, motion } from 'framer-motion'
 import { linksLeft, linksRight, furnitureTitle, companyTitle } from '../../texts'
+import { homepageUrl } from '../../texts/urls'
 
-export default function Header() {
+export default function Header({ data, language }) {
   const [isLeftMenuOpened, setLeftMenuOpened] = useState(false)
   const [isRightMenuOpened, setRightMenuOpened] = useState(false)
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false)
@@ -63,14 +64,14 @@ export default function Header() {
             setLeftMenuOpened(true)
             setRightMenuOpened(false)
           }}>
-          {furnitureTitle['en']}
+          {furnitureTitle[language]}
         </Button>
         <LeftMenu initial={{ x: -500 }} animate={isLeftMenuOpened ? { x: 0, transition: { duration: .5 } } : { x: -500, transition: { duration: .3 } }}  >
           <Flex
             initial={{ opacity: 0 }}
             animate={isLeftMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .3 } } : { opacity: 0 }}
           >
-            <b>{furnitureTitle['en']}</b>
+            <b>{furnitureTitle[language]}</b>
             <CloseButton
               tabIndex={isLeftMenuOpened ? '0' : '-1'}
               as='button'
@@ -85,11 +86,11 @@ export default function Header() {
                 tabIndex={isLeftMenuOpened ? '0' : '-1'}
               />
             </motion.div>
-            {linksLeft['en'].map((el, index) => (
+            {linksLeft[language].map((el, index) => (
               <motion.div initial={{ opacity: 0, x: -10 }} animate={isLeftMenuOpened ? { opacity: 1, x: 0, transition: { duration: .35, delay: (.7 + index * .075) } } : { opacity: 0, x: -6 }} key={el.name}>
                 <Item
                   onBlur={() =>
-                    index === linksLeft['en'].length - 1
+                    index === linksLeft[language].length - 1
                       ? setLeftMenuOpened()
                       : null
                   }
@@ -110,7 +111,7 @@ export default function Header() {
               closeAll()
             }}
             aria-label='homepage link'
-            to='/'>
+            to={homepageUrl[language]}>
             <svg
               xmlns='http://www.w3.org/2000/svg'
               width='133.17'
@@ -125,14 +126,14 @@ export default function Header() {
           </Link>
         </motion.div>
         <div className='right'>
-          <LangChanger />
+          <LangChanger setMobileMenuOpened={setMobileMenuOpened} data={data} language={language} />
           <Button
             className='control-desctop underline'
             onClick={() => {
               setRightMenuOpened(true)
               setLeftMenuOpened(false)
             }}>
-            {companyTitle['en']}
+            {companyTitle[language]}
           </Button>
         </div>
         <RightMenu initial={{ x: 500 }} animate={isRightMenuOpened ? { x: 0, transition: { duration: .5 } } : { x: 500, transition: { duration: .3 } }} >
@@ -145,14 +146,14 @@ export default function Header() {
               func={setRightMenuOpened}
               val={false}
             />
-            <b>{companyTitle['en']}</b>
+            <b>{companyTitle[language]}</b>
           </Flex>
           <MenuContent className='reverse'>
-            {linksRight['en'].map((el, index) => (
+            {linksRight[language].map((el, index) => (
               <motion.div initial={{ opacity: 0, x: 6 }} animate={isRightMenuOpened ? { opacity: 1, x: 0, transition: { duration: .35, delay: (.7 + index * .075) } } : { opacity: 0, x: 6 }} key={el.name}>
                 <Item
                   onBlur={() =>
-                    index === linksRight['en'].length - 1
+                    index === linksRight[language].length - 1
                       ? setRightMenuOpened()
                       : null
                   }
@@ -185,7 +186,7 @@ export default function Header() {
                   tabIndex={isMobileMenuOpened ? '0' : '-1'}
                 />
                 <div className='wrap'>
-                  {linksLeft['en'].map((el) => (
+                  {linksLeft[language].map((el) => (
                     <React.Fragment key={el.name}>
                       <Item
                         tabIndex={isMobileMenuOpened ? '0' : '-1'}
@@ -198,7 +199,7 @@ export default function Header() {
                   ))}
                 </div>
                 <div className='wrap'>
-                  {linksRight['en'].map((el) => (
+                  {linksRight[language].map((el) => (
                     <React.Fragment key={el.name}>
                       <Item
                         tabIndex={isMobileMenuOpened ? '0' : '-1'}
@@ -209,14 +210,6 @@ export default function Header() {
                       />
                     </React.Fragment>
                   ))}
-                </div>
-                <div className='wrap'>
-                  <LangChanger
-                    onblur={() => {
-                      setMobileMenuOpened(false)
-                    }}
-                    tabIndex={isMobileMenuOpened ? '0' : '-1'}
-                  />
                 </div>
               </Container>
             </MobileMenu>
@@ -334,14 +327,11 @@ const Wrapper = styled.header`
   @media (max-width: 840px) {
     height: 76px;
 
-    .right {
+    /* .right {
       display: none;
-    }
+    } */
 
-    svg {
-      height: 30px;
-      width: fit-content;
-    }
+
 
     .container {
       display: flex;

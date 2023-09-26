@@ -5,7 +5,7 @@ import styled from "styled-components"
 import { LoadMore } from "../atoms/load-more"
 import { MaterialCard } from "../moleculas/material-card"
 
-export const MaterialList = ({ itemKey, setPage, page, materials, color }) => {
+export const MaterialList = ({ language, itemKey, setPage, page, materials, color }) => {
 
     const [addCount] = useState(() => {
         if (typeof window !== 'undefined') {
@@ -27,7 +27,7 @@ export const MaterialList = ({ itemKey, setPage, page, materials, color }) => {
                                     exit={{ opacity: 0, transition: { duration: .3 } }}
                                     key={el.title + color + itemKey}
                                 >
-                                    <MaterialCard color={color} data={el} />
+                                    <MaterialCard language={language} color={color} data={el} />
                                 </motion.div>
                             )
                         }

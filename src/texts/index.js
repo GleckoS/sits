@@ -1,152 +1,208 @@
+export const langSwitcherNames = {
+    EN: 'International',
+    FR: 'France'
+}
+
 export const downloadText = {
-    'en': 'Download Product Sheet'
+    EN: 'Download Product Sheet',
+    FR: 'Télécharger la fiche produit'
 }
 
 export const downloadFabricText = {
-    'en': 'Download Fabric Specification'
+    EN: 'Download Fabric Specification',
+    FR: 'Télécharger les caractéristiques du tissu'
 }
 
 export const featuresText = {
-    'en': 'FEATURES'
+    EN: 'FEATURES',
+    FR: 'CARACTÉRISTIQUES'
 }
 
 export const textureText = {
-    'en': 'TEXTURE'
+    EN: 'TEXTURE',
+    FR: 'TEXTURES'
 }
 
 export const careInstructionsText = {
-    'en': 'CARE INSTRUCTIONS'
+    EN: 'CARE INSTRUCTIONS',
+    FR: 'CONSEILS D’ENTRETIEN'
 }
 
 export const upholsterysText = {
-    'en': 'UPHOLSTERY'
+    EN: 'UPHOLSTERY',
+    FR: 'TISSUS'
 }
 
 export const confortText = {
-    'en': 'COMFORTS'
+    EN: 'COMFORTS',
+    FR: 'REMBOURRAGES'
 }
 
 export const coversText = {
-    'en': 'COVERS'
+    EN: 'COVERS',
+    FR: 'HOUSSES'
 }
 
 export const dimensionsText = {
-    'en': 'Dimensions'
+    EN: 'Dimensions',
+    FR: 'Dimensions'
 }
 
 export const legsText = {
-    'en': 'Legs'
+    EN: 'Legs',
+    FR: 'Piètement'
 }
 
 export const accessoriesText = {
-    'en': 'Accessories'
+    EN: 'Accessories',
+    FR: 'Accessoires'
 }
 
 export const armrestText = {
-    'en': 'Armrest'
+    EN: 'Armrest',
+    FR: 'Accoudoirs'
 }
 
 export const faqTitle = {
-    en: 'FAQ'
+    EN: 'FAQ',
+    FR: 'FAQ'
 }
 
 export const assemblyTitle = {
-    en: 'Assembly instructions'
+    EN: 'Assembly instructions',
+    FR: 'Notices de montage'
 }
 
 export const searchPlaceholder = {
-    en: 'Search'
+    EN: 'Search',
+    FR: 'Rechercher'
 }
 
 export const exploreButton = {
-    en: 'EXPLORE'
+    EN: 'EXPLORE',
+    FR: 'EXPLORER'
 }
 
 export const noResultTitle = {
-    en: 'You have No Favorites yet'
+    EN: 'You have No Favorites yet',
+    FR: 'Il n’y a pas encore d’articles dans vos Favoris.'
 }
 
 export const noResultMessage = {
-    en: `Favorized products and covers will show up here.<br/>
-    Great! Take me to <a href='/products/'>products</a> or <a href='/material/'>covers</a>.`
+    EN: `Favorized products and covers will show up here.<br/>
+    Great! Take me to <a href='/products/'>products</a> or <a href='/material/'>covers</a>.`,
+    FR: `Les produits et couvertures favoris s'afficheront ici.<br/>
+    Super! Emmenez-moi <a href='/products/'>aux produits</a> ou <a href='/material/'>aux couvertures</a>.`
 }
 
 export const collectionsTitle = {
-    en: 'Collections'
+    EN: 'Collections',
+    FR: 'Collections'
 }
 export const sofasTitle = {
-    en: 'Sofas'
+    EN: 'Sofas',
+    FR: 'Canapés'
 }
 export const armchairsTitle = {
-    en: 'Armchairs'
+    EN: 'Armchairs',
+    FR: 'Fauteuils'
 }
 export const coffeeTablesTitle = {
-    en: 'Coffee Tables'
+    EN: 'Coffee Tables',
+    FR: 'Tables basses'
 }
 export const diningChairsTitle = {
-    en: 'Dining Chairs'
+    EN: 'Dining Chairs',
+    FR: 'Chaises de salle à manger'
 }
 export const footstoolsTitle = {
-    en: 'Footstools'
+    EN: 'Footstools',
+    FR: 'Repose-pieds'
 }
 export const outdoorFurnituresTitle = {
-    en: 'Outdoor Furniture'
+    EN: 'Outdoor Furniture',
+    FR: 'Mobilier d’extérieur'
 }
 export const materialsTitle = {
-    en: 'Covers'
+    EN: 'Covers',
+    FR: 'Housses'
+}
+export const meterialsAlterTitle = {
+    EN: 'Materials',
+    FR: 'TISSUS'
 }
 export const colorsTitle = {
-    en: 'Colors of covers'
+    EN: 'Colors of covers',
+    FR: 'Couleurs de housses'
 }
 export const favouritesTitle = {
-    en: 'My Favourites'
+    EN: 'My Favourites',
+    FR: 'Mes favoris'
 }
 
 export const similarTitle = {
-    en: 'is a popular choice for these models'
+    EN: 'is a popular choice for these models',
+    FR: 'est l’un des meubles les plus choisis parmi ces modèles'
 }
 
 export const coversTitle = {
-    en: 'Similar Covers'
+    EN: 'Similar Covers',
+    FR: 'Housses similaires'
 }
 
 
 export const collectionSimilarTitle = {
-    en: 'Similar products'
+    EN: 'Similar products',
+    FR: 'Produits similaires'
 }
 
 export const collectionCoversTitle = {
-    en: 'Recommended covers for '
+    EN: 'Recommended covers for ',
+    FR: 'Tissus recommandés pour le '
 }
 export const allProductsTitle = {
-    en: 'Discover our collections'
+    EN: 'Discover our collections',
+    FR: 'Découvrez nos collections'
 }
 export const newArrivalsTitle = {
-    en: 'New Arrivals'
+    EN: 'New Arrivals',
+    FR: 'Nouveautés'
 }
 
 export const manageCookies = {
-    en: 'MANAGE COOKIES'
+    EN: 'MANAGE COOKIES',
+    FR: 'GESTION DES COOKIES'
 }
 
 export const left = {
-    en: [
+    EN: [
         { name: 'ABOUT', url: '/about-sits/' },
         { name: 'CONSCIOUS', url: '/conscious/' },
         { name: 'LEGAL', url: '/legal/' },
-        { name: 'PUBLIC INFORMATION', url: '/public-information/' }
+        { name: 'PUBLICK INFORMATION', url: '/public-information/' }
+    ],
+    FR: [
+        { name: 'À PROPOS', url: '/fr/une-fabrication-traditionnelle-artisanale/' },
+        { name: 'DÉMARCHE ÉCO-RESPONSABLE', url: '/fr/demarche-eco-responsable/' },
+        { name: 'MENTIONS LÉGALES', url: '/fr/juridique/' },
+        { name: 'PUBLICK INFORMATION', url: '/public-information/' }
     ]
 }
 
 export const right = {
-    en: [
+    EN: [
         { name: 'WHERE TO BUY', url: '/where-to-buy/' },
         { name: 'CONTACT', url: '/contact/' },
         { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' }
+    ],
+    FR: [
+        { name: 'TROUVER UN POINT DE VENTE', url: '/fr/trouver-un-point-de-vente/' },
+        { name: 'NOUS CONTACTER', url: '/fr/nous-contacter/' },
+        { name: 'REPRÉSENTANT COMMERCIAL', url: '/fr/representant-commercial/' }
     ]
 }
 export const linksLeft = {
-    en: [
+    EN: [
         { name: 'Best Seller', url: '/best-sellers/' },
         { name: 'New Arrivals', url: '/new-arrivals/' },
         { name: 'All products', url: '/products/' },
@@ -160,11 +216,25 @@ export const linksLeft = {
         { name: 'Product configurator', url: 'https://sitsconnect.pl/configurator' },
         { name: 'Covers', url: '/material/' },
         { name: 'My Favourites', icon: 'hearth', url: '/favourites/' }
+    ],
+    FR: [
+        { name: 'Meilleures ventes', url: '/fr/incontournables/' },
+        { name: 'Nouveautés', url: '/fr/nouveautes/' },
+        { name: 'Tous les produits', url: '/fr/produits/' },
+        { name: 'Canapés', url: '/fr/produits/canapes/' },
+        { name: 'Fauteuils', url: '/fr/produits/fauteuils/' },
+        { name: 'Chaises de salle à manger', url: '/fr/produits/chaises-de-salle-a-manger/' },
+        { name: 'Repose-pieds', url: '/fr/produits/repose-pieds/' },
+        { name: 'Tables basses', url: '/fr/produits/tables-basses/' },
+        { name: 'Mobilier d’extérieur', url: '/fr/produits/mobilier-dexterieur/' },
+        { name: 'Configurateur de produit', url: 'https://sitsconnect.pl/configurator' },
+        { name: 'Housses', url: '/fr/materiaux/' },
+        { name: 'Mes favoris', icon: 'hearth', url: '/fr/mes-favoris/' }
     ]
 }
 
 export const linksRight = {
-    en: [
+    EN: [
         { name: 'About Sits', url: '/about-sits/' },
         { name: 'Conscious', url: '/conscious/' },
         { name: 'Furniture Care', url: '/furniture-care/' },
@@ -173,98 +243,147 @@ export const linksRight = {
         { name: 'Sales Representative', url: '/sales-representative/' },
         { name: 'Where to Buy', url: '/where-to-buy/' },
         { name: 'Contact', url: '/contact/' }
+    ],
+    FR: [
+        { name: 'À propos de Sits', url: '/fr/une-fabrication-traditionnelle-artisanale/' },
+        { name: 'Démarche éco-responsable', url: '/fr/demarche-eco-responsable/' },
+        { name: 'Entretien des meubles', url: '/fr/entretien-des-meubles/' },
+        { name: 'Catalogues', url: '/fr/catalogues/' },
+        { name: 'Vitrine d’exposition virtuelle', url: 'https://showroom.sits.eu/' },
+        { name: 'Représentant commercial', url: '/fr/representant-commercial/' },
+        { name: 'Trouver un point de vente', url: '/fr/trouver-un-point-de-vente/' },
+        { name: 'Nous contacter', url: '/fr/nous-contacter/' }
     ]
 }
 
 export const furnitureTitle = {
-    en: 'FURNITURE'
+    EN: 'FURNITURE',
+    FR: 'MEUBLES'
 }
 
 export const companyTitle = {
-    en: 'COMPANY'
+    EN: 'COMPANY',
+    FR: 'ENTREPRISE'
 }
 
 export const copySuccessed = {
-    en: 'Configuration copied successfully'
+    EN: 'Configuration copied successfully',
+    FR: 'Configuration dupliquée avec succès'
 }
 
 export const materialTitle = {
-    en: 'Material:'
+    EN: 'Material:',
+    FR: 'Matériau :'
 }
 
 export const tableTopTitle = {
-    en: 'Table top material:'
+    EN: 'Table top material:',
+    FR: 'Matériau du plateau de la table :'
 }
 
 export const leatherTitle = {
-    en: 'Leather:'
+    EN: 'Leather:',
+    FR: 'Cuir:'
 }
 
 export const fabricTitle = {
-    en: 'Fabric:'
+    EN: 'Fabric:',
+    FR: 'Tissu:'
 }
 
 export const modelTitle = {
-    en: 'Model:'
+    EN: 'Model:',
+    FR: 'Modèle:'
 }
 
 export const legsTitle = {
-    en: 'Legs:'
+    EN: 'Legs:',
+    FR: 'Piètement:'
 }
 
 export const legsMaterialTitle = {
-    en: 'Material of the legs:'
+    EN: 'Material of the legs:',
+    FR: 'Matériau du piètement:'
 }
 
 export const comfortTitle = {
-    en: 'Comfort:'
+    EN: 'Comfort:',
+    FR: 'Garniture:'
 }
 
 export const coverTitle = {
-    en: 'Cover:'
+    EN: 'Cover:',
+    FR: 'Housse:'
 }
 
 export const armrestTitle = {
-    en: 'Armrests:'
+    EN: 'Armrests:',
+    FR: 'Accoudoirs:'
 }
 
 export const accessoriesTitle = {
-    en: 'Accessories:'
+    EN: 'Accessories:',
+    FR: 'Accessoires:'
 }
 
 export const copyConfig = {
-    en: 'Copy Configuration'
+    EN: 'Copy Configuration',
+    FR: 'Dupliquer la configuration'
 }
 
 export const loadMore = {
-    en: 'LOAD MORE'
+    EN: 'LOAD MORE',
+    FR: 'AFFICHER LA SUITE'
 }
 
 export const removeMessage = {
-    en: ' removed from '
+    EN: ' removed from ',
+    FR: ' retiré(s) '
 }
 
 export const addMessage = {
-    en: ` added to `
+    EN: ` added to `,
+    FR: ` ajouté à `
 }
 
 export const favouriteLink = {
-    en: 'MY&nbsp;FAVOURITES'
+    EN: 'MY&nbsp;FAVOURITES',
+    FR: 'MES&nbsp;FAVORIS'
 }
 
 export const accessoriesSectionTitle = {
-    en: 'Accessories for this model'
+    EN: 'Accessories for this model',
+    FR: 'Accessoires pour ce modèle'
 }
 
 export const searchPageTitle = {
-    en: 'Looking for something specific?'
+    EN: 'Looking for something specific?',
+    FR: 'Vous recherchez un modèle précis ?'
 }
 
 export const searchNoResultMessage = {
-    en: `We couldn’t find any matches for „<search>”.
-    Double check your search for any typos or spelling errors - or try a different search term.`
+    EN: `We couldn’t find any matches for „<search>”.
+    Double check your search for any typos or spelling errors - or try a different search term.`,
+    FR: `Nous n'avons trouvé aucune correspondance pour „<search>”.
+    Vérifiez votre recherche pour toute faute de frappe ou d'orthographe - ou essayez un terme de recherche différent.`
 }
 
 export const contatcButton = {
-    en: 'Contact us'
+    EN: 'Contact us',
+    FR: 'Nous contacter'
+}
+
+export const findRetailers = {
+    EN: 'Find retailers',
+    FR: 'Localisez les points de vente'
+}
+
+export const inThisImage = {
+    EN: 'In this image',
+    FR: 'Sur cette image'
+}
+
+export const selectLanguage = {
+    EN: 'Select your country',
+    FR: 'Sélectionnez votre pays'
 }

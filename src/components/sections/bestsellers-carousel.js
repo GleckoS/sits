@@ -10,6 +10,7 @@ import { motion } from "framer-motion"
 import InView from "./in-view-provider"
 import { imageTransition, linkTransition, textTransition } from "../../helpers/animation-controller"
 import { exploreButton } from "../../texts"
+import { collectionUrl } from "../../texts/urls"
 
 const titleAnimation = textTransition(1)
 const textAnimation = textTransition(2)
@@ -19,7 +20,7 @@ const sliderLinkAnimation = linkTransition(6)
 const linkAnimation = linkTransition(3)
 
 
-export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, carousel } }) {
+export default function Bestsellers({ language, data: { seeAllLink, text, sectionTitle, carousel } }) {
     const slickRef = useRef(null);
     var settings = {
         fade: true,
@@ -78,16 +79,19 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                     variants={sliderAnimation}
                     className="container"
                 >
-                    <div className="content desctop">
-                        <div className={animationStarted ? 'sticky hide' : "sticky"}>
-                            <motion.h3 variants={sliderTitleAnimation}>{carousel[item].selectedCollection.title}</motion.h3>
-                            <motion.div variants={sliderLinkAnimation} className="underline">
-                                <Link tabIndex={-1} to={'/collection/' + carousel[item].selectedCollection.slug + '/'} >{exploreButton['en']}</Link>
-                            </motion.div>
+                    {carousel[item].selectedCollection && (
+                        <div className="content desctop">
+                            <div className={animationStarted ? 'sticky hide' : "sticky"}>
+                                <motion.h3 variants={sliderTitleAnimation}>{carousel[item].selectedCollection.title}</motion.h3>
+                                <motion.div variants={sliderLinkAnimation} className="underline">
+                                    <Link tabIndex={-1} to={collectionUrl[language] + carousel[item].selectedCollection.slug + '/'} >{exploreButton[language]}</Link>
+                                </motion.div>
+                            </div>
                         </div>
-                    </div>
+                    )}
                     <Slider ref={slickRef} {...settings}>
                         {carousel.map((el, index) => {
+                            if (!el.selectedCollection) return <div className="placeholder">Collection not selected</div>
                             if (el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage) {
                                 return (
                                     <div key={index} className="slide">
@@ -97,7 +101,7 @@ export default function Bestsellers({ data: { seeAllLink, text, sectionTitle, ca
                                             alt={el.selectedCollection.collections.generalCollectionInformation.homepageSliderPreviewImage.altText} />
                                         <div className="content mobile">
                                             <h3>{el.selectedCollection.title}</h3>
-                                            <Link className="underline" tabIndex={-1} to={'/collection/' + el.selectedCollection.slug + '/'} >{exploreButton['en']}</Link>
+                                            <Link className="underline" tabIndex={-1} to={collectionUrl[language] + el.selectedCollection.slug + '/'} >{exploreButton[language]}</Link>
                                         </div>
                                     </div>
                                 )

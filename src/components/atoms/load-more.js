@@ -1,14 +1,19 @@
 import React from "react"
 import styled from "styled-components"
 import { loadMore } from "../../texts"
+import { myContext } from '../../hooks/provider'
 
 export const LoadMore = ({
     onClick = () => { },
     // count = 8
 }) => (
-    <Wrapper onClick={onClick} >
-        {loadMore['en']}
-    </Wrapper>
+    <myContext.Consumer>
+        {context => (
+            <Wrapper onClick={onClick} >
+                {loadMore[context.language]}
+            </Wrapper>
+        )}
+    </myContext.Consumer>
     //({count})  add after count system rework
 )
 

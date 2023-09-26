@@ -4,7 +4,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import AddToFauvorite from "../atoms/add-to-favourite"
 
-export const MaterialsSlider = ({ animation, variant, variants }) => {
+export const MaterialsSlider = ({ language, animation, variant, variants }) => {
     const [choosenVariant, setChoosenVariant] = useState(() => {
         if (variant) {
             let isActual = false
@@ -67,7 +67,7 @@ export const MaterialsSlider = ({ animation, variant, variants }) => {
                         if (variants[index].variantName === choosenVariant || variants[index].variantName === newVariant) {
                             return (
                                 <SliderContent key={el.landscapePreviewImage.altText + index} className={variants[index].variantName === choosenVariant ? 'active' : ''}>
-                                    <AddToFauvorite type={'colors'} title={el.variantName} />
+                                    <AddToFauvorite language={language} type={'colors'} title={el.variantName} />
                                     <GatsbyImage className="image" image={el.landscapePreviewImage.localFile.childImageSharp.gatsbyImageData} alt={el.landscapePreviewImage.altText} />
                                 </SliderContent>
                             )

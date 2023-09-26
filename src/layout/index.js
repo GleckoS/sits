@@ -15,7 +15,7 @@ const animate = cssTransition({
     exit: "exit"
 })
 
-export default function Layout({ children }) {
+export default function Layout({ data, pageContext, children }) {
 
     const [isPageLoaded, setIsPageLoaded] = useState(false)
 
@@ -30,12 +30,12 @@ export default function Layout({ children }) {
                     <App>
                         <ToastContainer limit={5} transition={animate} />
                         <Global />
-                        <Cookies isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
-                        <Header />
+                        <Cookies language={pageContext.language || 'EN'} isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
+                        <Header data={data} language={pageContext.language || 'EN'} />
                         <div id='main'>
                             {children}
                         </div>
-                        <Footer setIsCookiesActive={context.setIsCookiesActive} />
+                        <Footer language={pageContext.language || 'EN'} setIsCookiesActive={context.setIsCookiesActive} />
                         <Overlay className={isPageLoaded ? 'disabled' : ''} />
                     </App>
                 )

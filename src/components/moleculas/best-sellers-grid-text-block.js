@@ -3,18 +3,19 @@ import { Link } from 'gatsby'
 import React from 'react'
 import styled from 'styled-components'
 import { linkTransition, textTransition } from '../../helpers/animation-controller'
+import { collectionUrl } from '../../texts/urls'
 import { exploreButton } from './../../texts'
 
 const titleAnimation = textTransition(3)
 const textAnimation = textTransition(4)
 const linkAnimation = linkTransition(5)
 
-export const TextBlock = ({ title, description, slug }) => (
+export const TextBlock = ({ title, description, slug, language }) => (
     <Wrapper className="t">
         <motion.h2 variants={titleAnimation} className="title">{title}</motion.h2>
         <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: description }} />
         <motion.div className='underline' variants={linkAnimation}>
-            <Link to={'/collection/' + slug + '/'}>{exploreButton['en']}</Link>
+            <Link to={collectionUrl[language] + slug + '/'}>{exploreButton[language]}</Link>
         </motion.div>
     </Wrapper>
 )
@@ -55,9 +56,22 @@ const Wrapper = styled.div`
         font-weight: 300;
         margin-bottom: clamp(24px, ${24 / 1194 * 100}vw, 40px);
 
+        
+        display: -webkit-box;
+        -webkit-line-clamp: 6;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+
         @media (max-width: 1240px) {
             font-size: clamp(16px, ${24 / 1194 * 100}vw, 24px);
             margin-bottom: clamp(24px, ${40 / 1194 * 100}vw, 40px);
+        }
+        
+        @media (max-width: 640px) {
+            display: block;
+            -webkit-line-clamp: unset;
+            -webkit-box-orient: unset;
+            overflow: visible;
         }
     }
 

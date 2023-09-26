@@ -1,8 +1,9 @@
 import React from "react"
+import { searchParamName } from "../texts/filter"
 
 const siteUrl = 'https://sits.eu'
 
-export default function Seo({ isArchive = false, pageContext, seo }) {
+export default function Seo({ language, isArchive = false, pageContext, seo }) {
     const canonical = siteUrl + pageContext.uri
 
 
@@ -112,7 +113,7 @@ export default function Seo({ isArchive = false, pageContext, seo }) {
                             "url": siteUrl,
                             "potentialAction": {
                                 "@type": "SearchAction",
-                                "target": canonical + "?search={search_term_string}",
+                                "target": canonical + "?" + searchParamName[language] + "=" + "{search_term_string}",
                                 "query-input": "required name=search_term_string"
                             }
                         }

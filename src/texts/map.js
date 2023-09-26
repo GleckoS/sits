@@ -1,12 +1,15 @@
 
 export const retailersTitle = {
-    en: 'RETAILERS:'
+    EN: 'RETAILERS:',
+    FR: 'POINTS DE VENTE:'
 }
 
 export const filterTitle = {
-    en: 'Country / City / Area'
+    EN: 'Country / City / Area',
+    FR: 'Pays / Ville / Région'
 }
 
 export const buttonTitle = {
-    en: 'WEBSITE'
+    EN: 'WEBSITE',
+    FR: 'SITE WEB'
 }

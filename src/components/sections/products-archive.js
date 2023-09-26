@@ -13,9 +13,9 @@ import InView from "./in-view-provider"
 import { imageTransition } from "../../helpers/animation-controller"
 import { motion } from "framer-motion"
 import {
-    typeTitle, sortByTitle, filterTitle, clearAllTitle, upholsterysArr, covesArr, sofasTypes,
+    typeTitle, sortByTitle, filterTitle, clearAllTitle, 
     coverParamName, pageParamName, searchParamName, sortBy, sortParamName, typeParamName, noResultMessage,
-    upholsteryParamName, upholsterysTitle, coversTitle, reset, view, sortFilterTitle, noResultTitle
+    upholsteryParamName, upholsterysTitle, coversTitle, reset, view, sortFilterTitle, noResultTitle, upholsterysArrAll, covesArrAll, sofasTypesAll
 } from "../../texts/filter"
 import { searchPlaceholder as searchFilterTitle } from "../../texts"
 
@@ -23,15 +23,48 @@ const filterItemAnimation = imageTransition(-1.5)
 const filterAnimation = imageTransition(1)
 const gridAnimation = imageTransition(1)
 
-export default function ProductArchive({ location, pageContext: { type: name, title }, products }) {
-    const [sort, setSort] = useQueryParam(sortParamName['en'], 'Popular', location)
-    const [type, setType] = useQueryParam(typeParamName['en'], 'All', location)
-    const [cover, setCover] = useQueryParam(coverParamName['en'], 'All', location)
-    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName['en'], 'All', location)
-    const [search, setSearch] = useQueryParam(searchParamName['en'], '', location)
-    const [page, setPage] = useQueryParam(pageParamName['en'], '1', location)
+export default function ProductArchive({ language, location, pageContext: { type: name, title }, products }) {
+    const [sort, setSort] = useQueryParam(sortParamName[language], sortBy[language][0].val, location)
+    const [type, setType] = useQueryParam(typeParamName[language], 'All', location)
+    const [cover, setCover] = useQueryParam(coverParamName[language], 'All', location)
+    const [upholsterys, setUpholsterys] = useQueryParam(upholsteryParamName[language], 'All', location)
+    const [search, setSearch] = useQueryParam(searchParamName[language], '', location)
+    const [page, setPage] = useQueryParam(pageParamName[language], '1', location)
     const [inputValue, setInputValue] = useState('')
     const [defaultPosts] = useState(products)
+    const [upholsterysArr] = useState(() => {
+        const arr = [{ name: upholsterysArrAll[language], val: 'All' }]
+        products.forEach(el => {
+            el?.products?.collection?.upholsterys?.nodes?.forEach(inEl => {
+                if (!arr.find(el => el.name === inEl.name)) {
+                    arr.push({ name: inEl.name, val: inEl.name })
+                }
+            })
+        })
+        return arr
+    })
+    const [coversArr] = useState(() => {
+        const arr = [{ name: covesArrAll[language], val: 'All' }]
+        products.forEach(el => {
+            el?.products?.collection?.covers?.nodes?.forEach(inEl => {
+                if (!arr.find(el => el.name === inEl.name)) {
+                    arr.push({ name: inEl.name, val: inEl.name })
+                }
+            })
+        })
+        return arr
+    })
+    const [sofasTypes] = useState(() => {
+        const arr = [{ name: sofasTypesAll[language], val: 'All' }]
+        products.forEach(el => {
+            el.types.nodes.forEach(inEl => {
+                if (!arr.find(el => el.name === inEl.name)) {
+                    arr.push({ name: inEl.name, val: inEl.name })
+                }
+            })
+        })
+        return arr
+    })
 
     const changeType = useCallback((e, url) => {
         if (typeof window !== 'undefined' && name === 'sofas') {
@@ -122,7 +155,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
             })
         }
 
-        if (locSort === 'Popular') {
+        if (locSort === sortBy[language][0].val) {
             let filtrArr = [...arr]
 
             filtrArr.sort((a, b) => {
@@ -132,7 +165,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
             arr = filtrArr
         }
 
-        if (locSort === 'New Arrivals') {
+        if (locSort === sortBy[language][1].val) {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.products.isNewArrival) {
@@ -144,7 +177,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
             arr = filtrArr
         }
 
-        if (locSort === 'Alphabetical') {
+        if (locSort === sortBy[language][2].val) {
             arr.sort((a, b) => a.products.collection.title.localeCompare(b.products.collection.title))
         }
         return arr
@@ -169,23 +202,23 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
             <Wrapper>
                 <FilterComponent
                     filterAnimation={filterAnimation}
-                    filterTitle={filterTitle['en']}
-                    sortByTitle={sortByTitle['en']}
-                    sortBy={sortBy['en']}
+                    filterTitle={filterTitle[language]}
+                    sortByTitle={sortByTitle[language]}
+                    sortBy={sortBy[language]}
                     name={name}
-                    typeTitle={typeTitle['en']}
-                    sofasTypes={sofasTypes['en']}
-                    upholsterysTitle={upholsterysTitle['en']}
-                    upholsterysArr={upholsterysArr['en']}
-                    coversTitle={coversTitle['en']}
-                    covesArr={covesArr['en']}
-                    reset={reset['en']}
-                    view={view['en']}
+                    typeTitle={typeTitle[language]}
+                    sofasTypes={sofasTypes}
+                    upholsterysTitle={upholsterysTitle[language]}
+                    upholsterysArr={upholsterysArr}
+                    coversTitle={coversTitle[language]}
+                    covesArr={coversArr}
+                    reset={reset[language]}
+                    view={view[language]}
                     sort={partSlugDeTransform(sort)}
                     type={partSlugDeTransform(type)}
                     upholsterys={partSlugDeTransform(upholsterys)}
                     cover={partSlugDeTransform(cover)}
-                    sortFilterTitle={sortFilterTitle['en']}
+                    sortFilterTitle={sortFilterTitle[language]}
                     setMobileFilterOpened={setMobileFilterOpened}
                     isMobileFilterOpened={isMobileFilterOpened}
                     setUpholsterys={(v) => { setUpholsterys(partSlugTransform(v)); setPage('1'); window.scrollTo(0, 0) }}
@@ -196,6 +229,7 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                     inputValue={inputValue}
                     setInputValue={setInputValue}
                     setSearch={(v) => { setSearch(v); setPage('1'); window.scrollTo(0, 0) }}
+                    language={language}
                 />
                 <Title small={true} title={title} />
                 <Container className="content-wrap">
@@ -220,13 +254,13 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                         )}
                         {search !== '' && (
                             <FilterItem variants={filterItemAnimation} onClick={() => { setSearch('') }}>
-                                {searchFilterTitle['en']}: „{search}”
+                                {searchFilterTitle[language]}: „{search}”
                                 <CloseButton />
                             </FilterItem>
                         )}
                         {(type !== 'All' || cover !== 'All' || upholsterys !== 'All') && (
                             <FilterItem variants={filterItemAnimation} onClick={() => { clearAll('') }} className="close">
-                                {clearAllTitle['en']}
+                                {clearAllTitle[language]}
                                 <CloseButton />
                             </FilterItem>
                         )}
@@ -234,13 +268,13 @@ export default function ProductArchive({ location, pageContext: { type: name, ti
                     {filtredProducts.length > 0
                         ? (
                             <motion.div variants={gridAnimation}>
-                                <ProductList itemKey={sort + type + cover + upholsterys + search} changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
+                                <ProductList language={language} itemKey={sort + type + cover + upholsterys + search} changeType={changeType} setRerender={setRerender} page={page} setPage={setPage} rerender={rerender} products={filtredProducts} />
                             </motion.div>
                         )
                         : (
                             <NoResults variants={gridAnimation}>
-                                <h2>{noResultTitle['en']}</h2>
-                                <p>{noResultMessage['en']}</p>
+                                <h2>{noResultTitle[language]}</h2>
+                                <p>{noResultMessage[language]}</p>
                             </NoResults>
                         )}
                 </Container>

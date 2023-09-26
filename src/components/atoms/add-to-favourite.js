@@ -6,16 +6,17 @@ import { toast } from 'react-toastify'
 import { Link } from 'gatsby'
 import { myContext } from '../../hooks/provider'
 import { addMessage, favouriteLink, removeMessage } from '../../texts'
+import { favouritesUrl } from '../../texts/urls'
 
 
 const Toast = ({ toastProps }) => {
   return (
-    <ToastWrapper to='/favourites/'>
+    <ToastWrapper to={favouritesUrl[toastProps.language]}>
       {toastProps.type === 'add'
-        ? toastProps.title + addMessage['en']
-        : toastProps.title + removeMessage['en']
+        ? toastProps.title + addMessage[toastProps.language]
+        : toastProps.title + removeMessage[toastProps.language]
       }
-      <span className='underline' dangerouslySetInnerHTML={{ __html: favouriteLink['en'] }} />
+      <span className='underline' dangerouslySetInnerHTML={{ __html: favouriteLink[toastProps.language] }} />
     </ToastWrapper>
   )
 }
@@ -34,30 +35,30 @@ const ToastWrapper = styled(Link)`
   }
 `
 
-export default function AddToFauvorite({ setRerender = () => { }, rerender, type, title }) {
+export default function AddToFauvorite({ language, setRerender = () => { }, rerender, type, title }) {
   const [isActive, setIsActive] = useState(() => {
     if (typeof window === 'undefined') {
       return false
     }
-    let cookie = getCookie(type)
+    let cookie = getCookie(type + language)
     if (!cookie) {
       setCookie(type, '')
     }
     return cookie?.includes(title)
   })
 
-  const clickHandler = (e, recalculate) => {
+  const clickHandler = (e, recalculate, language) => {
     e.preventDefault()
-    let cookie = getCookie(type)
+    let cookie = getCookie(type + language)
     if (cookie?.includes(title)) {
       cookie = cookie.replace(title + '|', '')
       setCookie(type, cookie)
       setIsActive(false)
-      toast(<Toast />, { type: 'remove', title: title })
+      toast(<Toast />, { type: 'remove', title: title, language: language })
     } else {
-      setCookie(type, cookie + title + '|')
+      setCookie(type + language, cookie + title + '|')
       setIsActive(true)
-      toast(<Toast />, { type: 'add', title: title })
+      toast(<Toast />, { type: 'add', title: title, language: language })
     }
     setRerender(Math.random())
     recalculate()
@@ -68,9 +69,9 @@ export default function AddToFauvorite({ setRerender = () => { }, rerender, type
       if (typeof window === 'undefined') {
         return false
       }
-      let cookie = getCookie(type)
+      let cookie = getCookie(type + language)
       if (!cookie) {
-        setCookie(type, '')
+        setCookie(type + language, '')
       }
       return cookie?.includes(title)
     })
@@ -87,7 +88,7 @@ export default function AddToFauvorite({ setRerender = () => { }, rerender, type
                 : 'add item to favourite list'
             }
             onClick={(e) => {
-              clickHandler(e, context.recalculateFavouritesCount);
+              clickHandler(e, context.recalculateFavouritesCount, language);
             }}
             className={isActive ? 'active hearth' : 'hearth'}>
             <svg

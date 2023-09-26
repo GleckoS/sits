@@ -15,7 +15,7 @@ const itemAnimation = {
     animate: { opacity: 1, transition: { duration: .4 } }
 }
 
-export default function SimilarProducts({ isLast, materials, title, data }) {
+export default function SimilarProducts({ language, isLast, materials, title, data }) {
     return (
         <InView>
             <Wrapper isLast={isLast} className={materials ? 'materials' : ''}>
@@ -34,7 +34,7 @@ export default function SimilarProducts({ isLast, materials, title, data }) {
                                     if (imageEl.isMainImage && !isOnePostRendered) {
                                         isOnePostRendered = true
                                         return <Item variants={itemAnimation} key={inEl.popupNames.model + index}>
-                                            <ProductCard threeColumn={true} model={inEl.popupNames.model} types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} />
+                                            <ProductCard language={language} threeColumn={true} model={inEl.popupNames.model} types={el.product.products.collection.types.nodes} data={el.product.products.collection} image={imageEl.featuredProductImage} />
                                         </Item>
                                     }
                                     return null

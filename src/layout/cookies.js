@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Grid } from "./cookies-grid"
 import scrollLock from './../helpers/scroll-lock'
 import { getCookie, setCookie } from "../helpers/coockie-manager"
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import { allowButton, allowChosenButton, setButton, denyButton, aboutTabName, detailsTabName, consentTabName } from "../texts/cookie"
 
 function datalayerArguments() {
@@ -14,38 +14,44 @@ function datalayerArguments() {
     }
 }
 
-export default function Cookies({ isActive, setIsActive }) {
-    const { wpPage: { cookies: { consentTab, aboutCookiesTab, detailsTab } } } = useStaticQuery(graphql`
-    query {
-        wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
-            cookies {
-              consentTab {
-                tabContent
-              }
-              aboutCookiesTab {
-                tabContent
-              }
-              detailsTab {
-                cookies {
-                  partName
-                  workPartName
-                  partDescription
-                  innerParts {
-                    innerPartName
-                    cookieDescriptionUrl
-                    innerPartCookies {
-                      cookieName
-                      cookieDescription
-                      expireTime
-                      cookieType
+export default function Cookies({ language, isActive, setIsActive }) {
+    const { allWpPage } = useStaticQuery(graphql`
+        query Cookies($language: WpLanguageCodeEnum){
+            allWpPage(filter: {template: {templateName: {eq: "Global Config"}}, language: {code: {eq: $language}}}) {
+                nodes{
+                    language {
+                        code
                     }
-                  }
+                    cookies {
+                        consentTab {
+                            tabContent
+                        }
+                        aboutCookiesTab {
+                            tabContent
+                        }
+                        detailsTab {
+                            cookies {
+                                partName
+                                workPartName
+                                partDescription
+                                innerParts {
+                                    innerPartName
+                                    cookieDescriptionUrl
+                                    innerPartCookies {
+                                        cookieName
+                                        cookieDescription
+                                        expireTime
+                                        cookieType
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
         }
-    }
-  `)
+    `)
+    const { cookies: { consentTab, aboutCookiesTab, detailsTab } } = allWpPage.nodes.filter(el => el.language.code === language)[0]
 
     const [activeTab, setActiveTab] = useState(0)
 
@@ -168,35 +174,36 @@ export default function Cookies({ isActive, setIsActive }) {
                     <Wrapper initial={{ opacity: isMobile ? 1 : 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0, transition: { duration: .3 } }} key='cookie-wrapper'>
                         <Content>
                             <TabsControl>
-                                <AnimateSharedLayout>
-                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(0) }}>
-                                        {consentTabName['en']}
-                                        {activeTab === 0 && (
-                                            <motion.div
-                                                className="underline"
-                                                layoutId="underline"
-                                            />
-                                        )}
-                                    </button>
-                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(1) }}>
-                                        {detailsTabName['en']}
-                                        {activeTab === 1 && (
-                                            <motion.div
-                                                className="underline"
-                                                layoutId="underline"
-                                            />
-                                        )}
-                                    </button>
-                                    <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(2) }}>
-                                        {aboutTabName['en']}
-                                        {activeTab === 2 && (
-                                            <motion.div
-                                                className="underline"
-                                                layoutId="underline"
-                                            />
-                                        )}
-                                    </button>
-                                </AnimateSharedLayout>
+                                <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(0) }}>
+                                    {consentTabName[language]}
+                                    {activeTab === 0 && (
+                                        <motion.div
+                                            key={'1'}
+                                            className="underline"
+                                            layoutId="underline"
+                                        />
+                                    )}
+                                </button>
+                                <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(1) }}>
+                                    {detailsTabName[language]}
+                                    {activeTab === 1 && (
+                                        <motion.div
+                                            key={'2'}
+                                            className="underline"
+                                            layoutId="underline"
+                                        />
+                                    )}
+                                </button>
+                                <button tabIndex={isActive ? '0' : '-1'} onClick={() => { setActiveTab(2) }}>
+                                    {aboutTabName[language]}
+                                    {activeTab === 2 && (
+                                        <motion.div
+                                            key={'3'}
+                                            className="underline"
+                                            layoutId="underline"
+                                        />
+                                    )}
+                                </button>
                             </TabsControl>
                             <TabWrapper transition={{ duration: .5 }}>
                                 <AnimatePresence initial={false} mode='wait'>
@@ -222,7 +229,7 @@ export default function Cookies({ isActive, setIsActive }) {
                                                             {el.partDescription}
                                                         </p>
                                                         {el.innerParts?.map((el, id) => (
-                                                            <React.Fragment key={el.innerPartName + id}><Grid isActive={isActive} active={activeCookie[index].isActive} el={el} /></React.Fragment>
+                                                            <React.Fragment key={el.innerPartName + id}><Grid language={language} isActive={isActive} active={activeCookie[index].isActive} el={el} /></React.Fragment>
                                                         ))}
                                                     </div>
                                                 )
@@ -238,19 +245,19 @@ export default function Cookies({ isActive, setIsActive }) {
                             </TabWrapper>
                             <Buttons>
                                 <button tabIndex={isActive ? '0' : '-1'} onClick={() => { rejectAll() }}>
-                                    {denyButton['en']}
+                                    {denyButton[language]}
                                 </button>
                                 {activeTab === 1 ? (
                                     <button onClick={() => { acceptPart() }} tabIndex={isActive ? '0' : '-1'}>
-                                        {allowChosenButton['en']}
+                                        {allowChosenButton[language]}
                                     </button>
                                 ) : (
                                     <button onClick={() => { setActiveTab(1) }} tabIndex={isActive ? '0' : '-1'}>
-                                        {setButton['en']}
+                                        {setButton[language]}
                                     </button>
                                 )}
                                 <button tabIndex={isActive ? '0' : '-1'} onClick={() => { acceptAll() }} className="allow">
-                                    {allowButton['en']}
+                                    {allowButton[language]}
                                 </button>
                             </Buttons>
                         </Content>

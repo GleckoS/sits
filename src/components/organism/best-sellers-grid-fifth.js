@@ -8,10 +8,10 @@ import { imageTransition } from "../../helpers/animation-controller"
 
 const imageAnimation = imageTransition(1)
 
-export const Fifth = ({ data: { slug, title, collections: { collectionBestsellerImageGrid } } }) => (
+export const Fifth = ({ language, data: { slug, title, collections: { collectionBestsellerImageGrid } } }) => (
     <InView >
         <Wrapper>
-            <TextBlock title={title} slug={slug} description={collectionBestsellerImageGrid.collectionShortBestsellerPageDescription} />
+            <TextBlock language={language} title={title} slug={slug} description={collectionBestsellerImageGrid.collectionShortBestsellerPageDescription} />
             <motion.div variants={imageAnimation} className="s" >
                 <GatsbyImage image={collectionBestsellerImageGrid.smallSquare.localFile.childImageSharp.gatsbyImageData} alt={collectionBestsellerImageGrid.smallSquare.altText} />
             </motion.div>

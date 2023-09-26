@@ -15,7 +15,9 @@ export const ResultMaterialBlock = ({
     setCount,
     prefiltredArr,
     searchValue,
-    title }) => {
+    title,
+    language
+}) => {
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
         let colors = []
@@ -78,7 +80,7 @@ export const ResultMaterialBlock = ({
         return (
             <InView>
                 <Wrapper variants={animation}>
-                    <motion.h2 variants={contentTitleAnimation}>{title['en']}</motion.h2>
+                    <motion.h2 variants={contentTitleAnimation}>{title[language]}</motion.h2>
                     <ResultsGrid variants={contentGridAnimation}>
                         {filtredArr.map(el => {
                             return el.arr.map((inEl, index) => {
@@ -90,7 +92,7 @@ export const ResultMaterialBlock = ({
                                         exit={{ opacity: 0 }}
                                         transition={{ duration: .6 }}
                                         key={inEl.variantName + index}>
-                                        <Card setRerender={setRerender} variant={index} rerender={rerender} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
+                                        <Card language={language} setRerender={setRerender} variant={index} rerender={rerender} type={'colors'} image={inEl.squarePreviewImage} model={inEl.variantName} title={inEl.variantName} slug={el.slug} />
                                     </motion.div>
                                 }
                                 return null

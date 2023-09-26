@@ -35,6 +35,7 @@ const linkAnimation = {
 }
 
 export default function Hero({
+    language, 
     isLast,
     variant,
     data: {
@@ -57,21 +58,21 @@ export default function Hero({
             <Wrapper isLast={isLast}>
                 <Container>
                     <Grid>
-                        <MaterialsSlider animation={sliderAnimation} variant={variant} variants={materialColorVariants} />
+                        <MaterialsSlider language={language} animation={sliderAnimation} variant={variant} variants={materialColorVariants} />
                         <motion.div variants={addInformAnimation} className="content">
                             <Flex variants={itemAnimation}>
                                 <h1 className="archive-title">{title}</h1>
-                                <AddToFauvorite type='materials' title={title} />
+                                <AddToFauvorite language={language} type='materials' title={title} />
                             </Flex>
                             <Description variants={itemAnimation} className="p" dangerouslySetInnerHTML={{ __html: materialQuickDescription }} />
                             {materialProductSheet
                                 ? <DownloadWithArrow linkAnimation={linkAnimation} className='link' file={materialProductSheet.localFile.publicURL}>
-                                    {downloadFabricText['en']}
+                                    {downloadFabricText[language]}
                                 </DownloadWithArrow>
                                 : null}
-                            {!!features.nodes.length && <Tooltip animation={itemAnimation} title={featuresText['en']} data={features} />}
-                            {!!textures.nodes.length && <Tooltip animation={itemAnimation} title={textureText['en']} data={textures} />}
-                            {!!careInstructions.nodes.length && <TooltipOnlyImage animation={itemAnimation} title={careInstructionsText['en']} data={careInstructions} />}
+                            {!!features.nodes.length && <Tooltip animation={itemAnimation} title={featuresText[language]} data={features} />}
+                            {!!textures.nodes.length && <Tooltip animation={itemAnimation} title={textureText[language]} data={textures} />}
+                            {!!careInstructions.nodes.length && <TooltipOnlyImage animation={itemAnimation} title={careInstructionsText[language]} data={careInstructions} />}
                             {textUnderCareInstructionIcons
                                 ? <motion.span variants={itemAnimation} className="anotation" dangerouslySetInnerHTML={{ __html: textUnderCareInstructionIcons }} />
                                 : null}

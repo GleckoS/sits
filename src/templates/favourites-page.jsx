@@ -5,28 +5,45 @@ import Content from "../components/sections/favourites-content"
 import Map from "../components/sections/map"
 import Wrapper from "../components/sections/page-wrapper"
 import Seo from "../layout/seo"
+import { myContext } from "../hooks/provider"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
     <>
-      <Helmet htmlAttributes={{ lang: 'en' }} />
-      <Seo seo={seo} pageContext={pageContext}/>
+      <Helmet htmlAttributes={{ lang: pageContext.language }} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
     </>
   )
 }
 
 export default function FavouritesPage({ data, pageContext, location }) {
+  debugger
   return (
     <Wrapper>
-      <Content data={data} />
-      <Map />
+      <myContext.Consumer>
+        {context => {
+          context.setLanguage(pageContext.language)
+        }}
+      </myContext.Consumer>
+      <Content language={pageContext.language} data={data} />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }
 
 export const query = graphql`
-    query favourites($id: String!) {
+    query favourites($id: String!, $sofas: String!, $armchairs: String!, $coffeTables: String!, $dinningChairs: String!, $footstools: String!, $outdoorFurniture: String!, $language: WpLanguageCodeEnum) {
         wpPage(id: {eq: $id}){
+          language {
+            name
+          }
+          translations {
+            language {
+              name
+              code
+            }
+            uri
+          }
             id
             seo {
               canonical
@@ -40,7 +57,7 @@ export const query = graphql`
               }
             }
         }
-        Collections: allWpCollection {
+        Collections: allWpCollection(filter: {language: {code: {eq: $language}}}) {
           nodes {
             id
             title
@@ -67,7 +84,7 @@ export const query = graphql`
             }
           }
         }
-        Materials : allWpMaterials{
+        Materials : allWpMaterials(filter: {language: {code: {eq: $language}}}){
             nodes {
               materials {
                 materialColorVariants {
@@ -89,7 +106,7 @@ export const query = graphql`
 
             }
         }
-        Sofas : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Sofas"}}}}}) {
+        Sofas : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: $sofas}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -129,7 +146,7 @@ export const query = graphql`
                 }
             }
           }
-        Armchairs : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Armchairs"}}}}}) {
+        Armchairs : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: $armchairs}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -164,7 +181,7 @@ export const query = graphql`
                 }
             }
         }
-        CoffeeTables : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Coffee tables"}}}}}) {
+        CoffeeTables : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: $coffeTables}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -199,7 +216,7 @@ export const query = graphql`
                 }
             }
         }
-        DiningChairs : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Dining chairs"}}}}}) {
+        DiningChairs : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: $dinningChairs}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -234,7 +251,7 @@ export const query = graphql`
                 }
             }
         }
-        Footstools : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Footstools"}}}}}) {
+        Footstools : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: $footstools}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -269,7 +286,7 @@ export const query = graphql`
                 }
             }
         }
-        OutdoorFurnitures : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: "Outdoor furniture"}}}}}) {
+        OutdoorFurnitures : allWpProduct(filter: {types: {nodes: {elemMatch: {name: {eq: $outdoorFurniture}}}}}) {
             nodes {
                 types {
                   nodes {
