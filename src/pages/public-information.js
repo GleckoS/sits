@@ -28,7 +28,11 @@ export default function WhereToBuyPage() {
     <Wrapper>
       <Title
         title={'Public information'}
-        text={'Informacja o <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Strategia_Sits-sig.pdf" target="__blank" rel="noopener noreferer">realizacji strategii podatkowej</a>'}
+        text={`
+        <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Porozumienie-w-sprawie-uzgodnienia-planu-polaczenia-spolek.pdf" target="__blank" rel="noopener noreferer">Porozumienie w sprawie uzgodnienia planu połączenia spółek SITS sp. z o.o., SITS Industry sp. z o.o., Justus sp. z o.o., Aglon Bis sp. z o.o.</a>
+        <br/>
+        <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Strategia_Sits-sig.pdf" target="__blank" rel="noopener noreferer">Informacja o realizacji strategii podatkowej</a>
+        `}
       />
       <Map scale={6} lat={'52.1'} lon={'20'} />
     </Wrapper>
