@@ -1,6 +1,5 @@
 import { graphql } from "gatsby"
 import React from "react"
-import { useMemo } from "react"
 import Hero from "../components/sections/hero-collection"
 import About from "../components/sections/about"
 import RecomendedCovers from "../components/sections/recomended-covers"
@@ -22,11 +21,7 @@ export function Head({ pageContext, data: { wpCollection: { seo } } }) {
     </>
   )
 }
-export default function Collection({ data: { wpCollection, allWpProduct }, pageContext }) {
-
-  const products = useMemo(() => {
-    return allWpProduct.nodes.filter(el => el.products?.collection?.id === wpCollection.id)
-  }, [allWpProduct, wpCollection])
+export default function Collection({ data: { wpCollection }, pageContext }) {
   return (
     <Wrapper>
       <myContext.Consumer>
@@ -37,7 +32,7 @@ export default function Collection({ data: { wpCollection, allWpProduct }, pageC
       <Hero
         language={pageContext.language}
         itemCategories={wpCollection.types.nodes}
-        products={products}
+        products={pageContext.products}
         data={wpCollection}
       />
       {wpCollection.collections.twoColumn.imageOnTheLeftSide && <About color={true} data={wpCollection.collections.twoColumn} />}
@@ -411,48 +406,5 @@ export const query = graphql`
               }
             }
           }
-          allWpProduct{
-            nodes{
-              types {
-                nodes {
-                  name
-                }
-              }
-            products {
-                collection {
-                  ... on WpCollection {
-                    id
-                  }
-                }
-                productGallery {
-                  productsImages {
-                    isMainImage
-                    featuredProductImage {
-                      altText
-                      title
-                      localFile {
-                        childImageSharp {
-                          gatsbyImageData
-                        }
-                      }
-                    }
-                  }
-                  popupNames {
-                    material
-                    tableTopMaterial
-                    materialOfTheLegs
-                    accessories
-                    armrest
-                    comfort
-                    fabric
-                    cover
-                    leather
-                    legs
-                    model
-                  }
-                }
-              }
-            }
-        }
     }
 `

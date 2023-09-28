@@ -1,0 +1,5630 @@
+[[redirects]]
+        from = "/smart-app-banner/smart-app-banner.js"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/smart-app-banner/smart-app-banner.css"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/sites/default/files/viktoria_TEA_0.pdf"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/sites/default/files/palma_HOME_0.pdf"
+        to = "/collection/palma/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/sites/default/files/john_HOME.pdf"
+        to = "/collection/john/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/sites/default/files/cv_www_praktyczna_nauka_zawodu_brodnica.doc"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/typy-mebli/tables"
+        to = "/products/coffee-tables/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/typy-mebli/sofy-z-funkcją-spania"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/typy-mebli/sofas"
+        to = "/products/sofas/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/typy-mebli/sets"
+        to = "/products/sofas/?type=Corner-Sofas"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/typy-mebli/poufs"
+        to = "/products/footstools/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/typy-mebli/fotele"
+        to = "/products/armchairs/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/typy-mebli/accessories"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/typy-mebli/łóżka"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/338"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/315"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/22"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/21"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/20"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/19"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/18"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/17"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/taxonomy/term/16"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/ville"
+        to = "/collection/ville/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/viktoria"
+        to = "/collection/ville/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/vera"
+        to = "/collection/vera/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/venezia"
+        to = "/collection/venezia/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/valentin"
+        to = "/collection/valentin/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/uma"
+        to = "/collection/uma/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/tokyo"
+        to = "/collection/tokyo/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/timjan"
+        to = "/products/timjan/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/tetris"
+        to = "/collection/tetris/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/stina"
+        to = "/collection/stina/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/stella-leather"
+        to = "/products/stella/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/stella"
+        to = "/collection/stella/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/stefani"
+        to = "/products/stefani/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/space-veneer"
+        to = "/products/space/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/space-glass"
+        to = "/products/space/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/sophia"
+        to = "/collection/sophia/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/siv"
+        to = "/collection/siv/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/siri"
+        to = "/collection/siri/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/sigge"
+        to = "/collection/sigge/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/shell"
+        to = "/collection/shell/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/sara"
+        to = "/products/sara/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/sally"
+        to = "/collection/sally/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/ross"
+        to = "/collection/ross/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/quattro"
+        to = "/collection/quattro/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/polly"
+        to = "/collection/polly/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/pola"
+        to = "/products/pola/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/play"
+        to = "/collection/play/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/pixie"
+        to = "/collection/pixie/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/phoenix"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/petra"
+        to = "/collection/petra/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/penny"
+        to = "/collection/penny/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/paul"
+        to = "/collection/paul/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/palma"
+        to = "/collection/palma/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/oliver"
+        to = "/collection/oliver/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/ohio"
+        to = "/collection/ohio/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/nova-leather"
+        to = "/products/nova/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/nova"
+        to = "/collection/nova/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/new-york"
+        to = "/products/new-york/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/mynta"
+        to = "/collection/mynta/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/mokka"
+        to = "/products/mokka/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/moa-bistro"
+        to = "/products/moa/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/moa"
+        to = "/collection/moa/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/mini"
+        to = "/collection/mini/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/milou"
+        to = "/collection/milou/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/milano"
+        to = "/collection/milano/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/mattias"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/malte"
+        to = "/collection/malte/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/lukas"
+        to = "/collection/lukas/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/ludvig"
+        to = "/products/ludvig/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/lucy"
+        to = "/collection/lucy/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/luca"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/love-oval"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/love-console"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/love"
+        to = "/collection/love/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/lotus"
+        to = "/collection/lotus/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/linnea"
+        to = "/products/linnea/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/lill"
+        to = "/collection/lill/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/liam"
+        to = "/collection/liam/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/karla"
+        to = "/collection/karla/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/karin"
+        to = "/collection/karin/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/justus"
+        to = "/collection/justus/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/juno"
+        to = "/products/juno/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/julia"
+        to = "/collection/julia/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/john"
+        to = "/products/john/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/jenny-bistro"
+        to = "/products/jenny/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/jenny"
+        to = "/collection/jenny/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/jack"
+        to = "/collection/jack/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/isa-relax"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/impulse"
+        to = "/collection/impulse/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/hugo"
+        to = "/collection/hugo/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/howard"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/holly"
+        to = "/collection/holly/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/henry"
+        to = "/collection/henry/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/heaven"
+        to = "/collection/heaven/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/greta"
+        to = "/collection/greta/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/frej"
+        to = "/collection/frej/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/frances"
+        to = "/collection/frances/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/foxi"
+        to = "/collection/foxi/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/flynn"
+        to = "/collection/flynn/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/felix"
+        to = "/collection/felix/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/fatty"
+        to = "/collection/fatty/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/elton"
+        to = "/collection/elton/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/elsa"
+        to = "/collection/elsa/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/edda"
+        to = "/collection/edda/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/domino"
+        to = "/collection/domino/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/dahlia"
+        to = "/collection/dahlia/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/colorado"
+        to = "/collection/colorado/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/colin"
+        to = "/collection/colin/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/cloud"
+        to = "/collection/cloud/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/cleo"
+        to = "/collection/cleo/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/clark"
+        to = "/collection/clark/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/circle"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/charlie"
+        to = "/collection/charlie/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/casual"
+        to = "/collection/casual/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/britt"
+        to = "/collection/britt/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/brandon"
+        to = "/collection/brandon/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/bob"
+        to = "/collection/bob/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/bianca"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/betty"
+        to = "/collection/betty/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/annie"
+        to = "/collection/annie/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/amy"
+        to = "/collection/amy/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/alva"
+        to = "/collection/alva/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/alma"
+        to = "/collection/alma/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/alice"
+        to = "/collection/alice/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/products/alex"
+        to = "/collection/alex/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/970*"
+        to = "/sales-representative/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/947*"
+        to = "/sales-representative/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/947*"
+        to = "/sales-representative/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/945*"
+        to = "/sales-representative/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/945*"
+        to = "/sales-representative/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/748*"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/748"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/739"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/725"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/724"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/723"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/193"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/node/1406"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/kolekcje/tea-book"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/kolekcje/new-arrivals"
+        to = "/new-arrivals/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/kolekcje/home-family"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/kolekcje/cocktail-design"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/furniture-collection"
+        to = "/products/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/find-sales-representative-retailers"
+        to = "/sales-representative/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/find-sales-representative-retailers*"
+        to = "/sales-representative/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/favorites"
+        to = "/favourite/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/wind"
+        to = "/material/wind/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/wind*"
+        to = "/material/wind/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/willow"
+        to = "/material/willow/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/willow*"
+        to = "/material/willow/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/wildflower"
+        to = "/material/wildflower/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/wildflower*"
+        to = "/material/wildflower/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/wild"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/wild*"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/waves"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/waves*"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/velvy"
+        to = "/material/velvy/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/velvy*"
+        to = "/material/velvy/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/tulip"
+        to = "/material/tulip/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/tulip*"
+        to = "/material/tulip/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/trees"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/trees*"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/touch"
+        to = "/material/touch/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/touch*"
+        to = "/material/touch/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/togo"
+        to = "/material/togo/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/togo*"
+        to = "/material/togo/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/timber"
+        to = "/material/timber/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/timber*"
+        to = "/material/timber/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/stipa"
+        to = "/material/stipa/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/stipa*"
+        to = "/material/stipa/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/specchio"
+        to = "/material/specchio/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/specchio*"
+        to = "/material/specchio/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/sneak"
+        to = "/material/sneak/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/sneak*"
+        to = "/material/sneak/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/sky"
+        to = "/material/sky/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/sky*"
+        to = "/material/sky/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/silky"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/silky*"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/rock"
+        to = "/material/rock/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/rock*"
+        to = "/material/rock/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/poodle"
+        to = "/material/poodle/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/poodle*"
+        to = "/material/poodle/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/poem"
+        to = "/material/poem/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/poem*"
+        to = "/material/poem/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/pine"
+        to = "/material/pine/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/pine*"
+        to = "/material/pine/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/nori"
+        to = "/material/nori/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/nori*"
+        to = "/material/nori/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/moss"
+        to = "/material/moss/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/moss*"
+        to = "/material/moss/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/minnie"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/masala*"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/masala"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/maple*"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/maple"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/linen-l007*"
+        to = "/material/linen-007/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/linen-l007"
+        to = "/material/linen-007/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/lilac"
+        to = "/material/lilac/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/lilac*"
+        to = "/material/lilac/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/lario*"
+        to = "/material/lario/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/lario"
+        to = "/material/lario/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/king"
+        to = "/material/king/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/king*"
+        to = "/material/king/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/heather"
+        to = "/material/heather/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/heather*"
+        to = "/material/heather/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/floppy*"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/floppy"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/elyot"
+        to = "/material/elyot/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/elyot*"
+        to = "/material/elyot/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/drom*"
+        to = "/material/drom/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/drom"
+        to = "/material/drom/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/classic-velvet*"
+        to = "/material/classic-velvet/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/classic-velvet"
+        to = "/material/classic-velvet/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/caleido"
+        to = "/material/caleido/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/caleido*"
+        to = "/material/caleido/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/caleido-stampato*"
+        to = "/material/caleido-stampato/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/caleido-stampato"
+        to = "/material/caleido-stampato/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/buddy*"
+        to = "/material/buddy/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/buddy"
+        to = "/material/buddy/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/boogie"
+        to = "/material/boogie/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/boogie*"
+        to = "/material/boogie/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/bloom"
+        to = "/material/bloom/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/bloom*"
+        to = "/material/bloom/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/atropa"
+        to = "/material/atropa/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/atropa*"
+        to = "/material/atropa/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/arya*"
+        to = "/material/arya/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/arya"
+        to = "/material/arya/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/aniline"
+        to = "/material/aniline/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric/aniline*"
+        to = "/material/aniline/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/fabric-collection"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/upcoming-fair-events-0"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/upcoming-fair-events"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/stockholm-furniture-fair-2019"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/sits-showroom-actona"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/sits-industry"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/report-mow-bad-salzuflen-2021"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/quality-environment-health-and-safety-policy-employees"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/maisonobjet-paris-2019"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/interior-events-2019"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/imm-cologne-2019"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/home-stories"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/get-know-2021-collection-better"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/exhibitions/check-upcoming-fair-events"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/events"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/designers/steven-schilte"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/designers/niels-gammelgaard"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/designers/ian-archer"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/designers/dan-ihreborn-0"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/designers/böttcherkayser"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/designers/anna-näsström"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/designers"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/contact-us*"
+        to = "/contact/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/contact"
+        to = "/contact/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en/about-us"
+        to = "/about-sits/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/en"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/"
+        to = "/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/materials/"
+        to = "/material/"
+        status = 301
+        force = false
+[[redirects]]
+        from = "/fr"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/about-us"
+        to = "/about-sits/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/contact"
+        to = "/contact/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/designers"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/designers/dan-ihreborn"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/designers/ian-archer"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/designers/niels-gammelgaard"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/designers/steven-schilte"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/check-upcoming-fair-events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/get-know-2021-collection-better"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/home-stories"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/imm-cologne-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/maisonobjet-paris-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/quality-environment-health-and-safety-policy-employees"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/report-mow-bad-salzuflen-2021"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/salons-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/sits-industry"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/sits-showroom-actona"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/stockholm-furniture-fair-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/upcoming-fair-events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/exhibitions/upcoming-fair-events-0"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric-collection/"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/aniline"
+        to = "/material/aniline/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/aniline*"
+        to = "/material/aniline/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/arya*"
+        to = "/material/arya/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/atropa*"
+        to = "/material/atropa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/bloom*"
+        to = "/material/bloom/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/buddy*"
+        to = "/material/buddy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/caleido-stampato"
+        to = "/material/caleido-stampato/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/caleido-stampato*"
+        to = "/material/caleido-stampato/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/caleido*"
+        to = "/material/caleido/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/classic-velvet*"
+        to = "/material/classic-velvet/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/drom*"
+        to = "/material/drom/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/elyot*"
+        to = "/material/elyot/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/heather*"
+        to = "/material/heather/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/king*"
+        to = "/material/king/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/lario*"
+        to = "/material/lario/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/lilac*"
+        to = "/material/lilac/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/linen-l007*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/maple*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/nori*"
+        to = "/material/nori/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/pine*"
+        to = "/material/pine/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/poem*"
+        to = "/material/poem/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/poodle*"
+        to = "/material/poodle/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/sky*"
+        to = "/material/sky/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/sneak*"
+        to = "/material/sneak/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/specchio*"
+        to = "/material/specchio/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/stipa*"
+        to = "/material/stipa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/timber*"
+        to = "/material/timber/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/togo*"
+        to = "/material/togo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/touch*"
+        to = "/material/touch/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/tulip*"
+        to = "/material/tulip/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/wildflower*"
+        to = "/material/wildflower/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/fabric/willow*"
+        to = "/material/willow/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/find-sales-representative-retailers"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/find-sales-representative-retailers*"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/kolekcje/cocktail-design"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/kolekcje/home-family"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/kolekcje/nowości"
+        to = "/new-arrivals/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/kolekcje/tea-book"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1130"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1130*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/114*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1261"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1406"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1544"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1544*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1545*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1546*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/1547*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/162*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/50"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/50*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/724"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/725"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/739"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/739*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/743*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/744*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/746*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/747*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/748*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/90*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/947"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/947*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/node/970*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/nous-contacter*"
+        to = "/contact/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/alex*"
+        to = "/collection/alex/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/alice*"
+        to = "/collection/alice/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/alma*"
+        to = "/collection/alma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/alva*"
+        to = "/collection/alva/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/amy*"
+        to = "/collection/amy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/annie*"
+        to = "/collection/annie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/betty*"
+        to = "/collection/betty/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/bianca*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/bob*"
+        to = "/collection/bob/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/brandon*"
+        to = "/collection/brandon/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/britt*"
+        to = "/collection/britt/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/casual*"
+        to = "/collection/casual/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/charlie*"
+        to = "/collection/charlie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/circle*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/clark*"
+        to = "/collection/clark/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/cleo*"
+        to = "/collection/cleo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/cloud*"
+        to = "/collection/cloud/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/colin*"
+        to = "/collection/colin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/colorado*"
+        to = "/collection/colorado/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/dahlia*"
+        to = "/collection/dahlia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/domino*"
+        to = "/collection/domino/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/edda*"
+        to = "/collection/edda/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/elis*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/elsa*"
+        to = "/collection/elsa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/elton*"
+        to = "/collection/elton/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/fatty*"
+        to = "/collection/fatty/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/felix*"
+        to = "/collection/felix/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/flynn*"
+        to = "/collection/flynn/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/foxi*"
+        to = "/collection/foxi/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/frances*"
+        to = "/collection/frances/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/frej*"
+        to = "/collection/frej/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/greta*"
+        to = "/collection/greta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/heaven*"
+        to = "/collection/heaven/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/henry*"
+        to = "/collection/henry/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/holly*"
+        to = "/collection/holly/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/howard*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/hugo*"
+        to = "/collection/hugo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/impulse*"
+        to = "/collection/impulse/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/isa-relax*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/jack*"
+        to = "/collection/jack/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/jenny-bistro"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/jenny-bistro*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/jenny*"
+        to = "/collection/jenny/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/john*"
+        to = "/collection/john/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/julia*"
+        to = "/collection/julia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/juno*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/justus*"
+        to = "/collection/justus/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/karin*"
+        to = "/collection/karin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/karla*"
+        to = "/collection/karla/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/liam*"
+        to = "/collection/liam/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/lill*"
+        to = "/collection/lill/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/linnea*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/lotus*"
+        to = "/collection/lotus/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/love-coffee-console"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/love-coffee-console*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/love-coffee-oval*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/love-coffee*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/luca*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/lucy*"
+        to = "/collection/lucy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/ludvig*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/lukas*"
+        to = "/collection/lukas/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/malte*"
+        to = "/collection/malte/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/mattias*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/milano*"
+        to = "/collection/milano/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/milou*"
+        to = "/collection/milou/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/mini*"
+        to = "/collection/mini/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/moa-bistro"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/moa-bistro*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/moa*"
+        to = "/collection/moa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/mokka*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/mynta*"
+        to = "/collection/mynta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/new-york*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/nova-leather"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/nova-leather*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/nova*"
+        to = "/collection/nova/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/ohio*"
+        to = "/collection/ohio/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/oliver*"
+        to = "/collection/oliver/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/palma*"
+        to = "/collection/palma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/paul*"
+        to = "/collection/paul/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/petra"
+        to = "/collection/petra/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/petra*"
+        to = "/collection/petra/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/phoenix*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/pixie*"
+        to = "/collection/pixie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/play*"
+        to = "/collection/play/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/pola*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/polly*"
+        to = "/collection/polly/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/quattro*"
+        to = "/collection/quattro/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/ross*"
+        to = "/collection/ross/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/sally*"
+        to = "/collection/sally/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/sara*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/shell*"
+        to = "/collection/shell/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/sigge*"
+        to = "/collection/sigge/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/siri*"
+        to = "/collection/siri/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/siv*"
+        to = "/collection/siv/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/sophia*"
+        to = "/collection/sophia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/space-glass*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/space-veneer*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/stefani*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/stella-leather"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/stella-leather*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/stella*"
+        to = "/collection/stella/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/stina*"
+        to = "/collection/stina/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/teddy*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/tetris*"
+        to = "/collection/tetris/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/timjan*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/tokyo*"
+        to = "/collection/tokyo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/uma*"
+        to = "/collection/uma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/valentin*"
+        to = "/collection/valentin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/vera*"
+        to = "/collection/vera/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/vidar*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/viktoria*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/products/ville*"
+        to = "/collection/ville/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/taxonomy/term/17"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/taxonomy/term/18"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/taxonomy/term/19"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/taxonomy/term/20"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/taxonomy/term/21"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/taxonomy/term/22"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/taxonomy/term/338"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/trouvez-un-representant-commercial-detaillant"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/trouvez-un-representant-commercial-detaillant*"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/typy-mebli/fotele"
+        to = "/products/armchairs/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/typy-mebli/łóżka"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/typy-mebli/narożniki"
+        to = "/products/sofas/?type=Corner-Sofas"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/typy-mebli/pufy"
+        to = "/products/footstools/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/typy-mebli/sofas"
+        to = "/products/sofas/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/typy-mebli/sofy-z-funkcją-spania"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/fr/typy-mebli/stoliki"
+        to = "/products/coffee-tables/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/about-us"
+        to = "/about-sits/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/contact"
+        to = "/contact/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/designers"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/designers/dan-ihreborn"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/designers/ian-archer"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/designers/niels-gammelgaard"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/designers/steven-schilte"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/check-upcoming-fair-events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/get-know-2021-collection-better"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/home-stories"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/imm-cologne-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/interior-events-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/maisonobjet-paris-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/projekty-unijne"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/projekty-unijne-zapytanie-ofertowe"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/quality-environment-health-and-safety-policy-employees"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/report-mow-bad-salzuflen-2021"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/sits-showroom-actona"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/stockholm-furniture-fair-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/upcoming-fair-events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/exhibitions/upcoming-fair-events-0"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric-collection/"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/aniline"
+        to = "/material/aniline/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/aniline*"
+        to = "/material/aniline/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/arya*"
+        to = "/material/arya/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/atropa*"
+        to = "/material/atropa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/bloom*"
+        to = "/material/bloom/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/buddy*"
+        to = "/material/buddy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/caleido-stampato"
+        to = "/material/caleido-stampato/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/caleido-stampato*"
+        to = "/material/caleido-stampato/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/caleido*"
+        to = "/material/caleido/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/classic-velvet*"
+        to = "/material/classic-velvet/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/elyot*"
+        to = "/material/elyot/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/heather*"
+        to = "/material/heather/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/lario*"
+        to = "/material/lario/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/lilac*"
+        to = "/material/lilac/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/linen-l007*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/maple*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/nori*"
+        to = "/material/nori/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/pine*"
+        to = "/material/pine/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/poodle*"
+        to = "/material/poodle/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/sky*"
+        to = "/material/sky/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/sneak*"
+        to = "/material/sneak/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/specchio*"
+        to = "/material/specchio/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/stipa*"
+        to = "/material/stipa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/timber*"
+        to = "/material/timber/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/togo*"
+        to = "/material/togo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/touch*"
+        to = "/material/touch/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/tulip*"
+        to = "/material/tulip/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/wildflower*"
+        to = "/material/wildflower/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/fabric/willow*"
+        to = "/material/willow/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/find-sales-representative-retailers"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/find-sales-representative-retailers*"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/kolekcje/akcesoria"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/kolekcje/birds"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/kolekcje/cocktail-design"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/kolekcje/home-family"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/kolekcje/nowości"
+        to = "/new-arrivals/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/kolekcje/tea-book"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/1130"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/1130*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/114*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/1261"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/1406"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/1544*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/1546"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/1546*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/1547*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/162*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/43"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/43*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/50*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/739"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/739*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/743*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/744*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/746*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/747*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/748*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/782*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/90*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/932*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/934*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/944*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/945*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/947*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/953*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/954*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/955*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/956*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/957*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/node/958*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/alex*"
+        to = "/collection/alex/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/alice*"
+        to = "/collection/alice/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/alma*"
+        to = "/collection/alma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/alva*"
+        to = "/collection/alva/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/amy*"
+        to = "/collection/amy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/annie*"
+        to = "/collection/annie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/betty*"
+        to = "/collection/betty/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/bianca*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/bob*"
+        to = "/collection/bob/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/brandon*"
+        to = "/collection/brandon/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/britt*"
+        to = "/collection/britt/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/casual*"
+        to = "/collection/casual/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/charlie*"
+        to = "/collection/charlie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/circle*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/clark*"
+        to = "/collection/clark/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/cleo*"
+        to = "/collection/cleo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/cloud*"
+        to = "/collection/cloud/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/colin*"
+        to = "/collection/colin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/colorado*"
+        to = "/collection/colorado/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/dahlia*"
+        to = "/collection/dahlia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/domino*"
+        to = "/collection/domino/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/edda*"
+        to = "/collection/edda/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/elis*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/elsa*"
+        to = "/collection/elsa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/elton*"
+        to = "/collection/elton/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/felix*"
+        to = "/collection/felix/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/flynn*"
+        to = "/collection/flynn/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/foxi*"
+        to = "/collection/foxi/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/frances*"
+        to = "/collection/frances/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/frej*"
+        to = "/collection/frej/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/greta*"
+        to = "/collection/greta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/heaven*"
+        to = "/collection/heaven/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/henry*"
+        to = "/collection/henry/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/holly*"
+        to = "/collection/holly/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/howard*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/hugo*"
+        to = "/collection/hugo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/impulse*"
+        to = "/collection/impulse/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/isa-relax*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/jack*"
+        to = "/collection/jack/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/jenny-bistro"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/jenny-bistro*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/jenny*"
+        to = "/collection/jenny/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/john*"
+        to = "/collection/john/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/julia*"
+        to = "/collection/julia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/juno*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/justus*"
+        to = "/collection/justus/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/karin*"
+        to = "/collection/karin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/karla*"
+        to = "/collection/karla/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/liam*"
+        to = "/collection/liam/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/lill*"
+        to = "/collection/lill/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/linnea*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/lotus*"
+        to = "/collection/lotus/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/love-coffee-console*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/love-coffee-oval*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/love-coffee*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/luca*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/lucy*"
+        to = "/collection/lucy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/ludvig*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/lukas*"
+        to = "/collection/lukas/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/malte*"
+        to = "/collection/malte/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/mattias*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/milano*"
+        to = "/collection/milano/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/milou*"
+        to = "/collection/milou/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/mini*"
+        to = "/collection/mini/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/moa-bistro"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/moa-bistro*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/moa*"
+        to = "/collection/moa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/mokka*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/mynta*"
+        to = "/collection/mynta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/new-york*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/nova-leather"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/nova-leather*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/nova*"
+        to = "/collection/nova/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/ohio*"
+        to = "/collection/ohio/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/oliver*"
+        to = "/collection/oliver/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/palma*"
+        to = "/collection/palma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/paul*"
+        to = "/collection/paul/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/penny*"
+        to = "/collection/penny/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/petra*"
+        to = "/collection/petra/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/phoenix*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/pixie*"
+        to = "/collection/pixie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/play*"
+        to = "/collection/play/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/pola*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/polly*"
+        to = "/collection/polly/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/quattro*"
+        to = "/collection/quattro/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/ross*"
+        to = "/collection/ross/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/sally*"
+        to = "/collection/sally/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/sara*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/shell*"
+        to = "/collection/shell/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/sigge*"
+        to = "/collection/sigge/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/siri*"
+        to = "/collection/siri/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/siv*"
+        to = "/collection/siv/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/sophia*"
+        to = "/collection/sophia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/space-glass*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/space-veneer*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/stefani*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/stella-leather"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/stella-leather*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/stella*"
+        to = "/collection/stella/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/stina*"
+        to = "/collection/stina/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/teddy*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/tetris*"
+        to = "/collection/tetris/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/timjan*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/tokyo*"
+        to = "/collection/tokyo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/uma*"
+        to = "/collection/uma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/valentin*"
+        to = "/collection/valentin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/vera*"
+        to = "/collection/vera/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/vidar*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/viktoria*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/products/ville*"
+        to = "/collection/ville/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/taxonomy/term/17"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/taxonomy/term/18"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/taxonomy/term/19"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/taxonomy/term/20"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/taxonomy/term/21"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/taxonomy/term/22"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/typy-mebli/akcesoria"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/typy-mebli/fotele"
+        to = "/products/armchairs/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/typy-mebli/łóżka"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/typy-mebli/narożniki"
+        to = "/products/sofas/?type=Corner-Sofas"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/typy-mebli/pufy"
+        to = "/products/footstools/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/typy-mebli/sofas"
+        to = "/products/sofas/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/typy-mebli/sofy-z-funkcją-spania"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/he/typy-mebli/stoliki"
+        to = "/products/coffee-tables/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/get-know-2021-collection-better"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/home-stories"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/imm-cologne-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/nadchodzące-wydarzenia-targowe"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/projekty-unijne"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/projekty-unijne-0"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/projekty-unijne-zapytanie-ofertowe"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/quality-environment-health-and-safety-policy-employees"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/report-mow-bad-salzuflen-2021"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/sits-industry"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/sits-showroom-actona"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/strategia-podatkowa"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/upcoming-fair-events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/upcoming-fair-events-0"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/ekspozycje/wydarzenia-wnetrzarskie-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/favorites"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/find-sales-representative-retailers"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/find-sales-representative-retailers*"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolekcja-mebli"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolekcje/akcesoria"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolekcje/birds"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolekcje/cocktail-design"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolekcje/home-family"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolekcje/nowości"
+        to = "/new-arrivals/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolekcje/tea-book"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolorystyka/chocolate"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolorystyka/deco"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolorystyka/fresh-winter"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolorystyka/industrial-charm"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolorystyka/lollipop"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolorystyka/sunset"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kolorystyka/underwater-world"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/kontakt"
+        to = "/contact/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/1130"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/1130*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/1261"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/1544*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/1545*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/1546*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/1547*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/945"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/945*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/947*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/node/970*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/alex*"
+        to = "/collection/alex/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/alice*"
+        to = "/collection/alice/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/alma*"
+        to = "/collection/alma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/alva*"
+        to = "/collection/alva/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/amy*"
+        to = "/collection/amy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/annie*"
+        to = "/collection/annie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/betty*"
+        to = "/collection/betty/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/bianca*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/bob*"
+        to = "/collection/bob/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/brandon*"
+        to = "/collection/brandon/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/britt*"
+        to = "/collection/britt/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/casual*"
+        to = "/collection/casual/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/charlie*"
+        to = "/collection/charlie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/circle*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/clark*"
+        to = "/collection/clark/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/cleo*"
+        to = "/collection/cleo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/cloud*"
+        to = "/collection/cloud/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/colin*"
+        to = "/collection/colin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/colorado*"
+        to = "/collection/colorado/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/dahlia*"
+        to = "/collection/dahlia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/domino*"
+        to = "/collection/domino/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/edda*"
+        to = "/collection/edda/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/elis*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/elsa*"
+        to = "/collection/elsa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/elton*"
+        to = "/collection/elton/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/fatty*"
+        to = "/collection/fatty/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/felix*"
+        to = "/collection/felix/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/flynn*"
+        to = "/collection/flynn/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/foxi*"
+        to = "/collection/foxi/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/frances*"
+        to = "/collection/frances/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/frej*"
+        to = "/collection/frej/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/greta*"
+        to = "/collection/greta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/heaven*"
+        to = "/collection/heaven/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/henry*"
+        to = "/collection/henry/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/holly*"
+        to = "/collection/holly/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/howard*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/hugo*"
+        to = "/collection/hugo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/impulse*"
+        to = "/collection/impulse/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/isa-relax*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/jack*"
+        to = "/collection/jack/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/jenny-bistro"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/jenny-bistro*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/jenny*"
+        to = "/collection/jenny/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/john*"
+        to = "/collection/john/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/julia*"
+        to = "/collection/julia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/juno*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/justus*"
+        to = "/collection/justus/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/karin*"
+        to = "/collection/karin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/karla*"
+        to = "/collection/karla/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/liam*"
+        to = "/collection/liam/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/lill*"
+        to = "/collection/lill/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/linnea*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/lotus*"
+        to = "/collection/lotus/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/love-coffee-console"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/love-coffee-console*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/love-coffee-oval*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/love-coffee*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/luca*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/lucy*"
+        to = "/collection/lucy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/ludvig*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/lukas*"
+        to = "/collection/lukas/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/malte*"
+        to = "/collection/malte/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/mattias*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/milano*"
+        to = "/collection/milano/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/milou*"
+        to = "/collection/milou/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/mini*"
+        to = "/collection/mini/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/moa-bistro"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/moa-bistro*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/moa*"
+        to = "/collection/moa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/mynta"
+        to = "/collection/mynta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/mynta*"
+        to = "/collection/mynta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/new-york*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/nova-leather*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/nova*"
+        to = "/collection/nova/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/ohio*"
+        to = "/collection/ohio/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/oliver*"
+        to = "/collection/oliver/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/palma*"
+        to = "/collection/palma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/paul*"
+        to = "/collection/paul/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/penny*"
+        to = "/collection/penny/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/petra*"
+        to = "/collection/petra/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/phoenix*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/pixie*"
+        to = "/collection/pixie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/play*"
+        to = "/collection/play/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/pola*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/polly*"
+        to = "/collection/polly/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/quattro*"
+        to = "/collection/quattro/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/ross*"
+        to = "/collection/ross/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/sally*"
+        to = "/collection/sally/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/sara*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/sheepskin*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/shell*"
+        to = "/collection/shell/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/sigge*"
+        to = "/collection/sigge/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/siri*"
+        to = "/collection/siri/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/siv*"
+        to = "/collection/siv/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/sophia*"
+        to = "/collection/sophia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/space-glass*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/space-veneer*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/stefani*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/stella-leather"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/stella-leather*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/stella*"
+        to = "/collection/stella/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/stina*"
+        to = "/collection/stina/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/teddy*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/tetris*"
+        to = "/collection/tetris/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/timjan*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/tokyo*"
+        to = "/collection/tokyo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/uma*"
+        to = "/collection/uma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/valentin*"
+        to = "/collection/valentin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/venezia*"
+        to = "/collection/venezia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/vera*"
+        to = "/collection/vera/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/vidar*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/viktoria*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/produkty/ville*"
+        to = "/collection/ville/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/projektanci/dan-ihreborn"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/projektanci/ian-archer"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/projektanci/niels-gammelgaard"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/projektanci/steven-schilte"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/aniline"
+        to = "/material/aniline/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/aniline*"
+        to = "/material/aniline/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/arya*"
+        to = "/material/arya/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/atropa*"
+        to = "/material/atropa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/bloom*"
+        to = "/material/bloom/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/buddy*"
+        to = "/material/buddy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/caleido-stampato*"
+        to = "/material/caleido-stampato/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/caleido*"
+        to = "/material/caleido/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/classic-velvet*"
+        to = "/material/classic-velvet/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/drom*"
+        to = "/material/drom/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/elyot*"
+        to = "/material/elyot/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/floppy*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/heather*"
+        to = "/material/heather/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/king*"
+        to = "/material/king/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/lario*"
+        to = "/material/lario/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/lilac*"
+        to = "/material/lilac/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/linen-l007*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/maple*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/masala*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/minnie*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/nori*"
+        to = "/material/nori/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/pine*"
+        to = "/material/pine/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/poem*"
+        to = "/material/poem/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/poodle*"
+        to = "/material/poodle/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/silky"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/silky*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/sky*"
+        to = "/material/sky/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/sneak*"
+        to = "/material/sneak/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/specchio*"
+        to = "/material/specchio/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/stipa*"
+        to = "/material/stipa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/timber*"
+        to = "/material/timber/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/togo*"
+        to = "/material/togo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/touch*"
+        to = "/material/touch/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/trees*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/tulip*"
+        to = "/material/tulip/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/waves*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/wild*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/wildflower*"
+        to = "/material/wildflower/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/tkanina/willow*"
+        to = "/material/willow/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/typy-mebli/akcesoria"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/typy-mebli/łóżka"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/typy-mebli/narożniki"
+        to = "/products/sofas/?type=Corner-Sofas"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/typy-mebli/pufy"
+        to = "/products/footstools/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/typy-mebli/sofas"
+        to = "/products/sofas/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/typy-mebli/sofy-z-funkcją-spania"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/typy-mebli/stoliki"
+        to = "/products/coffee-tables/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/znajdz-przedstawiciela-handlowego-salony-sprzedazy"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/pl/znajdz-przedstawiciela-handlowego-salony-sprzedazy*"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sites/default/files/cv_www_praktyczna_nauka_zawodu_brodnica.doc"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sites/default/files/john_HOME.pdf"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sites/default/files/palma_HOME_0.pdf"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sites/default/files/viktoria_TEA_0.pdf"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/about-us"
+        to = "/about-sits/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/contact"
+        to = "/contact/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/designers"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/designers/dan-ihreborn"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/designers/ian-archer"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/designers/niels-gammelgaard"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/designers/steven-schilte"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/check-upcoming-fair-events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/get-know-2021-collection-better"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/home-stories"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/imm-cologne-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/interior-events-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/maisonobjet-paris-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/quality-environment-health-and-safety-policy-employees"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/report-mow-bad-salzuflen-2021"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/sits-industry"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/sits-showroom-actona"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/stockholm-furniture-fair-2019"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/upcoming-fair-events"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/exhibitions/upcoming-fair-events-0"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric-collection/"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/aniline"
+        to = "/material/aniline/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/aniline*"
+        to = "/material/aniline/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/arya*"
+        to = "/material/arya/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/atropa*"
+        to = "/material/atropa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/bloom*"
+        to = "/material/bloom/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/buddy*"
+        to = "/material/buddy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/caleido-stampato"
+        to = "/material/caleido-stampato/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/caleido-stampato*"
+        to = "/material/caleido-stampato/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/caleido*"
+        to = "/material/caleido/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/classic-velvet*"
+        to = "/material/classic-velvet/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/drom*"
+        to = "/material/drom/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/elyot*"
+        to = "/material/elyot/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/heather*"
+        to = "/material/heather/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/king*"
+        to = "/material/king/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/lario*"
+        to = "/material/lario/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/lilac*"
+        to = "/material/lilac/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/linen-l007*"
+        to = "/material/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/nori*"
+        to = "/material/nori/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/pine*"
+        to = "/material/pine/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/poem*"
+        to = "/material/poem/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/poodle*"
+        to = "/material/poodle/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/sky*"
+        to = "/material/sky/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/sneak*"
+        to = "/material/sneak/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/specchio*"
+        to = "/material/specchio/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/stipa*"
+        to = "/material/stipa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/timber*"
+        to = "/material/timber/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/togo*"
+        to = "/material/togo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/touch*"
+        to = "/material/touch/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/tulip*"
+        to = "/material/tulip/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/wildflower*"
+        to = "/material/wildflower/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/fabric/willow*"
+        to = "/material/willow/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/find-sales-representative-retailers"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/find-sales-representative-retailers*"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/kolekcje/cocktail-design"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/kolekcje/home-family"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/kolekcje/nowości"
+        to = "/new-arrivals/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/kolekcje/tea-book"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/kontakta-oss"
+        to = "/contact/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/kontakta-oss*"
+        to = "/contact/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1130*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1160"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1260"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1260*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1406"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1544"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1544*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1545*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1546*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/1547*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/162*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/50"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/50*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/724"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/725"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/739"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/739*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/743*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/744*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/746*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/747*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/748*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/90*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/945"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/945*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/node/970*"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/alex*"
+        to = "/collection/alex/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/alice*"
+        to = "/collection/alice/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/alma*"
+        to = "/collection/alma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/alva*"
+        to = "/collection/alva/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/amy*"
+        to = "/collection/amy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/annie*"
+        to = "/collection/annie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/betty*"
+        to = "/collection/betty/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/bianca*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/bob*"
+        to = "/collection/bob/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/brandon*"
+        to = "/collection/brandon/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/britt*"
+        to = "/collection/britt/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/casual*"
+        to = "/collection/casual/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/charlie*"
+        to = "/collection/charlie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/circle*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/clark*"
+        to = "/collection/clark/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/cleo*"
+        to = "/collection/cleo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/cloud*"
+        to = "/collection/cloud/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/colin*"
+        to = "/collection/colin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/colorado*"
+        to = "/collection/colorado/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/dahlia*"
+        to = "/collection/dahlia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/domino*"
+        to = "/collection/domino/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/edda*"
+        to = "/collection/edda/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/elis*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/elsa*"
+        to = "/collection/elsa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/elton*"
+        to = "/collection/elton/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/fatty*"
+        to = "/collection/fatty/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/felix*"
+        to = "/collection/felix/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/flynn*"
+        to = "/collection/flynn/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/foxi*"
+        to = "/collection/foxi/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/frances*"
+        to = "/collection/frances/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/frej*"
+        to = "/collection/frej/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/greta*"
+        to = "/collection/greta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/heaven*"
+        to = "/collection/heaven/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/henry*"
+        to = "/collection/henry/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/holly*"
+        to = "/collection/holly/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/howard*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/hugo*"
+        to = "/collection/hugo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/impulse*"
+        to = "/collection/impulse/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/isa-relax*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/jack*"
+        to = "/collection/jack/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/jenny-bistro"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/jenny-bistro*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/jenny*"
+        to = "/collection/jenny/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/john*"
+        to = "/collection/john/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/julia*"
+        to = "/collection/julia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/juno*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/justus*"
+        to = "/collection/justus/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/karin*"
+        to = "/collection/karin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/karla*"
+        to = "/collection/karla/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/liam*"
+        to = "/collection/liam/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/lill*"
+        to = "/collection/lill/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/linnea*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/lotus*"
+        to = "/collection/lotus/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/love-coffee-console"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/love-coffee-console*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/love-coffee-oval*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/love-coffee*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/luca*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/lucy*"
+        to = "/collection/lucy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/ludvig*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/lukas*"
+        to = "/collection/lukas/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/malte*"
+        to = "/collection/malte/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/mattias*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/milano*"
+        to = "/collection/milano/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/milou*"
+        to = "/collection/milou/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/mini*"
+        to = "/collection/mini/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/moa-bistro"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/moa-bistro*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/moa*"
+        to = "/collection/moa/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/mokka*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/mynta*"
+        to = "/collection/mynta/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/new-york*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/nova-leather"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/nova-leather*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/nova*"
+        to = "/collection/nova/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/ohio*"
+        to = "/collection/ohio/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/oliver*"
+        to = "/collection/oliver/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/palma*"
+        to = "/collection/palma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/paul*"
+        to = "/collection/paul/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/petra"
+        to = "/collection/petra/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/petra*"
+        to = "/collection/petra/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/phoenix*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/pixie*"
+        to = "/collection/pixie/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/play*"
+        to = "/collection/play/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/pola*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/polly*"
+        to = "/collection/polly/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/quattro*"
+        to = "/collection/quattro/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/ross*"
+        to = "/collection/ross/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/sally*"
+        to = "/collection/sally/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/sara*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/shell*"
+        to = "/collection/shell/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/sigge*"
+        to = "/collection/sigge/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/siri*"
+        to = "/collection/siri/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/siv*"
+        to = "/collection/siv/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/sophia*"
+        to = "/collection/sophia/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/space-glass*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/space-veneer*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/stefani*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/stella-leather"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/stella-leather*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/stella*"
+        to = "/collection/stella/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/stina*"
+        to = "/collection/stina/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/teddy*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/tetris*"
+        to = "/collection/tetris/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/timjan*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/tokyo*"
+        to = "/collection/tokyo/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/uma*"
+        to = "/collection/uma/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/valentin*"
+        to = "/collection/valentin/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/vera*"
+        to = "/collection/vera/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/vidar*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/viktoria*"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/products/ville*"
+        to = "/collection/ville/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/sok-representant-aterforsaljare*"
+        to = "/where-to-buy/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/taxonomy/term/17"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/taxonomy/term/18"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/taxonomy/term/19"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/taxonomy/term/20"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/taxonomy/term/21"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/taxonomy/term/22"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/taxonomy/term/315"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/taxonomy/term/338"
+        to = "/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/typy-mebli/akcesoria"
+        to = "/products/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/typy-mebli/fotele"
+        to = "/products/armchairs/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/typy-mebli/łóżka"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/typy-mebli/narożniki"
+        to = "/products/sofas/?type=Corner-Sofas"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/typy-mebli/pufy"
+        to = "/products/footstools/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/typy-mebli/sofas"
+        to = "/products/sofas/"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/typy-mebli/sofy-z-funkcją-spania"
+        to = "/products/sofas/?type=Sofa-Beds"
+        status = 302
+        force = false
+[[redirects]]
+        from = "/sv/typy-mebli/stoliki"
+        to = "/products/coffee-tables/"
+        status = 302
+        force = false

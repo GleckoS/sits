@@ -90,7 +90,7 @@ exports.createPages = async ({
 
     // COLLECTION
 
-    const { data: { allWpCollection: { collections } } } = await graphql(`
+    const { data: { allWpProduct, allWpCollection: { collections } } } = await graphql(`
     query {
         allWpCollection {
             collections : nodes {
@@ -102,10 +102,57 @@ exports.createPages = async ({
                 }
             }
         }
+        allWpProduct{
+          nodes{
+            types {
+              nodes {
+                name
+              }
+            }
+          products {
+              collection {
+                ... on WpCollection {
+                  id
+                }
+              }
+              productGallery {
+                productsImages {
+                  isMainImage
+                  featuredProductImage {
+                    altText
+                    title
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                }
+                popupNames {
+                  material
+                  tableTopMaterial
+                  materialOfTheLegs
+                  accessories
+                  armrest
+                  comfort
+                  fabric
+                  cover
+                  leather
+                  legs
+                  model
+                }
+              }
+            }
+          }
+      }
     } 
   `);
 
     collections.forEach(({ id, slug, uri, language }) => {
+
+        const products = allWpProduct.nodes.filter(el => el.products?.collection?.id === id)
+    
+
         createPage({
             path: uri,
             component: resolve('src/templates/collection-page.jsx'),
@@ -113,7 +160,8 @@ exports.createPages = async ({
                 id,
                 slug,
                 uri,
-                language: language?.code ? language.code : 'EN'
+                language: language?.code ? language.code : 'EN',
+                products: products
             },
         });
     });
