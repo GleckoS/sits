@@ -179,13 +179,13 @@ export const left = {
         { name: 'ABOUT', url: '/about-sits/' },
         { name: 'CONSCIOUS', url: '/conscious/' },
         { name: 'LEGAL', url: '/legal/' },
-        { name: 'PUBLICK INFORMATION', url: '/public-information/' }
+        { name: 'PUBLIC INFORMATION', url: '/public-information/' }
     ],
     FR: [
         { name: 'À PROPOS', url: '/fr/une-fabrication-traditionnelle-artisanale/' },
         { name: 'DÉMARCHE ÉCO-RESPONSABLE', url: '/fr/demarche-eco-responsable/' },
         { name: 'MENTIONS LÉGALES', url: '/fr/juridique/' },
-        { name: 'PUBLICK INFORMATION', url: '/public-information/' }
+        { name: 'PUBLIC INFORMATION', url: '/public-information/' }
     ]
 }
 

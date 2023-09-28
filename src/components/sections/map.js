@@ -9,7 +9,7 @@ import { acceptCookiesFirst, acceptCookiesSecond, acceptCookiesThird } from "../
 // const MapContent = React.lazy(() => import('../organism/map-content'))
 
 function Map({ language, subset, lat, lon, scale, isActive, setIsActive }) {
-
+    debugger
     const [isCookiesAccepted, setIsCookiesAccepted] = useState(false)
 
     useEffect(() => {
@@ -36,12 +36,12 @@ function Map({ language, subset, lat, lon, scale, isActive, setIsActive }) {
     )
 }
 
-export default function MapWrapper({ subset, lat, lon, scale }) {
+export default function MapWrapper({ language, subset, lat, lon, scale }) {
     return (
         <myContext.Consumer>
             {context => {
                 return (
-                    <Map subset={subset} lat={lat} lon={lon} scale={scale} isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
+                    <Map language={language} subset={subset} lat={lat} lon={lon} scale={scale} isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
                 )
             }}
         </myContext.Consumer>
