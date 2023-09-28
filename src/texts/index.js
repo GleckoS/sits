@@ -222,6 +222,7 @@ export const linksLeft = {
         { name: 'Nouveautés', url: '/fr/nouveautes/' },
         { name: 'Tous les produits', url: '/fr/produits/' },
         { name: 'Canapés', url: '/fr/produits/canapes/' },
+        { name: 'Canapés-lits', url: '/products/sofas/?type=Sofa-Beds' },
         { name: 'Fauteuils', url: '/fr/produits/fauteuils/' },
         { name: 'Chaises de salle à manger', url: '/fr/produits/chaises-de-salle-a-manger/' },
         { name: 'Repose-pieds', url: '/fr/produits/repose-pieds/' },
