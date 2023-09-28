@@ -159,9 +159,14 @@ export default function ProductArchive({ language, location, pageContext: { type
             let filtrArr = [...arr]
 
             filtrArr.sort((a, b) => {
+                if (a.products?.collection?.collections?.generalCollectionInformation?.isPopular && !b.products?.collection?.collections?.generalCollectionInformation?.isPopular)
+                    return -1
+                if (!a.products?.collection?.collections?.generalCollectionInformation?.isPopular && b.products?.collection?.collections?.generalCollectionInformation?.isPopular)
+                    return 1
+
                 return a.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex - b.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex
             })
-
+            debugger
             arr = filtrArr
         }
 
