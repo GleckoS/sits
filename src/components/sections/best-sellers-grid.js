@@ -13,7 +13,15 @@ export default function BestSellersGrid({ data, language }) {
             <Container>
                 <Grid>
                     {data.map(el => {
-                        if(!el.collection){
+                        if (!el.collection) {
+                            return null
+                        }
+                        if (!el?.collection?.collections?.collectionBestsellerImageGrid?.bigLandscape?.localFile
+                            || !el?.collection?.collections?.collectionBestsellerImageGrid?.bigSquare?.localFile
+                            || !el?.collection?.collections?.collectionBestsellerImageGrid?.smallLandscape?.localFile
+                            || !el?.collection?.collections?.collectionBestsellerImageGrid?.smallSquare?.localFile
+                            || !el?.collection?.collections?.collectionBestsellerImageGrid?.tinyLandscape?.localFile) {
+                            console.log(el.collection.title + ' Nie ma wszystkich obrazków')
                             return null
                         }
                         switch (el.fieldGroupName) {
