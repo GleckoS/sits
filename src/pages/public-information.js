@@ -29,7 +29,9 @@ export default function WhereToBuyPage() {
       <Title
         title={'Public information'}
         text={`
-        <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Porozumienie-w-sprawie-uzgodnienia-planu-polaczenia-spolek.pdf" target="__blank" rel="noopener noreferer">Porozumienie w sprawie uzgodnienia planu połączenia spółek SITS sp. z o.o., SITS Industry sp. z o.o., Justus sp. z o.o., Aglon Bis sp. z o.o.</a>
+        <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Porozumienie-w-sprawie-uzgodnienia-planu-polaczenia-spolek.pdf" target="__blank" rel="noopener noreferer">
+        Porozumienie w sprawie uzgodnienia planu połączenia spółek SITS sp. z o.o., SITS Industry sp. z o.o., Justus sp. z o.o. i Aglon Bis sp. Z o.o. wraz z planem połączenia tych spółek z dnia 26.09.2023 r.
+        </a>
         <br/><br/>
         <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Strategia_Sits-sig.pdf" target="__blank" rel="noopener noreferer">Informacja o realizacji strategii podatkowej</a>
         `}
