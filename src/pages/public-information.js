@@ -36,7 +36,7 @@ export default function WhereToBuyPage() {
         <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Strategia_Sits-sig.pdf" target="__blank" rel="noopener noreferer">Informacja o realizacji strategii podatkowej</a>
         `}
       />
-      <Map scale={6} lat={'52.1'} lon={'20'} />
+      <Map language={'EN'} />
     </Wrapper>
   )
 }
