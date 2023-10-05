@@ -28,11 +28,11 @@ export const Form = ({ language, privacyPolicyText, inputAnimation, titleAnimati
 
         axios.post(url, body)
             .then((res) => {
-                if (res.status === 200) {
+                if (res.data.invalid_fields.length > 0) {
+                    toast('There was some problem with contact form, try later')
+                } else {
                     setIsSended(true)
                     reset()
-                } else {
-                    toast('There was some problem with contact form, try later')
                 }
             })
     }
