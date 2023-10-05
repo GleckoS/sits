@@ -49,6 +49,10 @@ export const FilterComponent = ({
         }
     }, [])
 
+    useEffect(() => {
+        setSearch(inputValue)
+    }, [inputValue])
+
     return (
         <>
             <AnimatePresence mode='wait'>
@@ -162,13 +166,7 @@ export const FilterComponent = ({
                     <div>
                         <Search className="label">
                             <span>{searchTitle[language]}</span>
-                            <input onKeyDown={(e) => {
-                                if (e.key === "Enter") {
-                                    setSearch(inputValue)
-                                    setInputValue('')
-                                }
-                            }} value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
-                            <button onClick={() => { setSearch(inputValue); setInputValue('') }} aria-label={'search: ' + inputValue}>
+                            <input value={inputValue} onChange={(e) => { setInputValue(e.target.value) }} />
                                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                                     <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
                                         <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
@@ -178,7 +176,6 @@ export const FilterComponent = ({
                                         <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
                                     </g>
                                 </svg>
-                            </button>
                         </Search>
                     </div>
                 </Container>
