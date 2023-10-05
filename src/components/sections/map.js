@@ -9,7 +9,7 @@ import { acceptCookiesFirst, acceptCookiesSecond, acceptCookiesThird } from "../
 // const MapContent = React.lazy(() => import('../organism/map-content'))
 
 function Map({ language, subset, lat, lon, scale, isActive, setIsActive }) {
-    debugger
+    
     const [isCookiesAccepted, setIsCookiesAccepted] = useState(false)
 
     useEffect(() => {

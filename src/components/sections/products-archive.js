@@ -166,7 +166,7 @@ export default function ProductArchive({ language, location, pageContext: { type
 
                 return a.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex - b.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex
             })
-            debugger
+            
             arr = filtrArr
         }
 

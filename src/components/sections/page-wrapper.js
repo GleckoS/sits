@@ -23,7 +23,7 @@ export default function Wrapper({ children }) {
             {({ setTransition }) => (
                 <motion.main
                     onAnimationStart={({ opacity }) => { setTransition(opacity) }}
-                    // onAnimationComplete={(el) => { debugger }}
+                    // onAnimationComplete={(el) => {  }}
                     initial={{ opacity: 1 }}
                     animate={{
                         opacity: 1,

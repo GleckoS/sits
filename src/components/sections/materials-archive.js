@@ -114,7 +114,7 @@ export default function MaterialsArchive({ language, location, materials }) {
                 }
                 return null
             })
-            debugger
+            
             arr = arr.filter(el => el !== null)
 
         }
@@ -122,7 +122,7 @@ export default function MaterialsArchive({ language, location, materials }) {
             arr = arr.filter(el => {
                 let isAccessed = false
                 el.textures.nodes.every(inEl => {
-                    debugger
+                    
                     if (inEl.name === locTextures) {
                         isAccessed = true
                         return false

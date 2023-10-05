@@ -17,7 +17,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 }
 
 export default function FavouritesPage({ data, pageContext, location }) {
-  debugger
+  
   return (
     <Wrapper>
       <myContext.Consumer>
