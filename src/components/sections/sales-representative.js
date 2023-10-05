@@ -98,6 +98,7 @@ export default function Content({ language, data: { title, salesRepresentative: 
                                 {el['Phone 1'] && <motion.a variants={fileAnimation} className="underline" href={'tel:' + el['Phone 1']}>{el['Phone 1']}</motion.a>}
                                 {el['Phone 2'] && <motion.a variants={fileAnimation} className="underline" href={'tel:' + el['Phone 2']}>{el['Phone 2']}</motion.a>}
                                 {el['E-mail'] && <motion.a variants={fileAnimation} className="underline" href={'mailto:' + el['E-mail']}>{el['E-mail']}</motion.a>}
+                                {el['Website'] && <motion.a variants={fileAnimation} className="underline" href={el['Website']} target="_blank" rel="noreferrer">{el['Website']}</motion.a>}
                             </Item>
                         ))}
                     </Grid>
@@ -212,7 +213,12 @@ const Item = styled(motion.div)`
         margin-bottom: 6px;
         text-underline-offset: 2px;
         width: fit-content;
-        text-transform: unset;
+        text-transform: unset;    
+        
+        overflow: hidden;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
 
         &:last-child{
             margin-bottom: 0;
