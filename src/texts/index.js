@@ -4,7 +4,7 @@ export const langSwitcherNames = {
 }
 
 export const downloadText = {
-    EN: 'Download Product Sheet',
+    EN: 'Download Product Card',
     FR: 'Télécharger la fiche produit'
 }
 
@@ -243,6 +243,7 @@ export const linksRight = {
         { name: 'Virtual showroom', url: 'https://showroom.sits.eu/' },
         { name: 'Sales Representative', url: '/sales-representative/' },
         { name: 'Where to Buy', url: '/where-to-buy/' },
+        { name: 'Dealer login', url: 'https://sitsconnect.pl/' },
         { name: 'Contact', url: '/contact/' }
     ],
     FR: [
@@ -253,6 +254,7 @@ export const linksRight = {
         { name: 'Vitrine d’exposition virtuelle', url: 'https://showroom.sits.eu/' },
         { name: 'Représentant commercial', url: '/fr/representant-commercial/' },
         { name: 'Trouver un point de vente', url: '/fr/trouver-un-point-de-vente/' },
+        { name: 'Connexion du revendeur', url: 'https://sitsconnect.pl/' },
         { name: 'Nous contacter', url: '/fr/nous-contacter/' }
     ]
 }

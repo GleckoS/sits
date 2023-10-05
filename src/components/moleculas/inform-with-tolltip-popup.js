@@ -2,11 +2,11 @@ import { motion } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
 
-export const TooltipPopup = ({animation, title, data, onlyImage }) => (
+export const TooltipPopup = ({ animation, title, data, onlyImage }) => (
     <Wrapper variants={animation}>
         <span className="title">{title}</span>
         <Grid>
-            {data.nodes.map((el, index) => (
+            {data.nodes.sort((a, b) => a.taxonomy.orderIndex - b.taxonomy.orderIndex).map((el, index) => (
                 <Item key={el.name + index} className={onlyImage ? 'noimage' : ''}>
                     <Popup className="pop-up">
                         <div className="image">

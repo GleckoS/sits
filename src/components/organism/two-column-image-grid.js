@@ -11,6 +11,8 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 import { AnimatePresence, motion } from "framer-motion"
 import { inThisImage } from "../../texts"
 
+
+
 export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNames, collectionPagePreviewImage, products, title }) => {
     const [isPopUpOpened, setPopUpOpened] = useState(false)
 
@@ -28,7 +30,7 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
         if (collectionPagePreviewImage) {
             images.push({ image: collectionPagePreviewImage, popupNames: popupNames })
         }
-
+        debugger
         products.forEach(el => {
             el.products.productGallery.forEach(el => {
                 el.productsImages.forEach(inInEl => {

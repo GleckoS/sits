@@ -361,6 +361,7 @@ export const query = graphql`
                 name
                 description
                 taxonomy {
+                  orderIndex
                   comfortSvg{
                     altText
                     localFile{
