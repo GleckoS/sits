@@ -6,24 +6,25 @@ import { useForm } from "react-hook-form"
 import { toast } from "react-toastify"
 import styled from "styled-components"
 import { Label } from "../moleculas/label"
-import { email, name, country, subject, message, errorMessage , title, submit, thans, reply} from "../../texts/contact"
+import { phone, email, name, country, subject, message, errorMessage, title, submit, thans, reply } from "../../texts/contact"
 
 export const Form = ({ language, privacyPolicyText, inputAnimation, titleAnimation, formAnimation }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [isSended, setIsSended] = useState(false)
 
     const onSubmit = data => {
-        setIsSended(true)
+        setIsSended(false)
 
         let url = 'https://sits.headlesshub.com/wp-json/contact-form-7/v1/contact-forms/34241/feedback'
 
         let body = new FormData()
 
-        body.append('email', data.ail)
-        body.append("message", data.ssage)
-        body.append('fullname', data.me)
-        body.append('country', data.untry)
-        body.append('subject', data.bject)
+        body.append("phone", data.phone)
+        body.append('email', data.email)
+        body.append("message", data.message)
+        body.append('fullname', data.fullname)
+        body.append('country', data.country)
+        body.append('subject', data.subject)
 
         axios.post(url, body)
             .then((res) => {
@@ -41,6 +42,7 @@ export const Form = ({ language, privacyPolicyText, inputAnimation, titleAnimati
             <motion.h1 variants={titleAnimation}>{title[language]}</motion.h1>
             <motion.form autocomplete="off" variants={formAnimation} onSubmit={handleSubmit(onSubmit)}>
                 <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='email' obj={email} />
+                <Label language={language} variants={inputAnimation} register={register} required={false} errors={errors} name='phone' obj={phone} />
                 <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='fullname' obj={name} />
                 <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='country' obj={country} />
                 <Label language={language} variants={inputAnimation} register={register} required={true} errors={errors} name='subject' obj={subject} />
@@ -48,7 +50,7 @@ export const Form = ({ language, privacyPolicyText, inputAnimation, titleAnimati
                 <Checkbox variants={inputAnimation}>
                     <input {...register('check', { required: true })} type='checkbox' />
                     <div className="check" />
-                    <span dangerouslySetInnerHTML={{__html: privacyPolicyText}}/>
+                    <span dangerouslySetInnerHTML={{ __html: privacyPolicyText }} />
                     <AnimatePresence mode='wait'>
                         {errors['check'] && <motion.span initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="erorr-span">
                             {errorMessage[language]}

@@ -1,7 +1,13 @@
 
+
 export const errorMessage = {
     EN: 'This field is required.',
     FR: 'Ce champ est obligatoire.'
+}
+
+export const phone = {
+    EN: 'Your phone number',
+    FR: 'Votre numéro de téléphone'
 }
 
 export const email = {
