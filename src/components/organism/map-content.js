@@ -68,6 +68,7 @@ export default function MapContent({ language, subset, scale = 4, lat = '52.5144
                 || el.Address.toLowerCase().includes(filter.toLowerCase())
                 || el.Region.toLowerCase().includes(filter.toLowerCase())
                 || el['Additional keywords']?.toLowerCase().includes(filter.toLowerCase())
+                || el['Shop name'].toLowerCase().includes(filter.toLowerCase())
             ))
         }
     }, [retailers, filter])
