@@ -1,11 +1,12 @@
 import { graphql, useStaticQuery } from "gatsby"
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import styled from "styled-components"
 import { Grid } from "./cookies-grid"
 import scrollLock from './../helpers/scroll-lock'
 import { getCookie, setCookie } from "../helpers/coockie-manager"
 import { AnimatePresence, motion } from "framer-motion"
 import { allowButton, allowChosenButton, setButton, denyButton, aboutTabName, detailsTabName, consentTabName } from "../texts/cookie"
+import { myContext } from "../hooks/provider"
 
 function datalayerArguments() {
     if (typeof window !== "undefined" && !!arguments) {
@@ -14,7 +15,8 @@ function datalayerArguments() {
     }
 }
 
-export default function Cookies({ language, isActive, setIsActive }) {
+export default function Cookies({ language }) {
+    const { isCookiesActive: isActive, setIsCookiesActive: setIsActive } = useContext(myContext)
     const { allWpPage } = useStaticQuery(graphql`
         query Cookies($language: WpLanguageCodeEnum){
             allWpPage(filter: {template: {templateName: {eq: "Global Config"}}, language: {code: {eq: $language}}}) {

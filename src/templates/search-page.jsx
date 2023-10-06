@@ -17,7 +17,6 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 }
 
 export default function SearchPage({ data: { Materials, Sofas, Armchairs, CoffeeTables, DiningChairs, Footstools, OutdoorFurnitures, wpPage }, pageContext, location }) {
-  debugger
   return (
     <Wrapper>
       <myContext.Consumer>

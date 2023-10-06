@@ -39,7 +39,7 @@ const socialAnimation = {
   animate: { opacity: 1, transition: { duration: .5 } }
 }
 
-export default function Footer({ language, setIsCookiesActive }) {
+export default function Footer({ language }) {
 
   const section = useRef(null)
   const isSectionInView = useInView(section, { margin: "-100px 0px -100px 0px", once: true })
@@ -52,7 +52,7 @@ export default function Footer({ language, setIsCookiesActive }) {
 
   return (
     <myContext.Consumer>
-      {({ transition }) => {
+      {({ transition, setIsCookiesActive }) => {
         return (
           <Wrapper
             initial={isMobile ? 'animate' : 'initial'}

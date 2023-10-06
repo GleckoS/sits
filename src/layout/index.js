@@ -4,8 +4,6 @@ import { Global } from "../styles/global-style"
 import Footer from "./footer"
 import Header from "./header"
 import Cookies from "./cookies"
-import { myContext } from "../hooks/provider"
-
 import { ToastContainer } from 'react-toastify'
 import { cssTransition } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
@@ -24,23 +22,17 @@ export default function Layout({ data, pageContext, children }) {
     }, [])
 
     return (
-        <myContext.Consumer>
-            {context => {
-                return (
-                    <App>
-                        <ToastContainer limit={5} transition={animate} />
-                        <Global />
-                        <Cookies language={pageContext.language || 'EN'} isActive={context.isCookiesActive} setIsActive={context.setIsCookiesActive} />
-                        <Header data={data} language={pageContext.language || 'EN'} />
-                        <div id='main'>
-                            {children}
-                        </div>
-                        <Footer language={pageContext.language || 'EN'} setIsCookiesActive={context.setIsCookiesActive} />
-                        <Overlay className={isPageLoaded ? 'disabled' : ''} />
-                    </App>
-                )
-            }}
-        </myContext.Consumer>
+        <App>
+            <ToastContainer limit={5} transition={animate} />
+            <Global />
+            <Cookies language={pageContext.language || 'EN'}/>
+            <Header data={data} language={pageContext.language || 'EN'} />
+            <div id='main'>
+                {children}
+            </div>
+            <Footer language={pageContext.language || 'EN'} />
+            <Overlay className={isPageLoaded ? 'disabled' : ''} />
+        </App>
     )
 }
 
