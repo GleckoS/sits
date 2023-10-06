@@ -10,8 +10,9 @@ import Video from "../components/sections/video"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
 import Wrapper from "../components/sections/page-wrapper"
-import { accessoriesSectionTitle, collectionCoversTitle, collectionSimilarTitle } from "../texts"
+import { accessoriesSectionTitle, checkOtherCollections, collectionCoversTitle, collectionSimilarTitle } from "../texts"
 import { myContext } from "../hooks/provider"
+import HeroDiscontinuedCollection from "../components/sections/hero-discontinued-collection"
 
 export function Head({ pageContext, data: { wpCollection: { seo } } }) {
   return (
@@ -21,7 +22,30 @@ export function Head({ pageContext, data: { wpCollection: { seo } } }) {
     </>
   )
 }
-export default function Collection({ data: { wpCollection }, pageContext }) {
+export default function Collection({ data: { wpPage, wpCollection }, pageContext }) {
+  if (wpCollection.collections.generalCollectionInformation.isDiscontinued) {
+    return (
+      <Wrapper>
+        <myContext.Consumer>
+          {context => {
+            context.setLanguage(pageContext.language)
+          }}
+        </myContext.Consumer>
+        <HeroDiscontinuedCollection
+          data={wpPage.discontinuedCollection}
+          isLast={!wpCollection.collections.similarCollectionsSection.similarCollections}
+        />
+        {wpCollection.collections.similarCollectionsSection.similarCollections &&
+          <SimilarProducts
+            isLast={true}
+            language={pageContext.language}
+            title={checkOtherCollections[pageContext.language]}
+            data={wpCollection.collections.similarCollectionsSection.similarCollections}
+          />}
+      </Wrapper>
+    )
+  }
+
   return (
     <Wrapper>
       <myContext.Consumer>
@@ -46,7 +70,13 @@ export default function Collection({ data: { wpCollection }, pageContext }) {
 }
 
 export const query = graphql`
-    query collection($id: String!) {
+    query collection($id: String!, $language: WpLanguageCodeEnum!) {
+          wpPage(template: {templateName: {eq: "Global Config"}}, language: {code: {eq: $language}}){
+            discontinuedCollection{
+              title : collectionOverlayTitle
+              text : collectionOverlayText
+            }
+          }
           wpCollection(id: {eq: $id}){
             language {
               name
@@ -306,6 +336,7 @@ export const query = graphql`
                 }
               }
               generalCollectionInformation {
+                isDiscontinued
                 collectionQuickDescription
                 collectionGallery {
                   altText

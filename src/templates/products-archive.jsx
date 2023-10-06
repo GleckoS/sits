@@ -58,7 +58,7 @@ export const query = graphql`
         }
         allWpProduct(
           sort: {date: DESC}
-          filter: {language: {code: {eq: $language}}, types: {nodes: {elemMatch: {name: {eq: $productType}}}}}
+          filter: {products: {isDiscontinued: {in: [false, null]}}, language: {code: {eq: $language}}, types: {nodes: {elemMatch: {name: {eq: $productType}}}}}
         ) {
           nodes{
             id
@@ -81,6 +81,7 @@ export const query = graphql`
                   collections {
                     generalCollectionInformation {
                       isPopular
+                      isDiscontinued
                       popularImportanceIndex
                     }
                   }

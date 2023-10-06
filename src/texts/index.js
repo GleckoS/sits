@@ -150,6 +150,10 @@ export const coversTitle = {
     FR: 'Housses similaires'
 }
 
+export  const checkOtherCollections = {
+    EN: 'Check our other collections',
+    FR: 'Découvrez nos autres collections'
+}
 
 export const collectionSimilarTitle = {
     EN: 'Similar products',

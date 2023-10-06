@@ -50,10 +50,10 @@ export default function SimilarProducts({ language, isLast, materials, title, da
 
 const Wrapper = styled.section`
     padding: 80px 0 0 0;
-    padding-bottom: clamp(80px, ${120 / 1194 * 100}vw, 160px);
+    padding-bottom: clamp(120px, ${120 / 1194 * 100}vw, 160px);
+    margin-bottom: calc(-1 * clamp(120px, ${120 / 1194 * 100}vw, 160px));
     margin-bottom: -160px;
     background-color: #F9F5F0;
-    margin-bottom: calc(-1 * clamp(45px,10.050251256281408vw,160px));
 
     h2{
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);

@@ -64,6 +64,7 @@ export const query = graphql`
             slug
             collections {
               generalCollectionInformation {
+                isDiscontinued
                 collectionPagePreviewImage {
                   altText
                   localFile {

@@ -12,11 +12,11 @@ const productSearchTypes = {
         FR: 'Fauteuils'
     },
     coffeTables: {
-        EN: 'Coffee Tables',
-        FR: 'Tables Basses'
+        EN: 'Coffee tables',
+        FR: 'Tables basses'
     },
     dinningChairs: {
-        EN: 'Dining Chairs',
+        EN: 'Dining chairs',
         FR: 'Chaises de salle à manger'
     },
     footstools: {
@@ -24,7 +24,7 @@ const productSearchTypes = {
         FR: 'Repose-pieds'
     },
     outdoorFurniture: {
-        EN: 'Outdoor Furniture',
+        EN: 'Outdoor furniture',
         FR: 'Mobilier d’extérieur'
     },
 }

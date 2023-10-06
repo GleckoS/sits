@@ -10,6 +10,7 @@ import Video from "../components/sections/video"
 import Seo from "../layout/seo"
 import { similarTitle, coversTitle } from "../texts"
 import { myContext } from "../hooks/provider"
+import HeroDiscontinuedCollection from "../components/sections/hero-discontinued-collection"
 
 export function Head({ pageContext, data: { wpMaterials: { seo } } }) {
   return (
@@ -20,7 +21,30 @@ export function Head({ pageContext, data: { wpMaterials: { seo } } }) {
   )
 }
 
-export default function Material({ location, data: { wpMaterials }, pageContext }) {
+export default function Material({ location, data: { wpPage, wpMaterials }, pageContext }) {
+  if (wpMaterials.materials.generalMaterialInformation.isDiscontinued) {
+    return (
+      <Wrapper>
+        <myContext.Consumer>
+          {context => {
+            context.setLanguage(pageContext.language)
+          }}
+        </myContext.Consumer>
+        <HeroDiscontinuedCollection
+          data={wpPage.discontinuedCollection}
+          isLast={!wpMaterials.materials.popularProductsUsingThisMaterial.productList}
+        />
+        {wpMaterials.materials.popularProductsUsingThisMaterial.productList
+          && <SimilarProducts
+            language={pageContext.language}
+            isLast={true}
+            materials={true}
+            title={wpMaterials.title + similarTitle[pageContext.language]}
+            data={wpMaterials.materials.popularProductsUsingThisMaterial.productList} />
+        }
+      </Wrapper>
+    )
+  }
 
   return (
     <Wrapper>
@@ -50,7 +74,13 @@ export default function Material({ location, data: { wpMaterials }, pageContext 
 }
 
 export const query = graphql`
-    query material($id: String!) {
+    query material($id: String!, $language: WpLanguageCodeEnum!) {
+        wpPage(template: {templateName: {eq: "Global Config"}}, language: {code: {eq: $language}}){
+          discontinuedCollection{
+            title : collectionOverlayTitle
+            text : collectionOverlayText
+          }
+        }
         wpMaterials(id: {eq: $id}) {
           language {
             name
@@ -234,6 +264,7 @@ export const query = graphql`
               }
             }
             generalMaterialInformation: generalMaterialInformationCopy {
+              isDiscontinued
               materialQuickDescription
               textUnderCareInstructionIcons
               materialProductSheet {

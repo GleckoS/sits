@@ -16,7 +16,7 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
   )
 }
 
-export default function NewArrivalsPage({ data: { wpPage, allWpProduct }, pageContext, location }) {
+export default function NewArrivalsPage({ data: { wpPage }, pageContext }) {
   return (
     <Wrapper>
       <myContext.Consumer>

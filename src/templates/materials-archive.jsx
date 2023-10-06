@@ -58,8 +58,11 @@ export const query = graphql`
         }
       allWpMaterials(
           sort: {date: DESC}
-          filter: {language: {code: {eq: $language}}}
-          ){
+          filter: {
+            materials: {generalMaterialInformationCopy: {isDiscontinued: {in: [false, null]}}}, 
+            language: {code: {eq: $language}}
+          }
+        ){
         nodes{
           features {
             nodes {
