@@ -39,9 +39,7 @@ export default function Layout({ data, pageContext, children }) {
 const App = styled.div`
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: fit-content;
-    min-height: 100vh;
 
     #main{
         margin-top: 95px;

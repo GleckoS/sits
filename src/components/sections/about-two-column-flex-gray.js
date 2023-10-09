@@ -22,7 +22,7 @@ export default function TwoColumnGray({ data: { textOnTheRight, imageOnTheLeft }
 }
 
 const Wrapper = styled.section`
-    margin-top: clamp(60px, ${90 / 1194 * 100}vw, 250px);
+    margin-top: clamp(60px, ${90 / 1194 * 100}vw, 180px);
     background-image: linear-gradient(90deg, #ebebeb 0%, #cecece 100%);
     margin-bottom: -120px;
 

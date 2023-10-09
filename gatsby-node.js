@@ -899,6 +899,36 @@ exports.createPages = async ({
         });
     })
 
+    // Exhibitions
+
+    const { data: { allWpPage: { nodes: Exhibitions } } } = await graphql(`
+    query {
+        allWpPage(filter: { template: { templateName: { eq: "Exhibitions" } } }) {
+            nodes {
+                slug
+                id
+                uri
+                language {
+                  code
+                }
+            }
+        }
+    }
+  `);
+
+  Exhibitions.forEach(({ id, slug, uri, language }) => {
+        createPage({
+            path: uri,
+            component: resolve('src/templates/exhibitions-page.jsx'),
+            context: {
+                id,
+                slug,
+                uri,
+                language: language?.code ? language.code : 'EN'
+            },
+        });
+    })
+
 }
 
 exports.onCreatePage = async ({ page, actions }) => {

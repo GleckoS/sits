@@ -36,7 +36,7 @@ export default function Grid({ data: { tekstUnderTitle, sectionTitle, imageUnder
 }
 
 const Wrapper = styled.section`
-    margin-top: clamp(40px, ${90 / 1194 * 100}vw, 250px);
+    margin-top: clamp(40px, ${90 / 1194 * 100}vw, 180px);
 `
 
 const Content = styled.div`

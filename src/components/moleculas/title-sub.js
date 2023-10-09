@@ -8,12 +8,12 @@ import InView from "../sections/in-view-provider"
 const titleAnimation = textTransition(1)
 const textAnimation = textTransition(2)
 
-export const Title = ({ small, title, text }) => (
+export const Title = ({ h2, small, title, text }) => (
     <InView>
-        <Wrapper className={small ? 'small' : ''}>
+        <Wrapper className={small ? 'small' : '' + h2 ? 'h2' : ''}>
             <Container>
-                <motion.h1 variants={titleAnimation}>{title}</motion.h1>
-                {text && <motion.p variants={textAnimation} dangerouslySetInnerHTML={{__html: text}}></motion.p>}
+                {h2 ? <motion.h2 variants={titleAnimation}>{title}</motion.h2> : <motion.h1 variants={titleAnimation}>{title}</motion.h1>}
+                {text && <motion.p variants={textAnimation} dangerouslySetInnerHTML={{ __html: text }}></motion.p>}
             </Container>
         </Wrapper>
     </InView>
@@ -26,7 +26,15 @@ const Wrapper = styled.div`
         margin: 30px 0;
     }
 
-    h1{
+    &.h2{
+        margin-top: clamp(60px, ${90 / 1194 * 100}vw, 180px);
+
+        h2{
+            
+        }
+    }
+
+    h1, h2 {
         font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
         font-family: 'Ivy';
         font-weight: 300;

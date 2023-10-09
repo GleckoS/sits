@@ -34,7 +34,7 @@ export default function Grid({ data: { sectionTitle, textUnderTitle, imageOnTheL
 const Wrapper = styled.section`
     max-width: 1520px;
     margin: 0 auto;
-    margin-top: clamp(60px, ${90 / 1194 * 100}vw, 250px);
+    margin-top: clamp(60px, ${90 / 1194 * 100}vw, 180px);
 
 
     display: grid;

@@ -9,10 +9,10 @@ const titleAnimation = textTransition(1)
 const textAnimation = textTransition(2)
 const imageAnimation = imageTransition(3)
 
-export default function TwoColumnFlex({ alt, data: { textUnderTitle, sectionTitle, imageOnTheLeftSide } }) {
+export default function TwoColumnFlex({ equal, alt, data: { textUnderTitle, sectionTitle, imageOnTheLeftSide } }) {
     return (
         <InView>
-            <Wrapper className={alt ? 'alt' : ''}>
+            <Wrapper className={alt ? 'alt' : '' + equal ? ' equal' : ''}>
                 <motion.div variants={imageAnimation}>
                     <GatsbyImage className="image" image={imageOnTheLeftSide.localFile.childImageSharp.gatsbyImageData} alt={imageOnTheLeftSide.altText} />
                 </motion.div>
@@ -26,13 +26,40 @@ export default function TwoColumnFlex({ alt, data: { textUnderTitle, sectionTitl
 }
 
 const Wrapper = styled.section`
-margin-top: clamp(60px, ${90 / 1194 * 100}vw, 250px);
+margin-top: clamp(60px, ${90 / 1194 * 100}vw, 180px);
 display: grid;
 grid-template-columns: auto auto;
 align-items: center;
 grid-gap: 80px;
 grid-template-areas: 'image text';
 
+&.equal{
+    margin-top: 32px;
+    grid-template-columns: 1fr 1fr;
+
+    .image{
+        width: 100%;
+    }
+
+    h2{
+        font-size: clamp(20px, ${30 / 768 * 100}vw, 34px) !important;
+    }
+
+    .text div{
+        margin-top: 16px;
+    }
+
+    @media (max-width: 640px) {
+        flex-direction: column !important;
+        gap: 24px !important;
+
+        .image{
+            aspect-ratio: 328/220;
+            min-height: unset;
+            min-width: unset;
+        }
+    }
+}
 
 &.alt{
     grid-template-areas: 'text image';

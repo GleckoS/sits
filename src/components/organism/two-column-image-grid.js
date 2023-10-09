@@ -30,7 +30,6 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
         if (collectionPagePreviewImage) {
             images.push({ image: collectionPagePreviewImage, popupNames: popupNames })
         }
-        debugger
         products.forEach(el => {
             el.products.productGallery.forEach(el => {
                 el.productsImages.forEach(inInEl => {

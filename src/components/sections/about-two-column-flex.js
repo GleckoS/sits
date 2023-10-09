@@ -51,7 +51,7 @@ export default function TwoColumnFlex({ data: { textUnderTitle, sectionTitle, im
 }
 
 const Wrapper = styled.section`
-margin-top: clamp(60px, ${90 / 1194 * 100}vw, 250px);
+margin-top: clamp(60px, ${90 / 1194 * 100}vw, 180px);
 display: grid;
 grid-template-columns: auto auto;
 align-items: center;

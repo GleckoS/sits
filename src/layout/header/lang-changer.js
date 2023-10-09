@@ -5,12 +5,11 @@ import { Link } from "gatsby"
 import { icons } from "../../texts/icons"
 
 export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 }) => {
-
     const [isOpened, setIsOpened] = useState(false)
 
     if (!data) return null
 
-    const locData = data.wpPage || data.wpCollection || data.wpMaterials
+    const locData = data.wpCollection || data.wpMaterials || data.wpPage
 
     if (!locData?.language) {
         return null

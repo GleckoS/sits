@@ -394,3 +394,23 @@ export const selectLanguage = {
     EN: 'Select your country',
     FR: 'Sélectionnez votre pays'
 }
+
+export const upcommingEvents = {
+    EN: 'Upcoming events',
+    FR: 'Événements à venir'
+}
+
+export const ourShowrooms = {
+    EN: 'Our showrooms',
+    FR: 'Nos showrooms'
+}
+
+export const eventsTitle = {
+    EN: 'Events',
+    FR: 'Événements'
+}
+
+export const showrooms = {
+    EN: 'Showrooms',
+    FR: 'Showrooms'
+}
