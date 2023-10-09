@@ -20,15 +20,19 @@ export default function ExhibitionsHero({ data, showrooms, exhibitions, language
             {data.pageDescription && <motion.p variants={textAnimation} dangerouslySetInnerHTML={{ __html: data.pageDescription }}></motion.p>}
           </div>
           <motion.div variants={otherAnimation}>
-            <h2>{upcommingEvents[language]}</h2>
-            <ul>
-              {exhibitions.map((exhibition, index) => (
-                <li key={index}>
-                  {/* TODO: check dates, dont show old */}
-                  {exhibition.title} {exhibition.event.dates}
-                </li>
-              ))}
-            </ul>
+            {exhibitions.length !== 0 && (
+              <>
+                <h2>{upcommingEvents[language]}</h2>
+                <ul>
+                  {exhibitions.map((exhibition, index) => (
+                    <li key={index}>
+                      {/* TODO: check dates, dont show old */}
+                      {exhibition.title} {exhibition.event.dates}
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
             <h2>{ourShowrooms[language]}</h2>
             <ul>
               {showrooms.map((showroom, index) => (

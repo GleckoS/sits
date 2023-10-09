@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import React from "react"
+import React, { useState } from "react"
 import Seo from "../layout/seo"
 import { Helmet } from "react-helmet"
 import Wrapper from "../components/sections/page-wrapper"
@@ -20,6 +20,18 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
 }
 
 export default function Exhibitions({ data: { allWpEvent, allWpShowroom, wpPage: { exhibition } }, pageContext }) {
+
+  const [filtredEvents] = useState(allWpEvent.nodes.filter(el => {
+    const [day, month, year] = el.event.endDate.split('/');
+    const date = new Date(year, month - 1, day);
+    const today = new Date();
+
+    if (date.getTime() < today.getTime())
+      return false
+
+    return true
+  }))
+
   return (
     <Wrapper>
       <myContext.Consumer>
@@ -27,9 +39,13 @@ export default function Exhibitions({ data: { allWpEvent, allWpShowroom, wpPage:
           context.setLanguage(pageContext.language)
         }}
       </myContext.Consumer>
-      <ExhibitionsHero language={pageContext.language} data={exhibition} showrooms={allWpShowroom.nodes} exhibitions={allWpEvent.nodes} />
-      <EventsGrid language={pageContext.language} events={allWpEvent.nodes} />
-      <Title h2={true} small={true} title={showrooms[pageContext.language]}/>
+      <ExhibitionsHero language={pageContext.language} data={exhibition} showrooms={allWpShowroom.nodes} exhibitions={filtredEvents} />
+      {filtredEvents.length !== 0 && (
+        <>
+          <EventsGrid language={pageContext.language} events={filtredEvents} />
+        </>
+      )}
+      <Title h2={true} small={true} title={showrooms[pageContext.language]} />
       {allWpShowroom.nodes.map((el, index) => (
         <TwoColumnFlex equal={true} key={index} data={{ textUnderTitle: el.showroom.shwrommDescription, sectionTitle: el.title, imageOnTheLeftSide: el.showroom.previewImage }} />
       ))}
