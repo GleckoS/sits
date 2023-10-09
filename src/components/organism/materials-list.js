@@ -1,8 +1,7 @@
-import { AnimatePresence, motion } from "framer-motion"
-import React from "react"
+import { AnimatePresence, motion, useInView } from "framer-motion"
+import React, { useEffect, useRef } from "react"
 import { useState } from "react"
 import styled from "styled-components"
-import { LoadMore } from "../atoms/load-more"
 import { MaterialCard } from "../moleculas/material-card"
 
 export const MaterialList = ({ language, itemKey, setPage, page, materials, color }) => {
@@ -13,6 +12,15 @@ export const MaterialList = ({ language, itemKey, setPage, page, materials, colo
         }
         return 8
     })
+
+    const ref = useRef(null)
+    const isInView = useInView(ref)
+
+    useEffect(() => {
+        if(isInView && (page * addCount < materials.length)) {
+            setPage(+page + 1)
+        }
+    }, [isInView])
 
     return (
         <>
@@ -35,9 +43,7 @@ export const MaterialList = ({ language, itemKey, setPage, page, materials, colo
                     })}
                 </AnimatePresence>
             </Wrapper>
-            {page * addCount < materials.length
-                ? <LoadMore count={addCount} onClick={() => { setPage(+ page + 1) }} />
-                : null}
+            <div ref={ref} />
         </>
     )
 }

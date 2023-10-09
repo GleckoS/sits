@@ -38,6 +38,7 @@ export const FilterComponent = ({
 }) => {
 
     const [openedFilter, setOpenedFilter] = useState(false)
+    const [pageLoaded, setPageLoaded] = useState(false)
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -50,7 +51,10 @@ export const FilterComponent = ({
     }, [])
 
     useEffect(() => {
-        setSearch(inputValue)
+        if (pageLoaded)
+            setSearch(inputValue)
+        else
+            setPageLoaded(true)
     }, [inputValue])
 
     return (

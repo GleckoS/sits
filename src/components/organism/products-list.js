@@ -1,14 +1,23 @@
-import { AnimatePresence, motion } from "framer-motion"
-import React from "react"
+import { AnimatePresence, motion, useInView } from "framer-motion"
+import React, { useEffect } from "react"
 import { useRef } from "react"
 import styled from "styled-components"
-import { LoadMore } from "../atoms/load-more"
 import { ProductCard } from "../moleculas/product-card"
 
 export const ProductList = ({ language, itemKey, changeType, setRerender, setPage, page, rerender, products }) => {
     const renderCount = useRef(0)
     const isAllRendered = useRef(true)
     renderCount.current = 0
+
+    const ref = useRef(null)
+    const isInView = useInView(ref)
+
+    useEffect(() => {
+        if(isInView && !isAllRendered.current) {
+            setPage(+page + 1)
+        }
+    }, [isInView])
+
     return (
         <>
             <Wrapper key='wrapper'>
@@ -37,11 +46,7 @@ export const ProductList = ({ language, itemKey, changeType, setRerender, setPag
                     })}
                 </AnimatePresence>
             </Wrapper>
-            {
-                isAllRendered.current
-                    ? null
-                    : <LoadMore key='loadMore' onClick={() => { setPage(+page + 1) }} />
-            }
+            <div ref={ref} />
         </>
     )
 }
