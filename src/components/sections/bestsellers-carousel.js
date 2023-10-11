@@ -290,7 +290,7 @@ const Wrapper = styled.section`
 
     
     .slick-slide{
-        transition: all var(--animation) !important;
+        transition: opacity var(--animation) !important;
         pointer-events: none;
         
 

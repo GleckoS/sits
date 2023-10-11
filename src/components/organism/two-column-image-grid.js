@@ -28,15 +28,38 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
         let images = []
 
         if (collectionPagePreviewImage) {
-            images.push({ image: collectionPagePreviewImage, popupNames: popupNames })
+            images.push({ image: collectionPagePreviewImage, popupNames: popupNames, model: popupNames.model })
         }
         products.forEach(el => {
             el.products.productGallery.forEach(el => {
                 el.productsImages.forEach(inInEl => {
-                    images.push({ image: inInEl.featuredProductImage, popupNames: el.popupNames })
+                    images.push({ image: inInEl.featuredProductImage, popupNames: el.popupNames, model: el.popupNames.model })
                 })
             })
         })
+
+        const mainModel = popupNames.model || images[0].model
+        // sort images firstly mail model images, then all images grouped by model
+
+        images.sort((a, b) => {
+            if (a.model === mainModel) {
+                return -1
+            }
+            if (b.model === mainModel) {
+                return 1
+            }
+            return 0
+        })
+
+        // search for collectionPagePreviewImage and put it to the beginning of array if it exists
+        if (collectionPagePreviewImage) {
+            images.forEach((el, index) => {
+                if (el.image.title === collectionPagePreviewImage.title && index !== 0) {
+                    images.splice(index, 1)
+                    images.unshift(el)
+                }
+            })
+        }
         return images
     })
 
@@ -50,6 +73,16 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
                 }
                 arr.push(el)
             })
+
+            let chosenModel = arr[0].model
+            // unshift all images with chosen model to position after first image
+            arr.forEach((el, index) => {
+                if (el.model === chosenModel && index !== 0) {
+                    arr.splice(index, 1)
+                    arr.splice(1, 0, el)
+                }
+            })
+
             document.getElementById('popup').scrollTo(0, 0);
             setPopImages(arr)
         }
@@ -123,7 +156,7 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
             </Wrapper>
             <SliderWrapper>
                 <Slider {...settings}>
-                    {collectionPagePreviewImage
+                    {/* {collectionPagePreviewImage
                         ? <button
                             aria-label='open pop-up with images'
                             onMouseMove={() => setMouseMoved(true)}
@@ -140,16 +173,16 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
                                 </svg>
                             </span>
                         </button>
-                        : null}
-                    {gallery?.map((el, index) => (
+                        : null} */}
+                    {popUpImages?.map((el, index) => (
                         <button
-                            key={el.title + index}
+                            key={el.image.title + index}
                             aria-label='open pop-up with images'
                             onMouseMove={() => setMouseMoved(true)}
                             onMouseDown={() => setMouseMoved(false)}
                             onMouseUp={() => handleClick(el)}
                         >
-                            <GatsbyImage className="image" image={el.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
+                            <GatsbyImage className="image" image={el.image.localFile.childImageSharp.gatsbyImageData} alt={el.altText} />
                             <span className="in">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14">
                                     <g id="Group_510" data-name="Group 510" transform="translate(-1557.5 -1810.5)">
@@ -172,7 +205,7 @@ const Box = styled(motion.div)`
     }
 
     .slick-slide{
-        transition: all var(--animation) !important;
+        transition: opacity var(--animation) !important;
         pointer-events: none;
 
         &.slick-active{

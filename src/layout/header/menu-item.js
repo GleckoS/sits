@@ -4,7 +4,7 @@ import { myContext } from "../../hooks/provider"
 import Counter from "./favourite-counter"
 
 export const Item = ({ onBlur = () => { }, tabIndex = 0, el, func = () => { } }) => (
-    <Link activeClassName='active' onBlur={onBlur} tabIndex={tabIndex} className="item" onClick={() => { func(false) }} to={el.url}>
+    <Link activeClassName='active' onBlur={onBlur} tabIndex={tabIndex} target={el.url.includes('http') ? '_blank' : ''} rel={el.url.includes('http') ? 'noopener noreferrer' : ''} className="item" onClick={() => { func(false) }} to={el.url}>
         <span className="styled-link">{el.name}</span>
         {el.icon === 'out' && (
             <svg xmlns="http://www.w3.org/2000/svg" width="19.045" height="19.045" viewBox="0 0 19.045 19.045">

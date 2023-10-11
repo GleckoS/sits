@@ -30,6 +30,18 @@ export default function Exhibitions({ data: { allWpEvent, allWpShowroom, wpPage:
       return false
 
     return true
+  }).sort((a, b) => {
+    const [dayA, monthA, yearA] = a.event.startDate.split('/');
+    const dateA = new Date(yearA, monthA - 1, dayA);
+    const [dayB, monthB, yearB] = b.event.startDate.split('/');
+    const dateB = new Date(yearB, monthB - 1, dayB);
+    
+    if (dateA.getTime() < dateB.getTime())
+      return -1
+    if (dateA.getTime() > dateB.getTime())
+      return 1
+
+    return 0
   }))
 
   return (

@@ -98,7 +98,7 @@ export default function Content({ language, data: { title, salesRepresentative: 
                                 {el['Phone 1'] && <motion.a variants={fileAnimation} className="underline" href={'tel:' + el['Phone 1']}>{el['Phone 1']}</motion.a>}
                                 {el['Phone 2'] && <motion.a variants={fileAnimation} className="underline" href={'tel:' + el['Phone 2']}>{el['Phone 2']}</motion.a>}
                                 {el['E-mail'] && <motion.a variants={fileAnimation} className="underline" href={'mailto:' + el['E-mail']}>{el['E-mail']}</motion.a>}
-                                {el['Website'] && <motion.a variants={fileAnimation} className="underline" href={el['Website']} target="_blank" rel="noreferrer">{el['Website']}</motion.a>}
+                                {el['Website'] && <motion.a variants={fileAnimation} className="underline" href={el['Website']} target="_blank" rel="noreferrer">Website</motion.a>}
                             </Item>
                         ))}
                     </Grid>
