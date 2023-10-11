@@ -66,11 +66,21 @@ export default function Exhibitions({ data: { allWpEvent, allWpShowroom, wpPage:
 }
 
 export const query = graphql`
-  query bestsellers($id: String!) {
+  query bestsellers($id: String!, $language: WpLanguageCodeEnum) {
     wpPage(id: {eq: $id}){
       exhibition {
         pageTitle
         pageDescription
+      }
+      language {
+        name
+      }
+      translations {
+        language {
+          name
+          code
+        }
+        uri
       }
       seo {
         canonical
@@ -84,7 +94,7 @@ export const query = graphql`
         }
       }
     }
-    allWpEvent {
+    allWpEvent(filter: {language: {code: {eq: $language}}}) {
       nodes {
         title
         event {
@@ -96,14 +106,14 @@ export const query = graphql`
             altText
             localFile {
               childImageSharp {
-                gatsbyImageData(quality: 100)
+                gatsbyImageData(quality: 80)
               }
             }
           }
         }
       }
     }
-    allWpShowroom {
+    allWpShowroom(filter: {language: {code: {eq: $language}}}) {
       nodes {
         title : name
         showroom {
@@ -112,7 +122,7 @@ export const query = graphql`
             altText
             localFile{
               childImageSharp{
-                gatsbyImageData(quality: 100)
+                gatsbyImageData(quality: 80)
               }
             }
           }
