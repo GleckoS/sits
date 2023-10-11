@@ -27,36 +27,43 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
     const [popUpImages, setPopImages] = useState(() => {
         let images = []
 
-        if (collectionPagePreviewImage) {
-            images.push({ image: collectionPagePreviewImage, popupNames: popupNames, model: popupNames.model })
-        }
-        products.forEach(el => {
-            el.products.productGallery.forEach(el => {
+        products.forEach((el, index) => {
+            el.products.productGallery.forEach((el, inIndex) => {
                 el.productsImages.forEach(inInEl => {
-                    images.push({ image: inInEl.featuredProductImage, popupNames: el.popupNames, model: el.popupNames.model })
+                    images.push({ image: inInEl.featuredProductImage, popupNames: el.popupNames, idProduct: String(index) + String(inIndex) })
                 })
             })
         })
 
-        const mainModel = popupNames.model || images[0].model
-        // sort images firstly mail model images, then all images grouped by model
-
-        images.sort((a, b) => {
-            if (a.model === mainModel) {
-                return -1
-            }
-            if (b.model === mainModel) {
-                return 1
-            }
-            return 0
-        })
-
-        // search for collectionPagePreviewImage and put it to the beginning of array if it exists
         if (collectionPagePreviewImage) {
+            let mainProduct = products.length + '0'
+
+            images.every(el => {
+                let elpopupNames = {}
+                for (let key in el.popupNames) {
+                    elpopupNames[key] = el.popupNames[key]?.replace(/\s/g, '')
+                }
+
+                let locpopupNames = {}
+                for (let key in el.popupNames) {
+                    locpopupNames[key] = popupNames[key]?.replace(/\s/g, '')
+                }
+
+                if (JSON.stringify(elpopupNames) === JSON.stringify(locpopupNames)) {
+                    mainProduct = el.idProduct
+                    return false
+                }
+
+                return true
+            })
+
+            images.unshift({ image: collectionPagePreviewImage, popupNames: popupNames, idProduct: mainProduct })
+
+            // search for images with same idProduct and push them to the start of array
             images.forEach((el, index) => {
-                if (el.image.title === collectionPagePreviewImage.title && index !== 0) {
+                if (el.idProduct === mainProduct && index !== 0) {
                     images.splice(index, 1)
-                    images.unshift(el)
+                    images.splice(1, 0, el)
                 }
             })
         }
@@ -66,6 +73,8 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
     useEffect(() => {
         if (isPopUpOpened) {
             let arr = []
+            let chosenModel = popUpImages.filter(el => el.image.title === isPopUpOpened)[0].idProduct
+            
             popUpImages.forEach(el => {
                 if (el.image.title === isPopUpOpened) {
                     arr.unshift(el)
@@ -74,10 +83,9 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
                 arr.push(el)
             })
 
-            let chosenModel = arr[0].model
             // unshift all images with chosen model to position after first image
             arr.forEach((el, index) => {
-                if (el.model === chosenModel && index !== 0) {
+                if (el.idProduct === chosenModel && index !== 0) {
                     arr.splice(index, 1)
                     arr.splice(1, 0, el)
                 }
