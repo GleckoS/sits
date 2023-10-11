@@ -8,7 +8,7 @@ import AddToFauvorite from "../atoms/add-to-favourite"
 export const ImageGridItem = ({ language, setRerender, rerender, image, popupNames }) => {
 
     const data = useRef(null)
-
+    debugger
     return (
         <Item>
             <div className="image-wrap">
@@ -51,8 +51,8 @@ export const ImageGridItem = ({ language, setRerender, rerender, image, popupNam
                         ? <span><span>{coverTitle[language]}</span> <strong>{popupNames.cover}</strong></span>
                         : null}
 
-                    {popupNames.armrests
-                        ? <span><span>{armrestTitle[language]}</span> <strong>{popupNames.armrests}</strong></span>
+                    {popupNames.armrest
+                        ? <span><span>{armrestTitle[language]}</span> <strong>{popupNames.armrest}</strong></span>
                         : null}
 
                     {popupNames.accessories
