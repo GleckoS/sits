@@ -90,9 +90,9 @@ export const TwoColumnImageGrid = ({ language, sliderAnimation, gallery, popupNa
 
     const [mouseMoved, setMouseMoved] = useState(false)
 
-    const handleClick = (collectionPagePreviewImage) => {
+    const handleClick = (el) => {
         if (!mouseMoved) {
-            setPopUpOpened(collectionPagePreviewImage.title)
+            setPopUpOpened(el.image.title)
         }
     }
 
