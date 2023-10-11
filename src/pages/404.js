@@ -33,7 +33,7 @@ const NotFoundPage = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageT
           </Container>
         </Section>
       </InView>
-      <Map />
+      <Map language={'EN'} />
     </Wrapper>
   )
 }

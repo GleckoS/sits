@@ -64,7 +64,7 @@ export default function Collection({ data: { wpPage, wpCollection }, pageContext
       {wpCollection.collections.recommendedCovers.covers && <RecomendedCovers language={pageContext.language} isMarginTop={wpCollection.collections.twoColumn.imageOnTheLeftSide || wpCollection.collections.videoSection?.video} title={collectionCoversTitle[pageContext.language] + wpCollection.title} data={wpCollection.collections.recommendedCovers} />}
       {wpCollection.collections.accessoriesSection.accessories && <Accessories title={accessoriesSectionTitle[pageContext.language]} data={wpCollection.collections.accessoriesSection.accessories} />}
       {wpCollection.collections.similarCollectionsSection.similarCollections && <SimilarProducts language={pageContext.language} title={collectionSimilarTitle[pageContext.language]} data={wpCollection.collections.similarCollectionsSection.similarCollections} />}
-      <Map />
+      <Map language={pageContext.language} />
     </Wrapper>
   )
 }
