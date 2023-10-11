@@ -150,7 +150,7 @@ export const coversTitle = {
     FR: 'Housses similaires'
 }
 
-export  const checkOtherCollections = {
+export const checkOtherCollections = {
     EN: 'Check our other collections',
     FR: 'Découvrez nos autres collections'
 }
@@ -196,13 +196,15 @@ export const left = {
 export const right = {
     EN: [
         { name: 'WHERE TO BUY', url: '/where-to-buy/' },
+        { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' },
+        { name: 'EXHIBITIONS', url: '/exhibitions/' },
         { name: 'CONTACT', url: '/contact/' },
-        { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' }
     ],
     FR: [
         { name: 'TROUVER UN POINT DE VENTE', url: '/fr/trouver-un-point-de-vente/' },
+        { name: 'REPRÉSENTANT COMMERCIAL', url: '/fr/representant-commercial/' },
+        { name: 'DES EXPOSITIONS', url: '/fr/des-expositions/' },
         { name: 'NOUS CONTACTER', url: '/fr/nous-contacter/' },
-        { name: 'REPRÉSENTANT COMMERCIAL', url: '/fr/representant-commercial/' }
     ]
 }
 export const linksLeft = {
@@ -248,6 +250,7 @@ export const linksRight = {
         { name: 'Sales Representative', url: '/sales-representative/' },
         { name: 'Where to Buy', url: '/where-to-buy/' },
         { name: 'Dealer login', url: 'https://sitsconnect.pl/' },
+        { name: 'Exhibitions', url: '/exhibitions/' },
         { name: 'Contact', url: '/contact/' }
     ],
     FR: [
@@ -259,6 +262,7 @@ export const linksRight = {
         { name: 'Représentant commercial', url: '/fr/representant-commercial/' },
         { name: 'Trouver un point de vente', url: '/fr/trouver-un-point-de-vente/' },
         { name: 'Connexion du revendeur', url: 'https://sitsconnect.pl/' },
+        { name: 'Des expositions', url: '/fr/des-expositions/' },
         { name: 'Nous contacter', url: '/fr/nous-contacter/' }
     ]
 }
