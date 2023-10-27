@@ -13,7 +13,7 @@ import InView from "./in-view-provider"
 import { imageTransition } from "../../helpers/animation-controller"
 import { motion } from "framer-motion"
 import {
-    typeTitle, sortByTitle, filterTitle, clearAllTitle, 
+    typeTitle, sortByTitle, filterTitle, clearAllTitle,
     coverParamName, pageParamName, searchParamName, sortBy, sortParamName, typeParamName, noResultMessage,
     upholsteryParamName, upholsterysTitle, coversTitle, reset, view, sortFilterTitle, noResultTitle, upholsterysArrAll, covesArrAll, sofasTypesAll
 } from "../../texts/filter"
@@ -56,13 +56,21 @@ export default function ProductArchive({ language, location, pageContext: { type
     })
     const [sofasTypes] = useState(() => {
         const arr = [{ name: sofasTypesAll[language], val: 'All' }]
-        products.forEach(el => {
-            el.types.nodes.forEach(inEl => {
-                if (!arr.find(el => el.name === inEl.name)) {
-                    arr.push({ name: inEl.name, val: inEl.name })
-                }
-            })
-        })
+        if (name === 'sofas') {
+            const typesMap = {};
+            products.forEach((el) => {
+                el.types.nodes.forEach((inEl) => {
+                    if (!typesMap[inEl.name]) {
+                        typesMap[inEl.name] = true;
+                        debugger
+                        if (inEl.collectionTypes.typeArchive.url.includes('?')) {
+                            arr.push({ name: inEl.name, val: inEl.name });
+                        }
+                    }
+                });
+            });
+            debugger
+        }
         return arr
     })
 
@@ -91,8 +99,8 @@ export default function ProductArchive({ language, location, pageContext: { type
 
     const filtredProducts = useMemo(() => {
         let arr = [...defaultPosts].filter(el => {
-            if(!el.products.collection){
-                console.log('product ' + el.title +  ' without collection')
+            if (!el.products.collection) {
+                console.log('product ' + el.title + ' without collection')
                 return false
             }
 
@@ -166,7 +174,7 @@ export default function ProductArchive({ language, location, pageContext: { type
 
                 return a.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex - b.products?.collection?.collections?.generalCollectionInformation?.popularImportanceIndex
             })
-            
+
             arr = filtrArr
         }
 
