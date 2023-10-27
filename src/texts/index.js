@@ -197,7 +197,7 @@ export const right = {
     EN: [
         { name: 'WHERE TO BUY', url: '/where-to-buy/' },
         { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' },
-        { name: 'EXHIBITIONS', url: '/exhibitions/' },
+        { name: 'MEET US', url: '/exhibitions/' },
         { name: 'CONTACT', url: '/contact/' },
     ],
     FR: [
@@ -250,7 +250,7 @@ export const linksRight = {
         { name: 'Sales Representative', url: '/sales-representative/' },
         { name: 'Where to Buy', url: '/where-to-buy/' },
         { name: 'Dealer login', url: 'https://sitsconnect.pl/' },
-        { name: 'Exhibitions', url: '/exhibitions/' },
+        { name: 'Meet us', url: '/exhibitions/' },
         { name: 'Contact', url: '/contact/' }
     ],
     FR: [
