@@ -42,7 +42,7 @@ export default function AddToFauvorite({ language, setRerender = () => { }, rere
     }
     let cookie = getCookie(type + language)
     if (!cookie) {
-      setCookie(type, '')
+      setCookie(type + language, '')
     }
     return cookie?.includes(title)
   })
@@ -52,7 +52,7 @@ export default function AddToFauvorite({ language, setRerender = () => { }, rere
     let cookie = getCookie(type + language)
     if (cookie?.includes(title)) {
       cookie = cookie.replace(title + '|', '')
-      setCookie(type, cookie)
+      setCookie(type + language, cookie)
       setIsActive(false)
       toast(<Toast />, { type: 'remove', title: title, language: language })
     } else {
