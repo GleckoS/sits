@@ -14,7 +14,7 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
     if (!locData?.language) {
         return null
     }
-    console.log(locData)
+
     return (
         <>
             <Button onClick={() => { setIsOpened(!isOpened) }} onBlur={() => { setIsOpened(false) }} tabIndex={tabIndex}>
