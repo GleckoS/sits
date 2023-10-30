@@ -139,6 +139,7 @@ module.exports = {
                     ... on WpCollection {
                       id
                       slug
+                      title
                     }
                   }
                   productGallery {

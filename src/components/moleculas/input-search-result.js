@@ -21,7 +21,7 @@ export default function Result({ storeMaterials, close, language, store, searchQ
     storeMaterials.index,
     storeMaterials.store
   );
-    debugger
+
   const fitredResult = useMemo(() => {
     needMore.current = false
 
@@ -68,6 +68,7 @@ export default function Result({ storeMaterials, close, language, store, searchQ
           needMore.current = true
           return null
         }
+
         return (
           <div>
             <p className={i ? "title" : ''}>{el.category} ({el.items.length})</p>
@@ -77,13 +78,19 @@ export default function Result({ storeMaterials, close, language, store, searchQ
                   needMore.current = true
                   return null
                 }
+
+                if(item.collection === null) {
+                  console.log(item.title + ' dont have collection')
+                  return null
+                }
+
                 return (
                   <li>
-                    <Link onClick={close} to={`${collectionUrl[language]}${item.collection.slug}/`}>
+                    <Link onClick={close} to={`${collectionUrl[language]}${item.collection?.slug}/`}>
                       {item.image && (
                         <GatsbyImage image={item.image.localFile.childImageSharp.gatsbyImageData} alt={item.image.altText} />
                       )}
-                      <p>{item.collection.name}</p>
+                      <p>{item.collection?.title}</p>
                     </Link>
                   </li>
                 )
@@ -121,7 +128,7 @@ export default function Result({ storeMaterials, close, language, store, searchQ
         </Link>
       )}
 
-      {fitredResult.length === 0 && (
+      {(fitredResult.length === 0 && filtredMaterialResult.length === 0) && (
         <p className="no-result">{showNoResultMessage[language]}</p>
       )}
     </Wrapper>
