@@ -129,7 +129,7 @@ export const materialsTitle = {
 }
 export const meterialsAlterTitle = {
     EN: 'Materials',
-    FR: 'TISSUS'
+    FR: 'Tissus'
 }
 export const colorsTitle = {
     EN: 'Colors of covers',
@@ -417,4 +417,14 @@ export const eventsTitle = {
 export const showrooms = {
     EN: 'Showrooms',
     FR: 'Showrooms'
+}
+
+export const showNoResultMessage = {
+    EN: 'No results found',
+    FR: 'Aucun résultat trouvé'
+}
+
+export const seeMore = {
+    EN: 'See more',
+    FR: 'Voir plus'
 }

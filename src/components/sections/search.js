@@ -49,6 +49,8 @@ export default function Search({ language, Materials, Sofas, Armchairs, CoffeeTa
         return search ? search : ''
     }, [location])
 
+    const [searchInputValue, setSearchInputValue] = useState(searchValue)
+
 
     const [sofasItemCount, setSofasItemCount] = useState(0)
     const [armchairsItemCount, setArmchairsItemCount] = useState(0)
@@ -70,83 +72,77 @@ export default function Search({ language, Materials, Sofas, Armchairs, CoffeeTa
 
     return (
         <Wrapper>
-            <myContext.Consumer>
-                {context => {
-                    if ((sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0 && searchValue)) {
-                        return null
-                    }
+            {(() => {
+                if ((sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0 && searchValue)) {
+                    return null
+                }
 
-                    if (searchValue) {
-                        return (
-                            <Content>
-                                <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
-                                    <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                                    <Link onClick={() => { window.scrollTo(0, 0); setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?' + searchParamName[language] + '=' + context.searchInputValue) : ''}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                                            <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
-                                                    <circle cx="8" cy="8" r="8" stroke="none" />
-                                                    <circle cx="8" cy="8" r="7" fill="none" />
-                                                </g>
-                                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
-                                            </g>
-                                        </svg>
-                                    </Link>
-                                </Input>
-                            </Content>
-                        )
-                    }
-
+                if (searchValue) {
                     return (
-                        <InView>
-                            <Placeholder variants={inputAnimation}>
-                                <h1>{pageTitle[language]}</h1>
-                                <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                    <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
-                                    <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                                    <Link onClick={() => { setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?' + searchParamName[language] + '=' + context.searchInputValue) : ''}>
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                                            <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
-                                                    <circle cx="8" cy="8" r="8" stroke="none" />
-                                                    <circle cx="8" cy="8" r="7" fill="none" />
-                                                </g>
-                                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
+                        <Content>
+                            <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!searchInputValue) }} >
+                                <span className={isActive || searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
+                                <input onKeyDown={(e) => { enterListener(e, searchInputValue) }} value={searchInputValue} onChange={(e) => { setSearchInputValue(e.target.value) }} />
+                                <Link onClick={() => { window.scrollTo(0, 0); setIsActive(!!searchInputValue) }} aria-label='search' tabIndex='-1' to={searchInputValue ? ('?' + searchParamName[language] + '=' + searchInputValue) : ''}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                                        <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                            <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
+                                                <circle cx="8" cy="8" r="8" stroke="none" />
+                                                <circle cx="8" cy="8" r="7" fill="none" />
                                             </g>
-                                        </svg>
-                                    </Link>
-                                </Input>
-                                <BrownLink to={contactUrls[language]}>{contatcButton[language]}</BrownLink>
-                            </Placeholder>
-                        </InView>
+                                            <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
+                                        </g>
+                                    </svg>
+                                </Link>
+                            </Input>
+                        </Content>
                     )
-                }}
-            </myContext.Consumer>
+                }
+
+                return (
+                    <InView>
+                        <Placeholder variants={inputAnimation}>
+                            <h1>{pageTitle[language]}</h1>
+                            <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!searchInputValue) }} >
+                                <span className={isActive || searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
+                                <input onKeyDown={(e) => { enterListener(e, searchInputValue) }} value={searchInputValue} onChange={(e) => { setSearchInputValue(e.target.value) }} />
+                                <Link onClick={() => { setIsActive(!!searchInputValue) }} aria-label='search' tabIndex='-1' to={searchInputValue ? ('?' + searchParamName[language] + '=' + searchInputValue) : ''}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                                        <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                            <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
+                                                <circle cx="8" cy="8" r="8" stroke="none" />
+                                                <circle cx="8" cy="8" r="7" fill="none" />
+                                            </g>
+                                            <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
+                                        </g>
+                                    </svg>
+                                </Link>
+                            </Input>
+                            <BrownLink to={contactUrls[language]}>{contatcButton[language]}</BrownLink>
+                        </Placeholder>
+                    </InView>
+                )
+            })()}
             <Results className={searchValue ? '' : 'disable'} id='results'>
                 <Container>
                     {(sofasItemCount + armchairsItemCount + coffeTablesItemCount + diningChairsItemCount + footstoolsItemCount + outdoorFurnituresItemCount + coversItemCount === 0 && searchValue) && (
                         <InView>
                             <NoResults variants={inputAnimation}>
-                                <myContext.Consumer>
-                                    {context => (
-                                        <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!context.searchInputValue) }} >
-                                            <span className={isActive || context.searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
-                                            <input onKeyDown={(e) => { enterListener(e, context.searchInputValue) }} value={context.searchInputValue} onChange={(e) => { context.setSearchInputValue(e.target.value) }} />
-                                            <Link onClick={() => { setIsActive(!!context.searchInputValue) }} aria-label='search' tabIndex='-1' to={context.searchInputValue ? ('?' + searchParamName[language] + '=' + context.searchInputValue) : ''}>
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
-                                                    <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
-                                                        <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
-                                                            <circle cx="8" cy="8" r="8" stroke="none" />
-                                                            <circle cx="8" cy="8" r="7" fill="none" />
-                                                        </g>
-                                                        <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
-                                                    </g>
-                                                </svg>
-                                            </Link>
-                                        </Input>
-                                    )}
-                                </myContext.Consumer>
+                                <Input onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!searchInputValue) }} >
+                                    <span className={isActive || searchInputValue ? 'active' : ''}>{placeholder[language]}</span>
+                                    <input onKeyDown={(e) => { enterListener(e, searchInputValue) }} value={searchInputValue} onChange={(e) => { setSearchInputValue(e.target.value) }} />
+                                    <Link onClick={() => { setIsActive(!!searchInputValue) }} aria-label='search' tabIndex='-1' to={searchInputValue ? ('?' + searchParamName[language] + '=' + searchInputValue) : ''}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
+                                            <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
+                                                <g id="Ellipse_23" data-name="Ellipse 23" transform="translate(445.619 133.752)" fill="#fff" stroke="#0b0b0b" strokeWidth="2">
+                                                    <circle cx="8" cy="8" r="8" stroke="none" />
+                                                    <circle cx="8" cy="8" r="7" fill="none" />
+                                                </g>
+                                                <line id="Line_81" data-name="Line 81" x2="5.053" y2="5.053" transform="translate(459.066 146.199)" fill="none" stroke="#0b0b0b" strokeWidth="2" />
+                                            </g>
+                                        </svg>
+                                    </Link>
+                                </Input>
                                 <p>{searchNoResultMessage[language].replace('<search>', searchValue)}</p>
                                 <BrownLink to={contactUrls[language]}>{contatcButton[language]}</BrownLink>
                             </NoResults>

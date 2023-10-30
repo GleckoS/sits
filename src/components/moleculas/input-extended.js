@@ -6,6 +6,7 @@ import { searchUrl } from "../../texts/urls"
 
 export const InputExt = ({ language, tabIndex, placeholder }) => {
     const [inputValue, setInputValue] = useState('')
+
     return (
         <Wrapper className="label">
             <span>{placeholder}</span>

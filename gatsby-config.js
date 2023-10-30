@@ -1,3 +1,5 @@
+// const { meterialsAlterTitle } = require("./src/texts");
+
 module.exports = {
   siteMetadata: {
     title: `Sits`,
@@ -105,6 +107,142 @@ module.exports = {
       options: {
         pixelId: "1619411831581925",
       },
-    }
+    },
+    {
+      resolve: `gatsby-plugin-local-search`,
+      options: {
+        name: `products`,
+        engine: `flexsearch`,
+        query: `
+          {
+            allWpProduct {
+              nodes {
+                id
+                slug
+                title
+                language {
+                  code
+                }
+                types {
+                  nodes {
+                    name
+                    slug
+                    ancestors {
+                      nodes {
+                        name
+                      }
+                    }
+                  }
+                }
+                products {
+                  collection {
+                    ... on WpCollection {
+                      id
+                      slug
+                    }
+                  }
+                  productGallery {
+                    productsImages {
+                      featuredProductImage {
+                        altText
+                        localFile {
+                          childImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                      isMainImage
+                    }
+                  }
+                }
+              }
+            }
+          } 
+        `,
+        ref: 'id',
+        index: ['collection', 'filterTypes'],
+        store: ['title', 'slug', 'collection', 'language', 'image', 'types'],
+        normalizer: ({ data }) =>
+          data.allWpProduct.nodes.map((node) => {
+            let mainImage = null
+
+            node.products?.productGallery?.every(el => { 
+              let image = el.productsImages?.find((image) => image.isMainImage)?.featuredProductImage
+
+              if(image){
+                mainImage = image
+                return false
+              }
+            })
+
+            if(!mainImage) mainImage = node.products?.productGallery?.[0]?.productsImages?.[0]?.featuredProductImage || null
+            return {
+              id: node.id,
+              title: node.title,
+              slug: node.slug,
+              collection: node.products?.collection || null,
+              language: node.language.code,
+              image: mainImage,
+              types: node.types.nodes.filter((type) => !type.ancestors).map((type) => type.name),
+              filterTypes: node.types.nodes.map((type) => type.slug),
+            }
+          }),
+      },
+    },
+    {
+      resolve: `gatsby-plugin-local-search`,
+      options: {
+        name: `materials`,
+        engine: `flexsearch`,
+        query: `
+          {
+            allWpMaterials {
+              nodes {
+                id
+                title
+                slug
+                language{
+                  code
+                }
+                materials {
+                  materialColorVariants {
+                    isMainColor
+                    squarePreviewImage {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          } 
+        `,
+        ref: 'id',
+        index: ['title', 'slug', 'type'],
+        store: ['title', 'slug', 'language', 'image'],
+        normalizer: ({ data }) =>
+          data.allWpMaterials.nodes.map((node) => {
+            let mainImage = node.materials?.materialColorVariants?.find((image) => image.isMainColor)?.squarePreviewImage || node.materials?.materialColorVariants?.[0]?.squarePreviewImage || null
+
+            const meterialsAlterTitle = {
+              EN: 'Materials',
+              FR: 'Tissus',
+            }
+            
+            return {
+              id: node.id,
+              title: node.title,
+              slug: node.slug,
+              language: node.language.code,
+              image: mainImage,
+              type: meterialsAlterTitle[node.language.code]
+            }
+          }),
+      },
+    },
   ]
 };

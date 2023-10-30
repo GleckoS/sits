@@ -15,6 +15,7 @@ export default function Header({ data, language }) {
   const [isLeftMenuOpened, setLeftMenuOpened] = useState(false)
   const [isRightMenuOpened, setRightMenuOpened] = useState(false)
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false)
+  const [searchQuery, setSearchQuery] = useState('')
 
   useEffect(() => {
     document.onkeydown = function (evt) {
@@ -48,6 +49,7 @@ export default function Header({ data, language }) {
     setLeftMenuOpened(false)
     setRightMenuOpened(false)
     setMobileMenuOpened(false)
+    setSearchQuery('')
   }
 
   return (
@@ -82,6 +84,8 @@ export default function Header({ data, language }) {
           <MenuContent>
             <motion.div initial={{ opacity: 0 }} animate={isLeftMenuOpened ? { opacity: 1, transition: { duration: .5, delay: .5 } } : { opacity: 0 }}>
               <Search
+                searchQuery={searchQuery}
+                setSearchQuery={setSearchQuery}
                 func={closeAll}
                 tabIndex={isLeftMenuOpened ? '0' : '-1'}
               />
@@ -182,6 +186,8 @@ export default function Header({ data, language }) {
             <MobileMenu initial={{ opacity: 0 }} exit={{ opacity: 0, transition: { duration: .3 } }} animate={{ opacity: 1, transition: { duration: .5 } }} className={isMobileMenuOpened ? 'active' : ''}>
               <Container className='content'>
                 <Search
+                  searchQuery={searchQuery}
+                  setSearchQuery={setSearchQuery}
                   func={closeAll}
                   tabIndex={isMobileMenuOpened ? '0' : '-1'}
                 />

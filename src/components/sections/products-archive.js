@@ -62,14 +62,12 @@ export default function ProductArchive({ language, location, pageContext: { type
                 el.types.nodes.forEach((inEl) => {
                     if (!typesMap[inEl.name]) {
                         typesMap[inEl.name] = true;
-                        debugger
                         if (inEl.collectionTypes.typeArchive.url.includes('?')) {
                             arr.push({ name: inEl.name, val: inEl.name });
                         }
                     }
                 });
             });
-            debugger
         }
         return arr
     })
