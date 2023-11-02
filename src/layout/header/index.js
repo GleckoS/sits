@@ -77,7 +77,7 @@ export default function Header({ data, language }) {
             <CloseButton
               tabIndex={isLeftMenuOpened ? '0' : '-1'}
               as='button'
-              func={() => {setLeftMenuOpened(false); setSearchQuery('')}}
+              func={() => { setLeftMenuOpened(false); setSearchQuery('') }}
               val={false}
             />
           </Flex>
@@ -148,7 +148,7 @@ export default function Header({ data, language }) {
             <CloseButton
               tabIndex={isRightMenuOpened ? '0' : '-1'}
               as='button'
-              func={() => {setLeftMenuOpened(false); setSearchQuery('')}}
+              func={() => { setLeftMenuOpened(false); setSearchQuery('') }}
               val={false}
             />
             <b>{companyTitle[language]}</b>
@@ -227,10 +227,7 @@ export default function Header({ data, language }) {
           )}
         </AnimatePresence>
         <Overlay
-          onClick={() => {
-            setLeftMenuOpened(false)
-            setRightMenuOpened(false)
-          }}
+          onClick={closeAll}
           className={isLeftMenuOpened || isRightMenuOpened ? 'visible' : ''}
         />
       </Container>
