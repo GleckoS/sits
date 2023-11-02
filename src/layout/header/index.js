@@ -77,7 +77,7 @@ export default function Header({ data, language }) {
             <CloseButton
               tabIndex={isLeftMenuOpened ? '0' : '-1'}
               as='button'
-              func={setLeftMenuOpened}
+              func={() => {setLeftMenuOpened(false); setSearchQuery('')}}
               val={false}
             />
           </Flex>
@@ -88,6 +88,7 @@ export default function Header({ data, language }) {
                 setSearchQuery={setSearchQuery}
                 func={closeAll}
                 tabIndex={isLeftMenuOpened ? '0' : '-1'}
+                language={language}
               />
             </motion.div>
             {linksLeft[language].map((el, index) => (
@@ -130,7 +131,7 @@ export default function Header({ data, language }) {
           </Link>
         </motion.div>
         <div className='right'>
-          <LangChanger setMobileMenuOpened={setMobileMenuOpened} data={data} language={language} />
+          <LangChanger closeAll={closeAll} setSearchQuery={setSearchQuery} setMobileMenuOpened={setMobileMenuOpened} data={data} language={language} />
           <Button
             className='control-desctop underline'
             onClick={() => {
@@ -147,7 +148,7 @@ export default function Header({ data, language }) {
             <CloseButton
               tabIndex={isRightMenuOpened ? '0' : '-1'}
               as='button'
-              func={setRightMenuOpened}
+              func={() => {setLeftMenuOpened(false); setSearchQuery('')}}
               val={false}
             />
             <b>{companyTitle[language]}</b>
@@ -177,6 +178,7 @@ export default function Header({ data, language }) {
             isMobileMenuOpened ? 'open control-mobile' : 'control-mobile'
           }
           onClick={() => {
+            setSearchQuery('')
             setMobileMenuOpened(!isMobileMenuOpened)
           }}>
           <span />
@@ -190,6 +192,7 @@ export default function Header({ data, language }) {
                   setSearchQuery={setSearchQuery}
                   func={closeAll}
                   tabIndex={isMobileMenuOpened ? '0' : '-1'}
+                  language={language}
                 />
                 <div className='wrap'>
                   {linksLeft[language].map((el) => (
@@ -198,6 +201,7 @@ export default function Header({ data, language }) {
                         tabIndex={isMobileMenuOpened ? '0' : '-1'}
                         el={el}
                         func={(v) => {
+                          setSearchQuery('')
                           setMobileMenuOpened(v)
                         }}
                       />
@@ -211,6 +215,7 @@ export default function Header({ data, language }) {
                         tabIndex={isMobileMenuOpened ? '0' : '-1'}
                         el={el}
                         func={(v) => {
+                          setSearchQuery('')
                           setMobileMenuOpened(v)
                         }}
                       />

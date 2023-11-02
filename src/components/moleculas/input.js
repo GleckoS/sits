@@ -22,6 +22,7 @@ const query = graphql`
 `;
 
 export const Input = ({ searchQuery, setSearchQuery, language, func, tabIndex, placeholder }) => {
+    debugger
     const [isActive, setIsActive] = useState(false)
     const { localSearchProducts: store, localSearchMaterials: storeMaterials } = useStaticQuery(query);
 

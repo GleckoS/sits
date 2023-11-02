@@ -1,10 +1,10 @@
 import React, { useState } from "react"
 import styled from "styled-components"
-import { langSwitcherNames, selectLanguage } from "../../texts"
+import { langSwitcherNames, } from "../../texts"
 import { Link } from "gatsby"
 import { icons } from "../../texts/icons"
 
-export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 }) => {
+export const LangChanger = ({ closeAll, setSearchQuery, setMobileMenuOpened, data, language, tabIndex = 0 }) => {
     const [isOpened, setIsOpened] = useState(false)
 
     if (!data) return null
@@ -17,7 +17,7 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
 
     return (
         <>
-            <Button onClick={() => { setIsOpened(!isOpened) }} onBlur={() => { setIsOpened(false) }} tabIndex={tabIndex}>
+            <Button onClick={() => { setIsOpened(!isOpened); closeAll() }} onBlur={() => { setIsOpened(false); closeAll() }} tabIndex={tabIndex}>
                 <span>{langSwitcherNames[language]}</span>
                 <span className="svg" dangerouslySetInnerHTML={{ __html: icons[language] }} />
                 <LanguageOptions onFocus={() => { setIsOpened(true) }} className={isOpened ? 'active' : ''}>
@@ -53,6 +53,7 @@ export const LangChanger = ({ setMobileMenuOpened, data, language, tabIndex = 0 
                     <div onClick={() => {
                         setTimeout(() => {
                             setMobileMenuOpened(false)
+                            setSearchQuery('')
                         }, 200)
                     }
                     } tabIndex={isOpened ? '0' : '-1'} to={el.uri}>

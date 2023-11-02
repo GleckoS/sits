@@ -3,19 +3,14 @@ import styled from "styled-components"
 import { Input } from "./input"
 import { InputExt } from './input-extended'
 import { searchPlaceholder as searchTitle } from "../../texts"
-import { myContext } from "../../hooks/provider"
 
-export const Search = ({ searchQuery, setSearchQuery, func = () => { }, tabIndex = 0, type }) => {
+export const Search = ({ language, searchQuery, setSearchQuery, func = () => { }, tabIndex = 0, type }) => {
     return (
-        <myContext.Consumer>
-            {context => (
-                <Wrapper className={type === 'extended' ? 'extended' : ''}>
-                    {type === 'extended'
-                        ? <InputExt language={context.language} tabIndex={tabIndex} placeholder={searchTitle[context.language]} />
-                        : <Input searchQuery={searchQuery} setSearchQuery={setSearchQuery} language={context.language} func={func} tabIndex={tabIndex} placeholder={searchTitle[context.language]} />}
-                </Wrapper>
-            )}
-        </myContext.Consumer>
+        <Wrapper className={type === 'extended' ? 'extended' : ''}>
+            {type === 'extended'
+                ? <InputExt language={language} tabIndex={tabIndex} placeholder={searchTitle[language]} />
+                : <Input searchQuery={searchQuery} setSearchQuery={setSearchQuery} language={language} func={func} tabIndex={tabIndex} placeholder={searchTitle[language]} />}
+        </Wrapper>
     )
 }
 
