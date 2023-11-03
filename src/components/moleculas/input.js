@@ -83,14 +83,14 @@ const Wrapper = styled.label`
         height: 20px;
         width: 20px;
         border: none;
-        margin-right: 5px;
+        margin-right: 12px;
         background-color: transparent;
     }
 
     .placeholder{
         width: 20px;
         height: 20px;
-        margin-right: 5px;
+        margin-right: 12px;
     }
 
     span{
@@ -158,4 +158,14 @@ const Overlay = styled(motion.div)`
     position: fixed;
     z-index: 1;
     background-color: #ffffffaa;
+
+    max-width: 400px;
+
+    /* display: none; */
+
+    @media (max-width: 840px) {
+        display: block;
+        max-width: unset;
+    }
+
 `
