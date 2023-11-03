@@ -22,7 +22,6 @@ const query = graphql`
 `;
 
 export const Input = ({ searchQuery, setSearchQuery, language, func, tabIndex, placeholder }) => {
-    debugger
     const [isActive, setIsActive] = useState(false)
     const { localSearchProducts: store, localSearchMaterials: storeMaterials } = useStaticQuery(query);
 
@@ -43,6 +42,15 @@ export const Input = ({ searchQuery, setSearchQuery, language, func, tabIndex, p
         <Wrapper onFocus={() => { setIsActive(true) }} onBlur={() => { setIsActive(!!searchQuery) }} >
             <span className={isActive ? 'active' : ''}>{placeholder}</span>
             <input value={searchQuery} onKeyDown={(e) => { enterListener(e, searchQuery) }} tabIndex={tabIndex} onChange={(e) => { setSearchQuery(e.target.value) }} />
+            <AnimatePresence mode="popLayout">
+                {searchQuery ? (
+                    <motion.button initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key='button' onClick={() => { setSearchQuery('') }}>
+                        <svg width="21" height="20" viewBox="0 0 21 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.1232 4.97955L10.1437 9.95908M10.1437 9.95908L5.16406 14.9387M10.1437 9.95908L15.1232 14.9386M10.1437 9.95908L5.16406 4.97949" stroke="#767676" strokeWidth="0.933674" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                    </motion.button>
+                ) : <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} key='placeholder' className="placeholder" />}
+            </AnimatePresence>
             <Link onClick={close} tabIndex={tabIndex} aria-label={'search: ' + searchQuery} to={searchQuery ? (searchUrl[language] + '?' + searchParamName[language] + '=' + searchQuery) : searchUrl[language]}>
                 <svg xmlns="http://www.w3.org/2000/svg" width="19.207" height="18.207" viewBox="0 0 19.207 18.207">
                     <g id="Group_149" data-name="Group 149" transform="translate(-445.619 -133.752)">
@@ -59,12 +67,31 @@ export const Input = ({ searchQuery, setSearchQuery, language, func, tabIndex, p
                     <Result close={close} language={language} storeMaterials={storeMaterials} store={store} searchQuery={searchQuery} />
                 )}
             </AnimatePresence>
+            <AnimatePresence mode="wait">
+                {(storeMaterials && store && searchQuery.length > 2) && (
+                    <Overlay initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} />
+                )}
+            </AnimatePresence>
         </Wrapper>
     )
 }
 
 const Wrapper = styled.label`
     position: relative;
+
+    button{
+        height: 20px;
+        width: 20px;
+        border: none;
+        margin-right: 5px;
+        background-color: transparent;
+    }
+
+    .placeholder{
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+    }
 
     span{
         position: absolute;
@@ -112,6 +139,7 @@ const Wrapper = styled.label`
 
     @media (max-width: 840px) {
         padding-bottom: 6px;
+        margin-top: 20px;
         input{
             padding-bottom: 0;
         }
@@ -122,6 +150,12 @@ const Wrapper = styled.label`
         a{
             margin-bottom: -2px !important;
         }
-        max-width: 320px;
     }
+`
+
+const Overlay = styled(motion.div)`
+    inset: 145px 0 0 0;
+    position: fixed;
+    z-index: 1;
+    background-color: #ffffffaa;
 `
