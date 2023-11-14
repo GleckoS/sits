@@ -11,9 +11,11 @@ import { phone, email, name, country, subject, message, errorMessage, title, sub
 export const Form = ({ language, privacyPolicyText, inputAnimation, titleAnimation, formAnimation }) => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm()
     const [isSended, setIsSended] = useState(false)
+    const [isSending, setIsSending] = useState(false)
 
     const onSubmit = data => {
         setIsSended(false)
+        setIsSending(true)
 
         let url = 'https://sits.headlesshub.com/wp-json/contact-form-7/v1/contact-forms/34241/feedback'
 
@@ -30,8 +32,10 @@ export const Form = ({ language, privacyPolicyText, inputAnimation, titleAnimati
             .then((res) => {
                 if (res.data.invalid_fields.length > 0) {
                     toast('There was some problem with contact form, try later')
+                    setIsSending(false)
                 } else {
                     setIsSended(true)
+                    setIsSending(false)
                     reset()
                 }
             })
@@ -57,7 +61,7 @@ export const Form = ({ language, privacyPolicyText, inputAnimation, titleAnimati
                         </motion.span>}
                     </AnimatePresence>
                 </Checkbox>
-                <Submit variants={inputAnimation}>{submit[language]}</Submit>
+                <Submit disabled={isSending} variants={inputAnimation}>{submit[language]}</Submit>
                 <AnimatePresence mode="wait">
                     {isSended && (
                         <Success initial={{ opacity: 0 }} animate={{ opacity: 1, transition: { duration: .5 } }} exit={{ opacity: 0 }} className={isSended ? 'sended' : ""}>
