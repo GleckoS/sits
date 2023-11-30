@@ -148,7 +148,7 @@ export default function Header({ data, language }) {
             <CloseButton
               tabIndex={isRightMenuOpened ? '0' : '-1'}
               as='button'
-              func={() => { setLeftMenuOpened(false); setSearchQuery('') }}
+              func={() => { setRightMenuOpened(false); setSearchQuery('') }}
               val={false}
             />
             <b>{companyTitle[language]}</b>
