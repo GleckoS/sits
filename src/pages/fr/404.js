@@ -14,7 +14,7 @@ const textAnimation = textTransition(2)
 const buttonAnimation = linkTransition(3)
 const linkAnimation = linkTransition(4)
 
-const NotFoundPage = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } } } }) => {
+const NotFoundPageFr = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } } } }) => {
   return (
     <Wrapper>
       <InView>
@@ -38,7 +38,7 @@ const NotFoundPage = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageT
   )
 }
 
-export default NotFoundPage
+export default NotFoundPageFr
 
 const Section = styled.section`
   background-color: var(--light-background);
@@ -100,7 +100,7 @@ const Buttons = styled.div`
 `
 
 export const query = graphql`
-    query error {
+    query errorFr {
         wpPage(id: {eq: "cG9zdDozOTc2MQ=="}){
           id
           errorPage {
