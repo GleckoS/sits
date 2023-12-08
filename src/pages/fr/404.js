@@ -1,4 +1,4 @@
-import { graphql, Link } from "gatsby"
+import { graphql, Link, useStaticQuery } from "gatsby"
 import * as React from "react"
 import styled from "styled-components"
 import { Container } from "../../components/atoms/container"
@@ -14,7 +14,31 @@ const textAnimation = textTransition(2)
 const buttonAnimation = linkTransition(3)
 const linkAnimation = linkTransition(4)
 
-const NotFoundPageFr = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } } } }) => {
+const NotFoundPageFr = () => {
+
+  const { wpPage: { errorPage: { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } } } = useStaticQuery(
+    graphql`
+        query errorFr {
+          wpPage(id: {eq: "cG9zdDozOTc2MQ=="}){
+            id
+            errorPage {
+              pageTitle
+              textUnderPageTitle
+              coloredLink {
+                target
+                title
+                url
+              }
+              underlinedLink {
+                target
+                title
+                url
+              }
+            }
+          }
+      }
+    `
+  )
   return (
     <Wrapper>
       <InView>
@@ -97,26 +121,4 @@ const Buttons = styled.div`
   a{
     margin-top: 0 !important;
   }
-`
-
-export const query = graphql`
-    query errorFr {
-        wpPage(id: {eq: "cG9zdDozOTc2MQ=="}){
-          id
-          errorPage {
-            pageTitle
-            textUnderPageTitle
-            coloredLink {
-              target
-              title
-              url
-            }
-            underlinedLink {
-              target
-              title
-              url
-            }
-          }
-        }
-    }
 `
