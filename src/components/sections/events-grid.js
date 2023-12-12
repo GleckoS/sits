@@ -22,7 +22,7 @@ export default function EventsGrid({ events, language }) {
                 <GatsbyImage className="image" image={el.event.previewImage.localFile.childImageSharp.gatsbyImageData} alt={el.event.previewImage.altText} />
                 <h3>{el.title}</h3>
                 <p className="date">{el.event.dates}</p>
-                <p className="place">{el.event.place}</p>
+                <div className="place" dangerouslySetInnerHTML={{ __html: el.event.place }} />
               </div>
             ))}
           </Grid>
@@ -83,12 +83,14 @@ const Grid = styled(motion.div)`
     }
 
     .place{
-      color: #000;
-      font-size: 16px;
-      font-style: normal;
-      font-weight: 400;
-      line-height:  150%;
       margin-top: 12px;
+      *{
+        color: #000;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height:  150%;
+      }
     }
   }
 `
