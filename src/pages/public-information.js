@@ -33,7 +33,9 @@ export default function WhereToBuyPage() {
         Porozumienie w sprawie uzgodnienia planu połączenia spółek SITS sp. z o.o., SITS Industry sp. z o.o., Justus sp. z o.o. i Aglon Bis sp. Z o.o. wraz z planem połączenia tych spółek z dnia 26.09.2023 r.
         </a>
         <br/><br/>
-        <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Strategia_Sits-sig.pdf" target="__blank" rel="noopener noreferer">Informacja o realizacji strategii podatkowej</a>
+        <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/12/INFORMACJA-O-REALIZACJI-STRATEGII-PODATKOWEJ_2022-Sits-003-sig.pdf" target="__blank" rel="noopener noreferer">Informacja o realizacji strategii podatkowej 2022</a>
+        <br/><br/>
+        <a class="underline" href="https://sits.headlesshub.com/wp-content/uploads/2023/09/Strategia_Sits-sig.pdf" target="__blank" rel="noopener noreferer">Informacja o realizacji strategii podatkowej 2021</a>
         `}
       />
       <Map language={'EN'} />
