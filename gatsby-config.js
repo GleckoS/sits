@@ -115,7 +115,7 @@ module.exports = {
         engine: `flexsearch`,
         query: `
           {
-            allWpProduct {
+            allWpProduct(filter: {products: {isDiscontinued: {in: [false, null]}}})  {
               nodes {
                 id
                 slug
@@ -197,7 +197,7 @@ module.exports = {
         engine: `flexsearch`,
         query: `
           {
-            allWpMaterials {
+            allWpMaterials(filter: {materials: {generalMaterialInformationCopy: {isDiscontinued: {in: [false, null]}}}}) {
               nodes {
                 id
                 title
