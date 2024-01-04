@@ -177,6 +177,10 @@ export default function ProductArchive({ language, location, pageContext: { type
         }
 
         if (locSort === sortBy[language][1].val) {
+            arr.sort((a, b) => a.products.collection.title.localeCompare(b.products.collection.title))
+        }
+
+        if (locSort === sortBy[language][2].val) {
             let filtrArr = []
             arr.forEach(el => {
                 if (el.products.isNewArrival) {
@@ -186,10 +190,6 @@ export default function ProductArchive({ language, location, pageContext: { type
                 }
             })
             arr = filtrArr
-        }
-
-        if (locSort === sortBy[language][2].val) {
-            arr.sort((a, b) => a.products.collection.title.localeCompare(b.products.collection.title))
         }
         return arr
     }, [defaultPosts, sort, type, cover, upholsterys, search])
