@@ -24,7 +24,7 @@ export default function CataloguesPage({ data, pageContext, location }) {
           context.setLanguage(pageContext.language)
         }}
       </myContext.Consumer>
-      <CataloguesGrid data={data.wpPage} />
+      <CataloguesGrid data={data.wpPage} language={pageContext.language} />
       <Map language={pageContext.language} />
     </Wrapper>
   )
@@ -57,6 +57,7 @@ export const query = graphql`
           title
             catalogues {
               catalogues {
+                linkToFileView
                 catalogueTitle
                 catalogueFile {
                   localFile {

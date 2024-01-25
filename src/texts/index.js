@@ -433,3 +433,13 @@ export const downloadFairFolder = {
     EN: 'Download fair folder',
     FR: 'Télécharger le dossier de la foire'
 }
+
+export const download = {
+    EN: 'Download',
+    FR: 'Télécharger'
+}
+
+export const view = {
+    EN: 'View',
+    FR: 'Voir'
+}
