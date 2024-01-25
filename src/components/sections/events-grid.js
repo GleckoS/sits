@@ -109,6 +109,7 @@ const Grid = styled(motion.div)`
 
     .place {
       margin-top: 12px;
+      margin-bottom: 24px;
       * {
         color: #000;
         font-size: 16px;
