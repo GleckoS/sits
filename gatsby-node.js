@@ -1082,7 +1082,11 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   pages.forEach(({ id, slug, language }) => {
     createPage({
       path: `${
-        language.code !== "EN" ? `/${language.code.toLowerCase()}` : ""
+        language?.code
+          ? language.code !== "EN"
+            ? `/${language.code.toLowerCase()}`
+            : ""
+          : ""
       }/${slug}/`,
       component: resolve("src/templates/inform-pages.jsx"),
       context: {
