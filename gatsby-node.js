@@ -1061,7 +1061,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
   const {
     data: {
-      allWpMaterials: { pages },
+      allWpInformPage: { pages },
     },
   } = await graphql(`
     query {
