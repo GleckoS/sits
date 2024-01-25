@@ -102,6 +102,13 @@ export const query = graphql`
           endDate
           place
           startDate
+          fairFolder{
+            localFile {
+              publicURL
+              prettySize
+            }
+            mediaItemUrl
+          }
           previewImage {
             altText
             localFile {

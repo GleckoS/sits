@@ -428,3 +428,8 @@ export const seeMore = {
     EN: 'See more',
     FR: 'Voir plus'
 }
+
+export const downloadFairFolder = {
+    EN: 'Download fair folder',
+    FR: 'Télécharger le dossier de la foire'
+}
