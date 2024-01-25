@@ -1079,7 +1079,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
   `);
 
-  pages.forEach(({ id, slug, slug, language }) => {
+  pages.forEach(({ id, slug, language }) => {
     createPage({
       path: `${
         language.code !== "EN" ? `/${language.code.toLowerCase()}` : ""
@@ -1088,7 +1088,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       context: {
         id,
         slug,
-        uri,
+        uri: `${
+          language.code !== "EN" ? `/${language.code.toLowerCase()}` : ""
+        }/${slug}/`,
         language: language?.code ? language.code : "EN",
       },
     });
