@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 export const TooltipPopup = ({ animation, title, data, onlyImage }) => (
     <Wrapper variants={animation}>
-        <span className="title">{title}</span>
+        <span className="title">{el.taxonomy.comfortName || title}</span>
         <Grid>
             {data.nodes.sort((a, b) => a.taxonomy.orderIndex - b.taxonomy.orderIndex).map((el, index) => (
                 <Item key={el.name + index} className={onlyImage ? 'noimage' : ''}>

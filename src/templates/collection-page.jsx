@@ -393,6 +393,7 @@ export const query = graphql`
                 description
                 taxonomy {
                   orderIndex
+                  comfortName
                   comfortSvg{
                     altText
                     localFile{
