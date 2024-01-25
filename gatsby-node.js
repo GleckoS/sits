@@ -1065,7 +1065,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     },
   } = await graphql(`
     query {
-      allWpInformPages {
+      allWpInformPage {
         pages: nodes {
           id
           slug
