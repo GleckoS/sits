@@ -76,10 +76,10 @@ export default function CataloguesGrid({
                       <span>({el.catalogueFile?.localFile?.prettySize})</span>
                     </motion.a>
                   </div>
-                  {linkToFileView && (
+                  {el.linkToFileView && (
                     <div className="link-wrap">
                       <motion.a
-                        href={linkToFileView}
+                        href={el.linkToFileView}
                         target="_blank"
                         rel="noreferrer noopener"
                         variants={linkAnimation}
