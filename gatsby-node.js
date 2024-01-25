@@ -1089,7 +1089,11 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         id,
         slug,
         uri: `${
-          language.code !== "EN" ? `/${language.code.toLowerCase()}` : ""
+          language?.code
+            ? language.code !== "EN"
+              ? `/${language.code.toLowerCase()}`
+              : ""
+            : ""
         }/${slug}/`,
         language: language?.code ? language.code : "EN",
       },
