@@ -1,946 +1,1110 @@
-const fs = require('fs')
-const { resolve } = require('path');
-const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args))
+const fs = require("fs");
+const { resolve } = require("path");
+const fetch = (...args) =>
+  import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
 
 const productSearchTypes = {
-    sofas: {
-        EN: 'Sofas',
-        FR: 'Canapés'
-    },
-    armchairs: {
-        EN: 'Armchairs',
-        FR: 'Fauteuils'
-    },
-    coffeTables: {
-        EN: 'Coffee tables',
-        FR: 'Tables basses'
-    },
-    dinningChairs: {
-        EN: 'Dining chairs',
-        FR: 'Chaises de salle à manger'
-    },
-    footstools: {
-        EN: 'Footstools',
-        FR: 'Repose-pieds'
-    },
-    outdoorFurniture: {
-        EN: 'Outdoor furniture',
-        FR: 'Mobilier d’extérieur'
-    },
-}
+  sofas: {
+    EN: "Sofas",
+    FR: "Canapés",
+  },
+  armchairs: {
+    EN: "Armchairs",
+    FR: "Fauteuils",
+  },
+  coffeTables: {
+    EN: "Coffee tables",
+    FR: "Tables basses",
+  },
+  dinningChairs: {
+    EN: "Dining chairs",
+    FR: "Chaises de salle à manger",
+  },
+  footstools: {
+    EN: "Footstools",
+    FR: "Repose-pieds",
+  },
+  outdoorFurniture: {
+    EN: "Outdoor furniture",
+    FR: "Mobilier d’extérieur",
+  },
+};
 
 const csvParser = (data) => {
-    let lines = data.split("\r\n");
+  let lines = data.split("\r\n");
 
-    let result = [];
+  let result = [];
 
-    let headers = lines[0].split(",");
+  let headers = lines[0].split(",");
 
-    for (let i = 1; i < lines.length; i++) {
-        let obj = {};
-        let currentline = lines[i].split(",");
-        for (let j = 0; j < headers.length; j++) {
-            obj[headers[j]] = currentline[j];
-        }
-
-        result.push(obj)
-
+  for (let i = 1; i < lines.length; i++) {
+    let obj = {};
+    let currentline = lines[i].split(",");
+    for (let j = 0; j < headers.length; j++) {
+      obj[headers[j]] = currentline[j];
     }
 
-    return result; //JSON
+    result.push(obj);
+  }
+
+  return result; //JSON
 };
 
 exports.onPostBuild = async ({ graphql }) => {
-
   // Create redirects
-  const { data: { wpPage: { redirects: { csvRedirectsFile } } } } = await graphql(`
-  query{
-    wpPage(id: {eq: "cG9zdDozMDkxNA=="}) {
-      redirects {
-        csvRedirectsFile {
-          localFile {
-            publicURL
+  const {
+    data: {
+      wpPage: {
+        redirects: { csvRedirectsFile },
+      },
+    },
+  } = await graphql(`
+    query {
+      wpPage(id: { eq: "cG9zdDozMDkxNA==" }) {
+        redirects {
+          csvRedirectsFile {
+            localFile {
+              publicURL
+            }
           }
         }
       }
     }
-  }
-  `)
+  `);
 
   if (csvRedirectsFile?.localFile.publicURL) {
-    const result = await fetch(`https://sits.eu${csvRedirectsFile.localFile.publicURL}`)
-    const resultData = await result.text()
+    const result = await fetch(
+      `https://sits.eu${csvRedirectsFile.localFile.publicURL}`
+    );
+    const resultData = await result.text();
 
-    const redirectConfig = csvParser(resultData)?.map(el => (
-      `[[redirects]]
+    const redirectConfig = csvParser(resultData)?.map(
+      (el) =>
+        `[[redirects]]
         from = "${el.From}"
         to = "${el.To}"
         status = ${el.Status}
         force = ${el.Force || false}`
-    ))
+    );
 
-    fs.writeFileSync('netlify.toml', redirectConfig.join('\n'));
+    fs.writeFileSync("netlify.toml", redirectConfig.join("\n"));
   }
 };
 
-exports.createPages = async ({
-    graphql,
-    actions: { createPage },
-}) => {
+exports.createPages = async ({ graphql, actions: { createPage } }) => {
+  // COLLECTION
 
-    // COLLECTION
-
-    const { data: { allWpProduct, allWpCollection: { collections } } } = await graphql(`
+  const {
+    data: {
+      allWpProduct,
+      allWpCollection: { collections },
+    },
+  } = await graphql(`
     query {
-        allWpCollection {
-            collections : nodes {
-                id
-                slug
-                uri
-                language {
-                  code
-                }
-            }
+      allWpCollection {
+        collections: nodes {
+          id
+          slug
+          uri
+          language {
+            code
+          }
         }
-        allWpProduct{
-          nodes{
-            types {
-              nodes {
-                name
+      }
+      allWpProduct {
+        nodes {
+          types {
+            nodes {
+              name
+            }
+          }
+          products {
+            collection {
+              ... on WpCollection {
+                id
               }
             }
-          products {
-              collection {
-                ... on WpCollection {
-                  id
-                }
-              }
-              productGallery {
-                productsImages {
-                  isMainImage
-                  featuredProductImage {
-                    altText
-                    title
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
+            productGallery {
+              productsImages {
+                isMainImage
+                featuredProductImage {
+                  altText
+                  title
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
                     }
                   }
                 }
-                popupNames {
-                  material
-                  tableTopMaterial
-                  materialOfTheLegs
-                  accessories
-                  armrest
-                  comfort
-                  fabric
-                  cover
-                  leather
-                  legs
-                  model
-                }
+              }
+              popupNames {
+                material
+                tableTopMaterial
+                materialOfTheLegs
+                accessories
+                armrest
+                comfort
+                fabric
+                cover
+                leather
+                legs
+                model
               }
             }
           }
+        }
       }
-    } 
+    }
   `);
 
-    collections.forEach(({ id, slug, uri, language }) => {
+  collections.forEach(({ id, slug, uri, language }) => {
+    const products = allWpProduct.nodes.filter(
+      (el) => el.products?.collection?.id === id
+    );
 
-        const products = allWpProduct.nodes.filter(el => el.products?.collection?.id === id)
-    
-
-        createPage({
-            path: uri,
-            component: resolve('src/templates/collection-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN',
-                products: products
-            },
-        });
+    createPage({
+      path: uri,
+      component: resolve("src/templates/collection-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+        products: products,
+      },
     });
+  });
 
-    // MATERIAL
+  // MATERIAL
 
-    const { data: { allWpMaterials: { materials } } } = await graphql(`
+  const {
+    data: {
+      allWpMaterials: { materials },
+    },
+  } = await graphql(`
     query {
-        allWpMaterials {
-            materials : nodes {
-                id
-                slug
-                uri
-                language {
-                  code
-                }
-            }
+      allWpMaterials {
+        materials: nodes {
+          id
+          slug
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    materials.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/material-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
+  materials.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/material-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
     });
+  });
 
-    // MATERIALS
+  // MATERIALS
 
-    const { data: { allWpPage: { nodes: materialArchives } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: materialArchives },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Materials" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Materials" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    materialArchives.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/materials-archive.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  materialArchives.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/materials-archive.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // FOOTSTOOLS
+  // FOOTSTOOLS
 
-    const { data: { allWpPage: { nodes: footstoolsArchives } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: footstoolsArchives },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Footstools" } } }) {
+      allWpPage(filter: { template: { templateName: { eq: "Footstools" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          title
+          types {
             nodes {
-                slug
-                id
-                uri
-                title
-                types {
-                  nodes {
-                    name
-                  }
-                }
-                language {
-                  code
-                }
+              name
             }
+          }
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    footstoolsArchives.forEach(({ id, slug, uri, title, types, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/products-archive.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                title,
-                type: 'footstools',
-                productType: types.nodes[0]?.name,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  footstoolsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/products-archive.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        title,
+        type: "footstools",
+        productType: types.nodes[0]?.name,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // SOFAS
+  // SOFAS
 
-    const { data: { allWpPage: { nodes: sofasArchives } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: sofasArchives },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Sofas" } } }) {
+      allWpPage(filter: { template: { templateName: { eq: "Sofas" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          title
+          types {
             nodes {
-                slug
-                id
-                uri
-                title
-                types {
-                  nodes {
-                    name
-                  }
-                }
-                language {
-                  code
-                }
+              name
             }
+          }
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    sofasArchives.forEach(({ id, slug, uri, title, types, language }) => {
+  sofasArchives.forEach(({ id, slug, uri, title, types, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/products-archive.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        title,
+        type: "sofas",
+        productType: types.nodes[0]?.name,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-        createPage({
-            path: uri,
-            component: resolve('src/templates/products-archive.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                title,
-                type: 'sofas',
-                productType: types.nodes[0]?.name,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  // ARMCHAIRS
 
-    // ARMCHAIRS
-
-    const { data: { allWpPage: { nodes: armchairsArchives } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: armchairsArchives },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Armchairs" } } }) {
+      allWpPage(filter: { template: { templateName: { eq: "Armchairs" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          title
+          types {
             nodes {
-                slug
-                id
-                uri
-                title
-                types {
-                  nodes {
-                    name
-                  }
-                }
-                language {
-                  code
-                }
+              name
             }
+          }
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    armchairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+  armchairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/products-archive.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        title,
+        type: "armchairs",
+        productType: types.nodes[0]?.name,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-        createPage({
-            path: uri,
-            component: resolve('src/templates/products-archive.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                title,
-                type: 'armchairs',
-                productType: types.nodes[0]?.name,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  // COFFEE TABLES
 
-    // COFFEE TABLES
-
-    const { data: { allWpPage: { nodes: tablesArchives } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: tablesArchives },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Coffee Tables" } } }) {
+      allWpPage(
+        filter: { template: { templateName: { eq: "Coffee Tables" } } }
+      ) {
+        nodes {
+          slug
+          id
+          uri
+          title
+          types {
             nodes {
-                slug
-                id
-                uri
-                title
-                types {
-                  nodes {
-                    name
-                  }
-                }
-                language {
-                  code
-                }
+              name
             }
+          }
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    tablesArchives.forEach(({ id, slug, uri, title, types, language }) => {
+  tablesArchives.forEach(({ id, slug, uri, title, types, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/products-archive.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        title,
+        type: "coffee tables",
+        productType: types.nodes[0]?.name,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-        createPage({
-            path: uri,
-            component: resolve('src/templates/products-archive.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                title,
-                type: 'coffee tables',
-                productType: types.nodes[0]?.name,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  // Dining chairs
 
-    // Dining chairs
-
-    const { data: { allWpPage: { nodes: chairsArchives } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: chairsArchives },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Dining Chairs" } } }) {
+      allWpPage(
+        filter: { template: { templateName: { eq: "Dining Chairs" } } }
+      ) {
+        nodes {
+          slug
+          id
+          uri
+          title
+          types {
             nodes {
-                slug
-                id
-                uri
-                title
-                types {
-                  nodes {
-                    name
-                  }
-                }
-                language {
-                  code
-                }
+              name
             }
+          }
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    chairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+  chairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/products-archive.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        title,
+        type: "dining chairs",
+        productType: types.nodes[0]?.name,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-        createPage({
-            path: uri,
-            component: resolve('src/templates/products-archive.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                title,
-                type: 'dining chairs',
-                productType: types.nodes[0]?.name,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  // Outdoor furnitures
 
-    // Outdoor furnitures
-
-    const { data: { allWpPage: { nodes: outdoorArchives } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: outdoorArchives },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Outdoor Furniture" } } }) {
+      allWpPage(
+        filter: { template: { templateName: { eq: "Outdoor Furniture" } } }
+      ) {
+        nodes {
+          slug
+          id
+          uri
+          title
+          types {
             nodes {
-                slug
-                id
-                uri
-                title
-                types {
-                  nodes {
-                    name
-                  }
-                }
-                language {
-                  code
-                }
+              name
             }
+          }
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    outdoorArchives.forEach(({ id, slug, uri, title, types, language }) => {
+  outdoorArchives.forEach(({ id, slug, uri, title, types, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/products-archive.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        title,
+        type: "outdoor furniture",
+        productType: types.nodes[0]?.name,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-        createPage({
-            path: uri,
-            component: resolve('src/templates/products-archive.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                title,
-                type: 'outdoor furniture',
-                productType: types.nodes[0]?.name,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  // Homepage
 
-    // Homepage
-
-    const { data: { allWpPage: { nodes: Homepage } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Homepage },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Homepage" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Homepage" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Homepage.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/homepage.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Homepage.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/homepage.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // PRODUCTS
+  // PRODUCTS
 
-    const { data: { allWpPage: { nodes: productsArchives } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: productsArchives },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Products" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
+  productsArchives.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/all-products-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+        homepageId: Homepage.find((el) => el.language?.code === language?.code)
+          ?.id,
+      },
+    });
+  });
 
-    productsArchives.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/all-products-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN',
-                homepageId: Homepage.find(el => el.language?.code === language?.code)?.id,
-            },
-        });
-    })
+  // Best Sellers
 
-    // Best Sellers
-
-    const { data: { allWpPage: { nodes: Bestsellers } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Bestsellers },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Bestsellers" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Bestsellers" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Bestsellers.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/best-sellers.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Bestsellers.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/best-sellers.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // Search
+  // Search
 
-    const { data: { allWpPage: { nodes: Search } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Search },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Search" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Search" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Search.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/search-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN',
-                sofas: productSearchTypes.sofas[language?.code ? language.code : 'EN'],
-                armchairs: productSearchTypes.armchairs[language?.code ? language.code : 'EN'],
-                footstools: productSearchTypes.footstools[language?.code ? language.code : 'EN'],
-                dinningChairs: productSearchTypes.dinningChairs[language?.code ? language.code : 'EN'],
-                coffeTables: productSearchTypes.coffeTables[language?.code ? language.code : 'EN'],
-                outdoorFurniture: productSearchTypes.outdoorFurniture[language?.code ? language.code : 'EN'],
-            },
-        });
-    })
+  Search.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/search-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+        sofas: productSearchTypes.sofas[language?.code ? language.code : "EN"],
+        armchairs:
+          productSearchTypes.armchairs[language?.code ? language.code : "EN"],
+        footstools:
+          productSearchTypes.footstools[language?.code ? language.code : "EN"],
+        dinningChairs:
+          productSearchTypes.dinningChairs[
+            language?.code ? language.code : "EN"
+          ],
+        coffeTables:
+          productSearchTypes.coffeTables[language?.code ? language.code : "EN"],
+        outdoorFurniture:
+          productSearchTypes.outdoorFurniture[
+            language?.code ? language.code : "EN"
+          ],
+      },
+    });
+  });
 
-    // Favourites
+  // Favourites
 
-    const { data: { allWpPage: { nodes: Favourites } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Favourites },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Favourites" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Favourites" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Favourites.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/favourites-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN',
-                sofas: productSearchTypes.sofas[language?.code ? language.code : 'EN'],
-                armchairs: productSearchTypes.armchairs[language?.code ? language.code : 'EN'],
-                footstools: productSearchTypes.footstools[language?.code ? language.code : 'EN'],
-                dinningChairs: productSearchTypes.dinningChairs[language?.code ? language.code : 'EN'],
-                coffeTables: productSearchTypes.coffeTables[language?.code ? language.code : 'EN'],
-                outdoorFurniture: productSearchTypes.outdoorFurniture[language?.code ? language.code : 'EN'],
-            },
-        });
-    })
+  Favourites.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/favourites-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+        sofas: productSearchTypes.sofas[language?.code ? language.code : "EN"],
+        armchairs:
+          productSearchTypes.armchairs[language?.code ? language.code : "EN"],
+        footstools:
+          productSearchTypes.footstools[language?.code ? language.code : "EN"],
+        dinningChairs:
+          productSearchTypes.dinningChairs[
+            language?.code ? language.code : "EN"
+          ],
+        coffeTables:
+          productSearchTypes.coffeTables[language?.code ? language.code : "EN"],
+        outdoorFurniture:
+          productSearchTypes.outdoorFurniture[
+            language?.code ? language.code : "EN"
+          ],
+      },
+    });
+  });
 
-    // Where to buy
+  // Where to buy
 
-    const { data: { allWpPage: { nodes: Where } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Where },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Where To Buy" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(
+        filter: { template: { templateName: { eq: "Where To Buy" } } }
+      ) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Where.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/where-to-buy-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Where.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/where-to-buy-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // Furniture Care
+  // Furniture Care
 
-    const { data: { allWpPage: { nodes: Furniture } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Furniture },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Furniture Care" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(
+        filter: { template: { templateName: { eq: "Furniture Care" } } }
+      ) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Furniture.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/furniture-care-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Furniture.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/furniture-care-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // Catalogue
+  // Catalogue
 
-    const { data: { allWpPage: { nodes: Catalogue } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Catalogue },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Catalogue" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Catalogue" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Catalogue.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/catalogues-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Catalogue.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/catalogues-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // Contact
+  // Contact
 
-    const { data: { allWpPage: { nodes: Contact } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Contact },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Contact" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Contact" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Contact.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/сontact-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Contact.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/сontact-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // Legal
+  // Legal
 
-    const { data: { allWpPage: { nodes: Legal } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Legal },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Legal" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Legal" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Legal.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/legal-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Legal.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/legal-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // Sales representative
+  // Sales representative
 
-    const { data: { allWpPage: { nodes: Sales } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Sales },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Sales Representative" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(
+        filter: { template: { templateName: { eq: "Sales Representative" } } }
+      ) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Sales.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/sales-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Sales.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/sales-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // About
+  // About
 
-    const { data: { allWpPage: { nodes: About } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: About },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "About" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "About" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    About.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/about-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  About.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/about-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // Conscious
+  // Conscious
 
-    const { data: { allWpPage: { nodes: Conscious } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Conscious },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Conscious" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Conscious" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Conscious.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/conscious-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Conscious.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/conscious-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // New Arrivals
+  // New Arrivals
 
-    const { data: { allWpPage: { nodes: Arrivals } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Arrivals },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "New Arrivals" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(
+        filter: { template: { templateName: { eq: "New Arrivals" } } }
+      ) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
-    Arrivals.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/new-arrivals-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+  Arrivals.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/new-arrivals-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-    // Exhibitions
+  // Exhibitions
 
-    const { data: { allWpPage: { nodes: Exhibitions } } } = await graphql(`
+  const {
+    data: {
+      allWpPage: { nodes: Exhibitions },
+    },
+  } = await graphql(`
     query {
-        allWpPage(filter: { template: { templateName: { eq: "Exhibitions" } } }) {
-            nodes {
-                slug
-                id
-                uri
-                language {
-                  code
-                }
-            }
+      allWpPage(filter: { template: { templateName: { eq: "Exhibitions" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
         }
+      }
     }
   `);
 
   Exhibitions.forEach(({ id, slug, uri, language }) => {
-        createPage({
-            path: uri,
-            component: resolve('src/templates/exhibitions-page.jsx'),
-            context: {
-                id,
-                slug,
-                uri,
-                language: language?.code ? language.code : 'EN'
-            },
-        });
-    })
+    createPage({
+      path: uri,
+      component: resolve("src/templates/exhibitions-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
 
-}
+  // INFORM PAGES
+
+  const {
+    data: {
+      allWpMaterials: { pages },
+    },
+  } = await graphql(`
+    query {
+      allWpInformPages {
+        pages: nodes {
+          id
+          slug
+          uri
+          language {
+            code
+          }
+          content
+        }
+      }
+    }
+  `);
+
+  pages.forEach(({ id, slug, slug, language }) => {
+    createPage({
+      path: `${
+        language.code !== "EN" ? `/${language.code.toLowerCase()}` : ""
+      }/${slug}/`,
+      component: resolve("src/templates/inform-pages.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
+};
 
 exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage, deletePage } = actions
+  const { createPage, deletePage } = actions;
 
   if (page.path.match(/^\/[a-z]{2}\/404\/$/)) {
-    const oldPage = { ...page }
+    const oldPage = { ...page };
 
-    const langCode = page.path.split(`/`)[1]
-    page.matchPath = `/${langCode}/*`
+    const langCode = page.path.split(`/`)[1];
+    page.matchPath = `/${langCode}/*`;
 
-    deletePage(oldPage)
-    createPage(page)
+    deletePage(oldPage);
+    createPage(page);
   }
-}
+};
