@@ -32,3 +32,8 @@ export const homepageUrl = {
     EN: '/', 
     FR: '/fr/'
 }
+
+export const exhibitionsUrl = {
+    EN: '/exhibitions/', 
+    FR: '/fr/des-expositions/'
+}

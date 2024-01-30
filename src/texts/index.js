@@ -443,3 +443,13 @@ export const view = {
     EN: 'View',
     FR: 'Voir'
 }
+
+export const discoverUpcominEvents = {
+    EN: 'Discover our upcoming events',
+    FR: 'Découvrez nos prochains événements'
+}
+
+export const seeFull = {
+    EN: 'See full event list',
+    FR: 'Voir la liste complète des événements'
+}

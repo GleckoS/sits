@@ -1,5 +1,5 @@
 import { graphql } from "gatsby"
-import React from "react"
+import React, { useState } from "react"
 import { Helmet } from "react-helmet"
 import About from "../components/sections/about"
 import Bestsellers from "../components/sections/bestsellers-carousel"
@@ -11,6 +11,7 @@ import ProductGrid from "../components/sections/products-grid"
 import ThreeInformCards from "../components/sections/three-inform-cards"
 import Seo from "../layout/seo"
 import Wrapper from "../components/sections/page-wrapper"
+import UpcomingEvents from "../components/sections/upcoming-events"
 
 export function Head({ pageContext, data: { wpPage: { seo } } }) {
   return (
@@ -21,7 +22,31 @@ export function Head({ pageContext, data: { wpPage: { seo } } }) {
   )
 }
 
-export default function Homepage({ data: { wpPage: { language, translations, homepage } }, pageContext }) {
+export default function Homepage({ data: { allWpEvent, wpPage: { language, translations, homepage } }, pageContext }) {
+
+  const [filteredEvents] = useState(allWpEvent.nodes.filter(el => {
+    const [day, month, year] = el.event.endDate.split('/');
+    const date = new Date(year, month - 1, day);
+    const today = new Date();
+
+    if (date.getTime() < today.getTime())
+      return false
+
+    return true
+  }).sort((a, b) => {
+    const [dayA, monthA, yearA] = a.event.startDate.split('/');
+    const dateA = new Date(yearA, monthA - 1, dayA);
+    const [dayB, monthB, yearB] = b.event.startDate.split('/');
+    const dateB = new Date(yearB, monthB - 1, dayB);
+    
+    if (dateA.getTime() < dateB.getTime())
+      return -1
+    if (dateA.getTime() > dateB.getTime())
+      return 1
+
+    return 0
+  })).slice(0, 2)
+
   return (
     <Wrapper>
       <Hero data={homepage.heroH} />
@@ -31,13 +56,40 @@ export default function Homepage({ data: { wpPage: { language, translations, hom
       <DividerCollection data={homepage.dividerSection} />
       <NewArrivals language={pageContext.language} mt={true} data={homepage.newArrivalsH} />
       <ThreeInformCards data={homepage.sectionWithThreeInformCardsH} />
+      <UpcomingEvents data={filteredEvents} language={pageContext.language}/>
       <Map language={pageContext.language} />
     </Wrapper>
   )
 }
 
 export const query = graphql`
-    query homepage($id: String!) {
+    query homepage($id: String!, $language: WpLanguageCodeEnum) {
+        allWpEvent(filter: {language: {code: {eq: $language}}}) {
+          nodes {
+            title
+            event {
+              dates
+              endDate
+              place
+              startDate
+              fairFolder{
+                localFile {
+                  publicURL
+                  prettySize
+                }
+                mediaItemUrl
+              }
+              previewImage {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(quality: 80)
+                  }
+                }
+              }
+            }
+          }
+        }
         wpPage(id: {eq: $id}){
           language {
             name

@@ -78,7 +78,7 @@ const Grid = styled(motion.div)`
     grid-template-columns: 1fr 1fr;
   }
 
-  @media (max-width: 520px) {
+  @media (max-width: 640px) {
     grid-template-columns: 1fr;
   }
 
