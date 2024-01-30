@@ -413,11 +413,6 @@ const Wrapper = styled.div`
   padding: 0 0 86px 0;
   position: relative;
   margin-bottom: calc(-1 * clamp(45px, ${(120 / 1194) * 100}vw, 160px));
-  padding-top: 91px;
-
-  @media (max-width: 1180px) {
-    padding-top: 64px;
-  }
 
   .button {
     margin: 0 auto;

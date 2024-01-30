@@ -50,7 +50,7 @@ export const loadMoreTitle = {
 }
 
 export const acceptCookiesFirst = {
-    EN: 'Please accept',
+    EN: 'Please accept ',
     FR: 'Veuillez accepter la'
 }
 

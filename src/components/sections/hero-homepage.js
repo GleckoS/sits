@@ -55,13 +55,12 @@ export default function Hero({ data: { backgroundVideo, pageTitle, linkUnderPage
 const Wrapper = styled.section`
     position: relative;
     overflow: hidden;
-    max-height: 100vh;
+    height: 100vh;
     top: -95px;
     margin-bottom: -95px;
-    min-height: 100vh;
 
     @media (max-width: 1440px) {
-        max-height: calc(100vh - 95px);
+        height: calc(100vh - 95px);
         top: unset;
         margin-bottom: unset;
     }

@@ -40,15 +40,6 @@ const App = styled.div`
     display: flex;
     flex-direction: column;
     height: fit-content;
-
-    #main{
-        margin-top: 95px;
-
-        @media (max-width: 840px){
-            margin-top: 76px;
-        }
-
-    }
 `
 
 const Overlay = styled.div`

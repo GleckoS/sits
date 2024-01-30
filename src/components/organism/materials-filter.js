@@ -307,7 +307,7 @@ const MobileFilters = styled(motion.div)`
 `
 
 const Filter = styled(motion.div)`
-    position: fixed;
+    position: sticky;
     z-index: 101;
     top: 95px;
     left: 0;
