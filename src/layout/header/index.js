@@ -347,7 +347,10 @@ export default function Header({ data, language }) {
                 initial={{ opacity: 0 }}
                 exit={{ opacity: 0, transition: { duration: 0.3 } }}
                 animate={{ opacity: 1, transition: { duration: 0.5 } }}
-                className={(isMobileMenuOpened ? "active " : "") + (isAdditionalInformOpened ? 'additional' : '')}
+                className={
+                  (isMobileMenuOpened ? "active " : "") +
+                  (isAdditionalInformOpened ? "additional" : "")
+                }
               >
                 <Container className="content">
                   <Search
@@ -404,6 +407,28 @@ const Additional = styled.div`
   padding: 9px 0;
   transition: all 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 
+  a {
+    width: fit-content;
+    position: relative;
+    padding-bottom: 3px;
+    text-decoration: unset !important;
+
+    transition: background-size 0.5s cubic-bezier(0.76, 0, 0.24, 1);
+
+    background-image: linear-gradient(#222b40, #222b40);
+    background-size: 80% 1px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+
+    @media (pointer: coarse) {
+      background-size: 80% 1px !important;
+    }
+
+    &:hover {
+      background-size: 100% 1px !important;
+    }
+  }
+
   .content {
     text-align: center;
     margin-top: 10px;
@@ -414,7 +439,7 @@ const Additional = styled.div`
     }
   }
 
-  .arrow{
+  .arrow {
     transition: all 0.3s cubic-bezier(0.42, 0, 0.58, 1);
   }
 
@@ -601,7 +626,7 @@ const MobileMenu = styled(motion.div)`
 
   pointer-events: none;
 
-  &.additional{
+  &.additional {
     top: unset;
   }
 

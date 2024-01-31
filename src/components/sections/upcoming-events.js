@@ -13,16 +13,17 @@ import { Link } from "gatsby";
 import { exhibitionsUrl } from "../../texts/urls";
 import InView from "./in-view-provider";
 import { motion } from "framer-motion";
-import { imageTransition } from "../../helpers/animation-controller";
+import { imageTransition, textTransition } from "../../helpers/animation-controller";
 
-const imageAnimation = imageTransition(1);
+const titleAnimation = textTransition(1);
+const imageAnimation = imageTransition(2);
 
 export default function UpcomingEvents({ data, language }) {
   return (
     <Wrapper>
-      <Title title={upcommingEvents[language]} />
       <Container>
         <InView>
+          <motion.h2 variants={titleAnimation}>{upcommingEvents[language]}</motion.h2>
           <motion.div variants={imageAnimation} className="grid">
             {data.map((el, index) => (
               <div key={index} className="card">
@@ -72,6 +73,14 @@ export default function UpcomingEvents({ data, language }) {
 }
 
 const Wrapper = styled.section`
+  margin-top: clamp(45px, 10vw, 120px);
+  h2 {
+    font-size: clamp(26px, ${(40 / 1194) * 100}vw, 40px);
+    font-family: "Ivy";
+    font-weight: 300;
+    margin-bottom: 32px;
+  }
+
   .grid {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
