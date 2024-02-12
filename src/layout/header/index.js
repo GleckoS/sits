@@ -451,6 +451,10 @@ const Additional = styled.div`
     }
   }
 
+  .row::-webkit-details-marker {
+    display: none;
+  }
+
   .row {
     display: grid;
     grid-template-columns: 20px auto 20px;
