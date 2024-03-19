@@ -1,109 +1,128 @@
 export const langSwitcherNames = {
     EN: 'International',
     FR: 'France',
-    PL: 'Polski'
+    PL: 'Polski',
+    DE: 'Deutch'
 }
 
 export const downloadText = {
     EN: 'Download Product Card',
     FR: 'Télécharger la fiche produit',
-    PL: 'Pobierz kartę produktu'
+    PL: 'Pobierz kartę produktu',
+    DE: 'Produktkarte herunterladen'
 }
 
 export const downloadFabricText = {
     EN: 'Download Fabric Specification',
     FR: 'Télécharger les caractéristiques du tissu',
-    PL: 'Pobierz specyfikację tkaniny'
+    PL: 'Pobierz specyfikację tkaniny',
+    DE: 'Stoffspezifikationen herunterladen'
 }
 
 export const featuresText = {
     EN: 'FEATURES',
     FR: 'CARACTÉRISTIQUES',
-    PL: 'CECHY'
+    PL: 'CECHY',
+    DE: 'EIGENSCHAFTEN'
 }
 
 export const textureText = {
     EN: 'TEXTURE',
     FR: 'TEXTURES',
-    PL: 'TEKSTURA'
+    PL: 'TEKSTURA',
+    DE: 'STRUKTUR'
 }
 
 export const careInstructionsText = {
     EN: 'CARE INSTRUCTIONS',
     FR: 'CONSEILS D’ENTRETIEN',
-    PL: 'INSTRUKCJE PIELĘGNACJI'
+    PL: 'INSTRUKCJE PIELĘGNACJI',
+    DE: 'PFLEGEANLEITUNGEN'
 }
 
 export const upholsterysText = {
     EN: 'UPHOLSTERY',
     FR: 'TISSUS',
-    PL: 'TAPICERKA'
+    PL: 'TAPICERKA',
+    DE: 'POLSTERUNG'
 }
 
 export const confortText = {
     EN: 'COMFORTS',
     FR: 'REMBOURRAGES',
-    PL: 'KOMFORT'
+    PL: 'KOMFORT',
+    DE: 'SITZKOMFORT'
 }
 
 export const coversText = {
     EN: 'COVERS',
     FR: 'HOUSSES',
-    PL: 'POKRYCIA'
+    PL: 'POKRYCIA',
+    DE: 'BEZÜGE'
 }
 
 export const dimensionsText = {
     EN: 'Dimensions',
     FR: 'Dimensions',
-    PL: 'Wymiary'
+    PL: 'Wymiary',
+    DE: 'Maße'
 }
 
 export const legsText = {
     EN: 'Legs',
     FR: 'Piètement',
-    PL: 'Nogi'
+    PL: 'Nogi',
+    DE: 'Füße'
+    
 }
 
 export const accessoriesText = {
     EN: 'Accessories',
     FR: 'Accessoires',
-    PL: 'Akcesoria'
+    PL: 'Akcesoria',
+    DE: 'Accessoires'
 }
 
 export const armrestText = {
     EN: 'Armrest',
     FR: 'Accoudoirs',
-    PL: 'Podłokietniki'
+    PL: 'Podłokietniki',
+    DE: 'Armlehnen'
 }
 
 export const faqTitle = {
     EN: 'FAQ',
     FR: 'FAQ',
-    PL: 'FAQ'
+    PL: 'FAQ',
+    DE: 'FAQ'
 }
 
 export const assemblyTitle = {
     EN: 'Assembly instructions',
     FR: 'Notices de montage',
-    PL: 'Instrukcje montażu'
+    PL: 'Instrukcje montażu',
+    DE: 'Montageanleitungen'
 }
 
 export const searchPlaceholder = {
     EN: 'Search',
     FR: 'Rechercher',
-    PL: 'Szukaj'
+    PL: 'Szukaj',
+    DE: 'Suchen'
 }
 
 export const exploreButton = {
     EN: 'EXPLORE',
     FR: 'EXPLORER',
-    PL: 'ZOBACZ'
+    PL: 'ZOBACZ',
+    DE: 'ENTDECKEN'
 }
 
 export const noResultTitle = {
     EN: 'You have No Favorites yet',
     FR: 'Il n’y a pas encore d’articles dans vos Favoris.',
-    PL: 'Nie masz jeszcze ulubionych produktów'
+    PL: 'Nie masz jeszcze ulubionych produktów',
+    DE: 'Sie haben noch keine Favoriten'
 }
 
 export const noResultMessage = {
@@ -112,109 +131,130 @@ export const noResultMessage = {
     FR: `Les produits et couvertures favoris s'afficheront ici.<br/>
     Super! Emmenez-moi <a href='/products/'>aux produits</a> ou <a href='/material/'>aux couvertures</a>.`,
     PL: `Ulubione produkty i pokrycia pojawią się tutaj.<br/>
-    Świetnie! Zabierz mnie <a href='/products/'>do produktów</a> lub <a href='/material/'>do pokryć</a>.`
+    Świetnie! Zabierz mnie <a href='/products/'>do produktów</a> lub <a href='/material/'>do pokryć</a>.`,
+    DE: `Favorisierte Produkte und Bezüge werden hier angezeigt.<br/>
+    Super! Bringen Sie mich zu <a href='/products/'>Produkten</a> oder <a href='/material/'>Bezügen</a>.`
 }
 
 export const collectionsTitle = {
     EN: 'Collections',
     FR: 'Collections',
-    PL: 'Kolekcje'
+    PL: 'Kolekcje',
+    DE: 'Kollektionen'
 }
 export const sofasTitle = {
     EN: 'Sofas',
     FR: 'Canapés',
-    PL: 'Kanapy'
+    PL: 'Kanapy',
+    DE: 'Sofas'
 }
 export const armchairsTitle = {
     EN: 'Armchairs',
     FR: 'Fauteuils',
-    PL: 'Fotele'
+    PL: 'Fotele',
+    DE: 'Sessel'
 }
 export const coffeeTablesTitle = {
     EN: 'Coffee Tables',
     FR: 'Tables basses',
-    PL: 'Stoliki kawowe'
+    PL: 'Stoliki kawowe',
+    DE: 'Couchtische'
 }
 export const diningChairsTitle = {
     EN: 'Dining Chairs',
     FR: 'Chaises de salle à manger',
-    PL: 'Krzesła obiadowe'
+    PL: 'Krzesła obiadowe',
+    DE: 'Esstische'
 }
 export const footstoolsTitle = {
     EN: 'Footstools',
     FR: 'Repose-pieds',
-    PL: 'Podnóżki'
+    PL: 'Podnóżki',
+    DE: 'Hocker'
 }
 export const outdoorFurnituresTitle = {
     EN: 'Outdoor Furniture',
     FR: 'Mobilier d’extérieur',
-    PL: 'Meble ogrodowe'
+    PL: 'Meble ogrodowe',
+    DE: 'Outdoor-Möbel'
 }
 export const materialsTitle = {
     EN: 'Covers',
     FR: 'Housses',
-    PL: 'Pokrycia'
+    PL: 'Pokrycia',
+    DE: 'Bezüge'
 }
 export const meterialsAlterTitle = {
     EN: 'Materials',
     FR: 'Tissus',
-    PL: 'Materiały'
+    PL: 'Materiały',
+    DE: 'Materialien'
 }
 export const colorsTitle = {
     EN: 'Colors of covers',
     FR: 'Couleurs de housses',
-    PL: 'Kolory pokryć'
+    PL: 'Kolory pokryć',
+    DE: 'Farben der Bezüge'
 }
 export const favouritesTitle = {
     EN: 'My Favourites',
     FR: 'Mes favoris',
-    PL: 'Ulubione'
+    PL: 'Ulubione',
+    DE: 'Meine Favoriten'
 }
 
 export const similarTitle = {
     EN: 'is a popular choice for these models',
     FR: 'est l’un des meubles les plus choisis parmi ces modèles',
-    PL: 'jest popularnym wyborem dla tych modeli'
+    PL: 'jest popularnym wyborem dla tych modeli',
+    DE: 'Populäre Wahl bei diesen Modellen'
 }
 
 export const coversTitle = {
     EN: 'Similar Covers',
     FR: 'Housses similaires',
-    PL: 'Podobne pokrycia'
+    PL: 'Podobne pokrycia',
+    DE: 'Vergleichbare Bezüge'
 }
 
 export const checkOtherCollections = {
     EN: 'Check our other collections',
     FR: 'Découvrez nos autres collections',
-    PL: 'Sprawdź nasze inne kolekcje'
+    PL: 'Sprawdź nasze inne kolekcje',
+    DE: 'Entdecken Sie unsere anderen Kollektionen'
 }
 
 export const collectionSimilarTitle = {
     EN: 'Similar products',
     FR: 'Produits similaires',
-    PL: 'Podobne produkty'
+    PL: 'Podobne produkty',
+    DE: 'Vergleichbare Produkte'
 }
 
 export const collectionCoversTitle = {
     EN: 'Recommended covers for ',
     FR: 'Tissus recommandés pour le ',
-    PL: 'Polecane pokrycia dla '
+    PL: 'Polecane pokrycia dla ',
+    DE: 'Empfohlene Bezüge für '
 }
 export const allProductsTitle = {
     EN: 'Discover our collections',
     FR: 'Découvrez nos collections',
-    PL: 'Odkryj nasze kolekcje'
+    PL: 'Odkryj nasze kolekcje',
+    DE: 'Entdecken Sie unsere Kollektionen'
 }
 export const newArrivalsTitle = {
     EN: 'New Arrivals',
     FR: 'Nouveautés',
-    PL: 'Nowości'
+    PL: 'Nowości',
+    DE: 'Neuheiten'
 }
 
 export const manageCookies = {
     EN: 'MANAGE COOKIES',
     FR: 'GESTION DES COOKIES',
-    PL: 'ZARZĄDZAJ COOKIES'
+    PL: 'ZARZĄDZAJ COOKIES',
+    DE: 'COOKIES VERWALTEN'
 }
 
 export const left = {
@@ -235,6 +275,12 @@ export const left = {
         {name: 'ŚWIADOMOŚĆ', url: '/pl/swiadomosc/'},
         {name: 'INFORMACJE PRAWNE', url: '/pl/informacje-prawne/'},
         {name: 'INFORMACJE PUBLICZNE', url: '/pl/informacje-publiczne/'}
+    ],
+    DE: [
+        {name: 'ÜBER UNS', url: '/ueber-uns/'},
+        {name: 'BEWUSST', url: '/bewusst/'},
+        {name: 'RECHTLICHES', url: '/rechtliches/'},
+        {name: 'ÖFFENTLICHE INFORMATIONEN', url: '/oeffentliche-informationen/'}
     ]
 }
 
@@ -256,6 +302,12 @@ export const right = {
         {name: 'REPREZENTANT HANDLOWY', url: '/pl/reprezentant-handlowy/'},
         {name: 'WYSTAWY', url: '/pl/wystawy/'},
         {name: 'KONTAKT', url: '/pl/kontakt/'}
+    ],
+    DE: [
+        {name: 'WO KAUFEN', url: '/wo-kaufen/'},
+        {name: 'VERKAUFSVERTRETER', url: '/verkaufsvertreter/'},
+        {name: 'TREFFEN SIE UNS', url: '/treffen-sie-uns/'},
+        {name: 'KONTAKT', url: '/kontakt/'}
     ]
 }
 export const linksLeft = {
@@ -303,6 +355,22 @@ export const linksLeft = {
         {name: 'Konfigurator produktu', url: 'https://sitsconnect.pl/configurator'},
         {name: 'Pokrycia', url: '/pl/material/'},
         {name: 'Ulubione', icon: 'hearth', url: '/pl/ulubione/'}
+    ],
+    DE: [
+        {name: 'Bestseller', url: '/de/bestseller/'},
+        {name: 'Neuheiten', url: '/de/neuheiten/'},
+        {name: 'Alle Produkte', url: '/de/produkte/'},
+        {name: 'Sofas', url: '/de/produkte/sofas/'},
+        {name: 'Schlafsofas', url: '/de/produkte/sofas/?type=Sofa-Beds'},
+        {name: 'Sessel', url: '/de/produkte/sessel/'},
+        {name: 'Esszimmerstühle', url: '/de/produkte/esszimmerstuehle/'},
+        {name: 'Hocker', url: '/de/produkte/hocker/'},
+        {name: 'Couchtische', url: '/de/produkte/couchtische/'},
+        {name: 'Outdoor-Möbel', url: '/de/produkte/outdoor-moebel/'},
+        {name: 'Produktkonfigurator', url: 'https://sitsconnect.pl/configurator'},
+        {name: 'Bezüge', url: '/de/material/'},
+        {name: 'Meine Favoriten', icon: 'hearth', url: '/de/meine-favoriten/'}
+    
     ]
 }
 
@@ -342,133 +410,166 @@ export const linksRight = {
         {name: 'Logowanie dealera', url: 'https://sitsconnect.pl/'},
         {name: 'Wystawy', url: '/pl/wystawy/'},
         {name: 'Kontakt', url: '/pl/kontakt/'}
+    ],
+    DE: [
+        {name: 'Über Sits', url: '/ueber-uns/'},
+        {name: 'Bewusst', url: '/bewusst/'},
+        {name: 'Möbelpflege', url: '/moebelpflege/'},
+        {name: 'Kataloge', url: '/kataloge/'},
+        {name: 'Virtueller Showroom', url: 'https://showroom.sits.eu/'},
+        {name: 'Verkaufsvertreter', url: '/verkaufsvertreter/'},
+        {name: 'Wo kaufen', url: '/wo-kaufen/'},
+        {name: 'Händler-Login', url: 'https://sitsconnect.pl/'},
+        {name: 'Treffen Sie uns', url: '/treffen-sie-uns/'},
+        {name: 'Kontakt', url: '/kontakt/'}
     ]
 }
 
 export const furnitureTitle = {
     EN: 'FURNITURE',
     FR: 'MEUBLES',
-    PL: 'MEBLE'
+    PL: 'MEBLE',
+    DE: 'MÖBEL'
 }
 
 export const companyTitle = {
     EN: 'COMPANY',
     FR: 'ENTREPRISE',
-    PL: 'FIRMA'
+    PL: 'FIRMA',
+    DE: 'UNTERNEHMEN'
 }
 
 export const copySuccessed = {
     EN: 'Configuration copied successfully',
     FR: 'Configuration dupliquée avec succès',
-    PL: 'Konfiguracja skopiowana pomyślnie'
+    PL: 'Konfiguracja skopiowana pomyślnie',
+    DE: 'Konfiguration erfolgreich kopiert'
 }
 
 export const materialTitle = {
     EN: 'Material:',
     FR: 'Matériau:',
-    PL: 'Materiał:'
+    PL: 'Materiał:',
+    DE: 'Material:'
 }
 
 export const tableTopTitle = {
     EN: 'Table top material:',
     FR: 'Matériau du plateau de la table:',
-    PL: 'Materiał blatu:'
+    PL: 'Materiał blatu:',
+    DE: 'Material der Tischplatte:'
 }
 
 export const leatherTitle = {
     EN: 'Leather:',
     FR: 'Cuir:',
-    PL: 'Skóra:'
+    PL: 'Skóra:',
+    DE: 'Leder:'
 }
 
 export const fabricTitle = {
     EN: 'Fabric:',
     FR: 'Tissu:',
-    PL: 'Materiał:'
+    PL: 'Materiał:',
+    DE: 'Bezugsstoff:'
 }
 
 export const modelTitle = {
     EN: 'Model:',
     FR: 'Modèle:',
-    PL: 'Model:'
+    PL: 'Model:',
+    DE: 'Modell:'
 }
 
 export const legsTitle = {
     EN: 'Legs:',
     FR: 'Piètement:',
-    PL: 'Nogi:'
+    PL: 'Nogi:',
+    DE: 'Füße:'
 }
 
 export const legsMaterialTitle = {
     EN: 'Material of the legs:',
     FR: 'Matériau du piètement:',
-    PL: 'Materiał nóg:'
+    PL: 'Materiał nóg:',
+    DE: 'Material der Füße:'
 }
 
 export const comfortTitle = {
     EN: 'Comfort:',
     FR: 'Garniture:',
-    PL: 'Komfort:'
+    PL: 'Komfort:',
+    DE: 'Sitzkomfort:'
 }
 
 export const coverTitle = {
     EN: 'Cover:',
     FR: 'Housse:',
-    PL: 'Pokrycie:'
+    PL: 'Pokrycie:',
+    DE: 'Bezug:'
 }
 
 export const armrestTitle = {
     EN: 'Armrests:',
     FR: 'Accoudoirs:',
-    PL: 'Podłokietniki:'
+    PL: 'Podłokietniki:',
+    DE: 'Armlehnen:'
 }
 
 export const accessoriesTitle = {
     EN: 'Accessories:',
     FR: 'Accessoires:',
-    PL: 'Akcesoria:'
+    PL: 'Akcesoria:',
+    DE: 'Accessoires:'
 }
 
 export const copyConfig = {
     EN: 'Copy Configuration',
     FR: 'Dupliquer la configuration',
-    PL: 'Skopiuj konfigurację'
+    PL: 'Skopiuj konfigurację',
+    DE: 'Konfiguration kopieren'
 }
 
 export const loadMore = {
     EN: 'LOAD MORE',
     FR: 'AFFICHER LA SUITE',
-    PL: 'WCZYTAJ WIĘCEJ'
+    PL: 'WCZYTAJ WIĘCEJ',
+    DE: 'MEHR LADEN'
 }
 
 export const removeMessage = {
     EN: ' removed from ',
     FR: ' retiré(s) ',
-    PL: ' usunięte z '
+    PL: ' usunięte z ',
+    DE: ' entfernt aus '
 }
 
 export const addMessage = {
     EN: ` added to `,
     FR: ` ajouté à `,
-    PL: ` dodane do `
+    PL: ` dodane do `,
+    DE: ` hinzugefügt zu `
 }
 
 export const favouriteLink = {
     EN: 'MY&nbsp;FAVOURITES',
     FR: 'MES&nbsp;FAVORIS',
-    PL: 'ULUBIONYCH'
+    PL: 'ULUBIONYCH',
+    DE: 'MEINE&nbsp;FAVORITEN'
 }
 
 export const accessoriesSectionTitle = {
     EN: 'Accessories for this model',
     FR: 'Accessoires pour ce modèle',
-    PL: 'Akcesoria do tego modelu'
+    PL: 'Akcesoria do tego modelu',
+    DE: 'Zubehör für dieses Modell'
 }
 
 export const searchPageTitle = {
     EN: 'Looking for something specific?',
     FR: 'Vous recherchez un modèle précis?',
-    PL: 'Szukasz czegoś konkretnego?'
+    PL: 'Szukasz czegoś konkretnego?',
+    DE: 'Suchen Sie etwas Bestimmtes?'
 }
 
 export const searchNoResultMessage = {
@@ -477,95 +578,112 @@ export const searchNoResultMessage = {
     FR: `Nous n'avons trouvé aucune correspondance pour „<search>”.
     Vérifiez votre recherche pour toute faute de frappe ou d'orthographe - ou essayez un terme de recherche différent.`,
     PL: `Nie znaleźliśmy żadnych wyników dla „<search>”.
-    Sprawdź swoje wyszukiwanie pod kątem literówek lub błędów ortograficznych - lub spróbuj innego terminu wyszukiwania.`
+    Sprawdź swoje wyszukiwanie pod kątem literówek lub błędów ortograficznych - lub spróbuj innego terminu wyszukiwania.`,
+    DE: `Wir konnten keine Übereinstimmungen für „<search>” finden.
+    Überprüfen Sie Ihre Suche auf Tippfehler oder Rechtschreibfehler - oder versuchen Sie es mit einem anderen Suchbegriff.`
 }
 
 export const contatcButton = {
     EN: 'Contact us',
     FR: 'Nous contacter',
-    PL: 'Kontakt'
+    PL: 'Kontakt',
+    DE: 'Kontaktiere uns'
 }
 
 export const findRetailers = {
     EN: 'Find retailers',
     FR: 'Localisez les points de vente',
-    PL: 'Znajdź sprzedawców'
+    PL: 'Znajdź sprzedawców',
+    DE: 'Händler finden'
 }
 
 export const inThisImage = {
     EN: 'In this image',
     FR: 'Sur cette image',
-    PL: 'Na tym zdjęciu'
+    PL: 'Na tym zdjęciu',
+    DE: 'Auf diesem Bild'
 }
 
 export const selectLanguage = {
     EN: 'Select your country',
     FR: 'Sélectionnez votre pays',
-    PL: 'Wybierz kraj'
+    PL: 'Wybierz kraj',
+    DE: 'Wählen Sie Ihr Land'
 }
 
 export const upcommingEvents = {
     EN: 'Upcoming events',
     FR: 'Événements à venir',
-    PL: 'Nadchodzące wydarzenia'
+    PL: 'Nadchodzące wydarzenia',
+    DE: 'Kommende Veranstaltungen'
 }
 
 export const ourShowrooms = {
     EN: 'Our showrooms',
     FR: 'Nos showrooms',
-    PL: 'Nasze salony'
+    PL: 'Nasze salony',
+    DE: 'Unsere Showrooms'
 }
 
 export const eventsTitle = {
     EN: 'Events',
     FR: 'Événements',
-    PL: 'Wydarzenia'
+    PL: 'Wydarzenia',
+    DE: 'Veranstaltungen'
 }
 
 export const showrooms = {
     EN: 'Showrooms',
     FR: 'Showrooms',
-    PL: 'Salony'
+    PL: 'Salony',
+    DE: 'Showrooms'
 }
 
 export const showNoResultMessage = {
     EN: 'No results found',
     FR: 'Aucun résultat trouvé',
-    PL: 'Nie znaleziono wyników'
+    PL: 'Nie znaleziono wyników',
+    DE: 'Keine Ergebnisse gefunden'
 }
 
 export const seeMore = {
     EN: 'See more',
     FR: 'Voir plus',
-    PL: 'Zobacz więcej'
+    PL: 'Zobacz więcej',
+    DE: 'Mehr sehen'
 }
 
 export const downloadFairFolder = {
     EN: 'Download fair folder',
     FR: 'Télécharger le dossier de la foire',
-    PL: 'Pobierz folder targowy'
+    PL: 'Pobierz folder targowy',
+    DE: 'Messeordner herunterladen'
 }
 
 export const download = {
     EN: 'Download',
     FR: 'Télécharger',
-    PL: 'Pobierz'
+    PL: 'Pobierz',
+    DE: 'Herunterladen'
 }
 
 export const view = {
     EN: 'View',
     FR: 'Voir',
-    PL: 'Zobacz'
+    PL: 'Zobacz',
+    DE: 'Ansehen'
 }
 
 export const discoverUpcominEvents = {
     EN: 'Discover our upcoming events',
     FR: 'Découvrez nos prochains événements',
-    PL: 'Odkryj nasze nadchodzące wydarzenia'
+    PL: 'Odkryj nasze nadchodzące wydarzenia',
+    DE: 'Entdecken Sie unsere kommenden Veranstaltungen'
 }
 
 export const seeFull = {
     EN: 'See full event list',
     FR: 'Voir la liste complète des événements',
-    PL: 'Zobacz pełną listę wydarzeń'
+    PL: 'Zobacz pełną listę wydarzeń',
+    DE: 'Vollständige Veranstaltungsliste anzeigen'
 }
