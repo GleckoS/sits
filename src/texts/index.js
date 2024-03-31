@@ -142,6 +142,12 @@ export const collectionsTitle = {
     PL: 'Kolekcje',
     DE: 'Kollektionen'
 }
+export const checkOurMostPopular = {
+    EN: 'Check our most popular products',
+    FR: 'Découvrez nos produits les plus populaires',
+    PL: 'Sprawdź nasze najpopularniejsze produkty',
+    DE: 'Entdecken Sie unsere beliebtesten Produkte'
+}
 export const sofasTitle = {
     EN: 'Sofas',
     FR: 'Canapés',
@@ -271,16 +277,16 @@ export const left = {
         { name: 'PUBLIC INFORMATION', url: '/public-information/' }
     ],
     PL: [
-        {name: 'O FIRMIE', url: '/pl/o-firmie/'},
+        {name: 'O SITS', url: '/pl/o-nas/'},
         {name: 'ŚWIADOMOŚĆ', url: '/pl/swiadomosc/'},
-        {name: 'INFORMACJE PRAWNE', url: '/pl/informacje-prawne/'},
-        {name: 'INFORMACJE PUBLICZNE', url: '/pl/informacje-publiczne/'}
+        {name: 'POLITYKA PRYWATNOŚCI', url: '/pl/polityka-prywatnosci/'},
+        {name: 'INFORMACJE PUBLICZNE', url: '/public-information/'}
     ],
     DE: [
-        {name: 'ÜBER UNS', url: '/ueber-uns/'},
-        {name: 'BEWUSST', url: '/bewusst/'},
-        {name: 'RECHTLICHES', url: '/rechtliches/'},
-        {name: 'ÖFFENTLICHE INFORMATIONEN', url: '/oeffentliche-informationen/'}
+        {name: 'ÜBER UNS', url: '/de/ueber/'},
+        {name: 'UMWELTBEWUSSTEIN', url: '/de/umweltbewusstsein/'},
+        {name: 'RECHTLICHES', url: '/de/rechtliches/'},
+        {name: 'ÖFFENTLICHE INFORMATIONEN', url: '/public-information/'}
     ]
 }
 
@@ -298,16 +304,16 @@ export const right = {
         { name: 'NOUS CONTACTER', url: '/fr/nous-contacter/' },
     ],
     PL: [
-        {name: 'GDZIE KUPIĆ', url: '/pl/gdzie-kupic/'},
-        {name: 'REPREZENTANT HANDLOWY', url: '/pl/reprezentant-handlowy/'},
+        {name: 'SALONY SPRZEDAŻY', url: '/pl/salony-sprzedazy/'},
+        {name: 'PRZEDSTAWICIEL HANDLOWY', url: '/pl/przedstawiciel-handlowy/'},
         {name: 'WYSTAWY', url: '/pl/wystawy/'},
         {name: 'KONTAKT', url: '/pl/kontakt/'}
     ],
     DE: [
-        {name: 'WO KAUFEN', url: '/wo-kaufen/'},
-        {name: 'VERKAUFSVERTRETER', url: '/verkaufsvertreter/'},
-        {name: 'TREFFEN SIE UNS', url: '/treffen-sie-uns/'},
-        {name: 'KONTAKT', url: '/kontakt/'}
+        {name: 'HÄNDLER FINDEN', url: '/de/haendler-finden/'},
+        {name: 'AUßENDIENSTMITARBEITER', url: '/de/aussendienstmitarbeiter/'},
+        {name: 'TREFFEN SIE UNS', url: '/de/ausstellungen/'},
+        {name: 'KONTAKT', url: '/de/kontakt/'}
     ]
 }
 export const linksLeft = {
@@ -316,7 +322,7 @@ export const linksLeft = {
         { name: 'New Arrivals', url: '/new-arrivals/' },
         { name: 'All products', url: '/products/' },
         { name: 'Sofas', url: '/products/sofas/' },
-        { name: 'Sofa beds', url: '/products/sofas/?type=Sofa-Beds' },
+        { name: 'Sofa beds', url: '/products/sofas/?type=Sofa-beds' },
         { name: 'Armchairs', url: '/products/armchairs/' },
         { name: 'Dining Chairs', url: '/products/dining-chairs/' },
         { name: 'Footstools', url: '/products/footstools/' },
@@ -331,7 +337,7 @@ export const linksLeft = {
         { name: 'Nouveautés', url: '/fr/nouveautes/' },
         { name: 'Tous les produits', url: '/fr/produits/' },
         { name: 'Canapés', url: '/fr/produits/canapes/' },
-        { name: 'Canapés-lits', url: '/products/sofas/?type=Sofa-Beds' },
+        { name: 'Canapés-lits', url: '/products/sofas/?type=Sofa-beds' },
         { name: 'Fauteuils', url: '/fr/produits/fauteuils/' },
         { name: 'Chaises de salle à manger', url: '/fr/produits/chaises-de-salle-a-manger/' },
         { name: 'Repose-pieds', url: '/fr/produits/repose-pieds/' },
@@ -345,30 +351,30 @@ export const linksLeft = {
         {name: 'Bestsellery', url: '/pl/bestsellery/'},
         {name: 'Nowości', url: '/pl/nowosci/'},
         {name: 'Wszystkie produkty', url: '/pl/produkty/'},
-        {name: 'Kanapy', url: '/pl/produkty/kanapy/'},
-        {name: 'Narożniki', url: '/pl/produkty/kanapy/?type=Narozniki'},
+        {name: 'Sofy', url: '/pl/produkty/sofy/'},
+        {name: 'Narożniki', url: '/pl/produkty/sofy/?typ=Narożniki'},
         {name: 'Fotele', url: '/pl/produkty/fotele/'},
-        {name: 'Krzesła obiadowe', url: '/pl/produkty/krzesla-obiadowe/'},
+        {name: 'Krzesła do jadalni', url: '/pl/produkty/krzesla-do-jadalni/'},
         {name: 'Podnóżki', url: '/pl/produkty/podnozki/'},
         {name: 'Stoliki kawowe', url: '/pl/produkty/stoliki-kawowe/'},
         {name: 'Meble ogrodowe', url: '/pl/produkty/meble-ogrodowe/'},
         {name: 'Konfigurator produktu', url: 'https://sitsconnect.pl/configurator'},
         {name: 'Pokrycia', url: '/pl/material/'},
-        {name: 'Ulubione', icon: 'hearth', url: '/pl/ulubione/'}
+        {name: 'Moje ulubione', icon: 'hearth', url: '/pl/moje-ulubione/'}
     ],
     DE: [
         {name: 'Bestseller', url: '/de/bestseller/'},
         {name: 'Neuheiten', url: '/de/neuheiten/'},
         {name: 'Alle Produkte', url: '/de/produkte/'},
         {name: 'Sofas', url: '/de/produkte/sofas/'},
-        {name: 'Schlafsofas', url: '/de/produkte/sofas/?type=Sofa-Beds'},
+        {name: 'Schlafsofas', url: '/de/produkte/sofas/?typ=Schlafsofas'},
         {name: 'Sessel', url: '/de/produkte/sessel/'},
         {name: 'Esszimmerstühle', url: '/de/produkte/esszimmerstuehle/'},
         {name: 'Hocker', url: '/de/produkte/hocker/'},
         {name: 'Couchtische', url: '/de/produkte/couchtische/'},
         {name: 'Outdoor-Möbel', url: '/de/produkte/outdoor-moebel/'},
         {name: 'Produktkonfigurator', url: 'https://sitsconnect.pl/configurator'},
-        {name: 'Bezüge', url: '/de/material/'},
+        {name: 'Bezüge', url: '/de/materialien/'},
         {name: 'Meine Favoriten', icon: 'hearth', url: '/de/meine-favoriten/'}
     
     ]
@@ -400,28 +406,28 @@ export const linksRight = {
         { name: 'Nous contacter', url: '/fr/nous-contacter/' }
     ],
     PL: [
-        {name: 'O Sits', url: '/pl/o-firmie/'},
+        {name: 'O Sits', url: '/pl/o-nas/'},
         {name: 'Świadomość', url: '/pl/swiadomosc/'},
         {name: 'Pielęgnacja mebli', url: '/pl/pielegnacja-mebli/'},
         {name: 'Katalogi', url: '/pl/katalogi/'},
         {name: 'Wirtualny showroom', url: 'https://showroom.sits.eu/'},
-        {name: 'Reprezentant handlowy', url: '/pl/reprezentant-handlowy/'},
-        {name: 'Gdzie kupić', url: '/pl/gdzie-kupic/'},
+        {name: 'Przedstawiciel handlowy', url: '/pl/przedstawiciel-handlowy/'},
+        {name: 'Salony sprzedaży', url: '/pl/salony-sprzedazy/'},
         {name: 'Logowanie dealera', url: 'https://sitsconnect.pl/'},
         {name: 'Wystawy', url: '/pl/wystawy/'},
         {name: 'Kontakt', url: '/pl/kontakt/'}
     ],
     DE: [
-        {name: 'Über Sits', url: '/ueber-uns/'},
-        {name: 'Bewusst', url: '/bewusst/'},
-        {name: 'Möbelpflege', url: '/moebelpflege/'},
-        {name: 'Kataloge', url: '/kataloge/'},
+        {name: 'Über Sits', url: '/de/ueber/'},
+        {name: 'Umweltbewusstsein', url: '/de/umweltbewusstsein/'},
+        {name: 'Möbelpflege', url: '/de/moebelpflege/'},
+        {name: 'Kataloge', url: '/de/kataloge/'},
         {name: 'Virtueller Showroom', url: 'https://showroom.sits.eu/'},
-        {name: 'Verkaufsvertreter', url: '/verkaufsvertreter/'},
-        {name: 'Wo kaufen', url: '/wo-kaufen/'},
+        {name: 'Außendienstmitarbeiter', url: '/de/aussendienstmitarbeiter/'},
+        {name: 'Händler finden', url: '/de/haendler-finden/'},
         {name: 'Händler-Login', url: 'https://sitsconnect.pl/'},
-        {name: 'Treffen Sie uns', url: '/treffen-sie-uns/'},
-        {name: 'Kontakt', url: '/kontakt/'}
+        {name: 'Treffen Sie uns', url: '/de/ausstellungen/'},
+        {name: 'Kontakt', url: '/de/kontakt/'}
     ]
 }
 

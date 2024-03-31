@@ -81,7 +81,9 @@ export default function Hero({
                                     </React.Fragment>
                                 ))}
                             </Categories>
-                            <Description variants={itemAnimation} dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />
+                            {collectionQuickDescription && (
+                                <Description variants={itemAnimation} dangerouslySetInnerHTML={{ __html: collectionQuickDescription }} />
+                            )}
                             {collectionProductSheet
                                 ? <DownloadWithArrow linkAnimation={linkAnimation} className='link' file={collectionProductSheet.localFile.publicURL}>
                                     {downloadText[language]}

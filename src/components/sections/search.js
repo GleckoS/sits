@@ -12,7 +12,7 @@ import { imageTransition } from "../../helpers/animation-controller"
 import { motion } from 'framer-motion'
 import {
     armchairsTitle, sofasTitle, coffeeTablesTitle, diningChairsTitle, footstoolsTitle, outdoorFurnituresTitle, materialsTitle,
-    searchPlaceholder as placeholder, searchPageTitle as pageTitle, searchNoResultMessage, contatcButton
+    searchPlaceholder as placeholder, searchPageTitle as pageTitle, searchNoResultMessage, contatcButton, checkOurMostPopular
 } from '../../texts'
 import { contactUrls } from '../../texts/urls'
 import { searchParamName } from '../../texts/filter'
@@ -161,7 +161,7 @@ export default function Search({ language, Materials, Sofas, Armchairs, CoffeeTa
                 <MostPopularProducts>
                     <Container>
                         <InView margin="-100px 0px -200px 0px" >
-                            <motion.h2 variants={popularTitleAnimation}>Check our most popular products</motion.h2>
+                            <motion.h2 variants={popularTitleAnimation}>{checkOurMostPopular[language]}</motion.h2>
                         </InView>
                         <MostPopularProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={sofasTitle} prefiltredArr={Sofas} />
                         <MostPopularProductBlock language={language} contentGridAnimation={contentGridAnimation} contentTitleAnimation={contentTitleAnimation} animation={popularContentAnimation} setRerender={setRerender} rerender={rerender} title={armchairsTitle} prefiltredArr={Armchairs} />

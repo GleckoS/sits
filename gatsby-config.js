@@ -19,9 +19,11 @@ module.exports = {
       options: {
         "url": "https://sits.headlesshub.com/graphql",
         schema: {
-          perPage: 25,
-          timeout: 300000,
-          requestConcurrency: 1,
+          perPage: 20,
+          timeout: 3000000,
+          requestConcurrency: 5,
+          previewRequestConcurrency: 2,
+
         },
         excludeFieldNames: ['comments', 'blocksJSON', 'previewBlocks', 'previewBlocksJSON'],
         type: {

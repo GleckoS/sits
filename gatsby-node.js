@@ -7,26 +7,38 @@ const productSearchTypes = {
   sofas: {
     EN: "Sofas",
     FR: "Canapés",
+    PL: "Sofy",
+    DE: "Sofas",
   },
   armchairs: {
     EN: "Armchairs",
     FR: "Fauteuils",
+    PL: "Fotele",
+    DE: "Sessel",
   },
   coffeTables: {
     EN: "Coffee tables",
     FR: "Tables basses",
+    PL: "Stoliki kawowe",
+    DE: "Couchtische",
   },
   dinningChairs: {
     EN: "Dining chairs",
     FR: "Chaises de salle à manger",
+    PL: "Krzesła do jadalni",
+    DE: "Esszimmerstühle"
   },
   footstools: {
     EN: "Footstools",
     FR: "Repose-pieds",
+    PL: "Podnóżki",
+    DE: "Hocker",
   },
   outdoorFurniture: {
     EN: "Outdoor furniture",
     FR: "Mobilier d’extérieur",
+    PL: "Meble ogrodowe",
+    DE: "Outdoor-Möbel",
   },
 };
 

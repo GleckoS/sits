@@ -5,8 +5,8 @@ import { ResultsGrid } from "../atoms/result-grid"
 import { motion } from "framer-motion"
 import { Card } from "../moleculas/search-material-card"
 
-export const FavouriteMaterialBlock = ({ contentGridAnimation, contentTitleAnimation, animation, setRerender, count, setCount, prefiltredArr, filter, title }) => {
-
+export const FavouriteMaterialBlock = ({ language, contentGridAnimation, contentTitleAnimation, animation, setRerender, count, setCount, prefiltredArr, filter, title }) => {
+    debugger
     const filtredArr = useMemo(() => {
         let arr = prefiltredArr.nodes
         if (filter) {
@@ -41,7 +41,7 @@ export const FavouriteMaterialBlock = ({ contentGridAnimation, contentTitleAnima
         renderCount.current = 0
         return (
             <Wrapper variants={animation}>
-                <motion.h2 variants={contentTitleAnimation}>{title['en']} ({filtredArr.length})</motion.h2>
+                <motion.h2 variants={contentTitleAnimation}>{title[language]} ({filtredArr.length})</motion.h2>
                 <ResultsGrid variants={contentGridAnimation}>
                     {filtredArr.map(el => {
                         renderCount.current += 1

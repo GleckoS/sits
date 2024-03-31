@@ -35,7 +35,7 @@
         force = false
 [[redirects]]
         from = "/en/typy-mebli/sofy-z-funkcją-spania"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 301
         force = false
 [[redirects]]
@@ -65,7 +65,7 @@
         force = false
 [[redirects]]
         from = "/en/typy-mebli/łóżka"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 301
         force = false
 [[redirects]]
@@ -2350,7 +2350,7 @@
         force = false
 [[redirects]]
         from = "/fr/typy-mebli/łóżka"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 302
         force = false
 [[redirects]]
@@ -2370,7 +2370,7 @@
         force = false
 [[redirects]]
         from = "/fr/typy-mebli/sofy-z-funkcją-spania"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 302
         force = false
 [[redirects]]
@@ -3440,7 +3440,7 @@
         force = false
 [[redirects]]
         from = "/he/typy-mebli/łóżka"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 302
         force = false
 [[redirects]]
@@ -3460,7 +3460,7 @@
         force = false
 [[redirects]]
         from = "/he/typy-mebli/sofy-z-funkcją-spania"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 302
         force = false
 [[redirects]]
@@ -4485,7 +4485,7 @@
         force = false
 [[redirects]]
         from = "/pl/typy-mebli/łóżka"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 302
         force = false
 [[redirects]]
@@ -4505,7 +4505,7 @@
         force = false
 [[redirects]]
         from = "/pl/typy-mebli/sofy-z-funkcją-spania"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 302
         force = false
 [[redirects]]
@@ -5600,7 +5600,7 @@
         force = false
 [[redirects]]
         from = "/sv/typy-mebli/łóżka"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 302
         force = false
 [[redirects]]
@@ -5620,7 +5620,7 @@
         force = false
 [[redirects]]
         from = "/sv/typy-mebli/sofy-z-funkcją-spania"
-        to = "/products/sofas/?type=Sofa-Beds"
+        to = "/products/sofas/?type=Sofa-beds"
         status = 302
         force = false
 [[redirects]]

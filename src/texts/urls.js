@@ -8,8 +8,8 @@ export const contactUrls = {
 export const favouritesUrl = {
     EN: '/favourites/', 
     FR: '/fr/mes-favoris/',
-    PL: '/pl/ulubione/',
-    DE: '/de/favoriten/'
+    PL: '/pl/moje-ulubione/',
+    DE: '/de/meine-favoriten/'
 }
 
 export const collectionUrl = {
@@ -23,7 +23,7 @@ export const materialUrl = {
     EN: '/material/',
     FR: '/fr/materiaux/',
     PL: '/pl/material/',
-    DE: '/de/material/'
+    DE: '/de/materialien/'
 }
 
 export const searchUrl = {
@@ -36,7 +36,7 @@ export const searchUrl = {
 export const whereToBuyUrl = {
     EN: '/where-to-buy/', 
     FR: '/fr/trouver-un-point-de-vente/',
-    PL: '/pl/gdzie-kupic/',
+    PL: '/pl/salony-sprzedazy/',
     DE: '/de/wo-kaufen/'
 }
 
