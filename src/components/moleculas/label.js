@@ -3,7 +3,7 @@ import React, { useState } from "react"
 import styled from "styled-components"
 import { errorMessage } from "../../texts/contact"
 
-export const Label = ({ language, required = false, variants, register, errors, name, obj, rows }) => {
+export const Label = ({ language, required = false, variants, register, errors, name, obj, rows, pattern = null }) => {
     const [isActive, setIsActive] = useState(false)
     const [inputValue, setInputValue] = useState('')
     return (
@@ -16,6 +16,7 @@ export const Label = ({ language, required = false, variants, register, errors, 
                 })} />
                 : <input autoComplete="off" {...register(name, {
                     required: required,
+                    pattern: pattern,
                     onChange: (e) => { setInputValue(e.currentTarget.value) }
                 })} />}
             <AnimatePresence mode='wait'>

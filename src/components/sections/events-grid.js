@@ -6,11 +6,13 @@ import { textTransition } from "../../helpers/animation-controller";
 import { motion } from "framer-motion";
 import { downloadFairFolder, eventsTitle } from "../../texts";
 import InView from "./in-view-provider";
+import { Link } from "gatsby";
 
 const animation = textTransition(5);
 const animationGrid = textTransition(6);
 
 export default function EventsGrid({ events, language }) {
+  debugger
   return (
     <InView>
       <Wrapper>
@@ -19,6 +21,7 @@ export default function EventsGrid({ events, language }) {
           <Grid variants={animationGrid}>
             {events.map((el) => (
               <div className="card">
+                {el.event.idOfContactForm && <Link className="link" to={el.uri} />}
                 <GatsbyImage
                   className="image"
                   image={
@@ -89,6 +92,8 @@ const Grid = styled(motion.div)`
   }
 
   .card {
+    position: relative;
+
     h3 {
       margin-top: clamp(24px, calc(24vw / 7.68), 32px);
       color: #31231e;
@@ -97,6 +102,25 @@ const Grid = styled(motion.div)`
       font-weight: 400;
       line-height: 146%;
       margin-bottom: 16px;
+    }
+
+    .image img{
+      transition: transform .4s;
+    }
+
+    .link{
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+    }
+
+    .link:hover + .image img{
+      transform: scale(1.05);
+    }
+
+    .underline{
+      position: relative;
+      z-index: 2;
     }
 
     .date {

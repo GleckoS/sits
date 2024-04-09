@@ -9,7 +9,7 @@ export const LangChanger = ({ closeAll, setSearchQuery, setMobileMenuOpened, dat
 
     if (!data) return null
 
-    const locData = data.wpCollection || data.wpMaterials || data.wpPage
+    const locData = data.wpCollection || data.wpMaterials || data.wpPage || data.wpEvent
 
     if (!locData?.language) {
         return null

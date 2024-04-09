@@ -1,10 +1,10 @@
 
 
 export const errorMessage = {
-    EN: 'This field is required.',
-    FR: 'Ce champ est obligatoire.',
-    PL: 'To pole jest wymagane.',
-    DE: 'Dies ist ein Pflichtfeld.'
+    EN: 'Please fill out this field correctly.',
+    FR: 'Veuillez remplir correctement ce champ.',
+    PL: 'Proszę wypełnić to pole poprawnie.',
+    DE: 'Bitte füllen Sie dieses Feld korrekt aus.'
 }
 
 export const phone = {
@@ -75,4 +75,11 @@ export const reply = {
     FR: 'Nos équipes vous répondront dans les plus brefs délais.',
     PL: 'Skontaktujemy się z Tobą najszybciej, jak to tylko możliwe.',
     DE: 'Wir werden uns so schnell wie möglich bei Ihnen melden.'
+}
+
+export const company = {
+    EN: 'Company name',
+    FR: 'Nom de la société',
+    PL: 'Nazwa firmy',
+    DE: 'Firmenname'
 }

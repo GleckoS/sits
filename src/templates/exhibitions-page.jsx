@@ -97,7 +97,9 @@ export const query = graphql`
     allWpEvent(filter: {language: {code: {eq: $language}}}) {
       nodes {
         title
+        uri
         event {
+          idOfContactForm
           dates
           endDate
           place

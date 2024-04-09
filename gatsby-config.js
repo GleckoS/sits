@@ -1,31 +1,33 @@
-// const { meterialsAlterTitle } = require("./src/texts");
+require("dotenv").config({ path: `.env` });
 
 module.exports = {
   siteMetadata: {
     title: `Sits`,
-    siteUrl: `https://sits.eu`
+    siteUrl: `https://sits.eu`,
   },
   plugins: [
     {
       resolve: "gatsby-plugin-sitemap",
       options: {
-        excludes: [
-          "/rabat-15-na-cala-kolekcje-w-polsce",
-        ]
-      }
+        excludes: ["/rabat-15-na-cala-kolekcje-w-polsce"],
+      },
     },
     {
-      resolve: 'gatsby-source-wordpress',
+      resolve: "gatsby-source-wordpress",
       options: {
-        "url": "https://sits.headlesshub.com/graphql",
+        url: "https://sits.headlesshub.com/graphql",
         schema: {
           perPage: 20,
           timeout: 3000000,
           requestConcurrency: 5,
           previewRequestConcurrency: 2,
-
         },
-        excludeFieldNames: ['comments', 'blocksJSON', 'previewBlocks', 'previewBlocksJSON'],
+        excludeFieldNames: [
+          "comments",
+          "blocksJSON",
+          "previewBlocks",
+          "previewBlocksJSON",
+        ],
         type: {
           Comment: {
             limit: 0,
@@ -35,10 +37,13 @@ module.exports = {
               maxFileSizeBytes: 52428800, // 50Mb
             },
           },
-        }
-      }
+        },
+      },
     },
-    "gatsby-plugin-image", "gatsby-transformer-sharp", "gatsby-plugin-styled-components", `gatsby-plugin-react-helmet`,
+    "gatsby-plugin-image",
+    "gatsby-transformer-sharp",
+    "gatsby-plugin-styled-components",
+    `gatsby-plugin-react-helmet`,
     {
       resolve: "gatsby-plugin-sharp",
       options: {
@@ -47,7 +52,7 @@ module.exports = {
           quality: 70,
           formats: [`webp`],
         },
-      }
+      },
     },
     {
       resolve: "gatsby-plugin-google-tagmanager",
@@ -57,37 +62,37 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-source-filesystem',
+      resolve: "gatsby-source-filesystem",
       options: {
-        "name": "images",
-        "path": "./src/images/"
+        name: "images",
+        path: "./src/images/",
       },
-      __key: "images"
+      __key: "images",
     },
     {
-      resolve: 'gatsby-plugin-react-leaflet',
+      resolve: "gatsby-plugin-react-leaflet",
       options: {
-        linkStyles: true // (default: true) Enable/disable loading stylesheets via CDN
-      }
+        linkStyles: true, // (default: true) Enable/disable loading stylesheets via CDN
+      },
     },
     {
-      resolve: 'gatsby-plugin-manifest',
+      resolve: "gatsby-plugin-manifest",
       options: {
-        icon: 'static/sits.ico',
+        icon: "static/sits.ico",
         name: `Sits`,
         short_name: `sits`,
         start_url: `/`,
         background_color: `#F9F5F0`,
         theme_color: `#996D3E`,
-        display: `standalone`
-      }
+        display: `standalone`,
+      },
     },
     {
       resolve: `gatsby-plugin-gatsby-cloud`,
       options: {
         allPageHeaders: [
-          'Strict-Transport-Security: max-age=31536000; includeSubDomains; preload',
-          'X-Frame-Options: SAMEORIGIN'
+          "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload",
+          "X-Frame-Options: SAMEORIGIN",
         ], // option to add headers for all pages. `Link` headers are transformed by the below criteria
         mergeSecurityHeaders: true, // boolean to turn off the default security headers
         mergeLinkHeaders: true, // boolean to turn off the default gatsby js headers
@@ -97,12 +102,12 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-robots-txt',
+      resolve: "gatsby-plugin-robots-txt",
       options: {
-        host: 'https://sits.eu',
-        sitemap: 'https://sits.eu/sitemap-index.xml',
-        policy: [{ userAgent: '*', allow: '/' }]
-      }
+        host: "https://sits.eu",
+        sitemap: "https://sits.eu/sitemap-index.xml",
+        policy: [{ userAgent: "*", allow: "/" }],
+      },
     },
     {
       resolve: `gatsby-plugin-facebook-pixel`,
@@ -162,23 +167,28 @@ module.exports = {
             }
           } 
         `,
-        ref: 'id',
-        index: ['collection', 'filterTypes'],
-        store: ['title', 'slug', 'collection', 'language', 'image', 'types'],
+        ref: "id",
+        index: ["collection", "filterTypes"],
+        store: ["title", "slug", "collection", "language", "image", "types"],
         normalizer: ({ data }) =>
           data.allWpProduct.nodes.map((node) => {
-            let mainImage = null
+            let mainImage = null;
 
-            node.products?.productGallery?.every(el => { 
-              let image = el.productsImages?.find((image) => image.isMainImage)?.featuredProductImage
+            node.products?.productGallery?.every((el) => {
+              let image = el.productsImages?.find(
+                (image) => image.isMainImage
+              )?.featuredProductImage;
 
-              if(image){
-                mainImage = image
-                return false
+              if (image) {
+                mainImage = image;
+                return false;
               }
-            })
+            });
 
-            if(!mainImage) mainImage = node.products?.productGallery?.[0]?.productsImages?.[0]?.featuredProductImage || null
+            if (!mainImage)
+              mainImage =
+                node.products?.productGallery?.[0]?.productsImages?.[0]
+                  ?.featuredProductImage || null;
             return {
               id: node.id,
               title: node.title,
@@ -186,9 +196,11 @@ module.exports = {
               collection: node.products?.collection || null,
               language: node.language.code,
               image: mainImage,
-              types: node.types.nodes.filter((type) => !type.ancestors).map((type) => type.name),
+              types: node.types.nodes
+                .filter((type) => !type.ancestors)
+                .map((type) => type.name),
               filterTypes: node.types.nodes.map((type) => type.slug),
-            }
+            };
           }),
       },
     },
@@ -224,28 +236,33 @@ module.exports = {
             }
           } 
         `,
-        ref: 'id',
-        index: ['title', 'slug', 'type'],
-        store: ['title', 'slug', 'language', 'image'],
+        ref: "id",
+        index: ["title", "slug", "type"],
+        store: ["title", "slug", "language", "image"],
         normalizer: ({ data }) =>
           data.allWpMaterials.nodes.map((node) => {
-            let mainImage = node.materials?.materialColorVariants?.find((image) => image.isMainColor)?.squarePreviewImage || node.materials?.materialColorVariants?.[0]?.squarePreviewImage || null
+            let mainImage =
+              node.materials?.materialColorVariants?.find(
+                (image) => image.isMainColor
+              )?.squarePreviewImage ||
+              node.materials?.materialColorVariants?.[0]?.squarePreviewImage ||
+              null;
 
             const meterialsAlterTitle = {
-              EN: 'Materials',
-              FR: 'Tissus',
-            }
-            
+              EN: "Materials",
+              FR: "Tissus",
+            };
+
             return {
               id: node.id,
               title: node.title,
               slug: node.slug,
               language: node.language.code,
               image: mainImage,
-              type: meterialsAlterTitle[node.language.code]
-            }
+              type: meterialsAlterTitle[node.language.code],
+            };
           }),
       },
     },
-  ]
+  ],
 };

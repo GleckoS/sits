@@ -1069,6 +1069,40 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     });
   });
 
+  // Events
+
+  const {
+    data: {
+      allWpEvent: { nodes: Events },
+    },
+  } = await graphql(`
+    query {
+      allWpEvent(filter: { event: { idOfContactForm: { ne: null } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
+        }
+      }
+    }
+  `);
+
+  Events.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve("src/templates/events-page.jsx"),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : "EN",
+      },
+    });
+  });
+
   // INFORM PAGES
 
   const {
