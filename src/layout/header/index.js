@@ -95,6 +95,7 @@ export default function Header({ data, language }) {
                 <span />
                 <div className="text">
                   <div
+                    className="text-title"
                     dangerouslySetInnerHTML={{ __html: additionalInformTitle }}
                   />
                   {additionalInformText && (
@@ -467,6 +468,11 @@ const Additional = styled.div`
       align-items: center;
       justify-content: center;
       gap: 8px;
+
+      p {
+        display: flex;
+        gap: 12px;
+      }
 
       @media (max-width: 420px) {
         justify-content: flex-start;
