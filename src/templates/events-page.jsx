@@ -47,6 +47,8 @@ export const query = graphql`
     wpEvent(id: { eq: $id }) {
       title
       event {
+        successFormSubmitTitle
+        successFormSubmitText
         placeAtEventForm
         idOfContactForm
         additionalDescriptionAboveForm

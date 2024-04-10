@@ -204,8 +204,12 @@ export default function EventForm({ language, title, event }) {
                       />
                     </g>
                   </svg>
-                  <span className="title">{thans[language]}</span>
-                  <span className="text">{reply[language]}</span>
+                  <span className="title">
+                    {event.successFormSubmitTitle ?? thans[language]}
+                  </span>
+                  <span className="text">
+                    {event.successFormSubmitText ?? reply[language]}
+                  </span>
                 </Success>
               )}
             </AnimatePresence>
