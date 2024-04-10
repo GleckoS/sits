@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   }
 
   const key =
-    "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiYjEwZjQyM2YzODhiNmFkMTliOTE0ZmVjNmEyOTU3OTE3ZjYxMzNkNGRjYmVlMTgwYWI2NTI5OWI2ZDI5N2U0ZjY0ZDk4MmFmZTNjOTNiMWIiLCJpYXQiOjE3MTI2NzUzNTkuODYyODI4LCJuYmYiOjE3MTI2NzUzNTkuODYyODMsImV4cCI6NDg2ODM0ODk1OS44NTkzMjksInN1YiI6IjkxMjY5MSIsInNjb3BlcyI6W119.L40_Be0mBQaoQmy-8-wrf84LeZkV9ctCA3TpaqE1CFH34PrylbY17bHs01uFjy2lzOyfmjqbwupus_kcFopremUr6p0NvIem7kvndiuQmjJ84HNMtF8ht1nSUNGc-j_XXdE9t7y57ZgRzhP4PuHoee-tX-JXjkGQKoWuoPzmz2Ja_fByE2hEpyERhfMRkh9XbHh9idW8Z6sqM9iFEktW93QAyWOcwlJ8_Oxa4iTj99I5kK2Zpqjs5vTcTCaxH4IdrMihC_YZUjpxBPwP9JQpZXICUNoto5XDNoY--E028dps6-rBD2hlLJru1ehWoJszMPgevBwZBtMZvi1CuwTCdOgP42fdhw7BKTdGr01rVfd2XV12ejGXFb983up9Ezazd89Y0ulkLcDvc_0jGSB02CzjiCwYefO6wbXxhodzHiUspNPWszC6XCC55sZMg0jtX0pw0IN8ZBLOPwQg7-Oe432_Dl6Ra88hufxpMb2vqHAxNfkdH2FRv1jvTy15lms8lZYUaAYq9bogReeLqgdzsZLfrKsM6qC77ewjToepMqALzaV9jH1LReVWRKw2OwwvZuA7Q396AMmY4KbCzx-9xAJY8rOj_BQdaA-EWwQy5CQ2YQXOZrbbLnogtnykP4_TA018_8NdDdgDFC50Wby3W_s6YgiqktGECuPBKVhpbtU";
+    "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiI0IiwianRpIjoiYTdiMjdlNmIyYzNkODkwNzA2MTNmNGQ1NzU1OTg1ZjAyMmY2MDRiNGJiMTAzNDNjNGI0Y2IwZmY1NTMzZGM2NjQwNjNiYTU2MzFkYmIwMzMiLCJpYXQiOjE3MTI3NDM4NTkuMjExNzEzLCJuYmYiOjE3MTI3NDM4NTkuMjExNzE2LCJleHAiOjQ4Njg0MTc0NTkuMjA3NjY1LCJzdWIiOiI5MTI2OTEiLCJzY29wZXMiOltdfQ.fn2jASjSRbuCqlohzJBZgE3FV9WisS7q_QN2_w-WecIT-fpYCUtQshmFpodk-Lk--rsc3fSurhZ8lYMgg1cmVEwjdId6gTqn-JuadSdAJT_cDWuLSzGmEhj4NRGhCNasvhIEH87vaWSrgFEZPHKCcG91eEpy73fSMv53c71pWXQj3UCBPE8YJpAKKIDm0LDClo9zOtaGVzomO15dlgEsgInAfDdQj5d286pw5_MRkLKlnMtw1Jpd6NcMKenhORYS7T7IC2XWSp4aaupdIJxuxwjpjbvEDh8XIf7yeo8xi3tvtzz5jjfxWx3SCeFfLmig8mSgsWs7n6Rg3pdQ8_4rrCtJmNKKGTIgf6YsDgs3PKwpgh4wTbLoWkVDmBbeebdofOVyrINXbgKK7I6JWI0Y52i0SkwU_i-nrN0V-fhFcDGrTRJwBZd2H0FJu11GhoDppGQk4j3w1wv5pfRrYjGR9ogarTCY9Bx0_SnGYV5XU1JWbKR1pL7EeVX0-G5RrQtkuT56soJT4bE3zByDIIoKJtIMKL6-6LRiABeiOK6nM6UEZa_uK4or-jWXlRridHSnraqPcjc3-pHRjl3pZpNVkslISbjHsim4rjSKAA5hda1uTqatdxwRebU5_gfYbqfsC9AZm-v44LIWw52BxGEoXhAgKYxG6W2DJLGaUdLQDPA";
 
   try {
     const api = await fetch(
@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       {
         method: "POST",
         headers: {
-          "X-MailerLite-ApiKey": process.env.MAILERLITE_API_KEY,
+          "X-MailerLite-ApiKey": key,
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
@@ -26,9 +26,12 @@ export default async function handler(req, res) {
         }),
       }
     );
-    console.log(api);
+    const response = await api.json();
+
     if (!api.ok) {
-      return res.status(422).json({ success: false });
+      return res
+        .status(422)
+        .json({ success: false, error: response.error.message });
     }
     return res.json({ success: true });
   } catch {

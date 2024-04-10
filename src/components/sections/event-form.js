@@ -49,8 +49,7 @@ export default function EventForm({ language, title, event }) {
 
   const onSubmit = async (data) => {
     setIsSended(false);
-    let a = process.env;
-    debugger;
+
     data.groupID = event.idOfContactForm;
     try {
       const response = await fetch("/api/mailerlite", {
@@ -64,12 +63,10 @@ export default function EventForm({ language, title, event }) {
         setIsSended(true);
         reset();
       } else {
-        alert("Error while sending form");
-        console.error("Error while sending form");
+        alert(responseData.error);
       }
     } catch {
       alert("Error while sending form");
-      console.error("Error while sending form");
     } finally {
       setIsSending(false);
     }
@@ -99,7 +96,7 @@ export default function EventForm({ language, title, event }) {
           <motion.div
             className="text"
             variants={textAnimation2}
-            dangerouslySetInnerHTML={{ __html: event.place }}
+            dangerouslySetInnerHTML={{ __html: event.placeAtEventForm }}
           />
           <motion.div
             className="additional"
