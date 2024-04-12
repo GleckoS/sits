@@ -51,6 +51,7 @@ export default function EventForm({ language, title, event }) {
     setIsSended(false);
 
     data.groupID = event.idOfContactForm;
+
     try {
       const response = await fetch("/api/mailerlite", {
         method: "POST",
@@ -60,13 +61,27 @@ export default function EventForm({ language, title, event }) {
       const responseData = await response.json();
 
       if (response.ok && responseData.success) {
-        setIsSended(true);
-        reset();
+        // temporary part of code
+        fetch("https://hook.eu1.make.com/uqlnrh5dmtssoshxvjfv4i4cbgn86ywk", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ data }),
+        })
+          .then((res) => res.json())
+          .then((res) => {
+            setIsSended(true);
+            reset();
+          })
+          .catch((err) => {
+            alert("Error while adding to google sheet");
+          });
       } else {
         alert(responseData.error);
       }
     } catch {
-      alert("Error while sending form");
+      alert("Error while submitting form");
     } finally {
       setIsSending(false);
     }
@@ -261,7 +276,7 @@ const Wrapper = styled.section`
     margin-bottom: clamp(12px, ${(12 / 1194) * 100}vw, 24px);
 
     @media (max-width: 1240px) {
-      font-size: clamp(26px, ${(40 / 1194) * 100}vw, 40px);
+      font-size: clamp(28px, ${(40 / 1194) * 100}vw, 40px);
       margin-bottom: 24px;
     }
   }
@@ -270,12 +285,12 @@ const Wrapper = styled.section`
     margin-top: 12px;
 
     color: #767676;
-    font-size: 24px;
+    font-size: clamp(16px, 2.01005vw, 24px);
     line-height: 150%;
 
     p {
       color: #767676;
-      font-size: 24px;
+      font-size: clamp(16px, 2.01005vw, 24px);
       line-height: 150%;
     }
 
@@ -289,7 +304,7 @@ const Wrapper = styled.section`
     margin-bottom: 48px;
     p {
       color: #31231e;
-      font-size: 24px;
+      font-size: clamp(20px, 2.01005vw, 24px);
       line-height: 150%;
     }
   }
@@ -298,7 +313,7 @@ const Wrapper = styled.section`
     margin-top: 16px;
     p {
       color: #767676;
-      font-size: 20px;
+      font-size: clamp(16px, 2.01005vw, 20px);
       line-height: 150%;
       text-align: center;
     }

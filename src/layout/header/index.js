@@ -469,8 +469,15 @@ const Additional = styled.div`
       justify-content: center;
       gap: 8px;
 
+      img {
+        height: fit-content;
+        max-width: 50px;
+        width: 100%;
+      }
+
       p {
         display: flex;
+        align-items: center;
         gap: 12px;
       }
 
