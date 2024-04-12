@@ -63,6 +63,13 @@ export const submit = {
     DE: 'Nachricht senden'
 }
 
+export const sign_up = {
+    EN: 'SIGN UP',
+    FR: 'S\'INSCRIRE',
+    PL: 'ZAREJESTRUJ SIĘ',
+    DE: 'REGISTRIEREN'
+}
+
 export const thans = {
     EN: 'Thanks for your message!',
     FR: 'Merci de nous avoir contactés!',

@@ -13,9 +13,9 @@ import {
   name,
   company,
   errorMessage,
-  submit,
   thans,
   reply,
+  sign_up,
 } from "../../texts/contact";
 import { Label } from "../moleculas/label";
 import { useForm } from "react-hook-form";
@@ -180,7 +180,7 @@ export default function EventForm({ language, title, event }) {
               </AnimatePresence>
             </Checkbox>
             <Submit disabled={isSending} variants={inputAnimation}>
-              {submit[language]}
+              {sign_up[language]}
             </Submit>
             <AnimatePresence mode="wait">
               {isSended && (
