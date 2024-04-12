@@ -470,9 +470,8 @@ const Additional = styled.div`
       gap: 8px;
 
       img {
-        height: fit-content;
-        max-width: 50px;
-        width: 100%;
+        height: 33px;
+        width: 50px;
       }
 
       p {
