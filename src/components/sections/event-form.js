@@ -49,6 +49,7 @@ export default function EventForm({ language, title, event }) {
 
   const onSubmit = async (data) => {
     setIsSended(false);
+    setIsSending(true)
 
     data.groupID = event.idOfContactForm;
 
@@ -70,11 +71,11 @@ export default function EventForm({ language, title, event }) {
           body: JSON.stringify({ data }),
         })
           .then((res) => res.json())
-          .then((res) => {
+          .then(() => {
             setIsSended(true);
             reset();
           })
-          .catch((err) => {
+          .catch(() => {
             alert("Error while adding to google sheet");
           });
       } else {
