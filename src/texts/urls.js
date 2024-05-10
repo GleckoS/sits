@@ -50,6 +50,6 @@ export const homepageUrl = {
 export const exhibitionsUrl = {
     EN: '/exhibitions/', 
     FR: '/fr/des-expositions/',
-    PL: '/pl/wystawy/',
+    PL: '/pl/spotkaj-nas/',
     DE: '/de/ausstellungen/'
 }

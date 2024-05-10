@@ -16,6 +16,6 @@ export const filterTitle = {
 export const buttonTitle = {
     EN: 'WEBSITE',
     FR: 'SITE WEB',
-    PL: 'WITRYNA',
+    PL: 'Strona internetowa',
     DE: 'WEBSITE'
 }

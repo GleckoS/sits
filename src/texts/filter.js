@@ -274,7 +274,7 @@ export const upholsteryParamName = {
 export const upholsterysTitle = {
     EN: 'Type of upholstery',
     FR: 'Type de rembourrage',
-    PL: 'Rodzaj tapicerki',
+    PL: 'Rodzaj wykończenia',
     DE: 'Typ des Polsters'
 }
 

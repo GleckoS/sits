@@ -57,7 +57,7 @@ export const confortText = {
 export const coversText = {
     EN: 'COVERS',
     FR: 'HOUSSES',
-    PL: 'POKRYCIA',
+    PL: 'POSZYCIA',
     DE: 'BEZÜGE'
 }
 
@@ -130,7 +130,7 @@ export const noResultMessage = {
     Great! Take me to <a href='/products/'>products</a> or <a href='/material/'>covers</a>.`,
     FR: `Les produits et couvertures favoris s'afficheront ici.<br/>
     Super! Emmenez-moi <a href='/products/'>aux produits</a> ou <a href='/material/'>aux couvertures</a>.`,
-    PL: `Ulubione produkty i pokrycia pojawią się tutaj.<br/>
+    PL: `Ulubione produkty i poszycia pojawią się tutaj.<br/>
     Świetnie! Zabierz mnie <a href='/products/'>do produktów</a> lub <a href='/material/'>do pokryć</a>.`,
     DE: `Favorisierte Produkte und Bezüge werden hier angezeigt.<br/>
     Super! Bringen Sie mich zu <a href='/products/'>Produkten</a> oder <a href='/material/'>Bezügen</a>.`
@@ -187,7 +187,7 @@ export const outdoorFurnituresTitle = {
 export const materialsTitle = {
     EN: 'Covers',
     FR: 'Housses',
-    PL: 'Pokrycia',
+    PL: 'Poszycia',
     DE: 'Bezüge'
 }
 export const meterialsAlterTitle = {
@@ -219,7 +219,7 @@ export const similarTitle = {
 export const coversTitle = {
     EN: 'Similar Covers',
     FR: 'Housses similaires',
-    PL: 'Podobne pokrycia',
+    PL: 'Podobne poszycia',
     DE: 'Vergleichbare Bezüge'
 }
 
@@ -240,7 +240,7 @@ export const collectionSimilarTitle = {
 export const collectionCoversTitle = {
     EN: 'Recommended covers for ',
     FR: 'Tissus recommandés pour le ',
-    PL: 'Polecane pokrycia dla ',
+    PL: 'Polecane poszycia dla ',
     DE: 'Empfohlene Bezüge für '
 }
 export const allProductsTitle = {
@@ -305,8 +305,8 @@ export const right = {
     ],
     PL: [
         {name: 'SALONY SPRZEDAŻY', url: '/pl/salony-sprzedazy/'},
-        {name: 'PRZEDSTAWICIEL HANDLOWY', url: '/pl/przedstawiciel-handlowy/'},
-        {name: 'WYSTAWY', url: '/pl/wystawy/'},
+        {name: 'PRZEDSTAWICIELE HANDLOWI', url: '/pl/przedstawiciel-handlowy/'},
+        {name: 'SPOTKAJ NAS', url: '/pl/spotkaj-nas/'},
         {name: 'KONTAKT', url: '/pl/kontakt/'}
     ],
     DE: [
@@ -359,7 +359,7 @@ export const linksLeft = {
         {name: 'Stoliki kawowe', url: '/pl/produkty/stoliki-kawowe/'},
         {name: 'Meble ogrodowe', url: '/pl/produkty/meble-ogrodowe/'},
         {name: 'Konfigurator produktu', url: 'https://sitsconnect.pl/configurator'},
-        {name: 'Pokrycia', url: '/pl/material/'},
+        {name: 'Poszycia', url: '/pl/material/'},
         {name: 'Moje ulubione', icon: 'hearth', url: '/pl/moje-ulubione/'}
     ],
     DE: [
@@ -411,10 +411,10 @@ export const linksRight = {
         {name: 'Pielęgnacja mebli', url: '/pl/pielegnacja-mebli/'},
         {name: 'Katalogi', url: '/pl/katalogi/'},
         {name: 'Wirtualny showroom', url: 'https://showroom.sits.eu/'},
-        {name: 'Przedstawiciel handlowy', url: '/pl/przedstawiciel-handlowy/'},
+        {name: 'Przedstawiciele handlowi', url: '/pl/przedstawiciel-handlowy/'},
         {name: 'Salony sprzedaży', url: '/pl/salony-sprzedazy/'},
         {name: 'Logowanie dealera', url: 'https://sitsconnect.pl/'},
-        {name: 'Wystawy', url: '/pl/wystawy/'},
+        {name: 'Spotkaj nas', url: '/pl/spotkaj-nas/'},
         {name: 'Kontakt', url: '/pl/kontakt/'}
     ],
     DE: [
@@ -441,7 +441,7 @@ export const furnitureTitle = {
 export const companyTitle = {
     EN: 'COMPANY',
     FR: 'ENTREPRISE',
-    PL: 'FIRMA',
+    PL: 'POZNAJ NAS',
     DE: 'UNTERNEHMEN'
 }
 
@@ -511,7 +511,7 @@ export const comfortTitle = {
 export const coverTitle = {
     EN: 'Cover:',
     FR: 'Housse:',
-    PL: 'Pokrycie:',
+    PL: 'Poszycie:',
     DE: 'Bezug:'
 }
 
@@ -599,7 +599,7 @@ export const contatcButton = {
 export const findRetailers = {
     EN: 'Find retailers',
     FR: 'Localisez les points de vente',
-    PL: 'Znajdź sprzedawców',
+    PL: 'Znajdź salony sprzedaży',
     DE: 'Händler finden'
 }
 
@@ -634,7 +634,7 @@ export const ourShowrooms = {
 export const eventsTitle = {
     EN: 'Events',
     FR: 'Événements',
-    PL: 'Wydarzenia',
+    PL: 'Nadchodzące wydarzenia',
     DE: 'Veranstaltungen'
 }
 
