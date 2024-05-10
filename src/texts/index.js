@@ -2,7 +2,7 @@ export const langSwitcherNames = {
     EN: 'International',
     FR: 'France',
     PL: 'Polski',
-    DE: 'Deutch'
+    DE: 'Deutsch'
 }
 
 export const downloadText = {
@@ -311,7 +311,7 @@ export const right = {
     ],
     DE: [
         {name: 'HÄNDLER FINDEN', url: '/de/haendler-finden/'},
-        {name: 'AUßENDIENSTMITARBEITER', url: '/de/aussendienstmitarbeiter/'},
+        {name: 'Vertretungen', url: '/de/vertretungen/'},
         {name: 'TREFFEN SIE UNS', url: '/de/ausstellungen/'},
         {name: 'KONTAKT', url: '/de/kontakt/'}
     ]
@@ -423,7 +423,7 @@ export const linksRight = {
         {name: 'Möbelpflege', url: '/de/moebelpflege/'},
         {name: 'Kataloge', url: '/de/kataloge/'},
         {name: 'Virtueller Showroom', url: 'https://showroom.sits.eu/'},
-        {name: 'Außendienstmitarbeiter', url: '/de/aussendienstmitarbeiter/'},
+        {name: 'Vertretungen ', url: '/de/vertretungen/'},
         {name: 'Händler finden', url: '/de/haendler-finden/'},
         {name: 'Händler-Login', url: 'https://sitsconnect.pl/'},
         {name: 'Treffen Sie uns', url: '/de/ausstellungen/'},
@@ -621,7 +621,7 @@ export const upcommingEvents = {
     EN: 'Upcoming events',
     FR: 'Événements à venir',
     PL: 'Nadchodzące wydarzenia',
-    DE: 'Kommende Veranstaltungen'
+    DE: 'Fachmessen'
 }
 
 export const ourShowrooms = {

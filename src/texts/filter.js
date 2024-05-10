@@ -57,7 +57,7 @@ export const colorGroupTransaltions = {
         EN: 'Natural',
         FR: 'Naturel',
         PL: 'Naturalny',
-        DE: 'Natürlich'
+        DE: 'Naturfarben'
     },
     'lightGrey': {
         EN: 'Light Grey',
