@@ -43,7 +43,7 @@ export const careInstructionsText = {
 export const upholsterysText = {
     EN: 'UPHOLSTERY',
     FR: 'TISSUS',
-    PL: 'TAPICERKA',
+    PL: 'RODZAJ WYKOŃCZENIA',
     DE: 'POLSTERUNG'
 }
 
