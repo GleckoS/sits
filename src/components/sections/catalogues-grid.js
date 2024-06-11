@@ -46,51 +46,58 @@ export default function CataloguesGrid({
         <Content>
           <Container>
             <Grid variants={gridAnimation}>
-              {catalogues.map((el, index) => (
-                <Item key={index}>
-                  <motion.div variants={imageAnimation}>
-                    <GatsbyImage
-                      className="image"
-                      image={
-                        el.cataloguePreviewImage.localFile.childImageSharp
-                          .gatsbyImageData
-                      }
-                      alt={el.cataloguePreviewImage.altText}
-                    />
-                  </motion.div>
-                  <h3>{el.catalogueTitle}</h3>
-                  <div className="link-wrap">
-                    <motion.a
-                      href={
-                        el.catalogueFile?.localFile?.publicURL
-                          ? el.catalogueFile?.localFile?.publicURL
-                          : el.catalogueFile?.mediaItemUrl
-                      }
-                      target="_blank"
-                      rel="noreferrer noopener"
-                      download
-                      variants={linkAnimation}
-                      className="underline"
-                    >
-                      {download[language]}{" "}
-                      <span>({el.catalogueFile?.localFile?.prettySize})</span>
-                    </motion.a>
-                  </div>
-                  {el.linkToFileView && (
+              {catalogues
+                .filter(
+                  (el) =>
+                    el.cataloguePreviewImage &&
+                    el.catalogueTitle &&
+                    el.catalogueFile
+                )
+                .map((el, index) => (
+                  <Item key={index}>
+                    <motion.div variants={imageAnimation}>
+                      <GatsbyImage
+                        className="image"
+                        image={
+                          el.cataloguePreviewImage.localFile.childImageSharp
+                            .gatsbyImageData
+                        }
+                        alt={el.cataloguePreviewImage.altText}
+                      />
+                    </motion.div>
+                    <h3>{el.catalogueTitle}</h3>
                     <div className="link-wrap">
                       <motion.a
-                        href={el.linkToFileView}
+                        href={
+                          el.catalogueFile?.localFile?.publicURL
+                            ? el.catalogueFile?.localFile?.publicURL
+                            : el.catalogueFile?.mediaItemUrl
+                        }
                         target="_blank"
                         rel="noreferrer noopener"
+                        download
                         variants={linkAnimation}
                         className="underline"
                       >
-                        {view[language]}{" "}
+                        {download[language]}{" "}
+                        <span>({el.catalogueFile?.localFile?.prettySize})</span>
                       </motion.a>
                     </div>
-                  )}
-                </Item>
-              ))}
+                    {el.linkToFileView && (
+                      <div className="link-wrap">
+                        <motion.a
+                          href={el.linkToFileView}
+                          target="_blank"
+                          rel="noreferrer noopener"
+                          variants={linkAnimation}
+                          className="underline"
+                        >
+                          {view[language]}{" "}
+                        </motion.a>
+                      </div>
+                    )}
+                  </Item>
+                ))}
             </Grid>
           </Container>
         </Content>
@@ -133,7 +140,7 @@ const Item = styled.div`
     padding-bottom: 0;
   }
 
-  .link-wrap{
+  .link-wrap {
     margin-top: 20px;
   }
 
