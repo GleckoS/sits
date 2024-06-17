@@ -30,7 +30,7 @@ export const searchUrl = {
     EN: '/search/',
     FR: '/fr/rechercher/',
     PL: '/pl/wyszukiwarka/',
-    DE: '/de/suchen/'
+    DE: '/de/suche/'
 }
 
 export const whereToBuyUrl = {
