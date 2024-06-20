@@ -180,7 +180,9 @@ const MostPopularProducts = styled.div`
     background-color: #F9F5F0;
     padding-bottom: 80px;
     padding-top: 80px;
-    margin-bottom: calc(clamp(45px, 10.050251256281408vw, 160px) * -1 );
+    &:last-child{
+        margin-bottom: calc(clamp(45px, 10.050251256281408vw, 160px) * -1 );
+    }
     h2{
         font-family: "Ivy";
         font-weight: 300;
@@ -281,7 +283,9 @@ const Content = styled.div`
 const Results = styled.div`
     background-color: #F9F5F0;
     padding: 0 0 60px 0;
-    margin-bottom: calc(clamp(45px, 10.050251256281408vw, 160px) * -1 );
+    &:last-child{
+        margin-bottom: calc(clamp(45px, 10.050251256281408vw, 160px) * -1 );
+    }
     @media (max-width: 480px) {
         padding-top: 80px;
     }

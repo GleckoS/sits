@@ -86,7 +86,7 @@ export const query = graphql`
               slug
             }
         }
-        Sofas : allWpProduct(filter: {products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $sofas}}}}}) {
+        Sofas : allWpProduct(filter: {language: {code: {eq: $language}}, products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $sofas}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -125,7 +125,7 @@ export const query = graphql`
                 }
             }
           }
-        Armchairs : allWpProduct(filter: {products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $armchairs}}}}}) {
+        Armchairs : allWpProduct(filter: {language: {code: {eq: $language}}, products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $armchairs}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -164,7 +164,7 @@ export const query = graphql`
                 }
             }
         }
-        CoffeeTables : allWpProduct(filter: {products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $coffeTables}}}}}) {
+        CoffeeTables : allWpProduct(filter: {language: {code: {eq: $language}}, products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $coffeTables}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -203,7 +203,7 @@ export const query = graphql`
                 }
             }
         }
-        DiningChairs : allWpProduct(filter: {products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $dinningChairs}}}}}) {
+        DiningChairs : allWpProduct(filter: {language: {code: {eq: $language}}, products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $dinningChairs}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -242,7 +242,7 @@ export const query = graphql`
                 }
             }
         }
-        Footstools : allWpProduct(filter: {products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $footstools}}}}}) {
+        Footstools : allWpProduct(filter: {language: {code: {eq: $language}}, products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $footstools}}}}}) {
             nodes {
                 types {
                   nodes {
@@ -281,7 +281,7 @@ export const query = graphql`
                 }
             }
         }
-        OutdoorFurnitures : allWpProduct(filter: {products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $outdoorFurniture}}}}}) {
+        OutdoorFurnitures : allWpProduct(filter: {language: {code: {eq: $language}}, products: {isDiscontinued: {in: [false, null]}}, types: {nodes: {elemMatch: {name: {eq: $outdoorFurniture}}}}}) {
             nodes {
                 types {
                   nodes {
