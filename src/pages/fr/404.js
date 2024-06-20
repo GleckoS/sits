@@ -57,7 +57,7 @@ const NotFoundPageFr = () => {
           </Container>
         </Section>
       </InView>
-      <Map language={'EN'} />
+      <Map language={'FR'} />
     </Wrapper>
   )
 }

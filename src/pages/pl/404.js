@@ -14,11 +14,11 @@ const textAnimation = textTransition(2)
 const buttonAnimation = linkTransition(3)
 const linkAnimation = linkTransition(4)
 
-const NotFoundPageFr = () => {
+const NotFoundPagePl = () => {
 
   const { wpPage: { errorPage: { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } } } = useStaticQuery(
     graphql`
-        query errorFr {
+        query errorPl {
           wpPage(id: {eq: "cG9zdDo0MjE0NQ=="}){
             id
             errorPage {
@@ -57,12 +57,12 @@ const NotFoundPageFr = () => {
           </Container>
         </Section>
       </InView>
-      <Map language={'EN'} />
+      <Map language={'PL'} />
     </Wrapper>
   )
 }
 
-export default NotFoundPageFr
+export default NotFoundPagePl
 
 const Section = styled.section`
   background-color: var(--light-background);
