@@ -29,7 +29,7 @@ export const LangChanger = ({ closeAll, setSearchQuery, setMobileMenuOpened, dat
                         <span className="dot" />
                     </div>
 
-                    {locData.translations?.filter(el => (el.language.code !== 'PL')).map(el => (
+                    {locData.translations?.filter(el => (el.language.code !== 'PL' && el.language.code !== 'DE')).map(el => (
                         <Link tabIndex={isOpened ? '0' : '-1'} to={el.uri}>
                             <div>
                                 <span className="icon" dangerouslySetInnerHTML={{ __html: icons[el.language.code] }} />
@@ -49,7 +49,7 @@ export const LangChanger = ({ closeAll, setSearchQuery, setMobileMenuOpened, dat
                     <span className="dot" />
                 </div>
 
-                {locData.translations?.filter(el => (el.language.code !== 'PL')).map(el => (
+                {locData.translations?.filter(el => (el.language.code !== 'PL' && el.language.code !== 'DE')).map(el => (
                     <div onClick={() => {
                         setTimeout(() => {
                             setMobileMenuOpened(false)
