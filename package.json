@@ -8,13 +8,14 @@
     "gatsby"
   ],
   "scripts": {
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "start": "gatsby develop",
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@hookform/resolvers": "^3.9.1",
     "axios": "^1.5.0",
     "babel-plugin-styled-components": "^2.1.4",
     "csvtojson": "^2.0.10",
@@ -50,7 +51,8 @@
     "react-use-flexsearch": "^0.1.1",
     "sharp": "^0.32.5",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^6.0.7"
+    "styled-components": "^6.0.7",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "yarn-upgrade-all": "^0.7.2"

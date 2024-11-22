@@ -1,57 +1,56 @@
-const fs = require("fs");
-const { resolve } = require("path");
-const fetch = (...args) =>
-  import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
+const fs = require('fs');
+const { resolve } = require('path');
+const fetch = (...args) => import(`node-fetch`).then(({ default: fetch }) => fetch(...args));
 
 const productSearchTypes = {
   sofas: {
-    EN: "Sofas",
-    FR: "Canapés",
-    PL: "Sofy",
-    DE: "Sofas",
+    EN: 'Sofas',
+    FR: 'Canapés',
+    PL: 'Sofy',
+    DE: 'Sofas',
   },
   armchairs: {
-    EN: "Armchairs",
-    FR: "Fauteuils",
-    PL: "Fotele",
-    DE: "Sessel",
+    EN: 'Armchairs',
+    FR: 'Fauteuils',
+    PL: 'Fotele',
+    DE: 'Sessel',
   },
   coffeTables: {
-    EN: "Coffee tables",
-    FR: "Tables basses",
-    PL: "Stoliki kawowe",
-    DE: "Couchtische",
+    EN: 'Coffee tables',
+    FR: 'Tables basses',
+    PL: 'Stoliki kawowe',
+    DE: 'Couchtische',
   },
   dinningChairs: {
-    EN: "Dining chairs",
-    FR: "Chaises de salle à manger",
-    PL: "Krzesła do jadalni",
-    DE: "Esszimmerstühle"
+    EN: 'Dining chairs',
+    FR: 'Chaises de salle à manger',
+    PL: 'Krzesła do jadalni',
+    DE: 'Esszimmerstühle',
   },
   footstools: {
-    EN: "Footstools",
-    FR: "Repose-pieds",
-    PL: "Podnóżki",
-    DE: "Hocker",
+    EN: 'Footstools',
+    FR: 'Repose-pieds',
+    PL: 'Podnóżki',
+    DE: 'Hocker',
   },
   outdoorFurniture: {
-    EN: "Outdoor furniture",
-    FR: "Mobilier d’extérieur",
-    PL: "Meble ogrodowe",
-    DE: "Outdoor-Möbel",
+    EN: 'Outdoor furniture',
+    FR: 'Mobilier d’extérieur',
+    PL: 'Meble ogrodowe',
+    DE: 'Outdoor-Möbel',
   },
 };
 
 const csvParser = (data) => {
-  let lines = data.split("\r\n");
+  let lines = data.split('\r\n');
 
   let result = [];
 
-  let headers = lines[0].split(",");
+  let headers = lines[0].split(',');
 
   for (let i = 1; i < lines.length; i++) {
     let obj = {};
-    let currentline = lines[i].split(",");
+    let currentline = lines[i].split(',');
     for (let j = 0; j < headers.length; j++) {
       obj[headers[j]] = currentline[j];
     }
@@ -60,6 +59,13 @@ const csvParser = (data) => {
   }
 
   return result; //JSON
+};
+
+const jobOfferPaths = {
+  EN: '/career',
+  PL: '/pl/kariera',
+  DE: '/de/karriere',
+  FR: '/fr/carriere',
 };
 
 exports.onPostBuild = async ({ graphql }) => {
@@ -85,9 +91,7 @@ exports.onPostBuild = async ({ graphql }) => {
   `);
 
   if (csvRedirectsFile?.localFile.publicURL) {
-    const result = await fetch(
-      `https://sits.eu${csvRedirectsFile.localFile.publicURL}`
-    );
+    const result = await fetch(`https://sits.eu${csvRedirectsFile.localFile.publicURL}`);
     const resultData = await result.text();
 
     const redirectConfig = csvParser(resultData)?.map(
@@ -99,7 +103,7 @@ exports.onPostBuild = async ({ graphql }) => {
         force = ${el.Force || false}`
     );
 
-    fs.writeFileSync("netlify.toml", redirectConfig.join("\n"));
+    fs.writeFileSync('netlify.toml', redirectConfig.join('\n'));
   }
 };
 
@@ -170,18 +174,16 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   `);
 
   collections.forEach(({ id, slug, uri, language }) => {
-    const products = allWpProduct.nodes.filter(
-      (el) => el.products?.collection?.id === id
-    );
+    const products = allWpProduct.nodes.filter((el) => el.products?.collection?.id === id);
 
     createPage({
       path: uri,
-      component: resolve("src/templates/collection-page.jsx"),
+      component: resolve('src/templates/collection-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
         products: products,
       },
     });
@@ -211,12 +213,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   materials.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/material-page.jsx"),
+      component: resolve('src/templates/material-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -245,12 +247,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   materialArchives.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/materials-archive.jsx"),
+      component: resolve('src/templates/materials-archive.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -285,15 +287,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   footstoolsArchives.forEach(({ id, slug, uri, title, types, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/products-archive.jsx"),
+      component: resolve('src/templates/products-archive.jsx'),
       context: {
         id,
         slug,
         uri,
         title,
-        type: "footstools",
+        type: 'footstools',
         productType: types.nodes[0]?.name,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -328,15 +330,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   sofasArchives.forEach(({ id, slug, uri, title, types, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/products-archive.jsx"),
+      component: resolve('src/templates/products-archive.jsx'),
       context: {
         id,
         slug,
         uri,
         title,
-        type: "sofas",
+        type: 'sofas',
         productType: types.nodes[0]?.name,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -371,15 +373,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   armchairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/products-archive.jsx"),
+      component: resolve('src/templates/products-archive.jsx'),
       context: {
         id,
         slug,
         uri,
         title,
-        type: "armchairs",
+        type: 'armchairs',
         productType: types.nodes[0]?.name,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -392,9 +394,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     },
   } = await graphql(`
     query {
-      allWpPage(
-        filter: { template: { templateName: { eq: "Coffee Tables" } } }
-      ) {
+      allWpPage(filter: { template: { templateName: { eq: "Coffee Tables" } } }) {
         nodes {
           slug
           id
@@ -416,15 +416,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   tablesArchives.forEach(({ id, slug, uri, title, types, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/products-archive.jsx"),
+      component: resolve('src/templates/products-archive.jsx'),
       context: {
         id,
         slug,
         uri,
         title,
-        type: "coffee tables",
+        type: 'coffee tables',
         productType: types.nodes[0]?.name,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -437,9 +437,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     },
   } = await graphql(`
     query {
-      allWpPage(
-        filter: { template: { templateName: { eq: "Dining Chairs" } } }
-      ) {
+      allWpPage(filter: { template: { templateName: { eq: "Dining Chairs" } } }) {
         nodes {
           slug
           id
@@ -461,15 +459,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   chairsArchives.forEach(({ id, slug, uri, title, types, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/products-archive.jsx"),
+      component: resolve('src/templates/products-archive.jsx'),
       context: {
         id,
         slug,
         uri,
         title,
-        type: "dining chairs",
+        type: 'dining chairs',
         productType: types.nodes[0]?.name,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -482,9 +480,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     },
   } = await graphql(`
     query {
-      allWpPage(
-        filter: { template: { templateName: { eq: "Outdoor Furniture" } } }
-      ) {
+      allWpPage(filter: { template: { templateName: { eq: "Outdoor Furniture" } } }) {
         nodes {
           slug
           id
@@ -506,15 +502,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   outdoorArchives.forEach(({ id, slug, uri, title, types, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/products-archive.jsx"),
+      component: resolve('src/templates/products-archive.jsx'),
       context: {
         id,
         slug,
         uri,
         title,
-        type: "outdoor furniture",
+        type: 'outdoor furniture',
         productType: types.nodes[0]?.name,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -543,12 +539,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Homepage.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/homepage.jsx"),
+      component: resolve('src/templates/homepage.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -577,14 +573,13 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   productsArchives.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/all-products-page.jsx"),
+      component: resolve('src/templates/all-products-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
-        homepageId: Homepage.find((el) => el.language?.code === language?.code)
-          ?.id,
+        language: language?.code ? language.code : 'EN',
+        homepageId: Homepage.find((el) => el.language?.code === language?.code)?.id,
       },
     });
   });
@@ -613,12 +608,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Bestsellers.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/best-sellers.jsx"),
+      component: resolve('src/templates/best-sellers.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -647,27 +642,18 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Search.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/search-page.jsx"),
+      component: resolve('src/templates/search-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
-        sofas: productSearchTypes.sofas[language?.code ? language.code : "EN"],
-        armchairs:
-          productSearchTypes.armchairs[language?.code ? language.code : "EN"],
-        footstools:
-          productSearchTypes.footstools[language?.code ? language.code : "EN"],
-        dinningChairs:
-          productSearchTypes.dinningChairs[
-            language?.code ? language.code : "EN"
-          ],
-        coffeTables:
-          productSearchTypes.coffeTables[language?.code ? language.code : "EN"],
-        outdoorFurniture:
-          productSearchTypes.outdoorFurniture[
-            language?.code ? language.code : "EN"
-          ],
+        language: language?.code ? language.code : 'EN',
+        sofas: productSearchTypes.sofas[language?.code ? language.code : 'EN'],
+        armchairs: productSearchTypes.armchairs[language?.code ? language.code : 'EN'],
+        footstools: productSearchTypes.footstools[language?.code ? language.code : 'EN'],
+        dinningChairs: productSearchTypes.dinningChairs[language?.code ? language.code : 'EN'],
+        coffeTables: productSearchTypes.coffeTables[language?.code ? language.code : 'EN'],
+        outdoorFurniture: productSearchTypes.outdoorFurniture[language?.code ? language.code : 'EN'],
       },
     });
   });
@@ -696,27 +682,18 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Favourites.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/favourites-page.jsx"),
+      component: resolve('src/templates/favourites-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
-        sofas: productSearchTypes.sofas[language?.code ? language.code : "EN"],
-        armchairs:
-          productSearchTypes.armchairs[language?.code ? language.code : "EN"],
-        footstools:
-          productSearchTypes.footstools[language?.code ? language.code : "EN"],
-        dinningChairs:
-          productSearchTypes.dinningChairs[
-            language?.code ? language.code : "EN"
-          ],
-        coffeTables:
-          productSearchTypes.coffeTables[language?.code ? language.code : "EN"],
-        outdoorFurniture:
-          productSearchTypes.outdoorFurniture[
-            language?.code ? language.code : "EN"
-          ],
+        language: language?.code ? language.code : 'EN',
+        sofas: productSearchTypes.sofas[language?.code ? language.code : 'EN'],
+        armchairs: productSearchTypes.armchairs[language?.code ? language.code : 'EN'],
+        footstools: productSearchTypes.footstools[language?.code ? language.code : 'EN'],
+        dinningChairs: productSearchTypes.dinningChairs[language?.code ? language.code : 'EN'],
+        coffeTables: productSearchTypes.coffeTables[language?.code ? language.code : 'EN'],
+        outdoorFurniture: productSearchTypes.outdoorFurniture[language?.code ? language.code : 'EN'],
       },
     });
   });
@@ -729,9 +706,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     },
   } = await graphql(`
     query {
-      allWpPage(
-        filter: { template: { templateName: { eq: "Where To Buy" } } }
-      ) {
+      allWpPage(filter: { template: { templateName: { eq: "Where To Buy" } } }) {
         nodes {
           slug
           id
@@ -747,12 +722,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Where.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/where-to-buy-page.jsx"),
+      component: resolve('src/templates/where-to-buy-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -765,9 +740,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     },
   } = await graphql(`
     query {
-      allWpPage(
-        filter: { template: { templateName: { eq: "Furniture Care" } } }
-      ) {
+      allWpPage(filter: { template: { templateName: { eq: "Furniture Care" } } }) {
         nodes {
           slug
           id
@@ -783,12 +756,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Furniture.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/furniture-care-page.jsx"),
+      component: resolve('src/templates/furniture-care-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -817,12 +790,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Catalogue.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/catalogues-page.jsx"),
+      component: resolve('src/templates/catalogues-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -851,12 +824,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Contact.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/сontact-page.jsx"),
+      component: resolve('src/templates/сontact-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -885,12 +858,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Legal.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/legal-page.jsx"),
+      component: resolve('src/templates/legal-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -903,9 +876,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     },
   } = await graphql(`
     query {
-      allWpPage(
-        filter: { template: { templateName: { eq: "Sales Representative" } } }
-      ) {
+      allWpPage(filter: { template: { templateName: { eq: "Sales Representative" } } }) {
         nodes {
           slug
           id
@@ -921,12 +892,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Sales.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/sales-page.jsx"),
+      component: resolve('src/templates/sales-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -955,12 +926,84 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   About.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/about-page.jsx"),
+      component: resolve('src/templates/about-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
+      },
+    });
+  });
+
+  // Career
+
+  const {
+    data: {
+      allWpPage: { nodes: Career },
+    },
+  } = await graphql(`
+    query {
+      allWpPage(filter: { template: { templateName: { eq: "Career" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
+        }
+      }
+    }
+  `);
+
+  Career.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve('src/templates/career-page.jsx'),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : 'EN',
+      },
+    });
+  });
+
+  // Job Offers
+  const {
+    data: {
+      allWpJobOffers: { nodes: jobOffers },
+    },
+  } = await graphql(`
+    query {
+      allWpJobOffers {
+        nodes {
+          id
+          uri
+          language {
+            code
+          }
+        }
+      }
+    }
+  `);
+
+  jobOffers.forEach(({ id, language }) => {
+    const langCode = language?.code || 'PL';
+    const basePath = jobOfferPaths[langCode];
+
+    if (!basePath) {
+      console.warn(`No path configuration for language: ${langCode}`);
+      return;
+    }
+
+    createPage({
+      path: `${basePath}/${id}`,
+      component: resolve('src/templates/job-offer-page.jsx'),
+      context: {
+        id,
+        language: langCode,
       },
     });
   });
@@ -989,12 +1032,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Conscious.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/conscious-page.jsx"),
+      component: resolve('src/templates/conscious-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -1007,9 +1050,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     },
   } = await graphql(`
     query {
-      allWpPage(
-        filter: { template: { templateName: { eq: "New Arrivals" } } }
-      ) {
+      allWpPage(filter: { template: { templateName: { eq: "New Arrivals" } } }) {
         nodes {
           slug
           id
@@ -1025,12 +1066,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Arrivals.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/new-arrivals-page.jsx"),
+      component: resolve('src/templates/new-arrivals-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -1059,12 +1100,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Exhibitions.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/exhibitions-page.jsx"),
+      component: resolve('src/templates/exhibitions-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -1093,12 +1134,12 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   Events.forEach(({ id, slug, uri, language }) => {
     createPage({
       path: uri,
-      component: resolve("src/templates/events-page.jsx"),
+      component: resolve('src/templates/events-page.jsx'),
       context: {
         id,
         slug,
         uri,
-        language: language?.code ? language.code : "EN",
+        language: language?.code ? language.code : 'EN',
       },
     });
   });
@@ -1127,25 +1168,13 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
   pages.forEach(({ id, slug, language }) => {
     createPage({
-      path: `${
-        language?.code
-          ? language.code !== "EN"
-            ? `/${language.code.toLowerCase()}`
-            : ""
-          : ""
-      }/${slug}/`,
-      component: resolve("src/templates/inform-pages.jsx"),
+      path: `${language?.code ? (language.code !== 'EN' ? `/${language.code.toLowerCase()}` : '') : ''}/${slug}/`,
+      component: resolve('src/templates/inform-pages.jsx'),
       context: {
         id,
         slug,
-        uri: `${
-          language?.code
-            ? language.code !== "EN"
-              ? `/${language.code.toLowerCase()}`
-              : ""
-            : ""
-        }/${slug}/`,
-        language: language?.code ? language.code : "EN",
+        uri: `${language?.code ? (language.code !== 'EN' ? `/${language.code.toLowerCase()}` : '') : ''}/${slug}/`,
+        language: language?.code ? language.code : 'EN',
       },
     });
   });

@@ -1,4 +1,4 @@
-import { createGlobalStyle, keyframes } from "styled-components"
+import { createGlobalStyle, keyframes } from 'styled-components';
 
 const enter = keyframes`
     0% {
@@ -7,7 +7,7 @@ const enter = keyframes`
     100% {
         opacity: 1;
     }
-`
+`;
 const exit = keyframes`
     0% {
         opacity: 1;
@@ -15,7 +15,7 @@ const exit = keyframes`
     100% {
         opacity: 0;
     }
-`
+`;
 
 export const Global = createGlobalStyle`
     :root{
@@ -28,14 +28,24 @@ export const Global = createGlobalStyle`
 
         --animation: .8s cubic-bezier(0.42, 0, 0.58, 1);
         --menu-animation: .55s cubic-bezier(0.42, 0, 0.58, 1);
+        --page-margin: clamp(calc(16rem / 16), calc(32vw / 7.68), calc(40rem / 16));
+
+        @media (max-width: 899px) and (min-width: 600px) {
+            --page-margin: clamp(calc(40rem / 16), calc(80vw / 7.68), calc(80rem / 16));
+        }
     }
 
+    html{
+        scroll-behavior: smooth;
+    }
+
+
     .yellow-button{
-        height: clamp(48px, ${89 / 1194 * 100}vw, 89px);
+        height: clamp(48px, ${(89 / 1194) * 100}vw, 89px);
         background-color: transparent;
         position: relative;
         font-weight: 300;
-        font-size: clamp(16px, ${28 / 1194 * 100}vw, 28px);
+        font-size: clamp(16px, ${(28 / 1194) * 100}vw, 28px);
         width: 100%;
         text-align: center;
         display: flex;
@@ -63,8 +73,15 @@ export const Global = createGlobalStyle`
 
     @media (max-width: 1024px) {
         .yellow-button{
-            max-width: clamp(350px, ${450 / 1194 * 100}vw, 450px);
+            max-width: clamp(350px, ${(450 / 1194) * 100}vw, 450px);
         }
+    }
+
+    .max-width {
+        max-width: 1300px;
+        width: calc(100% - var(--page-margin) * 2);
+        margin: 0 auto;
+        height: 100%;
     }
 
     * {
@@ -232,4 +249,4 @@ export const Global = createGlobalStyle`
     }
 
     
-`
+`;
