@@ -37,7 +37,7 @@ export default function CareerForm({ data: { language, selectedCity, jobTitle = 
           .nullable(),
         city: yup.string().required('Wybór miasta jest wymagany'),
 
-        files: yup.array().min(1, 'Załączenie pliku CV jest wymagane').max(5, 'Maksymalnie możesz załączyć 5 plików').required('Załączenie pliku CV jest wymagane'),
+        files: yup.array().min(1, 'Załączenie pliku CV jest wymagane').max(3, 'Maksymalnie możesz załączyć 3 pliki').required('Załączenie pliku CV jest wymagane'),
         check: yup.boolean().oneOf([true], 'Musisz zaakceptować politykę prywatności'),
       })
     ),
@@ -54,53 +54,40 @@ export default function CareerForm({ data: { language, selectedCity, jobTitle = 
     setIsSending(true);
 
     try {
-      // Convert files to base64 strings
-      const filePromises = files.map((file) => {
-        console.log(file);
-        return new Promise((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            // Convert binary string to base64
-            const binaryStr = reader.result;
-            const base64String = btoa(new Uint8Array(binaryStr).reduce((data, byte) => data + String.fromCharCode(byte), ''));
+      const formData = new FormData();
 
-            resolve({
-              fileName: file.name,
-              type: file.type,
-              data: base64String,
-              mimeType: file.type,
-            });
-          };
-          reader.onerror = (error) => reject(error);
-          // Read as array buffer instead of data URL
-          reader.readAsArrayBuffer(file);
-        });
+      // Add regular form data
+      formData.append('fullname', data.fullname);
+      formData.append('email', data.email);
+      formData.append('phone', data.phone || 'Not provided');
+      formData.append('city', data.city);
+      formData.append('receiverEmail', receiverEmail || citiesAvailable.find((city) => city.city === data.city).email);
+      if (jobTitle) {
+        formData.append('jobTitle', jobTitle);
+      }
+      formData.append('language', language);
+
+      // Create array of file objects with all necessary data
+      const fileAttachments = files.map((file) => ({
+        filename: file.name,
+        content: file,
+        contentType: file.type,
+      }));
+
+      // Log for debugging
+      console.log('File attachments:', fileAttachments);
+
+      // Append the array as a JSON string
+      formData.append('attachments', JSON.stringify(fileAttachments));
+
+      // Also append the raw files for backup
+      files.forEach((file, index) => {
+        formData.append(`file${index}`, file);
       });
-
-      const base64Files = await Promise.all(filePromises);
-
-      // Prepare payload for Make.com
-      const payload = {
-        formData: {
-          fullname: data.fullname,
-          email: data.email,
-          phone: data.phone || 'Not provided',
-          city: data.city,
-          receiverEmail: receiverEmail || citiesAvailable.find((city) => city.city === data.city).email,
-          jobTitle,
-        },
-        files: base64Files,
-        language: language,
-      };
-
-      console.log(payload);
 
       const response = await fetch('https://hook.eu1.make.com/1luddokas9lst12vhma2895bdvfihipy', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(payload),
+        body: formData,
       });
 
       if (!response.ok) {

@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { addMoreFiles, attachCV, chooseFile, dragItHere, dropFileHere, format, maxFileSize, or, uploaded } from '../../texts/career';
+import { toast } from 'react-toastify';
 
 const ACCEPTED_TYPES = {
   '.pdf': 'application/pdf',
@@ -10,6 +11,7 @@ const ACCEPTED_TYPES = {
   '.png': 'image/png',
   '.docx': 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
 };
+const MAX_FILES = 3;
 const MAX_SIZE = 5 * 1024 * 1024; // 5MB
 
 export default function FileUpload({ files, onFileChange, onRemove, disabled, language, variants, errors }) {
@@ -25,6 +27,23 @@ export default function FileUpload({ files, onFileChange, onRemove, disabled, la
   };
 
   const processFiles = (newFiles) => {
+    // First check if adding these files would exceed the limit
+
+    if (files.length === MAX_FILES) {
+      toast.error('Maksymalnie możesz załączyć 3 pliki');
+      return;
+    }
+    if (files.length + newFiles.length > MAX_FILES) {
+      // If we already have files, show how many more can be added
+      if (files.length > 0) {
+        const remainingSlots = MAX_FILES - files.length;
+        toast.error(`Możesz dodać jeszcze tylko ${remainingSlots} ${remainingSlots === 1 ? 'plik' : 'pliki'}`);
+      } else {
+        toast.error(`Maksymalnie możesz załączyć ${MAX_FILES} pliki`);
+      }
+      return;
+    }
+
     const validFiles = Array.from(newFiles).filter((file) => {
       const isValidType = Object.values(ACCEPTED_TYPES).includes(file.type);
       const isValidSize = file.size <= MAX_SIZE;
@@ -129,6 +148,7 @@ export default function FileUpload({ files, onFileChange, onRemove, disabled, la
           {format[language]}: <span>PDF</span> <span>JPEG</span> <span>PNG</span> <span>DOCX</span>
         </li>
         <li>{maxFileSize[language]}</li>
+        <li>Maksymalnie 3 pliki</li>
       </ul>
       <div className="error-container">
         <AnimatePresence mode="wait">
@@ -211,7 +231,7 @@ export default function FileUpload({ files, onFileChange, onRemove, disabled, la
           <FileUploadWrapper variants={variants} onDrop={handleDrop} onDragOver={handleDragOver} onDragLeave={handleDragLeave} $isDragOver={isDragOver}>
             <div className="upload-area" $hasError={!!errors}>
               <input tabIndex={disabled ? -1 : 0} disabled={disabled} type="file" multiple accept={Object.keys(ACCEPTED_TYPES).join(',')} onChange={handleFileInput} id="file-input" style={{ display: 'none' }} />
-              <DragOverlay $isDragOver={isDragOver}>
+              <DragOverlay $isDragOver={isDragOver} $isAtLimit={files.length >= MAX_FILES}>
                 <PlusIcon />
                 <span>{dropFileHere[language]}</span>
               </DragOverlay>
@@ -366,8 +386,8 @@ const DragOverlay = styled.div`
   align-items: center;
   justify-content: center;
   gap: 8px;
-  opacity: ${(props) => (props.$isDragOver ? 1 : 0)};
-  visibility: ${(props) => (props.$isDragOver ? 'visible' : 'hidden')};
+  opacity: ${(props) => (props.$isDragOver && !props.$isAtLimit ? 1 : 0)};
+  visibility: ${(props) => (props.$isDragOver && !props.$isAtLimit ? 'visible' : 'hidden')};
   transition: opacity 0.2s ease, visibility 0.2s ease;
   z-index: 2;
   color: #31231e;
