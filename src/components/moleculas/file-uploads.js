@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { addMoreFiles, attachCV, chooseFile, dragItHere, dropFileHere, format, maxFileSize, or, uploaded } from '../../texts/career';
 import { toast } from 'react-toastify';
+import { toastMessages } from '../../texts/career';
 
 const ACCEPTED_TYPES = {
   '.pdf': 'application/pdf',
@@ -27,19 +28,17 @@ export default function FileUpload({ files, onFileChange, onRemove, disabled, la
   };
 
   const processFiles = (newFiles) => {
-    // First check if adding these files would exceed the limit
-
     if (files.length === MAX_FILES) {
-      toast.error('Maksymalnie możesz załączyć 3 pliki');
+      toast.error(toastMessages.maxFilesLimitReached[language]);
       return;
     }
+
     if (files.length + newFiles.length > MAX_FILES) {
-      // If we already have files, show how many more can be added
       if (files.length > 0) {
         const remainingSlots = MAX_FILES - files.length;
-        toast.error(`Możesz dodać jeszcze tylko ${remainingSlots} ${remainingSlots === 1 ? 'plik' : 'pliki'}`);
+        toast.error(remainingSlots === 1 ? toastMessages.remainingFiles.singular[language] : toastMessages.remainingFiles.plural[language].replace('{count}', remainingSlots));
       } else {
-        toast.error(`Maksymalnie możesz załączyć ${MAX_FILES} pliki`);
+        toast.error(toastMessages.maxFilesLimitReached[language]);
       }
       return;
     }
@@ -103,6 +102,13 @@ export default function FileUpload({ files, onFileChange, onRemove, disabled, la
           progress < 50 ? 40 : 80
         ); // 40ms intervals below 50%, 80ms above
       });
+
+      // Success toast with appropriate message
+      if (validFiles.length === 1) {
+        toast.success(toastMessages.fileSuccess.singular[language]);
+      } else {
+        toast.success(toastMessages.fileSuccess.plural[language].replace('{count}', validFiles.length));
+      }
     }
   };
 

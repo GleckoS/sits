@@ -7,11 +7,12 @@ import { toast } from 'react-toastify';
 import { default as styled } from 'styled-components';
 import * as yup from 'yup';
 import { textTransition } from '../../helpers/animation-controller';
-import { formErrorActions, formErrorHeading, formErrorText, formSuccessActions, formSuccessHeading, formSuccessText, privacyPolicy, submit, title } from '../../texts/career';
+import { fileNeeded, formErrorActions, formErrorHeading, formErrorText, formSuccessActions, formSuccessHeading, formSuccessText, maxFilesError, privacyPolicy, submit, title, validationErrors } from '../../texts/career';
 import { email, errorMessage, name, phone, reply, thans } from '../../texts/contact';
 import CitySelector from '../moleculas/city-selector';
 import FileUpload from '../moleculas/file-uploads';
 import { Label } from '../moleculas/label';
+import { toastMessages } from '../../texts/career';
 
 export default function CareerForm({ data: { language, selectedCity, jobTitle = null, receiverEmail, citiesAvailable, onFormSubmit }, ...props }) {
   const {
@@ -28,17 +29,16 @@ export default function CareerForm({ data: { language, selectedCity, jobTitle = 
     },
     resolver: yupResolver(
       yup.object().shape({
-        fullname: yup.string().required('To pole jest wymagane'),
-        email: yup.string().email('Niepoprawny email').required('To pole jest wymagane'),
+        fullname: yup.string().required(validationErrors.required[language]),
+        email: yup.string().email(validationErrors.invalidEmail[language]).required(validationErrors.required[language]),
         phone: yup
           .string()
-          .matches(/^[+]?[\d\s-]{9,}$/, 'Niepoprawny format numeru telefonu')
+          .matches(/^[+]?[\d\s-]{9,}$/, validationErrors.invalidPhone[language])
           .transform((value) => (value ? value : null))
           .nullable(),
-        city: yup.string().required('Wybór miasta jest wymagany'),
-
-        files: yup.array().min(1, 'Załączenie pliku CV jest wymagane').max(3, 'Maksymalnie możesz załączyć 3 pliki').required('Załączenie pliku CV jest wymagane'),
-        check: yup.boolean().oneOf([true], 'Musisz zaakceptować politykę prywatności'),
+        city: yup.string().required(validationErrors.cityRequired[language]),
+        files: yup.array().min(1, fileNeeded[language]).max(3, maxFilesError[language]).required(fileNeeded[language]),
+        check: yup.boolean().oneOf([true], validationErrors.privacyRequired[language]),
       })
     ),
   });
@@ -107,32 +107,11 @@ export default function CareerForm({ data: { language, selectedCity, jobTitle = 
   };
 
   const handleFileChange = (newFiles) => {
-    // Check total number of files that would be added
-    const totalFiles = files.length + newFiles.length;
-
-    if (totalFiles > 5) {
-      // If we already have files, show how many more can be added
-      if (files.length > 0) {
-        const remainingSlots = 5 - files.length;
-        toast.error(`Możesz dodać jeszcze tylko ${remainingSlots} ${remainingSlots === 1 ? 'plik' : 'pliki'}`);
-      } else {
-        toast.error('Maksymalnie możesz załączyć 5 plików');
-      }
-      return;
-    }
-
     const updatedFiles = [...files, ...newFiles];
     setFiles(updatedFiles);
     setValue('files', updatedFiles, {
       shouldValidate: true,
     });
-
-    // Add success toast with appropriate message based on number of files added
-    if (newFiles.length === 1) {
-      toast.success('Plik został dodany pomyślnie');
-    } else {
-      toast.success(`${newFiles.length} pliki zostały dodane pomyślnie`);
-    }
   };
 
   const removeFile = (index) => {

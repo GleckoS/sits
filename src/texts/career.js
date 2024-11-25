@@ -334,3 +334,73 @@ export const formErrorActions = {
   FR: 'Essayer à nouveau',
   DE: 'Versuchen Sie es erneut',
 };
+
+export const validationErrors = {
+  required: {
+    PL: 'To pole jest wymagane',
+    EN: 'This field is required',
+    FR: 'Ce champ est obligatoire',
+    DE: 'Dieses Feld ist erforderlich',
+  },
+  invalidEmail: {
+    PL: 'Niepoprawny email',
+    EN: 'Invalid email',
+    FR: 'Email invalide',
+    DE: 'Ungültige E-Mail',
+  },
+  invalidPhone: {
+    PL: 'Niepoprawny format numeru telefonu',
+    EN: 'Invalid phone number format',
+    FR: 'Format de numéro de téléphone invalide',
+    DE: 'Ungültiges Telefonnummernformat',
+  },
+  cityRequired: {
+    PL: 'Wybór miasta jest wymagany',
+    EN: 'City selection is required',
+    FR: 'La sélection de la ville est obligatoire',
+    DE: 'Stadtauswahl ist erforderlich',
+  },
+  privacyRequired: {
+    PL: 'Musisz zaakceptować politykę prywatności',
+    EN: 'You must accept the privacy policy',
+    FR: 'Vous devez accepter la politique de confidentialité',
+    DE: 'Sie müssen die Datenschutzerklärung akzeptieren',
+  },
+};
+
+export const toastMessages = {
+  maxFilesLimitReached: {
+    PL: 'Maksymalnie możesz załączyć 3 pliki',
+    EN: 'You can attach maximum of 3 files',
+    FR: 'Vous pouvez joindre un maximum de 3 fichiers',
+    DE: 'Sie können maximal 3 Dateien anhängen',
+  },
+  remainingFiles: {
+    singular: {
+      PL: 'Możesz dodać jeszcze tylko 1 plik',
+      EN: 'You can only add 1 more file',
+      FR: 'Vous ne pouvez ajouter que 1 fichier',
+      DE: 'Sie können nur noch 1 Datei hinzufügen',
+    },
+    plural: {
+      PL: 'Możesz dodać jeszcze tylko {count} pliki',
+      EN: 'You can only add {count} more files',
+      FR: 'Vous ne pouvez ajouter que {count} fichiers',
+      DE: 'Sie können nur noch {count} Dateien hinzufügen',
+    },
+  },
+  fileSuccess: {
+    singular: {
+      PL: 'Plik został dodany pomyślnie',
+      EN: 'File has been successfully added',
+      FR: 'Le fichier a été ajouté avec succès',
+      DE: 'Datei wurde erfolgreich hinzugefügt',
+    },
+    plural: {
+      PL: '{count} pliki zostały dodane pomyślnie',
+      EN: '{count} files have been successfully added',
+      FR: '{count} fichiers ont été ajoutés avec succès',
+      DE: '{count} Dateien wurden erfolgreich hinzugefügt',
+    },
+  },
+};
