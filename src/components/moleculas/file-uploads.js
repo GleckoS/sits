@@ -58,7 +58,6 @@ export default function FileUpload({ files, onFileChange, onRemove, disabled, la
           lastModified: file.lastModified,
         });
 
-        // Add our unique ID
         Object.defineProperty(processedFile, 'id', {
           value: generateUniqueId(file),
           writable: false,
