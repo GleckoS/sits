@@ -35,7 +35,7 @@ export default function CareerPage({
   return (
     <Wrapper>
       <Hero data={{ ...career.careerHero, language: pageContext.language }}></Hero>
-      {offersAvailable ? (
+      {!career.noOffersVisible ? (
         <>
           <OfferList data={{ heading: career.listTitle, offers: langOffers, language: pageContext.language }} />
           <NoSpecificOffer data={{ ...career.offersAvailable, language: pageContext.language, citiesAvailable: career.citiesAvailable }} />
