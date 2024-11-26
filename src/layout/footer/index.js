@@ -1,10 +1,10 @@
 import { motion, useInView } from 'framer-motion';
-import { Link } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import React, { useRef } from 'react';
 import styled from 'styled-components';
 import { Container } from '../../components/atoms/container';
 import { myContext } from '../../hooks/provider';
-import { manageCookies, left, right } from '../../texts';
+import { left, manageCookies, right, rightCareer } from '../../texts';
 import { homepageUrl } from '../../texts/urls';
 
 const logoAnimation = {
@@ -42,6 +42,22 @@ const socialAnimation = {
 export default function Footer({ language }) {
   const section = useRef(null);
   const isSectionInView = useInView(section, { margin: '-100px 0px -100px 0px', once: true });
+
+  const { allWpPage } = useStaticQuery(graphql`
+    query Footer {
+      allWpPage(filter: { template: { templateName: { eq: "Career" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
+        }
+      }
+    }
+  `);
+
   const isMobile = (() => {
     if (typeof window !== 'undefined') return /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -94,6 +110,13 @@ export default function Footer({ language }) {
                           </Link>
                         </motion.div>
                       ))}
+                      {allWpPage.nodes.find((el) => el.language.code === language) ? (
+                        <motion.div variants={rightLinkAnimation} key={rightCareer[language].name}>
+                          <Link className="right styled-link" to={rightCareer[language].url}>
+                            {rightCareer[language].name}
+                          </Link>
+                        </motion.div>
+                      ) : null}
                     </motion.div>
                   </Center>
                   <Flex variants={socialColumnAnimation}>

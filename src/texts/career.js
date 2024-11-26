@@ -61,48 +61,6 @@ export const applicationTime = {
   EN: 'Recruitment open to',
 };
 
-export const jobDescription = {
-  PL: 'Opis pracy',
-  FR: 'Description du poste',
-  DE: 'Berufsbeschreibung',
-  EN: 'Job description',
-};
-
-export const scopeOfTasks = {
-  PL: 'Twój zakres zadań',
-  FR: 'Votre portée de tâches',
-  DE: 'Ihr Aufgabenbereich',
-  EN: 'Your scope of tasks',
-};
-
-export const requirements = {
-  PL: 'Wymagania',
-  FR: 'Conditions requises',
-  DE: 'Anforderungen',
-  EN: 'Requirements',
-};
-
-export const personalTraits = {
-  PL: 'Cechy osobowe',
-  FR: 'Qualités personnelles',
-  DE: 'Persönlichkeitsmerkmale',
-  EN: 'Personal traits',
-};
-
-export const ourOffer = {
-  PL: 'Co oferujemy',
-  FR: 'Ce que nous offrons',
-  DE: 'Was wir anbieten',
-  EN: 'What we offer',
-};
-
-export const ourValues = {
-  PL: 'Nasze wartości',
-  FR: 'Nos valeurs',
-  DE: 'Unsere Werte',
-  EN: 'Our values',
-};
-
 export const backToForm = {
   PL: 'Wróć do formularza',
   FR: 'Retourner au formulaire',

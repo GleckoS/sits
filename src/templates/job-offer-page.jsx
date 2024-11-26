@@ -68,17 +68,15 @@ export const query = graphql`
             }
           }
         }
-        jobDescription
         city
         employmentType
         shiftType
         validUntil
         createdAt
-        personalTraits
-        scopeOfTasks
-        requirements
-        ourValues
-        ourOffer
+        jobFields {
+          heading
+          content
+        }
       }
     }
   }

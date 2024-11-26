@@ -31,7 +31,7 @@ export default function CareerPage({
 }) {
   const langOffers = offers.filter((offer) => offer.language.code === pageContext.language);
   const offersAvailable = langOffers.length > 0;
-  console.log(career.citiesAvailable);
+
   return (
     <Wrapper>
       <Hero data={{ ...career.careerHero, language: pageContext.language }}></Hero>
@@ -72,6 +72,7 @@ export const query = graphql`
         }
       }
       career {
+        noOffersVisible
         listTitle
         careerHero {
           image {
@@ -122,11 +123,6 @@ export const query = graphql`
           shiftType
           validUntil
           createdAt
-          personalTraits
-          scopeOfTasks
-          requirements
-          ourValues
-          ourOffer
         }
       }
     }

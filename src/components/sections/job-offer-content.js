@@ -1,34 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
-import { backToForm, jobDescription as jobDescriptionText, ourOffer as ourOfferText, ourValues as ourValuesText, personalTraits as personalTraitsText, requirements as requirementsText, scopeOfTasks as scopeOfTasksText } from '../../texts/career';
+import { backToForm } from '../../texts/career';
 import BackToFormButton from '../organism/back-to-form-button';
-export default function JobOfferContent({ data: { jobDescription, language, scopeOfTasks, requirements, personalTraits, ourValues, ourOffer } }) {
+export default function JobOfferContent({ data: { jobFields, language } }) {
   return (
     <Wrapper id="form">
-      <ContentBlock>
-        <h2>{jobDescriptionText[language]}</h2>
-        <div dangerouslySetInnerHTML={{ __html: jobDescription }} />
-      </ContentBlock>
-      <ContentBlock>
-        <h2>{scopeOfTasksText[language]}</h2>
-        <div dangerouslySetInnerHTML={{ __html: scopeOfTasks }} />
-      </ContentBlock>
-      <ContentBlock>
-        <h2>{requirementsText[language]}</h2>
-        <div dangerouslySetInnerHTML={{ __html: requirements }} />
-      </ContentBlock>
-      <ContentBlock>
-        <h2>{personalTraitsText[language]}</h2>
-        <div dangerouslySetInnerHTML={{ __html: personalTraits }} />
-      </ContentBlock>
-      <ContentBlock>
-        <h2>{ourOfferText[language]}</h2>
-        <div dangerouslySetInnerHTML={{ __html: ourOffer }} />
-      </ContentBlock>
-      <ContentBlock>
-        <h2>{ourValuesText[language]}</h2>
-        <div dangerouslySetInnerHTML={{ __html: ourValues }} />
-      </ContentBlock>
+      {jobFields?.map(({ heading, content }) => (
+        <ContentBlock>
+          <h2>{heading}</h2>
+          <div dangerouslySetInnerHTML={{ __html: content }} />
+        </ContentBlock>
+      ))}
+
       <BackToFormButton to="#form">{backToForm[language]}</BackToFormButton>
     </Wrapper>
   );
@@ -60,6 +43,10 @@ const Wrapper = styled.div`
     margin: 0 calc(-1 * var(--page-margin));
     padding-left: 16px;
     padding-right: 16px;
+  }
+
+  a {
+    margin-top: auto;
   }
 `;
 

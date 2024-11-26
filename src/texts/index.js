@@ -294,31 +294,35 @@ export const right = {
     { name: 'WHERE TO BUY', url: '/where-to-buy/' },
     { name: 'SALES REPRESENTATIVE', url: '/sales-representative/' },
     { name: 'MEET US', url: '/exhibitions/' },
-    { name: 'CAREER', url: '/career/' },
     { name: 'CONTACT', url: '/contact/' },
   ],
   FR: [
     { name: 'TROUVER UN POINT DE VENTE', url: '/fr/trouver-un-point-de-vente/' },
     { name: 'REPRÉSENTANT COMMERCIAL', url: '/fr/representant-commercial/' },
     { name: 'DES EXPOSITIONS', url: '/fr/des-expositions/' },
-    { name: 'CARRIÈRE', url: '/fr/carriere/' },
     { name: 'NOUS CONTACTER', url: '/fr/nous-contacter/' },
   ],
   PL: [
     { name: 'SALONY SPRZEDAŻY', url: '/pl/salony-sprzedazy/' },
     { name: 'PRZEDSTAWICIELE HANDLOWI', url: '/pl/przedstawiciel-handlowy/' },
     { name: 'SPOTKAJ NAS', url: '/pl/spotkaj-nas/' },
-    { name: 'KARIERA', url: '/pl/kariera/' },
     { name: 'KONTAKT', url: '/pl/kontakt/' },
   ],
   DE: [
     { name: 'HÄNDLER FINDEN', url: '/de/haendler-finden/' },
     { name: 'Vertretungen', url: '/de/vertretungen/' },
     { name: 'TREFFEN SIE UNS', url: '/de/ausstellungen/' },
-    { name: 'KARRIERE', url: '/de/karriere/' },
     { name: 'KONTAKT', url: '/de/kontakt/' },
   ],
 };
+
+export const rightCareer = {
+  EN: { name: 'CAREER', url: '/career/' },
+  FR: { name: 'CARRIÈRE', url: '/fr/carriere/' },
+  PL: { name: 'KARIERA', url: '/pl/kariera/' },
+  DE: { name: 'KARRIERE', url: '/de/karriere/' },
+};
+
 export const linksLeft = {
   EN: [
     { name: 'Best Seller', url: '/best-sellers/' },
@@ -393,7 +397,7 @@ export const linksRight = {
     { name: 'Where to Buy', url: '/where-to-buy/' },
     { name: 'Dealer login', url: 'https://sitsconnect.pl/' },
     { name: 'Meet us', url: '/exhibitions/' },
-    { name: 'Career', url: '/career/' },
+
     { name: 'Contact', url: '/contact/' },
   ],
   FR: [
@@ -406,7 +410,7 @@ export const linksRight = {
     { name: 'Trouver un point de vente', url: '/fr/trouver-un-point-de-vente/' },
     { name: 'Connexion du revendeur', url: 'https://sitsconnect.pl/' },
     { name: 'Des expositions', url: '/fr/des-expositions/' },
-    { name: 'Carrière', url: '/fr/carriere/' },
+
     { name: 'Nous contacter', url: '/fr/nous-contacter/' },
   ],
   PL: [
@@ -419,7 +423,7 @@ export const linksRight = {
     { name: 'Salony sprzedaży', url: '/pl/salony-sprzedazy/' },
     { name: 'Logowanie dealera', url: 'https://sitsconnect.pl/' },
     { name: 'Spotkaj nas', url: '/pl/spotkaj-nas/' },
-    { name: 'Kariera', url: '/pl/kariera/' },
+
     { name: 'Kontakt', url: '/pl/kontakt/' },
   ],
   DE: [
@@ -432,9 +436,16 @@ export const linksRight = {
     { name: 'Händler finden', url: '/de/haendler-finden/' },
     { name: 'Händler-Login', url: 'https://sitsconnect.pl/' },
     { name: 'Treffen Sie uns', url: '/de/ausstellungen/' },
-    { name: 'Karriere', url: '/de/karriere/' },
+
     { name: 'Kontakt', url: '/de/kontakt/' },
   ],
+};
+
+export const linkRightCareer = {
+  EN: { name: 'Career', url: '/career/' },
+  FR: { name: 'Carrière', url: '/fr/carriere/' },
+  PL: { name: 'Kariera', url: '/pl/kariera/' },
+  DE: { name: 'Karriere', url: '/de/karriere/' },
 };
 
 export const furnitureTitle = {
