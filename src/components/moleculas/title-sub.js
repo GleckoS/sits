@@ -1,36 +1,26 @@
-import { motion } from "framer-motion";
-import React from "react";
-import styled from "styled-components";
-import { textTransition } from "../../helpers/animation-controller";
-import { Container } from "../atoms/container";
-import InView from "../sections/in-view-provider";
+import { motion } from 'framer-motion';
+import React from 'react';
+import styled from 'styled-components';
+import { textTransition } from '../../helpers/animation-controller';
+import { Container } from '../atoms/container';
+import InView from '../sections/in-view-provider';
 
 const titleAnimation = textTransition(1);
 const textAnimation = textTransition(2);
 
 export const Title = ({ h2, small, title, text }) => (
   <InView>
-    <Wrapper className={small ? "small" : "" + h2 ? "h2" : ""}>
+    <Wrapper className={small ? 'small' : '' + h2 ? 'h2' : ''}>
       <Container>
-        {h2 ? (
-          <motion.h2 variants={titleAnimation}>{title}</motion.h2>
-        ) : (
-          <motion.h1 variants={titleAnimation}>{title}</motion.h1>
-        )}
-        {text && (
-          <motion.p
-            variants={textAnimation}
-            dangerouslySetInnerHTML={{ __html: text }}
-          ></motion.p>
-        )}
+        {h2 ? <motion.h2 variants={titleAnimation}>{title}</motion.h2> : <motion.h1 variants={titleAnimation}>{title}</motion.h1>}
+        {text && <motion.p variants={textAnimation} dangerouslySetInnerHTML={{ __html: text }}></motion.p>}
       </Container>
     </Wrapper>
   </InView>
 );
 
 const Wrapper = styled.div`
-  margin: clamp(20px, ${(75 / 1194) * 100}vw, 110px) 0
-    clamp(45px, ${(75 / 1194) * 100}vw, 110px);
+  margin: clamp(20px, ${(75 / 1194) * 100}vw, 110px) 0 clamp(45px, ${(75 / 1194) * 100}vw, 110px);
 
   * {
     font-size: clamp(16px, ${(18 / 1194) * 100}vw, 18px);
@@ -51,14 +41,13 @@ const Wrapper = styled.div`
   h1,
   h2 {
     font-size: clamp(26px, ${(40 / 1194) * 100}vw, 40px);
-    font-family: "Ivy";
+    font-family: 'Ivy';
     font-weight: 300;
   }
 
   p {
     margin-top: 20px;
     max-width: 640px;
-    font-size: 20px;
 
     a {
       text-transform: unset;
@@ -70,7 +59,7 @@ const Wrapper = styled.div`
   h5,
   h6 {
     font-size: clamp(22px, ${(28 / 1194) * 100}vw, 28px);
-    font-family: "Ivy";
+    font-family: 'Ivy';
     font-weight: 300;
   }
 
