@@ -9,7 +9,7 @@ import Seo from '../layout/seo';
 export function Head({
   pageContext,
   data: {
-    wpInformPage: { seo },
+    wpPage: { seo },
   },
 }) {
   return (
@@ -22,23 +22,22 @@ export function Head({
 
 export default function InformPage({
   data: {
-    wpInformPage: { title, content },
+    wpPage: { informPage },
   },
   pageContext,
 }) {
+  console.log(informPage);
   return (
     <Wrapper>
-      <Title title={pageContext.title} text={content} />
+      <Title title={informPage?.heading} text={informPage?.content} />
       <Map language={pageContext.language} />
     </Wrapper>
   );
 }
 
 export const query = graphql`
-  query informPage($id: String!) {
-    wpInformPage(id: { eq: $id }) {
-      content
-      title
+  query conscious($id: String!) {
+    wpPage(id: { eq: $id }) {
       language {
         name
       }
@@ -48,6 +47,10 @@ export const query = graphql`
           code
         }
         uri
+      }
+      informPage {
+        heading
+        content
       }
       seo {
         canonical
