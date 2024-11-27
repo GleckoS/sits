@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, graphql, useStaticQuery } from 'gatsby';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import { CloseButton } from '../../components/atoms/close-button';
 import { Container } from '../../components/atoms/container';
@@ -10,6 +10,7 @@ import { homepageUrl } from '../../texts/urls';
 import scrollLock from './../../helpers/scroll-lock';
 import { LangChanger } from './lang-changer';
 import { Item } from './menu-item';
+import ReactDOM from 'react-dom';
 
 export default function Header({ data, language }) {
   const [isLeftMenuOpened, setLeftMenuOpened] = useState(false);
@@ -17,7 +18,9 @@ export default function Header({ data, language }) {
   const [isMobileMenuOpened, setMobileMenuOpened] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isAdditionalInformOpened, setAdditionalInformOpened] = useState(true);
-
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const [isAdditionalTextOpen, setAdditionalTextOpen] = useState(false);
+  const [scrollY, setScrollY] = useState(0);
   const { allWpPage, careerPages } = useStaticQuery(graphql`
     query Header($language: WpLanguageCodeEnum) {
       allWpPage(filter: { template: { templateName: { eq: "Global Config" } }, language: { code: { eq: $language } } }) {
@@ -48,7 +51,16 @@ export default function Header({ data, language }) {
     headerAdditionalInform: { additionalInformText, additionalInformTitle },
   } = allWpPage.nodes.filter((el) => el.language.code === language)[0];
 
-  console.log(careerPages.nodes.find((el) => el.language.code === language && el.career?.visible));
+  const headerRef = useRef(null);
+  const additionalRef = useRef(null);
+
+  const getElements = () => {
+    // Try refs first
+    const header = headerRef.current || document.querySelector('.header__wrapper');
+    const additional = additionalRef.current || document.querySelector('.additional');
+
+    return { header, additional };
+  };
 
   useEffect(() => {
     document.onkeydown = function (evt) {
@@ -78,6 +90,23 @@ export default function Header({ data, language }) {
     };
   }, [isLeftMenuOpened, isRightMenuOpened, isMobileMenuOpened]);
 
+  useEffect(() => {
+    console.log('isAdditionalInformOpened', isAdditionalTextOpen);
+    console.log(document.querySelector('.additional')?.offsetHeight);
+    const setHeaderHeightFn = () => {
+      setHeaderHeight(document.querySelector('.header__wrapper').offsetHeight + (document.querySelector('.additional')?.offsetHeight || 0));
+    };
+
+    setHeaderHeightFn();
+    window.addEventListener('scroll', setHeaderHeightFn);
+
+    return () => {
+      window.removeEventListener('scroll', setHeaderHeightFn);
+    };
+  }, [isAdditionalInformOpened, isAdditionalTextOpen]);
+
+  console.log(isAdditionalTextOpen);
+
   const closeAll = () => {
     setLeftMenuOpened(false);
     setRightMenuOpened(false);
@@ -91,12 +120,66 @@ export default function Header({ data, language }) {
     allRightLinks.splice(9, 0, linkRightCareer[language]);
   }
 
+  useEffect(() => {
+    const lockScroll = () => {
+      document.body.style.overflow = 'hidden';
+    };
+
+    const unlockScroll = () => {
+      document.body.style.overflow = '';
+    };
+
+    if (isMobileMenuOpened) {
+      lockScroll();
+    } else {
+      unlockScroll();
+    }
+
+    return () => {
+      unlockScroll();
+    };
+  }, [isMobileMenuOpened]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
+  const calculateTopPosition = () => {
+    const { header, additional } = getElements();
+    const additionalHeight = additional ? additional.offsetHeight : 0;
+    return scrollY > 0 ? header.offsetHeight : header.offsetHeight + additionalHeight;
+  };
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (isMobileMenuOpened) {
+        const mobileMenu = document.querySelector('.header__mobileMenu');
+        if (mobileMenu) {
+          mobileMenu.style.top = `${calculateTopPosition()}px`;
+        }
+      }
+    };
+
+    // Call immediately and add small delay to ensure DOM updates
+    handleResize();
+    const timeoutId = setTimeout(handleResize, 100);
+
+    return () => clearTimeout(timeoutId);
+  }, [isAdditionalTextOpen, isMobileMenuOpened]);
+
   return (
     <>
       {additionalInformTitle && isAdditionalInformOpened && (
-        <Additional className={`additional ${isAdditionalInformOpened ? '' : 'closed'}`}>
+        <Additional ref={additionalRef} className="additional">
           <Container className="container">
-            <details>
+            <details onClick={() => setAdditionalTextOpen(!isAdditionalTextOpen)}>
               <summary className="row">
                 <span />
                 <div className="text">
@@ -119,7 +202,7 @@ export default function Header({ data, language }) {
           </Container>
         </Additional>
       )}
-      <Wrapper>
+      <Wrapper ref={headerRef} className="header__wrapper">
         <a className="no-focus" href="#main" aria-label="skip link to main content" />
         <Container className="container">
           <Button
@@ -221,7 +304,7 @@ export default function Header({ data, language }) {
               <b>{companyTitle[language]}</b>
             </Flex>
             <MenuContent className="reverse">
-              {allRightLinks.map((el, index) => (
+              {allRightLinks?.map((el, index) => (
                 <motion.div
                   initial={{ opacity: 0, x: 6 }}
                   animate={
@@ -239,7 +322,7 @@ export default function Header({ data, language }) {
                   key={el.name}
                 >
                   <Item
-                    onBlur={() => (index === allRightLinks[language]?.length - 1 ? setRightMenuOpened() : null)}
+                    onBlur={() => (index === allRightLinks?.length - 1 ? setRightMenuOpened() : null)}
                     tabIndex={isRightMenuOpened ? '0' : '-1'}
                     el={el}
                     func={(v) => {
@@ -262,7 +345,15 @@ export default function Header({ data, language }) {
           </Burger>
           <AnimatePresence mode="wait">
             {isMobileMenuOpened && (
-              <MobileMenu initial={{ opacity: 0 }} exit={{ opacity: 0, transition: { duration: 0.3 } }} animate={{ opacity: 1, transition: { duration: 0.5 } }} className={(isMobileMenuOpened ? 'active ' : '') + (isAdditionalInformOpened ? 'additional' : '')}>
+              <MobileMenu
+                className={`header__mobileMenu ${isMobileMenuOpened ? 'active ' : ''} ${isAdditionalInformOpened ? 'additional' : ''}`}
+                style={{
+                  top: `${calculateTopPosition()}px`,
+                }}
+                initial={{ opacity: 0 }}
+                exit={{ opacity: 0, transition: { duration: 0.3 } }}
+                animate={{ opacity: 1, transition: { duration: 0.5 } }}
+              >
                 <Container className="content">
                   <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} func={closeAll} tabIndex={isMobileMenuOpened ? '0' : '-1'} language={language} />
                   <div className="wrap">
@@ -280,7 +371,7 @@ export default function Header({ data, language }) {
                     ))}
                   </div>
                   <div className="wrap">
-                    {allRightLinks[language].map((el) => (
+                    {allRightLinks?.map((el) => (
                       <React.Fragment key={el.name}>
                         <Item
                           tabIndex={isMobileMenuOpened ? '0' : '-1'}
@@ -529,22 +620,19 @@ const Wrapper = styled.header`
 `;
 
 const MobileMenu = styled(motion.div)`
-  display: none;
-  @media (max-width: 840px) {
-    display: block;
-  }
   position: fixed;
   z-index: 111;
   left: 0;
   right: 0;
-  top: 75px;
   bottom: 0;
   background-color: #fff;
+  overflow-y: auto;
+  top: 0;
 
   pointer-events: none;
 
   &.additional {
-    top: unset;
+    /* top: unset; */
   }
 
   &.active {
@@ -563,8 +651,9 @@ const MobileMenu = styled(motion.div)`
 
   .content {
     margin-top: 20px;
-    max-height: calc(100vh - 96px);
+    max-height: calc(100vh - ${(props) => props.$height}px);
     overflow: auto;
+    transition: top 0.3s ease;
 
     a {
       display: flex;

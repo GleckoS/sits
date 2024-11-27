@@ -989,7 +989,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
   `);
 
-  jobOffers.forEach(({ id, language }) => {
+  jobOffers.forEach(({ id, language, uri }) => {
     const langCode = language?.code || 'PL';
     const basePath = jobOfferPaths[langCode];
 
@@ -998,8 +998,10 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       return;
     }
 
+    const slug = uri.split('/').filter(Boolean).pop();
+
     createPage({
-      path: `${basePath}/${id}`,
+      path: `${basePath}/${slug}`,
       component: resolve('src/templates/job-offer-page.jsx'),
       context: {
         id,

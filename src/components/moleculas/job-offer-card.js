@@ -7,9 +7,13 @@ import { checkOffer } from '../../texts/career';
 export default function JobOfferCard({ data: { name, image, href, city, employmentType, language } }) {
   return (
     <Card>
-      <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+      <Link to={href} tabIndex={-1}>
+        <GatsbyImage className="image" image={image.localFile.childImageSharp.gatsbyImageData} alt={image.altText} />
+      </Link>
       <div className="content">
-        <h3>{name}</h3>
+        <Link to={href} tabIndex={-1}>
+          {name}
+        </Link>
         <div className="details">
           <div>
             <PinIcon />
@@ -36,12 +40,17 @@ const Card = styled.li`
     height: 271px;
     width: 100%;
   }
-  h3 {
-    margin-bottom: 12px;
-    font-size: clamp(calc(20rem / 16), calc(26vw / 7.68), calc(26rem / 16));
-    line-height: 1.6;
-    font-weight: 400;
+
+  .content {
+    & > a:first-of-type {
+      margin-bottom: 12px;
+      font-size: clamp(calc(20rem / 16), calc(26vw / 7.68), calc(26rem / 16));
+      line-height: 1.6;
+      font-weight: 400;
+      display: inline-block;
+    }
   }
+
   div.details {
     display: flex;
     align-items: center;

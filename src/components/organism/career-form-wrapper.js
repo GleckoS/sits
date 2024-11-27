@@ -7,12 +7,7 @@ export default function CareerFormWrapper({ data: { language, selectedCity, jobT
   const [isFormInView, setIsFormInView] = useState(true);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
-  console.log(receiverEmail);
-
-  console.log(isFormSubmitted);
-
   useEffect(() => {
-    console.log('useEffect');
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsFormInView(entry.isIntersecting);
@@ -26,7 +21,6 @@ export default function CareerFormWrapper({ data: { language, selectedCity, jobT
     }
 
     const formElement = document.getElementById('career-form');
-    console.log(formElement);
     if (formElement) {
       observer.observe(formElement);
     }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { parseDate } from '../../helpers/parse-date';
 import CitySelector from '../moleculas/city-selector';
 import JobOfferCard from '../moleculas/job-offer-card';
 import OffersHeader from '../moleculas/offers-header';
@@ -9,11 +10,6 @@ const OFFERS_AMOUNT = 6;
 export default function OfferList({ data: { heading, offers, language } }) {
   const [showMore, setShowMore] = useState(false);
   const [currentCity, setCurrentCity] = useState(null);
-
-  const parseDate = (dateStr) => {
-    const [day, month, year] = dateStr.split('/');
-    return new Date(year, month - 1, day); // month is 0-based in JS Date
-  };
 
   const validOffers = offers
     .filter((offer) => {
@@ -32,11 +28,11 @@ export default function OfferList({ data: { heading, offers, language } }) {
   return (
     <Wrapper id="offers">
       <div className="max-width wrapper">
-        <OffersHeader data={{ heading, offersLength: offers.length, language }} />
+        <OffersHeader data={{ heading, offersLength: offersFiltered.length, language }} />
         <CitySelector language={language} className="selector" setCurrentCity={setCurrentCity} currentCity={currentCity} citiesAvailable={citiesAvailable} />
         <List>
           {offersFiltered.slice(0, showMore ? offersFiltered.length : OFFERS_AMOUNT).map((offer) => (
-            <JobOfferCard data={{ ...offer.jobOfferDetails, language, name: offer.title, city: offer.jobOfferDetails.city.split(',')[0], href: offer.id }} />
+            <JobOfferCard data={{ ...offer.jobOfferDetails, language, name: offer.title, city: offer.jobOfferDetails.city.split(',')[0], href: offer.uri.split('/').filter(Boolean).pop() }} />
           ))}
         </List>
         {offersFiltered.length > OFFERS_AMOUNT && (

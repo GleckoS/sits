@@ -2,10 +2,19 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import styled from 'styled-components';
 import InView from './in-view-provider';
-import { Link } from 'gatsby';
 import { showOffersBtn } from '../../texts/career';
 
 export default function Hero({ data: { image, heading, paragraph, language } }) {
+  const scrollToOffers = () => {
+    const offersSection = document.getElementById('offers');
+    if (offersSection) {
+      offersSection.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  };
+
   return (
     <InView>
       <Wrapper>
@@ -15,9 +24,9 @@ export default function Hero({ data: { image, heading, paragraph, language } }) 
             <Heading>{heading}</Heading>
             <Content>
               <div dangerouslySetInnerHTML={{ __html: paragraph }} />
-              <Link to="#offers" className="control-desctop underline">
+              <button onClick={scrollToOffers} className="underline control-desctop" type="button">
                 {showOffersBtn[language]}
-              </Link>
+              </button>
             </Content>
           </HeroContent>
         </div>

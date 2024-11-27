@@ -30,12 +30,11 @@ export default function CareerPage({
   },
 }) {
   const langOffers = offers.filter((offer) => offer.language.code === pageContext.language);
-  const offersAvailable = langOffers.length > 0;
 
   return (
     <Wrapper>
       <Hero data={{ ...career.careerHero, language: pageContext.language }}></Hero>
-      {!career.noOffersVisible ? (
+      {!career.noOffersVisible && langOffers.length > 0 ? (
         <>
           <OfferList data={{ heading: career.listTitle, offers: langOffers, language: pageContext.language }} />
           <NoSpecificOffer data={{ ...career.offersAvailable, language: pageContext.language, citiesAvailable: career.citiesAvailable }} />

@@ -1,4 +1,3 @@
-import { NotFound } from '@reach/router'; // This is what Gatsby uses internally
 import { graphql } from 'gatsby';
 import React from 'react';
 import { Helmet } from 'react-helmet';
@@ -7,27 +6,30 @@ import JobOfferContent from '../components/sections/job-offer-content';
 import JobOfferGrid from '../components/sections/job-offer-gird';
 import JobOfferHeader from '../components/sections/job-offer-header';
 import Wrapper from '../components/sections/page-wrapper';
+import { parseDate } from '../helpers/parse-date';
 import Seo from '../layout/seo';
+import { navigate } from '@reach/router';
 
 export function Head({
   pageContext,
   data: {
-    wpJobOffers: { seo, language },
+    wpJobOffers: { seo, language, jobOfferDetails },
   },
 }) {
   return (
     <>
       <Helmet htmlAttributes={{ lang: pageContext.language }} />
-      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} />
+      <Seo seo={seo} pageContext={pageContext} language={pageContext.language} noindex={parseDate(jobOfferDetails.validUntil) < new Date()} />
     </>
   );
 }
 
 export default function JobOfferPage({ pageContext, data: { wpJobOffers } }) {
-  if (!wpJobOffers) {
-    return <NotFound default />;
-  }
-  console.log(wpJobOffers);
+  React.useEffect(() => {
+    if (parseDate(wpJobOffers.jobOfferDetails.validUntil) < new Date() || !wpJobOffers) {
+      navigate('/404');
+    }
+  }, [wpJobOffers.jobOfferDetails.validUntil]);
 
   return (
     <Wrapper>
