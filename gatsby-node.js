@@ -1135,18 +1135,18 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   });
 };
 
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage, deletePage } = actions;
+// exports.onCreatePage = async ({ page, actions }) => {
+//   const { createPage, deletePage } = actions;
 
-  // Only handle actual 404 pages, not all language-prefixed paths
-  if (page.path.match(/^\/[a-z]{2}\/404\/$/) && page.component.includes('404.js')) {
-    const oldPage = { ...page };
-    const langCode = page.path.split(`/`)[1];
-    
-    // Only catch actual 404 paths, not everything
-    page.matchPath = `/${langCode}/404/*`;  // Much more specific match pattern
+//   // Only handle actual 404 pages, not all language-prefixed paths
+//   if (page.path.match(/^\/[a-z]{2}\/404\/$/) && page.component.includes('404.js')) {
+//     const oldPage = { ...page };
+//     const langCode = page.path.split(`/`)[1];
 
-    deletePage(oldPage);
-    createPage(page);
-  }
-};
+//     // Only catch actual 404 paths, not everything
+//     page.matchPath = `/${langCode}/404/*`;  // Much more specific match pattern
+
+//     deletePage(oldPage);
+//     createPage(page);
+//   }
+// };
