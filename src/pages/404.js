@@ -52,7 +52,18 @@ const NotFoundPage = ({ data, location }) => {
   const errorPage = data[langCode]?.wpPage?.errorPage || data.en?.wpPage?.errorPage;
 
   // Add fallback values in case errorPage is undefined
-  const { pageTitle = 'Page Not Found', textUnderPageTitle = "The page you're looking for doesn't exist.", coloredLink = { title: 'Go to Homepage', url: '/' }, underlinedLink = { title: 'Contact Us', url: '/contact' } } = errorPage || {};
+  const { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } = errorPage || {
+    pageTitle: 'Page Not Found',
+    textUnderPageTitle: "The page you're looking for doesn't exist.",
+    coloredLink: {
+      title: 'Go to Homepage',
+      url: '/',
+    },
+    underlinedLink: {
+      title: 'Contact Us',
+      url: '/contact',
+    },
+  };
 
   return (
     <Wrapper>
