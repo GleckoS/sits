@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { graphql, graphql, Link, useStaticQuery } from 'gatsby';
+import { graphql, Link, useStaticQuery } from 'gatsby';
 import * as React from 'react';
 import styled from 'styled-components';
 import { BrownLink } from '../components/atoms/brown-link';
@@ -26,7 +26,7 @@ const NotFoundPage = ({ location }) => {
   const langCode = location?.pathname?.split('/')[1]?.toLowerCase() || 'en';
 
   const data = useStaticQuery(graphql`
-    query {
+    query ErrorPageQuery {
       en: wpPage(id: { eq: "cG9zdDozNjU0Mg==" }) {
         errorPage {
           pageTitle
@@ -59,7 +59,6 @@ const NotFoundPage = ({ location }) => {
           }
         }
       }
-      # ... other languages
     }
   `);
 
