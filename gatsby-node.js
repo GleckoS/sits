@@ -1135,16 +1135,16 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
   });
 };
 
-exports.onCreatePage = async ({ page, actions }) => {
-  const { createPage, deletePage } = actions;
+// exports.onCreatePage = async ({ page, actions }) => {
+//   const { createPage, deletePage } = actions;
 
-  if (page.path.match(/^\/[a-z]{2}\/404\/$/)) {
-    const oldPage = { ...page };
+//   if (page.path.match(/^\/[a-z]{2}\/404\/$/)) {
+//     const oldPage = { ...page };
 
-    const langCode = page.path.split(`/`)[1];
-    page.matchPath = `/${langCode}/*`;
+//     const langCode = page.path.split(`/`)[1];
+//     page.matchPath = `/${langCode}/*`;
 
-    deletePage(oldPage);
-    createPage(page);
-  }
-};
+//     deletePage(oldPage);
+//     createPage(page);
+//   }
+// };
