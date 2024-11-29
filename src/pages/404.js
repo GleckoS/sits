@@ -65,7 +65,6 @@ const NotFoundPage = ({ location }) => {
   const errorPage = data[langCode]?.wpPage?.errorPage || data.en?.wpPage?.errorPage;
 
   const { pageTitle = 'Page Not Found', textUnderPageTitle = "The page you're looking for doesn't exist.", coloredLink = { title: 'Go to Homepage', url: '/' }, underlinedLink = { title: 'Contact Us', url: '/contact' } } = errorPage || {};
-
   return (
     <Wrapper>
       <InView>
