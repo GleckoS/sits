@@ -1,13 +1,13 @@
+import { motion } from 'framer-motion';
 import { graphql, Link } from 'gatsby';
 import * as React from 'react';
 import styled from 'styled-components';
+import { BrownLink } from '../components/atoms/brown-link';
 import { Container } from '../components/atoms/container';
 import InView from '../components/sections/in-view-provider';
 import Map from '../components/sections/map';
-import { BrownLink } from '../components/atoms/brown-link';
-import { linkTransition, textTransition } from '../helpers/animation-controller';
-import { motion } from 'framer-motion';
 import Wrapper from '../components/sections/page-wrapper';
+import { linkTransition, textTransition } from '../helpers/animation-controller';
 
 const titleAnimation = textTransition(1);
 const textAnimation = textTransition(2);
@@ -24,6 +24,8 @@ const errorPageIds = {
 
 const NotFoundPage = ({ data, location }) => {
   // Add safety checks for data
+  console.log('404 page data:', data);
+  console.log('404 page location:', location);
   if (!data) {
     data = {
       en: {
