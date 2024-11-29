@@ -90,8 +90,6 @@ export default function Header({ data, language }) {
   }, [isLeftMenuOpened, isRightMenuOpened, isMobileMenuOpened]);
 
   useEffect(() => {
-    console.log('isAdditionalInformOpened', isAdditionalTextOpen);
-    console.log(document.querySelector('.additional')?.offsetHeight);
     const setHeaderHeightFn = () => {
       setHeaderHeight(document.querySelector('.header__wrapper').offsetHeight + (document.querySelector('.additional')?.offsetHeight || 0));
     };
@@ -104,7 +102,6 @@ export default function Header({ data, language }) {
     };
   }, [isAdditionalInformOpened, isAdditionalTextOpen]);
 
-  console.log(isAdditionalTextOpen);
 
   const closeAll = () => {
     setLeftMenuOpened(false);
