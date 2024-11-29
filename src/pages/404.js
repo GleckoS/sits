@@ -14,14 +14,6 @@ const textAnimation = textTransition(2);
 const buttonAnimation = linkTransition(3);
 const linkAnimation = linkTransition(4);
 
-// // Map of WordPress page IDs for different languages
-// const errorPageIds = {
-//   en: 'cG9zdDozNjU0Mg==',
-//   pl: 'cG9zdDo0MjE0NQ==',
-//   de: 'cG9zdDo0MjkxNw==',
-//   fr: 'cG9zdDozOTc2MQ==',
-// };
-
 const NotFoundPage = ({ location }) => {
   const langCode = location?.pathname?.split('/')[1]?.toLowerCase() || 'en';
 
@@ -59,23 +51,45 @@ const NotFoundPage = ({ location }) => {
           }
         }
       }
+      de: wpPage(id: { eq: "cG9zdDo0MjkxNw==" }) {
+        errorPage {
+          pageTitle
+          textUnderPageTitle
+          coloredLink {
+            target
+            title
+            url
+          }
+          underlinedLink {
+            target
+            title
+            url
+          }
+        }
+      }
+      fr: wpPage(id: { eq: "cG9zdDozOTc2MQ==" }) {
+        errorPage {
+          pageTitle
+          textUnderPageTitle
+          coloredLink {
+            target
+            title
+            url
+          }
+          underlinedLink {
+            target
+            title
+            url
+          }
+        }
+      }
     }
   `);
 
-  const errorPage = data[langCode]?.wpPage?.errorPage || data.en?.wpPage?.errorPage;
+  const errorPage = data[langCode]?.errorPage || data.en?.wpPage?.errorPage;
 
-  const { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } = errorPage || {
-    pageTitle: 'Page Not Found',
-    textUnderPageTitle: "The page you're looking for doesn't exist.",
-    coloredLink: {
-      title: 'Go to Homepage',
-      url: '/',
-    },
-    underlinedLink: {
-      title: 'Contact Us',
-      url: '/contact',
-    },
-  };
+  const { pageTitle = 'Page Not Found', textUnderPageTitle = "The page you're looking for doesn't exist.", coloredLink = { title: 'Go to Homepage', url: '/' }, underlinedLink = { title: 'Contact Us', url: '/contact' } } = errorPage || {};
+
   return (
     <Wrapper>
       <InView>
