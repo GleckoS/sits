@@ -21,12 +21,13 @@ export default function Layout({ data, pageContext, children, location }) {
   }, []);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !location?.pathname?.endsWith('-404')) {
+    if (typeof window !== 'undefined' && !location?.pathname?.includes('/404/')) {
       const checkPath = async () => {
         try {
           const response = await fetch(location.pathname);
           if (response.status === 404) {
-            window.history.replaceState({}, '', `${location.pathname}-404`);
+            const langCode = pageContext.language?.toLowerCase() || 'en';
+            window.history.replaceState({}, '', `/${langCode}/404/${location.pathname}`);
           }
         } catch (error) {
           console.error('Error checking path:', error);
@@ -34,7 +35,7 @@ export default function Layout({ data, pageContext, children, location }) {
       };
       checkPath();
     }
-  }, [location]);
+  }, [location, pageContext]);
 
   return (
     <App>
