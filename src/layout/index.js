@@ -1,60 +1,57 @@
-import React, { useEffect, useState } from "react"
-import styled from "styled-components"
-import { Global } from "../styles/global-style"
-import Footer from "./footer"
-import Header from "./header"
-import Cookies from "./cookies"
-import { ToastContainer } from 'react-toastify'
-import { cssTransition } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
+import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import { Global } from '../styles/global-style';
+import Footer from './footer';
+import Header from './header';
+import Cookies from './cookies';
+import { ToastContainer } from 'react-toastify';
+import { cssTransition } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const animate = cssTransition({
-    enter: "enter",
-    exit: "exit"
-})
+  enter: 'enter',
+  exit: 'exit',
+});
 
-export default function Layout({ data, pageContext, children }) {
+export default function Layout({ data, pageContext, children, location }) {
+  const [isPageLoaded, setIsPageLoaded] = useState(false);
 
-    const [isPageLoaded, setIsPageLoaded] = useState(false)
+  useEffect(() => {
+    setIsPageLoaded(true);
+  }, []);
 
-    useEffect(() => {
-        setIsPageLoaded(true)
-    }, [])
-
-    return (
-        <App>
-            <ToastContainer limit={5} transition={animate} />
-            <Global />
-            <Cookies language={pageContext.language || 'EN'}/>
-            <Header data={data} language={pageContext.language || 'EN'} />
-            <div id='main'>
-                {children}
-            </div>
-            <Footer language={pageContext.language || 'EN'} />
-            <Overlay className={isPageLoaded ? 'disabled' : ''} />
-        </App>
-    )
+  return (
+    <App>
+      <ToastContainer limit={5} transition={animate} />
+      <Global />
+      <Cookies language={pageContext.language || 'EN'} />
+      <Header data={data} language={pageContext.language || 'EN'} />
+      <div id="main">{children}</div>
+      <Footer language={pageContext.language || 'EN'} />
+      <Overlay className={isPageLoaded ? 'disabled' : ''} />
+    </App>
+  );
 }
 
 const App = styled.div`
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-`
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+`;
 
 const Overlay = styled.div`
-    position: fixed;
-    z-index: 100000000;
-    inset: 0;
-    background-color: #fff;
-    pointer-events: none;
-    transition: opacity .3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+  position: fixed;
+  z-index: 100000000;
+  inset: 0;
+  background-color: #fff;
+  pointer-events: none;
+  transition: opacity 0.3s cubic-bezier(0.785, 0.135, 0.15, 0.86);
 
-    &.disabled{
-        opacity: 0;
-    }
+  &.disabled {
+    opacity: 0;
+  }
 
-    @media (max-width: 768px) {
-        display: none;
-    }
-`
+  @media (max-width: 768px) {
+    display: none;
+  }
+`;

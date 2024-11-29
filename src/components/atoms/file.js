@@ -4,7 +4,6 @@ import styled from "styled-components"
 
 export const File = ({ variants, file }) => {
     if (!file?.localFile?.publicURL) {
-        console.log('no file for: ' + file?.title)
         return null
     }
 

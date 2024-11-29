@@ -1,20 +1,95 @@
-import { graphql, Link } from "gatsby"
-import * as React from "react"
-import styled from "styled-components"
-import { Container } from "../components/atoms/container"
-import InView from "../components/sections/in-view-provider"
-import Map from "../components/sections/map"
-import { BrownLink } from "../components/atoms/brown-link"
-import { linkTransition, textTransition } from "../helpers/animation-controller"
-import { motion } from "framer-motion"
-import Wrapper from "../components/sections/page-wrapper"
+import { motion } from 'framer-motion';
+import { graphql, Link, useStaticQuery } from 'gatsby';
+import * as React from 'react';
+import styled from 'styled-components';
+import { BrownLink } from '../components/atoms/brown-link';
+import { Container } from '../components/atoms/container';
+import InView from '../components/sections/in-view-provider';
+import Map from '../components/sections/map';
+import Wrapper from '../components/sections/page-wrapper';
+import { linkTransition, textTransition } from '../helpers/animation-controller';
 
-const titleAnimation = textTransition(1)
-const textAnimation = textTransition(2)
-const buttonAnimation = linkTransition(3)
-const linkAnimation = linkTransition(4)
+const titleAnimation = textTransition(1);
+const textAnimation = textTransition(2);
+const buttonAnimation = linkTransition(3);
+const linkAnimation = linkTransition(4);
 
-const NotFoundPage = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } } } }) => {
+const NotFoundPage = ({ location }) => {
+  const langCode = location?.pathname?.split('/')[1]?.toLowerCase() || 'en';
+
+  const data = useStaticQuery(graphql`
+    query ErrorPageQuery {
+      en: wpPage(id: { eq: "cG9zdDozNjU0Mg==" }) {
+        errorPage {
+          pageTitle
+          textUnderPageTitle
+          coloredLink {
+            target
+            title
+            url
+          }
+          underlinedLink {
+            target
+            title
+            url
+          }
+        }
+      }
+      pl: wpPage(id: { eq: "cG9zdDo0MjE0NQ==" }) {
+        errorPage {
+          pageTitle
+          textUnderPageTitle
+          coloredLink {
+            target
+            title
+            url
+          }
+          underlinedLink {
+            target
+            title
+            url
+          }
+        }
+      }
+      de: wpPage(id: { eq: "cG9zdDo0MjkxNw==" }) {
+        errorPage {
+          pageTitle
+          textUnderPageTitle
+          coloredLink {
+            target
+            title
+            url
+          }
+          underlinedLink {
+            target
+            title
+            url
+          }
+        }
+      }
+      fr: wpPage(id: { eq: "cG9zdDozOTc2MQ==" }) {
+        errorPage {
+          pageTitle
+          textUnderPageTitle
+          coloredLink {
+            target
+            title
+            url
+          }
+          underlinedLink {
+            target
+            title
+            url
+          }
+        }
+      }
+    }
+  `);
+
+  const errorPage = data[langCode]?.errorPage || data.en?.wpPage?.errorPage;
+
+  const { pageTitle = 'Page Not Found', textUnderPageTitle = "The page you're looking for doesn't exist.", coloredLink = { title: 'Go to Homepage', url: '/' }, underlinedLink = { title: 'Contact Us', url: '/contact' } } = errorPage || {};
+
   return (
     <Wrapper>
       <InView>
@@ -23,64 +98,68 @@ const NotFoundPage = ({ data: { wpPage: { errorPage: { pageTitle, textUnderPageT
             <motion.h1 variants={titleAnimation}>{pageTitle}</motion.h1>
             <motion.div variants={textAnimation} className="text" dangerouslySetInnerHTML={{ __html: textUnderPageTitle }} />
             <Buttons>
-              <motion.div variants={buttonAnimation} >
-                <BrownLink className='button' to={coloredLink.url}>{coloredLink.title}</BrownLink>
+              <motion.div variants={buttonAnimation}>
+                <BrownLink className="button" to={coloredLink.url}>
+                  {coloredLink.title}
+                </BrownLink>
               </motion.div>
               <motion.div variants={linkAnimation}>
-                <Link className='underline' to={underlinedLink.url}>{underlinedLink.title}</Link>
+                <Link className="underline" to={underlinedLink.url}>
+                  {underlinedLink.title}
+                </Link>
               </motion.div>
             </Buttons>
           </Container>
         </Section>
       </InView>
-      <Map language={'EN'} />
+      <Map language={(langCode || 'en').toUpperCase()} />
     </Wrapper>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;
 
 const Section = styled.section`
   background-color: var(--light-background);
   padding: 100px 0;
-  margin-bottom: calc(clamp(45px,10.050251256281408vw,160px) * -1);
+  margin-bottom: calc(clamp(45px, 10.050251256281408vw, 160px) * -1);
 
-  h1{
-      margin-bottom: 32px;
-      font-family: 'Ivy';
-      font-size: clamp(26px, ${40 / 1194 * 100}vw, 40px);
-      font-weight: 300;
-      text-align: center;
+  h1 {
+    margin-bottom: 32px;
+    font-family: 'Ivy';
+    font-size: clamp(26px, ${(40 / 1194) * 100}vw, 40px);
+    font-weight: 300;
+    text-align: center;
   }
 
-  .underline{
+  .underline {
     background-size: inherit;
   }
 
-  .text{
+  .text {
     margin-top: 20px;
-    *{
-      font-size: clamp(18px, ${24 / 1194 * 100}vw, 24px);
+    * {
+      font-size: clamp(18px, ${(24 / 1194) * 100}vw, 24px);
       font-weight: 300;
       text-align: center;
     }
-    a{
-        position: relative;
-        text-decoration: unset !important;
+    a {
+      position: relative;
+      text-decoration: unset !important;
 
-        transition: background-size 0.5s cubic-bezier(0.42, 0, 0.58, 1);
+      transition: background-size 0.5s cubic-bezier(0.42, 0, 0.58, 1);
 
-        background-image: linear-gradient(#222b40, #222b40);
-        background-size: 80% 1px;
-        background-position: left bottom;
-        background-repeat: no-repeat;
+      background-image: linear-gradient(#222b40, #222b40);
+      background-size: 80% 1px;
+      background-position: left bottom;
+      background-repeat: no-repeat;
 
-        &:hover {
-            background-size: 100% 1px !important;
-        }
+      &:hover {
+        background-size: 100% 1px !important;
+      }
     }
   }
-`
+`;
 
 const Buttons = styled.div`
   display: flex;
@@ -90,33 +169,11 @@ const Buttons = styled.div`
   width: fit-content;
   margin: 30px auto 0 auto;
 
-  .button{
+  .button {
     width: fit-content;
   }
 
-  a{
+  a {
     margin-top: 0 !important;
   }
-`
-
-export const query = graphql`
-    query error {
-        wpPage(id: {eq: "cG9zdDozNjU0Mg=="}){
-          id
-          errorPage {
-            pageTitle
-            textUnderPageTitle
-            coloredLink {
-              target
-              title
-              url
-            }
-            underlinedLink {
-              target
-              title
-              url
-            }
-          }
-        }
-    }
-`
+`;

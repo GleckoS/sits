@@ -26,7 +26,6 @@ export default function InformPage({
   },
   pageContext,
 }) {
-  console.log(informPage);
   return (
     <Wrapper>
       <Title title={informPage?.heading} text={informPage?.content} />
