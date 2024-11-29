@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { graphql, Link } from 'gatsby';
+import { graphql, graphql, Link, useStaticQuery } from 'gatsby';
 import * as React from 'react';
 import styled from 'styled-components';
 import { BrownLink } from '../components/atoms/brown-link';
