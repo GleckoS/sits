@@ -20,23 +20,6 @@ export default function Layout({ data, pageContext, children, location }) {
     setIsPageLoaded(true);
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined' && !location?.pathname?.includes('/404/')) {
-      const checkPath = async () => {
-        try {
-          const response = await fetch(location.pathname);
-          if (response.status === 404) {
-            const langCode = pageContext.language?.toLowerCase() || 'en';
-            window.history.replaceState({}, '', `/${langCode}/404/${location.pathname}`);
-          }
-        } catch (error) {
-          console.error('Error checking path:', error);
-        }
-      };
-      checkPath();
-    }
-  }, [location, pageContext]);
-
   return (
     <App>
       <ToastContainer limit={5} transition={animate} />

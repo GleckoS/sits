@@ -23,12 +23,36 @@ const errorPageIds = {
 };
 
 const NotFoundPage = ({ data, location }) => {
-  // Get language from URL path: /pl/something -> pl
-  const langCode = location.pathname.split('/')[1]?.toLowerCase() || 'en';
+  // Add safety checks for data
+  if (!data) {
+    data = {
+      en: {
+        wpPage: {
+          errorPage: {
+            pageTitle: 'Page Not Found',
+            textUnderPageTitle: "The page you're looking for doesn't exist.",
+            coloredLink: {
+              title: 'Go to Homepage',
+              url: '/',
+            },
+            underlinedLink: {
+              title: 'Contact Us',
+              url: '/contact',
+            },
+          },
+        },
+      },
+    };
+  }
 
-  // Get the correct error page data based on language
-  const errorPage = data[langCode]?.wpPage?.errorPage || data.en.wpPage.errorPage;
-  const { pageTitle, textUnderPageTitle, coloredLink, underlinedLink } = errorPage;
+  // Get language from URL path with safety check
+  const langCode = location?.pathname?.split('/')[1]?.toLowerCase() || 'en';
+
+  // Get the correct error page data based on language with additional safety checks
+  const errorPage = data[langCode]?.wpPage?.errorPage || data.en?.wpPage?.errorPage;
+
+  // Add fallback values in case errorPage is undefined
+  const { pageTitle = 'Page Not Found', textUnderPageTitle = "The page you're looking for doesn't exist.", coloredLink = { title: 'Go to Homepage', url: '/' }, underlinedLink = { title: 'Contact Us', url: '/contact' } } = errorPage || {};
 
   return (
     <Wrapper>
@@ -52,7 +76,7 @@ const NotFoundPage = ({ data, location }) => {
           </Container>
         </Section>
       </InView>
-      <Map language={langCode.toUpperCase()} />
+      <Map language={(langCode || 'en').toUpperCase()} />
     </Wrapper>
   );
 };
