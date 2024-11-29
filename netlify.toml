@@ -1302,7 +1302,7 @@
         from = "/pl/rodo*"
         to = "/pl/informacja-o-przetwarzaniu-danych-osobowych/"
         status = 301
-        force = false
+        force = true
 [[redirects]]
         from = "/fr"
         to = "/"
