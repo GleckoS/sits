@@ -984,6 +984,9 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           language {
             code
           }
+          jobOffer {
+            validUntil
+          }
         }
       }
     }
@@ -1000,12 +1003,15 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
 
     const slug = uri.split('/').filter(Boolean).pop();
 
+    const validUntilDate = validUntil || 'No expiration date';
+
     createPage({
       path: `${basePath}/${slug}`,
       component: resolve('src/templates/job-offer-page.jsx'),
       context: {
         id,
         language: langCode,
+        validUntil: validUntilDate,
       },
     });
   });
