@@ -984,7 +984,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
           language {
             code
           }
-          jobOffer {
+          jobOfferDetails {
             validUntil
           }
         }
