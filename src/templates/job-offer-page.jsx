@@ -73,6 +73,7 @@ export const query = graphql`
         city
         employmentType
         shiftType
+        noExpirationDate
         validUntil
         createdAt
         jobFields {
