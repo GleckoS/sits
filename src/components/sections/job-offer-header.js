@@ -2,7 +2,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import styled from 'styled-components';
 import { addedDate, applicationTime, months, noValidUntil, today as todayText, yesterday as yesterdayText } from '../../texts/career';
-export default function JobOfferHeader({ data: { title, image, language, city, employmentType, shiftType, createdAt, validUntil, hasExpirationDate } }) {
+export default function JobOfferHeader({ data: { title, image, language, city, employmentType, shiftType, createdAt, validUntil } }) {
   const formatDate = (dateString) => {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
@@ -46,7 +46,7 @@ export default function JobOfferHeader({ data: { title, image, language, city, e
         </div>
 
         <div>
-          <span>{applicationTime[language]}:</span> <date>{hasExpirationDate ? formatDate(validUntil) : noValidUntil[language]}</date>
+          <span>{applicationTime[language]}:</span> <date>{validUntil ? formatDate(validUntil) : noValidUntil[language]}</date>
         </div>
       </div>
     </Header>

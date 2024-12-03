@@ -14,7 +14,7 @@ export default function OfferList({ data: { heading, offers, language } }) {
   const validOffers = offers
     .filter((offer) => {
       const validUntil = parseDate(offer.jobOfferDetails.validUntil);
-      return !offer.jobOfferDetails.hasExpirationDate || validUntil >= new Date(); // Compare with today
+      return validUntil >= new Date(); // Compare with today
     })
     .sort((a, b) => {
       const dateA = parseDate(a.jobOfferDetails.createdAt);
