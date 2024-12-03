@@ -1001,7 +1001,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
       return;
     }
 
-    const slug = uri.split('/').filter(Boolean).pop();
+    const slug = uri?.split('/').filter(Boolean).pop();
 
     const validUntilDate = validUntil || 'No expiration date';
 
