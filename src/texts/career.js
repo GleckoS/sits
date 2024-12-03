@@ -362,3 +362,10 @@ export const toastMessages = {
     },
   },
 };
+
+export const noValidUntil = {
+  PL: 'Brak terminu',
+  EN: 'No expiration date',
+  FR: "Pas de date d'expiration",
+  DE: 'Keine Ablaufdatum',
+};
