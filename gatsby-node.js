@@ -992,7 +992,7 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
     }
   `);
 
-  jobOffers.forEach(({ id, language, uri }) => {
+  jobOffers.forEach(({ id, language, uri, validUntil }) => {
     const langCode = language?.code || 'PL';
     const basePath = jobOfferPaths[langCode];
 
