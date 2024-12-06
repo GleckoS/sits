@@ -5,11 +5,12 @@ import styled from 'styled-components';
 import { CloseButton } from '../../components/atoms/close-button';
 import { Container } from '../../components/atoms/container';
 import { Search } from '../../components/moleculas/search';
-import { companyTitle, furnitureTitle, linksLeft, linksRight } from '../../texts';
+import { companyTitle, furnitureTitle, linkRightCareer, linksLeft, linksRight } from '../../texts';
 import { homepageUrl } from '../../texts/urls';
 import scrollLock from './../../helpers/scroll-lock';
 import { LangChanger } from './lang-changer';
 import { Item } from './menu-item';
+import ReactDOM from 'react-dom';
 
 export default function Header({ data, language }) {
   const [isLeftMenuOpened, setLeftMenuOpened] = useState(false);
@@ -111,6 +112,10 @@ export default function Header({ data, language }) {
   };
 
   const allRightLinks = [...linksRight[language]];
+
+  if (careerPages.nodes.find((el) => el.language.code === language)) {
+    allRightLinks.splice(9, 0, linkRightCareer[language]);
+  }
 
   useEffect(() => {
     const lockScroll = () => {

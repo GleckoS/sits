@@ -61,6 +61,13 @@ const csvParser = (data) => {
   return result; //JSON
 };
 
+const jobOfferPaths = {
+  EN: '/career',
+  PL: '/pl/kariera',
+  DE: '/de/karriere',
+  FR: '/fr/carriere',
+};
+
 exports.onPostBuild = async ({ graphql }) => {
   // Create redirects
   const {
@@ -925,6 +932,86 @@ exports.createPages = async ({ graphql, actions: { createPage } }) => {
         slug,
         uri,
         language: language?.code ? language.code : 'EN',
+      },
+    });
+  });
+
+  // Career
+
+  const {
+    data: {
+      allWpPage: { nodes: Career },
+    },
+  } = await graphql(`
+    query {
+      allWpPage(filter: { template: { templateName: { eq: "Career" } } }) {
+        nodes {
+          slug
+          id
+          uri
+          language {
+            code
+          }
+        }
+      }
+    }
+  `);
+
+  Career.forEach(({ id, slug, uri, language }) => {
+    createPage({
+      path: uri,
+      component: resolve('src/templates/career-page.jsx'),
+      context: {
+        id,
+        slug,
+        uri,
+        language: language?.code ? language.code : 'EN',
+      },
+    });
+  });
+
+  // Job Offers
+  const {
+    data: {
+      allWpJobOffers: { nodes: jobOffers },
+    },
+  } = await graphql(`
+    query {
+      allWpJobOffers {
+        nodes {
+          id
+          uri
+          language {
+            code
+          }
+          jobOfferDetails {
+            validUntil
+          }
+        }
+      }
+    }
+  `);
+
+  jobOffers.forEach(({ id, language, uri, validUntil }) => {
+    const langCode = language?.code || 'PL';
+    const basePath = jobOfferPaths[langCode];
+
+    if (!basePath) {
+      console.warn(`No path configuration for language: ${langCode}`);
+      return;
+    }
+
+    const slug = uri?.split('/').filter(Boolean).pop();
+
+    const validUntilDate = validUntil || 'No expiration date';
+
+    createPage({
+      path: `${basePath}/${slug}`,
+      component: resolve('src/templates/job-offer-page.jsx'),
+      context: {
+        id,
+        language: langCode,
+        validUntil: validUntilDate,
       },
     });
   });

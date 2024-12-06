@@ -315,6 +315,14 @@ export const right = {
     { name: 'KONTAKT', url: '/de/kontakt/' },
   ],
 };
+
+export const rightCareer = {
+  EN: { name: 'CAREER', url: '/career/' },
+  FR: { name: 'CARRIÈRE', url: '/fr/carriere/' },
+  PL: { name: 'KARIERA', url: '/pl/kariera/' },
+  DE: { name: 'KARRIERE', url: '/de/karriere/' },
+};
+
 export const linksLeft = {
   EN: [
     { name: 'Best Seller', url: '/best-sellers/' },
@@ -427,6 +435,13 @@ export const linksRight = {
     { name: 'Treffen Sie uns', url: '/de/ausstellungen/' },
     { name: 'Kontakt', url: '/de/kontakt/' },
   ],
+};
+
+export const linkRightCareer = {
+  EN: { name: 'Career', url: '/career/' },
+  FR: { name: 'Carrière', url: '/fr/carriere/' },
+  PL: { name: 'Kariera', url: '/pl/kariera/' },
+  DE: { name: 'Karriere', url: '/de/karriere/' },
 };
 
 export const furnitureTitle = {
