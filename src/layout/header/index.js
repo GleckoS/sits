@@ -21,6 +21,7 @@ export default function Header({ data, language }) {
   const [headerHeight, setHeaderHeight] = useState(0);
   const [isAdditionalTextOpen, setAdditionalTextOpen] = useState(false);
   const [scrollY, setScrollY] = useState(0);
+
   const { allWpPage, careerPages } = useStaticQuery(graphql`
     query Header($language: WpLanguageCodeEnum) {
       allWpPage(filter: { template: { templateName: { eq: "Global Config" } }, language: { code: { eq: $language } } }) {
@@ -102,7 +103,6 @@ export default function Header({ data, language }) {
       window.removeEventListener('scroll', setHeaderHeightFn);
     };
   }, [isAdditionalInformOpened, isAdditionalTextOpen]);
-
 
   const closeAll = () => {
     setLeftMenuOpened(false);
@@ -344,9 +344,9 @@ export default function Header({ data, language }) {
             {isMobileMenuOpened && (
               <MobileMenu
                 className={`header__mobileMenu ${isMobileMenuOpened ? 'active ' : ''} ${isAdditionalInformOpened ? 'additional' : ''}`}
-                style={{
-                  top: `${calculateTopPosition()}px`,
-                }}
+                // style={{
+                //   top: `${calculateTopPosition()}px`,
+                // }}
                 initial={{ opacity: 0 }}
                 exit={{ opacity: 0, transition: { duration: 0.3 } }}
                 animate={{ opacity: 1, transition: { duration: 0.5 } }}
